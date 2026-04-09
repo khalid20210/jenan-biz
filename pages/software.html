@@ -1,0 +1,536 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<!-- متجر برامج جنان بيز — محاسبة، مبيعات، موارد بشرية وأكثر -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر البرامج | جنان بيز — برامج جاهزة ومخصصة للمنشآت السعودية</title>
+  <meta name="description" content="برامج محاسبية، مبيعات، موارد بشرية، مخازن وفاتورة إلكترونية — مصممة خصيصاً للمنشآت السعودية ومتوافقة مع هيئة الزكاة والضريبة">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    /* ══════════════════════════════════════════════════════
+       متجر برامج جنان — Design System كامل
+       ══════════════════════════════════════════════════════ */
+    :root {
+      --sw-primary: #4E73C2;
+      --sw-dark:    #1a1a2e;
+      --sw-bg:      #f8f9fc;
+      --sw-surface: #ffffff;
+      --sw-border:  #e2e8f4;
+      --sw-text:    #1a1a2e;
+      --sw-muted:   #64748b;
+      --sw-green:   #059669;
+      --sw-gold:    #d97706;
+      --sw-purple:  #7c3aed;
+      --sw-radius:  14px;
+      --sw-shadow:  0 4px 20px rgba(0,0,0,.08);
+      --sw-shadow-lg: 0 10px 40px rgba(0,0,0,.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Tajawal", sans-serif; background: var(--sw-bg); color: var(--sw-text); }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Topbar ────────────────────────────────────────── */
+    .sw-topbar {
+      background: var(--sw-dark);
+      padding: 13px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 200;
+      box-shadow: 0 2px 16px rgba(0,0,0,.3);
+    }
+    .sw-topbar-logo { font-size: 1.2rem; font-weight: 900; color: #fff; text-decoration: none; }
+    .sw-topbar-logo em { font-style: normal; color: #a855f7; }
+    .sw-topbar-nav { display: flex; gap: .3rem; }
+    .sw-topbar-nav a {
+      color: rgba(255,255,255,.65); text-decoration: none; font-size: .87rem;
+      padding: .4rem .85rem; border-radius: 8px; transition: all .2s;
+    }
+    .sw-topbar-nav a:hover, .sw-topbar-nav a.active {
+      background: rgba(255,255,255,.1); color: #fff;
+    }
+    .sw-topbar-btn {
+      background: var(--sw-primary); color: #fff; border: none; border-radius: 8px;
+      padding: .45rem 1rem; font-size: .88rem; font-family: inherit; font-weight: 700;
+      cursor: pointer; text-decoration: none; display: inline-flex;
+      align-items: center; gap: .4rem; transition: all .2s;
+    }
+    .sw-topbar-btn:hover { background: #3558a8; }
+
+    /* ── Hero ──────────────────────────────────────────── */
+    .sw-hero {
+      background: radial-gradient(ellipse at 30% 60%,rgba(78,115,194,.18) 0%,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(78,115,194,.10) 0%,transparent 45%),linear-gradient(145deg,#0B0E1A 0%,#111B3D 55%,#1E2D5C 100%);
+      padding: 68px 24px 100px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .sw-hero::before {
+      content: "💻";
+      position: absolute; font-size: 380px; opacity: .033;
+      top: -30px; left: 50%; transform: translateX(-50%); pointer-events: none;
+    }
+    .sw-hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(78,115,194,.2); border: 1px solid rgba(78,115,194,.4);
+      color: #93c5fd; border-radius: 50px;
+      padding: .35rem 1rem; font-size: .85rem; font-weight: 700; margin-bottom: 1.2rem;
+    }
+    .sw-hero h1 {
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-weight: 900; color: #fff; margin-bottom: .7rem;
+    }
+    .sw-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #93c5fd, #4E73C2);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .sw-hero p { color: rgba(255,255,255,.72); font-size: 1.07rem; max-width: 620px; margin: 0 auto 2rem; line-height: 1.75; }
+    .sw-hero-nums {
+      display: flex; justify-content: center; gap: 2.4rem; flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .sw-hero-num { text-align: center; }
+    .sw-hero-num strong { display: block; font-size: 2rem; font-weight: 900; color: #fff; }
+    .sw-hero-num span { font-size: .82rem; color: rgba(255,255,255,.6); }
+    .sw-hero-cta { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+    .sw-btn-hero-main {
+      background: linear-gradient(135deg, #4E73C2, #3558a8);
+      color: #fff; border: none; border-radius: 50px;
+      padding: .75rem 2rem; font-size: 1rem; font-family: inherit; font-weight: 800;
+      cursor: pointer; transition: all .25s; box-shadow: 0 6px 20px rgba(78,115,194,.4);
+      text-decoration: none; display: inline-block;
+    }
+    .sw-btn-hero-main:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(78,115,194,.5); }
+    .sw-btn-hero-wa {
+      background: #25d366; color: #fff; border: none; border-radius: 50px;
+      padding: .72rem 1.8rem; font-size: .97rem; font-family: inherit; font-weight: 700;
+      cursor: pointer; transition: all .2s; text-decoration: none; display: inline-flex;
+      align-items: center; gap: .5rem;
+    }
+    .sw-btn-hero-wa:hover { background: #128c4e; transform: translateY(-2px); }
+
+    /* ── Trust Strip ───────────────────────────────────── */
+    .sw-trust-strip {
+      background: var(--sw-dark);
+      padding: 1rem 28px;
+      display: flex; align-items: center; justify-content: center; gap: 2.5rem;
+      flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .sw-trust-item { display: flex; align-items: center; gap: .6rem; color: rgba(255,255,255,.7); font-size: .87rem; }
+    .sw-trust-ico { font-size: 1.1rem; }
+
+    /* ── Main ──────────────────────────────────────────── */
+    .sw-main {
+      max-width: 1120px; margin: -56px auto 60px;
+      padding: 0 20px; position: relative; z-index: 1;
+    }
+
+    /* ── Toolbar & Search ──────────────────────────────── */
+    .sw-toolbar {
+      background: #fff; border: 1px solid var(--sw-border); border-radius: var(--sw-radius);
+      padding: 1.2rem 1.4rem; margin-bottom: 1.2rem;
+      box-shadow: var(--sw-shadow);
+      display: flex; flex-direction: column; gap: .9rem;
+    }
+    .sw-search-wrap { position: relative; }
+    .sw-search-icon { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); font-size: 1rem; }
+    .sw-search {
+      width: 100%; padding: .8rem 2.8rem .8rem 1rem;
+      border: 2px solid var(--sw-border); border-radius: 50px;
+      font-family: inherit; font-size: .97rem; transition: border-color .2s;
+    }
+    .sw-search:focus { outline: none; border-color: var(--sw-primary); }
+    .sw-type-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .sw-cat-btn {
+      background: var(--sw-bg); border: 1.5px solid var(--sw-border); border-radius: 50px;
+      padding: .5rem 1.1rem; font-size: .88rem; font-weight: 700;
+      cursor: pointer; transition: all .18s; color: var(--sw-muted); font-family: inherit;
+      white-space: nowrap;
+    }
+    .sw-cat-btn.active { background: var(--sw-dark); border-color: var(--sw-dark); color: #fff; }
+    .sw-cat-btn:hover:not(.active) { border-color: var(--sw-primary); color: var(--sw-primary); }
+
+    /* ── Stats Bar ─────────────────────────────────────── */
+    .sw-stats-bar { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    .sw-stat {
+      background: #fff; border: 1px solid var(--sw-border); border-radius: 12px;
+      padding: .8rem 1.2rem; display: flex; align-items: center; gap: .6rem;
+      box-shadow: var(--sw-shadow);
+    }
+    .sw-stat-num { font-size: 1.35rem; font-weight: 900; color: var(--sw-text); }
+    .sw-stat-lbl { font-size: .82rem; color: var(--sw-muted); }
+    .sw-stat-highlight .sw-stat-num { color: var(--sw-primary); }
+
+    /* ── Cards Grid ────────────────────────────────────── */
+    .sw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .sw-card {
+      background: #fff; border: 1px solid var(--sw-border); border-radius: var(--sw-radius);
+      overflow: hidden; cursor: pointer; transition: all .22s; box-shadow: var(--sw-shadow);
+      position: relative;
+    }
+    .sw-card:hover { transform: translateY(-5px); box-shadow: var(--sw-shadow-lg); }
+    .sw-card-soon { opacity: .82; }
+    .sw-badge {
+      position: absolute; top: .8rem; left: .8rem;
+      color: #fff; border-radius: 20px; padding: .2rem .7rem;
+      font-size: .75rem; font-weight: 800; z-index: 2;
+    }
+    .sw-card-head {
+      padding: 1.3rem 1.2rem 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .sw-card-emoji { font-size: 2.4rem; }
+    .sw-status-pill {
+      border-radius: 20px; padding: .25rem .75rem; font-size: .78rem; font-weight: 700;
+    }
+    .sw-avail  { background: #f0fdf4; color: #166534; }
+    .sw-soon   { background: #f1f5f9; color: #64748b; }
+    .sw-card-body { padding: .2rem 1.2rem 1.3rem; }
+    .sw-card-title { font-size: 1rem; font-weight: 900; color: var(--sw-text); margin-bottom: .25rem; line-height: 1.4; }
+    .sw-card-tagline { font-size: .83rem; color: var(--sw-muted); margin-bottom: .8rem; }
+    .sw-feat-list { list-style: none; margin-bottom: .9rem; }
+    .sw-feat-list li { font-size: .85rem; color: var(--sw-text); padding: .25rem 0; border-bottom: 1px dashed var(--sw-border); }
+    .sw-feat-list li:last-child { border: none; }
+    .sw-feat-more { color: var(--sw-muted) !important; font-size: .8rem !important; font-weight: 700; }
+    .sw-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+    .sw-price-from { display: flex; flex-direction: column; }
+    .sw-from-label { font-size: .75rem; color: var(--sw-muted); }
+    .sw-from-price { font-size: 1.3rem; font-weight: 900; line-height: 1.2; }
+    .sw-from-price small { font-size: .72rem; font-weight: 500; color: var(--sw-muted); }
+    .sw-coming-label { font-size: .83rem; color: #94a3b8; font-weight: 700; }
+    .sw-card-btn {
+      color: #fff; border: none; border-radius: 8px;
+      padding: .5rem 1.1rem; font-size: .88rem; font-family: inherit;
+      font-weight: 700; cursor: pointer; transition: all .2s;
+    }
+    .sw-card-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+
+    /* ── Compare Banner ────────────────────────────────── */
+    .sw-compare-banner {
+      background: linear-gradient(135deg, #1a1a2e, #2b1f5c);
+      border-radius: var(--sw-radius); padding: 1.6rem; margin-bottom: 1.8rem;
+    }
+    .sw-cb-inner { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .sw-cb-icon { font-size: 2rem; flex-shrink: 0; }
+    .sw-cb-inner > div { flex: 1; color: #fff; }
+    .sw-cb-inner > div strong { display: block; font-size: 1.05rem; margin-bottom: .25rem; }
+    .sw-cb-inner > div p { font-size: .88rem; color: rgba(255,255,255,.72); }
+    .sw-cb-btn {
+      background: #25d366; color: #fff; border-radius: 50px;
+      padding: .65rem 1.5rem; font-size: .95rem; font-weight: 800;
+      transition: all .18s; white-space: nowrap;
+    }
+    .sw-cb-btn:hover { background: #128c4e; transform: translateY(-2px); }
+
+    /* ── Custom Section ────────────────────────────────── */
+    .sw-custom-section {
+      background: linear-gradient(135deg, #fef9e7, #fff7ed);
+      border: 1px solid #fde68a; border-radius: var(--sw-radius);
+      margin-bottom: 2rem;
+    }
+    .sw-custom-inner {
+      padding: 2rem; display: flex; align-items: center;
+      justify-content: space-between; gap: 1.4rem; flex-wrap: wrap;
+    }
+    .sw-custom-text { display: flex; align-items: flex-start; gap: 1rem; }
+    .sw-custom-emoji { font-size: 2.4rem; flex-shrink: 0; }
+    .sw-custom-text h3 { font-size: 1.1rem; font-weight: 900; color: #78350f; margin-bottom: .3rem; }
+    .sw-custom-text p { font-size: .87rem; color: #92400e; line-height: 1.65; max-width: 480px; }
+    .sw-btn-custom {
+      background: var(--sw-gold); color: #fff; border-radius: 50px;
+      padding: .7rem 1.6rem; font-size: .95rem; font-weight: 800;
+      transition: all .2s; white-space: nowrap;
+    }
+    .sw-btn-custom:hover { background: #b45309; transform: translateY(-2px); }
+
+    /* ── Empty State ───────────────────────────────────── */
+    .sw-empty { text-align: center; padding: 3rem; color: var(--sw-muted); }
+    .sw-empty span { font-size: 3rem; display: block; margin-bottom: .8rem; }
+
+    /* ── Overlay / Panel ───────────────────────────────── */
+    .sw-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10,10,20,.6); backdrop-filter: blur(4px);
+      z-index: 500; display: none; align-items: center;
+      justify-content: center; padding: 20px;
+    }
+    .sw-overlay.open { display: flex; }
+    .sw-panel {
+      background: #fff; border-radius: 20px;
+      max-width: 780px; width: 100%; max-height: 90vh; overflow-y: auto;
+      padding: 2rem; box-shadow: 0 24px 60px rgba(0,0,0,.3); position: relative;
+    }
+    .sw-panel-close {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--sw-bg); border: 1px solid var(--sw-border);
+      border-radius: 8px; padding: .4rem .9rem; font-family: inherit;
+      font-size: .88rem; cursor: pointer; transition: all .18s; color: var(--sw-muted);
+    }
+    .sw-panel-close:hover { background: #fef2f2; color: #dc2626; }
+
+    /* ── Panel internals ── */
+    .sw-badge-lg {
+      color: #fff; border-radius: 20px; padding: .25rem .9rem;
+      font-size: .82rem; font-weight: 800;
+    }
+    .sw-feat-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+      gap: .5rem;
+    }
+    .sw-feat-item {
+      background: #f8fafc; border: 1px solid var(--sw-border); border-radius: 8px;
+      padding: .55rem .8rem; font-size: .9rem; display: flex; gap: .5rem; align-items: flex-start;
+    }
+    .sw-plans-row {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      gap: 1rem; margin-bottom: 1.2rem;
+    }
+    .sw-plan {
+      background: #fff; border: 2px solid var(--sw-border); border-radius: 14px;
+      padding: 1.4rem 1rem; text-align: center; position: relative;
+      transition: all .2s;
+    }
+    .sw-plan-highlight { transform: translateY(-4px); }
+    .sw-plan-top-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      color: #fff; border-radius: 20px; padding: .2rem 1rem;
+      font-size: .78rem; font-weight: 800; white-space: nowrap;
+    }
+    .sw-plan-name { font-size: .9rem; font-weight: 800; margin-bottom: .5rem; }
+    .sw-plan-price { font-size: 2rem; font-weight: 900; color: var(--sw-text); line-height: 1.2; }
+    .sw-plan-price small { font-size: .8rem; font-weight: 500; color: var(--sw-muted); }
+    .sw-plan-period { font-size: .8rem; color: var(--sw-muted); margin-bottom: .5rem; }
+    .sw-plan-users {
+      font-size: .82rem; background: var(--sw-bg); border-radius: 8px;
+      padding: .3rem .6rem; margin-bottom: .9rem; color: var(--sw-text);
+    }
+    .sw-plan-btn {
+      display: block; border-radius: 8px; padding: .55rem;
+      font-size: .9rem; font-weight: 800; transition: all .18s;
+      border: none; cursor: pointer; font-family: inherit; text-align: center; width: 100%;
+    }
+    .sw-plan-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .sw-plan-wa-btn {
+      display: flex; align-items: center; justify-content: center; gap: .35rem;
+      border-radius: 8px; padding: .45rem; font-size: .83rem; font-weight: 800;
+      background: #e8f5e9; color: #1a7340; transition: all .18s; margin-top: .35rem;
+      border: 1.5px solid #a8d5b5; text-decoration: none;
+    }
+    .sw-plan-wa-btn:hover { background: #25d366; color: #fff; border-color: #25d366; }
+    .sw-notify-box {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      border: 1px solid var(--sw-border); border-radius: 14px;
+      padding: 1.4rem; text-align: center; margin-top: 1.2rem;
+    }
+    .sw-notify-box h4 { font-size: 1rem; font-weight: 900; margin-bottom: .4rem; }
+    .sw-notify-box p { font-size: .87rem; color: var(--sw-muted); margin-bottom: .8rem; }
+    .sw-notify-btn {
+      display: inline-block; background: #25d366; color: #fff; border-radius: 50px;
+      padding: .6rem 1.6rem; font-size: .95rem; font-weight: 800; transition: all .18s;
+    }
+    .sw-notify-btn:hover { background: #128c4e; }
+    .sw-detail-cta {
+      display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.4rem;
+    }
+    .sw-btn-demo {
+      background: var(--sw-bg); border: 2px solid var(--sw-border); border-radius: 50px;
+      padding: .7rem 1.6rem; font-size: .95rem; font-weight: 700; color: var(--sw-text);
+      transition: all .2s;
+    }
+    .sw-btn-demo:hover { border-color: var(--sw-primary); color: var(--sw-primary); }
+    .sw-btn-buy {
+      color: #fff; border: none; border-radius: 50px;
+      padding: .72rem 1.8rem; font-size: .97rem; font-weight: 800;
+      transition: all .2s; display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .sw-btn-buy:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .sw-detail-note { font-size: .82rem; color: var(--sw-muted); margin-top: .8rem; line-height: 1.65; }
+
+    /* ── Features Section ──────────────────────────────── */
+    .sw-why-section { margin-bottom: 2.4rem; }
+    .sw-section-title { font-size: 1.15rem; font-weight: 900; color: var(--sw-text); margin-bottom: 1.2rem; }
+    .sw-why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1rem;
+    }
+    .sw-why-card {
+      background: #fff; border: 1px solid var(--sw-border); border-radius: 12px;
+      padding: 1.2rem; box-shadow: var(--sw-shadow); display: flex; gap: .9rem;
+    }
+    .sw-why-ico { font-size: 1.8rem; flex-shrink: 0; }
+    .sw-why-card h4 { font-size: .93rem; font-weight: 800; margin-bottom: .25rem; }
+    .sw-why-card p { font-size: .82rem; color: var(--sw-muted); line-height: 1.6; }
+
+    /* ── Footer ────────────────────────────────────────── */
+    .sw-footer {
+      background: var(--sw-dark); color: rgba(255,255,255,.6);
+      padding: 2.5rem 28px 1.5rem; text-align: center; margin-top: 3rem;
+    }
+    .sw-footer p { font-size: .83rem; line-height: 1.7; max-width: 600px; margin: 0 auto .8rem; }
+    .sw-footer-soc { display: flex; justify-content: center; gap: .8rem; margin-top: 1rem; }
+    .sw-footer-ico {
+      width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.6);
+      text-decoration: none; font-size: .9rem; transition: all .2s;
+    }
+    .sw-footer-ico:hover { background: var(--sw-primary); color: #fff; border-color: var(--sw-primary); }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .sw-topbar-nav { display: none; }
+      .sw-main { margin-top: -40px; }
+      .sw-hero-nums { gap: 1.4rem; }
+      .sw-cb-inner { flex-direction: column; }
+      .sw-plans-row { grid-template-columns: 1fr; }
+      .sw-panel { padding: 1.4rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ Topbar ══ -->
+  <nav class="jb-nav">
+    <a href="/index.html" class="jb-nav-logo"><img src="/assets/images/logo.svg" alt="جنان بيز"> جنان <em>بيز</em></a>
+    <div class="jb-nav-links" id="jb-nav-links">
+      <a href="/index.html">الرئيسية</a>
+      <a href="/pages/knowledge.html">الأكاديمية</a>
+      <a href="/pages/software.html" class="active">برامج جاهزة</a>
+      <a href="/pages/design.html">التصميم</a>
+      <a href="/pages/hook-services.html">خدمات الجذب</a>
+      <a href="/pages/services.html">الخدمات</a>
+      <a href="/dashboard.html">لوحة التحكم</a>
+    </div>
+    <div class="jb-nav-actions">
+      <a href="https://wa.me/966567711999" target="_blank" class="jb-nav-btn"><i class="fa-brands fa-whatsapp"></i> تواصل</a>
+      <button class="jb-nav-ham" onclick="document.getElementById('jb-nav-links').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- ══ Hero ══ -->
+  <header class="sw-hero">
+    <div class="sw-hero-badge">💻 برامج سعودية 100% — مصممة لمنشأتك</div>
+    <h1>برامج جاهزة لـ <em>إدارة منشأتك</em> بالكامل</h1>
+    <p>محاسبة، مبيعات، موارد بشرية، مخازن وفاتورة إلكترونية — كل ما تحتاجه في مكان واحد، متوافق مع متطلبات هيئة الزكاة والضريبة والجمارك</p>
+    <div class="sw-hero-nums">
+      <div class="sw-hero-num"><strong>4+</strong><span>برنامج متاح الآن</span></div>
+      <div class="sw-hero-num"><strong>ZATCA</strong><span>متوافق بالكامل</span></div>
+      <div class="sw-hero-num"><strong>24/7</strong><span>دعم فوري</span></div>
+      <div class="sw-hero-num"><strong>حر</strong><span>تخصيص كامل</span></div>
+    </div>
+    <div class="sw-hero-cta">
+      <button class="sw-btn-hero-main" onclick="document.getElementById('software-root')?.scrollIntoView({behavior:'smooth'})">
+        🗂️ تصفح البرامج
+      </button>
+      <a href="https://wa.me/966567711999?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B9%D8%B1%D8%B6%20%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A%20%D9%84%D8%A3%D8%AD%D8%AF%20%D8%A8%D8%B1%D8%A7%D9%85%D8%AC%20%D8%AC%D9%86%D8%A7%D9%86%20%D8%A8%D9%8A%D8%B2"
+         target="_blank" class="sw-btn-hero-wa">
+        <i class="fa-brands fa-whatsapp"></i> احصل على عرض تجريبي مجاني
+      </a>
+    </div>
+  </header>
+
+  <!-- ══ Trust Strip ══ -->
+  <div class="sw-trust-strip">
+    <div class="sw-trust-item"><span class="sw-trust-ico">🏛️</span><span>متوافق مع هيئة الزكاة ZATCA</span></div>
+    <div class="sw-trust-item"><span class="sw-trust-ico">🏢</span><span>ربط مع منصات قوى ومدد</span></div>
+    <div class="sw-trust-item"><span class="sw-trust-ico">☁️</span><span>سحابي — أفتح من أي مكان</span></div>
+    <div class="sw-trust-item"><span class="sw-trust-ico">🔒</span><span>بيانات مشفرة ومحمية</span></div>
+    <div class="sw-trust-item"><span class="sw-trust-ico">🇸🇦</span><span>مصنوع في السعودية</span></div>
+  </div>
+
+  <!-- ══ Main ══ -->
+  <main class="sw-main">
+
+    <!-- يملأ الروبوت هذا القسم -->
+    <div id="software-root"></div>
+
+    <!-- لماذا جنان بيز؟ -->
+    <div class="sw-why-section">
+      <div class="sw-section-title">🏆 لماذا تختار برامج جنان بيز؟</div>
+      <div class="sw-why-grid">
+        <div class="sw-why-card">
+          <span class="sw-why-ico">🇸🇦</span>
+          <div>
+            <h4>مصنوع للسوق السعودي</h4>
+            <p>مُطابق للوائح الزكاة والضريبة ومتطلبات الجهات الحكومية السعودية منذ اليوم الأول</p>
+          </div>
+        </div>
+        <div class="sw-why-card">
+          <span class="sw-why-ico">⚡</span>
+          <div>
+            <h4>تفعيل خلال 24 ساعة</h4>
+            <p>بعد الاشتراك يتم تجهيز حسابك وتدريبك على الاستخدام خلال يوم عمل واحد</p>
+          </div>
+        </div>
+        <div class="sw-why-card">
+          <span class="sw-why-ico">💬</span>
+          <div>
+            <h4>دعم يومي عبر الواتساب</h4>
+            <p>فريق دعم متخصص يساعدك في أي مشكلة تقنية أو استفسار عبر الواتساب مباشرة</p>
+          </div>
+        </div>
+        <div class="sw-why-card">
+          <span class="sw-why-ico">🔗</span>
+          <div>
+            <h4>كل البرامج تتكامل مع بعض</h4>
+            <p>اشترِ المحاسبة والمبيعات والمخزون معاً وستعمل كمنظومة واحدة متكاملة تلقائياً</p>
+          </div>
+        </div>
+        <div class="sw-why-card">
+          <span class="sw-why-ico">📱</span>
+          <div>
+            <h4>يعمل على الجوال والكمبيوتر</h4>
+            <p>واجهة متجاوبة كاملاً — أدِر منشأتك من هاتفك أينما كنت</p>
+          </div>
+        </div>
+        <div class="sw-why-card">
+          <span class="sw-why-ico">🛠️</span>
+          <div>
+            <h4>تخصيص حسب منشأتك</h4>
+            <p>نضيف لك حقولاً ووظائف خاصة حسب طبيعة نشاطك التجاري دون رسوم إضافية</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══ Footer ══ -->
+  <footer class="sw-footer">
+    <p>جميع الأسعار تشمل ضريبة القيمة المضافة · يمكن إلغاء الاشتراك في أي وقت · لا رسوم خفية</p>
+    <p style="font-size:.76rem;opacity:.6">جنان بيز &copy; 2026 — جميع الحقوق محفوظة</p>
+    <div class="sw-footer-soc">
+      <a href="https://wa.me/966567711999"       target="_blank" class="sw-footer-ico" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://x.com/jenanstar11"         target="_blank" class="sw-footer-ico" title="تويتر"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://instagram.com/jenanstar11" target="_blank" class="sw-footer-ico" title="إنستجرام"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://tiktok.com/@jenan.star11"  target="_blank" class="sw-footer-ico" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
+    </div>
+  </footer>
+
+  <!-- ══ Scripts ══ -->
+  <script src="/config/app-config.js"></script>
+<script src="/config/site-inject.js"></script>
+  <script src="/assets/js/modules/loyalty-engine.js"></script>
+  <script src="/assets/js/modules/payment-gateway.js"></script>
+  <script src="/assets/js/modules/software-store.js"></script>
+  <script>
+    // واتساب عائم
+    (function () {
+      var wa = document.createElement("a");
+      wa.href = "https://wa.me/966567711999?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A8%D8%B1%D8%A7%D9%85%D8%AC%20%D8%AC%D9%86%D8%A7%D9%86%20%D8%A8%D9%8A%D8%B2";
+      wa.target = "_blank";
+      wa.title = "تواصل عبر الواتساب";
+      wa.style.cssText = "position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:#25d366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 6px 20px rgba(37,211,102,.45);z-index:999;transition:all .2s";
+      wa.onmouseenter = function(){ this.style.transform = "scale(1.1)"; };
+      wa.onmouseleave = function(){ this.style.transform = "scale(1)"; };
+      wa.innerHTML = '<i class="fa-brands fa-whatsapp"></i>';
+      document.body.appendChild(wa);
+    })();
+  </script>
+</body>
+</html>

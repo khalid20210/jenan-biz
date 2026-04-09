@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>روبوت إدارة المشاريع</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { background: #f7f8fa; font-family: Tajawal, sans-serif; }
+    .project-copilot-container { max-width: 700px; margin: 2rem auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px #0001; padding: 2.5rem 2rem; }
+    .project-step { margin-bottom: 2.5rem; }
+    .step-title { font-size: 1.3rem; font-weight: bold; color: #4E73C2; margin-bottom: .7rem; }
+    .step-desc { color: #555; margin-bottom: 1.2rem; font-size: 1.05rem; }
+    .step-actions { margin-bottom: 1.2rem; }
+    .step-actions button { margin-left: .5rem; margin-bottom: .5rem; background: #4E73C2; color: #fff; border: none; border-radius: 6px; padding: .5rem 1.2rem; font-size: 1rem; cursor: pointer; transition: background .2s; }
+    .step-actions button:hover { background: #34518a; }
+    .step-report { background: #f1f5fb; border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1.2rem; color: #333; font-size: .98rem; }
+    .step-next { color: #a855f7; font-weight: 600; font-size: 1.05rem; }
+    .project-progress { margin: 2rem 0; background: #e0e7ef; border-radius: 8px; height: 12px; overflow: hidden; }
+    .project-progress-bar { background: #4E73C2; height: 100%; transition: width .4s; }
+    .project-header { text-align: center; margin-bottom: 2.5rem; }
+    .project-header h1 { color: #4E73C2; font-size: 2.1rem; margin-bottom: .5rem; }
+    .project-header p { color: #555; font-size: 1.1rem; }
+    .project-summary { background: #f9fafb; border-radius: 10px; padding: 1.2rem 1.5rem; margin-bottom: 2rem; color: #444; font-size: 1.05rem; }
+    .project-step input, .project-step select { font-size: 1rem; padding: .5rem .7rem; border-radius: 6px; border: 1px solid #cbd5e1; margin-bottom: .7rem; width: 100%; box-sizing: border-box; }
+    .project-step label { font-weight: 600; color: #4E73C2; margin-bottom: .3rem; display: block; }
+    .step-suggestions { margin-bottom: 1.2rem; }
+    .step-suggestions span { background: #e0e7ef; color: #4E73C2; border-radius: 5px; padding: .3rem .8rem; margin-left: .5rem; font-size: .95rem; cursor: pointer; display: inline-block; margin-bottom: .4rem; }
+    .step-suggestions span:hover { background: #4E73C2; color: #fff; }
+    .step-complete { color: #16a34a; font-weight: bold; margin-bottom: .7rem; }
+  </style>
+</head>
+<body>
+  <nav class="jb-nav">
+    <a href="/index.html" class="jb-nav-logo"><img src="/assets/images/logo.svg" alt="جنان بيز"> جنان <em>بيز</em></a>
+    <div class="jb-nav-links" id="jb-nav-links">
+      <a href="/index.html">الرئيسية</a>
+      <a href="/pages/knowledge.html">الأكاديمية</a>
+      <a href="/pages/software.html">برامج جاهزة</a>
+      <a href="/pages/design.html">التصميم</a>
+      <a href="/pages/hook-services.html">خدمات الجذب</a>
+      <a href="/pages/services.html">الخدمات</a>
+      <a href="/pages/project.html" class="active">المشاريع</a>
+      <a href="/dashboard.html">لوحة التحكم</a>
+    </div>
+    <div class="jb-nav-actions">
+      <a href="/auth.html" class="jb-nav-btn">دخول</a>
+      <button class="jb-nav-ham" onclick="document.getElementById('jb-nav-links').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="project-copilot-container">
+    <div class="project-header">
+      <h1>روبوت إدارة المشاريع 🚀</h1>
+      <p>مساعدك الذكي خطوة بخطوة من الفكرة حتى التشغيل الفعلي — مع اقتراحات دقيقة، تقارير إنجاز، وتحليل احترافي في كل مرحلة.</p>
+    </div>
+    <div id="project-progress" class="project-progress"><div id="project-progress-bar" class="project-progress-bar" style="width:0%"></div></div>
+    <div id="project-summary" class="project-summary" style="display:none"></div>
+    <div id="project-steps"></div>
+  </div>
+  <script src="/assets/js/core/project-copilot.js"></script>
+
+<script src="/config/app-config.js"></script>
+<script src="/config/site-inject.js"></script>
+</body>
+</html>

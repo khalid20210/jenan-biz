@@ -1,0 +1,40 @@
+# ============================================================
+#  .gitignore — جنان بيز
+# ============================================================
+
+# بيانات سرية — لا ترفعها أبداً
+.env
+api/.env
+*.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+dist/
+build/
+*.egg-info/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# نظام المشغّل
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# أدوات التطوير
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# ملفات مؤقتة Claude
+tmpclaude-*

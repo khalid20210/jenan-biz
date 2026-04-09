@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نتيجة الدفع — جنان بيز</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #4E73C2;
+      --success: #059669;
+      --error:   #dc2626;
+      --warn:    #d97706;
+      --bg:      #f8fafc;
+      --card:    #ffffff;
+      --text:    #1a1a2e;
+      --muted:   #64748b;
+      --border:  #e2e8f0;
+    }
+    body {
+      font-family: "Tajawal", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    /* ── شريط علوي ── */
+    .pr-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+    .pr-nav-logo {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .pr-nav-links { display: flex; gap: 1rem; }
+    .pr-nav-links a {
+      font-size: .88rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color .18s;
+    }
+    .pr-nav-links a:hover { color: var(--primary); }
+
+    /* ── البطاقة الرئيسية ── */
+    .pr-card {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,.09);
+      text-align: center;
+      margin-top: 5rem;
+      animation: prcardIn .5s ease-out;
+    }
+    @keyframes prcardIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── أيقونات الحالة ── */
+    .pr-icon {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      margin: 0 auto 1.5rem;
+      animation: prbounce .5s ease-out .1s both;
+    }
+    @keyframes prbounce {
+      0%  { transform: scale(0); }
+      70% { transform: scale(1.15); }
+      100%{ transform: scale(1); }
+    }
+    .pr-icon.success { background: #dcfce7; color: var(--success); }
+    .pr-icon.failed  { background: #fee2e2; color: var(--error); }
+    .pr-icon.pending { background: #fef9c3; color: var(--warn); }
+
+    /* ── النص ── */
+    .pr-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: .5rem;
+    }
+    .pr-title.success { color: var(--success); }
+    .pr-title.failed  { color: var(--error); }
+    .pr-title.pending { color: var(--warn); }
+
+    .pr-subtitle {
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── الإيصال ── */
+    .pr-receipt {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      text-align: right;
+      margin-bottom: 1.5rem;
+    }
+    .pr-receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .88rem;
+      padding: .35rem 0;
+      border-bottom: 1px dashed var(--border);
+      gap: 1rem;
+    }
+    .pr-receipt-row:last-child { border: none; }
+    .pr-receipt-row span:first-child { color: var(--muted); }
+    .pr-receipt-row span:last-child { font-weight: 700; color: var(--text); word-break: break-all; }
+
+    /* ── الأزرار ── */
+    .pr-actions {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .pr-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      border-radius: 12px;
+      padding: .85rem;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .2s;
+      border: none;
+      text-decoration: none;
+    }
+    .pr-btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .pr-btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    .pr-btn-success {
+      background: var(--success);
+      color: #fff;
+    }
+    .pr-btn-success:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    .pr-btn-wa {
+      background: #25d366;
+      color: #fff;
+    }
+    .pr-btn-wa:hover { background: #128c4e; }
+
+    .pr-btn-outline {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+    }
+    .pr-btn-outline:hover { background: var(--bg); }
+
+    .pr-btn-retry {
+      background: var(--error);
+      color: #fff;
+    }
+    .pr-btn-retry:hover { filter: brightness(1.1); }
+
+    /* ── ملاحظة تفعيل ── */
+    .pr-activation-note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: .75rem 1rem;
+      font-size: .83rem;
+      color: #92400e;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      text-align: right;
+    }
+
+    /* ── تذييل ── */
+    .pr-footer {
+      margin-top: 2rem;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    .pr-footer a { color: var(--primary); text-decoration: none; }
+
+    @media(max-width:480px){
+      .pr-card { padding: 2rem 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شريط علوي -->
+  <nav class="pr-nav">
+    <a href="/index.html" class="pr-nav-logo">🌟 جنان بيز</a>
+    <div class="pr-nav-links">
+      <a href="software.html">البرامج</a>
+      <a href="/dashboard.html">لوحتي</a>
+      <a href="contact.html">الدعم</a>
+    </div>
+  </nav>
+
+  <!-- البطاقة الرئيسية -->
+  <div class="pr-card" id="pr-card">
+    <div class="pr-icon pending" id="pr-icon">⏳</div>
+    <h1 class="pr-title pending" id="pr-title">جارٍ التحقق من الدفع...</h1>
+    <p class="pr-subtitle" id="pr-subtitle">يرجى الانتظار بينما نتحقق من حالة معاملتك</p>
+    <div class="pr-receipt" id="pr-receipt" style="display:none"></div>
+    <div id="pr-activation" style="display:none"></div>
+    <div class="pr-actions" id="pr-actions"></div>
+  </div>
+
+  <p class="pr-footer">
+    هل واجهتك مشكلة؟
+    <a href="https://wa.me/966567711999" target="_blank">تواصل مع الدعم</a>
+    ·
+    <a href="software.html">العودة للبرامج</a>
+  </p>
+
+  <script>
+  (function () {
+    const params     = new URLSearchParams(window.location.search);
+    const payStatus  = params.get("pay");          // success / fail / pending
+    const method     = params.get("method") || ""; // tamara / tabby / applepay / ...
+    const orderId    = params.get("id")     || params.get("payment_id") || params.get("ref") || "";
+    const message    = params.get("message") || "";
+
+    const iconEl     = document.getElementById("pr-icon");
+    const titleEl    = document.getElementById("pr-title");
+    const subtitleEl = document.getElementById("pr-subtitle");
+    const receiptEl  = document.getElementById("pr-receipt");
+    const actionsEl  = document.getElementById("pr-actions");
+    const activEl    = document.getElementById("pr-activation");
+
+    /* ── قراءة بيانات الطلب من localStorage إن وُجدت ── */
+    let orderData = {};
+    try { orderData = JSON.parse(sessionStorage.getItem("jenan_last_order") || "{}"); } catch(e){}
+
+    /* ── دالة رسم الإيصال ── */
+    function renderReceipt(rows) {
+      if (!rows.length) return;
+      receiptEl.style.display = "";
+      receiptEl.innerHTML = rows.map(r =>
+        `<div class="pr-receipt-row"><span>${r[0]}</span><span dir="ltr">${r[1]}</span></div>`
+      ).join("");
+    }
+
+    /* ── تحديد الحالة ── */
+    const now = new Date().toLocaleDateString("ar-SA");
+    const methodNames = {
+      card:"بطاقة بنكية", mada:"مدى", visa:"Visa", mastercard:"Mastercard",
+      applepay:"Apple Pay", googlepay:"Google Pay", stcpay:"STC Pay",
+      tamara:"تمارا", tabby:"تابي"
+    };
+    const methodLabel = methodNames[method] || "بطاقة بنكية";
+
+    /* ════ نجاح ════ */
+    if (payStatus === "success" || payStatus === "paid") {
+      iconEl.className  = "pr-icon success";
+      iconEl.textContent = "✅";
+      titleEl.className  = "pr-title success";
+      titleEl.textContent = "تمّت عملية الدفع بنجاح!";
+      subtitleEl.textContent = "شكراً لاختيارك جنان بيز — تم تأكيد اشتراكك بنجاح";
+
+      const receiptRows = [
+        ["رقم المرجع", orderId || ("JENAN-" + Date.now().toString(36).toUpperCase())],
+        ["طريقة الدفع", methodLabel],
+        ["التاريخ", now],
+      ];
+      if (orderData.productName) receiptRows.unshift(["البرنامج", orderData.productName + " — " + (orderData.planName||"")]);
+      if (orderData.total)       receiptRows.push(["المبلغ المدفوع", orderData.total.toLocaleString("ar-SA") + " ريال"]);
+      renderReceipt(receiptRows);
+
+      activEl.style.display = "";
+      activEl.innerHTML = `
+        <div class="pr-activation-note">
+          ⚡ سيتم تفعيل البرنامج خلال <strong>24 ساعة</strong> وسيصلك رمز الدخول على جوالك المسجّل.
+          للاستفسار الفوري تواصل معنا عبر واتساب.
+        </div>`;
+
+      const waText = encodeURIComponent(
+        "مرحباً، تمّت عملية دفع اشتراك" +
+        (orderData.productName ? " " + orderData.productName : "") +
+        (orderId ? "، رقم المرجع: " + orderId : "")
+      );
+      actionsEl.innerHTML = `
+        <a href="https://wa.me/966567711999?text=${waText}" target="_blank" class="pr-btn pr-btn-wa">
+          <i class="fa-brands fa-whatsapp"></i> تأكيد الاشتراك عبر واتساب
+        </a>
+        <a href="software.html" class="pr-btn pr-btn-primary">
+          <i class="fa-solid fa-store"></i> استعراض المزيد من البرامج
+        </a>
+        <a href="/dashboard.html" class="pr-btn pr-btn-outline">
+          <i class="fa-solid fa-gauge"></i> الذهاب للوحة التحكم
+        </a>`;
+
+    /* ════ فشل ════ */
+    } else if (payStatus === "fail" || payStatus === "failed" || payStatus === "error") {
+      iconEl.className   = "pr-icon failed";
+      iconEl.textContent  = "❌";
+      titleEl.className   = "pr-title failed";
+      titleEl.textContent = "فشلت عملية الدفع";
+      subtitleEl.textContent = message || "لم تكتمل المعاملة — يمكنك المحاولة مجدداً أو التواصل مع الدعم";
+
+      const failRows = [["طريقة الدفع", methodLabel], ["التاريخ", now]];
+      if (orderId) failRows.push(["رقم المرجع", orderId]);
+      renderReceipt(failRows);
+
+      actionsEl.innerHTML = `
+        <button onclick="history.back()" class="pr-btn pr-btn-retry">
+          <i class="fa-solid fa-rotate-right"></i> إعادة المحاولة
+        </button>
+        <a href="https://wa.me/966567711999?text=${encodeURIComponent('فشلت عملية الدفع، أرجو المساعدة')}"
+           target="_blank" class="pr-btn pr-btn-wa">
+          <i class="fa-brands fa-whatsapp"></i> التواصل مع الدعم
+        </a>
+        <a href="software.html" class="pr-btn pr-btn-outline">
+          <i class="fa-solid fa-store"></i> العودة للمتجر
+        </a>`;
+
+    /* ════ معلّق / يجري التحقق ════ */
+    } else if (orderId) {
+      // محاولة جلب الحالة من السيرفر
+      fetch("/api/payment/status/" + orderId)
+        .then(r => r.json())
+        .then(data => {
+          const s = (data.status || "").toLowerCase();
+          if (s === "paid" || s === "captured") {
+            window.location.search = "?pay=success&id=" + orderId + "&method=" + method;
+          } else if (s === "failed" || s === "rejected") {
+            window.location.search = "?pay=fail&id=" + orderId;
+          } else {
+            showPending(orderId, methodLabel, now);
+          }
+        })
+        .catch(() => showPending(orderId, methodLabel, now));
+
+    } else {
+      showPending("", methodLabel, now);
+    }
+
+    function showPending(id, mLabel, dateStr) {
+      iconEl.className   = "pr-icon pending";
+      iconEl.textContent  = "⏳";
+      titleEl.className   = "pr-title pending";
+      titleEl.textContent = "الطلب قيد المعالجة";
+      subtitleEl.textContent = "معاملتك جارٍ معالجتها — ستصلك رسالة تأكيد قريباً";
+
+      const rows = [["طريقة الدفع", mLabel], ["التاريخ", dateStr]];
+      if (id) rows.push(["رقم المرجع", id]);
+      renderReceipt(rows);
+
+      actionsEl.innerHTML = `
+        <a href="https://wa.me/966567711999?text=${encodeURIComponent('استفسار عن حالة طلب الدفع' + (id ? ' رقم: ' + id : ''))}"
+           target="_blank" class="pr-btn pr-btn-wa">
+          <i class="fa-brands fa-whatsapp"></i> استفسار عن حالة الطلب
+        </a>
+        <a href="software.html" class="pr-btn pr-btn-outline">
+          <i class="fa-solid fa-store"></i> العودة للمتجر
+        </a>`;
+    }
+  })();
+  </script>
+
+<script src="/config/app-config.js"></script>
+<script src="/config/site-inject.js"></script>
+</body>
+</html>

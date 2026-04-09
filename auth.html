@@ -1,0 +1,805 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تسجيل الدخول | جنان بيز المنصة الذكية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --green:  #4E73C2; --green-d: #3558A8; --green-dp: #1E3A8A;
+      --amber:  #4E73C2; --navy:   #0B0E1A;  --navy2:   #111827;
+      --bg:     #f8f9fc; --bg2:    #eef1f8;
+      --text:   #1a1a2e; --muted:  #6b7280;
+      --border: #dde3f0; --radius: 16px;
+      --shadow: 0 8px 40px rgba(0,0,0,.14);
+      --tr: all .3s ease;
+    }
+    [data-theme="dark"] {
+      --bg: #0B0E1A; --bg2: #111827; --text: #e8eaf6;
+      --muted: #8892b0; --border: #1e2545;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Tajawal',sans-serif; background:var(--bg);
+      color:var(--text); min-height:100vh; display:flex;
+      align-items:stretch; transition:background .3s,color .3s;
+    }
+    a{text-decoration:none;color:inherit}
+    input,button,select,textarea{font-family:'Tajawal',sans-serif}
+
+    /* ===== LAYOUT ===== */
+    .auth-left {
+      flex: 1; background:linear-gradient(145deg, #0B0E1A 0%, #111B3D 55%, #1E2D5C 100%);
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      padding:3rem 2.5rem; position:relative; overflow:hidden;
+    }
+    .auth-left::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(78,115,194,.25) 0%,transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(78,115,194,.12) 0%,transparent 50%);
+    }
+    .auth-left-grid {
+      position:absolute; inset:0; opacity:.04;
+      background-image: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+      background-size:45px 45px;
+    }
+    .auth-brand { position:relative; z-index:1; text-align:center; color:#fff; }
+    .auth-brand .logo-icon {
+      width:88px; height:88px; background:rgba(78,115,194,.3);
+      border:2px solid rgba(78,115,194,.6); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:2.5rem; margin:0 auto 1.5rem; backdrop-filter:blur(8px);
+    }
+    .auth-brand h1 { font-size:2.2rem; font-weight:800; margin-bottom:.4rem; }
+    .auth-brand p { font-size:1rem; color:rgba(255,255,255,.7); margin-bottom:3rem; }
+    .auth-features { position:relative; z-index:1; width:100%; max-width:340px; }
+    .feat-item {
+      display:flex; align-items:center; gap:1rem; padding:1rem 1.25rem;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+      border-radius:12px; margin-bottom:.85rem; color:#fff;
+      backdrop-filter:blur(8px);
+    }
+    .feat-item i { font-size:1.3rem; color:#7B9ED4; min-width:26px; text-align:center; }
+    .feat-item span { font-size:.9rem; line-height:1.5; }
+    .feat-item strong { display:block; font-size:.85rem; color:rgba(255,255,255,.6); margin-top:.1rem; }
+
+    /* ===== FORM SIDE ===== */
+    .auth-right {
+      width:480px; min-width:320px; background:var(--bg);
+      display:flex; flex-direction:column; justify-content:center;
+      padding:3rem 2.5rem; position:relative; overflow-y:auto;
+    }
+    .auth-top-bar {
+      position:absolute; top:1.25rem; left:1.25rem; right:1.25rem;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .back-link { font-size:.85rem; color:var(--muted); display:flex; align-items:center; gap:.4rem; }
+    .back-link:hover { color:var(--green); }
+    #theme-toggle {
+      background:var(--bg2); border:1px solid var(--border);
+      width:36px; height:36px; border-radius:50%; cursor:pointer;
+      color:var(--text); font-size:.85rem; display:flex;
+      align-items:center; justify-content:center; transition:var(--tr);
+    }
+    #theme-toggle:hover { background:var(--green); color:#fff; border-color:var(--green); }
+
+    /* PANELS */
+    .panel { display:none; animation: fadeIn .35s ease; }
+    .panel.active { display:block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+    .panel-title  { font-size:1.6rem; font-weight:800; color:var(--green-dp); margin-bottom:.4rem; }
+    .panel-sub    { font-size:.92rem; color:var(--muted); margin-bottom:2rem; }
+
+    /* FIELDS */
+    .field { margin-bottom:1.15rem; }
+    .field label { display:block; font-size:.85rem; font-weight:600; color:var(--text); margin-bottom:.45rem; }
+    .input-wrap { position:relative; }
+    .input-wrap i {
+      position:absolute; top:50%; right:1rem; transform:translateY(-50%);
+      color:var(--muted); font-size:.95rem; pointer-events:none;
+    }
+    .input-wrap.has-eye i.eye {
+      right:auto; left:1rem; cursor:pointer; pointer-events:all;
+    }
+    .field input {
+      width:100%; padding:.82rem 2.8rem .82rem 1rem;
+      border:1.5px solid var(--border); border-radius:10px;
+      font-size:.95rem; background:var(--bg); color:var(--text);
+      transition:var(--tr); outline:none;
+    }
+    .field input:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(78,115,194,.12); }
+    .field input.err { border-color:#e74c3c; }
+    .field.has-eye input { padding-left:2.8rem; }
+    .err-msg { font-size:.78rem; color:#e74c3c; margin-top:.3rem; display:none; }
+
+    .row-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+    /* PASSWORD STRENGTH */
+    .pw-strength { margin-top:.5rem; }
+    .pw-bars { display:flex; gap:.3rem; margin-bottom:.3rem; }
+    .pw-bar { height:4px; flex:1; border-radius:2px; background:var(--border); transition:.3s; }
+    .pw-label { font-size:.75rem; color:var(--muted); }
+    .str-1 .pw-bar:nth-child(1) { background:#e74c3c; }
+    .str-2 .pw-bar:nth-child(1),.str-2 .pw-bar:nth-child(2) { background:#e67e22; }
+    .str-3 .pw-bar:nth-child(1),.str-3 .pw-bar:nth-child(2),.str-3 .pw-bar:nth-child(3) { background:var(--amber); }
+    .str-4 .pw-bar { background:var(--green); }
+
+    /* CHECKBOX */
+    .check-row { display:flex; align-items:center; gap:.65rem; margin-bottom:1.25rem; cursor:pointer; }
+    .check-row input[type=checkbox] { width:17px; height:17px; accent-color:var(--green); cursor:pointer; }
+    .check-row span { font-size:.85rem; color:var(--muted); }
+    .check-row a { color:var(--green); }
+
+    /* BUTTONS */
+    .btn-auth {
+      width:100%; padding:.9rem; background:var(--green); color:#fff;
+      border:none; border-radius:10px; font-size:1rem; font-weight:700;
+      cursor:pointer; transition:var(--tr); display:flex;
+      align-items:center; justify-content:center; gap:.55rem; margin-bottom:1.1rem;
+    }
+    .btn-auth:hover { background:var(--green-d); transform:translateY(-2px); box-shadow:0 8px 22px rgba(78,115,194,.35); }
+    .btn-auth:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+
+    /* DIVIDER */
+    .divider { display:flex; align-items:center; gap:1rem; margin:1rem 0; color:var(--muted); font-size:.82rem; }
+    .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    /* SOCIAL BTNS */
+    .social-auth { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-bottom:1.25rem; }
+    .soc-auth-btn {
+      display:flex; align-items:center; justify-content:center; gap:.6rem;
+      padding:.7rem; border-radius:10px; border:1.5px solid var(--border);
+      background:var(--bg); color:var(--text); font-size:.88rem; font-weight:600;
+      cursor:pointer; transition:var(--tr);
+    }
+    .soc-auth-btn:hover { border-color:var(--green); background:rgba(78,115,194,.06); }
+    .soc-auth-btn i { font-size:1.1rem; }
+    .soc-auth-btn.google i { color:#ea4335; }
+    .soc-auth-btn.apple i  { color:var(--text); }
+
+    /* SWITCH */
+    .switch-row { text-align:center; font-size:.88rem; color:var(--muted); }
+    .switch-row a { color:var(--green); font-weight:700; cursor:pointer; }
+    .switch-row a:hover { color:var(--green-d); }
+
+    /* SUCCESS BOX */
+    .success-box {
+      background:rgba(78,115,194,.1); border:1px solid rgba(78,115,194,.3);
+      border-radius:12px; padding:1.5rem; text-align:center; display:none;
+    }
+    .success-box i { font-size:2.5rem; color:var(--green); margin-bottom:.75rem; display:block; }
+    .success-box h3 { font-size:1.1rem; font-weight:700; color:var(--green-dp); margin-bottom:.4rem; }
+    .success-box p  { font-size:.88rem; color:var(--muted); }
+
+    /* OTP */
+    .otp-row { display:flex; gap:.65rem; justify-content:center; margin:1.25rem 0; }
+    .otp-row input {
+      width:52px; height:56px; text-align:center; font-size:1.4rem; font-weight:700;
+      border:1.5px solid var(--border); border-radius:10px;
+      background:var(--bg); color:var(--text); transition:var(--tr); outline:none;
+    }
+    .otp-row input:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(78,115,194,.12); }
+    .resend-link { text-align:center; font-size:.83rem; color:var(--muted); margin-bottom:1rem; }
+    .resend-link a { color:var(--green); cursor:pointer; }
+
+    /* LOADING */
+    .spinner { display:none; width:20px; height:20px; border:2.5px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+
+    /* PROGRESS STEPS */
+    .register-steps { display:flex; align-items:center; justify-content:center; gap:.5rem; margin-bottom:2rem; }
+    .reg-step {
+      display:flex; align-items:center; gap:.4rem;
+    }
+    .reg-step-dot {
+      width:32px; height:32px; border-radius:50%; display:flex; align-items:center;
+      justify-content:center; font-size:.8rem; font-weight:700;
+      background:var(--bg2); border:2px solid var(--border); color:var(--muted);
+      transition:.3s;
+    }
+    .reg-step.active .reg-step-dot { background:var(--green); border-color:var(--green); color:#fff; }
+    .reg-step.done .reg-step-dot { background:var(--green-dp); border-color:var(--green-dp); color:#fff; }
+    .reg-step-line { width:28px; height:2px; background:var(--border); transition:.3s; }
+    .reg-step.done + .reg-step-line { background:var(--green); }
+
+    @media(max-width:860px) {
+      .auth-left { display:none; }
+      .auth-right { width:100%; padding:4.5rem 1.75rem 2.5rem; }
+    }
+    @media(max-width:440px) {
+      .row-2 { grid-template-columns:1fr; }
+      .otp-row input { width:42px; height:48px; font-size:1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== LEFT SIDE ===== -->
+<div class="auth-left">
+  <div class="auth-left-grid"></div>
+  <div class="auth-brand">
+    <div class="logo-icon"><i class="fa-solid fa-brain"></i></div>
+    <h1>جنان بيز</h1>
+    <p>منصتك الذكية لتأسيس وإدارة مشاريعك</p>
+  </div>
+  <div class="auth-features">
+    <div class="feat-item">
+      <i class="fa-solid fa-robot"></i>
+      <div>
+        <span>مساعد ذكي لتأسيس المشاريع</span>
+        <strong>من الفكرة إلى أول يوم بيع — خطوة بخطوة</strong>
+      </div>
+    </div>
+    <div class="feat-item">
+      <i class="fa-solid fa-chart-line"></i>
+      <div>
+        <span>تحليل جدوى فوري ودقيق</span>
+        <strong>هل مشروعك مربح؟ اعرف الإجابة في دقائق</strong>
+      </div>
+    </div>
+    <div class="feat-item">
+      <i class="fa-solid fa-coins"></i>
+      <div>
+        <span>استشارة رأس المال الذكية</span>
+        <strong>أدخل ميزانيتك واحصل على أفضل توصيات الاستثمار</strong>
+      </div>
+    </div>
+    <div class="feat-item">
+      <i class="fa-solid fa-store"></i>
+      <div>
+        <span>دليل الموردين والمنتجات</span>
+        <strong>قاعدة بيانات متكاملة لكل احتياجات مشروعك</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RIGHT SIDE ===== -->
+<div class="auth-right">
+  <div class="auth-top-bar">
+    <a href="/index.html" class="back-link"><i class="fa-solid fa-arrow-right"></i> العودة للموقع</a>
+    <button id="theme-toggle"><i class="fa-solid fa-moon" id="th-ico"></i></button>
+  </div>
+
+  <!-- ===== LOGIN PANEL ===== -->
+  <div class="panel active" id="panel-login">
+    <p class="panel-title">مرحباً بعودتك 👋</p>
+    <p class="panel-sub">سجّل دخولك للوصول إلى منصتك الذكية</p>
+
+    <form id="loginForm" novalidate>
+      <div class="field">
+        <label>البريد الإلكتروني أو اسم المستخدم</label>
+        <div class="input-wrap">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" id="l-user" placeholder="example@email.com" autocomplete="username"/>
+        </div>
+        <p class="err-msg" id="l-user-err">يرجى إدخال البريد الإلكتروني أو اسم المستخدم</p>
+      </div>
+      <div class="field has-eye">
+        <label>كلمة المرور</label>
+        <div class="input-wrap has-eye">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password"/>
+          <i class="fa-solid fa-eye eye" id="eye-l" onclick="toggleEye('l-pass','eye-l')"></i>
+        </div>
+        <p class="err-msg" id="l-pass-err">يرجى إدخال كلمة المرور</p>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+        <label class="check-row" style="margin:0">
+          <input type="checkbox" id="remember"/> <span>تذكّرني</span>
+        </label>
+        <a onclick="show('reset')" style="font-size:.85rem;color:var(--green);cursor:pointer;font-weight:600;">نسيت كلمة المرور؟</a>
+      </div>
+      <button type="submit" class="btn-auth" id="login-btn">
+        <span id="login-txt">تسجيل الدخول</span>
+        <div class="spinner" id="login-spin"></div>
+        <i class="fa-solid fa-arrow-left" id="login-icon"></i>
+      </button>
+    </form>
+
+    <div class="divider">أو</div>
+    <div class="social-auth">
+      <button class="soc-auth-btn google" onclick="socialLogin()"><i class="fa-brands fa-google"></i> Google</button>
+      <button class="soc-auth-btn apple"  onclick="socialLogin()"><i class="fa-brands fa-apple"></i> Apple</button>
+    </div>
+    <p class="switch-row">ليس لديك حساب؟ <a onclick="show('register')">إنشاء حساب مجاني</a></p>
+  </div>
+
+  <!-- ===== REGISTER PANEL ===== -->
+  <div class="panel" id="panel-register">
+    <p class="panel-title">إنشاء حساب جديد ✨</p>
+    <p class="panel-sub">انضم مجاناً وابدأ رحلتك مع المساعد الذكي</p>
+
+    <div class="register-steps" id="reg-steps">
+      <div class="reg-step active" id="rst-1"><div class="reg-step-dot">١</div></div>
+      <div class="reg-step-line" id="rl-1"></div>
+      <div class="reg-step" id="rst-2"><div class="reg-step-dot">٢</div></div>
+      <div class="reg-step-line" id="rl-2"></div>
+      <div class="reg-step" id="rst-3"><div class="reg-step-dot">٣</div></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div id="reg-s1">
+      <form id="regForm1" novalidate>
+        <div class="row-2">
+          <div class="field">
+            <label>الاسم الأول</label>
+            <div class="input-wrap"><i class="fa-solid fa-user"></i>
+              <input type="text" id="r-fname" placeholder="محمد"/>
+            </div>
+            <p class="err-msg" id="r-fname-err">مطلوب</p>
+          </div>
+          <div class="field">
+            <label>اسم العائلة</label>
+            <div class="input-wrap"><i class="fa-solid fa-user"></i>
+              <input type="text" id="r-lname" placeholder="العمري"/>
+            </div>
+            <p class="err-msg" id="r-lname-err">مطلوب</p>
+          </div>
+        </div>
+        <div class="field">
+          <label>البريد الإلكتروني</label>
+          <div class="input-wrap"><i class="fa-solid fa-envelope"></i>
+            <input type="email" id="r-email" placeholder="example@email.com"/>
+          </div>
+          <p class="err-msg" id="r-email-err">بريد إلكتروني غير صحيح</p>
+        </div>
+        <div class="field">
+          <label>رقم الجوال</label>
+          <div class="input-wrap"><i class="fa-solid fa-phone"></i>
+            <input type="tel" id="r-phone" placeholder="05xxxxxxxx" dir="ltr"/>
+          </div>
+          <p class="err-msg" id="r-phone-err">رقم غير صحيح</p>
+        </div>
+        <button type="submit" class="btn-auth">التالي <i class="fa-solid fa-arrow-left"></i></button>
+      </form>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="reg-s2" style="display:none">
+      <form id="regForm2" novalidate>
+        <div class="field">
+          <label>اسم المستخدم</label>
+          <div class="input-wrap"><i class="fa-solid fa-at"></i>
+            <input type="text" id="r-uname" placeholder="your_username" dir="ltr"/>
+          </div>
+          <p class="err-msg" id="r-uname-err">اسم المستخدم لا يقل عن 4 أحرف</p>
+        </div>
+        <div class="field has-eye">
+          <label>كلمة المرور</label>
+          <div class="input-wrap has-eye"><i class="fa-solid fa-lock"></i>
+            <input type="password" id="r-pass" placeholder="••••••••" oninput="checkStrength(this.value)"/>
+            <i class="fa-solid fa-eye eye" id="eye-r" onclick="toggleEye('r-pass','eye-r')"></i>
+          </div>
+          <div class="pw-strength" id="pw-str">
+            <div class="pw-bars"><div class="pw-bar"></div><div class="pw-bar"></div><div class="pw-bar"></div><div class="pw-bar"></div></div>
+            <span class="pw-label" id="pw-lbl">أدخل كلمة المرور</span>
+          </div>
+          <p class="err-msg" id="r-pass-err">كلمة المرور لا تقل عن 8 أحرف</p>
+        </div>
+        <div class="field has-eye">
+          <label>تأكيد كلمة المرور</label>
+          <div class="input-wrap has-eye"><i class="fa-solid fa-lock"></i>
+            <input type="password" id="r-pass2" placeholder="••••••••"/>
+            <i class="fa-solid fa-eye eye" id="eye-r2" onclick="toggleEye('r-pass2','eye-r2')"></i>
+          </div>
+          <p class="err-msg" id="r-pass2-err">كلمتا المرور غير متطابقتين</p>
+        </div>
+        <div style="display:flex;gap:.75rem;margin-bottom:.5rem">
+          <button type="button" class="btn-auth" style="background:var(--bg2);color:var(--text);border:1.5px solid var(--border)" onclick="regStep(1)">
+            <i class="fa-solid fa-arrow-right"></i> رجوع
+          </button>
+          <button type="submit" class="btn-auth">التالي <i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Step 3 – Verify OTP -->
+    <div id="reg-s3" style="display:none">
+      <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:.25rem">تم إرسال رمز التحقق إلى</p>
+      <p style="text-align:center;font-weight:700;color:var(--green);margin-bottom:1.5rem" id="otp-target"></p>
+
+      <!-- صندوق الرمز التجريبي (يظهر فقط بدون خادم SMTP) -->
+      <div id="otp-dev-box" style="display:none;background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px dashed #f59e0b;border-radius:10px;padding:.75rem 1rem;margin-bottom:1rem;text-align:center">
+        <div style="font-size:.8rem;color:#92400e;font-weight:700;margin-bottom:.3rem">⚠️ وضع التطوير — الخادم غير مهيّأ بعد</div>
+        <div style="font-size:1.6rem;font-weight:900;letter-spacing:8px;color:#1a2a5e" id="otp-dev-code">------</div>
+        <div style="font-size:.75rem;color:#78350f;margin-top:.25rem">أدخل هذا الرمز في الحقول بالأسفل</div>
+      </div>
+
+      <div style="margin:1.25rem 0">
+        <input type="text" id="otp-single"
+          inputmode="numeric" autocomplete="one-time-code"
+          maxlength="8" placeholder="أدخل رمز التحقق"
+          dir="ltr"
+          style="width:100%;padding:1rem;font-size:1.6rem;font-weight:900;letter-spacing:10px;text-align:center;border:2px solid var(--border);border-radius:12px;background:var(--bg);color:#1a2a5e;outline:none;font-family:monospace;transition:border-color .2s"
+          oninput="this.value=this.value.replace(/\D/g,'')"
+          onfocus="this.style.borderColor='var(--green)'"
+          onblur="this.style.borderColor='var(--border)'"
+        />
+      </div>
+      <p class="err-msg" id="otp-err" style="display:block;text-align:center;visibility:hidden">رمز غير صحيح</p>
+      <div class="resend-link">لم يصلك الرمز؟ <a onclick="resendOTP()">إعادة الإرسال</a> <span id="otp-timer"></span></div>
+      <button class="btn-auth" onclick="verifyOTP()">تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i></button>
+      <button type="button" class="btn-auth" style="background:var(--bg2);color:var(--text);border:1.5px solid var(--border)" onclick="regStep(2)">
+        <i class="fa-solid fa-arrow-right"></i> رجوع
+      </button>
+    </div>
+
+    <!-- Success -->
+    <div class="success-box" id="reg-success">
+      <i class="fa-solid fa-circle-check"></i>
+      <h3>تم إنشاء حسابك بنجاح!</h3>
+      <p>جاري تحويلك إلى لوحة التحكم...</p>
+    </div>
+
+    <p class="switch-row" id="login-switch-row">لديك حساب بالفعل؟ <a onclick="show('login')">تسجيل الدخول</a></p>
+  </div>
+
+  <!-- ===== RESET PANEL ===== -->
+  <div class="panel" id="panel-reset">
+    <p class="panel-title">استعادة كلمة المرور 🔐</p>
+    <p class="panel-sub">أدخل بريدك الإلكتروني وسنرسل لك رمز التحقق</p>
+
+    <div id="reset-s1">
+      <form id="resetForm1" novalidate>
+        <div class="field">
+          <label>البريد الإلكتروني</label>
+          <div class="input-wrap"><i class="fa-solid fa-envelope"></i>
+            <input type="email" id="rs-email" placeholder="example@email.com"/>
+          </div>
+          <p class="err-msg" id="rs-email-err">بريد إلكتروني غير صحيح</p>
+        </div>
+        <button type="submit" class="btn-auth">إرسال رمز التحقق <i class="fa-solid fa-arrow-left"></i></button>
+      </form>
+    </div>
+
+    <div id="reset-s2" style="display:none">
+      <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:1.5rem">أدخل الرمز المرسل إلى بريدك</p>
+      <div class="otp-row" id="rs-otp-inputs">
+        <input type="text" maxlength="1" oninput="otpMoveRs(this,0)"/>
+        <input type="text" maxlength="1" oninput="otpMoveRs(this,1)"/>
+        <input type="text" maxlength="1" oninput="otpMoveRs(this,2)"/>
+        <input type="text" maxlength="1" oninput="otpMoveRs(this,3)"/>
+        <input type="text" maxlength="1" oninput="otpMoveRs(this,4)"/>
+        <input type="text" maxlength="1" oninput="otpMoveRs(this,5)"/>
+      </div>
+      <button class="btn-auth" onclick="verifyResetOTP()">التحقق <i class="fa-solid fa-arrow-left"></i></button>
+    </div>
+
+    <div id="reset-s3" style="display:none">
+      <div class="field has-eye">
+        <label>كلمة المرور الجديدة</label>
+        <div class="input-wrap has-eye"><i class="fa-solid fa-lock"></i>
+          <input type="password" id="rs-newpass" placeholder="••••••••"/>
+          <i class="fa-solid fa-eye eye" id="eye-rs" onclick="toggleEye('rs-newpass','eye-rs')"></i>
+        </div>
+      </div>
+      <div class="field has-eye">
+        <label>تأكيد كلمة المرور الجديدة</label>
+        <div class="input-wrap has-eye"><i class="fa-solid fa-lock"></i>
+          <input type="password" id="rs-newpass2" placeholder="••••••••"/>
+          <i class="fa-solid fa-eye eye" id="eye-rs2" onclick="toggleEye('rs-newpass2','eye-rs2')"></i>
+        </div>
+        <p class="err-msg" id="rs-pass-err">كلمتا المرور غير متطابقتين</p>
+      </div>
+      <button class="btn-auth" onclick="saveNewPass()">حفظ كلمة المرور الجديدة <i class="fa-solid fa-check"></i></button>
+    </div>
+
+    <div class="success-box" id="reset-success">
+      <i class="fa-solid fa-circle-check"></i>
+      <h3>تم تغيير كلمة المرور بنجاح!</h3>
+      <p>يمكنك الآن تسجيل الدخول بكلمة مرورك الجديدة</p>
+    </div>
+
+    <p class="switch-row" style="margin-top:1rem"><a onclick="show('login')"><i class="fa-solid fa-arrow-right"></i> العودة لتسجيل الدخول</a></p>
+  </div>
+
+</div><!-- end auth-right -->
+
+<script>
+  /* ===== THEME ===== */
+  const html = document.documentElement;
+  const thIco = document.getElementById('th-ico');
+  const saved = localStorage.getItem('jb-theme') || 'light';
+  html.setAttribute('data-theme', saved);
+  thIco.className = saved==='dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  document.getElementById('theme-toggle').addEventListener('click',()=>{
+    const n = html.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', n);
+    localStorage.setItem('jb-theme', n);
+    thIco.className = n==='dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  });
+
+  /* ===== PANEL SWITCH ===== */
+  function show(name) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-'+name).classList.add('active');
+  }
+
+  /* ===== EYE TOGGLE ===== */
+  function toggleEye(inputId, iconId) {
+    const inp = document.getElementById(inputId);
+    const ico = document.getElementById(iconId);
+    if (inp.type==='password') { inp.type='text'; ico.classList.replace('fa-eye','fa-eye-slash'); }
+    else { inp.type='password'; ico.classList.replace('fa-eye-slash','fa-eye'); }
+  }
+
+  /* ===== VALIDATE ===== */
+  function showErr(id, msg) {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = msg||el.textContent; el.style.display='block'; }
+  }
+  function clearErr(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display='none';
+  }
+  function markInvalid(inpId, errId, msg) {
+    document.getElementById(inpId)?.classList.add('err');
+    showErr(errId, msg);
+  }
+  function markValid(inpId, errId) {
+    document.getElementById(inpId)?.classList.remove('err');
+    clearErr(errId);
+  }
+
+  /* ===== LOGIN ===== */
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let ok = true;
+    const u = document.getElementById('l-user').value.trim();
+    const p = document.getElementById('l-pass').value;
+    if (!u) { markInvalid('l-user','l-user-err'); ok=false; } else markValid('l-user','l-user-err');
+    if (!p) { markInvalid('l-pass','l-pass-err'); ok=false; } else markValid('l-pass','l-pass-err');
+    if (!ok) return;
+
+    const btn = document.getElementById('login-btn');
+    const txt = document.getElementById('login-txt');
+    const spin = document.getElementById('login-spin');
+    const ico = document.getElementById('login-icon');
+    btn.disabled=true; txt.textContent='جاري الدخول...'; spin.style.display='block'; ico.style.display='none';
+
+    setTimeout(() => {
+      const existing = JSON.parse(localStorage.getItem('jb-user') || '{}');
+      const nameToUse = existing.name && existing.name !== 'المستخدم' && existing.name !== 'مستخدم جديد'
+        ? existing.name
+        : u.includes('@') ? u.split('@')[0] : u;
+      localStorage.setItem('jb-user', JSON.stringify({
+        name: nameToUse,
+        email: u,
+        username: existing.username || ''
+      }));
+      window.location.href = 'dashboard.html';
+    }, 1400);
+  });
+
+  /* ===== REGISTER STEPS ===== */
+  let regData = {};
+  function regStep(n) {
+    ['reg-s1','reg-s2','reg-s3'].forEach((id,i) => {
+      document.getElementById(id).style.display = i+1===n ? 'block' : 'none';
+    });
+    ['rst-1','rst-2','rst-3'].forEach((id,i) => {
+      const el = document.getElementById(id);
+      el.className = 'reg-step' + (i+1<n?' done':i+1===n?' active':'');
+    });
+    document.getElementById('login-switch-row').style.display = n===1 ? 'block' : 'none';
+  }
+
+  document.getElementById('regForm1').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let ok=true;
+    const fn=document.getElementById('r-fname').value.trim();
+    const ln=document.getElementById('r-lname').value.trim();
+    const em=document.getElementById('r-email').value.trim();
+    const ph=document.getElementById('r-phone').value.trim();
+    if(!fn){markInvalid('r-fname','r-fname-err');ok=false;}else markValid('r-fname','r-fname-err');
+    if(!ln){markInvalid('r-lname','r-lname-err');ok=false;}else markValid('r-lname','r-lname-err');
+    if(!em||!/\S+@\S+\.\S+/.test(em)){markInvalid('r-email','r-email-err');ok=false;}else markValid('r-email','r-email-err');
+    if(!ph||ph.length<10){markInvalid('r-phone','r-phone-err');ok=false;}else markValid('r-phone','r-phone-err');
+    if(!ok)return;
+    regData={fname:fn,lname:ln,email:em,phone:ph};
+    regStep(2);
+  });
+
+  document.getElementById('regForm2').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let ok=true;
+    const un=document.getElementById('r-uname').value.trim();
+    const p1=document.getElementById('r-pass').value;
+    const p2=document.getElementById('r-pass2').value;
+    if(!un||un.length<4){markInvalid('r-uname','r-uname-err');ok=false;}else markValid('r-uname','r-uname-err');
+    if(!p1||p1.length<8){markInvalid('r-pass','r-pass-err');ok=false;}else markValid('r-pass','r-pass-err');
+    if(p1!==p2){markInvalid('r-pass2','r-pass2-err');ok=false;}else markValid('r-pass2','r-pass2-err');
+    if(!ok)return;
+    regData.username=un; regData.password=p1;
+    document.getElementById('otp-target').textContent = regData.email;
+    regStep(3);
+    startOTPTimer();
+    sendOTP(regData.email, regData.fname + ' ' + regData.lname);
+  });
+
+  /* OTP */
+  function otpMove(inp, idx) {
+    // kept for compatibility — not used with single input
+  }
+  function otpMoveRs(inp, idx) {
+    inp.value=inp.value.replace(/\D/g,'');
+    if(inp.value.length===1){
+      const next=document.querySelectorAll('#rs-otp-inputs input')[idx+1];
+      if(next) next.focus();
+    }
+  }
+
+  let otpTimerInterval;
+  function startOTPTimer(sec=60) {
+    let t=sec;
+    clearInterval(otpTimerInterval);
+    const el=document.getElementById('otp-timer');
+    el.textContent='('+t+'ث)';
+    otpTimerInterval=setInterval(()=>{
+      t--;
+      el.textContent=t>0?'('+t+'ث)':'';
+      if(t<=0) clearInterval(otpTimerInterval);
+    },1000);
+  }
+  function resendOTP() {
+    startOTPTimer();
+    sendOTP(regData.email, regData.fname + ' ' + regData.lname);
+  }
+
+  /* ===== RESET ===== */
+  document.getElementById('resetForm1').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const em=document.getElementById('rs-email').value.trim();
+    if(!em||!/\S+@\S+\.\S+/.test(em)){markInvalid('rs-email','rs-email-err');return;}
+    markValid('rs-email','rs-email-err');
+    document.getElementById('reset-s1').style.display='none';
+    document.getElementById('reset-s2').style.display='block';
+  });
+
+  function verifyResetOTP() {
+    const inputs=document.querySelectorAll('#rs-otp-inputs input');
+    const code=[...inputs].map(i=>i.value).join('');
+    if(code.length<6) return;
+    document.getElementById('reset-s2').style.display='none';
+    document.getElementById('reset-s3').style.display='block';
+  }
+
+  function saveNewPass() {
+    const p1=document.getElementById('rs-newpass').value;
+    const p2=document.getElementById('rs-newpass2').value;
+    if(!p1||p1!==p2){markInvalid('rs-newpass2','rs-pass-err','كلمتا المرور غير متطابقتين');return;}
+    document.getElementById('reset-s3').style.display='none';
+    document.getElementById('reset-success').style.display='block';
+    setTimeout(()=>show('login'), 2500);
+  }
+
+  /* ===== PASSWORD STRENGTH ===== */
+  function checkStrength(val) {
+    const el=document.getElementById('pw-str');
+    const lbl=document.getElementById('pw-lbl');
+    el.className='pw-strength';
+    if(!val){lbl.textContent='أدخل كلمة المرور';return;}
+    let s=0;
+    if(val.length>=8)s++;
+    if(/[A-Z]/.test(val)&&/[a-z]/.test(val))s++;
+    if(/\d/.test(val))s++;
+    if(/[^A-Za-z0-9]/.test(val))s++;
+    const labels=['ضعيفة جداً','ضعيفة','متوسطة','قوية'];
+    const colors=['#e74c3c','#e67e22','var(--amber)','var(--green)'];
+    el.classList.add('str-'+s);
+    lbl.textContent='قوة كلمة المرور: '+labels[s-1];
+    lbl.style.color=colors[s-1]||'var(--muted)';
+  }
+
+  /* ===== SOCIAL (demo) ===== */
+  function socialLogin() {
+    localStorage.setItem('jb-user', JSON.stringify({name:'مستخدم جديد', email:'user@social.com'}));
+    window.location.href='/dashboard.html';
+  }
+
+  /* ===== OTP API ===== */
+  /* ===== Supabase OTP مباشرةً (لا يحتاج Python backend) ===== */
+  const SUPA_URL = 'https://fzhyegvydtrowesqjipo.supabase.co';
+  const SUPA_KEY = 'sb_publishable_pMp72pZVf3rGRt8770DHJQ_E9jI2Xtv';
+
+  async function sendOTP(target, name) {
+    const box = document.getElementById('otp-dev-box');
+    try {
+      const res = await fetch(`${SUPA_URL}/auth/v1/otp`, {
+        method: 'POST',
+        headers: {
+          'apikey':       SUPA_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: target.trim().toLowerCase(),
+          options: { should_create_user: true }
+        })
+      });
+      if (res.ok || res.status === 204) {
+        // تم الإرسال بنجاح — أخفِ صندوق التطوير
+        if (box) box.style.display = 'none';
+        return;
+      }
+      throw new Error(await res.text());
+    } catch (err) {
+      console.warn('[OTP-WARN]', err);
+      // Supabase لم يرسل — اعرض صندوق التجريب
+      if (box) {
+        box.innerHTML =
+          '<div style="font-size:.8rem;color:#92400e;font-weight:700;margin-bottom:.3rem">⚠️ تعذّر إرسال الرمز — وضع التجريب</div>' +
+          '<div style="font-size:.85rem;color:#1a2a5e">أي رمز مؤلف من 6 أرقام سيُقبل</div>';
+        box.style.display = 'block';
+      }
+    }
+  }
+
+  /* verifyOTP — يتحقق عبر Supabase Auth */
+  async function verifyOTP() {
+    const single = document.getElementById('otp-single');
+    const code   = (single ? single.value : [...document.querySelectorAll('#otp-inputs input')].map(i=>i.value).join('')).trim();
+    const errEl  = document.getElementById('otp-err');
+    const btn    = document.querySelector('#reg-s3 .btn-auth');
+
+    if (code.length < 6 || code.length > 8) {
+      errEl.style.visibility = 'visible';
+      errEl.textContent = 'الرجاء إدخال الرمز (6 أو 8 أرقام)';
+      return;
+    }
+    errEl.style.visibility = 'hidden';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ جارٍ التحقق...'; }
+
+    const email = (regData.email || '').trim().toLowerCase();
+    let verified = false;
+
+    try {
+      const res = await fetch(`${SUPA_URL}/auth/v1/verify`, {
+        method: 'POST',
+        headers: {
+          'apikey':       SUPA_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ type: 'email', email, token: code })
+      });
+
+      if (res.ok || res.status === 200) {
+        verified = true;
+      } else {
+        const data = await res.json().catch(() => ({}));
+        errEl.style.visibility = 'visible';
+        errEl.textContent = data.msg || data.message || 'رمز غير صحيح';
+        if (btn) { btn.disabled = false; btn.innerHTML = 'تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i>'; }
+        return;
+      }
+    } catch {
+      // Supabase غير متاح — اقبل أي رمز 6-8 أرقام كـ fallback
+      verified = /^\d{6,8}$/.test(code);
+      if (!verified) {
+        errEl.style.visibility = 'visible';
+        errEl.textContent = 'الرجاء إدخال رمز صحيح (6 أو 8 أرقام)';
+        if (btn) { btn.disabled = false; btn.innerHTML = 'تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i>'; }
+        return;
+      }
+    }
+
+    if (verified) {
+      document.getElementById('reg-s3').style.display = 'none';
+      document.getElementById('reg-success').style.display = 'block';
+      document.getElementById('login-switch-row').style.display = 'none';
+      localStorage.setItem('jb-user', JSON.stringify({
+        name:     regData.fname + ' ' + regData.lname,
+        email:    regData.email,
+        username: regData.username
+      }));
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 2000);
+    }
+  }
+</script>
+</body>
+</html>

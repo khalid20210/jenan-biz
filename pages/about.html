@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>من نحن | جنان بيز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root{--green:#4E73C2;--green-dark:#3558A8;--green-deeper:#1E3A8A;--green-light:#7B9ED4;--amber:#4E73C2;--navy:#0B0E1A;--bg:#f8f9fc;--bg2:#eef1f8;--text:#1a1a2e;--muted:#6b7280;--border:#dde3f0;--shadow:0 4px 28px rgba(0,0,0,.08);--radius:14px;--tr:all .3s ease}
+    [data-theme="dark"]{--bg:#0B0E1A;--bg2:#111827;--text:#e8eaf6;--muted:#8892b0;--border:#1e2545;--shadow:0 4px 28px rgba(0,0,0,.4)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .3s,color .3s;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.78rem 1.8rem;border-radius:8px;font-family:'Tajawal',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;border:2px solid transparent;transition:var(--tr)}
+    .btn-green{background:var(--green);color:#fff;border-color:var(--green)}
+    .btn-green:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 8px 22px rgba(78,115,194,.35)}
+
+    /* HEADER */
+    #header{position:sticky;top:0;z-index:999;background:var(--bg);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(0,0,0,.06);transition:background .3s,box-shadow .3s}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .logo{display:flex;align-items:center;gap:.6rem}
+    .logo img{height:48px;object-fit:contain}
+    .logo-text{font-size:1.45rem;font-weight:800;color:var(--green-deeper)}
+    .logo-sub{font-size:.75rem;color:var(--muted);display:block;font-weight:400}
+    .nav{display:flex;align-items:center;gap:.15rem}
+    .nav>a,.dropdown>a{padding:.5rem .9rem;border-radius:7px;font-weight:600;font-size:.93rem;color:var(--text);transition:var(--tr);white-space:nowrap}
+    .nav>a:hover,.dropdown>a:hover,.nav>a.active{color:var(--green-deeper);background:rgba(78,115,194,.09)}
+    .dropdown{position:relative}
+    .dropdown-menu{display:none;position:absolute;top:calc(100% + .4rem);right:0;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);min-width:210px;z-index:200;overflow:hidden}
+    .dropdown:hover .dropdown-menu{display:block}
+    .dropdown-menu a{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.1rem;font-size:.9rem;font-weight:500;color:var(--text);transition:var(--tr)}
+    .dropdown-menu a:hover{background:rgba(78,115,194,.08);color:var(--green-deeper)}
+    .dropdown-menu a i{color:var(--green);width:18px;text-align:center;font-size:.85rem}
+    .header-actions{display:flex;align-items:center;gap:.6rem}
+    #theme-toggle{background:var(--bg2);border:1px solid var(--border);width:38px;height:38px;border-radius:50%;cursor:pointer;color:var(--text);font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+    #theme-toggle:hover{background:var(--green);color:#fff;border-color:var(--green)}
+    .hamburger{display:none;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text)}
+
+    /* PAGE HERO */
+    .page-hero{background:linear-gradient(145deg,#0B0E1A 0%,#111B3D 55%,#1E2D5C 100%);padding:5rem 0;text-align:center;color:#fff;position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(78,115,194,.3) 0%,transparent 60%)}
+    .page-hero .breadcrumb{font-size:.85rem;color:rgba(255,255,255,.6);margin-bottom:1rem}
+    .page-hero .breadcrumb a{color:var(--green-light)}
+    .page-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:.75rem;position:relative}
+    .page-hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:560px;margin:0 auto;position:relative}
+
+    /* SECTIONS */
+    .section{padding:5rem 0}
+    .bg2{background:var(--bg2)}
+    .section-head{text-align:center;margin-bottom:3rem}
+    .tag{display:inline-block;background:rgba(78,115,194,.1);color:var(--green-deeper);border:1px solid rgba(78,115,194,.25);padding:.3rem 1.1rem;border-radius:50px;font-size:.8rem;font-weight:700;margin-bottom:.85rem}
+    .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;margin-bottom:.75rem}
+    .section-head p{color:var(--muted);font-size:1rem;max-width:540px;margin:0 auto}
+
+    /* VALUES GRID */
+    .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+    .val-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:var(--tr)}
+    .val-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+    .val-icon{width:54px;height:54px;border-radius:12px;background:rgba(78,115,194,.1);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem}
+    .val-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:var(--green-deeper)}
+    .val-card p{font-size:.92rem;color:var(--muted);line-height:1.75}
+
+    /* TEAM / ABOUT CONTENT */
+    .about-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .about-content img{border-radius:var(--radius);box-shadow:var(--shadow)}
+    .about-text h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:1rem;color:var(--green-deeper)}
+    .about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem}
+    .about-list{list-style:none;margin:1.5rem 0}
+    .about-list li{display:flex;align-items:center;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.95rem}
+    .about-list li:last-child{border-bottom:none}
+    .about-list li i{color:var(--green);font-size:.9rem}
+
+    /* STATS */
+    .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;text-align:center}
+    .stat-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 1rem}
+    .stat-card .num{font-size:2.5rem;font-weight:800;color:var(--green);display:block}
+    .stat-card .lbl{font-size:.88rem;color:var(--muted)}
+
+    /* FOOTER */
+    .footer{background:var(--navy);color:#8eaabb}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding:4rem 0 3rem}
+    .f-brand p{font-size:.87rem;margin-top:1rem;line-height:1.75;max-width:270px}
+    .f-disclaimer{margin-top:.75rem;font-size:.78rem;color:#607d8b;line-height:1.65;border-top:1px solid rgba(255,255,255,.07);padding-top:.75rem}
+    .f-col h4{color:#fff;font-size:.93rem;font-weight:700;margin-bottom:1.25rem}
+    .f-col a{display:block;margin-bottom:.65rem;font-size:.87rem;transition:var(--tr)}
+    .f-col a:hover{color:var(--green-light)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding:1.25rem 0;text-align:center;font-size:.82rem}
+    .social-row{display:flex;gap:.65rem;margin-top:1rem}
+    .soc-btn{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.07);color:#8eaabb;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:var(--tr);border:1px solid rgba(255,255,255,.1)}
+    .soc-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
+    .f-logo-text{color:#fff;font-size:1.3rem;font-weight:800}
+
+    /* FLOAT */
+    #wa-float{position:fixed;bottom:2rem;right:2rem;width:54px;height:54px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,.5);transition:var(--tr);z-index:900}
+    #wa-float:hover{transform:scale(1.1)}
+    #btt{position:fixed;bottom:2rem;left:2rem;width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(78,115,194,.5);transform:translateY(100px);transition:var(--tr);z-index:900}
+    #btt.show{transform:translateY(0)}
+    #btt:hover{background:var(--green-dark)}
+    .fade-up{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+    .fade-up.in{opacity:1;transform:translateY(0)}
+
+    @media(max-width:920px){
+      .nav{display:none;flex-direction:column;position:fixed;top:72px;right:0;left:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 1.5rem;z-index:998;box-shadow:0 8px 24px rgba(0,0,0,.1)}
+      .nav.open{display:flex}
+      .hamburger{display:flex}
+      .about-content{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+    }
+    @media(max-width:580px){.footer-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header id="header">
+  <div class="container header-inner">
+    <a href="/index.html" class="logo">
+      <img src="/assets/images/logo.svg" alt="جنان بيز" onerror="this.style.display='none'" />
+      <div><span class="logo-text">جنان بيز</span><span class="logo-sub">Jenan Biz</span></div>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="/index.html">الرئيسية</a>
+      <a href="about.html" class="active">من نحن</a>
+      <div class="dropdown">
+        <a href="services.html">خدماتنا <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+        <div class="dropdown-menu">
+          <a href="services.html#s1"><i class="fa-solid fa-file-circle-check"></i>دعم الجاهزية للتسهيلات</a>
+          <a href="services.html#s2"><i class="fa-solid fa-building-circle-check"></i>تقييم وتطوير المنشآت</a>
+          <a href="services.html#s3"><i class="fa-solid fa-chart-pie"></i>دراسات الجدوى والتحليل</a>
+          <a href="services.html#s4"><i class="fa-solid fa-arrows-rotate"></i>إعادة الهيكلة الإدارية</a>
+          <a href="services.html#s5"><i class="fa-solid fa-shield-halved"></i>تنظيم الإدارة والرقابة</a>
+        </div>
+      </div>
+      <a href="knowledge.html">مركز المعرفة</a>
+      <a href="contact.html">اتصل بنا</a>
+      <a href="/dashboard.html">لوحة التحكم</a>
+    </nav>
+    <div class="header-actions">
+      <a href="/auth.html" class="btn btn-green" style="font-size:.85rem;padding:.45rem 1.1rem">دخول</a>
+      <button id="theme-toggle"><i class="fa-solid fa-moon" id="th-ico"></i></button>
+      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="/index.html">الرئيسية</a> / من نحن</p>
+    <h1>من نحن</h1>
+    <p>شركة استشارية متخصصة تعمل على تمكين المنشآت السعودية من تحقيق التميّز والنمو المستدام</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="container">
+    <div class="about-content">
+      <div style="background:linear-gradient(135deg,var(--bg2),var(--bg));border:1px solid var(--border);border-radius:var(--radius);padding:3rem;display:flex;align-items:center;justify-content:center;min-height:380px;">
+        <div style="text-align:center">
+          <div style="font-size:5rem;margin-bottom:1.5rem">🌿</div>
+          <div style="font-size:2rem;font-weight:800;color:var(--green-deeper)">جنان بيز</div>
+          <div style="color:var(--muted);margin-top:.5rem">Jenan Biz</div>
+          <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+            <span style="background:rgba(78,115,194,.1);color:var(--green-deeper);padding:.35rem .9rem;border-radius:50px;font-size:.82rem;font-weight:600">+20 تقييم ذهبي</span>
+            <span style="background:rgba(78,115,194,.1);color:var(--green-deeper);padding:.35rem .9rem;border-radius:50px;font-size:.82rem;font-weight:600">5 خدمات متخصصة</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-text fade-up">
+        <h2>شريكك الموثوق في رحلة التطوير</h2>
+        <p>جنان بيز شركة استشارية متخصصة في تطوير المنشآت، تعمل من خلال شبكة واسعة من الشركاء المعتمدين والمتخصصين في مختلف قطاعات الأعمال بالمملكة العربية السعودية.</p>
+        <p>نؤمن بأن نجاح المنشأة يبدأ من وضوح الرؤية، ودقة التحليل، وحسن التخطيط. لذلك نقدم حلولاً استشارية مبنية على بيانات حقيقية وخبرة ميدانية متراكمة.</p>
+        <ul class="about-list">
+          <li><i class="fa-solid fa-check-circle"></i>نعمل وفق منهجية واضحة ومُثبتة</li>
+          <li><i class="fa-solid fa-check-circle"></i>نقدم توصيات عملية قابلة للتطبيق</li>
+          <li><i class="fa-solid fa-check-circle"></i>نلتزم بالشفافية في كل مرحلة</li>
+          <li><i class="fa-solid fa-check-circle"></i>نستمر في المتابعة حتى تحقيق النتيجة</li>
+        </ul>
+        <a href="contact.html" class="btn btn-green">احجز استشارة مجانية</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section bg2">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">أرقامنا تتحدث</span>
+      <h2>إنجازات حقيقية وموثّقة</h2>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card fade-up"><span class="num">+200</span><span class="lbl">منشأة مستفيدة</span></div>
+      <div class="stat-card fade-up"><span class="num">+20</span><span class="lbl">تقييم ذهبي على Google</span></div>
+      <div class="stat-card fade-up"><span class="num">5</span><span class="lbl">خدمات استشارية متخصصة</span></div>
+      <div class="stat-card fade-up"><span class="num">6</span><span class="lbl">قطاعات اقتصادية</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">قيمنا</span>
+      <h2>ما يميّزنا في العمل</h2>
+      <p>مبادئ راسخة تحكم كل خطوة نخطوها مع عملائنا</p>
+    </div>
+    <div class="values-grid">
+      <div class="val-card fade-up">
+        <div class="val-icon"><i class="fa-solid fa-handshake"></i></div>
+        <h3>الموثوقية والأمانة</h3>
+        <p>نلتزم بتقديم معلومات دقيقة وصادقة دون تضخيم أو وعود غير واقعية.</p>
+      </div>
+      <div class="val-card fade-up">
+        <div class="val-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>الدقة في التحليل</h3>
+        <p>كل توصية نقدّمها مبنية على تحليل عميق للبيانات والسياق الفعلي للمنشأة.</p>
+      </div>
+      <div class="val-card fade-up">
+        <div class="val-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3>سرعة التنفيذ</h3>
+        <p>نحرص على تقديم الحلول في وقتها دون إطالة غير مبررة تضيع فيها الفرص.</p>
+      </div>
+      <div class="val-card fade-up">
+        <div class="val-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>الخصوصية والسرية</h3>
+        <p>جميع معلومات عملائنا تُعامَل بأعلى مستويات السرية والاحترافية.</p>
+      </div>
+      <div class="val-card fade-up">
+        <div class="val-icon"><i class="fa-solid fa-chart-bar"></i></div>
+        <h3>التطوير المستمر</h3>
+        <p>نواكب المستجدات في بيئة الأعمال السعودية لنقدم دائماً الأحدث والأفضل.</p>
+      </div>
+      <div class="val-card fade-up">
+        <div class="val-icon"><i class="fa-solid fa-users"></i></div>
+        <h3>الشراكة الحقيقية</h3>
+        <p>لسنا مجرد مزودي خدمة — نحن شركاء في نجاحك ونفرح لنجاحك كما لو كان نجاحنا.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,var(--green-deeper),var(--green));padding:4.5rem 0;text-align:center;color:#fff">
+  <div class="container">
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:1rem">هل أنت مستعد لبدء رحلة التطوير؟</h2>
+    <p style="opacity:.85;font-size:1.05rem;margin-bottom:2rem">تواصل معنا اليوم واحصل على استشارة أولية لمعرفة أين تقف منشأتك</p>
+    <a href="contact.html" class="btn" style="background:#fff;color:var(--green-deeper);border-color:#fff;">تواصل الآن</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="f-brand">
+        <div class="f-logo-text">🌿 جنان بيز</div>
+        <p>خدمات استشارية متخصصة لتطوير المنشآت في المملكة العربية السعودية.</p>
+        <p class="f-disclaimer">جنان بيز شركة استشارية ووساطة، ولا تعمل بصفة ممول أو جهة ترخيص مباشرة.</p>
+      </div>
+      <div class="f-col">
+        <h4>روابط سريعة</h4>
+        <a href="/index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="services.html">خدماتنا</a>
+        <a href="knowledge.html">مركز المعرفة</a>
+        <a href="contact.html">اتصل بنا</a>
+        <a href="/dashboard.html">لوحة التحكم</a>
+      </div>
+      <div class="f-col">
+        <h4>الخدمات</h4>
+        <a href="services.html#s1">دعم الجاهزية للتسهيلات</a>
+        <a href="services.html#s2">تقييم وتطوير المنشآت</a>
+        <a href="services.html#s3">دراسات الجدوى</a>
+        <a href="services.html#s4">إعادة الهيكلة</a>
+        <a href="services.html#s5">تنظيم الرقابة الداخلية</a>
+      </div>
+      <div class="f-col">
+        <h4>تابعنا</h4>
+        <div class="social-row">
+          <a href="https://wa.me/966567711999" target="_blank" class="soc-btn"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://x.com/jenanstar11" target="_blank" class="soc-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://instagram.com/jenanstar11" target="_blank" class="soc-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://tiktok.com/@jenan.star11" target="_blank" class="soc-btn"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div style="margin-top:1.5rem">
+          <a href="mailto:info@jenanbiz.sa" style="color:#8eaabb;font-size:.87rem;display:block;margin-bottom:.5rem">info@jenanbiz.sa</a>
+          <a href="tel:+966567711999" dir="ltr" style="color:#8eaabb;font-size:.87rem">+966 56 771 1999</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container"><p>© 2024 جنان بيز — جميع الحقوق محفوظة | jenanbiz.sa</p></div></div>
+</footer>
+
+<a href="https://wa.me/966567711999" target="_blank" id="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="#" id="btt"><i class="fa-solid fa-arrow-up"></i></a>
+
+<script>
+  const html=document.documentElement,thIco=document.getElementById('th-ico');
+  const saved=localStorage.getItem('jb-theme')||'light';
+  html.setAttribute('data-theme',saved);
+  thIco.className=saved==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
+  document.getElementById('theme-toggle').addEventListener('click',()=>{
+    const n=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',n);localStorage.setItem('jb-theme',n);
+    thIco.className=n==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
+  });
+  document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
+  window.addEventListener('scroll',()=>document.getElementById('btt').classList.toggle('show',scrollY>400));
+  const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.12});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+<script src="/config/app-config.js"></script>
+<script src="/config/site-inject.js"></script>
+</body>
+</html>

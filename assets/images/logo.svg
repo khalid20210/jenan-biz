@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340" width="340" height="340">
+  <defs>
+    <linearGradient id="bizGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4B6BE0"/>
+      <stop offset="100%" style="stop-color:#7B5BE0"/>
+    </linearGradient>
+  </defs>
+  <!-- حرف J الكبير -->
+  <text x="20" y="260" font-family="Georgia, 'Times New Roman', serif" font-size="250" font-weight="bold" fill="#1a1a1a">J</text>
+  <!-- enan -->
+  <text x="148" y="170" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="400" fill="#1a1a1a">enan</text>
+  <!-- BIZ -->
+  <text x="152" y="258" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-style="italic" font-weight="400" fill="url(#bizGrad)">BIZ</text>
+</svg>
