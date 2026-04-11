@@ -5,9 +5,8 @@
 //   3. رادار التمويل المبدئي (Funding Radar)
 // ══════════════════════════════════════════════════════
 
-const HOOKS_LEGAL = typeof JENAN_CONFIG !== "undefined"
-  ? JENAN_CONFIG.legal.pointsDisclaimer
-  : "جميع النقاط والمكافآت والتقديرات التمويلية هي خدمات استشارية تشجيعية، وتخضع لشروط المنصة، وتُقدَّم دون أدنى مسؤولية قانونية على جنان بيز.";
+const HOOKS_LEGAL = (typeof JENAN_CONFIG !== "undefined" && JENAN_CONFIG.legal?.pointsDisclaimer)
+  || "جميع النقاط والمكافآت والتقديرات التمويلية هي خدمات استشارية تشجيعية، وتخضع لشروط المنصة، وتُقدَّم دون أدنى مسؤولية قانونية على جنان بيز.";
 
 const HOOKS_API = (typeof JENAN_CONFIG !== "undefined" && JENAN_CONFIG.api?.baseUrl) || "/api";
 

@@ -7,7 +7,9 @@ class SeoBot {
   constructor(api, config = {}) {
     this.api       = api;
     this.platforms = config.platforms    || [];
-    this.webhook   = config.webhookUrl   || "/api/social-publish";
+    // نزع بادئة /api لأن ApiClient يضيفها تلقائياً
+    const rawWebhook = config.webhookUrl || "/api/social/publish";
+    this.webhook   = rawWebhook.replace(/^\/api/, "") || "/social/publish";
     this.autoPublish = config.autoPublish || false;
     this._storageKey = "jenan_seo";
   }
@@ -19,7 +21,7 @@ class SeoBot {
    * @param {object} opts — { title, description, keywords, ogImage, canonicalUrl }
    */
   updateMeta(opts = {}) {
-    const cfg = typeof JENAN_CONFIG !== "undefined" ? JENAN_CONFIG.seo : {};
+    const cfg = (typeof JENAN_CONFIG !== "undefined" ? JENAN_CONFIG.seo : null) || {};
     const title = opts.title || cfg.defaultTitle || "جنان بيز";
     const desc  = opts.description || cfg.defaultDesc || "";
     const kws   = [...(cfg.keywords || []), ...(opts.keywords || [])].join(", ");

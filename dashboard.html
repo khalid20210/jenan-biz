@@ -542,11 +542,233 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .platform-suggest h5{font-weight:800;margin-bottom:.25rem;color:#4E73C2}
 .notif-dot-count{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#ef4444;color:#fff;font-size:.65rem;font-weight:800;margin-right:auto;flex-shrink:0}
 
+/* ══ NAV GROUP (قائمة منسدلة) ══ */
+.nav-group{}
+.nav-group-header{
+  display:flex;align-items:center;gap:.85rem;padding:.72rem 1.25rem;
+  border-radius:10px;margin:.15rem .6rem;color:rgba(255,255,255,.65);
+  font-size:.93rem;font-weight:600;cursor:pointer;transition:var(--tr);user-select:none;
+}
+.nav-group-header:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav-group-header i.group-ico{width:20px;text-align:center;font-size:1rem}
+.nav-group-header .group-label{flex:1}
+.ng-arrow{font-size:.72rem;transition:transform .3s ease;color:rgba(255,255,255,.35);flex-shrink:0}
+.nav-group.open .ng-arrow{transform:rotate(-90deg)}
+.nav-sub{
+  overflow:hidden;max-height:0;transition:max-height .35s ease,opacity .3s ease;opacity:0;
+}
+.nav-group.open .nav-sub{max-height:300px;opacity:1}
+.nav-sub-item{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.62rem 1.25rem .62rem 1.5rem;
+  margin:.1rem .6rem .1rem 1.2rem;
+  border-radius:9px;color:rgba(255,255,255,.55);
+  font-size:.88rem;font-weight:500;cursor:pointer;
+  transition:var(--tr);position:relative;border-right:2px solid transparent;
+}
+.nav-sub-item:hover{background:rgba(255,255,255,.07);color:#fff;border-right-color:rgba(255,255,255,.25)}
+.nav-sub-item.active{background:rgba(78,115,194,.25);color:#fff;font-weight:700;border-right-color:var(--green)}
+.nav-sub-item i{width:18px;text-align:center;font-size:.9rem;flex-shrink:0}
+.nav-group-header.group-active{color:#fff;background:rgba(78,115,194,.15)}
+
 @media(max-width:900px){
   .supply-layout{grid-template-columns:1fr}
   .cart-panel{position:static}
   .admin-grid{grid-template-columns:1fr 1fr}
   .admin-two-col{grid-template-columns:1fr}
+}
+
+/* ══ ACADEMY ══ */
+.ac-section{display:none}
+.ac-section.active{display:block;animation:fadeUp .35s ease}
+.ac-hero{
+  background:linear-gradient(135deg,var(--green),var(--green-dp));
+  border-radius:var(--radius);padding:2.5rem 2rem;
+  display:flex;align-items:center;gap:2rem;margin-bottom:2rem;position:relative;overflow:hidden;
+}
+.ac-hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='rgba(255,255,255,.05)' stroke-width='20' fill='none'/%3E%3C/svg%3E") repeat;
+  opacity:.4;
+}
+.ac-hero-icon{width:72px;height:72px;border-radius:20px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;z-index:1}
+.ac-hero-text{z-index:1}
+.ac-hero-text h2{color:#fff;font-size:1.45rem;font-weight:800;margin-bottom:.4rem}
+.ac-hero-text p{color:rgba(255,255,255,.8);font-size:.9rem;line-height:1.7}
+.ac-hero-stats{display:flex;gap:2rem;margin-top:1.25rem;flex-wrap:wrap}
+.ac-stat{text-align:center}
+.ac-stat .val{font-size:1.5rem;font-weight:800;color:#fff}
+.ac-stat .lbl{font-size:.72rem;color:rgba(255,255,255,.7)}
+.ac-main-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+.ac-main-card{
+  background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--radius);
+  padding:2rem 1.75rem;cursor:pointer;transition:var(--tr);position:relative;overflow:hidden;text-align:center;
+}
+.ac-main-card:hover{border-color:var(--green);box-shadow:var(--shadow);transform:translateY(-5px)}
+.ac-main-card::after{content:'';position:absolute;bottom:0;right:0;left:0;height:4px;background:var(--ac-color,var(--green));transform:scaleX(0);transform-origin:right;transition:var(--tr)}
+.ac-main-card:hover::after{transform:scaleX(1)}
+.ac-main-icon{width:68px;height:68px;border-radius:18px;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:1.7rem}
+.ac-main-card h3{font-size:1.05rem;font-weight:800;margin-bottom:.6rem}
+.ac-main-card p{font-size:.84rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem}
+.ac-chip-row{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}
+.ac-chip{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:.2rem .7rem;font-size:.73rem;color:var(--muted)}
+.ac-enter-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.1rem;font-size:.83rem;font-weight:700;color:var(--green)}
+/* section back bar */
+.ac-back-bar{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.ac-back-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-size:.88rem;display:inline-flex;align-items:center;gap:.4rem;font-family:'Tajawal',sans-serif;transition:var(--tr)}
+.ac-back-btn:hover{color:var(--text)}
+.ac-section-title{font-size:1.1rem;font-weight:800;flex:1}
+/* Library */
+.ac-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.ac-filter{padding:.35rem .9rem;border-radius:20px;border:1.5px solid var(--border);background:var(--bg);font-size:.82rem;font-weight:600;cursor:pointer;transition:var(--tr);color:var(--muted)}
+.ac-filter.active,.ac-filter:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+.lib-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:var(--tr);cursor:pointer}
+.lib-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.lib-card-cover{height:130px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.lib-card-body{padding:1rem 1.1rem}
+.lib-tag{display:inline-block;padding:.15rem .6rem;border-radius:20px;font-size:.7rem;font-weight:700;margin-bottom:.6rem;background:var(--green-lt);color:var(--green-dp)}
+.lib-card-body h4{font-size:.92rem;font-weight:700;margin-bottom:.4rem;line-height:1.5}
+.lib-card-body p{font-size:.78rem;color:var(--muted);margin-bottom:.75rem;line-height:1.6}
+.lib-meta{display:flex;align-items:center;gap:.75rem;font-size:.73rem;color:var(--muted)}
+/* Courses */
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.course-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:var(--tr);cursor:pointer}
+.course-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.course-cover{height:110px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative}
+.course-level{position:absolute;top:.6rem;right:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:rgba(0,0,0,.35);color:#fff}
+.course-free{position:absolute;top:.6rem;left:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:#22c55e;color:#fff}
+.course-paid{position:absolute;top:.6rem;left:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:var(--green);color:#fff}
+.course-body{padding:1rem 1.1rem}
+.course-body h4{font-size:.93rem;font-weight:700;margin-bottom:.35rem}
+.course-body p{font-size:.78rem;color:var(--muted);margin-bottom:.75rem;line-height:1.6}
+.course-meta{display:flex;justify-content:space-between;font-size:.73rem;color:var(--muted);margin-bottom:.6rem}
+.enroll-btn{width:100%;padding:.6rem;background:var(--green-lt);color:var(--green-dp);border:none;border-radius:8px;font-size:.85rem;font-weight:700;cursor:pointer;transition:var(--tr);font-family:'Tajawal',sans-serif}
+.enroll-btn:hover{background:var(--green);color:#fff}
+/* Financial Tools */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.25rem}
+.tool-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:var(--tr)}
+.tool-card:hover{box-shadow:var(--shadow)}
+.tool-card h4{font-size:.97rem;font-weight:800;margin-bottom:.25rem;display:flex;align-items:center;gap:.5rem}
+.tool-card h4 i{color:var(--green)}
+.tool-card p{font-size:.8rem;color:var(--muted);margin-bottom:1rem}
+.tool-result{background:var(--green-lt);border:1px solid rgba(78,115,194,.2);border-radius:10px;padding:1rem;margin-top:1rem;text-align:center;display:none}
+.tool-result .big{font-size:1.6rem;font-weight:800;color:var(--green)}
+.tool-result .small{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+@media(max-width:900px){
+  .ac-main-cards{grid-template-columns:1fr}
+  .ac-hero{flex-direction:column;text-align:center}
+}
+
+/* ══ DESIGN STUDIO ══ */
+.design-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem;margin-top:1.5rem}
+.design-service-card{background:var(--card);border-radius:16px;padding:1.5rem;border:1px solid var(--border);cursor:pointer;transition:var(--tr);display:flex;flex-direction:column;gap:.6rem}
+.design-service-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.12);border-color:rgba(236,72,153,.3)}
+.ds-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;flex-shrink:0}
+.design-service-card h3{font-size:1rem;font-weight:800;color:var(--text);margin:0}
+.design-service-card p{font-size:.83rem;color:var(--muted);margin:0;line-height:1.6}
+.ds-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.ds-tags span{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:.2rem .65rem;font-size:.73rem;color:var(--muted)}
+.ds-price{font-size:.88rem;color:var(--muted);margin-top:auto}
+.ds-price strong{color:var(--green);font-size:1.05rem}
+.ds-btn{background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fff;border:none;border-radius:10px;padding:.55rem 1.2rem;font-size:.85rem;font-weight:700;cursor:pointer;transition:var(--tr);font-family:inherit}
+.ds-btn:hover{opacity:.88;transform:scale(1.02)}
+
+/* ══ SOFTWARE STORE ══ */
+.software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem;margin-top:1.5rem}
+.sw-card{background:var(--card);border-radius:16px;padding:1.4rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:.7rem;transition:var(--tr)}
+.sw-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.sw-header{display:flex;align-items:center;gap:.85rem}
+.sw-logo{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;border:1px solid var(--border)}
+.sw-title{font-size:.97rem;font-weight:800;color:var(--text)}
+.sw-cat{font-size:.73rem;color:var(--muted)}
+.sw-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
+.sw-rating{display:flex;align-items:center;gap:.3rem;font-size:.8rem;color:#f59e0b;font-weight:700}
+.sw-price{font-size:.85rem;color:var(--muted)}
+.sw-price strong{color:var(--green);font-size:1rem}
+.sw-price .sw-free{color:#16a34a;font-weight:800;font-size:.9rem}
+.sw-btn{background:var(--green);color:#fff;border:none;border-radius:10px;padding:.55rem;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;transition:var(--tr)}
+.sw-btn:hover{background:#0ea06a}
+
+/* ══ FEASIBILITY STUDY WIZARD ══ */
+.fs-step{display:none}
+.fs-step.active{display:block;animation:fadeUp .35s ease}
+.study-types-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+.study-card{background:var(--bg3);border:2px solid var(--border);border-radius:var(--radius);padding:2rem;cursor:pointer;transition:var(--tr);position:relative;overflow:hidden}
+.study-card:hover{border-color:var(--green);box-shadow:var(--shadow);transform:translateY(-4px)}
+.study-card.selected{border-color:var(--green);background:var(--green-lt)}
+.study-card.selected::after{content:'✔';position:absolute;top:.75rem;left:.75rem;width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+.study-badge{display:inline-block;padding:.25rem .85rem;border-radius:20px;font-size:.75rem;font-weight:700;margin-bottom:1rem}
+.study-badge.simple{background:rgba(123,158,212,.18);color:var(--amber)}
+.study-badge.detailed{background:rgba(78,115,194,.13);color:var(--green)}
+.study-card h3{font-size:1.25rem;font-weight:800;margin-bottom:.5rem}
+.study-card p{font-size:.85rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.75}
+.study-price{font-size:2.4rem;font-weight:800;color:var(--green);margin-bottom:.2rem}
+.study-price-note{font-size:.78rem;color:var(--muted)}
+.study-features{list-style:none;padding:0;margin:1.25rem 0 0;display:flex;flex-direction:column;gap:.5rem}
+.study-features li{font-size:.84rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.study-features li i{color:var(--green);font-size:.78rem;flex-shrink:0}
+.study-recommend{position:absolute;top:.8rem;right:.8rem;background:var(--green);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem .65rem;border-radius:20px}
+/* wizard header */
+.fs-wizard-header{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:1.5rem}
+.fs-wizard-title{font-size:1.05rem;font-weight:800;margin-bottom:1rem}
+.fs-steps-bar{display:flex;align-items:center}
+.fs-step-dot{width:32px;height:32px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:var(--muted);transition:var(--tr);flex-shrink:0;z-index:1}
+.fs-step-dot.done{background:var(--green);border-color:var(--green);color:#fff}
+.fs-step-dot.current{background:var(--green-lt);border-color:var(--green);color:var(--green-dp);font-weight:800}
+.fs-step-line{flex:1;height:2px;background:var(--border);transition:var(--tr)}
+.fs-step-line.done{background:var(--green)}
+.fs-progress-label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-top:.65rem}
+.fs-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;gap:1rem}
+.btn-ghost-dk{padding:.7rem 1.5rem;border:1.5px solid var(--border);background:transparent;border-radius:9px;font-size:.9rem;font-weight:600;cursor:pointer;color:var(--text);transition:var(--tr);font-family:'Tajawal',sans-serif;display:inline-flex;align-items:center;gap:.5rem}
+.btn-ghost-dk:hover{border-color:var(--green);color:var(--green)}
+/* payment */
+.payment-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:640px;margin:0 auto}
+.pay-summary{background:var(--green-lt);border:1px solid rgba(78,115,194,.2);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.pay-summary-name{font-weight:800;font-size:1rem}
+.pay-summary-price{font-size:1.5rem;font-weight:800;color:var(--green);white-space:nowrap}
+.pay-methods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-bottom:1.5rem}
+.pay-method{border:2px solid var(--border);border-radius:10px;padding:1rem;text-align:center;cursor:pointer;transition:var(--tr);background:var(--bg)}
+.pay-method:hover{border-color:var(--green);background:var(--green-lt)}
+.pay-method.active{border-color:var(--green);background:var(--green-lt)}
+.pay-method i{font-size:1.6rem;display:block;margin-bottom:.4rem;color:var(--muted)}
+.pay-method.active i{color:var(--green)}
+.pay-method span{font-size:.8rem;font-weight:600}
+/* study report */
+.study-report{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem}
+.sr-header{background:linear-gradient(135deg,var(--green),var(--green-dp));color:#fff;padding:2rem}
+.sr-header h2{font-size:1.25rem;font-weight:800;margin-bottom:.35rem}
+.sr-header p{font-size:.83rem;opacity:.85}
+.sr-meta{display:flex;gap:1.75rem;margin-top:1.25rem;flex-wrap:wrap}
+.sr-meta-item{text-align:center}
+.sr-meta-item .val{font-size:1.45rem;font-weight:800}
+.sr-meta-item .lbl{font-size:.7rem;opacity:.75;margin-top:.1rem}
+.sr-section{padding:1.4rem 2rem;border-bottom:1px solid var(--border)}
+.sr-section:last-child{border-bottom:none}
+.sr-section h3{font-size:.97rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.sr-section h3 i{color:var(--green)}
+.sr-table{width:100%;border-collapse:collapse;font-size:.87rem}
+.sr-table tr{border-bottom:1px solid var(--border)}
+.sr-table tr:last-child{border-bottom:none}
+.sr-table td{padding:.65rem .5rem;vertical-align:top;line-height:1.6}
+.sr-table td:first-child{font-weight:600;color:var(--muted);width:44%;white-space:nowrap}
+.sr-rec-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:.65rem}
+.sr-rec-list li{display:flex;align-items:flex-start;gap:.6rem;font-size:.87rem;line-height:1.65}
+.sr-rec-list li::before{content:'◈';color:var(--green);flex-shrink:0;margin-top:.15rem}
+.sr-risk-row{display:flex;align-items:center;gap:1rem;padding:.65rem 0;border-bottom:1px dashed var(--border);font-size:.87rem}
+.sr-risk-row:last-child{border-bottom:none}
+.sr-risk-label{flex:1}
+.pill-risk{padding:.2rem .65rem;border-radius:20px;font-size:.73rem;font-weight:700}
+.pr-low{background:rgba(78,115,194,.12);color:var(--green)}
+.pr-mid{background:rgba(244,166,35,.12);color:#d97706}
+.pr-high{background:rgba(231,76,60,.1);color:#e74c3c}
+.sr-cta{padding:1.5rem 2rem;background:var(--bg2);display:flex;gap:1rem;flex-wrap:wrap}
+@media(max-width:700px){
+  .study-types-grid{grid-template-columns:1fr}
+  .pay-methods-grid{grid-template-columns:1fr 1fr}
+  .sr-meta{gap:1rem}
+  .sr-section{padding:1.2rem 1.25rem}
+  .sr-table td:first-child{white-space:normal;width:38%}
 }
 </style>
 </head>
@@ -572,19 +794,46 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
     </div>
 
     <p class="nav-section">الأدوات الذكية</p>
-    <div class="nav-item" onclick="goto('robot')">
-      <i class="fa-solid fa-robot"></i> المساعد الذكي
-      <span class="nav-badge">جديد</span>
-    </div>
-      <div class="nav-item" onclick="goto('projectcopilot')">
-        <i class="fa-solid fa-rocket" style="color:#4E73C2"></i> روبوت المشاريع
-        <span class="nav-badge" style="background:#a855f7">ذكاء اصطناعي</span>
+
+    <!-- ══ 1. تحليل المشاريع وإعداد دراسات الجدوى ══ -->
+    <div class="nav-group open" id="navg-analysis">
+      <div class="nav-group-header" onclick="toggleNavGroup('navg-analysis')">
+        <i class="fa-solid fa-chart-mixed group-ico" style="color:#7B9ED4"></i>
+        <span class="group-label">تحليل المشاريع ودراسات الجدوى</span>
+        <i class="fa-solid fa-chevron-right ng-arrow"></i>
       </div>
-    <div class="nav-item" onclick="goto('analysis')">
-      <i class="fa-solid fa-chart-line"></i> تحليل الجدوى
+      <div class="nav-sub">
+        <div class="nav-sub-item" id="nsub-robot" onclick="gotoSub('robot','navg-analysis','nsub-robot')">
+          <i class="fa-solid fa-magnifying-glass-chart" style="color:#4E73C2"></i> تحليل المشروع
+          <span class="nav-badge" style="margin-right:auto">AI</span>
+        </div>
+        <div class="nav-sub-item" id="nsub-analysis" onclick="gotoSub('analysis','navg-analysis','nsub-analysis')">
+          <i class="fa-solid fa-file-chart-column" style="color:#7B9ED4"></i> دراسات الجدوى الاقتصادية
+        </div>
+        <div class="nav-sub-item" id="nsub-capital" onclick="gotoSub('capital','navg-analysis','nsub-capital')">
+          <i class="fa-solid fa-coins" style="color:#f59e0b"></i> استشارة رأس المال
+        </div>
+        <div class="nav-sub-item" id="nsub-projectcopilot" onclick="gotoSub('projectcopilot','navg-analysis','nsub-projectcopilot')">
+          <i class="fa-solid fa-rocket" style="color:#a855f7"></i> روبوت المشاريع
+          <span class="nav-badge" style="background:#a855f7;margin-right:auto">AI</span>
+        </div>
+      </div>
     </div>
-    <div class="nav-item" onclick="goto('capital')">
-      <i class="fa-solid fa-coins"></i> استشارة رأس المال
+
+    <!-- ══ 2. أكاديمية جنان ══ -->
+    <div class="nav-item" id="nav-academy" onclick="goto('academy')">
+      <i class="fa-solid fa-graduation-cap" style="color:#7B9ED4"></i> أكاديمية جنان للأعمال
+    </div>
+
+    <!-- ══ 3. التصميم والإبداع ══ -->
+    <div class="nav-item" id="nav-design" onclick="goto('design')">
+      <i class="fa-solid fa-pen-nib" style="color:#ec4899"></i> التصميم والإبداع
+    </div>
+
+    <!-- ══ 4. متجر البرامج المميزة ══ -->
+    <div class="nav-item" id="nav-software" onclick="goto('software')">
+      <i class="fa-solid fa-store" style="color:#22c55e"></i> متجر البرامج المميزة
+      <span class="nav-badge" style="background:#16a34a">جديد</span>
     </div>
 
     <p class="nav-section">خدمات التوريد</p>
@@ -666,25 +915,41 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       <div class="sec-hd">
         <div><h2>ابدأ من هنا</h2><p>اختر الأداة المناسبة لاحتياجك</p></div>
       </div>
+
+      <!-- مجموعة تحليل المشاريع -->
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.75rem">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">
+          <div style="width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--green),var(--green-dp));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">
+            <i class="fa-solid fa-chart-mixed" style="color:#fff"></i>
+          </div>
+          <div>
+            <div style="font-size:1rem;font-weight:800">تحليل المشاريع ودراسات الجدوى الاقتصادية</div>
+            <div style="font-size:.8rem;color:var(--muted)">خدمات متكاملة لتحليل مشروعك، دراسة جدواه، واستشارة أفضل استثمار لرأس مالك</div>
+          </div>
+        </div>
+        <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
+          <div class="feature-card" onclick="gotoSub('robot','navg-analysis','nsub-robot')" style="padding:1.35rem">
+            <div class="fc-icon si-green" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h3 style="font-size:.95rem">تحليل المشروع</h3>
+            <p style="font-size:.82rem">أجب على 15 سؤالاً واحصل على تقرير يُحدد الربحية وخطة رفع الأرباح</p>
+            <div class="fc-arrow" style="font-size:.8rem">ابدأ التحليل <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+          <div class="feature-card" onclick="gotoSub('academy','navg-analysis','nsub-analysis')" style="padding:1.35rem">
+            <div class="fc-icon si-amber" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3 style="font-size:.95rem">أكاديمية جنان للمال والأعمال</h3>
+            <p style="font-size:.82rem">مكتبة دراسات · دورات مالية · أدوات مال ذكية لبناء قراراتك بثقة</p>
+            <div class="fc-arrow" style="font-size:.8rem">ادخل الأكاديمية <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+          <div class="feature-card" onclick="gotoSub('capital','navg-analysis','nsub-capital')" style="padding:1.35rem">
+            <div class="fc-icon si-purple" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-coins"></i></div>
+            <h3 style="font-size:.95rem">استشارة رأس المال</h3>
+            <p style="font-size:.82rem">حدد ميزانيتك وسنقترح أفضل المشاريع والاستثمارات الملائمة لك</p>
+            <div class="fc-arrow" style="font-size:.8rem">استشر الآن <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+        </div>
+      </div>
+
       <div class="cards-grid">
-        <div class="feature-card" onclick="goto('robot')">
-          <div class="fc-icon si-green"><i class="fa-solid fa-robot"></i></div>
-          <h3>المساعد الذكي للمشاريع</h3>
-          <p>مرافقك من الصفر حتى أول يوم بيع — يسألك، يحلّل، ويرشدك خطوة بخطوة لاختيار المشروع المثالي</p>
-          <div class="fc-arrow">ابدأ الآن <i class="fa-solid fa-arrow-left"></i></div>
-        </div>
-        <div class="feature-card" onclick="goto('analysis')">
-          <div class="fc-icon si-amber"><i class="fa-solid fa-chart-line"></i></div>
-          <h3>تحليل جدوى المشروع</h3>
-          <p>أدخل بيانات مشروعك واحصل على تقرير مفصّل يُحدد مدى الربحية ونقطة التعادل والعائد على الاستثمار</p>
-          <div class="fc-arrow">حلّل مشروعك <i class="fa-solid fa-arrow-left"></i></div>
-        </div>
-        <div class="feature-card" onclick="goto('capital')">
-          <div class="fc-icon si-purple"><i class="fa-solid fa-coins"></i></div>
-          <h3>استشارة رأس المال</h3>
-          <p>أخبرنا بميزانيتك ومجال اهتمامك وسنقترح عليك أفضل المشاريع والاستثمارات المناسبة لك</p>
-          <div class="fc-arrow">استشر الآن <i class="fa-solid fa-arrow-left"></i></div>
-        </div>
         <div class="feature-card" onclick="goto('reports')">
           <div class="fc-icon si-navy"><i class="fa-solid fa-file-chart-column"></i></div>
           <h3>تقاريري المحفوظة</h3>
@@ -694,132 +959,493 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       </div>
     </div>
 
-    <!-- ===== ROBOT ===== -->
+    <!-- ===== ROBOT → تحليل المشاريع ===== -->
     <div class="page" id="page-robot">
-      <div class="chat-wrap">
-        <div class="chat-sidebar">
-          <div class="chat-sidebar-head"><i class="fa-solid fa-robot" style="margin-left:.4rem;color:var(--green)"></i> جنان المساعد</div>
-          <div class="chat-sessions" id="chat-sessions">
-            <div class="chat-session-item active">محادثة جديدة</div>
+
+      <!-- خطوة 0: الترحيب والبدء -->
+      <div id="pa-step-0" class="fs-step active">
+        <div class="form-card" style="max-width:720px;margin:0 auto;text-align:center;padding:3rem 2rem">
+          <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-dp));display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.5rem">
+            <i class="fa-solid fa-magnifying-glass-chart" style="color:#fff"></i>
           </div>
-          <button class="new-chat-btn" onclick="newChat()"><i class="fa-solid fa-plus"></i> محادثة جديدة</button>
-          <!-- Quick Topic Chips -->
-          <div class="guide-topics-wrap">
-            <div class="guide-topic-label">💰 أسعار المنتجات</div>
-            <div class="guide-chips">
-              <button class="guide-chip" onclick="handleReply('سعر أثاث مكتبي')">أثاث مكتبي</button>
-              <button class="guide-chip" onclick="handleReply('سعر أثاث منزلي')">أثاث منزلي</button>
-              <button class="guide-chip" onclick="handleReply('سعر أجهزة إلكترونية')">أجهزة 🖥️</button>
-              <button class="guide-chip" onclick="handleReply('أسعار الجوالات والموبايل')">جوالات 📱</button>
-              <button class="guide-chip" onclick="handleReply('أسعار المواد الغذائية بالجملة')">أغذية 🍽️</button>
-              <button class="guide-chip" onclick="handleReply('أسعار المنظفات ومستلزمات النظافة')">منظفات 🧼</button>
-              <button class="guide-chip" onclick="handleReply('أسعار مواد البناء والتشطيب')">بناء 🧱</button>
+          <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:.75rem">تحليل مشروعك وجدواه الاقتصادية</h2>
+          <p style="color:var(--muted);font-size:.92rem;line-height:1.9;max-width:540px;margin:0 auto 2rem">
+            أجب على <strong>6 مجموعات من الأسئلة</strong> عن مشروعك، وسيُصدر لك التحليل تقريراً دقيقاً يُخبرك:<br/>
+            هل مشروعك مربح؟ · وكم نسبة الربح؟ · وكم تتوقع تحصيل شهرياً؟<br/>
+            وإذا كانت الربحية منخفضة — ستحصل فوراً على خطة تفصيلية لرفع الربح
+          </p>
+          <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem">
+            <div style="text-align:center;min-width:90px">
+              <div style="font-size:1.5rem;font-weight:800;color:var(--green)">6</div>
+              <div style="font-size:.78rem;color:var(--muted)">مجموعات أسئلة</div>
             </div>
-            <div class="guide-topic-label" style="margin-top:.4rem">🛠️ الخدمات</div>
-            <div class="guide-chips">
-              <button class="guide-chip" onclick="handleReply('تكلفة تأثيث مكتب')">تأثيث مكتب</button>
-              <button class="guide-chip" onclick="handleReply('تكلفة تأثيث منزل')">تأثيث منزل</button>
-              <button class="guide-chip" onclick="handleReply('خدمة الاستقدام وأسعار العمالة')">استقدام 👷</button>
-              <button class="guide-chip" onclick="handleReply('أسعار الإيجار في السعودية')">إيجارات 🏠</button>
-              <button class="guide-chip" onclick="handleReply('خدمات التكييف والتبريد')">تكييف ❄️</button>
-              <button class="guide-chip" onclick="handleReply('خدمات النظافة والتعقيم')">نظافة ✨</button>
-              <button class="guide-chip" onclick="handleReply('صيانة الأجهزة')">صيانة 🔧</button>
-              <button class="guide-chip" onclick="handleReply('التسهيلات المالية والتمويل')">تمويل 💳</button>
+            <div style="text-align:center;min-width:90px">
+              <div style="font-size:1.5rem;font-weight:800;color:var(--green)">15</div>
+              <div style="font-size:.78rem;color:var(--muted)">سؤالاً دقيقاً</div>
             </div>
-            <div class="guide-topic-label" style="margin-top:.4rem">📊 المشاريع</div>
-            <div class="guide-chips">
-              <button class="guide-chip" onclick="handleReply('أريد دراسة جدوى كاملة لمشروعي')">دراسة جدوى</button>
-              <button class="guide-chip" onclick="handleReply('أفضل مشاريع صغيرة في السعودية')">أفضل مشاريع</button>
-              <button class="guide-chip" onclick="handleReply('ما متطلبات فتح مطعم؟')">فتح مطعم</button>
-              <button class="guide-chip" onclick="handleReply('خطوات بدء مشروع تجاري في السعودية')">بدء تجارة</button>
+            <div style="text-align:center;min-width:90px">
+              <div style="font-size:1.5rem;font-weight:800;color:var(--green)">5 دقائق</div>
+              <div style="font-size:.78rem;color:var(--muted)">وقت التعبئة</div>
             </div>
+            <div style="text-align:center;min-width:90px">
+              <div style="font-size:1.5rem;font-weight:800;color:var(--green)">مجاني</div>
+              <div style="font-size:.78rem;color:var(--muted)">بدون رسوم</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem" onclick="startProjectAnalysisWizard()">
+            <i class="fa-solid fa-play"></i> ابدأ التحليل الآن
+          </button>
+        </div>
+      </div>
+
+      <!-- خطوة 1: الأسئلة -->
+      <div id="pa-step-1" class="fs-step">
+        <div class="fs-wizard-header">
+          <div class="fs-wizard-title" id="pa-wizard-title">تحليل المشروع — معلومات أساسية</div>
+          <div class="fs-steps-bar" id="pa-steps-bar"></div>
+          <div class="fs-progress-label">
+            <span id="pa-step-label">الخطوة 1 من 6</span>
+            <span id="pa-step-pct">17%</span>
           </div>
         </div>
-        <div class="chat-main">
-          <div class="chat-header">
-            <div class="bot-av"><i class="fa-solid fa-robot"></i></div>
-            <div>
-              <div class="bot-name">جنان — المرشد الذكي</div>
-              <div class="bot-status"><span class="online-dot"></span> متصل دائماً</div>
-            </div>
-            <div class="chat-mode-tabs">
-              <div class="mode-tab active" onclick="setMode('guide',this)">🤖 مساعد ذكي</div>
-              <div class="mode-tab" onclick="setMode('feasibility',this)">📊 دراسة جدوى</div>
-            </div>
-          </div>
-          <div class="chat-messages" id="chat-messages"></div>
-          <div class="quick-replies" id="quick-replies"></div>
-          <div class="chat-input-wrap">
-            <textarea class="chat-input" id="chat-input" placeholder="اسألني عن أسعار منتج، خدمة، مشروع..." rows="1"
-              onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-            <button class="send-btn" id="send-btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        <div class="form-card">
+          <div id="pa-questions-container" class="form-grid"></div>
+          <div class="fs-nav">
+            <button class="btn-ghost-dk" id="pa-prev-btn" onclick="paNavPrev()" style="display:none">
+              <i class="fa-solid fa-arrow-right"></i> السابق
+            </button>
+            <div style="flex:1"></div>
+            <button class="btn-primary" id="pa-next-btn" onclick="paNavNext()">
+              التالي <i class="fa-solid fa-arrow-left"></i>
+            </button>
           </div>
         </div>
       </div>
+
+      <!-- خطوة 2: التقرير -->
+      <div id="pa-step-2" class="fs-step">
+        <div style="margin-bottom:1.25rem">
+          <button onclick="resetProjectAnalysis()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.88rem;display:inline-flex;align-items:center;gap:.4rem;font-family:'Tajawal',sans-serif">
+            <i class="fa-solid fa-arrow-right"></i> تحليل مشروع جديد
+          </button>
+        </div>
+        <div id="pa-report-container"></div>
+      </div>
+
     </div>
 
     <!-- ===== ANALYSIS ===== -->
     <div class="page" id="page-analysis">
-      <div class="form-card" style="margin-bottom:1.5rem">
-        <div class="sec-hd" style="margin-bottom:1.5rem">
-          <div><h2><i class="fa-solid fa-chart-line" style="color:var(--green);margin-left:.4rem"></i>تحليل جدوى المشروع</h2>
-          <p>أدخل بيانات مشروعك للحصول على تقرير دقيق</p></div>
-        </div>
-        <div class="form-grid">
-          <div class="f-field">
-            <label>اسم المشروع</label>
-            <input type="text" id="an-name" placeholder="مثال: مطعم مأكولات شعبية"/>
-          </div>
-          <div class="f-field">
-            <label>نوع المشروع</label>
-            <select id="an-type">
-              <option value="">اختر النوع</option>
-              <option>تجارة تجزئة</option>
-              <option>مطعم / مقهى</option>
-              <option>خدمات</option>
-              <option>تقنية / تطبيقات</option>
-              <option>تصنيع / إنتاج</option>
-              <option>عقارات</option>
-              <option>تجارة إلكترونية</option>
-            </select>
-          </div>
-          <div class="f-field">
-            <label>رأس المال المتاح (ريال)</label>
-            <input type="number" id="an-capital" placeholder="مثال: 150000"/>
-          </div>
-          <div class="f-field">
-            <label>التكاليف الشهرية الثابتة (ريال)</label>
-            <input type="number" id="an-fixed" placeholder="مثال: 25000"/>
-          </div>
-          <div class="f-field">
-            <label>الإيرادات المتوقعة شهرياً (ريال)</label>
-            <input type="number" id="an-revenue" placeholder="مثال: 50000"/>
-          </div>
-          <div class="f-field">
-            <label>تكلفة المنتج / الخدمة (ريال)</label>
-            <input type="number" id="an-cogs" placeholder="مثال: 20000"/>
-          </div>
-          <div class="f-field">
-            <label>المدينة / المنطقة</label>
-            <input type="text" id="an-city" placeholder="مثال: الرياض"/>
-          </div>
-          <div class="f-field">
-            <label>المنافسون في المنطقة</label>
-            <select id="an-comp">
-              <option>بدون منافسة واضحة</option>
-              <option>منافسة منخفضة</option>
-              <option>منافسة متوسطة</option>
-              <option>منافسة عالية</option>
-            </select>
+
+      <!-- ══ STEP 0: اختيار نوع الدراسة ══ -->
+      <div id="fs-step-0" class="fs-step active">
+        <div class="sec-hd" style="margin-bottom:.25rem">
+          <div>
+            <h2><i class="fa-solid fa-file-chart-column" style="color:var(--green);margin-left:.5rem"></i>إعداد دراسات الجدوى الاقتصادية</h2>
+            <p>اختر نوع الدراسة المناسبة لمشروعك، وادفع رسومها، ثم أجب على الأسئلة لإعداد دراستك بدقة</p>
           </div>
         </div>
-        <div style="margin-top:1.5rem">
-          <button class="btn-primary" onclick="runAnalysis()">
-            <i class="fa-solid fa-magnifying-glass-chart"></i> تحليل المشروع الآن
+        <div class="study-types-grid">
+          <!-- مبسطة -->
+          <div class="study-card" id="sc-simple" onclick="selectStudyType('simple')">
+            <span class="study-badge simple"><i class="fa-solid fa-bolt" style="margin-left:.3rem"></i>سريعة ومختصرة</span>
+            <h3>دراسة الجدوى المبسطة</h3>
+            <p>مثالية للمشاريع الصغيرة والمبتدئين — تمنحك رؤية واضحة عن الجدوى المالية والربحية في وقت قصير</p>
+            <div class="study-price">99 <span style="font-size:1rem;font-weight:400">ريال</span></div>
+            <div class="study-price-note">دفعة واحدة · تقرير جاهز خلال دقائق</div>
+            <ul class="study-features">
+              <li><i class="fa-solid fa-circle-check"></i> 10 أسئلة مركّزة ودقيقة</li>
+              <li><i class="fa-solid fa-circle-check"></i> تحليل مالي شامل (ربحية + نقطة تعادل + ROI)</li>
+              <li><i class="fa-solid fa-circle-check"></i> تقرير منسّق 5-7 صفحات</li>
+              <li><i class="fa-solid fa-circle-check"></i> توصيات تحسين مخصصة</li>
+              <li><i class="fa-solid fa-circle-check"></i> تقييم مستوى المخاطرة</li>
+            </ul>
+          </div>
+          <!-- مفصلة -->
+          <div class="study-card" id="sc-detailed" onclick="selectStudyType('detailed')">
+            <span class="study-recommend">الأكثر طلباً</span>
+            <span class="study-badge detailed"><i class="fa-solid fa-star" style="margin-left:.3rem"></i>شاملة ومتكاملة</span>
+            <h3>دراسة الجدوى المفصلة</h3>
+            <p>مناسبة للمشاريع الجادة والبنوك وصناديق التمويل — تقرير احترافي بمعايير معتمدة يُقنع المستثمرين</p>
+            <div class="study-price">299 <span style="font-size:1rem;font-weight:400">ريال</span></div>
+            <div class="study-price-note">دفعة واحدة · تقرير احترافي شامل</div>
+            <ul class="study-features">
+              <li><i class="fa-solid fa-circle-check"></i> 20 سؤالاً تفصيلياً ومتعمقاً</li>
+              <li><i class="fa-solid fa-circle-check"></i> تحليل مالي لـ 3 سنوات (توقعات + نمو)</li>
+              <li><i class="fa-solid fa-circle-check"></i> تحليل السوق والمنافسين</li>
+              <li><i class="fa-solid fa-circle-check"></i> خطة تسويقية مقترحة</li>
+              <li><i class="fa-solid fa-circle-check"></i> تقييم المخاطر وخطة الطوارئ</li>
+              <li><i class="fa-solid fa-circle-check"></i> خطة عمل استراتيجية (90 يوم)</li>
+              <li><i class="fa-solid fa-circle-check"></i> تقرير احترافي 15-20 صفحة</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:1.75rem;text-align:center">
+          <button class="btn-primary" id="fs-next-0" onclick="proceedToPayment()" disabled style="opacity:.45;cursor:not-allowed">
+            المتابعة للدفع <i class="fa-solid fa-arrow-left"></i>
           </button>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:.65rem">
+            <i class="fa-solid fa-shield-halved" style="color:var(--green);margin-left:.3rem"></i>
+            دفع آمن ومشفر · يُعاد المبلغ كاملاً في حال وجود أي مشكلة
+          </p>
         </div>
       </div>
-      <div id="analysis-result" style="display:none"></div>
+
+      <!-- ══ STEP 1: الدفع ══ -->
+      <div id="fs-step-1" class="fs-step">
+        <div style="margin-bottom:1.25rem">
+          <button onclick="backToTypes()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.88rem;display:inline-flex;align-items:center;gap:.4rem;font-family:'Tajawal',sans-serif">
+            <i class="fa-solid fa-arrow-right"></i> العودة لاختيار النوع
+          </button>
+        </div>
+        <div class="payment-card">
+          <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:1.5rem">
+            <i class="fa-solid fa-credit-card" style="color:var(--green);margin-left:.4rem"></i>إتمام الدفع
+          </h3>
+          <div class="pay-summary">
+            <div>
+              <div class="pay-summary-name" id="pay-plan-name">دراسة الجدوى المبسطة</div>
+              <div style="font-size:.8rem;color:var(--muted);margin-top:.2rem">دفعة واحدة · تقرير فوري</div>
+            </div>
+            <div class="pay-summary-price" id="pay-plan-price">99 ريال</div>
+          </div>
+          <p style="font-size:.85rem;font-weight:700;margin-bottom:.85rem">اختر طريقة الدفع:</p>
+          <div class="pay-methods-grid">
+            <div class="pay-method active" id="pm-card" onclick="selectPayMethod('card')">
+              <i class="fa-solid fa-credit-card"></i>
+              <span>بطاقة / مدى</span>
+            </div>
+            <div class="pay-method" id="pm-apple" onclick="selectPayMethod('apple')">
+              <i class="fa-brands fa-apple-pay"></i>
+              <span>Apple Pay</span>
+            </div>
+            <div class="pay-method" id="pm-stc" onclick="selectPayMethod('stc')">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              <span>STC Pay</span>
+            </div>
+          </div>
+          <div id="pay-card-fields" style="margin-bottom:1.5rem">
+            <div class="form-grid" style="grid-template-columns:1fr 1fr">
+              <div class="f-field" style="grid-column:1/-1">
+                <label>رقم البطاقة</label>
+                <input type="text" id="pay-card-num" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="formatCardNum(this)"/>
+              </div>
+              <div class="f-field">
+                <label>تاريخ الانتهاء</label>
+                <input type="text" id="pay-card-exp" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)"/>
+              </div>
+              <div class="f-field">
+                <label>CVV</label>
+                <input type="text" id="pay-card-cvv" placeholder="•••" maxlength="4"/>
+              </div>
+              <div class="f-field" style="grid-column:1/-1">
+                <label>الاسم على البطاقة</label>
+                <input type="text" id="pay-card-name" placeholder="مثال: محمد أحمد العمري"/>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" id="pay-submit-btn" style="width:100%;justify-content:center" onclick="processPayment()">
+            <i class="fa-solid fa-lock"></i> إتمام الدفع بأمان
+          </button>
+          <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:.75rem">
+            <i class="fa-solid fa-shield-halved" style="color:var(--green);margin-left:.3rem"></i>
+            معاملة آمنة ومشفرة · لا يتم تخزين بيانات الدفع
+          </p>
+        </div>
+      </div>
+
+      <!-- ══ STEP 2: الأسئلة ══ -->
+      <div id="fs-step-2" class="fs-step">
+        <div class="fs-wizard-header">
+          <div class="fs-wizard-title" id="fs-wizard-title">إعداد دراسة الجدوى</div>
+          <div class="fs-steps-bar" id="fs-steps-bar"><!-- JS --></div>
+          <div class="fs-progress-label">
+            <span id="fs-step-label">الخطوة 1</span>
+            <span id="fs-step-pct">0%</span>
+          </div>
+        </div>
+        <div class="form-card">
+          <div id="fs-questions-container" class="form-grid"></div>
+          <div class="fs-nav">
+            <button class="btn-ghost-dk" id="fs-prev-btn" onclick="fsNavPrev()" style="display:none">
+              <i class="fa-solid fa-arrow-right"></i> السابق
+            </button>
+            <div style="flex:1"></div>
+            <button class="btn-primary" id="fs-next-btn" onclick="fsNavNext()">
+              التالي <i class="fa-solid fa-arrow-left"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ STEP 3: التقرير ══ -->
+      <div id="fs-step-3" class="fs-step">
+        <div style="margin-bottom:1.25rem">
+          <button onclick="resetFeasibility()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.88rem;display:inline-flex;align-items:center;gap:.4rem;font-family:'Tajawal',sans-serif">
+            <i class="fa-solid fa-arrow-right"></i> إعداد دراسة جديدة
+          </button>
+        </div>
+        <div id="fs-report-container"></div>
+      </div>
+
+    </div>
+
+    <!-- ===== ACADEMY ===== -->
+    <div class="page" id="page-academy">
+
+      <!-- ── القسم 0: الرئيسية ── -->
+      <div id="ac-landing" class="ac-section active">
+        <div class="ac-hero">
+          <div class="ac-hero-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="ac-hero-text">
+            <h2>أكاديمية جنان للمال والأعمال</h2>
+            <p>منصة تعليمية متكاملة تجمع بين الدراسة الأكاديمية، التدريب العملي،<br/>وأدوات المال الذكية — كل ما تحتاجه لتبني قرارات أعمال رابحة</p>
+            <div class="ac-hero-stats">
+              <div class="ac-stat"><div class="val">+200</div><div class="lbl">دراسة وندوة</div></div>
+              <div class="ac-stat"><div class="val">35</div><div class="lbl">دورة تدريبية</div></div>
+              <div class="ac-stat"><div class="val">8</div><div class="lbl">أدوات مالية</div></div>
+              <div class="ac-stat"><div class="val">5000+</div><div class="lbl">متعلم نشط</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ac-main-cards">
+          <!-- مكتبة الدراسات -->
+          <div class="ac-main-card" style="--ac-color:#4E73C2" onclick="openAcSection(1)">
+            <div class="ac-main-icon" style="background:rgba(78,115,194,.12);color:var(--green)">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <h3>مكتبة الدراسات والندوات</h3>
+            <p>مئات الدراسات الاقتصادية والتقارير المالية والندوات المسجلة — ابحث واستعرض ما يخدم مشروعك</p>
+            <div class="ac-chip-row">
+              <span class="ac-chip">📊 اقتصاد كلي</span>
+              <span class="ac-chip">💼 إدارة أعمال</span>
+              <span class="ac-chip">📈 استثمار</span>
+              <span class="ac-chip">🎙 ندوات مسجلة</span>
+            </div>
+            <div class="ac-enter-btn">استعرض المكتبة <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+
+          <!-- دورات المال والأعمال -->
+          <div class="ac-main-card" style="--ac-color:#7B9ED4" onclick="openAcSection(2)">
+            <div class="ac-main-icon" style="background:rgba(123,158,212,.15);color:var(--amber)">
+              <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <h3>دورات المال والأعمال</h3>
+            <p>دورات تدريبية منتظمة يقدّمها خبراء معتمدون في المحاسبة، الريادة، والتخطيط المالي</p>
+            <div class="ac-chip-row">
+              <span class="ac-chip">💰 محاسبة مالية</span>
+              <span class="ac-chip">🚀 ريادة أعمال</span>
+              <span class="ac-chip">📉 التخطيط المالي</span>
+              <span class="ac-chip">🏦 الاستثمار</span>
+            </div>
+            <div class="ac-enter-btn">تصفح الدورات <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+
+          <!-- أدوات المال الذكية -->
+          <div class="ac-main-card" style="--ac-color:#22c55e" onclick="openAcSection(3)">
+            <div class="ac-main-icon" style="background:rgba(34,197,94,.1);color:#16a34a">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <h3>أدوات المال الذكية</h3>
+            <p>حاسبات مالية فورية تساعدك في اتخاذ قرارات الأعمال بدقة — قرض، ربح، استثمار، تعادل</p>
+            <div class="ac-chip-row">
+              <span class="ac-chip">🏦 حاسبة القرض</span>
+              <span class="ac-chip">💹 العائد على الاستثمار</span>
+              <span class="ac-chip">⚖ نقطة التعادل</span>
+              <span class="ac-chip">💵 صافي الراتب</span>
+            </div>
+            <div class="ac-enter-btn">افتح الأدوات <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── القسم 1: مكتبة الدراسات والندوات ── -->
+      <div id="ac-section-1" class="ac-section">
+        <div class="ac-back-bar">
+          <button class="ac-back-btn" onclick="openAcSection(0)"><i class="fa-solid fa-arrow-right"></i> الأكاديمية</button>
+          <span style="color:var(--muted)">/</span>
+          <div class="ac-section-title"><i class="fa-solid fa-book-open" style="color:var(--green);margin-left:.4rem"></i>مكتبة الدراسات والندوات</div>
+        </div>
+        <div class="ac-filters">
+          <div class="ac-filter active" onclick="acFilter(this,'all')">الكل</div>
+          <div class="ac-filter" onclick="acFilter(this,'economy')">اقتصاد كلي</div>
+          <div class="ac-filter" onclick="acFilter(this,'business')">إدارة أعمال</div>
+          <div class="ac-filter" onclick="acFilter(this,'invest')">استثمار</div>
+          <div class="ac-filter" onclick="acFilter(this,'marketing')">تسويق</div>
+          <div class="ac-filter" onclick="acFilter(this,'seminar')">🎙 ندوات</div>
+        </div>
+        <div class="lib-grid" id="lib-grid">
+          <!-- يتم توليد المحتوى من JS -->
+        </div>
+      </div>
+
+      <!-- ── القسم 2: دورات المال والأعمال ── -->
+      <div id="ac-section-2" class="ac-section">
+        <div class="ac-back-bar">
+          <button class="ac-back-btn" onclick="openAcSection(0)"><i class="fa-solid fa-arrow-right"></i> الأكاديمية</button>
+          <span style="color:var(--muted)">/</span>
+          <div class="ac-section-title"><i class="fa-solid fa-chalkboard-user" style="color:var(--amber);margin-left:.4rem"></i>دورات المال والأعمال</div>
+        </div>
+        <div class="ac-filters">
+          <div class="ac-filter active" onclick="courseFilter(this,'all')">الكل</div>
+          <div class="ac-filter" onclick="courseFilter(this,'finance')">مالية</div>
+          <div class="ac-filter" onclick="courseFilter(this,'startup')">ريادة</div>
+          <div class="ac-filter" onclick="courseFilter(this,'marketing')">تسويق</div>
+          <div class="ac-filter" onclick="courseFilter(this,'invest')">استثمار</div>
+          <div class="ac-filter" onclick="courseFilter(this,'free')">مجانية 🎁</div>
+        </div>
+        <div class="course-grid" id="course-grid">
+          <!-- يتم توليد المحتوى من JS -->
+        </div>
+      </div>
+
+      <!-- ── القسم 3: أدوات المال الذكية ── -->
+      <div id="ac-section-3" class="ac-section">
+        <div class="ac-back-bar">
+          <button class="ac-back-btn" onclick="openAcSection(0)"><i class="fa-solid fa-arrow-right"></i> الأكاديمية</button>
+          <span style="color:var(--muted)">/</span>
+          <div class="ac-section-title"><i class="fa-solid fa-calculator" style="color:#16a34a;margin-left:.4rem"></i>أدوات المال الذكية</div>
+        </div>
+        <div class="tools-grid">
+          <!-- حاسبة القرض البنكي -->
+          <div class="tool-card">
+            <h4><i class="fa-solid fa-building-columns"></i> حاسبة القرض البنكي</h4>
+            <p>احسب قسطك الشهري وإجمالي الفوائد لأي قرض</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>مبلغ القرض (ريال)</label><input type="number" id="loan-amount" placeholder="100000"/></div>
+              <div class="f-field"><label>نسبة الفائدة السنوية %</label><input type="number" id="loan-rate" placeholder="5" step="0.1"/></div>
+              <div class="f-field" style="grid-column:1/-1"><label>مدة القرض (بالأشهر)</label><input type="number" id="loan-months" placeholder="36"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcLoan()">
+              <i class="fa-solid fa-calculator"></i> احسب الآن
+            </button>
+            <div class="tool-result" id="loan-result">
+              <div class="big" id="loan-monthly">—</div>
+              <div class="small">القسط الشهري</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="loan-total">—</div>إجمالي المبلغ</div>
+                <div><div style="font-weight:800;color:#e74c3c" id="loan-interest">—</div>إجمالي الفوائد</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- حاسبة الربح والخسارة -->
+          <div class="tool-card">
+            <h4><i class="fa-solid fa-chart-line"></i> حاسبة الربح والخسارة</h4>
+            <p>احسب هامش الربح الإجمالي والصافي لمشروعك بدقة</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>الإيرادات الشهرية (ريال)</label><input type="number" id="pl-revenue" placeholder="80000"/></div>
+              <div class="f-field"><label>تكلفة البضاعة (ريال)</label><input type="number" id="pl-cogs" placeholder="30000"/></div>
+              <div class="f-field"><label>مصاريف التشغيل (ريال)</label><input type="number" id="pl-opex" placeholder="25000"/></div>
+              <div class="f-field"><label>مصاريف أخرى (ريال)</label><input type="number" id="pl-other" placeholder="5000"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcPL()">
+              <i class="fa-solid fa-calculator"></i> احسب الآن
+            </button>
+            <div class="tool-result" id="pl-result">
+              <div class="big" id="pl-net">—</div>
+              <div class="small">صافي الربح الشهري</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="pl-gross-m">—</div>هامش إجمالي</div>
+                <div><div style="font-weight:800;color:var(--text)" id="pl-net-m">—</div>هامش صافي</div>
+                <div><div style="font-weight:800;color:var(--green)" id="pl-annual">—</div>ربح سنوي</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- حاسبة نقطة التعادل -->
+          <div class="tool-card">
+            <h4><i class="fa-solid fa-scale-balanced"></i> حاسبة نقطة التعادل</h4>
+            <p>اعرف الحد الأدنى للمبيعات الذي يغطي تكاليفك الثابتة</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field" style="grid-column:1/-1"><label>التكاليف الثابتة الشهرية (ريال)</label><input type="number" id="be-fixed" placeholder="40000"/></div>
+              <div class="f-field"><label>سعر بيع الوحدة (ريال)</label><input type="number" id="be-price" placeholder="150"/></div>
+              <div class="f-field"><label>تكلفة الوحدة (ريال)</label><input type="number" id="be-cost" placeholder="60"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcBreakEven()">
+              <i class="fa-solid fa-calculator"></i> احسب الآن
+            </button>
+            <div class="tool-result" id="be-result">
+              <div class="big" id="be-units">—</div>
+              <div class="small">وحدة يجب بيعها شهرياً للوصول للتعادل</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="be-revenue">—</div>إيرادات التعادل</div>
+                <div><div style="font-weight:800;color:var(--text)" id="be-margin">—</div>هامش المساهمة</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- حاسبة العائد على الاستثمار -->
+          <div class="tool-card">
+            <h4><i class="fa-solid fa-arrow-trend-up"></i> حاسبة العائد على الاستثمار ROI</h4>
+            <p>احسب نسبة العائد السنوي لأي استثمار أو مشروع</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>مبلغ الاستثمار (ريال)</label><input type="number" id="roi-invest" placeholder="200000"/></div>
+              <div class="f-field"><label>صافي الربح الشهري (ريال)</label><input type="number" id="roi-profit" placeholder="15000"/></div>
+              <div class="f-field" style="grid-column:1/-1"><label>عدد أشهر الاسترداد المتوقعة</label><input type="number" id="roi-months" placeholder="18"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcROI()">
+              <i class="fa-solid fa-calculator"></i> احسب الآن
+            </button>
+            <div class="tool-result" id="roi-result">
+              <div class="big" id="roi-pct">—</div>
+              <div class="small">العائد السنوي على الاستثمار</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="roi-payback">—</div>مدة الاسترداد</div>
+                <div><div style="font-weight:800;color:var(--green)" id="roi-year-profit">—</div>ربح سنوي</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- حاسبة الزكاة -->
+          <div class="tool-card">
+            <h4><i class="fa-solid fa-star-and-crescent"></i> حاسبة زكاة المال والأعمال</h4>
+            <p>احسب مقدار الزكاة الواجبة على أموالك أو مشروعك التجاري</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field" style="grid-column:1/-1"><label>نوع الزكاة</label>
+                <select id="zakat-type" onchange="toggleZakatFields()">
+                  <option value="cash">زكاة المال (النقد والذهب)</option>
+                  <option value="trade">زكاة عروض التجارة</option>
+                </select>
+              </div>
+              <div class="f-field" style="grid-column:1/-1"><label>إجمالي المال / البضاعة (ريال)</label><input type="number" id="zakat-amount" placeholder="مثال: 100000"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcZakat()">
+              <i class="fa-solid fa-calculator"></i> احسب الآن
+            </button>
+            <div class="tool-result" id="zakat-result">
+              <div class="big" id="zakat-due">—</div>
+              <div class="small">مقدار الزكاة الواجبة (2.5%)</div>
+              <div style="margin-top:.6rem;font-size:.77rem;color:var(--muted)" id="zakat-note"></div>
+            </div>
+          </div>
+
+          <!-- حاسبة التسعير المثالي -->
+          <div class="tool-card">
+            <h4><i class="fa-solid fa-tag"></i> حاسبة التسعير المثالي</h4>
+            <p>احسب السعر الأمثل للمنتج أو الخدمة بناءً على التكلفة والهامش المستهدف</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>تكلفة المنتج / الخدمة (ريال)</label><input type="number" id="price-cost" placeholder="80"/></div>
+              <div class="f-field"><label>هامش الربح المستهدف %</label><input type="number" id="price-margin" placeholder="40"/></div>
+              <div class="f-field"><label>نسبة الضريبة % (اختياري)</label><input type="number" id="price-vat" placeholder="15"/></div>
+              <div class="f-field"><label>عدد الوحدات / الخدمات شهرياً</label><input type="number" id="price-units" placeholder="200"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcPricing()">
+              <i class="fa-solid fa-calculator"></i> احسب الآن
+            </button>
+            <div class="tool-result" id="price-result">
+              <div class="big" id="price-final">—</div>
+              <div class="small">السعر المثالي شاملاً الضريبة</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="price-before-vat">—</div>قبل الضريبة</div>
+                <div><div style="font-weight:800;color:var(--green)" id="price-monthly-profit">—</div>ربح شهري متوقع</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- ===== CAPITAL ===== -->
@@ -871,6 +1497,106 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           <div id="cap-results"></div>
         </div>
       </div>
+    </div>
+
+    <!-- ===== DESIGN ===== -->
+    <div class="page" id="page-design">
+      <div class="sec-hd">
+        <div>
+          <h2><i class="fa-solid fa-pen-nib" style="color:#ec4899;margin-left:.5rem"></i>التصميم والإبداع</h2>
+          <p>أدوات تصميم احترافية لبناء هوية بصرية قوية لمشروعك</p>
+        </div>
+      </div>
+      <div class="design-grid">
+        <!-- شعارات -->
+        <div class="design-service-card" onclick="showDesignOrder('logo')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#ec4899,#f43f5e)"><i class="fa-solid fa-star"></i></div>
+          <h3>تصميم شعار احترافي</h3>
+          <p>شعار فريد يعبر عن هويتك التجارية — مناسب لجميع المنصات</p>
+          <div class="ds-tags"><span>SVG + PNG</span><span>3 مقترحات</span><span>تعديلات غير محدودة</span></div>
+          <div class="ds-price">من <strong>299 ر.س</strong></div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <!-- ورق رسمي -->
+        <div class="design-service-card" onclick="showDesignOrder('stationery')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)"><i class="fa-solid fa-file-lines"></i></div>
+          <h3>هوية بصرية كاملة</h3>
+          <p>ورق رسمي، بطاقة أعمال، غلاف سوشيال ميديا، وأكثر</p>
+          <div class="ds-tags"><span>6 قطع</span><span>Editable</span><span>ورق رسمي</span></div>
+          <div class="ds-price">من <strong>599 ر.س</strong></div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <!-- سوشيال ميديا -->
+        <div class="design-service-card" onclick="showDesignOrder('social')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8)"><i class="fa-brands fa-instagram"></i></div>
+          <h3>تصميم قالب سوشيال ميديا</h3>
+          <p>قوالب جاهزة للنشر على إنستقرام، تويتر، سناب شات</p>
+          <div class="ds-tags"><span>10 قوالب</span><span>Canva</span><span>Post + Story</span></div>
+          <div class="ds-price">من <strong>199 ر.س</strong></div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <!-- بنر وإعلانات -->
+        <div class="design-service-card" onclick="showDesignOrder('banner')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fa-solid fa-rectangle-ad"></i></div>
+          <h3>بنر وإعلانات رقمية</h3>
+          <p>تصميم بنرات إعلانية لجوجل، سوشيال ميديا، والمواقع</p>
+          <div class="ds-tags"><span>جميع الأحجام</span><span>GIF</span><span>HTML5</span></div>
+          <div class="ds-price">من <strong>149 ر.س</strong></div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <!-- قائمة مطعم -->
+        <div class="design-service-card" onclick="showDesignOrder('menu')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-utensils"></i></div>
+          <h3>تصميم منيو وقائمة طعام</h3>
+          <p>قائمة طعام أنيقة مطبوعة أو رقمية (QR Code)</p>
+          <div class="ds-tags"><span>A4 + A3</span><span>PDF</span><span>QR</span></div>
+          <div class="ds-price">من <strong>249 ر.س</strong></div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <!-- تغليف منتجات -->
+        <div class="design-service-card" onclick="showDesignOrder('packaging')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)"><i class="fa-solid fa-box-open"></i></div>
+          <h3>تصميم تغليف وعبوات</h3>
+          <p>تصميم علبة، مكيف، أو قارورة بهوية بصرية مميزة</p>
+          <div class="ds-tags"><span>Dieline</span><span>3D Mock</span><span>جاهز للطباعة</span></div>
+          <div class="ds-price">من <strong>399 ر.س</strong></div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+      </div>
+
+      <!-- نموذج طلب تصميم (مخفي) -->
+      <div id="design-order-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;display:none;align-items:center;justify-content:center">
+        <div style="background:var(--card);border-radius:18px;padding:2rem;width:90%;max-width:480px;box-shadow:var(--shadow);position:relative">
+          <button onclick="closeDesignOrder()" style="position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted)"><i class="fa-solid fa-xmark"></i></button>
+          <h3 id="design-order-title" style="margin-bottom:1.2rem">طلب تصميم</h3>
+          <div class="f-field"><label>اسم المشروع / العلامة التجارية</label><input type="text" id="d-name" placeholder="مثال: مطعم الأصالة"/></div>
+          <div class="f-field"><label>وصف المشروع وما تحتاجه</label><textarea id="d-desc" rows="3" placeholder="اشرح طلبك بالتفصيل..."></textarea></div>
+          <div class="f-field"><label>الألوان المفضلة</label><input type="text" id="d-colors" placeholder="مثال: أخضر، ذهبي، أبيض"/></div>
+          <div class="f-field"><label>أمثلة مرجعية (روابط)</label><input type="text" id="d-refs" placeholder="https://..."/></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem" onclick="submitDesignOrder()">
+            <i class="fa-solid fa-paper-plane"></i> إرسال الطلب
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SOFTWARE STORE ===== -->
+    <div class="page" id="page-software">
+      <div class="sec-hd">
+        <div>
+          <h2><i class="fa-solid fa-store" style="color:#22c55e;margin-left:.5rem"></i>متجر البرامج المميزة</h2>
+          <p>أفضل البرامج والأدوات الرقمية لإدارة وتطوير مشروعك</p>
+        </div>
+        <div class="ac-filters" style="margin:0">
+          <div class="ac-filter active" onclick="swFilter(this,'all')">الكل</div>
+          <div class="ac-filter" onclick="swFilter(this,'accounting')">محاسبة</div>
+          <div class="ac-filter" onclick="swFilter(this,'crm')">CRM</div>
+          <div class="ac-filter" onclick="swFilter(this,'design')">تصميم</div>
+          <div class="ac-filter" onclick="swFilter(this,'hr')">موارد بشرية</div>
+          <div class="ac-filter" onclick="swFilter(this,'marketing')">تسويق</div>
+        </div>
+      </div>
+      <div class="software-grid" id="software-grid"></div>
     </div>
 
     <!-- ===== REPORTS ===== -->
@@ -1116,9 +1842,12 @@ function closeSidebar(){ document.getElementById('sidebar').classList.remove('op
 /* NAVIGATION */
 const pageMap = {
   home:    {title:'نظرة عامة',    sub:'مرحباً بك في منصة جنان بيز'},
-  robot:   {title:'المساعد الذكي', sub:'مرافقك من الفكرة حتى التنفيذ'},
+  robot:   {title:'تحليل المشروع وجدواه الاقتصادي', sub:'هل مشروعك مربح؟ اكتشف بالأرقام مع خطة تحسين مخصصة'},
   projectcopilot: {title:'روبوت المشاريع',sub:'مساعدك الذكي خطوة بخطوة من الفكرة حتى التشغيل'},
-  analysis:{title:'تحليل الجدوى', sub:'هل مشروعك مربح؟ اعرف الآن'},
+  analysis:{title:'إعداد دراسات الجدوى الاقتصادية', sub:'حلّل مشروعك واعرف مدى ربحيته قبل أي استثمار'},
+  academy: {title:'أكاديمية جنان للمال والأعمال', sub:'مكتبة · دورات · أدوات مالية ذكية'},
+  design:  {title:'التصميم والإبداع', sub:'شعارات · هوية بصرية · تصاميم احترافية لمشروعك'},
+  software:{title:'متجر البرامج المميزة', sub:'أفضل البرامج والأدوات الرقمية لإدارة مشروعك'},
   capital: {title:'استشارة رأس المال', sub:'أفضل استثمار لأموالك'},
   reports: {title:'تقاريري',      sub:'سجل وأرشيف تحليلاتك'},
   projects:{title:'مشاريعي',      sub:'متابعة خطط مشاريعك'},
@@ -1138,11 +1867,41 @@ function goto(page) {
   const m = pageMap[page]||{title:page,sub:''};
   document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
   closeSidebar();
-  if(page==='robot' && document.getElementById('chat-messages').children.length===0) startChat();
+  if(page==='robot') initProjectAnalysis();
+  if(page==='academy') initAcademy();
   if(page==='capital') updateResults();
-  if(page==='supply') renderSupplyPage();
+  if(page==='software') renderSoftwarePage();
   if(page==='orders') renderOrdersPage();
   if(page==='admin') renderAdminPanel();
+}
+
+/* NAV GROUP — قائمة منسدلة في الشريط الجانبي */
+function toggleNavGroup(groupId) {
+  const grp = document.getElementById(groupId);
+  grp.classList.toggle('open');
+}
+
+/* gotoSub: التنقل عبر عنصر داخل مجموعة منسدلة */
+function gotoSub(page, groupId, subItemId) {
+  // فتح المجموعة إن لم تكن مفتوحة
+  const grp = document.getElementById(groupId);
+  if (!grp.classList.contains('open')) grp.classList.add('open');
+  // تفعيل العنصر المحدد وإلغاء تفعيل البقية
+  document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-group-header').forEach(el => el.classList.remove('group-active'));
+  document.getElementById(subItemId)?.classList.add('active');
+  document.getElementById(groupId)?.querySelector('.nav-group-header')?.classList.add('group-active');
+  // تفعيل الصفحة
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  if(page==='projectcopilot') { showProjectCopilotModal(); return; }
+  document.getElementById('page-'+page)?.classList.add('active');
+  const m = pageMap[page]||{title:page,sub:''};
+  document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
+  closeSidebar();
+  if(page==='robot') initProjectAnalysis();
+  if(page==='academy') initAcademy();
+  if(page==='capital') updateResults();
 }
 function logout(){
   localStorage.removeItem('jb-user');
@@ -1165,6 +1924,713 @@ function showToast(msg) {
   t.textContent=msg;
   document.body.appendChild(t);
   setTimeout(()=>t.remove(),2500);
+}
+
+}
+
+/* ======================================================
+   DESIGN STUDIO ENGINE — التصميم والإبداع
+====================================================== */
+let _designOrderType = '';
+function showDesignOrder(type) {
+  const titles = {
+    logo:'طلب تصميم شعار احترافي', stationery:'طلب هوية بصرية كاملة',
+    social:'طلب قوالب سوشيال ميديا', banner:'طلب تصميم بنر وإعلانات',
+    menu:'طلب تصميم منيو', packaging:'طلب تصميم تغليف وعبوات'
+  };
+  _designOrderType = type;
+  document.getElementById('design-order-title').textContent = titles[type] || 'طلب تصميم';
+  const modal = document.getElementById('design-order-modal');
+  modal.style.display = 'flex';
+}
+function closeDesignOrder() {
+  document.getElementById('design-order-modal').style.display = 'none';
+  ['d-name','d-desc','d-colors','d-refs'].forEach(id => document.getElementById(id).value = '');
+}
+function submitDesignOrder() {
+  const name = document.getElementById('d-name').value.trim();
+  const desc = document.getElementById('d-desc').value.trim();
+  if (!name || !desc) return showToast('يرجى ملء اسم المشروع والوصف');
+  closeDesignOrder();
+  showToast('تم إرسال طلب التصميم بنجاح! سيتواصل معك الفريق خلال 24 ساعة ✓');
+}
+
+/* ======================================================
+   SOFTWARE STORE ENGINE — متجر البرامج المميزة
+====================================================== */
+const SW_ITEMS = [
+  {cat:'accounting', logo:'💼', name:'QuickBooks Online', desc:'برنامج محاسبة سحابي شامل للفواتير والمصاريف والضرائب', rating:4.8, reviews:12400, price:'من 85 ر.س/شهر', free:false},
+  {cat:'accounting', logo:'📊', name:'Zoho Books', desc:'حلول محاسبية ذكية مع دعم ضريبة القيمة المضافة السعودية', rating:4.6, reviews:8200, price:'مجاني حتى 1000 فاتورة', free:true},
+  {cat:'crm',        logo:'🤝', name:'Salesforce CRM', desc:'منصة إدارة علاقات العملاء الأولى عالمياً لفرق المبيعات', rating:4.7, reviews:31000, price:'من 150 ر.س/مستخدم/شهر', free:false},
+  {cat:'crm',        logo:'🧲', name:'HubSpot CRM', desc:'إدارة العملاء والمبيعات والتسويق في منصة واحدة مجانية', rating:4.5, reviews:19500, price:'مجاني', free:true},
+  {cat:'design',     logo:'🎨', name:'Canva Pro', desc:'تصميم احترافي بالذكاء الاصطناعي لكل احتياجات عملك', rating:4.9, reviews:45000, price:'من 55 ر.س/شهر', free:false},
+  {cat:'design',     logo:'✏️', name:'Adobe Express', desc:'تصميم سريع للسوشيال ميديا والمطبوعات بقوالب جاهزة', rating:4.4, reviews:7800, price:'مجاني', free:true},
+  {cat:'hr',         logo:'👥', name:'Bayzat', desc:'منصة موارد بشرية سعودية شاملة للرواتب والحضور والعقود', rating:4.6, reviews:3200, price:'من 30 ر.س/موظف/شهر', free:false},
+  {cat:'hr',         logo:'📋', name:'Qiwa', desc:'منصة العمل السعودية الرسمية لإدارة العقود والتأشيرات', rating:4.3, reviews:9100, price:'حسب الخدمة', free:false},
+  {cat:'marketing',  logo:'📣', name:'Hootsuite', desc:'إدارة جميع منصات التواصل الاجتماعي ونشر المحتوى تلقائياً', rating:4.4, reviews:11200, price:'من 75 ر.س/شهر', free:false},
+  {cat:'marketing',  logo:'📧', name:'Mailchimp', desc:'التسويق بالبريد الإلكتروني وأتمتة الحملات التسويقية', rating:4.5, reviews:22000, price:'مجاني حتى 500 مشترك', free:true},
+  {cat:'accounting', logo:'🧾', name:'Qoyod', desc:'برنامج محاسبة سعودي معتمد ZATCA للفواتير الإلكترونية', rating:4.7, reviews:5600, price:'من 99 ر.س/شهر', free:false},
+  {cat:'crm',        logo:'📞', name:'Zendesk', desc:'منصة دعم العملاء وإدارة التذاكر متعددة القنوات', rating:4.5, reviews:14300, price:'من 120 ر.س/مستخدم/شهر', free:false},
+];
+
+function renderSoftwarePage(cat) {
+  cat = cat || 'all';
+  const items = cat === 'all' ? SW_ITEMS : cat === 'free' ? SW_ITEMS.filter(s=>s.free) : SW_ITEMS.filter(s=>s.cat===cat);
+  const grid = document.getElementById('software-grid');
+  if (!grid) return;
+  grid.innerHTML = items.map(sw => `
+    <div class="sw-card">
+      <div class="sw-header">
+        <div class="sw-logo">${sw.logo}</div>
+        <div><div class="sw-title">${sw.name}</div><div class="sw-cat">${{accounting:'محاسبة',crm:'CRM',design:'تصميم',hr:'موارد بشرية',marketing:'تسويق'}[sw.cat]||sw.cat}</div></div>
+      </div>
+      <div class="sw-desc">${sw.desc}</div>
+      <div class="sw-rating">
+        <i class="fa-solid fa-star"></i> ${sw.rating}
+        <span style="color:var(--muted);font-weight:400">(${sw.reviews.toLocaleString('ar')} تقييم)</span>
+      </div>
+      <div class="sw-price">${sw.free ? `<span class='sw-free'>مجاني 🎁</span>` : sw.price}</div>
+      <button class="sw-btn" onclick="showToast('سيتم توجيهك لصفحة ${sw.name}...')">
+        ${sw.free ? 'ابدأ مجاناً' : 'جرّب الآن'}
+      </button>
+    </div>`).join('');
+  if (!items.length) grid.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted)">لا توجد برامج في هذا التصنيف</div>';
+}
+
+function swFilter(el, cat) {
+  document.querySelectorAll('#page-software .ac-filter').forEach(f=>f.classList.remove('active'));
+  el.classList.add('active');
+  renderSoftwarePage(cat);
+}
+
+/* ======================================================
+   ACADEMY ENGINE — أكاديمية جنان للمال والأعمال
+====================================================== */
+const LIB_ITEMS = [
+  {cat:'economy', type:'study',  title:'تأثير ارتفاع أسعار الفائدة على المشاريع الصغيرة في السعودية',       tag:'اقتصاد كلي',   date:'مارس 2025',  pages:28},
+  {cat:'invest',  type:'study',  title:'دليل الاستثمار في صناديق الريت للمستثمر المبتدئ',                   tag:'استثمار',      date:'فبراير 2025', pages:42},
+  {cat:'business',type:'study',  title:'أفضل ممارسات الحوكمة المؤسسية للشركات العائلية',                   tag:'إدارة أعمال',  date:'يناير 2025',  pages:35},
+  {cat:'marketing',type:'study', title:'استراتيجيات التسويق الرقمي لقطاع التجزئة 2025',                    tag:'تسويق',        date:'ديسمبر 2024', pages:22},
+  {cat:'seminar', type:'seminar',title:'ندوة: كيف تبني نموذج أعمال مستدام في ظل التضخم؟',                  tag:'ندوة مسجلة',   date:'نوفمبر 2024', mins:62},
+  {cat:'economy', type:'study',  title:'مؤشرات الاقتصاد السعودي Q4 2024 وتوقعات 2025',                     tag:'اقتصاد كلي',   date:'أكتوبر 2024', pages:56},
+  {cat:'invest',  type:'study',  title:'تحليل مقارن: الذهب أم العقار أم الأسهم؟',                          tag:'استثمار',      date:'سبتمبر 2024', pages:31},
+  {cat:'seminar', type:'seminar',title:'ندوة: قراءة القوائم المالية للمستثمر غير المتخصص',                 tag:'ندوة مسجلة',   date:'أغسطس 2024',  mins:90},
+  {cat:'business',type:'study',  title:'دليل إعداد الميزانية التشغيلية للمنشآت المتوسطة',                  tag:'إدارة أعمال',  date:'يوليو 2024',  pages:19},
+  {cat:'marketing',type:'study', title:'بناء هوية علامة تجارية قوية بميزانية محدودة',                      tag:'تسويق',        date:'يونيو 2024',  pages:14},
+  {cat:'seminar', type:'seminar',title:'ندوة: فرص التمويل الحكومي والبنكي للمشاريع الناشئة',               tag:'ندوة مسجلة',   date:'مايو 2024',   mins:75},
+  {cat:'invest',  type:'study',  title:'تقرير: أداء محافظ التقنية في أسواق الخليج خلال 2024',              tag:'استثمار',      date:'أبريل 2024',  pages:38},
+];
+
+const COURSES = [
+  {cat:'finance',   free:false, level:'مبتدئ',  title:'أساسيات المحاسبة المالية للمشاريع الصغيرة', instructor:'أ. مها الشمراني', sessions:12, hours:18, enrolled:842,  img:'💰'},
+  {cat:'startup',   free:true,  level:'مبتدئ',  title:'مقدمة في ريادة الأعمال وبناء الفكرة',       instructor:'م. عبدالله القحطاني', sessions:8, hours:10, enrolled:2140, img:'🚀'},
+  {cat:'invest',    free:false, level:'متوسط',  title:'الاستثمار في الأسهم: من الصفر للاحتراف',    instructor:'د. رانيا العمري',    sessions:16, hours:24, enrolled:560,  img:'📈'},
+  {cat:'marketing', free:false, level:'مبتدئ',  title:'التسويق الرقمي وبناء الحضور الإلكتروني',    instructor:'خبير التسويق خالد آل محمد',sessions:10,hours:15,enrolled:991, img:'📱'},
+  {cat:'finance',   free:false, level:'متقدم',  title:'التخطيط المالي الاستراتيجي وإدارة التدفق النقدي',instructor:'أ. نورة السعيد', sessions:20, hours:30, enrolled:334, img:'📊'},
+  {cat:'startup',   free:false, level:'متوسط',  title:'كيف تكتب خطة عمل احترافية تقنع المستثمرين',instructor:'م. فيصل العتيبي',   sessions:6,  hours:9,  enrolled:1250, img:'📝'},
+  {cat:'invest',    free:true,  level:'مبتدئ',  title:'فقه المال: الحلال والحرام في الاستثمار',     instructor:'الشيخ أحمد الدوسري', sessions:5,  hours:6,  enrolled:3200, img:'🕌'},
+  {cat:'finance',   free:false, level:'متوسط',  title:'ضريبة القيمة المضافة والزكاة للمحاسب',      instructor:'أ. سلطان الغامدي',   sessions:8,  hours:12, enrolled:488,  img:'🧾'},
+];
+
+let acCurrentSection = 0;
+let libCurrentFilter = 'all';
+let courseCurrentFilter = 'all';
+
+function openAcSection(n) {
+  document.querySelectorAll('#page-academy .ac-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(n === 0 ? 'ac-landing' : 'ac-section-' + n).classList.add('active');
+  acCurrentSection = n;
+  if (n === 1) renderLibrary('all');
+  if (n === 2) renderCourses('all');
+  document.querySelector('.main-content').scrollTop = 0;
+}
+
+function initAcademy() { openAcSection(0); }
+
+function acFilter(el, cat) {
+  document.querySelectorAll('#ac-section-1 .ac-filter').forEach(f => f.classList.remove('active'));
+  el.classList.add('active');
+  renderLibrary(cat);
+}
+
+function renderLibrary(cat) {
+  libCurrentFilter = cat;
+  const items = cat === 'all' ? LIB_ITEMS : LIB_ITEMS.filter(i => i.cat === cat);
+  const grid = document.getElementById('lib-grid');
+  grid.innerHTML = items.map(item => `
+    <div class="lib-card">
+      <div class="lib-card-cover">${item.type === 'seminar' ? '🎙' : '📄'}</div>
+      <div class="lib-card-body">
+        <div class="lib-tag">${item.tag}</div>
+        <h4>${item.title}</h4>
+        <div class="lib-meta">
+          <span><i class="fa-solid fa-calendar-days"></i> ${item.date}</span>
+          ${item.pages ? `<span><i class="fa-solid fa-file-lines"></i> ${item.pages} صفحة</span>` : `<span><i class="fa-solid fa-clock"></i> ${item.mins} دقيقة</span>`}
+        </div>
+        <button class="ac-enter-btn" style="font-size:.78rem;padding:.4rem .9rem;margin-top:.5rem;cursor:pointer" onclick="showToast('${item.type === 'seminar' ? '▶ جارٍ تشغيل الندوة...' : '📥 جارٍ تحميل الدراسة...'}')">
+          ${item.type === 'seminar' ? '<i class="fa-solid fa-play"></i> شاهد الآن' : '<i class="fa-solid fa-download"></i> تحميل'}
+        </button>
+      </div>
+    </div>`).join('');
+  if (!items.length) grid.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted)">لا توجد نتائج في هذا التصنيف</div>';
+}
+
+function courseFilter(el, cat) {
+  document.querySelectorAll('#ac-section-2 .ac-filter').forEach(f => f.classList.remove('active'));
+  el.classList.add('active');
+  renderCourses(cat);
+}
+
+function renderCourses(cat) {
+  courseCurrentFilter = cat;
+  const items = cat === 'all' ? COURSES : cat === 'free' ? COURSES.filter(c => c.free) : COURSES.filter(c => c.cat === cat);
+  const grid = document.getElementById('course-grid');
+  const levelColor = {مبتدئ:'#22c55e', متوسط:'#f59e0b', متقدم:'#ef4444'};
+  grid.innerHTML = items.map(course => `
+    <div class="course-card">
+      <div class="course-cover">${course.img}
+        <span class="course-level" style="background:${levelColor[course.level]||'#888'}">${course.level}</span>
+        <span class="${course.free ? 'course-free' : 'course-paid'}">${course.free ? 'مجانية 🎁' : 'مدفوعة'}</span>
+      </div>
+      <div class="course-body">
+        <h4>${course.title}</h4>
+        <div class="lib-meta" style="margin:.4rem 0">
+          <span><i class="fa-solid fa-user-tie"></i> ${course.instructor}</span>
+        </div>
+        <div class="lib-meta">
+          <span><i class="fa-solid fa-video"></i> ${course.sessions} جلسة</span>
+          <span><i class="fa-solid fa-clock"></i> ${course.hours} ساعة</span>
+          <span><i class="fa-solid fa-users"></i> ${course.enrolled.toLocaleString('ar')}</span>
+        </div>
+        <button class="enroll-btn ${course.free ? '' : 'paid'}" onclick="showToast('تم تسجيلك في الدورة، ستصلك رسالة تفعيل!')">
+          ${course.free ? 'سجّل مجاناً' : 'اشترك الآن'}
+        </button>
+      </div>
+    </div>`).join('');
+  if (!items.length) grid.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted)">لا توجد دورات في هذا التصنيف</div>';
+}
+
+/* ── الأدوات المالية ── */
+function calcLoan() {
+  const P = +document.getElementById('loan-amount').value;
+  const r = (+document.getElementById('loan-rate').value / 100) / 12;
+  const n = +document.getElementById('loan-months').value;
+  if (!P || !r || !n) return showToast('تأكد من ملء جميع الحقول');
+  const monthly = r ? P * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1) : P/n;
+  const total = monthly * n;
+  const interest = total - P;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  document.getElementById('loan-monthly').textContent = fmt(monthly);
+  document.getElementById('loan-total').textContent = fmt(total);
+  document.getElementById('loan-interest').textContent = fmt(interest);
+  document.getElementById('loan-result').style.display = 'block';
+}
+
+function calcPL() {
+  const rev = +document.getElementById('pl-revenue').value;
+  const cogs = +document.getElementById('pl-cogs').value;
+  const opex = +document.getElementById('pl-opex').value;
+  const other = +document.getElementById('pl-other').value;
+  if (!rev) return showToast('أدخل الإيرادات أولاً');
+  const gross = rev - cogs;
+  const net = gross - opex - other;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  const pct = v => ((v/rev)*100).toFixed(1) + '%';
+  document.getElementById('pl-net').textContent = fmt(net);
+  document.getElementById('pl-net').style.color = net >= 0 ? 'var(--green)' : '#e74c3c';
+  document.getElementById('pl-gross-m').textContent = pct(gross);
+  document.getElementById('pl-net-m').textContent = pct(net);
+  document.getElementById('pl-annual').textContent = fmt(net * 12);
+  document.getElementById('pl-result').style.display = 'block';
+}
+
+function calcBreakEven() {
+  const fixed = +document.getElementById('be-fixed').value;
+  const price = +document.getElementById('be-price').value;
+  const cost  = +document.getElementById('be-cost').value;
+  if (!fixed || !price || !cost) return showToast('تأكد من ملء جميع الحقول');
+  const contrib = price - cost;
+  if (contrib <= 0) return showToast('يجب أن يكون سعر البيع أعلى من تكلفة الوحدة');
+  const units = Math.ceil(fixed / contrib);
+  const revenue = units * price;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  document.getElementById('be-units').textContent = units.toLocaleString('ar');
+  document.getElementById('be-revenue').textContent = fmt(revenue);
+  document.getElementById('be-margin').textContent = fmt(contrib) + ' / وحدة';
+  document.getElementById('be-result').style.display = 'block';
+}
+
+function calcROI() {
+  const invest = +document.getElementById('roi-invest').value;
+  const profit = +document.getElementById('roi-profit').value;
+  const months = +document.getElementById('roi-months').value;
+  if (!invest || !profit) return showToast('تأكد من ملء الحقول المطلوبة');
+  const yearProfit = profit * 12;
+  const roi = (yearProfit / invest) * 100;
+  const payback = months || invest / profit;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  document.getElementById('roi-pct').textContent = roi.toFixed(1) + '%';
+  document.getElementById('roi-pct').style.color = roi >= 15 ? 'var(--green)' : roi >= 8 ? '#f59e0b' : '#e74c3c';
+  document.getElementById('roi-payback').textContent = Math.ceil(payback) + ' شهر';
+  document.getElementById('roi-year-profit').textContent = fmt(yearProfit);
+  document.getElementById('roi-result').style.display = 'block';
+}
+
+function calcZakat() {
+  const amount = +document.getElementById('zakat-amount').value;
+  if (!amount) return showToast('أدخل المبلغ أولاً');
+  const nisab = 21156; // تقريبي لسعر نصاب الذهب بالريال 2025
+  const due = amount >= nisab ? amount * 0.025 : 0;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' ر.س';
+  document.getElementById('zakat-due').textContent = due > 0 ? fmt(due) : 'لا زكاة (لم يبلغ النصاب)';
+  document.getElementById('zakat-due').style.color = due > 0 ? 'var(--green)' : 'var(--muted)';
+  document.getElementById('zakat-note').textContent = due > 0 ? `النصاب التقريبي الحالي: ${fmt(nisab)} — المبلغ يبلغ النصاب، الزكاة 2.5%` : `النصاب التقريبي الحالي: ${fmt(nisab)} — المبلغ لم يبلغ النصاب`;
+  document.getElementById('zakat-result').style.display = 'block';
+}
+
+function toggleZakatFields() {}
+
+function calcPricing() {
+  const cost  = +document.getElementById('price-cost').value;
+  const margin = +document.getElementById('price-margin').value;
+  const vat   = (+document.getElementById('price-vat').value) || 0;
+  const units = +document.getElementById('price-units').value || 1;
+  if (!cost || !margin) return showToast('تأكد من ملء الحقول الأساسية');
+  const beforeVat = cost / (1 - margin / 100);
+  const withVat   = beforeVat * (1 + vat / 100);
+  const profit    = (beforeVat - cost) * units;
+  const fmt0 = v => v.toLocaleString('ar-SA', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' ر.س';
+  const fmt  = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  document.getElementById('price-final').textContent = fmt0(withVat);
+  document.getElementById('price-before-vat').textContent = fmt0(beforeVat);
+  document.getElementById('price-monthly-profit').textContent = fmt(profit);
+  document.getElementById('price-result').style.display = 'block';
+}
+
+/* ======================================================
+   PROJECT ANALYSIS ENGINE — تحليل المشاريع وجدواها
+====================================================== */
+const PA_QUESTIONS = [
+  /* المجموعة 0: معلومات المشروع */
+  {
+    title: 'معلومات المشروع الأساسية',
+    fields: [
+      { id:'pa_name',   label:'اسم المشروع',            type:'text',   placeholder:'مثال: مطعم شاورما الأصيل', required:true },
+      { id:'pa_type',   label:'نوع النشاط التجاري',     type:'select', options:['تجارة تجزئة','مطعم / مقهى','خدمات مهنية','تقنية / تطبيقات','تصنيع / إنتاج','عقارات','تجارة إلكترونية','تعليم وتدريب','صحة وجمال','أخرى'], required:true },
+      { id:'pa_city',   label:'المدينة والمنطقة',       type:'text',   placeholder:'مثال: الرياض — حي النزهة', required:true },
+    ]
+  },
+  /* المجموعة 1: رأس المال والتمويل */
+  {
+    title: 'رأس المال والتمويل',
+    fields: [
+      { id:'pa_capital', label:'رأس المال الإجمالي المتاح (ريال)',         type:'number', placeholder:'مثال: 200000', required:true },
+      { id:'pa_setup',   label:'تكاليف التأسيس والتجهيز تقريباً (ريال)',   type:'number', placeholder:'مثال: 80000',  required:true },
+      { id:'pa_funding', label:'مصدر التمويل',                              type:'select', options:['تمويل ذاتي بالكامل','قرض بنكي','شراكة تجارية','دعم حكومي (منشآت / صندوق المئوية)','مزيج من المصادر'], required:true },
+    ]
+  },
+  /* المجموعة 2: الإيرادات */
+  {
+    title: 'توقعات الإيرادات',
+    fields: [
+      { id:'pa_revenue',   label:'الإيرادات الشهرية المتوقعة (ريال)',              type:'number', placeholder:'مثال: 80000', required:true },
+      { id:'pa_avg_sale',  label:'متوسط قيمة عملية البيع / الفاتورة (ريال)',       type:'number', placeholder:'مثال: 150', required:false },
+      { id:'pa_customers', label:'عدد العملاء أو الصفقات المتوقعة شهرياً',         type:'number', placeholder:'مثال: 300', required:false },
+    ]
+  },
+  /* المجموعة 3: التكاليف الثابتة */
+  {
+    title: 'التكاليف الثابتة الشهرية',
+    fields: [
+      { id:'pa_rent',       label:'الإيجار الشهري (ريال)',                    type:'number', placeholder:'مثال: 15000', required:true },
+      { id:'pa_salaries',   label:'رواتب الموظفين الشهرية الإجمالية (ريال)', type:'number', placeholder:'مثال: 20000', required:true },
+      { id:'pa_utilities',  label:'الكهرباء والمياه والاتصالات (ريال)',        type:'number', placeholder:'مثال: 3000',  required:false },
+      { id:'pa_fixed_other',label:'تكاليف ثابتة أخرى — تأمين، صيانة... (ريال)',type:'number',placeholder:'مثال: 2000', required:false },
+    ]
+  },
+  /* المجموعة 4: التكاليف المتغيرة */
+  {
+    title: 'التكاليف المتغيرة الشهرية',
+    fields: [
+      { id:'pa_cogs',      label:'تكلفة البضاعة أو تقديم الخدمة (ريال)',      type:'number', placeholder:'مثال: 25000', required:true },
+      { id:'pa_marketing', label:'الميزانية التسويقية الشهرية (ريال)',         type:'number', placeholder:'مثال: 3000',  required:false },
+      { id:'pa_var_other', label:'مصاريف متغيرة أخرى — توصيل، عمولات... (ريال)',type:'number',placeholder:'مثال: 2000', required:false },
+    ]
+  },
+  /* المجموعة 5: المنافسة والخبرة */
+  {
+    title: 'المنافسة والخبرة الشخصية',
+    fields: [
+      { id:'pa_comp',    label:'مستوى المنافسة في منطقتك',                   type:'select', options:['لا يوجد منافسون واضحون','منافسة منخفضة','منافسة متوسطة','منافسة عالية جداً'], required:true },
+      { id:'pa_exp',     label:'خبرتك الشخصية في هذا المجال',                type:'select', options:['أكثر من 5 سنوات','3-5 سنوات','1-3 سنوات','أقل من سنة / مبتدئ'], required:true },
+      { id:'pa_target',  label:'من هو عميلك المستهدف؟ (اشرح باختصار)',       type:'textarea', placeholder:'مثال: أصحاب المكاتب والشركات الصغيرة في المنطقة، عمرهم 25-45 سنة', required:false },
+    ]
+  },
+];
+
+let paState = { currentGroup: 0, answers: {}, started: false };
+
+function initProjectAnalysis() {
+  if (!paState.started) {
+    showPaStep(0);
+  }
+}
+
+function startProjectAnalysisWizard() {
+  paState = { currentGroup: 0, answers: {}, started: true };
+  renderPaStepsBar();
+  renderPaGroup();
+  showPaStep(1);
+}
+
+function renderPaStepsBar() {
+  const total = PA_QUESTIONS.length;
+  const cur   = paState.currentGroup;
+  let html = '';
+  for (let i = 0; i < total; i++) {
+    const cls   = i < cur ? 'done' : i === cur ? 'current' : '';
+    const inner = i < cur ? '<i class="fa-solid fa-check" style="font-size:.68rem"></i>' : (i+1);
+    html += `<div class="fs-step-dot ${cls}">${inner}</div>`;
+    if (i < total-1) html += `<div class="fs-step-line${i < cur ? ' done' : ''}"></div>`;
+  }
+  document.getElementById('pa-steps-bar').innerHTML = html;
+  document.getElementById('pa-step-label').textContent = `الخطوة ${cur+1} من ${total}`;
+  document.getElementById('pa-step-pct').textContent   = Math.round((cur+1)/total*100) + '%';
+  document.getElementById('pa-wizard-title').textContent = PA_QUESTIONS[cur].title;
+}
+
+function renderPaGroup() {
+  const group = PA_QUESTIONS[paState.currentGroup];
+  const container = document.getElementById('pa-questions-container');
+  container.innerHTML = group.fields.map(q => {
+    const val = (paState.answers[q.id] || '').replace(/"/g,'&quot;');
+    if (q.type === 'select') {
+      const opts = q.options.map(o => `<option value="${o}"${val===o?' selected':''}>${o}</option>`).join('');
+      return `<div class="f-field"><label>${q.label}${q.required?'':' <span style="color:var(--muted);font-weight:400;font-size:.77rem">(اختياري)</span>'}</label><select id="${q.id}"><option value="">اختر...</option>${opts}</select></div>`;
+    } else if (q.type === 'textarea') {
+      return `<div class="f-field" style="grid-column:1/-1"><label>${q.label}${q.required?'':' <span style="color:var(--muted);font-weight:400;font-size:.77rem">(اختياري)</span>'}</label><textarea id="${q.id}" placeholder="${q.placeholder||''}" rows="3" style="resize:vertical">${val}</textarea></div>`;
+    } else {
+      return `<div class="f-field"><label>${q.label}${q.required?'':' <span style="color:var(--muted);font-weight:400;font-size:.77rem">(اختياري)</span>'}</label><input type="${q.type}" id="${q.id}" placeholder="${q.placeholder||''}" value="${val}"/></div>`;
+    }
+  }).join('');
+
+  const isFirst = paState.currentGroup === 0;
+  const isLast  = paState.currentGroup === PA_QUESTIONS.length - 1;
+  document.getElementById('pa-prev-btn').style.display = isFirst ? 'none' : 'inline-flex';
+  document.getElementById('pa-next-btn').innerHTML = isLast
+    ? '<i class="fa-solid fa-chart-bar"></i> أصدر تقرير التحليل'
+    : 'التالي <i class="fa-solid fa-arrow-left"></i>';
+}
+
+function paNavNext() {
+  const group = PA_QUESTIONS[paState.currentGroup];
+  for (const q of group.fields) {
+    const el = document.getElementById(q.id);
+    if (!el) continue;
+    const val = el.value.trim();
+    if (q.required && !val) {
+      showToast('يرجى تعبئة الحقل المطلوب: ' + q.label);
+      el.focus();
+      el.style.borderColor = '#e74c3c';
+      setTimeout(() => { el.style.borderColor = ''; }, 2200);
+      return;
+    }
+    paState.answers[q.id] = val;
+  }
+  if (paState.currentGroup < PA_QUESTIONS.length - 1) {
+    paState.currentGroup++;
+    renderPaStepsBar();
+    renderPaGroup();
+    window.scrollTo({ top: 0, behavior:'smooth' });
+  } else {
+    generateProjectAnalysisReport();
+  }
+}
+
+function paNavPrev() {
+  const group = PA_QUESTIONS[paState.currentGroup];
+  group.fields.forEach(q => { const el = document.getElementById(q.id); if (el) paState.answers[q.id] = el.value.trim(); });
+  if (paState.currentGroup > 0) {
+    paState.currentGroup--;
+    renderPaStepsBar();
+    renderPaGroup();
+    window.scrollTo({ top: 0, behavior:'smooth' });
+  }
+}
+
+function generateProjectAnalysisReport() {
+  const btn = document.getElementById('pa-next-btn');
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جارٍ إعداد التقرير...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fa-solid fa-chart-bar"></i> أصدر تقرير التحليل';
+    btn.disabled = false;
+    document.getElementById('pa-report-container').innerHTML = buildProjectAnalysisReport();
+    showPaStep(2);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const el = document.getElementById('sc-chats');
+    if (el) el.textContent = parseInt(el.textContent||0)+1;
+  }, 2200);
+}
+
+function buildProjectAnalysisReport() {
+  const a = paState.answers;
+  const capital   = parseFloat(a.pa_capital)   || 0;
+  const setup     = parseFloat(a.pa_setup)     || 0;
+  const revenue   = parseFloat(a.pa_revenue)   || 0;
+  const rent      = parseFloat(a.pa_rent)      || 0;
+  const salaries  = parseFloat(a.pa_salaries)  || 0;
+  const utilities = parseFloat(a.pa_utilities) || 0;
+  const fixedOth  = parseFloat(a.pa_fixed_other)||0;
+  const cogs      = parseFloat(a.pa_cogs)      || 0;
+  const marketing = parseFloat(a.pa_marketing) || 0;
+  const varOth    = parseFloat(a.pa_var_other) || 0;
+
+  const totalFixed    = rent + salaries + utilities + fixedOth;
+  const totalVariable = cogs + marketing + varOth;
+  const totalCosts    = totalFixed + totalVariable;
+  const grossProfit   = revenue - cogs;
+  const netProfit     = revenue - totalCosts;
+  const grossMargin   = revenue > 0 ? (grossProfit / revenue * 100) : 0;
+  const netMargin     = revenue > 0 ? (netProfit / revenue * 100) : 0;
+  const roi           = capital > 0 ? (netProfit * 12 / capital * 100) : 0;
+  const payback       = netProfit > 0 ? (capital / netProfit).toFixed(1) : '∞';
+  const breakEven     = (1 - (cogs+varOth)/revenue) > 0
+                        ? totalFixed / (1 - (cogs+varOth)/revenue)
+                        : totalFixed;
+
+  // تحديد مستوى الربحية
+  let verdict, vClass, score, verdictIcon;
+  if (netMargin >= 25)      { verdict='مربح جداً — مرحباً بك في نادي الأرباح الكبيرة'; vClass='yes';   verdictIcon='🏆'; score=90+Math.min(netMargin-25,8); }
+  else if (netMargin >= 15) { verdict='مربح بشكل جيد — مشروع ناجح بأداء معقول';        vClass='yes';   verdictIcon='✅'; score=75+netMargin; }
+  else if (netMargin >= 5)  { verdict='ربحية مقبولة — يحتاج إلى تحسين لتحقيق إمكاناته'; vClass='maybe'; verdictIcon='⚠️'; score=55+netMargin*2; }
+  else if (netMargin >= 0)  { verdict='ربحية منخفضة جداً — يوشك على التعادل';           vClass='maybe'; verdictIcon='⚠️'; score=40+netMargin; }
+  else                      { verdict='غير مربح حالياً — المصروفات تتجاوز الإيرادات';   vClass='no';    verdictIcon='🚨'; score=Math.max(20+netMargin,5); }
+
+  const compBonus = {
+    'لا يوجد منافسون واضحون': 6, 'منافسة منخفضة': 3,
+    'منافسة متوسطة': 0, 'منافسة عالية جداً': -4
+  }[a.pa_comp] || 0;
+  const expBonus = {
+    'أكثر من 5 سنوات': 5, '3-5 سنوات': 3,
+    '1-3 سنوات': 1, 'أقل من سنة / مبتدئ': -2
+  }[a.pa_exp] || 0;
+  score = Math.min(Math.round(score + compBonus + expBonus), 98);
+
+  // ── مقاييس التحسين ──
+  const neededRevForGoodMargin = totalFixed / 0.15; // إيراد مطلوب لهامش 15%
+  const revenueGap    = Math.max(neededRevForGoodMargin - revenue, 0);
+  const rentRatio     = revenue > 0 ? rent / revenue : 0;
+  const salariesRatio = revenue > 0 ? salaries / revenue : 0;
+  const cogsRatio     = revenue > 0 ? cogs / revenue : 0;
+  const mktRatio      = revenue > 0 ? marketing / revenue : 0;
+
+  // ── بناء قائمة توصيات تحسين الربح ──
+  const recs = [];
+
+  if (netMargin < 20) {
+    // 1. تقليل الإيجار
+    if (rentRatio > 0.12) {
+      const target = Math.round(revenue * 0.10);
+      const saving = rent - target;
+      recs.push({
+        icon:'fa-building', color:'#e74c3c', priority:'عالي',
+        title:'⬇ تقليل الإيجار',
+        body:`إيجارك الحالي (${rent.toLocaleString('ar-SA')} ر) يُشكّل ${(rentRatio*100).toFixed(1)}% من إيراداتك — المعيار الأمثل ≤10%.\n<strong>الوفر المستهدف: ${saving.toLocaleString('ar-SA')} ريال/شهر</strong>\n• أعِد التفاوض مع المالك — الكثير من الملّاك يقبلون تخفيض 10-20% لتجنب شاغر جديد\n• ادرس الانتقال لموقع أقل إيجاراً وأقل حركة (التسويق يعوّض)\n• أو قلّص المساحة واستغل القسم المتبقي كعقد باطن`
+      });
+    }
+    // 2. تقليل الرواتب / هيكلة وظيفية
+    if (salariesRatio > 0.30) {
+      const target = Math.round(revenue * 0.25);
+      const saving = salaries - target;
+      recs.push({
+        icon:'fa-users', color:'#d97706', priority:'عالي',
+        title:'⬇ تقليل تكلفة الكوادر البشرية',
+        body:`الرواتب (${salaries.toLocaleString('ar-SA')} ر) = ${(salariesRatio*100).toFixed(1)}% من إيراداتك — المعيار الأمثل 25-30%.\n<strong>الوفر المستهدف: ${saving.toLocaleString('ar-SA')} ريال/شهر</strong>\n• افحص كل وظيفة: هل يمكن دمجها؟ أو استبدالها بموظف نصف دوام؟\n• فكّر في الاستعانة بطلاب التدريب الميداني (التكلفة أقل 60%)\n• أتمتة المهام المتكررة (تطبيق طلبات، صندوق دفع ذاتي...)`
+      });
+    }
+    // 3. تقليل تكلفة البضاعة
+    if (cogsRatio > 0.50) {
+      const target = Math.round(revenue * 0.40);
+      const saving = cogs - target;
+      recs.push({
+        icon:'fa-boxes-stacked', color:'#7c3aed', priority:'عالي',
+        title:'⬇ خفض تكلفة البضاعة أو الخدمة',
+        body:`تكلفة البضاعة (${cogs.toLocaleString('ar-SA')} ر) = ${(cogsRatio*100).toFixed(1)}% من إيراداتك — المعيار الأمثل ≤45%.\n<strong>الوفر المستهدف: ${saving.toLocaleString('ar-SA')} ريال/شهر</strong>\n• راجع قائمتك أو عروضك: ركّز على المنتجات ذات الهامش الأعلى\n• تفاوض مع الموردين على أسعار أفضل أو اشترِ بكميات كبيرة (خصومات تتراوح 8-20%)\n• ابحث عن موردين بديلين في منشآت أو المنصة الوطنية للمشتريات`
+      });
+    }
+    // 4. رفع الإيرادات
+    if (revenueGap > 0) {
+      recs.push({
+        icon:'fa-arrow-trend-up', color:'var(--green)', priority:'متوسط',
+        title:`⬆ زيادة الإيرادات بمقدار ${revenueGap.toLocaleString('ar-SA')} ريال للوصول لهامش 15%`,
+        body:`إيراداتك الحالية (${revenue.toLocaleString('ar-SA')} ر) تحتاج ارتفاعاً لتحقيق ربحية سليمة.\n• ارفع متوسط الفاتورة عبر تجميع المنتجات (Bundle) أو عروض الترقية\n• أضف خدمة توصيل أو خدمة إضافية (Upsell) برسوم رمزية\n• فعّل برنامج إحالة: "احصل على خصم عند إحضار صديق"\n• اعمل على تحسين معدل التحويل من زائر إلى مشترٍ عبر تحسين تجربة العميل`
+      });
+    }
+    // 5. كفاءة التسويق
+    if (mktRatio > 0.08 && netMargin < 15) {
+      recs.push({
+        icon:'fa-bullhorn', color:'#0891b2', priority:'منخفض',
+        title:'💡 تحسين كفاءة الإنفاق التسويقي',
+        body:`ميزانية التسويق (${marketing.toLocaleString('ar-SA')} ر = ${(mktRatio*100).toFixed(1)}%) ليست منخفضة لكن قد لا تُوظَّف بكفاءة.\n• تابع تكلفة اكتساب العميل (CAC) لكل قناة\n• احذف القنوات ذات الأداء المنخفض وضاعف الإنفاق على الناجحة\n• استخدم المحتوى العضوي (Reels / قصص) قبل الإعلانات المدفوعة`
+      });
+    }
+    // 6. كفاءة المرافق والطاقة
+    if (utilities > revenue * 0.05) {
+      recs.push({
+        icon:'fa-bolt', color:'#f59e0b', priority:'منخفض',
+        title:'⬇ تقليل فاتورة الطاقة والمرافق',
+        body:`فاتورة الطاقة (${utilities.toLocaleString('ar-SA')} ر) مرتفعة نسبياً.\n• راجع العقود: هل الاشتراكات في الاتصالات والإنترنت ضرورية كلها؟\n• استخدم أجهزة موفرة للطاقة (LED، ترموستات ذكي...)\n• الفاتورة في حدود ${Math.round(revenue*0.03).toLocaleString('ar-SA')} ريال مقبولة لحجم إيراداتك`
+      });
+    }
+  }
+
+  // إذا لا توصيات تكلفة — المشروع جيد
+  if (recs.length === 0 && netMargin >= 20) {
+    recs.push({
+      icon:'fa-rocket', color:'var(--green)', priority:'فرصة',
+      title:'🚀 توسّع وانمُ — مشروعك في وضع ممتاز',
+      body:`ربحيتك (${netMargin.toFixed(1)}%) عالية ومشروعك صحي مالياً.\n• ادرس فتح فرع ثانٍ أو توسيع المساحة الحالية\n• ضخّ جزء من الأرباح في التسويق لرفع حصتك في السوق\n• ابحث عن تنويع مصادر الدخل (منتجات جديدة، عروض حصرية)\n• انظر في الفرنشايز إذا كانت الفكرة قابلة للتكرار`
+    });
+  }
+
+  // ── بناء HTML التقرير ──
+  const priorityColor = { 'عالي':'#e74c3c', 'متوسط':'#d97706', 'منخفض':'#6b7280', 'فرصة':'var(--green)' };
+
+  return `
+  <div class="study-report">
+    <div class="sr-header">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+        </div>
+        <div>
+          <h2 style="font-size:1.2rem">${a.pa_name||'المشروع'} — تقرير التحليل الاقتصادي</h2>
+          <p>${a.pa_type||''} · ${a.pa_city||''} · ${new Date().toLocaleDateString('ar-SA')}</p>
+        </div>
+      </div>
+      <div class="sr-meta">
+        <div class="sr-meta-item"><div class="val">${score}/100</div><div class="lbl">التقييم الشامل</div></div>
+        <div class="sr-meta-item"><div class="val">${netMargin.toFixed(1)}%</div><div class="lbl">هامش الربح الصافي</div></div>
+        <div class="sr-meta-item"><div class="val">${netProfit>=0?'+':''}${netProfit.toLocaleString('ar-SA')}</div><div class="lbl">صافي الربح / شهر</div></div>
+        <div class="sr-meta-item"><div class="val">${grossMargin.toFixed(1)}%</div><div class="lbl">هامش الربح الإجمالي</div></div>
+        <div class="sr-meta-item"><div class="val">${roi.toFixed(0)}%</div><div class="lbl">العائد السنوي ROI</div></div>
+        <div class="sr-meta-item"><div class="val">${payback} شهر</div><div class="lbl">استرداد رأس المال</div></div>
+      </div>
+    </div>
+
+    <!-- الحكم النهائي -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-circle-check"></i>الحكم على المشروع</h3>
+      <div class="verdict ${vClass}" style="font-size:1.05rem;padding:.7rem 1.5rem">
+        ${verdictIcon} ${verdict}
+      </div>
+      <div style="margin-top:1.1rem">
+        <div style="display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.4rem"><span>التقييم الشامل</span><span style="font-weight:800">${score}/100</span></div>
+        <div class="progress-bar" style="height:10px"><div class="progress-fill" style="width:${score}%"></div></div>
+      </div>
+    </div>
+
+    <!-- الملخص المالي -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-calculator"></i>الملخص المالي الشهري</h3>
+      <div class="kpi-row">
+        <div class="kpi-box"><label>الإيرادات</label><span style="color:var(--green)">${revenue.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>تكلفة البضاعة</label><span>${cogs.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>إجمالي الربح</label><span style="color:${grossProfit>=0?'var(--green)':'#e74c3c'}">${grossProfit.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>إجمالي التكاليف</label><span style="color:#e74c3c">${totalCosts.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>صافي الربح</label><span style="color:${netProfit>=0?'var(--green)':'#e74c3c'};font-size:1.2rem;font-weight:800">${netProfit>=0?'+':''}${netProfit.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>نقطة التعادل</label><span>${Math.round(breakEven).toLocaleString('ar-SA')} ر</span></div>
+      </div>
+      <table class="sr-table" style="margin-top:1.1rem">
+        <tr><td>الإيجار الشهري</td><td style="font-weight:700">${rent.toLocaleString('ar-SA')} ريال <span style="color:${rentRatio>0.12?'#e74c3c':'var(--green)'};font-size:.78rem">(${(rentRatio*100).toFixed(1)}%)</span></td></tr>
+        <tr><td>الرواتب الشهرية</td><td style="font-weight:700">${salaries.toLocaleString('ar-SA')} ريال <span style="color:${salariesRatio>0.3?'#e74c3c':'var(--green)'};font-size:.78rem">(${(salariesRatio*100).toFixed(1)}%)</span></td></tr>
+        <tr><td>الكهرباء والمرافق</td><td style="font-weight:700">${utilities.toLocaleString('ar-SA')} ريال</td></tr>
+        <tr><td>تكاليف ثابتة أخرى</td><td style="font-weight:700">${fixedOth.toLocaleString('ar-SA')} ريال</td></tr>
+        <tr><td>الميزانية التسويقية</td><td style="font-weight:700">${marketing.toLocaleString('ar-SA')} ريال</td></tr>
+        <tr><td>مصاريف متغيرة أخرى</td><td style="font-weight:700">${varOth.toLocaleString('ar-SA')} ريال</td></tr>
+        <tr style="background:var(--bg2);font-weight:800"><td>إجمالي التكاليف الشهرية</td><td style="color:#e74c3c;font-weight:800">${totalCosts.toLocaleString('ar-SA')} ريال</td></tr>
+      </table>
+    </div>
+
+    <!-- توزيع التكاليف -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-chart-pie"></i>توزيع التكاليف من الإيرادات</h3>
+      ${[
+        {name:'تكلفة البضاعة', val:cogsRatio, good:0.45},
+        {name:'الرواتب', val:salariesRatio, good:0.30},
+        {name:'الإيجار', val:rentRatio, good:0.12},
+        {name:'التسويق', val:mktRatio, good:0.08},
+      ].map(item => {
+        const pct = (item.val*100).toFixed(1);
+        const ok = item.val <= item.good;
+        const fill = Math.min(item.val*100, 100);
+        return `<div style="margin-bottom:.85rem">
+          <div style="display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.3rem">
+            <span>${item.name}</span>
+            <span style="font-weight:700;color:${ok?'var(--green)':'#e74c3c'}">${pct}% ${ok?'✓':'⚠'} (الحد الأمثل: ${(item.good*100).toFixed(0)}%)</span>
+          </div>
+          <div class="progress-bar" style="height:8px"><div style="height:100%;border-radius:4px;width:${fill}%;background:${ok?'linear-gradient(90deg,var(--green),var(--green-d))':'linear-gradient(90deg,#f59e0b,#e74c3c)'};transition:.6s"></div></div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- تقييم المخاطر -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-shield-halved"></i>تقييم عوامل النجاح والمخاطر</h3>
+      <div class="sr-risk-row"><div class="sr-risk-label">مستوى المنافسة في المنطقة</div><div class="pill-risk ${['لا يوجد منافسون واضحون','منافسة منخفضة'].includes(a.pa_comp)?'pr-low':a.pa_comp==='منافسة متوسطة'?'pr-mid':'pr-high'}">${a.pa_comp||'—'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">الخبرة الشخصية في المجال</div><div class="pill-risk ${(a.pa_exp||'').includes('5 سنوات')?'pr-low':(a.pa_exp||'').includes('3-5')||((a.pa_exp||'').includes('1-3'))?'pr-mid':'pr-high'}">${a.pa_exp||'—'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">نسبة الديون / القروض من رأس المال</div><div class="pill-risk ${(a.pa_funding||'').includes('ذاتي')?'pr-low':(a.pa_funding||'').includes('شراكة')?'pr-mid':'pr-high'}">${(a.pa_funding||'').includes('ذاتي')?'منخفضة':'متوسطة - مرتفعة'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">نسبة التكاليف الثابتة من الإيرادات</div><div class="pill-risk ${revenue>0&&totalFixed/revenue<0.40?'pr-low':totalFixed/revenue<0.6?'pr-mid':'pr-high'}">${revenue>0?(totalFixed/revenue*100).toFixed(1)+'%':'—'}</div></div>
+    </div>
+
+    <!-- توصيات رفع الربح -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-lightbulb"></i>${netMargin < 20 ? 'خطة تحسين الربحية — كيف تجعل مشروعك أكثر ربحاً' : 'فرص النمو والتوسع'}</h3>
+      ${recs.map((r, i) => `
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1rem;border-right:4px solid ${priorityColor[r.priority]||'var(--green)'}">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+          <div style="width:36px;height:36px;border-radius:50%;background:${r.color}22;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid ${r.icon}" style="color:${r.color};font-size:.9rem"></i>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:.95rem;font-weight:800">${r.title}</div>
+          </div>
+          <div style="background:${priorityColor[r.priority]||'var(--green)'}22;color:${priorityColor[r.priority]||'var(--green)'};font-size:.72rem;font-weight:700;padding:.2rem .65rem;border-radius:20px;white-space:nowrap">أولوية ${r.priority}</div>
+        </div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.85;padding-right:.25rem;white-space:pre-line">${r.body}</div>
+      </div>`).join('')}
+    </div>
+
+    ${netMargin < 15 ? `
+    <!-- سيناريوهات تحسين الربح -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-sliders"></i>سيناريوهات لرفع الربحية إلى 15%</h3>
+      <table class="sr-table">
+        <tr style="background:var(--bg2)"><td style="font-weight:800">الإجراء</td><td style="font-weight:800">الصافي بعد التطبيق</td><td style="font-weight:800">هامش الربح</td></tr>
+        <tr><td>رفع الإيرادات 20%</td><td style="color:${(revenue*1.2-totalCosts)>=0?'var(--green)':'#e74c3c'};font-weight:700">${Math.round(revenue*1.2-totalCosts).toLocaleString('ar-SA')} ر</td><td style="font-weight:700">${((revenue*1.2-totalCosts)/(revenue*1.2)*100).toFixed(1)}%</td></tr>
+        <tr><td>تقليل التكاليف الثابتة 15%</td><td style="color:${(revenue-totalCosts+totalFixed*0.15)>=0?'var(--green)':'#e74c3c'};font-weight:700">${Math.round(revenue-totalCosts+totalFixed*0.15).toLocaleString('ar-SA')} ر</td><td style="font-weight:700">${((revenue-totalCosts+totalFixed*0.15)/revenue*100).toFixed(1)}%</td></tr>
+        <tr><td>تقليل تكلفة البضاعة 10%</td><td style="color:${(netProfit+cogs*0.1)>=0?'var(--green)':'#e74c3c'};font-weight:700">${Math.round(netProfit+cogs*0.1).toLocaleString('ar-SA')} ر</td><td style="font-weight:700">${((netProfit+cogs*0.1)/revenue*100).toFixed(1)}%</td></tr>
+        <tr style="background:rgba(78,115,194,.06)"><td><strong>مزيج: رفع إيرادات 10% + خفض تكاليف 10%</strong></td><td style="color:${(revenue*1.1-totalCosts*0.9)>=0?'var(--green)':'#e74c3c'};font-weight:800">${Math.round(revenue*1.1-totalCosts*0.9).toLocaleString('ar-SA')} ر</td><td style="font-weight:800;color:var(--green)">${((revenue*1.1-totalCosts*0.9)/(revenue*1.1)*100).toFixed(1)}%</td></tr>
+      </table>
+    </div>` : ''}
+
+    <div class="sr-cta">
+      <button class="btn-primary" onclick="resetProjectAnalysis()"><i class="fa-solid fa-plus"></i> تحليل مشروع جديد</button>
+      <button class="btn-primary" style="background:var(--navy)" onclick="goto('analysis')"><i class="fa-solid fa-file-chart-column"></i> إعداد دراسة جدوى مفصلة</button>
+    </div>
+  </div>`;
+}
+
+function showPaStep(step) {
+  document.querySelectorAll('#page-robot .fs-step').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+
+function resetProjectAnalysis() {
+  paState = { currentGroup: 0, answers: {}, started: false };
+  showPaStep(0);
 }
 
 /* ======================================================
@@ -2437,82 +3903,450 @@ function handleKey(e) {
 function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
 
 /* ======================================================
-   ANALYSIS ENGINE
+   FEASIBILITY STUDY WIZARD
 ====================================================== */
-function runAnalysis() {
-  const name    = document.getElementById('an-name').value.trim();
-  const type    = document.getElementById('an-type').value;
-  const capital = parseFloat(document.getElementById('an-capital').value)||0;
-  const fixed   = parseFloat(document.getElementById('an-fixed').value)||0;
-  const revenue = parseFloat(document.getElementById('an-revenue').value)||0;
-  const cogs    = parseFloat(document.getElementById('an-cogs').value)||0;
-  const city    = document.getElementById('an-city').value.trim();
-  const comp    = document.getElementById('an-comp').value;
+const FS_QUESTIONS = {
+  simple: [
+    /* Group 0 */
+    [
+      { id:'fs_name',    label:'اسم المشروع',                              type:'text',     placeholder:'مثال: مطعم شاورما الأصيل', required:true },
+      { id:'fs_sector',  label:'نوع النشاط',                              type:'select',   options:['تجارة تجزئة','مطعم / مقهى','خدمات','تقنية / تطبيقات','تصنيع / إنتاج','عقارات','تجارة إلكترونية'], required:true },
+    ],
+    /* Group 1 */
+    [
+      { id:'fs_capital', label:'رأس المال المتاح (ريال)',                  type:'number',   placeholder:'150000', required:true },
+      { id:'fs_city',    label:'المدينة / المنطقة',                        type:'text',     placeholder:'مثال: الرياض', required:true },
+    ],
+    /* Group 2 */
+    [
+      { id:'fs_fixed',   label:'التكاليف الشهرية الثابتة (ريال)',          type:'number',   placeholder:'25000', required:true },
+      { id:'fs_revenue', label:'الإيرادات المتوقعة شهرياً (ريال)',          type:'number',   placeholder:'50000', required:true },
+    ],
+    /* Group 3 */
+    [
+      { id:'fs_cogs',    label:'تكلفة البضاعة أو الخدمة المقدمة (ريال)',   type:'number',   placeholder:'20000', required:true },
+      { id:'fs_comp',    label:'مستوى المنافسة في المنطقة',                type:'select',   options:['بدون منافسة واضحة','منافسة منخفضة','منافسة متوسطة','منافسة عالية'], required:true },
+    ],
+    /* Group 4 */
+    [
+      { id:'fs_exp',     label:'هل لديك خبرة سابقة في هذا المجال؟',       type:'select',   options:['نعم، خبرة واسعة (+3 سنوات)','نعم، خبرة محدودة','لا، مبتدئ في هذا المجال'], required:true },
+      { id:'fs_goal',    label:'ما هدفك الأساسي من المشروع؟',              type:'textarea', placeholder:'مثال: أريد دخلاً شهرياً مستقراً يزيد عن 15,000 ريال خلال أول 6 أشهر', required:true },
+    ],
+  ],
+  detailed: [
+    /* Group 0 */
+    [
+      { id:'fd_name',       label:'اسم المشروع الكامل',                                         type:'text',     placeholder:'مثال: مطعم شاورما الأصيل — فرع الرياض',  required:true },
+      { id:'fd_sector',     label:'نوع النشاط التجاري',                                         type:'select',   options:['تجارة تجزئة','مطعم / مقهى','خدمات مهنية','تقنية / تطبيقات','تصنيع / إنتاج','عقارات','تجارة إلكترونية','تعليم وتدريب','صحة وطب','سياحة وسفر'], required:true },
+      { id:'fd_idea',       label:'وصف تفصيلي لفكرة المشروع',                                   type:'textarea', placeholder:'اشرح فكرتك: ماذا ستبيع؟ لمن؟ وما ميزتك التنافسية؟', required:true },
+    ],
+    /* Group 1 */
+    [
+      { id:'fd_city',       label:'المنطقة الجغرافية المستهدفة (المدينة / الحي)',                type:'text',     placeholder:'مثال: الرياض — حي العليا', required:true },
+      { id:'fd_target_age', label:'الفئة العمرية للعملاء المستهدفين',                           type:'select',   options:['18-25 سنة','26-35 سنة','36-50 سنة','50+ سنة','جميع الأعمار'], required:true },
+      { id:'fd_income',     label:'مستوى دخل العملاء المستهدفين',                               type:'select',   options:['منخفض (أقل من 5,000 ريال)','متوسط (5,000–15,000 ريال)','مرتفع (أكثر من 15,000 ريال)','جميع المستويات'], required:true },
+    ],
+    /* Group 2 */
+    [
+      { id:'fd_capital',    label:'رأس المال المتاح (ريال)',                                     type:'number',   placeholder:'300000', required:true },
+      { id:'fd_funding',    label:'مصادر التمويل',                                               type:'select',   options:['تمويل ذاتي بالكامل','قرض بنكي','شراكة تجارية','مزيج من المصادر','دعم حكومي (منشآت / صندوق المئوية)'], required:true },
+      { id:'fd_setup_cost', label:'تكاليف التأسيس المرتقبة — إيجار + تجهيزات + ترخيص (ريال)',  type:'number',   placeholder:'120000', required:true },
+    ],
+    /* Group 3 */
+    [
+      { id:'fd_fixed',      label:'التكاليف التشغيلية الشهرية — رواتب + إيجار + تشغيل (ريال)', type:'number',   placeholder:'40000',  required:true },
+      { id:'fd_revenue_y1', label:'الإيرادات المتوقعة شهرياً — السنة الأولى (ريال)',             type:'number',   placeholder:'70000',  required:true },
+      { id:'fd_revenue_y3', label:'توقعات الإيرادات الشهرية في السنة الثالثة (ريال)',            type:'number',   placeholder:'120000', required:true },
+    ],
+    /* Group 4 */
+    [
+      { id:'fd_emp',        label:'عدد الموظفين المطلوبين وتخصصاتهم',                           type:'text',     placeholder:'مثال: طباخان، موظف استقبال، مندوب توصيل', required:true },
+      { id:'fd_salary',     label:'إجمالي تكلفة الرواتب الشهرية (ريال)',                        type:'number',   placeholder:'18000', required:true },
+    ],
+    /* Group 5 */
+    [
+      { id:'fd_comp',       label:'من هم منافسوك الرئيسيون؟ وكيف ستتميز عنهم؟',                type:'textarea', placeholder:'مثال: المنافسون هم مطاعم X وY القريبة، وسأتميز بـ...', required:true },
+      { id:'fd_marketing',  label:'قنوات التسويق المخطط لها',                                    type:'select',   options:['إنستجرام وسناب شات','إعلانات مدفوعة (Google/Meta)','منصات التوصيل (جاهز/هنقرستيشن)','تسويق محلي ويد بيد','جميع القنوات السابقة'], required:true },
+      { id:'fd_mkt_budget', label:'الميزانية الشهرية للتسويق (ريال)',                             type:'number',   placeholder:'3000', required:true },
+    ],
+    /* Group 6 */
+    [
+      { id:'fd_launch',     label:'الجدول الزمني المتوقع للإطلاق',                               type:'select',   options:['خلال شهر واحد','خلال 3 أشهر','خلال 6 أشهر','خلال سنة أو أكثر'], required:true },
+      { id:'fd_risks',      label:'ما هي المخاطر الرئيسية التي تتوقعها؟',                       type:'textarea', placeholder:'مثال: تقلب أسعار المواد الخام، ضعف الطلب في البداية...', required:true },
+      { id:'fd_fin_goal',   label:'ما أهدافك المالية لأول سنة كاملة؟',                           type:'textarea', placeholder:'مثال: تحقيق صافي دخل لا يقل عن 20,000 ريال شهرياً...', required:true },
+    ],
+  ],
+};
 
-  if (!name || !type || !capital || !revenue) {
-    showToast('يرجى ملء الحقول الأساسية'); return;
+let fsState = { type:null, payMethod:'card', currentGroup:0, answers:{} };
+
+function selectStudyType(type) {
+  fsState.type = type;
+  document.getElementById('sc-simple').classList.toggle('selected', type === 'simple');
+  document.getElementById('sc-detailed').classList.toggle('selected', type === 'detailed');
+  const btn = document.getElementById('fs-next-0');
+  btn.disabled = false;
+  btn.style.opacity = '1';
+  btn.style.cursor = 'pointer';
+}
+
+function proceedToPayment() {
+  if (!fsState.type) { showToast('يرجى اختيار نوع الدراسة أولاً'); return; }
+  const s = fsState.type === 'simple';
+  document.getElementById('pay-plan-name').textContent  = s ? 'دراسة الجدوى المبسطة' : 'دراسة الجدوى المفصلة';
+  document.getElementById('pay-plan-price').textContent = s ? '99 ريال' : '299 ريال';
+  selectPayMethod('card');
+  showFsStep(1);
+}
+
+function backToTypes() { showFsStep(0); }
+
+function selectPayMethod(method) {
+  fsState.payMethod = method;
+  ['card','apple','stc'].forEach(m => document.getElementById('pm-'+m).classList.toggle('active', m === method));
+  document.getElementById('pay-card-fields').style.display = method === 'card' ? 'block' : 'none';
+}
+
+function formatCardNum(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(.{4})/g,'$1 ').trim();
+}
+
+function formatExpiry(el) {
+  let v = el.value.replace(/\D/g,'');
+  if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2,4);
+  el.value = v;
+}
+
+function processPayment() {
+  const btn = document.getElementById('pay-submit-btn');
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جارٍ معالجة الدفع...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fa-solid fa-lock"></i> إتمام الدفع بأمان';
+    btn.disabled = false;
+    showToast('✅ تم الدفع بنجاح! ابدأ الإجابة على الأسئلة');
+    startQuestionnaire();
+  }, 2000);
+}
+
+function startQuestionnaire() {
+  fsState.currentGroup = 0;
+  fsState.answers = {};
+  const s = fsState.type === 'simple';
+  document.getElementById('fs-wizard-title').textContent =
+    s ? 'إعداد دراسة الجدوى المبسطة — أجب بدقة للحصول على تقرير احترافي'
+      : 'إعداد دراسة الجدوى المفصلة — أجب بدقة للحصول على دراسة شاملة';
+  renderStepsBar();
+  renderQGroup();
+  showFsStep(2);
+}
+
+function renderStepsBar() {
+  const total = FS_QUESTIONS[fsState.type].length;
+  const cur   = fsState.currentGroup;
+  let html = '';
+  for (let i = 0; i < total; i++) {
+    const cls = i < cur ? 'done' : i === cur ? 'current' : '';
+    const inner = i < cur ? '<i class="fa-solid fa-check" style="font-size:.68rem"></i>' : (i+1);
+    html += `<div class="fs-step-dot ${cls}">${inner}</div>`;
+    if (i < total-1) html += `<div class="fs-step-line${i < cur ? ' done' : ''}"></div>`;
   }
+  document.getElementById('fs-steps-bar').innerHTML = html;
+  document.getElementById('fs-step-label').textContent = `الخطوة ${cur+1} من ${total}`;
+  document.getElementById('fs-step-pct').textContent   = Math.round((cur+1)/total*100) + '%';
+}
 
-  const grossProfit  = revenue - cogs;
-  const netProfit    = grossProfit - fixed;
-  const margin       = revenue > 0 ? (netProfit / revenue * 100) : 0;
-  const breakEven    = fixed > 0 ? (fixed / (grossProfit / revenue) / 1000).toFixed(1) : 0;
-  const roi          = capital > 0 ? (netProfit * 12 / capital * 100).toFixed(1) : 0;
-  const payback      = netProfit > 0 ? (capital / netProfit).toFixed(1) : '∞';
+function renderQGroup() {
+  const group = FS_QUESTIONS[fsState.type][fsState.currentGroup];
+  const container = document.getElementById('fs-questions-container');
+  container.innerHTML = group.map(q => {
+    const val = (fsState.answers[q.id] || '').replace(/"/g,'&quot;');
+    if (q.type === 'select') {
+      const opts = q.options.map(o => `<option value="${o}"${val===o?' selected':''}>${o}</option>`).join('');
+      return `<div class="f-field"><label>${q.label}</label><select id="${q.id}"><option value="">اختر...</option>${opts}</select></div>`;
+    } else if (q.type === 'textarea') {
+      return `<div class="f-field" style="grid-column:1/-1"><label>${q.label}</label><textarea id="${q.id}" placeholder="${q.placeholder||''}" rows="3" style="resize:vertical">${val}</textarea></div>`;
+    } else {
+      return `<div class="f-field"><label>${q.label}</label><input type="${q.type}" id="${q.id}" placeholder="${q.placeholder||''}" value="${val}"/></div>`;
+    }
+  }).join('');
 
-  const compModifier = { 'بدون منافسة واضحة':1.2, 'منافسة منخفضة':1.0, 'منافسة متوسطة':0.82, 'منافسة عالية':0.65 };
-  const adjMargin    = margin * (compModifier[comp]||1);
+  const isFirst = fsState.currentGroup === 0;
+  const isLast  = fsState.currentGroup === FS_QUESTIONS[fsState.type].length - 1;
+  document.getElementById('fs-prev-btn').style.display = isFirst ? 'none' : 'inline-flex';
+  document.getElementById('fs-next-btn').innerHTML = isLast
+    ? '<i class="fa-solid fa-file-chart-column"></i> إنشاء الدراسة الآن'
+    : 'التالي <i class="fa-solid fa-arrow-left"></i>';
+}
 
-  let verdict, vClass, score;
-  if (adjMargin >= 18 && roi >= 25)  { verdict='✅ مشروع مربح جداً';  vClass='yes';   score=85+Math.min(adjMargin,15); }
-  else if (adjMargin >= 8)            { verdict='⚠️ مربح بشكل معقول';  vClass='maybe'; score=55+adjMargin; }
-  else                                { verdict='❌ المشروع يحتاج مراجعة'; vClass='no'; score=Math.max(adjMargin+20,15); }
-  score = Math.min(Math.round(score), 98);
+function fsNavNext() {
+  const group = FS_QUESTIONS[fsState.type][fsState.currentGroup];
+  for (const q of group) {
+    const el = document.getElementById(q.id);
+    if (!el) continue;
+    const val = el.value.trim();
+    if (q.required && !val) {
+      showToast('يرجى ملء جميع الحقول قبل المتابعة');
+      el.focus();
+      el.style.borderColor = '#e74c3c';
+      setTimeout(() => { el.style.borderColor = ''; }, 2200);
+      return;
+    }
+    fsState.answers[q.id] = val;
+  }
+  if (fsState.currentGroup < FS_QUESTIONS[fsState.type].length - 1) {
+    fsState.currentGroup++;
+    renderStepsBar();
+    renderQGroup();
+    window.scrollTo({ top: 0, behavior:'smooth' });
+  } else {
+    generateFeasibilityStudy();
+  }
+}
 
-  const html = `
-  <div class="report-card">
-    <div class="report-head">
-      <div>
-        <h3>${name} — ${type}</h3>
-        <span>${city||'غير محدد'} · ${new Date().toLocaleDateString('ar-SA')}</span>
+function fsNavPrev() {
+  const group = FS_QUESTIONS[fsState.type][fsState.currentGroup];
+  group.forEach(q => { const el = document.getElementById(q.id); if (el) fsState.answers[q.id] = el.value.trim(); });
+  if (fsState.currentGroup > 0) {
+    fsState.currentGroup--;
+    renderStepsBar();
+    renderQGroup();
+  }
+}
+
+function generateFeasibilityStudy() {
+  const btn = document.getElementById('fs-next-btn');
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جارٍ إعداد الدراسة...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fa-solid fa-file-chart-column"></i> إنشاء الدراسة الآن';
+    btn.disabled = false;
+    const html = fsState.type === 'simple' ? buildSimpleReport() : buildDetailedReport();
+    document.getElementById('fs-report-container').innerHTML = html;
+    showFsStep(3);
+    window.scrollTo({ top:0, behavior:'smooth' });
+    // counter
+    const a = fsState.answers;
+    const name   = a.fs_name || a.fd_name || 'مشروع جديد';
+    const sector = a.fs_sector || a.fd_sector || '';
+    saveReport(name, sector, 'maybe', 80);
+    const el = document.getElementById('sc-reports');
+    if (el) el.textContent = parseInt(el.textContent||0)+1;
+  }, 2400);
+}
+
+/* ── Simple Report ── */
+function buildSimpleReport() {
+  const a       = fsState.answers;
+  const capital = parseFloat(a.fs_capital)||0;
+  const fixed   = parseFloat(a.fs_fixed)||0;
+  const revenue = parseFloat(a.fs_revenue)||0;
+  const cogs    = parseFloat(a.fs_cogs)||0;
+  const gross   = revenue - cogs;
+  const net     = gross - fixed;
+  const margin  = revenue > 0 ? (net/revenue*100) : 0;
+  const roi     = capital > 0 ? (net*12/capital*100) : 0;
+  const payback = net > 0 ? (capital/net).toFixed(1) : '∞';
+  const compMod = {'بدون منافسة واضحة':1.2,'منافسة منخفضة':1.0,'منافسة متوسطة':0.82,'منافسة عالية':0.65};
+  const adjMg   = margin * (compMod[a.fs_comp]||1);
+  const expBon  = (a.fs_exp||'').includes('واسعة') ? 8 : (a.fs_exp||'').includes('محدودة') ? 3 : 0;
+  let score, verdict, vClass;
+  if (adjMg >= 18 && roi >= 25) { verdict='✅ مشروع مربح جداً'; vClass='yes'; score=85+Math.min(adjMg,13); }
+  else if (adjMg >= 8)           { verdict='⚠️ مربح بشكل معقول'; vClass='maybe'; score=55+adjMg; }
+  else                           { verdict='❌ يحتاج إعادة هيكلة مالية'; vClass='no'; score=Math.max(adjMg+20,15); }
+  score = Math.min(Math.round(score + expBon), 98);
+  return `
+  <div class="study-report">
+    <div class="sr-header">
+      <div style="display:flex;align-items:center;gap:.9rem;margin-bottom:.75rem">
+        <div style="width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem">📊</div>
+        <div>
+          <h2>${a.fs_name||'المشروع'} — دراسة جدوى مبسطة</h2>
+          <p>${a.fs_sector||''} · ${a.fs_city||''} · ${new Date().toLocaleDateString('ar-SA')}</p>
+        </div>
+      </div>
+      <div class="sr-meta">
+        <div class="sr-meta-item"><div class="val">${score}/100</div><div class="lbl">تقييم المشروع</div></div>
+        <div class="sr-meta-item"><div class="val">${net>=0?'+':''}${net.toLocaleString('ar-SA')}</div><div class="lbl">صافي الربح / شهر</div></div>
+        <div class="sr-meta-item"><div class="val">${margin.toFixed(1)}%</div><div class="lbl">هامش الربح</div></div>
+        <div class="sr-meta-item"><div class="val">${roi.toFixed(1)}%</div><div class="lbl">العائد السنوي</div></div>
+        <div class="sr-meta-item"><div class="val">${payback} شهر</div><div class="lbl">استرداد رأس المال</div></div>
       </div>
     </div>
-    <div class="report-body">
-      <div class="verdict ${vClass}">${verdict}</div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-circle-check"></i>الحكم النهائي</h3>
+      <div class="verdict ${vClass}" style="font-size:1rem">${verdict}</div>
+      <div style="margin-top:1rem">
+        <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.4rem"><span>التقييم الشامل</span><span style="font-weight:700">${score}%</span></div>
+        <div class="progress-bar" style="height:9px"><div class="progress-fill" style="width:${score}%"></div></div>
+      </div>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-calculator"></i>التحليل المالي</h3>
       <div class="kpi-row">
-        <div class="kpi-box"><label>صافي الربح الشهري</label><span style="color:${netProfit>=0?'var(--green)':'#e74c3c'}">${netProfit.toLocaleString('ar-SA')} ر</span></div>
-        <div class="kpi-box"><label>هامش الربح</label><span>${margin.toFixed(1)}%</span></div>
-        <div class="kpi-box"><label>العائد السنوي</label><span>${roi}%</span></div>
-        <div class="kpi-box"><label>مدة الاسترداد</label><span>${payback} شهر</span></div>
-        <div class="kpi-box"><label>نقطة التعادل</label><span>${breakEven}k ريال</span></div>
-        <div class="kpi-box"><label>تقييم المشروع</label><span style="color:var(--green)">${score}/100</span></div>
+        <div class="kpi-box"><label>الإيرادات الشهرية</label><span>${revenue.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>تكلفة البضاعة</label><span>${cogs.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>التكاليف الثابتة</label><span>${fixed.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>إجمالي الربح</label><span style="color:var(--green)">${gross.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>صافي الربح</label><span style="color:${net>=0?'var(--green)':'#e74c3c'}">${net.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>نقطة التعادل</label><span>${(fixed+cogs).toLocaleString('ar-SA')} ر</span></div>
       </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.3rem"><span>تقييم شامل</span><span style="font-weight:700">${score}%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="width:${score}%"></div></div>
-      </div>
-      <div style="margin-top:1.25rem">
-        <p style="font-size:.88rem;font-weight:700;margin-bottom:.6rem">توصيات التحسين:</p>
-        <ul style="padding-right:1.2rem;font-size:.85rem;color:var(--muted);line-height:2">
-          ${margin < 20 ? '<li>تخفيض تكلفة البضاعة المباعة عبر التفاوض مع موردين جدد</li>' : ''}
-          ${fixed > revenue*0.4 ? '<li>التكاليف الثابتة مرتفعة نسبياً — راجع الإيجار والرواتب</li>' : ''}
-          ${comp === 'منافسة عالية' ? '<li>المنافسة شديدة — ركز على التميّز وليس السعر</li>' : ''}
-          <li>استهدف زيادة الإيرادات 15% في أول 6 أشهر عبر التسويق الرقمي</li>
-          <li>احتفظ باحتياطي نقدي يعادل 3 أشهر من التكاليف الثابتة</li>
-        </ul>
-      </div>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-shield-halved"></i>تقييم المخاطر</h3>
+      <div class="sr-risk-row"><div class="sr-risk-label">مستوى المنافسة في المنطقة</div><div class="pill-risk ${['بدون منافسة واضحة','منافسة منخفضة'].includes(a.fs_comp)?'pr-low':a.fs_comp==='منافسة متوسطة'?'pr-mid':'pr-high'}">${a.fs_comp||'—'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">الخبرة السابقة في المجال</div><div class="pill-risk ${(a.fs_exp||'').includes('واسعة')?'pr-low':(a.fs_exp||'').includes('محدودة')?'pr-mid':'pr-high'}">${a.fs_exp||'—'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">نسبة التكاليف الثابتة من الإيرادات</div><div class="pill-risk ${revenue>0&&fixed/revenue<0.35?'pr-low':fixed/revenue<0.55?'pr-mid':'pr-high'}">${revenue>0?(fixed/revenue*100).toFixed(0)+'%':'—'}</div></div>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-lightbulb"></i>التوصيات</h3>
+      <ul class="sr-rec-list">
+        ${margin < 20 ? '<li>تكلفة البضاعة مرتفعة — تفاوض مع موردين جدد لتحسين الهامش بنسبة 10-15%</li>' : '<li>هامش الربح جيد — حافظ عليه وركّز على زيادة حجم المبيعات تدريجياً</li>'}
+        ${fixed > revenue*0.4 ? '<li>التكاليف الثابتة مرتفعة نسبياً — راجع الإيجار والرواتب ووجّه التوفير نحو التسويق</li>' : '<li>هيكل التكاليف معقول — يمكن توسعه عند تحقيق نمو في الإيرادات</li>'}
+        ${a.fs_comp === 'منافسة عالية' ? '<li>المنافسة شديدة — ركّز على التميّز في تجربة العميل وليس على تخفيض السعر</li>' : ''}
+        <li>استهدف زيادة الإيرادات بنسبة 15% في الأشهر الستة الأولى عبر حملات رقمية مستهدفة</li>
+        <li>احتفظ باحتياطي نقدي يعادل 3 أشهر من التكاليف الثابتة (${(fixed*3).toLocaleString('ar-SA')} ريال)</li>
+        ${payback !== '∞' && parseFloat(payback) > 18 ? '<li>مدة الاسترداد مطوّلة — ادرس تقليل التكاليف الثابتة أو رفع الأسعار تدريجياً</li>' : ''}
+      </ul>
+    </div>
+    <div class="sr-cta">
+      <button class="btn-primary" onclick="resetFeasibility()"><i class="fa-solid fa-plus"></i> إعداد دراسة جديدة</button>
+      <button class="btn-primary" style="background:var(--navy)" onclick="resetFeasibility();selectStudyType('detailed');proceedToPayment()"><i class="fa-solid fa-arrow-up-right-dots"></i> ترقية إلى دراسة مفصلة</button>
     </div>
   </div>`;
+}
 
-  const res = document.getElementById('analysis-result');
-  res.style.display = 'block';
-  res.innerHTML = html;
-  res.scrollIntoView({ behavior:'smooth', block:'start' });
+/* ── Detailed Report ── */
+function buildDetailedReport() {
+  const a         = fsState.answers;
+  const capital   = parseFloat(a.fd_capital)||0;
+  const setup     = parseFloat(a.fd_setup_cost)||0;
+  const fixed     = parseFloat(a.fd_fixed)||0;
+  const revY1     = parseFloat(a.fd_revenue_y1)||0;
+  const revY3     = parseFloat(a.fd_revenue_y3)||0;
+  const salary    = parseFloat(a.fd_salary)||0;
+  const mkt       = parseFloat(a.fd_mkt_budget)||0;
+  const net       = revY1 - fixed;
+  const roi       = capital > 0 ? (net*12/capital*100) : 0;
+  const payback   = net > 0 ? (capital/net).toFixed(1) : '∞';
+  const growth    = revY1 > 0 ? ((revY3-revY1)/revY1*100).toFixed(0) : '0';
+  let score = 68;
+  if (roi > 30) score += 10; if (roi > 50) score += 8;
+  if (net > 0) score += 6; if ((a.fd_funding||'').includes('ذاتي')) score += 5;
+  score = Math.min(score, 97);
+  return `
+  <div class="study-report">
+    <div class="sr-header">
+      <div style="display:flex;align-items:center;gap:.9rem;margin-bottom:.75rem">
+        <div style="width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem">📋</div>
+        <div>
+          <h2>${a.fd_name||'المشروع'} — دراسة جدوى اقتصادية مفصلة</h2>
+          <p>${a.fd_sector||''} · ${a.fd_city||''} · ${new Date().toLocaleDateString('ar-SA')}</p>
+        </div>
+      </div>
+      <div class="sr-meta">
+        <div class="sr-meta-item"><div class="val">${score}/100</div><div class="lbl">التقييم الشامل</div></div>
+        <div class="sr-meta-item"><div class="val">${net>=0?'+':''}${net.toLocaleString('ar-SA')}</div><div class="lbl">صافي الربح / شهر (س1)</div></div>
+        <div class="sr-meta-item"><div class="val">${roi.toFixed(1)}%</div><div class="lbl">العائد السنوي</div></div>
+        <div class="sr-meta-item"><div class="val">${payback} شهر</div><div class="lbl">استرداد رأس المال</div></div>
+        <div class="sr-meta-item"><div class="val">${growth}%</div><div class="lbl">نمو متوقع (3 سنوات)</div></div>
+      </div>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-file-lines"></i>الملخص التنفيذي</h3>
+      <table class="sr-table">
+        <tr><td>الفكرة</td><td>${a.fd_idea||'—'}</td></tr>
+        <tr><td>المنطقة المستهدفة</td><td>${a.fd_city||'—'}</td></tr>
+        <tr><td>الفئة المستهدفة</td><td>${a.fd_target_age||'—'} · ${a.fd_income||'—'}</td></tr>
+        <tr><td>مصادر التمويل</td><td>${a.fd_funding||'—'}</td></tr>
+        <tr><td>موعد الإطلاق المخطط</td><td>${a.fd_launch||'—'}</td></tr>
+        <tr><td>الهدف المالي (سنة 1)</td><td>${a.fd_fin_goal||'—'}</td></tr>
+      </table>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-calculator"></i>التحليل المالي التفصيلي</h3>
+      <div class="kpi-row">
+        <div class="kpi-box"><label>رأس المال الكلي</label><span>${capital.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>تكاليف التأسيس</label><span>${setup.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>إيرادات شهرية (س1)</label><span style="color:var(--green)">${revY1.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>إيرادات شهرية (س3)</label><span style="color:var(--green)">${revY3.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>التكاليف التشغيلية</label><span>${fixed.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>الرواتب الشهرية</label><span>${salary.toLocaleString('ar-SA')} ر</span></div>
+      </div>
+      <table class="sr-table" style="margin-top:1rem">
+        <tr><td>صافي الربح الشهري (السنة الأولى)</td><td style="font-weight:800;color:${net>=0?'var(--green)':'#e74c3c'}">${net.toLocaleString('ar-SA')} ريال</td></tr>
+        <tr><td>صافي الربح السنوي (السنة الأولى)</td><td style="font-weight:700">${(net*12).toLocaleString('ar-SA')} ريال</td></tr>
+        <tr><td>العائد على الاستثمار (ROI)</td><td style="font-weight:700">${roi.toFixed(1)}%</td></tr>
+        <tr><td>مدة استرداد رأس المال</td><td style="font-weight:700">${payback} شهر</td></tr>
+        <tr><td>نمو الإيرادات المتوقع (3 سنوات)</td><td style="font-weight:700;color:var(--green)">${growth}%</td></tr>
+      </table>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-users"></i>الفريق والموارد البشرية</h3>
+      <table class="sr-table">
+        <tr><td>التوصيف الوظيفي</td><td>${a.fd_emp||'—'}</td></tr>
+        <tr><td>إجمالي الرواتب الشهرية</td><td style="font-weight:800">${salary.toLocaleString('ar-SA')} ريال</td></tr>
+        <tr><td>نسبة الرواتب من الإيرادات</td><td style="color:${revY1>0&&salary/revY1<0.3?'var(--green)':'#d97706'}">${revY1>0?(salary/revY1*100).toFixed(1)+'%':'—'}</td></tr>
+      </table>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-chart-bar"></i>تحليل السوق والمنافسين</h3>
+      <p style="font-size:.87rem;line-height:1.85;color:var(--muted)">${a.fd_comp||'—'}</p>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-bullhorn"></i>الخطة التسويقية</h3>
+      <table class="sr-table">
+        <tr><td>القنوات التسويقية</td><td>${a.fd_marketing||'—'}</td></tr>
+        <tr><td>الميزانية الشهرية</td><td style="font-weight:800">${mkt.toLocaleString('ar-SA')} ريال</td></tr>
+        <tr><td>نسبة التسويق من الإيرادات</td><td>${revY1>0?(mkt/revY1*100).toFixed(1)+'%':'—'}</td></tr>
+      </table>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-triangle-exclamation"></i>تقييم المخاطر</h3>
+      <div class="sr-risk-row"><div class="sr-risk-label">مخاطر السوق والمنافسة</div><div class="pill-risk pr-mid">متوسطة</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">مخاطر التمويل والتدفق النقدي</div><div class="pill-risk ${(a.fd_funding||'').includes('ذاتي')?'pr-low':'pr-mid'}">${(a.fd_funding||'').includes('ذاتي')?'منخفضة':'متوسطة'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">مخاطر التشغيل والكوادر البشرية</div><div class="pill-risk pr-low">منخفضة</div></div>
+      <p style="margin-top:1.1rem;font-size:.86rem;color:var(--muted);line-height:1.85"><strong>المخاطر المُحددة من العميل:</strong> ${a.fd_risks||'—'}</p>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-calendar-days"></i>خطة العمل الاستراتيجية (أول 90 يوماً)</h3>
+      <table class="sr-table">
+        <tr><td>الشهر الأول</td><td>إنهاء الإجراءات القانونية والترخيص، تجهيز الموقع، توظيف الفريق الأساسي</td></tr>
+        <tr><td>الشهر الثاني</td><td>إطلاق حملة تسويقية مكثفة عبر ${a.fd_marketing||'القنوات المخطط لها'} وبدء التشغيل التجريبي</td></tr>
+        <tr><td>الشهر الثالث</td><td>مراجعة الأداء ومقارنته بالخطة، ضبط التكاليف، وتفعيل برنامج الولاء للعملاء</td></tr>
+      </table>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-lightbulb"></i>التوصيات الاستراتيجية</h3>
+      <ul class="sr-rec-list">
+        ${net < 0 ? '<li>التدفق النقدي سلبي في السنة الأولى — خصص احتياطياً لا يقل عن ' + (Math.abs(net)*6).toLocaleString('ar-SA') + ' ريال للصمود</li>' : '<li>التدفق النقدي إيجابي — استثمر الفائض في التسويق لتسريع النمو المستهدف</li>'}
+        <li>ركّز على بناء قاعدة عملاء وفية في الأشهر الثلاثة الأولى قبل التفكير في التوسع</li>
+        ${revY1>0 && salary/revY1 > 0.35 ? '<li>حصة الرواتب مرتفعة — ادرس الأتمتة أو إعادة الهيكلة الوظيفية لإبقائها دون 30%</li>' : ''}
+        <li>ضع خطة طوارئ نقدية تغطي 6 أشهر من التكاليف الثابتة (${(fixed*6).toLocaleString('ar-SA')} ريال)</li>
+        <li>قيّم الأداء شهرياً وقارن الإيرادات الفعلية بالمخططة — عدّل خطتك التسويقية وفقاً لذلك</li>
+        ${parseInt(growth) > 50 ? '<li>توقعات النمو طموحة — تأكد من قدرتك التشغيلية على استيعاب هذا النمو (مساحة، موظفون، مخزون)</li>' : ''}
+      </ul>
+    </div>
+    <div class="sr-cta">
+      <button class="btn-primary" onclick="resetFeasibility()"><i class="fa-solid fa-plus"></i> إعداد دراسة جديدة</button>
+    </div>
+  </div>`;
+}
 
-  // Save report
-  saveReport(name, type, vClass, score);
-  document.getElementById('sc-reports').textContent =
-    parseInt(document.getElementById('sc-reports').textContent||0)+1;
+function showFsStep(step) {
+  document.querySelectorAll('#page-analysis .fs-step').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+
+function resetFeasibility() {
+  fsState = { type:null, payMethod:'card', currentGroup:0, answers:{} };
+  document.getElementById('sc-simple').classList.remove('selected');
+  document.getElementById('sc-detailed').classList.remove('selected');
+  const btn = document.getElementById('fs-next-0');
+  btn.disabled = true; btn.style.opacity = '.45'; btn.style.cursor = 'not-allowed';
+  showFsStep(0);
 }
 
 function saveReport(name, type, status, score) {
@@ -2530,6 +4364,7 @@ function saveReport(name, type, status, score) {
     <span class="rep-badge ${cls}">${lbl} · ${score}/100</span>`;
   list.insertBefore(item, list.firstChild);
 }
+
 
 /* ======================================================
    CAPITAL ENGINE

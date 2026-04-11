@@ -10,9 +10,29 @@ const JENAN_CONFIG = {
     nameEn: "Jenan Biz",
     version: "2.0.0",
     domain: "https://rawad.jenan.biz", // غير هذا عند ربط الدومين
-    logo: "./assets/images/logo.svg",
+    logo: "/assets/images/logo.svg",
     supportEmail: "support@jenan.biz",
     whatsapp: "+966500000000",
+  },
+
+  // ---- قائمة التنقل الرئيسية (nav يُبنى تلقائياً منها) ----
+  // لإضافة قسم جديد: أضف سطراً واحداً هنا فقط — يظهر في كل الصفحات
+  nav: {
+    links: [
+      { label: "الرئيسية",      href: "/index.html",           icon: null },
+      { label: "خدماتنا",       href: "/pages/services.html",  icon: null },
+      { label: "مركز المعرفة",  href: "/pages/knowledge.html", icon: null },
+      { label: "اتصل بنا",      href: "/pages/contact.html",   icon: null },
+      { label: "لوحة التحكم",   href: "/dashboard.html",       icon: null },
+    ],
+    // الأقسام الأربعة — تظهر في قائمة "أقسامنا" المنسدلة
+    sections: [
+      { label: "دراسات الجدوى وتحليل المشاريع", href: "/pages/feasibility.html", icon: "fa-chart-pie"     },
+      { label: "أكاديمية جنان — الدورات",        href: "/pages/courses.html",     icon: "fa-graduation-cap"},
+      { label: "الأبحاث والدراسات والندوات",     href: "/pages/research.html",    icon: "fa-microscope"    },
+      { label: "متجر البرامج",                   href: "/pages/software.html",    icon: "fa-box-open"      },
+      // ← أضف قسماً جديداً هنا بسطر واحد فقط
+    ],
   },
 
   // ---- طبقة الأداء والطوابير ----

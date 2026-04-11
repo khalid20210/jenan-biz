@@ -14,6 +14,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 from typing import Optional, List, Dict, Any, Tuple
+from urllib.parse import quote
 
 # تحميل متغيّرات البيئة من ملف .env
 from dotenv import load_dotenv
@@ -22,6 +23,8 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 from fastapi import FastAPI, HTTPException, Depends, Header, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 import openai
 from openai import AsyncOpenAI
@@ -40,14 +43,40 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://rawad.jenan.biz", "http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# ---- OpenAI Client ----
-client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# ---- خدمة الملفات الثابتة ----
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+app.mount("/assets", StaticFiles(directory=os.path.join(BASE_DIR, "assets")), name="assets")
+app.mount("/config", StaticFiles(directory=os.path.join(BASE_DIR, "config")), name="config")
+
+@app.get("/")
+async def root():
+    return FileResponse(os.path.join(BASE_DIR, "auth.html"))
+
+@app.get("/dashboard")
+async def dashboard():
+    return FileResponse(os.path.join(BASE_DIR, "dashboard.html"))
+
+@app.get("/auth")
+async def auth():
+    return FileResponse(os.path.join(BASE_DIR, "auth.html"))
+
+# ---- OpenAI Client (lazy — يُنشأ عند أول طلب فعلي) ----
+_openai_client = None
+def get_openai_client():
+    global _openai_client
+    if _openai_client is None:
+        key = os.getenv("OPENAI_API_KEY", "")
+        if not key or key.startswith("sk-test"):
+            raise HTTPException(status_code=503, detail="مفتاح OpenAI غير مُضاف بعد — السيرفر يعمل في وضع التجربة")
+        _openai_client = AsyncOpenAI(api_key=key)
+    return _openai_client
+client = type("LazyClient", (), {"__getattr__": lambda s,n: getattr(get_openai_client(), n)})()
 DISCLAIMER = (
     "⚠️ جميع التحليلات والدراسات المقدمة من جنان بيز هي لأغراض إرشادية فحسب، "
     "دون أدنى مسؤولية قانونية أو مالية على المنصة أو القائمين عليها. "
@@ -275,7 +304,6 @@ async def _send_sms(phone: str, otp: str) -> bool:
       SMS_SENDER    — هوية المرسل (مثال: JenanBiz)
       SMS_USER_SENDER (لـ msegat فقط)
     """
-    import httpx
     provider  = os.getenv("SMS_PROVIDER", "")
     api_key   = os.getenv("SMS_API_KEY", "")
     sender    = os.getenv("SMS_SENDER", "JenanBiz")
@@ -860,7 +888,6 @@ async def academy_generate_quiz(data: AcademyQuizInput, user_id: str = Depends(g
             max_tokens=1500,
             temperature=0.5,
         )
-        import json
         raw = resp.choices[0].message.content.strip()
         # تنظيف أي markdown
         if raw.startswith("```"):
@@ -965,7 +992,7 @@ async def software_inquire(data: SoftwareInquiryInput, request: Request):
         f"المصدر: متجر برامج جنان بيز"
     )
 
-    wa_url = f"https://wa.me/966567711999?text={wa_message}"
+    wa_url = f"https://wa.me/966567711999?text={quote(wa_message)}"
 
     return {
         "status":       "success",
@@ -1090,8 +1117,6 @@ async def payment_status(order_id: str):
     """
     استعلام عن حالة طلب دفع موجود من Moyasar.
     """
-    import httpx
-    import os
     secret_key = os.environ.get("MOYASAR_SECRET_KEY", "sk_test_your_key")
     try:
         async with httpx.AsyncClient(timeout=10) as client:
@@ -1110,7 +1135,6 @@ async def tamara_create_session(body: BNPLSessionInput):
     إنشاء جلسة Tamara BNPL (3 أقساط بدون فوائد).
     يُعيد checkout_url لإعادة التوجيه لصفحة تمارا.
     """
-    import httpx, os
     tamara_token = os.environ.get("TAMARA_API_TOKEN", "sandbox_token")
     tamara_base  = "https://api-sandbox.tamara.co"   # غيّر لـ api.tamara.co في الإنتاج
 
@@ -1153,7 +1177,6 @@ async def tabby_create_session(body: BNPLSessionInput):
     إنشاء جلسة Tabby (4 أقساط بدون فوائد).
     يُعيد web_url لإعادة التوجيه لصفحة تابي.
     """
-    import httpx, os
     tabby_key  = os.environ.get("TABBY_API_KEY", "pk_test_your_tabby_key")
     tabby_base = "https://api.tabby.ai"
 
@@ -1187,13 +1210,33 @@ async def tabby_create_session(body: BNPLSessionInput):
         return {"checkout_url": None, "message": "وضع التطوير — تابي غير متصلة"}
 
 
+@app.post("/api/payment/applepay/validate-merchant")
+async def applepay_validate_merchant(request: Request):
+    """
+    التحقق من هوية التاجر لـ Apple Pay Session.
+    يُستدعى من المتصفح أثناء تهيئة ApplePaySession.
+    """
+    body = await request.json()
+    validation_url = body.get("validationURL", "")
+    if not validation_url:
+        raise HTTPException(400, "validationURL مطلوب")
+    # في الإنتاج: استدع validation_url بشهادة Apple Pay merchant
+    # حالياً وضع تطوير — يعيد بيانات وهمية
+    return {
+        "merchantSessionIdentifier": "DEMO_SESSION_" + hashlib.md5(validation_url.encode()).hexdigest()[:16].upper(),
+        "nonce": secrets.token_hex(16),
+        "merchantIdentifier": os.environ.get("APPLE_MERCHANT_ID", "merchant.biz.jenan.demo"),
+        "domainName": "rawad.jenan.biz",
+        "displayName": "جنان بيز",
+    }
+
+
 @app.post("/api/payment/stcpay/init")
 async def stcpay_init(body: STCInitInput):
     """
     تهيئة دفع STC Pay — إرسال OTP للعميل.
     """
-    import httpx, os
-    stc_key = os.environ.get("STCPAY_API_KEY", "test_stc_key")
+    stc_key = os.environ.get("STCPAY_API_KEY", "test_stc_key")  # noqa: F841
     # STC Pay REST API integration goes here
     # Demo mode — return success
     return {"status": "otp_sent", "message": "تم إرسال رمز OTP — وضع التطوير"}

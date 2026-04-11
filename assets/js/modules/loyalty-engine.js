@@ -84,8 +84,8 @@ class LoyaltyEngine {
   redeem(userId, type) {
     const state = this._getState(userId);
     const costs = {
-      cash:               this.redeem.min_redeem,
-      upgrade_basic:      this.redeem.upgrade_basic,
+      cash:               this.redeem.min_cash_redeem,
+      upgrade_basic:      this.redeem.silver_entrepreneur,
       upgrade_pro:        this.redeem.upgrade_pro,
       upgrade_enterprise: this.redeem.upgrade_enterprise,
     };
