@@ -56,15 +56,21 @@ app.mount("/config", StaticFiles(directory=os.path.join(BASE_DIR, "config")), na
 
 @app.get("/")
 async def root():
-    return FileResponse(os.path.join(BASE_DIR, "auth.html"))
+    resp = FileResponse(os.path.join(BASE_DIR, "auth.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
 
 @app.get("/dashboard")
 async def dashboard():
-    return FileResponse(os.path.join(BASE_DIR, "dashboard.html"))
+    resp = FileResponse(os.path.join(BASE_DIR, "dashboard.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
 
 @app.get("/auth")
 async def auth():
-    return FileResponse(os.path.join(BASE_DIR, "auth.html"))
+    resp = FileResponse(os.path.join(BASE_DIR, "auth.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
 
 # ---- OpenAI Client (lazy — يُنشأ عند أول طلب فعلي) ----
 _openai_client = None

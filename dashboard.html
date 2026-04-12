@@ -323,15 +323,62 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .btn-primary:hover{background:var(--green-d);transform:translateY(-2px);box-shadow:0 8px 20px rgba(78,115,194,.3)}
 
-/* CAPITAL */
-.capital-tool{display:grid;grid-template-columns:1fr 1.4fr;gap:1.5rem}
-.capital-input-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem}
-.capital-result{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem}
-.amount-display{
-  font-size:2.4rem;font-weight:800;color:var(--green);text-align:center;
-  padding:1.5rem;background:var(--green-lt);border-radius:12px;margin:1rem 0;
+/* ── CAPITAL CONSULTATION ───────────────────────── */
+.cap-step{display:none}
+.cap-step.active{display:block}
+.cap-hero{
+  background:linear-gradient(135deg,#451A03,#92400E,#d97706);
+  border-radius:18px;padding:1.75rem 2rem;margin-bottom:1.5rem;
+  display:flex;align-items:flex-start;gap:1.25rem;
 }
-.range-input{width:100%;accent-color:var(--green);height:6px;cursor:pointer;margin:1rem 0}
+.cap-hero-icon{
+  width:60px;height:60px;border-radius:16px;flex-shrink:0;
+  background:rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;color:#fff;
+}
+.cap-hero h2{font-size:1.2rem;font-weight:900;color:#fff;margin:.4rem 0 .45rem}
+.cap-hero p{font-size:.84rem;color:rgba(255,255,255,.75);line-height:1.7}
+.cap-hero-badge{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);color:#fff;border-radius:20px;padding:.2rem .85rem;font-size:.73rem;font-weight:700;margin-bottom:.5rem}
+.cap-form-card{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:1.75rem}
+/* Profile summary */
+.cap-profile-card{background:linear-gradient(135deg,#0B0E1A,#1a2755);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem;border:1px solid rgba(78,115,194,.2)}
+.cpc-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.cpc-icon{width:48px;height:48px;border-radius:14px;background:rgba(78,115,194,.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#7B9ED4;flex-shrink:0}
+.cpc-title{font-size:.97rem;font-weight:800;color:#fff}
+.cpc-sub{font-size:.77rem;color:rgba(255,255,255,.5);margin-top:.15rem}
+.cpc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.85rem;margin-bottom:1.1rem}
+.cpc-stat{background:rgba(255,255,255,.06);border-radius:10px;padding:.75rem;text-align:center}
+.cps-val{font-size:1.3rem;font-weight:900;color:#fff}
+.cps-lbl{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.1rem}
+.cpc-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.cpc-tag{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border-radius:20px;padding:.2rem .75rem;font-size:.74rem;font-weight:600}
+/* Project cards */
+.cap-project-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;margin-bottom:.9rem;position:relative;transition:var(--tr)}
+.cap-project-card:hover{border-color:var(--green);box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.cap-top-pick{border-color:#f59e0b;background:linear-gradient(135deg,rgba(245,158,11,.05),var(--bg3))}
+.cap-rank-badge{display:inline-block;background:rgba(245,158,11,.15);color:#d97706;border-radius:20px;padding:.2rem .75rem;font-size:.72rem;font-weight:700;margin-bottom:.6rem}
+.cap-project-inner{display:flex;align-items:flex-start;gap:1rem}
+.cap-proj-icon{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:rgba(78,115,194,.1);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.cpi-top{background:rgba(245,158,11,.15);color:#d97706}
+.cap-proj-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:.5rem;margin-top:.55rem}
+.cpm-item{background:var(--bg2);border-radius:8px;padding:.45rem .6rem;text-align:center}
+.cpm-val{font-size:.9rem;font-weight:800}
+.cpm-lbl{font-size:.68rem;color:var(--muted);margin-top:.1rem}
+.cap-empty{text-align:center;padding:3rem;background:var(--bg3);border-radius:16px;border:1px dashed var(--border);color:var(--muted)}
+/* Portfolio */
+.cap-portfolio{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-top:1.25rem}
+.cap-port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.9rem}
+.cap-port-item{background:var(--bg2);border-radius:12px;padding:1rem;text-align:center}
+.cport-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin:0 auto .65rem}
+.cport-title{font-size:.75rem;color:var(--muted);font-weight:600;margin-bottom:.25rem}
+.cport-val{font-size:1rem;font-weight:800}
+.cport-sub{font-size:.69rem;color:var(--muted);margin-top:.2rem}
+@media(max-width:700px){
+  .cap-hero{flex-direction:column}
+  .cap-project-inner{flex-wrap:wrap}
+  .cap-proj-metrics{grid-template-columns:1fr 1fr}
+}
 .project-suggest{
   background:var(--bg2);border-radius:12px;padding:1.1rem;
   margin-bottom:.9rem;border:1px solid var(--border);
@@ -660,6 +707,116 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   .ac-hero{flex-direction:column;text-align:center}
 }
 
+/* ══ HUB CARDS ══ */
+/* HUB HERO */
+.hub-hero{
+  background:linear-gradient(135deg,#0B0E1A 0%,#1E2D5C 60%,#172548 100%);
+  border-radius:20px;padding:2.5rem 2rem;margin-bottom:1.75rem;text-align:center;
+  border:1px solid rgba(78,115,194,.25);
+  box-shadow:0 8px 40px rgba(0,0,0,.2);
+}
+.hub-hero-badge{
+  display:inline-flex;align-items:center;background:rgba(78,115,194,.2);
+  color:#7B9ED4;border-radius:20px;padding:.3rem .9rem;font-size:.75rem;font-weight:700;
+  border:1px solid rgba(78,115,194,.3);margin-bottom:1rem;
+}
+.hub-hero-title{
+  font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:#fff;
+  line-height:1.45;margin-bottom:.75rem;
+}
+.hub-hero-sub{
+  font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.8;
+  max-width:600px;margin:0 auto 1.75rem;
+}
+.hub-hero-stats{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  flex-wrap:wrap;background:rgba(255,255,255,.05);
+  border-radius:14px;padding:1rem 1.5rem;border:1px solid rgba(255,255,255,.08);
+}
+.hub-stat-item{text-align:center;padding:0 .75rem}
+.hub-stat-num{font-size:1.4rem;font-weight:900;color:var(--green)}
+.hub-stat-lbl{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.1rem}
+.hub-stat-sep{width:1px;height:40px;background:rgba(255,255,255,.15)}
+/* HUB CARDS */
+/* ── ROBOT WELCOME ──────────────────────────────── */
+.pa-hero{
+  background:linear-gradient(135deg,#0B0E1A,#1a2755);
+  border-radius:18px;padding:2rem 2rem 1.75rem;margin-bottom:1.5rem;
+  display:flex;align-items:flex-start;gap:1.5rem;
+  border:1px solid rgba(78,115,194,.25);
+}
+.pa-hero-icon{
+  width:70px;height:70px;border-radius:18px;flex-shrink:0;
+  background:linear-gradient(135deg,#1E3A8A,#4E73C2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.75rem;color:#fff;
+  box-shadow:0 8px 24px rgba(78,115,194,.35);
+}
+.pa-hero-text h2{font-size:1.25rem;font-weight:900;color:#fff;margin:.45rem 0 .5rem}
+.pa-hero-text p{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.75}
+.pa-hero-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(78,115,194,.2);border:1px solid rgba(78,115,194,.35);
+  color:#7B9ED4;border-radius:20px;padding:.2rem .85rem;font-size:.73rem;font-weight:700;
+}
+.pa-steps-preview{
+  display:flex;align-items:center;gap:0;
+  background:var(--bg3);border:1px solid var(--border);border-radius:14px;
+  padding:1.1rem 1.25rem;margin-bottom:1.5rem;overflow-x:auto;
+}
+.psp-item{display:flex;align-items:center;gap:.65rem;flex-shrink:0}
+.psp-num{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,#1E3A8A,#4E73C2);
+  color:#fff;font-size:.78rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.psp-title{font-size:.78rem;font-weight:700}
+.psp-sub{font-size:.7rem;color:var(--muted)}
+.psp-line{flex-shrink:0;height:1px;width:24px;background:var(--border);margin:0 .6rem}
+.pa-output-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1rem;margin-bottom:1rem;
+}
+.pa-output-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:14px;
+  padding:1.1rem;display:flex;flex-direction:column;gap:.55rem;
+}
+.pa-oc-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.pa-oc-title{font-size:.87rem;font-weight:800}
+.pa-oc-sub{font-size:.77rem;color:var(--muted);line-height:1.55}
+@media(max-width:700px){
+  .pa-hero{flex-direction:column;gap:1rem}
+  .psp-line{width:16px}
+  .hub-trust{gap:1rem;font-size:.74rem}
+  .hub-stat-sep{display:none}
+}
+.hub-divider{height:1px;background:var(--border);margin:.15rem 0}
+.hub-tiers{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.hub-tier{background:var(--bg2);border-radius:10px;padding:.75rem .9rem;border:1px solid var(--border)}
+.ht-name{font-size:.78rem;font-weight:700;margin-bottom:.2rem}
+.ht-price{font-size:1.1rem;font-weight:900;color:var(--green)}
+.hub-tier.ht-featured{background:linear-gradient(135deg,#312E81,#4E73C2);border-color:transparent}
+.ht-featured .ht-name{color:rgba(255,255,255,.85)}
+.ht-featured .ht-price{color:#7dd3fc}
+.hub-output-preview{background:var(--bg2);border-radius:10px;padding:.65rem .85rem;margin-top:.05rem}
+.hop-label{font-size:.72rem;color:var(--muted);font-weight:600;margin-bottom:.4rem}
+.hop-chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.hop-chips span{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:.2rem .65rem;font-size:.73rem;font-weight:600}
+.hub-trust{
+  display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;
+  background:var(--bg3);border:1px solid var(--border);border-radius:14px;
+  padding:.9rem 1.5rem;margin-top:.25rem;margin-bottom:1rem;
+}
+.hub-trust-item{display:flex;align-items:center;gap:.4rem;font-size:.79rem;color:var(--muted);font-weight:600}
+.hub-features{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.45rem}
+.hub-features li{font-size:.83rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.hub-features li i{color:var(--green);font-size:.75rem;flex-shrink:0}
+.hub-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.5rem;border-top:1px solid var(--border)}
+.hub-price{font-size:.88rem;color:var(--muted)}.hub-price strong{color:var(--green);font-size:1rem}
+.hub-btn{background:linear-gradient(135deg,var(--green),#0ea06a);color:#fff;border:none;border-radius:10px;padding:.55rem 1.2rem;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;transition:var(--tr);display:flex;align-items:center;gap:.4rem}
+.hub-btn:hover{opacity:.88}
+
 /* ══ DESIGN STUDIO ══ */
 .design-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem;margin-top:1.5rem}
 .design-service-card{background:var(--card);border-radius:16px;padding:1.5rem;border:1px solid var(--border);cursor:pointer;transition:var(--tr);display:flex;flex-direction:column;gap:.6rem}
@@ -735,34 +892,48 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .pay-method.active i{color:var(--green)}
 .pay-method span{font-size:.8rem;font-weight:600}
 /* study report */
-.study-report{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem}
-.sr-header{background:linear-gradient(135deg,var(--green),var(--green-dp));color:#fff;padding:2rem}
-.sr-header h2{font-size:1.25rem;font-weight:800;margin-bottom:.35rem}
-.sr-header p{font-size:.83rem;opacity:.85}
-.sr-meta{display:flex;gap:1.75rem;margin-top:1.25rem;flex-wrap:wrap}
+.study-report{background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:2rem;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.sr-header{background:linear-gradient(135deg,#1E3A8A 0%,#4E73C2 60%,#7B9ED4 100%);color:#fff;padding:2rem 2.25rem}
+.sr-header h2{font-size:1.2rem;font-weight:900;margin-bottom:.3rem}
+.sr-header p{font-size:.82rem;opacity:.8}
+.sr-meta{display:flex;gap:1.75rem;margin-top:1.4rem;flex-wrap:wrap}
 .sr-meta-item{text-align:center}
-.sr-meta-item .val{font-size:1.45rem;font-weight:800}
-.sr-meta-item .lbl{font-size:.7rem;opacity:.75;margin-top:.1rem}
-.sr-section{padding:1.4rem 2rem;border-bottom:1px solid var(--border)}
+.sr-meta-item .val{font-size:1.5rem;font-weight:900}
+.sr-meta-item .lbl{font-size:.68rem;opacity:.72;margin-top:.1rem}
+.sr-section{padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
 .sr-section:last-child{border-bottom:none}
-.sr-section h3{font-size:.97rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.sr-section h3{font-size:.95rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;color:var(--text)}
 .sr-section h3 i{color:var(--green)}
 .sr-table{width:100%;border-collapse:collapse;font-size:.87rem}
 .sr-table tr{border-bottom:1px solid var(--border)}
 .sr-table tr:last-child{border-bottom:none}
-.sr-table td{padding:.65rem .5rem;vertical-align:top;line-height:1.6}
-.sr-table td:first-child{font-weight:600;color:var(--muted);width:44%;white-space:nowrap}
-.sr-rec-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:.65rem}
-.sr-rec-list li{display:flex;align-items:flex-start;gap:.6rem;font-size:.87rem;line-height:1.65}
+.sr-table td{padding:.7rem .6rem;vertical-align:top;line-height:1.6}
+.sr-table td:first-child{font-weight:600;color:var(--muted);width:40%;white-space:nowrap}
+.sr-rec-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.sr-rec-list li{display:flex;align-items:flex-start;gap:.65rem;font-size:.87rem;line-height:1.65;background:var(--bg2);border-radius:8px;padding:.65rem .85rem}
 .sr-rec-list li::before{content:'◈';color:var(--green);flex-shrink:0;margin-top:.15rem}
-.sr-risk-row{display:flex;align-items:center;gap:1rem;padding:.65rem 0;border-bottom:1px dashed var(--border);font-size:.87rem}
+.sr-risk-row{display:flex;align-items:center;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.87rem}
 .sr-risk-row:last-child{border-bottom:none}
 .sr-risk-label{flex:1}
-.pill-risk{padding:.2rem .65rem;border-radius:20px;font-size:.73rem;font-weight:700}
-.pr-low{background:rgba(78,115,194,.12);color:var(--green)}
-.pr-mid{background:rgba(244,166,35,.12);color:#d97706}
+.pill-risk{padding:.25rem .75rem;border-radius:20px;font-size:.74rem;font-weight:700}
+.pr-low{background:rgba(34,197,94,.12);color:#16a34a}
+.pr-mid{background:rgba(245,158,11,.12);color:#d97706}
 .pr-high{background:rgba(231,76,60,.1);color:#e74c3c}
-.sr-cta{padding:1.5rem 2rem;background:var(--bg2);display:flex;gap:1rem;flex-wrap:wrap}
+.sr-cta{padding:1.5rem 2rem;background:var(--bg2);display:flex;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--border)}
+/* Brand footer + Disclaimer inside reports */
+.sr-disclaimer{display:flex;gap:.75rem;align-items:flex-start;margin:1.5rem 2rem .5rem;padding:1rem 1.25rem;background:rgba(78,115,194,.07);border:1px solid rgba(78,115,194,.2);border-radius:12px;font-size:.8rem;color:var(--muted);line-height:1.6;direction:rtl;text-align:right}
+.sr-disclaimer strong{color:var(--text)}
+.sr-brand-footer{display:flex;align-items:center;gap:1rem;justify-content:space-between;flex-wrap:wrap;margin:.5rem 2rem 0;padding:1rem 1.25rem;background:linear-gradient(135deg,#0B0E1A 0%,#1E3A8A 100%);border-radius:12px 12px 0 0;color:#fff}
+.srbf-logo{font-size:1rem;font-weight:800;display:flex;align-items:center;gap:.45rem;color:#fff;letter-spacing:.3px}
+.srbf-logo i{color:#7B9ED4;font-size:1.1rem}
+.srbf-mid{font-size:.78rem;color:rgba(255,255,255,.65);flex:1;text-align:center}
+.srbf-date{font-size:.78rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:.35rem}
+.srbf-date i{color:#7B9ED4}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.85rem;margin:1rem 0}
+.kpi-box{background:var(--bg2);border-radius:12px;padding:.95rem 1rem;border:1px solid var(--border);transition:var(--tr)}
+.kpi-box:hover{border-color:rgba(78,115,194,.3)}
+.kpi-box label{font-size:.71rem;color:var(--muted);display:block;margin-bottom:.3rem;font-weight:600}
+.kpi-box span{font-size:1.1rem;font-weight:800;color:var(--text)}
 @media(max-width:700px){
   .study-types-grid{grid-template-columns:1fr}
   .pay-methods-grid{grid-template-columns:1fr 1fr}
@@ -796,41 +967,27 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
     <p class="nav-section">الأدوات الذكية</p>
 
     <!-- ══ 1. تحليل المشاريع وإعداد دراسات الجدوى ══ -->
-    <div class="nav-group open" id="navg-analysis">
-      <div class="nav-group-header" onclick="toggleNavGroup('navg-analysis')">
-        <i class="fa-solid fa-chart-mixed group-ico" style="color:#7B9ED4"></i>
-        <span class="group-label">تحليل المشاريع ودراسات الجدوى</span>
-        <i class="fa-solid fa-chevron-right ng-arrow"></i>
-      </div>
-      <div class="nav-sub">
-        <div class="nav-sub-item" id="nsub-robot" onclick="gotoSub('robot','navg-analysis','nsub-robot')">
-          <i class="fa-solid fa-magnifying-glass-chart" style="color:#4E73C2"></i> تحليل المشروع
-          <span class="nav-badge" style="margin-right:auto">AI</span>
-        </div>
-        <div class="nav-sub-item" id="nsub-analysis" onclick="gotoSub('analysis','navg-analysis','nsub-analysis')">
-          <i class="fa-solid fa-file-chart-column" style="color:#7B9ED4"></i> دراسات الجدوى الاقتصادية
-        </div>
-        <div class="nav-sub-item" id="nsub-capital" onclick="gotoSub('capital','navg-analysis','nsub-capital')">
-          <i class="fa-solid fa-coins" style="color:#f59e0b"></i> استشارة رأس المال
-        </div>
-        <div class="nav-sub-item" id="nsub-projectcopilot" onclick="gotoSub('projectcopilot','navg-analysis','nsub-projectcopilot')">
-          <i class="fa-solid fa-rocket" style="color:#a855f7"></i> روبوت المشاريع
-          <span class="nav-badge" style="background:#a855f7;margin-right:auto">AI</span>
-        </div>
-      </div>
+    <div class="nav-item" id="nav-hub" onclick="goto('hub')">
+      <i class="fa-solid fa-chart-mixed" style="color:#7B9ED4"></i> تحليل المشاريع ودراسات الجدوى
     </div>
 
-    <!-- ══ 2. أكاديمية جنان ══ -->
+    <!-- ══ 2. روبوت المشاريع ══ -->
+    <div class="nav-item" id="nav-projectcopilot" onclick="goto('projectcopilot')">
+      <i class="fa-solid fa-rocket" style="color:#a855f7"></i> روبوت المشاريع
+      <span class="nav-badge" style="background:#a855f7">AI</span>
+    </div>
+
+    <!-- ══ 3. أكاديمية جنان ══ -->
     <div class="nav-item" id="nav-academy" onclick="goto('academy')">
       <i class="fa-solid fa-graduation-cap" style="color:#7B9ED4"></i> أكاديمية جنان للأعمال
     </div>
 
-    <!-- ══ 3. التصميم والإبداع ══ -->
+    <!-- ══ 4. التصميم والإبداع ══ -->
     <div class="nav-item" id="nav-design" onclick="goto('design')">
       <i class="fa-solid fa-pen-nib" style="color:#ec4899"></i> التصميم والإبداع
     </div>
 
-    <!-- ══ 4. متجر البرامج المميزة ══ -->
+    <!-- ══ 5. متجر البرامج المميزة ══ -->
     <div class="nav-item" id="nav-software" onclick="goto('software')">
       <i class="fa-solid fa-store" style="color:#22c55e"></i> متجر البرامج المميزة
       <span class="nav-badge" style="background:#16a34a">جديد</span>
@@ -928,19 +1085,19 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           </div>
         </div>
         <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
-          <div class="feature-card" onclick="gotoSub('robot','navg-analysis','nsub-robot')" style="padding:1.35rem">
+          <div class="feature-card" onclick="goto('robot')" style="padding:1.35rem">
             <div class="fc-icon si-green" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
             <h3 style="font-size:.95rem">تحليل المشروع</h3>
             <p style="font-size:.82rem">أجب على 15 سؤالاً واحصل على تقرير يُحدد الربحية وخطة رفع الأرباح</p>
             <div class="fc-arrow" style="font-size:.8rem">ابدأ التحليل <i class="fa-solid fa-arrow-left"></i></div>
           </div>
-          <div class="feature-card" onclick="gotoSub('academy','navg-analysis','nsub-analysis')" style="padding:1.35rem">
-            <div class="fc-icon si-amber" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-graduation-cap"></i></div>
-            <h3 style="font-size:.95rem">أكاديمية جنان للمال والأعمال</h3>
-            <p style="font-size:.82rem">مكتبة دراسات · دورات مالية · أدوات مال ذكية لبناء قراراتك بثقة</p>
-            <div class="fc-arrow" style="font-size:.8rem">ادخل الأكاديمية <i class="fa-solid fa-arrow-left"></i></div>
+          <div class="feature-card" onclick="goto('analysis')" style="padding:1.35rem">
+            <div class="fc-icon si-amber" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-file-chart-column"></i></div>
+            <h3 style="font-size:.95rem">إعداد دراسات الجدوى</h3>
+            <p style="font-size:.82rem">دراسة مبسطة أو مفصلة مع تقرير احترافي مقبول للبنوك والمستثمرين</p>
+            <div class="fc-arrow" style="font-size:.8rem">ابدأ الدراسة <i class="fa-solid fa-arrow-left"></i></div>
           </div>
-          <div class="feature-card" onclick="gotoSub('capital','navg-analysis','nsub-capital')" style="padding:1.35rem">
+          <div class="feature-card" onclick="goto('capital')" style="padding:1.35rem">
             <div class="fc-icon si-purple" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-coins"></i></div>
             <h3 style="font-size:.95rem">استشارة رأس المال</h3>
             <p style="font-size:.82rem">حدد ميزانيتك وسنقترح أفضل المشاريع والاستثمارات الملائمة لك</p>
@@ -959,42 +1116,266 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       </div>
     </div>
 
+    <!-- ===== HUB → تحليل المشاريع ودراسات الجدوى ===== -->
+    <div class="page" id="page-hub">
+
+      <!-- Hero Banner -->
+      <div class="hub-hero">
+        <div class="hub-hero-badge"><i class="fa-solid fa-brain" style="margin-left:.4rem"></i>مدعوم بالذكاء الاصطناعي</div>
+        <h1 class="hub-hero-title">اتخذ قراراتك التجارية<br/>بأرقام حقيقية ودقيقة</h1>
+        <p class="hub-hero-sub">منصة متكاملة تجمع تحليل المشاريع + دراسات الجدوى الاقتصادية + استشارات رأس المال — في مكان واحد</p>
+        <div class="hub-hero-stats">
+          <div class="hub-stat-item">
+            <div class="hub-stat-num">+2,400</div>
+            <div class="hub-stat-lbl">تقرير أُصدر</div>
+          </div>
+          <div class="hub-stat-sep"></div>
+          <div class="hub-stat-item">
+            <div class="hub-stat-num">94%</div>
+            <div class="hub-stat-lbl">دقة التوقعات</div>
+          </div>
+          <div class="hub-stat-sep"></div>
+          <div class="hub-stat-item">
+            <div class="hub-stat-num">5 دقائق</div>
+            <div class="hub-stat-lbl">وتُنجز التحليل</div>
+          </div>
+          <div class="hub-stat-sep"></div>
+          <div class="hub-stat-item">
+            <div class="hub-stat-num">22 قطاع</div>
+            <div class="hub-stat-lbl">مُدرج في قاعدة البيانات</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:.82rem;color:var(--muted);text-align:center;margin-bottom:1.5rem;font-weight:600;letter-spacing:.05em">اختر الخدمة المناسبة لمشروعك</p>
+      <div class="hub-cards">
+
+        <!-- بطاقة 1: تحليل المشروع -->
+        <div class="hub-card hc-blue" onclick="goto('robot')">
+          <div class="hub-card-icon" style="background:linear-gradient(135deg,#1E3A8A,#4E73C2)">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+          </div>
+          <div class="hub-card-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap">
+              <div class="hub-card-badge">🤖 مجاني · AI</div>
+              <div style="font-size:.7rem;color:var(--muted);font-weight:600">⏱ 5 دقائق</div>
+            </div>
+            <h3>تحليل المشروع الاقتصادي</h3>
+            <p>أدخل أرقام مشروعك الحقيقية واحصل على تقرير ربحية شاملاً مع خطة تحسين فورية ومخصصة</p>
+            <div class="hub-divider"></div>
+            <ul class="hub-features">
+              <li><i class="fa-solid fa-check"></i> تحليل ربحية شهري وسنوي دقيق</li>
+              <li><i class="fa-solid fa-check"></i> نقطة التعادل + استرداد رأس المال</li>
+              <li><i class="fa-solid fa-check"></i> توقعات نمو 3 سنوات</li>
+              <li><i class="fa-solid fa-check"></i> خطة رفع الأرباح بالأرقام</li>
+              <li><i class="fa-solid fa-check"></i> تحليل المخاطر والمنافسة</li>
+            </ul>
+            <div class="hub-output-preview">
+              <div class="hop-label">ما ستحصل عليه:</div>
+              <div class="hop-chips">
+                <span>📊 تقرير مالي</span><span>📈 3 سنوات</span><span>💡 توصيات</span>
+              </div>
+            </div>
+            <div class="hub-card-footer">
+              <span class="hub-price" style="color:var(--green)">مجاني تماماً</span>
+              <button class="hub-btn" style="background:linear-gradient(135deg,#1E3A8A,#4E73C2)">ابدأ التحليل <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- بطاقة 2: إعداد دراسات الجدوى -->
+        <div class="hub-card hc-indigo" onclick="goto('analysis')" style="position:relative">
+          <div style="position:absolute;top:1rem;left:1rem;background:linear-gradient(135deg,#e74c3c,#c0392b);color:#fff;font-size:.7rem;font-weight:800;padding:.25rem .75rem;border-radius:20px;z-index:2">الأكثر طلباً ⭐</div>
+          <div class="hub-card-icon" style="background:linear-gradient(135deg,#312E81,#7B9ED4)">
+            <i class="fa-solid fa-file-chart-column"></i>
+          </div>
+          <div class="hub-card-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap">
+              <div class="hub-card-badge" style="background:rgba(123,158,212,.15);color:#7B9ED4">📋 موثقة رسمياً</div>
+              <div style="font-size:.7rem;color:var(--muted);font-weight:600">99 – 299 ريال</div>
+            </div>
+            <h3>دراسات الجدوى الاقتصادية</h3>
+            <p>دراسة جدوى موثقة بمعايير احترافية — تقديمها للبنوك وصناديق التمويل وجذب المستثمرين بثقة</p>
+            <div class="hub-divider"></div>
+            <div class="hub-tiers">
+              <div class="hub-tier">
+                <div class="ht-name">مبسطة <span style="font-weight:400;font-size:.78rem">/ مشاريع صغيرة</span></div>
+                <div class="ht-price">99 ر.س</div>
+                <ul style="font-size:.76rem;color:var(--muted);margin:.4rem 0 0;padding-right:1rem">
+                  <li>10 أسئلة دقيقة</li>
+                  <li>تقرير 5-7 صفحات</li>
+                  <li>ربحية + مخاطر</li>
+                </ul>
+              </div>
+              <div class="hub-tier ht-featured">
+                <div class="ht-name">مفصلة <span style="font-weight:400;font-size:.78rem">/ مستثمرون وبنوك</span></div>
+                <div class="ht-price">299 ر.س</div>
+                <ul style="font-size:.76rem;color:#fff;opacity:.85;margin:.4rem 0 0;padding-right:1rem">
+                  <li>20 سؤالاً شاملاً</li>
+                  <li>تقرير 15-20 صفحة</li>
+                  <li>3 سنوات + خطة تسويق</li>
+                </ul>
+              </div>
+            </div>
+            <div class="hub-output-preview" style="margin-top:.75rem">
+              <div class="hop-label">ما ستحصل عليه:</div>
+              <div class="hop-chips">
+                <span>📄 تقرير PDF</span><span>💰 توقعات مالية</span><span>🏦 مقبول للبنوك</span>
+              </div>
+            </div>
+            <div class="hub-card-footer">
+              <span class="hub-price">من <strong>99 ر.س</strong></span>
+              <button class="hub-btn" style="background:linear-gradient(135deg,#312E81,#7B9ED4)">ابدأ الدراسة <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- بطاقة 3: استشارة رأس المال -->
+        <div class="hub-card hc-amber" onclick="goto('capital')">
+          <div class="hub-card-icon" style="background:linear-gradient(135deg,#92400E,#f59e0b)">
+            <i class="fa-solid fa-coins"></i>
+          </div>
+          <div class="hub-card-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap">
+              <div class="hub-card-badge" style="background:rgba(245,158,11,.15);color:#d97706">💡 استشارة ذكية</div>
+              <div style="font-size:.7rem;color:var(--muted);font-weight:600">⏱ 3 دقائق</div>
+            </div>
+            <h3>استشارة رأس المال الاستثماري</h3>
+            <p>حدد ميزانيتك ومستوى مخاطرتك وقطاعك المفضل — واحصل على أفضل فرص الاستثمار الموصى بها بالأرقام</p>
+            <div class="hub-divider"></div>
+            <ul class="hub-features">
+              <li><i class="fa-solid fa-check"></i> ملف مستثمر مخصص لك</li>
+              <li><i class="fa-solid fa-check"></i> توصيات مرتبة بالعائد والمخاطرة</li>
+              <li><i class="fa-solid fa-check"></i> مقارنة 22 فئة مشروع</li>
+              <li><i class="fa-solid fa-check"></i> حاسبة ROI لكل فرصة</li>
+              <li><i class="fa-solid fa-check"></i> خارطة طريق للبداية</li>
+            </ul>
+            <div class="hub-output-preview">
+              <div class="hop-label">ما ستحصل عليه:</div>
+              <div class="hop-chips">
+                <span>🎯 فرص مطابقة</span><span>📊 تحليل ROI</span><span>🗺 خطة عمل</span>
+              </div>
+            </div>
+            <div class="hub-card-footer">
+              <span class="hub-price" style="color:#d97706">مجاني تماماً</span>
+              <button class="hub-btn" style="background:linear-gradient(135deg,#92400E,#f59e0b)">ابدأ الاستشارة <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Trust bar -->
+      <div class="hub-trust">
+        <div class="hub-trust-item"><i class="fa-solid fa-shield-halved" style="color:var(--green)"></i> بيانات محمية ومشفرة</div>
+        <div class="hub-trust-item"><i class="fa-solid fa-clock-rotate-left" style="color:var(--green)"></i> تقرير جاهز فوراً</div>
+        <div class="hub-trust-item"><i class="fa-solid fa-rotate" style="color:var(--green)"></i> يمكن إعادة التحليل في أي وقت</div>
+        <div class="hub-trust-item"><i class="fa-solid fa-star" style="color:#f59e0b"></i> معتمد من رواد أعمال سعوديين</div>
+      </div>
+
+    </div>
+
     <!-- ===== ROBOT → تحليل المشاريع ===== -->
     <div class="page" id="page-robot">
 
       <!-- خطوة 0: الترحيب والبدء -->
       <div id="pa-step-0" class="fs-step active">
-        <div class="form-card" style="max-width:720px;margin:0 auto;text-align:center;padding:3rem 2rem">
-          <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-dp));display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.5rem">
-            <i class="fa-solid fa-magnifying-glass-chart" style="color:#fff"></i>
+        <!-- Hero -->
+        <div class="pa-hero">
+          <div class="pa-hero-icon">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
           </div>
-          <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:.75rem">تحليل مشروعك وجدواه الاقتصادية</h2>
-          <p style="color:var(--muted);font-size:.92rem;line-height:1.9;max-width:540px;margin:0 auto 2rem">
-            أجب على <strong>6 مجموعات من الأسئلة</strong> عن مشروعك، وسيُصدر لك التحليل تقريراً دقيقاً يُخبرك:<br/>
-            هل مشروعك مربح؟ · وكم نسبة الربح؟ · وكم تتوقع تحصيل شهرياً؟<br/>
-            وإذا كانت الربحية منخفضة — ستحصل فوراً على خطة تفصيلية لرفع الربح
-          </p>
-          <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem">
-            <div style="text-align:center;min-width:90px">
-              <div style="font-size:1.5rem;font-weight:800;color:var(--green)">6</div>
-              <div style="font-size:.78rem;color:var(--muted)">مجموعات أسئلة</div>
-            </div>
-            <div style="text-align:center;min-width:90px">
-              <div style="font-size:1.5rem;font-weight:800;color:var(--green)">15</div>
-              <div style="font-size:.78rem;color:var(--muted)">سؤالاً دقيقاً</div>
-            </div>
-            <div style="text-align:center;min-width:90px">
-              <div style="font-size:1.5rem;font-weight:800;color:var(--green)">5 دقائق</div>
-              <div style="font-size:.78rem;color:var(--muted)">وقت التعبئة</div>
-            </div>
-            <div style="text-align:center;min-width:90px">
-              <div style="font-size:1.5rem;font-weight:800;color:var(--green)">مجاني</div>
-              <div style="font-size:.78rem;color:var(--muted)">بدون رسوم</div>
+          <div class="pa-hero-text">
+            <div class="pa-hero-badge">تحليل مجاني · AI · نتائج فورية</div>
+            <h2>تحليل مشروعك الاقتصادي</h2>
+            <p>أدخل أرقام مشروعك الحقيقية وستحصل فوراً على تقرير شامل يجيبك على:<br/>
+            <strong>هل مشروعك مربح؟</strong> · <strong>كم نسبة الربح؟</strong> · <strong>ما خطة التحسين؟</strong></p>
+          </div>
+        </div>
+
+        <!-- Steps preview -->
+        <div class="pa-steps-preview">
+          <div class="psp-item">
+            <div class="psp-num">1</div>
+            <div class="psp-text">
+              <div class="psp-title">معلومات المشروع</div>
+              <div class="psp-sub">الاسم · النوع · المدينة</div>
             </div>
           </div>
-          <button class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem" onclick="startProjectAnalysisWizard()">
-            <i class="fa-solid fa-play"></i> ابدأ التحليل الآن
+          <div class="psp-line"></div>
+          <div class="psp-item">
+            <div class="psp-num">2</div>
+            <div class="psp-text">
+              <div class="psp-title">رأس المال والتمويل</div>
+              <div class="psp-sub">الميزانية · مصدر التمويل</div>
+            </div>
+          </div>
+          <div class="psp-line"></div>
+          <div class="psp-item">
+            <div class="psp-num">3</div>
+            <div class="psp-text">
+              <div class="psp-title">الإيرادات والعملاء</div>
+              <div class="psp-sub">المبيعات · الصفقات</div>
+            </div>
+          </div>
+          <div class="psp-line"></div>
+          <div class="psp-item">
+            <div class="psp-num">4</div>
+            <div class="psp-text">
+              <div class="psp-title">التكاليف الثابتة</div>
+              <div class="psp-sub">الإيجار · الرواتب</div>
+            </div>
+          </div>
+          <div class="psp-line"></div>
+          <div class="psp-item">
+            <div class="psp-num">5</div>
+            <div class="psp-text">
+              <div class="psp-title">التكاليف المتغيرة</div>
+              <div class="psp-sub">البضاعة · التسويق</div>
+            </div>
+          </div>
+          <div class="psp-line"></div>
+          <div class="psp-item">
+            <div class="psp-num">6</div>
+            <div class="psp-text">
+              <div class="psp-title">المنافسة والخبرة</div>
+              <div class="psp-sub">السوق · تجربتك</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- What you'll get -->
+        <div class="pa-output-grid">
+          <div class="pa-output-card">
+            <div class="pa-oc-icon" style="background:rgba(78,115,194,.12);color:var(--green)"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="pa-oc-title">تحليل الربحية</div>
+            <div class="pa-oc-sub">هامش الربح + ROI + نقطة التعادل + مدة الاسترداد</div>
+          </div>
+          <div class="pa-output-card">
+            <div class="pa-oc-icon" style="background:rgba(34,197,94,.1);color:#16a34a"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="pa-oc-title">توقعات 3 سنوات</div>
+            <div class="pa-oc-sub">جدول نمو الإيرادات والأرباح بمعدل نمو ذكي</div>
+          </div>
+          <div class="pa-output-card">
+            <div class="pa-oc-icon" style="background:rgba(245,158,11,.12);color:#d97706"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="pa-oc-title">خطة تحسين الربح</div>
+            <div class="pa-oc-sub">توصيات مخصصة بالأرقام لرفع الربحية فوراً</div>
+          </div>
+          <div class="pa-output-card">
+            <div class="pa-oc-icon" style="background:rgba(231,76,60,.08);color:#e74c3c"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="pa-oc-title">تقييم المخاطر</div>
+            <div class="pa-oc-sub">تحليل الإيجار والرواتب والمنافسة بمعايير المجال</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="text-align:center;margin-top:2rem">
+          <button class="btn-primary" style="font-size:1rem;padding:1.1rem 3rem;border-radius:14px;box-shadow:0 8px 24px rgba(78,115,194,.3)" onclick="startProjectAnalysisWizard()">
+            <i class="fa-solid fa-play"></i> ابدأ التحليل الآن — مجاني
           </button>
+          <p style="font-size:.76rem;color:var(--muted);margin-top:.75rem">
+            <i class="fa-solid fa-clock" style="margin-left:.3rem"></i>يستغرق حوالي 5 دقائق · لا يحفظ بياناتك · تقرير فوري
+          </p>
         </div>
       </div>
 
@@ -1450,53 +1831,114 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
     <!-- ===== CAPITAL ===== -->
     <div class="page" id="page-capital">
-      <div class="capital-tool">
-        <div class="capital-input-card">
-          <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:.5rem"><i class="fa-solid fa-coins" style="color:var(--amber);margin-left:.4rem"></i>استشارة رأس المال</h2>
-          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem">حدد ميزانيتك والمجال لتحصل على أفضل توصيات الاستثمار</p>
 
-          <label style="font-size:.83rem;font-weight:600;display:block;margin-bottom:.3rem">مقدار رأس المال</label>
-          <div class="amount-display" id="cap-display">50,000 ريال</div>
-          <input type="range" class="range-input" id="cap-range" min="5000" max="500000" step="5000" value="50000" oninput="updateCapital(this.value)"/>
-          <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-top:-.5rem;margin-bottom:1rem">
-            <span>5,000 ر</span><span>500,000 ر</span>
+      <!-- ══ STEP 0: ملف المستثمر ══ -->
+      <div id="cap-step-0" class="cap-step active">
+        <!-- Hero -->
+        <div class="cap-hero">
+          <div class="cap-hero-icon"><i class="fa-solid fa-coins"></i></div>
+          <div>
+            <div class="cap-hero-badge">استشارة استثمارية ذكية · مجانية</div>
+            <h2>استشارة رأس المال الاستثماري</h2>
+            <p>أجب على 3 أسئلة بسيطة وستحصل على توصيات استثمارية مخصصة لك<br/>بناءً على ميزانيتك ومستوى مخاطرتك وقطاعاتك المفضلة</p>
           </div>
-
-          <div class="f-field" style="margin-bottom:1rem">
-            <label>المجال المفضّل</label>
-            <select id="cap-sector" onchange="updateResults()">
-              <option value="all">جميع المجالات</option>
-              <option value="food">غذاء وضيافة</option>
-              <option value="tech">تقنية ورقمي</option>
-              <option value="retail">تجارة وبيع</option>
-              <option value="service">خدمات</option>
-              <option value="real">عقارات</option>
-              <option value="mfg">تصنيع وإنتاج</option>
-            </select>
-          </div>
-          <div class="f-field">
-            <label>المنطقة الجغرافية</label>
-            <select id="cap-region">
-              <option>جميع المناطق</option>
-              <option>الرياض</option>
-              <option>جدة</option>
-              <option>الدمام</option>
-              <option>مكة المكرمة</option>
-              <option>المدينة المنورة</option>
-            </select>
-          </div>
-          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem" onclick="updateResults()">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> احصل على التوصيات
-          </button>
         </div>
 
-        <div class="capital-result">
-          <h3 style="font-size:1rem;font-weight:700;margin-bottom:1.1rem">
-            <i class="fa-solid fa-lightbulb" style="color:var(--amber);margin-left:.4rem"></i>المشاريع الموصى بها
+        <div class="cap-form-card">
+          <h3 style="font-size:.97rem;font-weight:800;margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem">
+            <i class="fa-solid fa-user-tie" style="color:var(--green)"></i> بناء ملف المستثمر
           </h3>
-          <div id="cap-results"></div>
+
+          <!-- رأس المال -->
+          <div class="f-field" style="margin-bottom:1.25rem">
+            <label style="font-size:.87rem;font-weight:700">رأس المال المتاح للاستثمار (ريال) <span style="color:#e74c3c">*</span></label>
+            <div class="amount-display" id="cap-display">50,000 ريال</div>
+            <input type="range" class="range-input" id="cap-range" min="5000" max="500000" step="5000" value="50000" oninput="updateCapital(this.value)"/>
+            <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:-.3rem">
+              <span>5,000 ر</span><span>250,000 ر</span><span>500,000 ر</span>
+            </div>
+          </div>
+
+          <!-- ملاحظة عن الحد الأعلى -->
+          <div id="cap-range-note" style="font-size:.77rem;color:var(--muted);background:var(--bg2);border-radius:8px;padding:.5rem .85rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:.4rem">
+            <i class="fa-solid fa-circle-info" style="color:var(--green)"></i>
+            <span id="cap-range-note-text">هذا المبلغ يتيح لك 12 فرصة استثمارية في قاعدة بياناتنا</span>
+          </div>
+
+          <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+            <!-- القطاع المفضل -->
+            <div class="f-field">
+              <label>القطاع المفضل</label>
+              <select id="cap-sector" onchange="updateCapitalNote()">
+                <option value="all">جميع القطاعات</option>
+                <option value="food">🍽 غذاء وضيافة</option>
+                <option value="tech">💻 تقنية ورقمي</option>
+                <option value="retail">🛍 تجارة وبيع</option>
+                <option value="service">🔧 خدمات</option>
+                <option value="real">🏢 عقارات</option>
+                <option value="mfg">🏭 تصنيع وإنتاج</option>
+              </select>
+            </div>
+            <!-- مستوى تحمل المخاطرة -->
+            <div class="f-field">
+              <label>مستوى تحمل المخاطرة</label>
+              <select id="cap-risk-tolerance">
+                <option value="any">أي مستوى</option>
+                <option value="low">منخفض جداً / محافظ</option>
+                <option value="mid">متوسط / معتدل</option>
+                <option value="high">مرتفع / مغامر</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+            <!-- هدف الاستثمار -->
+            <div class="f-field">
+              <label>هدفك الأساسي من الاستثمار</label>
+              <select id="cap-goal">
+                <option value="income">دخل شهري ثابت</option>
+                <option value="growth">نمو رأس المال على المدى البعيد</option>
+                <option value="fast">أرباح سريعة (6-12 شهر)</option>
+                <option value="stable">أمان وتنويع المحفظة</option>
+              </select>
+            </div>
+            <!-- خبرة الأعمال -->
+            <div class="f-field">
+              <label>خبرتك في الأعمال التجارية</label>
+              <select id="cap-exp">
+                <option value="none">مبتدئ — بدون خبرة سابقة</option>
+                <option value="little">خبرة محدودة (1-3 سنوات)</option>
+                <option value="mid">خبرة جيدة (3-7 سنوات)</option>
+                <option value="expert">خبير (أكثر من 7 سنوات)</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem" onclick="runCapitalConsultation()">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> احصل على توصياتي الاستثمارية
+          </button>
+          <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:.65rem">
+            <i class="fa-solid fa-shield-halved" style="color:var(--green);margin-left:.3rem"></i>
+            توصيات مبنية على بيانات 22 قطاع ومشروع · تحديث ربع سنوي
+          </p>
         </div>
       </div>
+
+      <!-- ══ STEP 1: نتائج الاستشارة ══ -->
+      <div id="cap-step-1" class="cap-step">
+        <div style="margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem">
+          <button onclick="resetCapital()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.88rem;display:inline-flex;align-items:center;gap:.4rem;font-family:'Tajawal',sans-serif">
+            <i class="fa-solid fa-arrow-right"></i> استشارة جديدة
+          </button>
+        </div>
+        <!-- ملخص الملف الاستثماري -->
+        <div id="cap-profile-summary"></div>
+        <!-- بطاقات المشاريع الموصى بها -->
+        <div id="cap-results"></div>
+        <!-- تحليل المحفظة الموصى بها -->
+        <div id="cap-portfolio-analysis"></div>
+      </div>
+
     </div>
 
     <!-- ===== DESIGN ===== -->
@@ -1842,6 +2284,7 @@ function closeSidebar(){ document.getElementById('sidebar').classList.remove('op
 /* NAVIGATION */
 const pageMap = {
   home:    {title:'نظرة عامة',    sub:'مرحباً بك في منصة جنان بيز'},
+  hub:     {title:'تحليل المشاريع ودراسات الجدوى', sub:'اختر الخدمة المناسبة لمشروعك'},
   robot:   {title:'تحليل المشروع وجدواه الاقتصادي', sub:'هل مشروعك مربح؟ اكتشف بالأرقام مع خطة تحسين مخصصة'},
   projectcopilot: {title:'روبوت المشاريع',sub:'مساعدك الذكي خطوة بخطوة من الفكرة حتى التشغيل'},
   analysis:{title:'إعداد دراسات الجدوى الاقتصادية', sub:'حلّل مشروعك واعرف مدى ربحيته قبل أي استثمار'},
@@ -1868,8 +2311,9 @@ function goto(page) {
   document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
   closeSidebar();
   if(page==='robot') initProjectAnalysis();
+  if(page==='analysis') showFsStep(0);
   if(page==='academy') initAcademy();
-  if(page==='capital') updateResults();
+  if(page==='capital') { resetCapital(); updateCapitalNote(); }
   if(page==='software') renderSoftwarePage();
   if(page==='orders') renderOrdersPage();
   if(page==='admin') renderAdminPanel();
@@ -1901,7 +2345,7 @@ function gotoSub(page, groupId, subItemId) {
   closeSidebar();
   if(page==='robot') initProjectAnalysis();
   if(page==='academy') initAcademy();
-  if(page==='capital') updateResults();
+  if(page==='capital') { resetCapital(); updateCapitalNote(); }
 }
 function logout(){
   localStorage.removeItem('jb-user');
@@ -2417,7 +2861,30 @@ function buildProjectAnalysisReport() {
   }[a.pa_exp] || 0;
   score = Math.min(Math.round(score + compBonus + expBonus), 98);
 
-  // ── مقاييس التحسين ──
+  // ── التحقق من اتساق بيانات العملاء ──
+  const customers  = parseFloat(a.pa_customers) || 0;
+  const avgSale    = parseFloat(a.pa_avg_sale) || 0;
+  const impliedRev = customers * avgSale;
+  const revGap     = impliedRev > 0 ? Math.abs(impliedRev - revenue) / Math.max(revenue, 1) : 0;
+  const revenueValidation = (impliedRev > 0 && revGap > 0.25) ? `
+    <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:.85rem 1rem;margin-top:.75rem;font-size:.83rem">
+      <i class="fa-solid fa-triangle-exclamation" style="color:var(--amber);margin-left:.35rem"></i>
+      <strong>ملاحظة دقيقة:</strong> عدد العملاء (${customers.toLocaleString('ar-SA')}) × متوسط الفاتورة (${avgSale.toLocaleString('ar-SA')} ر) = <strong>${impliedRev.toLocaleString('ar-SA')} ر</strong> — يختلف عن إيراداتك المُدخلة (${revenue.toLocaleString('ar-SA')} ر) بفارق <strong>${(revGap*100).toFixed(0)}%</strong>. نوصي بمراجعة أحد الرقمين.
+    </div>` : '';
+
+  // ── توقعات 3 سنوات ──
+  const paGrowthRate = {'لا يوجد منافسون واضحون':0.20,'منافسة منخفضة':0.15,'منافسة متوسطة':0.11,'منافسة عالية جداً':0.07}[a.pa_comp] || 0.12;
+  const varRatio   = revenue > 0 ? totalVariable / revenue : 0;
+  const paY2Rev    = Math.round(revenue * (1 + paGrowthRate));
+  const paY2Total  = Math.round(totalFixed + varRatio * paY2Rev);
+  const paY2Net    = paY2Rev - paY2Total;
+  const paY3Rev    = Math.round(revenue * (1 + paGrowthRate * 2.6));
+  const paY3Total  = Math.round(totalFixed + varRatio * paY3Rev);
+  const paY3Net    = paY3Rev - paY3Total;
+  const paY2Margin = paY2Rev > 0 ? (paY2Net/paY2Rev*100).toFixed(1) : '0';
+  const paY3Margin = paY3Rev > 0 ? (paY3Net/paY3Rev*100).toFixed(1) : '0';
+
+
   const neededRevForGoodMargin = totalFixed / 0.15; // إيراد مطلوب لهامش 15%
   const revenueGap    = Math.max(neededRevForGoodMargin - revenue, 0);
   const rentRatio     = revenue > 0 ? rent / revenue : 0;
@@ -2551,6 +3018,56 @@ function buildProjectAnalysisReport() {
         <tr><td>مصاريف متغيرة أخرى</td><td style="font-weight:700">${varOth.toLocaleString('ar-SA')} ريال</td></tr>
         <tr style="background:var(--bg2);font-weight:800"><td>إجمالي التكاليف الشهرية</td><td style="color:#e74c3c;font-weight:800">${totalCosts.toLocaleString('ar-SA')} ريال</td></tr>
       </table>
+      ${customers > 0 && avgSale > 0 ? `
+      <div style="background:var(--bg2);border-radius:10px;padding:.9rem 1rem;margin-top:.9rem;font-size:.85rem">
+        <div style="font-weight:700;margin-bottom:.3rem"><i class="fa-solid fa-users" style="color:var(--green);margin-left:.4rem"></i>معدلات العملاء</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.5rem">
+          <div style="background:var(--card);border-radius:8px;padding:.5rem .75rem;text-align:center"><div style="font-size:1.1rem;font-weight:800;color:var(--green)">${customers.toLocaleString('ar-SA')}</div><div style="font-size:.73rem;color:var(--muted)">عميل/شهر</div></div>
+          <div style="background:var(--card);border-radius:8px;padding:.5rem .75rem;text-align:center"><div style="font-size:1.1rem;font-weight:800;color:var(--amber)">${avgSale.toLocaleString('ar-SA')} ر</div><div style="font-size:.73rem;color:var(--muted)">متوسط الفاتورة</div></div>
+          <div style="background:var(--card);border-radius:8px;padding:.5rem .75rem;text-align:center"><div style="font-size:1.1rem;font-weight:800;color:${Math.abs(impliedRev-revenue)/Math.max(revenue,1)<0.10?'var(--green)':'#e74c3c'}">${impliedRev.toLocaleString('ar-SA')} ر</div><div style="font-size:.73rem;color:var(--muted)">الإيراد المُحتسب</div></div>
+        </div>
+        ${revenueValidation}
+      </div>` : ''}
+    </div>
+
+    <!-- توقعات 3 سنوات -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-chart-line"></i>توقعات النمو المالي لـ 3 سنوات</h3>
+      <table class="sr-table">
+        <tr style="background:var(--bg2)">
+          <td style="font-weight:800">السنة</td>
+          <td style="font-weight:800">الإيرادات الشهرية</td>
+          <td style="font-weight:800">إجمالي التكاليف</td>
+          <td style="font-weight:800">صافي الربح / شهر</td>
+          <td style="font-weight:800">هامش الربح</td>
+          <td style="font-weight:800">صافي سنوي</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الأولى</strong></td>
+          <td>${revenue.toLocaleString('ar-SA')} ر</td>
+          <td>${totalCosts.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${netProfit>=0?'var(--green)':'#e74c3c'};font-weight:700">${netProfit>=0?'+':''}${netProfit.toLocaleString('ar-SA')} ر</td>
+          <td>${netMargin.toFixed(1)}%</td>
+          <td style="font-weight:700">${(netProfit*12).toLocaleString('ar-SA')} ر</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الثانية</strong> <span style="font-size:.71rem;color:var(--muted)">(نمو ${(paGrowthRate*100).toFixed(0)}%)</span></td>
+          <td>${paY2Rev.toLocaleString('ar-SA')} ر</td>
+          <td>${paY2Total.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${paY2Net>=0?'var(--green)':'#e74c3c'};font-weight:700">${paY2Net>=0?'+':''}${paY2Net.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${parseFloat(paY2Margin)>=15?'var(--green)':'var(--amber)'}">${paY2Margin}%</td>
+          <td style="font-weight:700">${(paY2Net*12).toLocaleString('ar-SA')} ر</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الثالثة</strong> <span style="font-size:.71rem;color:var(--muted)">(نمو ${(paGrowthRate*260).toFixed(0)}%)</span></td>
+          <td>${paY3Rev.toLocaleString('ar-SA')} ر</td>
+          <td>${paY3Total.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${paY3Net>=0?'var(--green)':'#e74c3c'};font-weight:700">${paY3Net>=0?'+':''}${paY3Net.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${parseFloat(paY3Margin)>=15?'var(--green)':'var(--amber)'}">${paY3Margin}%</td>
+          <td style="color:var(--green);font-weight:800">${(paY3Net*12).toLocaleString('ar-SA')} ر</td>
+        </tr>
+      </table>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.6rem"><i class="fa-solid fa-circle-info" style="margin-left:.3rem"></i>معدل النمو محسوب بناءً على مستوى المنافسة وطبيعة القطاع — الأرقام تقديرية محافظة</p>
     </div>
 
     <!-- توزيع التكاليف -->
@@ -2615,6 +3132,16 @@ function buildProjectAnalysisReport() {
       </table>
     </div>` : ''}
 
+    <!-- إخلاء مسؤولية -->
+    <div class="sr-disclaimer">
+      <i class="fa-solid fa-circle-info" style="color:var(--amber);flex-shrink:0;margin-top:.15rem"></i>
+      <span>هذا التقرير أُعدّ بواسطة <strong>منصة جنان بيز للأعمال</strong> استناداً إلى البيانات التي أدخلتها. جميع التوقعات والأرقام الواردة هي تقديرات إرشادية ولا تُعدّ ضماناً لأي نتائج فعلية. <strong>جنان بيز غير مسؤولة</strong> عن أي قرارات استثمارية أو تجارية تُتخذ بناءً على هذا التقرير. يُنصح بالتشاور مع مستشار مالي أو قانوني متخصص قبل اتخاذ أي قرار.</span>
+    </div>
+    <div class="sr-brand-footer">
+      <div class="srbf-logo"><i class="fa-solid fa-chart-mixed"></i> جنان بيز</div>
+      <div class="srbf-mid">المنصة الذكية للأعمال والاستثمار</div>
+      <div class="srbf-date"><i class="fa-solid fa-calendar"></i> ${new Date().toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric'})}</div>
+    </div>
     <div class="sr-cta">
       <button class="btn-primary" onclick="resetProjectAnalysis()"><i class="fa-solid fa-plus"></i> تحليل مشروع جديد</button>
       <button class="btn-primary" style="background:var(--navy)" onclick="goto('analysis')"><i class="fa-solid fa-file-chart-column"></i> إعداد دراسة جدوى مفصلة</button>
@@ -4146,16 +4673,30 @@ function buildSimpleReport() {
   const gross   = revenue - cogs;
   const net     = gross - fixed;
   const margin  = revenue > 0 ? (net/revenue*100) : 0;
+  const cogsRatio = revenue > 0 ? cogs/revenue : 0;
+  // نقطة التعادل: إيراد التعادل = التكاليف الثابتة / (1 - نسبة تكلفة البضاعة)
+  const cmRatio  = revenue > 0 ? Math.max(1 - cogsRatio, 0.01) : 1;
+  const breakEven = Math.round(fixed / cmRatio);
   const roi     = capital > 0 ? (net*12/capital*100) : 0;
   const payback = net > 0 ? (capital/net).toFixed(1) : '∞';
   const compMod = {'بدون منافسة واضحة':1.2,'منافسة منخفضة':1.0,'منافسة متوسطة':0.82,'منافسة عالية':0.65};
   const adjMg   = margin * (compMod[a.fs_comp]||1);
   const expBon  = (a.fs_exp||'').includes('واسعة') ? 8 : (a.fs_exp||'').includes('محدودة') ? 3 : 0;
-  let score, verdict, vClass;
-  if (adjMg >= 18 && roi >= 25) { verdict='✅ مشروع مربح جداً'; vClass='yes'; score=85+Math.min(adjMg,13); }
-  else if (adjMg >= 8)           { verdict='⚠️ مربح بشكل معقول'; vClass='maybe'; score=55+adjMg; }
-  else                           { verdict='❌ يحتاج إعادة هيكلة مالية'; vClass='no'; score=Math.max(adjMg+20,15); }
+  let score, verdict, vClass, verdictIcon;
+  if (adjMg >= 20 && roi >= 25) { verdict='مشروع مربح جداً — ربحيتك فوق المتوسط السعودي'; verdictIcon='🏆'; vClass='yes'; score=85+Math.min(adjMg,13); }
+  else if (adjMg >= 10)          { verdict='مربح بشكل معقول — مستوى أداء جيد يستحق الاستمرار'; verdictIcon='✅'; vClass='yes'; score=55+adjMg; }
+  else if (adjMg >= 0)           { verdict='ربحية هامشية — يحتاج خطة تحسين فورية'; verdictIcon='⚠️'; vClass='maybe'; score=Math.max(adjMg+30,20); }
+  else                           { verdict='يحتاج إعادة هيكلة مالية — التكاليف تتجاوز الإيرادات'; verdictIcon='🚨'; vClass='no'; score=Math.max(adjMg+20,10); }
   score = Math.min(Math.round(score + expBon), 98);
+  // توقعات 3 سنوات (نمو محافظ بناءً على المنافسة)
+  const growthRate = {'بدون منافسة واضحة':0.18,'منافسة منخفضة':0.14,'منافسة متوسطة':0.10,'منافسة عالية':0.07}[a.fs_comp] || 0.12;
+  const y2Rev = Math.round(revenue * (1 + growthRate));
+  const y2Net = Math.round(y2Rev - cogs * (y2Rev/revenue) - fixed);
+  const y3Rev = Math.round(revenue * (1 + growthRate * 2.5));
+  const y3Net = Math.round(y3Rev - cogs * (y3Rev/revenue) - fixed);
+  const y2Margin = y2Rev > 0 ? (y2Net/y2Rev*100).toFixed(1) : '0';
+  const y3Margin = y3Rev > 0 ? (y3Net/y3Rev*100).toFixed(1) : '0';
+  const fmt = v => v.toLocaleString('ar-SA');
   return `
   <div class="study-report">
     <div class="sr-header">
@@ -4183,36 +4724,95 @@ function buildSimpleReport() {
       </div>
     </div>
     <div class="sr-section">
-      <h3><i class="fa-solid fa-calculator"></i>التحليل المالي</h3>
+      <h3><i class="fa-solid fa-calculator"></i>الملخص المالي الشهري</h3>
       <div class="kpi-row">
-        <div class="kpi-box"><label>الإيرادات الشهرية</label><span>${revenue.toLocaleString('ar-SA')} ر</span></div>
-        <div class="kpi-box"><label>تكلفة البضاعة</label><span>${cogs.toLocaleString('ar-SA')} ر</span></div>
-        <div class="kpi-box"><label>التكاليف الثابتة</label><span>${fixed.toLocaleString('ar-SA')} ر</span></div>
-        <div class="kpi-box"><label>إجمالي الربح</label><span style="color:var(--green)">${gross.toLocaleString('ar-SA')} ر</span></div>
-        <div class="kpi-box"><label>صافي الربح</label><span style="color:${net>=0?'var(--green)':'#e74c3c'}">${net.toLocaleString('ar-SA')} ر</span></div>
-        <div class="kpi-box"><label>نقطة التعادل</label><span>${(fixed+cogs).toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>الإيرادات الشهرية</label><span style="color:var(--green)">${fmt(revenue)} ر</span></div>
+        <div class="kpi-box"><label>تكلفة البضاعة / الخدمة</label><span>${fmt(cogs)} ر</span></div>
+        <div class="kpi-box"><label>التكاليف الثابتة الشهرية</label><span>${fmt(fixed)} ر</span></div>
+        <div class="kpi-box"><label>إجمالي الربح</label><span style="color:${gross>=0?'var(--green)':'#e74c3c'}">${fmt(gross)} ر</span></div>
+        <div class="kpi-box"><label>صافي الربح الشهري</label><span style="color:${net>=0?'var(--green)':'#e74c3c'};font-size:1.2rem;font-weight:800">${net>=0?'+':''}${fmt(net)} ر</span></div>
+        <div class="kpi-box"><label>إيراد التعادل الشهري</label><span>${fmt(breakEven)} ر</span></div>
+        <div class="kpi-box"><label>هامش الربح الصافي</label><span style="color:${margin>=15?'var(--green)':margin>=5?'var(--amber)':'#e74c3c'}">${margin.toFixed(1)}%</span></div>
+        <div class="kpi-box"><label>العائد السنوي ROI</label><span style="color:${roi>=20?'var(--green)':'var(--amber)'}">${roi.toFixed(1)}%</span></div>
+        <div class="kpi-box"><label>مدة استرداد رأس المال</label><span>${payback} شهر</span></div>
       </div>
     </div>
     <div class="sr-section">
-      <h3><i class="fa-solid fa-shield-halved"></i>تقييم المخاطر</h3>
+      <h3><i class="fa-solid fa-chart-line"></i>توقعات النمو لـ 3 سنوات</h3>
+      <table class="sr-table">
+        <tr style="background:var(--bg2)">
+          <td style="font-weight:800">السنة</td>
+          <td style="font-weight:800">الإيرادات الشهرية</td>
+          <td style="font-weight:800">صافي الربح الشهري</td>
+          <td style="font-weight:800">هامش الربح</td>
+          <td style="font-weight:800">صافي سنوي</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الأولى</strong></td>
+          <td>${fmt(revenue)} ر</td>
+          <td style="color:${net>=0?'var(--green)':'#e74c3c'};font-weight:700">${net>=0?'+':''}${fmt(net)} ر</td>
+          <td style="color:${margin>=10?'var(--green)':'var(--amber)'}">${margin.toFixed(1)}%</td>
+          <td style="font-weight:700">${fmt(Math.round(net*12))} ر</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الثانية</strong> <span style="font-size:.72rem;color:var(--muted)">(نمو ${(growthRate*100).toFixed(0)}%)</span></td>
+          <td>${fmt(y2Rev)} ر</td>
+          <td style="color:${y2Net>=0?'var(--green)':'#e74c3c'};font-weight:700">${y2Net>=0?'+':''}${fmt(y2Net)} ر</td>
+          <td style="color:${parseFloat(y2Margin)>=10?'var(--green)':'var(--amber)'}">${y2Margin}%</td>
+          <td style="font-weight:700">${fmt(Math.round(y2Net*12))} ر</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الثالثة</strong> <span style="font-size:.72rem;color:var(--muted)">(نمو ${(growthRate*250).toFixed(0)}%)</span></td>
+          <td>${fmt(y3Rev)} ر</td>
+          <td style="color:${y3Net>=0?'var(--green)':'#e74c3c'};font-weight:700">${y3Net>=0?'+':''}${fmt(y3Net)} ر</td>
+          <td style="color:${parseFloat(y3Margin)>=10?'var(--green)':'var(--amber)'}">${y3Margin}%</td>
+          <td style="color:var(--green);font-weight:800">${fmt(Math.round(y3Net*12))} ر</td>
+        </tr>
+      </table>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.6rem"><i class="fa-solid fa-circle-info" style="margin-left:.3rem"></i>التوقعات مبنية على معدل نمو محافظ وفق مستوى المنافسة في السوق — الأرقام الفعلية تعتمد على جودة التنفيذ</p>
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-shield-halved"></i>تقييم عوامل النجاح والمخاطر</h3>
       <div class="sr-risk-row"><div class="sr-risk-label">مستوى المنافسة في المنطقة</div><div class="pill-risk ${['بدون منافسة واضحة','منافسة منخفضة'].includes(a.fs_comp)?'pr-low':a.fs_comp==='منافسة متوسطة'?'pr-mid':'pr-high'}">${a.fs_comp||'—'}</div></div>
       <div class="sr-risk-row"><div class="sr-risk-label">الخبرة السابقة في المجال</div><div class="pill-risk ${(a.fs_exp||'').includes('واسعة')?'pr-low':(a.fs_exp||'').includes('محدودة')?'pr-mid':'pr-high'}">${a.fs_exp||'—'}</div></div>
       <div class="sr-risk-row"><div class="sr-risk-label">نسبة التكاليف الثابتة من الإيرادات</div><div class="pill-risk ${revenue>0&&fixed/revenue<0.35?'pr-low':fixed/revenue<0.55?'pr-mid':'pr-high'}">${revenue>0?(fixed/revenue*100).toFixed(0)+'%':'—'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">هامش مساهمة كل ريال مبيعات</div><div class="pill-risk ${cmRatio>=0.55?'pr-low':cmRatio>=0.35?'pr-mid':'pr-high'}">${(cmRatio*100).toFixed(1)}% <span style="font-size:.72rem">(المعيار الصحي: 40%+)</span></div></div>
     </div>
     <div class="sr-section">
-      <h3><i class="fa-solid fa-lightbulb"></i>التوصيات</h3>
+      <h3><i class="fa-solid fa-bullseye"></i>مقارنة الهدف بالواقع</h3>
+      ${a.fs_goal ? `<div style="background:var(--bg2);border-right:4px solid var(--green);border-radius:8px;padding:1rem 1.2rem;margin-bottom:1rem">
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:.4rem">هدفك من المشروع:</div>
+        <div style="font-size:.9rem;line-height:1.7">${a.fs_goal}</div>
+      </div>
+      <div style="font-size:.88rem;line-height:1.75;color:var(--muted)">
+        ${net >= 0 ? `صافي ربحك المتوقع <strong style="color:var(--green)">${fmt(net)} ريال/شهر</strong>${net * 12 > 0 ? ` أي <strong style="color:var(--green)">${fmt(net*12)} ريال/سنة</strong>` : ''}. ${parseFloat(payback) < 24 ? `بمدة استرداد <strong>${payback} شهر</strong> فقط.` : ''}` : `الإيرادات الحالية <strong style="color:#e74c3c">غير كافية</strong> لتحقيق هدفك — تحتاج رفع الإيرادات إلى <strong>${fmt(breakEven+1000)} ريال/شهر</strong> على الأقل.`}
+      </div>` : '<p style="color:var(--muted);font-size:.87rem">لم يتم تحديد هدف واضح من المشروع.</p>'}
+    </div>
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-lightbulb"></i>التوصيات الاستراتيجية</h3>
       <ul class="sr-rec-list">
-        ${margin < 20 ? '<li>تكلفة البضاعة مرتفعة — تفاوض مع موردين جدد لتحسين الهامش بنسبة 10-15%</li>' : '<li>هامش الربح جيد — حافظ عليه وركّز على زيادة حجم المبيعات تدريجياً</li>'}
-        ${fixed > revenue*0.4 ? '<li>التكاليف الثابتة مرتفعة نسبياً — راجع الإيجار والرواتب ووجّه التوفير نحو التسويق</li>' : '<li>هيكل التكاليف معقول — يمكن توسعه عند تحقيق نمو في الإيرادات</li>'}
-        ${a.fs_comp === 'منافسة عالية' ? '<li>المنافسة شديدة — ركّز على التميّز في تجربة العميل وليس على تخفيض السعر</li>' : ''}
-        <li>استهدف زيادة الإيرادات بنسبة 15% في الأشهر الستة الأولى عبر حملات رقمية مستهدفة</li>
-        <li>احتفظ باحتياطي نقدي يعادل 3 أشهر من التكاليف الثابتة (${(fixed*3).toLocaleString('ar-SA')} ريال)</li>
-        ${payback !== '∞' && parseFloat(payback) > 18 ? '<li>مدة الاسترداد مطوّلة — ادرس تقليل التكاليف الثابتة أو رفع الأسعار تدريجياً</li>' : ''}
+        ${margin < 15 ? `<li>هامش الربح (${margin.toFixed(1)}%) أقل من المعيار المطلوب (15%) — ركّز على رفع الإيرادات <strong>${fmt(Math.round((breakEven * 1.15) - revenue))} ريال/شهر</strong> أو تقليل التكاليف الثابتة</li>` : `<li>هامش الربح (${margin.toFixed(1)}%) جيد — حافظ عليه وضخّ الزيادة في التسويق لتسريع النمو</li>`}
+        ${cogs/revenue > 0.50 ? `<li>تكلفة البضاعة (${(cogs/revenue*100).toFixed(0)}%) مرتفعة — تفاوض مع موردين جدد أو ركّز على المنتجات ذات الهامش الأعلى</li>` : ''}
+        ${fixed/revenue > 0.40 ? `<li>التكاليف الثابتة (${(fixed/revenue*100).toFixed(0)}%) مرتفعة — راجع الإيجار والرواتب لخفضها دون 35% من الإيرادات</li>` : ''}
+        ${a.fs_comp === 'منافسة عالية' ? '<li>المنافسة شديدة — ركّز على التميّز في تجربة العميل وبناء قاعدة عملاء وفية بدلاً من حرب الأسعار</li>' : ''}
+        <li>احتفظ باحتياطي نقدي لـ 3 أشهر (${fmt(fixed*3)} ريال) قبل الإطلاق التجاري</li>
+        <li>ضع هدفاً شهرياً للوصول لإيراد التعادل (${fmt(breakEven)} ر) قبل نهاية الشهر الثالث</li>
+        ${parseFloat(payback) > 20 ? `<li>مدة الاسترداد (${payback} شهر) مطوّلة — ادرس الدراسة المفصلة للحصول على خطة تسريع الاسترداد</li>` : ''}
       </ul>
+    </div>
+    <!-- إخلاء مسؤولية -->
+    <div class="sr-disclaimer">
+      <i class="fa-solid fa-circle-info" style="color:var(--amber);flex-shrink:0;margin-top:.15rem"></i>
+      <span>هذا التقرير أُعدّ بواسطة <strong>منصة جنان بيز للأعمال</strong> استناداً إلى البيانات التي أدخلتها. جميع التوقعات والأرقام الواردة هي تقديرات إرشادية ولا تُعدّ ضماناً لأي نتائج فعلية. <strong>جنان بيز غير مسؤولة</strong> عن أي قرارات استثمارية أو تجارية تُتخذ بناءً على هذا التقرير. يُنصح بالتشاور مع مستشار مالي أو قانوني متخصص قبل اتخاذ أي قرار.</span>
+    </div>
+    <div class="sr-brand-footer">
+      <div class="srbf-logo"><i class="fa-solid fa-chart-mixed"></i> جنان بيز</div>
+      <div class="srbf-mid">المنصة الذكية للأعمال والاستثمار</div>
+      <div class="srbf-date"><i class="fa-solid fa-calendar"></i> ${new Date().toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric'})}</div>
     </div>
     <div class="sr-cta">
       <button class="btn-primary" onclick="resetFeasibility()"><i class="fa-solid fa-plus"></i> إعداد دراسة جديدة</button>
-      <button class="btn-primary" style="background:var(--navy)" onclick="resetFeasibility();selectStudyType('detailed');proceedToPayment()"><i class="fa-solid fa-arrow-up-right-dots"></i> ترقية إلى دراسة مفصلة</button>
+      <button class="btn-primary" style="background:var(--navy)" onclick="resetFeasibility();selectStudyType('detailed');proceedToPayment()"><i class="fa-solid fa-arrow-up-right-dots"></i> ترقية إلى دراسة مفصلة — 299 ر</button>
     </div>
   </div>`;
 }
@@ -4227,13 +4827,22 @@ function buildDetailedReport() {
   const revY3     = parseFloat(a.fd_revenue_y3)||0;
   const salary    = parseFloat(a.fd_salary)||0;
   const mkt       = parseFloat(a.fd_mkt_budget)||0;
-  const net       = revY1 - fixed;
-  const roi       = capital > 0 ? (net*12/capital*100) : 0;
-  const payback   = net > 0 ? (capital/net).toFixed(1) : '∞';
+  // السنة الثانية = المتوسط + عامل نمو طفيف
+  const revY2     = Math.round((revY1 + revY3) / 2);
+  const netY1     = revY1 - fixed;
+  const netY2     = revY2 - fixed;
+  const netY3     = revY3 - fixed;
+  const roi       = capital > 0 ? (netY1*12/capital*100) : 0;
+  const payback   = netY1 > 0 ? (capital/netY1).toFixed(1) : '∞';
   const growth    = revY1 > 0 ? ((revY3-revY1)/revY1*100).toFixed(0) : '0';
-  let score = 68;
-  if (roi > 30) score += 10; if (roi > 50) score += 8;
-  if (net > 0) score += 6; if ((a.fd_funding||'').includes('ذاتي')) score += 5;
+  const y1Margin  = revY1 > 0 ? (netY1/revY1*100).toFixed(1) : '0';
+  const y2Margin  = revY2 > 0 ? (netY2/revY2*100).toFixed(1) : '0';
+  const y3Margin  = revY3 > 0 ? (netY3/revY3*100).toFixed(1) : '0';
+  let score = 65;
+  if (roi > 25) score += 10; if (roi > 50) score += 8;
+  if (netY1 > 0) score += 6; if (netY3 > netY1) score += 5;
+  if ((a.fd_funding||'').includes('ذاتي')) score += 5;
+  if ((a.fd_marketing||'').includes('جميع')) score += 4;
   score = Math.min(score, 97);
   return `
   <div class="study-report">
@@ -4247,10 +4856,10 @@ function buildDetailedReport() {
       </div>
       <div class="sr-meta">
         <div class="sr-meta-item"><div class="val">${score}/100</div><div class="lbl">التقييم الشامل</div></div>
-        <div class="sr-meta-item"><div class="val">${net>=0?'+':''}${net.toLocaleString('ar-SA')}</div><div class="lbl">صافي الربح / شهر (س1)</div></div>
-        <div class="sr-meta-item"><div class="val">${roi.toFixed(1)}%</div><div class="lbl">العائد السنوي</div></div>
+        <div class="sr-meta-item"><div class="val">${netY1>=0?'+':''}${netY1.toLocaleString('ar-SA')}</div><div class="lbl">صافي الربح / شهر (س1)</div></div>
+        <div class="sr-meta-item"><div class="val">${roi.toFixed(1)}%</div><div class="lbl">العائد السنوي ROI</div></div>
         <div class="sr-meta-item"><div class="val">${payback} شهر</div><div class="lbl">استرداد رأس المال</div></div>
-        <div class="sr-meta-item"><div class="val">${growth}%</div><div class="lbl">نمو متوقع (3 سنوات)</div></div>
+        <div class="sr-meta-item"><div class="val">${growth}%</div><div class="lbl">نمو (3 سنوات)</div></div>
       </div>
     </div>
     <div class="sr-section">
@@ -4269,25 +4878,63 @@ function buildDetailedReport() {
       <div class="kpi-row">
         <div class="kpi-box"><label>رأس المال الكلي</label><span>${capital.toLocaleString('ar-SA')} ر</span></div>
         <div class="kpi-box"><label>تكاليف التأسيس</label><span>${setup.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>رأس مال التشغيل المتبقي</label><span style="color:${capital-setup>0?'var(--green)':'#e74c3c'}">${(capital-setup).toLocaleString('ar-SA')} ر</span></div>
         <div class="kpi-box"><label>إيرادات شهرية (س1)</label><span style="color:var(--green)">${revY1.toLocaleString('ar-SA')} ر</span></div>
         <div class="kpi-box"><label>إيرادات شهرية (س3)</label><span style="color:var(--green)">${revY3.toLocaleString('ar-SA')} ر</span></div>
-        <div class="kpi-box"><label>التكاليف التشغيلية</label><span>${fixed.toLocaleString('ar-SA')} ر</span></div>
-        <div class="kpi-box"><label>الرواتب الشهرية</label><span>${salary.toLocaleString('ar-SA')} ر</span></div>
+        <div class="kpi-box"><label>التكاليف التشغيلية الشهرية</label><span>${fixed.toLocaleString('ar-SA')} ر</span></div>
       </div>
-      <table class="sr-table" style="margin-top:1rem">
-        <tr><td>صافي الربح الشهري (السنة الأولى)</td><td style="font-weight:800;color:${net>=0?'var(--green)':'#e74c3c'}">${net.toLocaleString('ar-SA')} ريال</td></tr>
-        <tr><td>صافي الربح السنوي (السنة الأولى)</td><td style="font-weight:700">${(net*12).toLocaleString('ar-SA')} ريال</td></tr>
-        <tr><td>العائد على الاستثمار (ROI)</td><td style="font-weight:700">${roi.toFixed(1)}%</td></tr>
-        <tr><td>مدة استرداد رأس المال</td><td style="font-weight:700">${payback} شهر</td></tr>
-        <tr><td>نمو الإيرادات المتوقع (3 سنوات)</td><td style="font-weight:700;color:var(--green)">${growth}%</td></tr>
+    </div>
+    <!-- توقعات 3 سنوات مفصلة -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-chart-line"></i>التوقعات المالية لـ 3 سنوات</h3>
+      <table class="sr-table">
+        <tr style="background:var(--bg2)">
+          <td style="font-weight:800">السنة</td>
+          <td style="font-weight:800">الإيرادات / شهر</td>
+          <td style="font-weight:800">التكاليف / شهر</td>
+          <td style="font-weight:800">صافي الربح / شهر</td>
+          <td style="font-weight:800">هامش الربح</td>
+          <td style="font-weight:800">صافي الربح السنوي</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الأولى</strong></td>
+          <td style="color:var(--green)">${revY1.toLocaleString('ar-SA')} ر</td>
+          <td>${fixed.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${netY1>=0?'var(--green)':'#e74c3c'};font-weight:700">${netY1>=0?'+':''}${netY1.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${parseFloat(y1Margin)>=10?'var(--green)':'var(--amber)'}">${y1Margin}%</td>
+          <td style="font-weight:700">${(netY1*12).toLocaleString('ar-SA')} ر</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الثانية</strong></td>
+          <td style="color:var(--green)">${revY2.toLocaleString('ar-SA')} ر</td>
+          <td>${fixed.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${netY2>=0?'var(--green)':'#e74c3c'};font-weight:700">${netY2>=0?'+':''}${netY2.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${parseFloat(y2Margin)>=15?'var(--green)':'var(--amber)'}">${y2Margin}%</td>
+          <td style="font-weight:700">${(netY2*12).toLocaleString('ar-SA')} ر</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الثالثة</strong></td>
+          <td style="color:var(--green)">${revY3.toLocaleString('ar-SA')} ر</td>
+          <td>${fixed.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${netY3>=0?'var(--green)':'#e74c3c'};font-weight:700">${netY3>=0?'+':''}${netY3.toLocaleString('ar-SA')} ر</td>
+          <td style="color:${parseFloat(y3Margin)>=20?'var(--green)':'var(--amber)'}">${y3Margin}%</td>
+          <td style="color:var(--green);font-weight:800">${(netY3*12).toLocaleString('ar-SA')} ر</td>
+        </tr>
+        <tr style="background:rgba(78,115,194,.07)">
+          <td><strong>إجمالي 3 سنوات</strong></td>
+          <td colspan="3"></td>
+          <td></td>
+          <td style="font-size:1rem;font-weight:900;color:var(--green)">${((netY1+netY2+netY3)*12).toLocaleString('ar-SA')} ر</td>
+        </tr>
       </table>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.6rem"><i class="fa-solid fa-circle-info" style="margin-left:.3rem"></i>الإيرادات مبنية على البيانات التي أدخلتها — التكاليف الثابتة مستقرة مع إمكانية ارتفاع طفيف في السنة الثالثة</p>
     </div>
     <div class="sr-section">
       <h3><i class="fa-solid fa-users"></i>الفريق والموارد البشرية</h3>
       <table class="sr-table">
         <tr><td>التوصيف الوظيفي</td><td>${a.fd_emp||'—'}</td></tr>
         <tr><td>إجمالي الرواتب الشهرية</td><td style="font-weight:800">${salary.toLocaleString('ar-SA')} ريال</td></tr>
-        <tr><td>نسبة الرواتب من الإيرادات</td><td style="color:${revY1>0&&salary/revY1<0.3?'var(--green)':'#d97706'}">${revY1>0?(salary/revY1*100).toFixed(1)+'%':'—'}</td></tr>
+        <tr><td>نسبة الرواتب من إيرادات س1</td><td style="color:${revY1>0&&salary/revY1<0.3?'var(--green)':'#d97706'};font-weight:700">${revY1>0?(salary/revY1*100).toFixed(1)+'%':'—'} <span style="font-size:.75rem;color:var(--muted)">(المعيار: أقل من 30%)</span></td></tr>
       </table>
     </div>
     <div class="sr-section">
@@ -4299,37 +4946,50 @@ function buildDetailedReport() {
       <table class="sr-table">
         <tr><td>القنوات التسويقية</td><td>${a.fd_marketing||'—'}</td></tr>
         <tr><td>الميزانية الشهرية</td><td style="font-weight:800">${mkt.toLocaleString('ar-SA')} ريال</td></tr>
-        <tr><td>نسبة التسويق من الإيرادات</td><td>${revY1>0?(mkt/revY1*100).toFixed(1)+'%':'—'}</td></tr>
+        <tr><td>نسبة التسويق من إيرادات س1</td><td style="color:${revY1>0&&mkt/revY1<=0.10?'var(--green)':'var(--amber)'};font-weight:700">${revY1>0?(mkt/revY1*100).toFixed(1)+'%':'—'} <span style="font-size:.75rem;color:var(--muted)">(المعيار الصحي: 6-10%)</span></td></tr>
       </table>
     </div>
     <div class="sr-section">
       <h3><i class="fa-solid fa-triangle-exclamation"></i>تقييم المخاطر</h3>
       <div class="sr-risk-row"><div class="sr-risk-label">مخاطر السوق والمنافسة</div><div class="pill-risk pr-mid">متوسطة</div></div>
-      <div class="sr-risk-row"><div class="sr-risk-label">مخاطر التمويل والتدفق النقدي</div><div class="pill-risk ${(a.fd_funding||'').includes('ذاتي')?'pr-low':'pr-mid'}">${(a.fd_funding||'').includes('ذاتي')?'منخفضة':'متوسطة'}</div></div>
-      <div class="sr-risk-row"><div class="sr-risk-label">مخاطر التشغيل والكوادر البشرية</div><div class="pill-risk pr-low">منخفضة</div></div>
-      <p style="margin-top:1.1rem;font-size:.86rem;color:var(--muted);line-height:1.85"><strong>المخاطر المُحددة من العميل:</strong> ${a.fd_risks||'—'}</p>
+      <div class="sr-risk-row"><div class="sr-risk-label">مخاطر التمويل والتدفق النقدي</div><div class="pill-risk ${(a.fd_funding||'').includes('ذاتي')?'pr-low':'pr-mid'}">${(a.fd_funding||'').includes('ذاتي')?'منخفضة (تمويل ذاتي)':'متوسطة'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">مخاطر التشغيل والكوادر البشرية</div><div class="pill-risk ${revY1>0&&salary/revY1<0.3?'pr-low':'pr-mid'}">${revY1>0&&salary/revY1<0.3?'منخفضة':'متوسطة'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">مخاطر التوسع (س3 vs س1)</div><div class="pill-risk ${parseInt(growth)<50?'pr-low':parseInt(growth)<100?'pr-mid':'pr-high'}">${parseInt(growth)<50?'منخفضة':parseInt(growth)<100?'متوسطة':'مرتفعة — توقعات نمو طموحة'}</div></div>
+      <p style="margin-top:1.1rem;font-size:.86rem;color:var(--muted);line-height:1.85"><strong>المخاطر المُحددة:</strong> ${a.fd_risks||'—'}</p>
     </div>
     <div class="sr-section">
       <h3><i class="fa-solid fa-calendar-days"></i>خطة العمل الاستراتيجية (أول 90 يوماً)</h3>
       <table class="sr-table">
-        <tr><td>الشهر الأول</td><td>إنهاء الإجراءات القانونية والترخيص، تجهيز الموقع، توظيف الفريق الأساسي</td></tr>
-        <tr><td>الشهر الثاني</td><td>إطلاق حملة تسويقية مكثفة عبر ${a.fd_marketing||'القنوات المخطط لها'} وبدء التشغيل التجريبي</td></tr>
-        <tr><td>الشهر الثالث</td><td>مراجعة الأداء ومقارنته بالخطة، ضبط التكاليف، وتفعيل برنامج الولاء للعملاء</td></tr>
+        <tr><td><strong>الشهر الأول</strong></td><td>إنهاء الإجراءات القانونية والترخيص، تجهيز الموقع، توظيف الفريق الأساسي</td></tr>
+        <tr><td><strong>الشهر الثاني</strong></td><td>إطلاق حملة تسويقية مكثفة عبر ${a.fd_marketing||'القنوات المخطط لها'} وبدء التشغيل التجريبي</td></tr>
+        <tr><td><strong>الشهر الثالث</strong></td><td>مراجعة الأداء ومقارنته بالخطة، ضبط التكاليف، وتفعيل برنامج الولاء للعملاء</td></tr>
       </table>
     </div>
     <div class="sr-section">
       <h3><i class="fa-solid fa-lightbulb"></i>التوصيات الاستراتيجية</h3>
       <ul class="sr-rec-list">
-        ${net < 0 ? '<li>التدفق النقدي سلبي في السنة الأولى — خصص احتياطياً لا يقل عن ' + (Math.abs(net)*6).toLocaleString('ar-SA') + ' ريال للصمود</li>' : '<li>التدفق النقدي إيجابي — استثمر الفائض في التسويق لتسريع النمو المستهدف</li>'}
+        ${netY1 < 0 ? `<li>التدفق النقدي سلبي في السنة الأولى — خصص احتياطياً لا يقل عن <strong>${(Math.abs(netY1)*6).toLocaleString('ar-SA')} ريال</strong> لضمان الاستمرارية</li>` : `<li>التدفق النقدي إيجابي من اليوم الأول — استثمر الفائض في التسويق لتحقيق النمو المستهدف بالسنة الثانية</li>`}
         <li>ركّز على بناء قاعدة عملاء وفية في الأشهر الثلاثة الأولى قبل التفكير في التوسع</li>
-        ${revY1>0 && salary/revY1 > 0.35 ? '<li>حصة الرواتب مرتفعة — ادرس الأتمتة أو إعادة الهيكلة الوظيفية لإبقائها دون 30%</li>' : ''}
-        <li>ضع خطة طوارئ نقدية تغطي 6 أشهر من التكاليف الثابتة (${(fixed*6).toLocaleString('ar-SA')} ريال)</li>
+        ${revY1>0 && salary/revY1 > 0.35 ? `<li>حصة الرواتب <strong>${(salary/revY1*100).toFixed(0)}%</strong> مرتفعة — ادرس الأتمتة أو إعادة الهيكلة الوظيفية لإبقائها دون 30%</li>` : ''}
+        <li>ضع خطة طوارئ نقدية تغطي 6 أشهر من التكاليف الثابتة (<strong>${(fixed*6).toLocaleString('ar-SA')} ريال</strong>)</li>
         <li>قيّم الأداء شهرياً وقارن الإيرادات الفعلية بالمخططة — عدّل خطتك التسويقية وفقاً لذلك</li>
-        ${parseInt(growth) > 50 ? '<li>توقعات النمو طموحة — تأكد من قدرتك التشغيلية على استيعاب هذا النمو (مساحة، موظفون، مخزون)</li>' : ''}
+        ${parseInt(growth) > 60 ? `<li>توقعات النمو (${growth}%) طموحة — تأكد من قدرتك التشغيلية على استيعاب هذا النمو (مساحة، موظفون، مخزون)</li>` : ''}
+        ${netY3>0 && netY3 > netY1*1.5 ? `<li>السنة الثالثة تُظهر نمواً قوياً — خطّط مسبقاً لتوسيع الطاقة الإنتاجية من السنة الثانية</li>` : ''}
       </ul>
+    </div>
+    <!-- إخلاء مسؤولية -->
+    <div class="sr-disclaimer">
+      <i class="fa-solid fa-circle-info" style="color:var(--amber);flex-shrink:0;margin-top:.15rem"></i>
+      <span>هذا التقرير أُعدّ بواسطة <strong>منصة جنان بيز للأعمال</strong> استناداً إلى البيانات التي أدخلتها. جميع التوقعات والأرقام الواردة هي تقديرات إرشادية ولا تُعدّ ضماناً لأي نتائج فعلية. <strong>جنان بيز غير مسؤولة</strong> عن أي قرارات استثمارية أو تجارية تُتخذ بناءً على هذا التقرير. يُنصح بالتشاور مع مستشار مالي أو قانوني متخصص قبل اتخاذ أي قرار.</span>
+    </div>
+    <div class="sr-brand-footer">
+      <div class="srbf-logo"><i class="fa-solid fa-chart-mixed"></i> جنان بيز</div>
+      <div class="srbf-mid">المنصة الذكية للأعمال والاستثمار</div>
+      <div class="srbf-date"><i class="fa-solid fa-calendar"></i> ${new Date().toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric'})}</div>
     </div>
     <div class="sr-cta">
       <button class="btn-primary" onclick="resetFeasibility()"><i class="fa-solid fa-plus"></i> إعداد دراسة جديدة</button>
+      <button class="btn-primary" style="background:var(--navy)" onclick="goto('robot')"><i class="fa-solid fa-magnifying-glass-chart"></i> تحليل الربحية التفصيلي (مجاني)</button>
     </div>
   </div>`;
 }
@@ -4370,56 +5030,229 @@ function saveReport(name, type, status, score) {
    CAPITAL ENGINE
 ====================================================== */
 const PROJECTS_DB = [
-  { name:'كافيه متخصص',      icon:'fa-mug-hot',   min:30000,  max:120000, roi:35, sector:['food','all'],    risk:'متوسط', period:'6-10 أشهر', desc:'الكافيهات الآن ثقافة لا مجرد مشروب' },
-  { name:'عربة طعام',        icon:'fa-truck',     min:20000,  max:60000,  roi:42, sector:['food','all'],    risk:'منخفض', period:'3-5 أشهر',  desc:'منخفض التكلفة، سريع العائد' },
-  { name:'محل ملابس أطفال', icon:'fa-shirt',     min:40000,  max:100000, roi:30, sector:['retail','all'], risk:'متوسط', period:'8-12 شهر',  desc:'طلب مستمر طوال العام' },
-  { name:'تطبيق جوال',       icon:'fa-mobile',    min:30000,  max:80000,  roi:55, sector:['tech','all'],   risk:'متوسط-مرتفع', period:'12-18 شهر', desc:'عائد ضخم عند النجاح' },
-  { name:'مركز تدريب',      icon:'fa-graduation-cap',min:50000,max:150000,roi:40,sector:['service','all'],risk:'منخفض', period:'6-9 أشهر', desc:'الطلب على التدريب ينمو 25% سنوياً' },
-  { name:'مغسلة ملابس',     icon:'fa-shirt',     min:40000,  max:90000,  roi:33, sector:['service','all'],risk:'منخفض', period:'5-8 أشهر',  desc:'خدمة يومية مطلوبة دائماً' },
-  { name:'محل إلكترونيات',  icon:'fa-laptop',    min:80000,  max:200000, roi:22, sector:['retail','all'], risk:'متوسط', period:'10-14 شهر', desc:'سوق ضخم ومتنامٍ' },
-  { name:'عيادة تجميل',     icon:'fa-spa',       min:100000, max:300000, roi:45, sector:['service','all'],risk:'متوسط', period:'8-12 شهر',  desc:'من أعلى القطاعات ربحاً في السعودية' },
-  { name:'تجارة إلكترونية', icon:'fa-store',     min:15000,  max:50000,  roi:38, sector:['tech','retail','all'], risk:'منخفض-متوسط', period:'4-8 أشهر', desc:'لا تحتاج موقعاً مادياً' },
-  { name:'مطعم فاخر',       icon:'fa-utensils',  min:300000, max:800000, roi:28, sector:['food','all'],   risk:'مرتفع', period:'12-18 شهر', desc:'عائد كبير مع تخطيط محكم' },
-  { name:'استثمار عقاري',   icon:'fa-building',  min:200000, max:999999, roi:15, sector:['real','all'],   risk:'منخفض جداً', period:'طويل المدى',  desc:'الأكثر أماناً للمدى البعيد' },
-  { name:'مصنع صغير',       icon:'fa-industry',  min:150000, max:500000, roi:32, sector:['mfg','all'],   risk:'متوسط', period:'12-24 شهر', desc:'قيمة مضافة حقيقية للسوق' },
+  // ── غذاء وضيافة ──
+  { name:'كافيه متخصص',          icon:'fa-mug-hot',         min:30000,  max:120000, roi:35, sector:['food','all'],          risk:'متوسط',        period:'6-10 أشهر',   desc:'الكافيهات المتخصصة تعيش عصرها الذهبي — هامش قهوة المختصة يتجاوز 70%',     setup:'50,000 - 120,000 ر' },
+  { name:'عربة طعام متنقلة',      icon:'fa-truck',           min:20000,  max:60000,  roi:42, sector:['food','all'],          risk:'منخفض',        period:'3-5 أشهر',    desc:'رأس مال صغير وأرباح سريعة — منخفض الثابت ومرن في المواقع',               setup:'25,000 - 60,000 ر' },
+  { name:'مطعم متكامل',           icon:'fa-utensils',        min:150000, max:400000, roi:26, sector:['food','all'],          risk:'متوسط-مرتفع',  period:'10-16 شهر',   desc:'استثمار ضخم لكن العوائد السنوية تصل لـ 500,000 ريال عند النجاح',        setup:'200,000 - 400,000 ر' },
+  { name:'حلويات وكيك محلية',     icon:'fa-cake-candles',    min:15000,  max:50000,  roi:48, sector:['food','all'],          risk:'منخفض',        period:'2-4 أشهر',    desc:'طلب عالٍ في المناسبات والأعياد — يمكن البدء من المنزل بترخيص بلدي',    setup:'15,000 - 45,000 ر' },
+  { name:'مطعم صحي وعصائر',       icon:'fa-leaf',            min:40000,  max:100000, roi:38, sector:['food','all'],          risk:'منخفض-متوسط',  period:'5-8 أشهر',    desc:'نمط الحياة الصحي يدفع الطلب — الفئة المستهدفة لديها قدرة شرائية عالية', setup:'50,000 - 100,000 ر' },
+  // ── تجارة تجزئة ──
+  { name:'محل ملابس أطفال',       icon:'fa-shirt',           min:40000,  max:100000, roi:30, sector:['retail','all'],        risk:'متوسط',        period:'8-12 شهر',    desc:'طلب مستمر طوال العام — الوالدان لا يقتصدان في ملابس أطفالهما',         setup:'60,000 - 100,000 ر' },
+  { name:'محل إلكترونيات',        icon:'fa-laptop',          min:80000,  max:200000, roi:22, sector:['retail','all'],        risk:'متوسط',        period:'10-14 شهر',   desc:'سوق ضخم ومتنامٍ — الأرباح الحقيقية في الخدمات والاكسسوارات',          setup:'100,000 - 200,000 ر' },
+  { name:'متجر عطور وعناية',       icon:'fa-spray-can-sparkles', min:25000, max:70000, roi:40, sector:['retail','all'],       risk:'منخفض',        period:'4-7 أشهر',    desc:'هامش ربح العطور يصل 60%+ — العميل السعودي من أكثر مستهلكي العطور عالمياً', setup:'30,000 - 70,000 ر' },
+  { name:'متجر هدايا وديكور',      icon:'fa-gift',            min:30000,  max:80000,  roi:35, sector:['retail','all'],        risk:'منخفض',        period:'4-7 أشهر',    desc:'مواسم الأعياد والمناسبات تضاعف المبيعات 3-5 مرات',                      setup:'35,000 - 80,000 ر' },
+  // ── خدمات ──
+  { name:'مركز تدريب وتأهيل',     icon:'fa-graduation-cap',  min:50000,  max:150000, roi:40, sector:['service','all'],       risk:'منخفض',        period:'6-9 أشهر',    desc:'الطلب على التدريب ينمو 25% سنوياً — الهامش يصل 60%+ بعد التعادل',     setup:'60,000 - 150,000 ر' },
+  { name:'مغسلة ملابس ذكية',      icon:'fa-jug-detergent',   min:40000,  max:90000,  roi:33, sector:['service','all'],       risk:'منخفض',        period:'5-8 أشهر',    desc:'خدمة يومية مطلوبة دائماً — الغسيل الفاخر والتوصيل يضاعف الأرباح',    setup:'50,000 - 90,000 ر' },
+  { name:'صالون حلاقة رجالي',      icon:'fa-cut',             min:25000,  max:70000,  roi:45, sector:['service','all'],       risk:'منخفض',        period:'3-6 أشهر',    desc:'الزبائن يترددون كل 3-4 أسابيع بانتظام — دخل ثابت وعلاقات طويلة',     setup:'30,000 - 70,000 ر' },
+  { name:'عيادة تجميل ونضارة',    icon:'fa-spa',             min:100000, max:300000, roi:45, sector:['service','all'],       risk:'متوسط',        period:'8-12 شهر',    desc:'من أعلى القطاعات ربحاً في السعودية — ولاء عملاء ممتاز',               setup:'120,000 - 300,000 ر' },
+  { name:'خدمات صيانة منزلية',    icon:'fa-screwdriver-wrench', min:15000, max:40000, roi:55, sector:['service','all'],       risk:'منخفض جداً',   period:'1-3 أشهر',    desc:'طلب متفجر مع التوسع العمراني — هامش ربح 50-70% بتكاليف تشغيل بسيطة', setup:'15,000 - 40,000 ر' },
+  // ── تقنية ورقمي ──
+  { name:'تطبيق جوال',            icon:'fa-mobile',          min:30000,  max:80000,  roi:55, sector:['tech','all'],          risk:'متوسط-مرتفع',  period:'12-18 شهر',   desc:'عائد ضخم عند النجاح — أفضل النماذج هي الاشتراك الشهري',               setup:'30,000 - 80,000 ر' },
+  { name:'تجارة إلكترونية',       icon:'fa-store',           min:15000,  max:50000,  roi:38, sector:['tech','retail','all'], risk:'منخفض-متوسط',  period:'4-8 أشهر',    desc:'لا تحتاج موقعاً مادياً — ابدأ من البيت وتوسّع',                         setup:'15,000 - 50,000 ر' },
+  { name:'خدمات تسويق رقمي',      icon:'fa-chart-line',      min:10000,  max:30000,  roi:65, sector:['tech','all'],          risk:'منخفض جداً',   period:'1-2 شهر',     desc:'أقل استثمار وأعلى هامش — يكفي لابتوب واتصال بالإنترنت للبدء',         setup:'10,000 - 25,000 ر' },
+  { name:'محتوى رقمي وإنتاج',     icon:'fa-video',           min:20000,  max:60000,  roi:50, sector:['tech','all'],          risk:'منخفض',        period:'2-4 أشهر',    desc:'طلب إعلانات الشركات ينمو 40% سنوياً — جلسة فيديو واحدة = 2,000-8,000 ر', setup:'20,000 - 55,000 ر' },
+  // ── عقارات وتصنيع ──
+  { name:'استثمار عقاري',         icon:'fa-building',        min:200000, max:999999, roi:15, sector:['real','all'],          risk:'منخفض جداً',   period:'طويل المدى',  desc:'الأكثر أماناً للمدى البعيد — عائد إيجاري ثابت 6-10% سنوياً',          setup:'تكاليف صيانة فقط' },
+  { name:'مصنع صغير',             icon:'fa-industry',        min:150000, max:500000, roi:32, sector:['mfg','all'],           risk:'متوسط',        period:'12-24 شهر',   desc:'قيمة مضافة حقيقية للسوق — دعم حكومي متاح من صندوق المئوية ومنشآت',   setup:'200,000 - 500,000 ر' },
+  { name:'مطعم فاخر',             icon:'fa-star',            min:300000, max:800000, roi:28, sector:['food','all'],          risk:'مرتفع',        period:'12-18 شهر',   desc:'عائد سنوي يصل 800,000+ عند النجاح — يحتاج خبرة إدارية قوية',          setup:'400,000 - 800,000 ر' },
+  { name:'صيدلية فرنشايز',        icon:'fa-pills',           min:180000, max:400000, roi:20, sector:['service','all'],       risk:'منخفض',        period:'6-10 أشهر',   desc:'استقرار تام — الدواء ضرورة لا كمالية — العمل تحت مظلة شركة كبرى',     setup:'200,000 - 400,000 ر' },
 ];
 
 function updateCapital(val) {
   const num = parseInt(val);
   document.getElementById('cap-display').textContent = num.toLocaleString('ar-SA') + ' ريال';
-  updateResults();
+  updateCapitalNote();
 }
 
-function updateResults() {
-  const capital = parseInt(document.getElementById('cap-range').value);
-  const sector  = document.getElementById('cap-sector').value;
-  const filtered = PROJECTS_DB.filter(p =>
-    p.min <= capital && p.max >= capital &&
-    (sector === 'all' || p.sector.includes(sector))
-  ).sort((a,b) => b.roi - a.roi).slice(0,5);
-
-  const container = document.getElementById('cap-results');
-  if (!filtered.length) {
-    container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem">لا توجد مشاريع مطابقة — جرب تغيير الفلاتر</p>';
-    return;
-  }
-  container.innerHTML = filtered.map(p => `
-    <div class="project-suggest" onclick="goto('robot')">
-      <div class="ps-icon"><i class="fa-solid ${p.icon}"></i></div>
-      <div style="flex:1">
-        <div class="ps-name">${p.name}</div>
-        <div class="ps-roi">📈 عائد متوقع ${p.roi}% · ⏱️ ${p.period} · 🛡️ مخاطرة ${p.risk}</div>
-        <div class="ps-desc">${p.desc}</div>
-      </div>
-      <div style="font-size:.75rem;color:var(--muted);white-space:nowrap">
-        ${(p.min/1000).toFixed(0)}k - ${p.max>=999999?'∞':(p.max/1000).toFixed(0)+'k'} ر
-      </div>
-    </div>
-  `).join('');
-}
+function updateResults() { /* Legacy alias — استشارة رأس المال تُشغّل عبر runCapitalConsultation */ }
 
 // Init capital
 updateCapital(50000);
+
+function updateCapitalNote() {
+  const capital = parseInt(document.getElementById('cap-range').value);
+  const sector  = document.getElementById('cap-sector').value;
+  const count   = PROJECTS_DB.filter(p => p.min <= capital && p.max >= capital && (sector === 'all' || p.sector.includes(sector))).length;
+  const el = document.getElementById('cap-range-note-text');
+  if (el) el.textContent = `هذا المبلغ يتيح لك ${count} فرصة استثمارية في قاعدة بياناتنا`;
+}
+
+function runCapitalConsultation() {
+  const capital      = parseInt(document.getElementById('cap-range').value);
+  const sector       = document.getElementById('cap-sector').value;
+  const riskPref     = document.getElementById('cap-risk-tolerance').value;
+  const goal         = document.getElementById('cap-goal').value;
+  const exp          = document.getElementById('cap-exp').value;
+
+  // فلترة المشاريع المطابقة
+  let filtered = PROJECTS_DB.filter(p => p.min <= capital && p.max >= capital && (sector === 'all' || p.sector.includes(sector)));
+
+  // تطبيق فلتر المخاطرة
+  if (riskPref === 'low') filtered = filtered.filter(p => ['منخفض جداً','منخفض','منخفض-متوسط'].includes(p.risk));
+  else if (riskPref === 'mid') filtered = filtered.filter(p => ['منخفض-متوسط','متوسط','متوسط-مرتفع'].includes(p.risk));
+  else if (riskPref === 'high') filtered = filtered.filter(p => ['متوسط-مرتفع','مرتفع'].includes(p.risk));
+
+  // رتّب حسب الهدف
+  if (goal === 'income')  filtered.sort((a,b) => b.roi - a.roi);
+  else if (goal === 'fast') filtered.sort((a,b) => (parseInt(a.period)||12) - (parseInt(b.period)||12));
+  else if (goal === 'stable') filtered.sort((a,b) => {
+    const riskOrder = {'منخفض جداً':0,'منخفض':1,'منخفض-متوسط':2,'متوسط':3,'متوسط-مرتفع':4,'مرتفع':5};
+    return (riskOrder[a.risk]||3) - (riskOrder[b.risk]||3);
+  });
+  else filtered.sort((a,b) => b.roi - a.roi);
+
+  const top = filtered.slice(0, 5);
+
+  // ملخص الملف الاستثماري
+  const riskMap = {'any':'غير محدد','low':'منخفض / محافظ','mid':'متوسط','high':'مرتفع / مغامر'};
+  const goalMap = {'income':'دخل شهري ثابت','growth':'نمو رأس المال','fast':'أرباح سريعة','stable':'أمان وتنويع'};
+  const expMap  = {'none':'مبتدئ','little':'خبرة محدودة','mid':'خبرة جيدة','expert':'خبير'};
+  const sectorMap = {'all':'جميع القطاعات','food':'غذاء وضيافة','tech':'تقنية ورقمي','retail':'تجارة وبيع','service':'خدمات','real':'عقارات','mfg':'تصنيع وإنتاج'};
+
+  const avgROI  = top.length ? Math.round(top.reduce((a,p) => a+p.roi, 0) / top.length) : 0;
+  const bestROI = top.length ? Math.max(...top.map(p => p.roi)) : 0;
+  const annualIncome = Math.round(capital * avgROI / 100);
+
+  document.getElementById('cap-profile-summary').innerHTML = `
+    <div class="cap-profile-card">
+      <div class="cpc-header">
+        <div class="cpc-icon"><i class="fa-solid fa-user-tie"></i></div>
+        <div>
+          <div class="cpc-title">ملف المستثمر الشخصي</div>
+          <div class="cpc-sub">بناءً على إجاباتك — تم تخصيص هذه التوصيات لك</div>
+        </div>
+      </div>
+      <div class="cpc-stats">
+        <div class="cpc-stat"><div class="cps-val" style="color:var(--green)">${capital.toLocaleString('ar-SA')} ر</div><div class="cps-lbl">رأس المال المتاح</div></div>
+        <div class="cpc-stat"><div class="cps-val" style="color:#d97706">${avgROI}%</div><div class="cps-lbl">متوسط العائد المتوقع</div></div>
+        <div class="cpc-stat"><div class="cps-val" style="color:var(--green)">${annualIncome.toLocaleString('ar-SA')} ر</div><div class="cps-lbl">العائد السنوي المتوقع</div></div>
+        <div class="cpc-stat"><div class="cps-val">${top.length}</div><div class="cps-lbl">فرص مطابقة</div></div>
+      </div>
+      <div class="cpc-tags">
+        <span class="cpc-tag"><i class="fa-solid fa-bullseye"></i> ${goalMap[goal]}</span>
+        <span class="cpc-tag"><i class="fa-solid fa-shield-halved"></i> مخاطرة ${riskMap[riskPref]}</span>
+        <span class="cpc-tag"><i class="fa-solid fa-briefcase"></i> ${expMap[exp]}</span>
+        <span class="cpc-tag"><i class="fa-solid fa-industry"></i> ${sectorMap[sector]}</span>
+      </div>
+    </div>`;
+
+  // بطاقات المشاريع
+  const container = document.getElementById('cap-results');
+  if (!top.length) {
+    container.innerHTML = `<div class="cap-empty">
+      <i class="fa-solid fa-magnifying-glass" style="font-size:2rem;margin-bottom:.75rem;opacity:.4"></i>
+      <p>لا توجد فرص مطابقة لمعاييرك — جرب توسيع نطاق المخاطرة أو تغيير القطاع</p>
+      <button class="btn-primary" style="margin-top:1rem" onclick="resetCapital()">تعديل المعايير</button>
+    </div>`;
+  } else {
+    container.innerHTML = `<h3 style="font-size:.97rem;font-weight:800;margin:1.25rem 0 .85rem;display:flex;align-items:center;gap:.5rem">
+      <i class="fa-solid fa-stars" style="color:#f59e0b"></i> أفضل ${top.length} فرص استثمارية موصى بها
+    </h3>` + top.map((p, idx) => {
+      const riskColor = {'منخفض جداً':'#16a34a','منخفض':'#22c55e','منخفض-متوسط':'#84cc16','متوسط':'#f59e0b','متوسط-مرتفع':'#f97316','مرتفع':'#e74c3c'}[p.risk] || '#f59e0b';
+      const monthlyEst = Math.round(capital * p.roi / 100 / 12);
+      return `
+      <div class="cap-project-card ${idx === 0 ? 'cap-top-pick' : ''}">
+        ${idx === 0 ? '<div class="cap-rank-badge">🥇 الأفضل لك</div>' : idx === 1 ? '<div class="cap-rank-badge" style="background:rgba(148,163,184,.12);color:#94a3b8">🥈 اختيار ثانٍ</div>' : ''}
+        <div class="cap-project-inner">
+          <div class="cap-proj-icon ${idx === 0 ? 'cpi-top' : ''}">
+            <i class="fa-solid ${p.icon}"></i>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.35rem">
+              <div style="font-size:.97rem;font-weight:800">${p.name}</div>
+              <span style="background:${riskColor}18;color:${riskColor};font-size:.7rem;font-weight:700;padding:.15rem .6rem;border-radius:20px">مخاطرة ${p.risk}</span>
+            </div>
+            <div style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem;line-height:1.55">${p.desc}</div>
+            <div class="cap-proj-metrics">
+              <div class="cpm-item">
+                <div class="cpm-val" style="color:var(--green)">${p.roi}%</div>
+                <div class="cpm-lbl">عائد سنوي متوقع</div>
+              </div>
+              <div class="cpm-item">
+                <div class="cpm-val">${monthlyEst.toLocaleString('ar-SA')} ر</div>
+                <div class="cpm-lbl">ربح شهري مقدّر</div>
+              </div>
+              <div class="cpm-item">
+                <div class="cpm-val">${p.period}</div>
+                <div class="cpm-lbl">مدة الاسترداد</div>
+              </div>
+              <div class="cpm-item">
+                <div class="cpm-val" style="font-size:.82rem">${(p.min/1000).toFixed(0)}k – ${p.max>=999999?'∞':(p.max/1000).toFixed(0)+'k'} ر</div>
+                <div class="cpm-lbl">نطاق رأس المال</div>
+              </div>
+            </div>
+            ${p.setup ? `<div style="font-size:.74rem;color:var(--muted);margin-top:.4rem"><i class="fa-solid fa-coins" style="color:var(--amber);margin-left:.3rem"></i>تكلفة التأسيس: ${p.setup}</div>` : ''}
+          </div>
+          <div style="flex-shrink:0">
+            <button onclick="goto('robot')" style="padding:.5rem 1rem;border-radius:8px;border:1.5px solid var(--green);background:transparent;color:var(--green);font-family:'Tajawal',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;white-space:nowrap">
+              <i class="fa-solid fa-magnifying-glass-chart"></i> حلّل مشروعاً
+            </button>
+          </div>
+        </div>
+      </div>`}).join('');
+  }
+
+  // تحليل المحفظة
+  if (top.length >= 2) {
+    const riskProfile = riskPref === 'low' ? 'محافظة' : riskPref === 'mid' ? 'متوازنة' : 'عدوانية';
+    document.getElementById('cap-portfolio-analysis').innerHTML = `
+      <div class="cap-portfolio">
+        <h3 style="font-size:.97rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+          <i class="fa-solid fa-chart-pie" style="color:#7B9ED4"></i> تحليل المحفظة المقترحة
+        </h3>
+        <div class="cap-port-grid">
+          <div class="cap-port-item">
+            <div class="cport-icon" style="background:rgba(78,115,194,.12)"><i class="fa-solid fa-sack-dollar" style="color:var(--green)"></i></div>
+            <div class="cport-title">أعلى عائد ممكن</div>
+            <div class="cport-val">${bestROI}% سنوياً</div>
+            <div class="cport-sub">على أفضل فرصة في قائمتك</div>
+          </div>
+          <div class="cap-port-item">
+            <div class="cport-icon" style="background:rgba(245,158,11,.1)"><i class="fa-solid fa-scale-balanced" style="color:#d97706"></i></div>
+            <div class="cport-title">نوع المحفظة</div>
+            <div class="cport-val">${riskProfile}</div>
+            <div class="cport-sub">بناءً على تفضيلك للمخاطرة</div>
+          </div>
+          <div class="cap-port-item">
+            <div class="cport-icon" style="background:rgba(34,197,94,.1)"><i class="fa-solid fa-calendar-check" style="color:#16a34a"></i></div>
+            <div class="cport-title">العائد السنوي</div>
+            <div class="cport-val">${annualIncome.toLocaleString('ar-SA')} ريال</div>
+            <div class="cport-sub">بمتوسط عائد ${avgROI}% على رأس مالك</div>
+          </div>
+          <div class="cap-port-item">
+            <div class="cport-icon" style="background:rgba(168,85,247,.1)"><i class="fa-solid fa-lightbulb" style="color:#a855f7"></i></div>
+            <div class="cport-title">توصية الخبراء</div>
+            <div class="cport-val" style="font-size:.82rem">${exp === 'none' ? 'ابدأ بمشروع واحد صغير' : exp === 'little' ? 'مشروع واحد مركّز' : 'يمكن تنويع محفظتك'}</div>
+            <div class="cport-sub">بناءً على خبرتك في الأعمال</div>
+          </div>
+        </div>
+        <div style="background:var(--bg2);border-radius:10px;padding:1rem 1.25rem;margin-top:1rem;font-size:.84rem;line-height:1.8;color:var(--muted)">
+          <strong style="color:var(--text)"><i class="fa-solid fa-road" style="color:var(--green);margin-left:.4rem"></i>خارطة طريق للبداية:</strong><br/>
+          1. ابدأ بإعداد دراسة جدوى للمشروع الذي اخترته (99-299 ريال)<br/>
+          2. قدّم الدراسة لجهات التمويل إن احتجت دعماً مالياً<br/>
+          3. استخدم "تحليل المشروع" المجاني لإدخال أرقامك الفعلية وتتبع الأداء
+        </div>
+        <div style="display:flex;gap:.85rem;flex-wrap:wrap;margin-top:1rem">
+          <button class="btn-primary" onclick="goto('analysis')"><i class="fa-solid fa-file-chart-column"></i> أعدّ دراسة جدوى الآن</button>
+          <button class="btn-primary" style="background:var(--card);color:var(--text);border:1.5px solid var(--border)" onclick="resetCapital()"><i class="fa-solid fa-rotate"></i> استشارة جديدة</button>
+        </div>
+      </div>`;
+  } else {
+    document.getElementById('cap-portfolio-analysis').innerHTML = '';
+  }
+
+  // انتقل للخطوة 1
+  document.getElementById('cap-step-0').classList.remove('active');
+  document.getElementById('cap-step-1').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function resetCapital() {
+  document.getElementById('cap-step-1').classList.remove('active');
+  document.getElementById('cap-step-0').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
 
 /* ======================================================
    ADMIN INTELLIGENCE ENGINE
