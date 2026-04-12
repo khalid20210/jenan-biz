@@ -660,6 +660,8 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .ac-chip-row{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}
 .ac-chip{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:.2rem .7rem;font-size:.73rem;color:var(--muted)}
 .ac-enter-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.1rem;font-size:.83rem;font-weight:700;color:var(--green)}
+.ac-card-banner{height:155px;border-radius:12px;margin:-2rem -1.75rem 1.5rem;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+.ac-card-banner svg{position:absolute;top:0;right:0;width:100%;height:100%;pointer-events:none}
 /* section back bar */
 .ac-back-bar{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
 .ac-back-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-size:.88rem;display:inline-flex;align-items:center;gap:.4rem;font-family:'Tajawal',sans-serif;transition:var(--tr)}
@@ -1463,7 +1465,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
         </div>
         <div style="margin-top:1.75rem;text-align:center">
           <button class="btn-primary" id="fs-next-0" onclick="proceedToPayment()" disabled style="opacity:.45;cursor:not-allowed">
-            المتابعة للدفع <i class="fa-solid fa-arrow-left"></i>
+            ابدأ الدراسة الآن <i class="fa-solid fa-arrow-left"></i>
           </button>
           <p style="font-size:.78rem;color:var(--muted);margin-top:.65rem">
             <i class="fa-solid fa-shield-halved" style="color:var(--green);margin-left:.3rem"></i>
@@ -1593,6 +1595,28 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
         <div class="ac-main-cards">
           <!-- مكتبة الدراسات -->
           <div class="ac-main-card" style="--ac-color:#4E73C2" onclick="openAcSection(1)">
+            <div class="ac-card-banner" style="background:linear-gradient(135deg,#4E73C2,#2d4f9e)">
+              <svg viewBox="0 0 320 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="295" cy="-15" r="85" fill="rgba(255,255,255,.07)"/>
+                <circle cx="-10" cy="140" r="65" fill="rgba(255,255,255,.05)"/>
+                <rect x="88" y="32" width="28" height="72" rx="5" fill="rgba(255,255,255,.22)"/>
+                <rect x="90" y="34" width="8" height="68" rx="3" fill="rgba(255,255,255,.32)"/>
+                <rect x="101" y="44" width="12" height="2.5" rx="1" fill="rgba(255,255,255,.5)"/>
+                <rect x="101" y="51" width="9" height="2" rx="1" fill="rgba(255,255,255,.35)"/>
+                <rect x="122" y="20" width="34" height="84" rx="5" fill="rgba(255,255,255,.28)"/>
+                <rect x="124" y="22" width="9" height="80" rx="3" fill="rgba(255,255,255,.38)"/>
+                <rect x="136" y="34" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.55)"/>
+                <rect x="136" y="42" width="12" height="2" rx="1" fill="rgba(255,255,255,.4)"/>
+                <rect x="162" y="38" width="24" height="66" rx="5" fill="rgba(255,255,255,.2)"/>
+                <rect x="164" y="40" width="6" height="62" rx="3" fill="rgba(255,255,255,.28)"/>
+                <rect x="173" y="50" width="11" height="2" rx="1" fill="rgba(255,255,255,.45)"/>
+                <rect x="76" y="104" width="124" height="5" rx="2" fill="rgba(255,255,255,.22)"/>
+                <polyline points="200,95 217,68 232,80 248,50 265,62 282,38" stroke="rgba(255,255,255,.7)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="282" cy="38" r="5" fill="rgba(255,255,255,.9)"/>
+                <circle cx="50" cy="78" r="24" stroke="rgba(255,255,255,.4)" stroke-width="3" fill="none"/>
+                <line x1="68" y1="96" x2="80" y2="108" stroke="rgba(255,255,255,.4)" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
             <div class="ac-main-icon" style="background:rgba(78,115,194,.12);color:var(--green)">
               <i class="fa-solid fa-book-open"></i>
             </div>
@@ -1609,6 +1633,24 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
           <!-- دورات المال والأعمال -->
           <div class="ac-main-card" style="--ac-color:#7B9ED4" onclick="openAcSection(2)">
+            <div class="ac-card-banner" style="background:linear-gradient(135deg,#f59e0b,#c2650a)">
+              <svg viewBox="0 0 320 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="-15" cy="-15" r="80" fill="rgba(255,255,255,.06)"/>
+                <circle cx="310" cy="155" r="70" fill="rgba(255,255,255,.05)"/>
+                <rect x="95" y="35" width="130" height="82" rx="8" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                <rect x="102" y="42" width="116" height="60" rx="5" fill="rgba(255,255,255,.12)"/>
+                <line x1="110" y1="54" x2="206" y2="54" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round"/>
+                <line x1="110" y1="64" x2="190" y2="64" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="110" y1="73" x2="200" y2="73" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="110" y1="82" x2="175" y2="82" stroke="rgba(255,255,255,.25)" stroke-width="1.5" stroke-linecap="round"/>
+                <polygon points="160,10 130,30 190,30" fill="rgba(255,255,255,.55)"/>
+                <rect x="145" y="30" width="30" height="5" rx="1" fill="rgba(255,255,255,.45)"/>
+                <circle cx="55" cy="90" r="28" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                <text x="55" y="96" text-anchor="middle" font-size="24" fill="rgba(255,255,255,.8)">👤</text>
+                <circle cx="265" cy="50" r="22" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+                <text x="265" y="57" text-anchor="middle" font-size="18" fill="rgba(255,255,255,.75)">🎓</text>
+              </svg>
+            </div>
             <div class="ac-main-icon" style="background:rgba(123,158,212,.15);color:var(--amber)">
               <i class="fa-solid fa-chalkboard-user"></i>
             </div>
@@ -1625,6 +1667,27 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
           <!-- أدوات المال الذكية -->
           <div class="ac-main-card" style="--ac-color:#22c55e" onclick="openAcSection(3)">
+            <div class="ac-card-banner" style="background:linear-gradient(135deg,#22c55e,#15803d)">
+              <svg viewBox="0 0 320 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="300" cy="10" r="70" fill="rgba(255,255,255,.06)"/>
+                <circle cx="20" cy="145" r="55" fill="rgba(255,255,255,.05)"/>
+                <rect x="105" y="22" width="110" height="110" rx="14" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+                <rect x="113" y="32" width="94" height="28" rx="6" fill="rgba(255,255,255,.22)"/>
+                <text x="160" y="52" text-anchor="middle" font-size="16" font-weight="bold" fill="rgba(255,255,255,.9)">12,580</text>
+                <rect x="113" y="68" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
+                <rect x="145" y="68" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
+                <rect x="177" y="68" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
+                <rect x="113" y="91" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
+                <rect x="145" y="91" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
+                <rect x="177" y="91" width="26" height="30" rx="4" fill="rgba(255,255,255,.4)"/>
+                <rect x="113" y="114" width="58" height="18" rx="4" fill="rgba(255,255,255,.18)"/>
+                <circle cx="55" cy="60" r="22" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                <line x1="46" y1="60" x2="64" y2="60" stroke="rgba(255,255,255,.7)" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="55" y1="51" x2="55" y2="69" stroke="rgba(255,255,255,.7)" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="262" cy="105" r="22" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+                <text x="262" y="112" text-anchor="middle" font-size="18" fill="rgba(255,255,255,.7)">💰</text>
+              </svg>
+            </div>
             <div class="ac-main-icon" style="background:rgba(34,197,94,.1);color:#16a34a">
               <i class="fa-solid fa-calculator"></i>
             </div>
@@ -2300,10 +2363,13 @@ const pageMap = {
   admin:   {title:'لوحة الإدمن — مركز التحكم', sub:'معاملات المستخدمين وذكاء المنصة التسويقي'},
 };
 function goto(page) {
+  console.log('[goto] navigating to:', page);
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   if(page==='projectcopilot') { showProjectCopilotModal(); return; }
-  document.getElementById('page-'+page).classList.add('active');
+  const pageEl = document.getElementById('page-'+page);
+  if(!pageEl){ console.error('[goto] page not found: page-'+page); return; }
+  pageEl.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n=>{
     if(n.getAttribute('onclick')?.includes("'"+page+"'")) n.classList.add('active');
   });
@@ -2368,8 +2434,6 @@ function showToast(msg) {
   t.textContent=msg;
   document.body.appendChild(t);
   setTimeout(()=>t.remove(),2500);
-}
-
 }
 
 /* ======================================================
@@ -3142,11 +3206,103 @@ function buildProjectAnalysisReport() {
       <div class="srbf-mid">المنصة الذكية للأعمال والاستثمار</div>
       <div class="srbf-date"><i class="fa-solid fa-calendar"></i> ${new Date().toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric'})}</div>
     </div>
+
+    <!-- زر تحليل AI -->
+    <div class="sr-section" id="pa-ai-section">
+      <div style="background:linear-gradient(135deg,#1E3A8A,#4E73C2);border-radius:14px;padding:1.5rem;text-align:center;color:#fff">
+        <div style="font-size:1.5rem;margin-bottom:.5rem">🤖</div>
+        <h3 style="color:#fff;margin-bottom:.5rem;font-size:1.05rem">هل تريد تحليلاً أعمق بالذكاء الاصطناعي؟</h3>
+        <p style="font-size:.85rem;opacity:.85;margin-bottom:1rem">سيقرأ مستشار AI مشروعك ويعطيك توصيات مخصصة وخطة عمل واقعية</p>
+        <button id="pa-ai-btn" onclick="runProjectAI()" style="background:#fff;color:#1E3A8A;border:none;padding:.85rem 2.5rem;border-radius:30px;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer">
+          <i class="fa-solid fa-robot"></i> احصل على تحليل AI الآن — مجاني
+        </button>
+      </div>
+      <div id="pa-ai-output" style="margin-top:1rem;display:none">
+        <div id="pa-ai-content" style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;font-size:.88rem;line-height:2;white-space:pre-wrap"></div>
+      </div>
+    </div>
+
     <div class="sr-cta">
       <button class="btn-primary" onclick="resetProjectAnalysis()"><i class="fa-solid fa-plus"></i> تحليل مشروع جديد</button>
       <button class="btn-primary" style="background:var(--navy)" onclick="goto('analysis')"><i class="fa-solid fa-file-chart-column"></i> إعداد دراسة جدوى مفصلة</button>
     </div>
   </div>`;
+}
+
+async function runProjectAI() {
+  const btn = document.getElementById('pa-ai-btn');
+  const output = document.getElementById('pa-ai-output');
+  const content = document.getElementById('pa-ai-content');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> المستشار AI يحلل مشروعك...';
+  output.style.display = 'none';
+
+  const a = paState.answers;
+  const capital   = parseFloat(a.pa_capital)   || 0;
+  const revenue   = parseFloat(a.pa_revenue)   || 0;
+  const rent      = parseFloat(a.pa_rent)      || 0;
+  const salaries  = parseFloat(a.pa_salaries)  || 0;
+  const cogs      = parseFloat(a.pa_cogs)      || 0;
+  const marketing = parseFloat(a.pa_marketing) || 0;
+  const utilities = parseFloat(a.pa_utilities) || 0;
+  const fixedOth  = parseFloat(a.pa_fixed_other)||0;
+  const varOth    = parseFloat(a.pa_var_other) || 0;
+  const totalCosts= rent+salaries+cogs+marketing+utilities+fixedOth+varOth;
+  const netProfit = revenue - totalCosts;
+  const netMargin = revenue > 0 ? (netProfit/revenue*100).toFixed(1) : 0;
+
+  const prompt = `أنت مستشار أعمال محترف متخصص في السوق السعودي.
+
+تفاصيل المشروع:
+- اسم المشروع: ${a.pa_name || 'غير محدد'}
+- نوع النشاط: ${a.pa_type || 'غير محدد'}
+- المدينة: ${a.pa_city || 'غير محددة'}
+- رأس المال: ${capital.toLocaleString('ar-SA')} ريال
+- مصدر التمويل: ${a.pa_funding || 'غير محدد'}
+
+البيانات المالية الشهرية:
+- الإيرادات: ${revenue.toLocaleString('ar-SA')} ريال
+- تكلفة البضاعة: ${cogs.toLocaleString('ar-SA')} ريال
+- الإيجار: ${rent.toLocaleString('ar-SA')} ريال
+- الرواتب: ${salaries.toLocaleString('ar-SA')} ريال
+- الكهرباء والمرافق: ${utilities.toLocaleString('ar-SA')} ريال
+- التسويق: ${marketing.toLocaleString('ar-SA')} ريال
+- مصاريف أخرى: ${(fixedOth+varOth).toLocaleString('ar-SA')} ريال
+- إجمالي التكاليف: ${totalCosts.toLocaleString('ar-SA')} ريال
+- صافي الربح الشهري: ${netProfit.toLocaleString('ar-SA')} ريال (${netMargin}%)
+
+معلومات إضافية:
+- المنافسة: ${a.pa_comp || 'غير محدد'}
+- خبرة صاحب المشروع: ${a.pa_exp || 'غير محددة'}
+- الجمهور المستهدف: ${a.pa_target || 'غير محدد'}
+
+المطلوب منك: اكتب تحليلاً احترافياً مختصراً (5-7 فقرات) يشمل:
+1. تقييمك الصريح لوضع المشروع
+2. أهم نقاط القوة والضعف
+3. أولويات التحسين الفورية بالأرقام
+4. استراتيجية نمو خلال 12 شهراً
+5. تحذيرات ومخاطر يجب الانتباه لها
+
+اكتب بأسلوب مباشر وعملي كمستشار حقيقي لا كبرنامج.`;
+
+  try {
+    const res = await fetch('/api/generate-study', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-user-id': 'guest' },
+      body: JSON.stringify({ prompt, depth: 'simplified' })
+    });
+    if (!res.ok) throw new Error('خطأ في السيرفر');
+    const data = await res.json();
+    content.textContent = data.content || 'لا يوجد رد';
+    output.style.display = 'block';
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> تم التحليل';
+    btn.style.opacity = '.6';
+  } catch(err) {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-robot"></i> احصل على تحليل AI الآن — مجاني';
+    content.textContent = 'تعذّر الاتصال بخدمة AI — تأكد من إضافة مفتاح OpenAI في ملف .env';
+    output.style.display = 'block';
+  }
 }
 
 function showPaStep(step) {
@@ -3553,7 +3709,7 @@ const GUIDE_KB = {
       {name:'مستودع لوجستي (ضاحية)',        price:'150 – 400 ر/م²/سنة'},
     ],
     note:'العوامل المؤثرة: الحي، الطابق، قرب الطرق الرئيسية، قِدَم المبنى، وجود مواقف.',
-    ctaLabel:'📊 دراسة جدوى مشروع', ctaAction:"setMode('feasibility',document.querySelector('[onclick=\'setMode(\\"feasibility\\",this)\'\']'))",
+    ctaLabel:'📊 دراسة جدوى مشروع', ctaAction:"goto('analysis')",
     moreBtns:[{l:'📌 كيف أختار موقع المحل؟', a:"handleReply('كيف أختار موقع المحل المناسب؟')"}],
   },
   'تمويل': {
@@ -4183,11 +4339,7 @@ function startChat() {
     AI_STEP = 'welcome';
     Object.keys(AI_COLLECT).forEach(k => delete AI_COLLECT[k]);
     setTimeout(() => addBotMessage(
-      'مرحبا! أنا **جنان** 🤖\n\nاسألني بحرية عن:\n• **أسعار أي منتج** — أثاث، أجهزة، جوالات، أغذية، منظفات...،
-• **خدمات** — استقدام، تكييف، صيانة، إيجار، تمويل...،
-• **مشاريع** — دراسة جدوى، خطوات بدء العمل، أفضل الفرص...
-
-أجيبك مباشرة وبدون تعقيد. للتفاصيل أو طلب الخدمة سأوجهك للقسم المناسب 👇',
+      'مرحبا! أنا **جنان** 🤖\n\nاسألني بحرية عن:\n• **أسعار أي منتج** — أثاث، أجهزة، جوالات، أغذية، منظفات...،\n• **خدمات** — استقدام، تكييف، صيانة، إيجار، تمويل...،\n• **مشاريع** — دراسة جدوى، خطوات بدء العمل، أفضل الفرص...\n\nأجيبك مباشرة وبدون تعقيد. للتفاصيل أو طلب الخدمة سأوجهك للقسم المناسب 👇',
       ['سعر أثاث مكتبي', 'أسعار الجوالات', 'تكلفة تأثيث منزل', 'خدمة الاستقدام', 'أريد دراسة جدوى كاملة']
     ), 500);
     return;
@@ -4519,11 +4671,8 @@ function selectStudyType(type) {
 
 function proceedToPayment() {
   if (!fsState.type) { showToast('يرجى اختيار نوع الدراسة أولاً'); return; }
-  const s = fsState.type === 'simple';
-  document.getElementById('pay-plan-name').textContent  = s ? 'دراسة الجدوى المبسطة' : 'دراسة الجدوى المفصلة';
-  document.getElementById('pay-plan-price').textContent = s ? '99 ريال' : '299 ريال';
-  selectPayMethod('card');
-  showFsStep(1);
+  // تخطّي الدفع — الانتقال مباشرة للأسئلة
+  startQuestionnaire();
 }
 
 function backToTypes() { showFsStep(0); }

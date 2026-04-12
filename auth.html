@@ -728,7 +728,7 @@
         email: u,
         username: existing.username || ''
       }));
-      window.location.href = 'dashboard.html';
+      window.location.href = '/dashboard';
     }, 1400);
   });
 
@@ -855,7 +855,7 @@
   /* ===== SOCIAL (demo) ===== */
   function socialLogin() {
     localStorage.setItem('jb-user', JSON.stringify({name:'مستخدم جديد', email:'user@social.com'}));
-    window.location.href='/dashboard.html';
+    window.location.href='/dashboard';
   }
 
   /* ===== OTP API ===== */
@@ -952,7 +952,7 @@
         email:    regData.email,
         username: regData.username
       }));
-      setTimeout(() => { window.location.href = 'dashboard.html'; }, 2000);
+      setTimeout(() => { window.location.href = '/dashboard'; }, 2000);
     }
   }
 </script>

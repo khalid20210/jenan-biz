@@ -66,6 +66,18 @@ async def dashboard():
     resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
     return resp
 
+@app.get("/dashboard.html")
+async def dashboard_html():
+    resp = FileResponse(os.path.join(BASE_DIR, "dashboard.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
+
+@app.get("/auth.html")
+async def auth_html():
+    resp = FileResponse(os.path.join(BASE_DIR, "auth.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
+
 @app.get("/auth")
 async def auth():
     resp = FileResponse(os.path.join(BASE_DIR, "auth.html"))
