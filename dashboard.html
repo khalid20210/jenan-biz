@@ -992,27 +992,9 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
     <p class="nav-section">الأدوات الذكية</p>
 
-    <!-- ══ بوابة ريادة الأعمال (accordion) ══ -->
-    <div class="nav-group" id="nav-group-entrepreneur">
-      <div class="nav-group-header" id="nav-entrepreneur" onclick="toggleNavGroup('nav-group-entrepreneur');goto('entrepreneur')">
-        <i class="fa-solid fa-rocket group-ico" style="color:#4E73C2"></i>
-        <span class="group-label">بوابة ريادة الأعمال</span>
-        <i class="fa-solid fa-chevron-right ng-arrow"></i>
-      </div>
-      <div class="nav-sub">
-        <div class="nav-sub-item" id="nav-sub-robot" onclick="gotoSub('robot','nav-group-entrepreneur','nav-sub-robot')">
-          <i class="fa-solid fa-magnifying-glass-chart" style="color:#22c55e"></i> تحليل المشاريع
-        </div>
-        <div class="nav-sub-item" id="nav-sub-analysis" onclick="gotoSub('analysis','nav-group-entrepreneur','nav-sub-analysis')">
-          <i class="fa-solid fa-file-chart-column" style="color:#7B9ED4"></i> دراسات الجدوى
-        </div>
-        <div class="nav-sub-item" id="nav-sub-capital" onclick="gotoSub('capital','nav-group-entrepreneur','nav-sub-capital')">
-          <i class="fa-solid fa-coins" style="color:#f59e0b"></i> استشارة رأس المال
-        </div>
-        <div class="nav-sub-item" id="nav-sub-investor" onclick="gotoSub('investor','nav-group-entrepreneur','nav-sub-investor')">
-          <i class="fa-solid fa-handshake" style="color:#0ea5e9"></i> خدمات المستثمرين
-        </div>
-      </div>
+    <!-- ══ بوابة ريادة الأعمال ══ -->
+    <div class="nav-item" id="nav-entrepreneur" onclick="goto('entrepreneur')">
+      <i class="fa-solid fa-rocket" style="color:#4E73C2"></i> بوابة ريادة الأعمال
     </div>
 
 
@@ -3902,18 +3884,13 @@ function goto(page) {
   const pageEl = document.getElementById('page-'+page);
   if(!pageEl){ console.error('[goto] page not found: page-'+page); return; }
   pageEl.classList.add('active');
-  // ── مجموعة ريادة الأعمال: فتح وتفعيل ──
-  const _ePg = ['robot','analysis','capital','investor','entrepreneur'];
-  document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-group-header').forEach(el => el.classList.remove('group-active'));
-  if(_ePg.includes(page)) {
-    const _grp = document.getElementById('nav-group-entrepreneur');
-    if(_grp) { _grp.classList.add('open'); _grp.querySelector('.nav-group-header')?.classList.add('group-active'); }
-    document.getElementById('nav-sub-'+page)?.classList.add('active');
-  }
   document.querySelectorAll('.nav-item').forEach(n=>{
     if(n.getAttribute('onclick')?.includes("'"+page+"'")) n.classList.add('active');
   });
+  // تفعيل nav-entrepreneur عند الدخول لأي صفحة فرعية منها
+  if(['robot','analysis','capital','investor'].includes(page)) {
+    document.getElementById('nav-entrepreneur')?.classList.add('active');
+  }
   const m = pageMap[page]||{title:page,sub:''};
   document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
   closeSidebar();
