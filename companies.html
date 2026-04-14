@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل الشركات والمؤسسات | جنان</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Tajawal', Arial, sans-serif;
+      background: #f0f4fb;
+      color: #1a2340;
+      direction: rtl;
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: linear-gradient(135deg, #0D47A1, #1976D2);
+      color: white;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(13,71,161,.35);
+    }
+    header h1 { font-size: 1.7rem; font-weight: 900; }
+    header span { font-size: .95rem; opacity: .85; }
+    .back-btn {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.35);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,.28); }
+
+    /* ===== Controls ===== */
+    .controls {
+      background: white;
+      padding: 16px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .controls input, .controls select {
+      padding: 9px 14px;
+      border: 1.5px solid #d0d7e8;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .95rem;
+      background: #f8faff;
+      color: #1a2340;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .controls input:focus, .controls select:focus { border-color: #1976D2; }
+    .controls input { min-width: 220px; flex: 1; }
+    .controls select { min-width: 160px; }
+    #stats {
+      margin-right: auto;
+      font-size: .9rem;
+      color: #555;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ===== Grid ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      padding: 24px;
+    }
+
+    /* ===== Card ===== */
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(13,71,161,.08);
+      border-right: 4px solid #1976D2;
+      transition: transform .18s, box-shadow .18s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(13,71,161,.16); }
+
+    .card-name {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #0D47A1;
+      line-height: 1.4;
+    }
+    .card-type {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #1565C0;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .card-activity {
+      font-size: .88rem;
+      color: #444;
+      background: #f5f5f5;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+    .card-location {
+      font-size: .88rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px solid #eef0f8;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .9rem;
+    }
+    .contact-row a {
+      color: #1976D2;
+      text-decoration: none;
+      font-weight: 700;
+      direction: ltr;
+    }
+    .contact-row a:hover { text-decoration: underline; }
+    .contact-icon { font-size: 1rem; }
+
+    /* ===== Empty ===== */
+    #empty {
+      display: none;
+      text-align: center;
+      padding: 60px;
+      color: #999;
+      font-size: 1.1rem;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: .82rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🏢 دليل الشركات والمؤسسات</h1>
+    <span>المملكة العربية السعودية — أبريل 2026 | بيانات تجريبية</span>
+  </div>
+  <a href="dashboard.html" class="back-btn">← لوحة التحكم</a>
+</header>
+
+<div class="controls">
+  <input type="text" id="searchInput" placeholder="🔍 ابحث عن شركة، نشاط، حي..." oninput="filterCards()" />
+  <select id="cityFilter" onchange="filterCards()">
+    <option value="">🏙️ كل المدن</option>
+  </select>
+  <select id="activityFilter" onchange="filterCards()">
+    <option value="">⚙️ كل الأنشطة</option>
+  </select>
+  <div id="stats">جاري التحميل...</div>
+</div>
+
+<div class="grid" id="grid"></div>
+<div id="empty">لا توجد نتائج مطابقة للبحث</div>
+
+<footer>⚠️ البيانات تجريبية لأغراض التطوير — سيتم الربط مع الجهات الرسمية قريباً | منصة جنان &copy; 2026</footer>
+
+<script>
+let ALL_DATA = [];
+
+async function loadData() {
+  try {
+    const res  = await fetch('assets/companies.json');
+    ALL_DATA   = await res.json();
+    populateFilters();
+    renderCards(ALL_DATA);
+  } catch(e) {
+    document.getElementById('stats').textContent = 'خطأ في تحميل البيانات';
+  }
+}
+
+function populateFilters() {
+  const cities     = [...new Set(ALL_DATA.map(d => d['المدينة']).filter(Boolean))].sort();
+  const activities = [...new Set(ALL_DATA.map(d => d['النشاط']).filter(Boolean))].sort();
+
+  const citySelect = document.getElementById('cityFilter');
+  cities.forEach(c => {
+    const o = document.createElement('option');
+    o.value = o.textContent = c;
+    citySelect.appendChild(o);
+  });
+
+  const actSelect = document.getElementById('activityFilter');
+  activities.forEach(a => {
+    const o = document.createElement('option');
+    o.value = o.textContent = a;
+    actSelect.appendChild(o);
+  });
+}
+
+function filterCards() {
+  const q    = document.getElementById('searchInput').value.trim().toLowerCase();
+  const city = document.getElementById('cityFilter').value;
+  const act  = document.getElementById('activityFilter').value;
+
+  const filtered = ALL_DATA.filter(d => {
+    const text = Object.values(d).join(' ').toLowerCase();
+    return (!q    || text.includes(q))
+        && (!city || d['المدينة'] === city)
+        && (!act  || d['النشاط']  === act);
+  });
+
+  renderCards(filtered);
+}
+
+function renderCards(data) {
+  const grid  = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  const stats = document.getElementById('stats');
+
+  grid.innerHTML = '';
+  stats.textContent = `النتائج: ${data.length.toLocaleString('ar')} منشأة`;
+
+  if (data.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  data.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const mobile   = d['رقم_الجوال']  || '';
+    const landline = d['رقم_الهاتف']  || '';
+
+    card.innerHTML = `
+      <div class="card-name">${d['اسم_المنشأة'] || ''}</div>
+      <span class="card-type">${d['نوع_المنشأة'] || ''}</span>
+      <div class="card-activity">⚙️ ${d['النشاط'] || ''}</div>
+      <div class="card-location">
+        📍 ${d['المدينة'] || ''} — ${d['المنطقة'] || ''}
+        ${d['الحي'] ? `· ${d['الحي']}` : ''}
+      </div>
+      <div class="card-contacts">
+        ${mobile   ? `<div class="contact-row"><span class="contact-icon">📱</span><a href="tel:${mobile}">${mobile}</a></div>` : ''}
+        ${landline ? `<div class="contact-row"><span class="contact-icon">📞</span><a href="tel:${landline}">${landline}</a></div>` : ''}
+        ${(!mobile && !landline) ? '<div style="font-size:.82rem;color:#bbb">لا يوجد رقم تواصل</div>' : ''}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+loadData();
+</script>
+</body>
+</html>
