@@ -674,7 +674,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
 .lib-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:var(--tr);cursor:pointer}
 .lib-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
-.lib-card-cover{height:130px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.lib-card-cover{height:130px;overflow:hidden;border-radius:12px 12px 0 0}
 .lib-card-body{padding:1rem 1.1rem}
 .lib-tag{display:inline-block;padding:.15rem .6rem;border-radius:20px;font-size:.7rem;font-weight:700;margin-bottom:.6rem;background:var(--green-lt);color:var(--green-dp)}
 .lib-card-body h4{font-size:.92rem;font-weight:700;margin-bottom:.4rem;line-height:1.5}
@@ -684,10 +684,10 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
 .course-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:var(--tr);cursor:pointer}
 .course-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
-.course-cover{height:110px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative}
-.course-level{position:absolute;top:.6rem;right:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:rgba(0,0,0,.35);color:#fff}
-.course-free{position:absolute;top:.6rem;left:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:#22c55e;color:#fff}
-.course-paid{position:absolute;top:.6rem;left:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:var(--green);color:#fff}
+.course-cover{height:110px;position:relative;overflow:hidden}
+.course-level{position:absolute;top:.6rem;right:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:rgba(0,0,0,.4);color:#fff;z-index:3}
+.course-free{position:absolute;top:.6rem;left:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:#22c55e;color:#fff;z-index:3}
+.course-paid{position:absolute;top:.6rem;left:.6rem;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:var(--green);color:#fff;z-index:3}
 .course-body{padding:1rem 1.1rem}
 .course-body h4{font-size:.93rem;font-weight:700;margin-bottom:.35rem}
 .course-body p{font-size:.78rem;color:var(--muted);margin-bottom:.75rem;line-height:1.6}
@@ -832,6 +832,8 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .ds-price strong{color:var(--green);font-size:1.05rem}
 .ds-btn{background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fff;border:none;border-radius:10px;padding:.55rem 1.2rem;font-size:.85rem;font-weight:700;cursor:pointer;transition:var(--tr);font-family:inherit}
 .ds-btn:hover{opacity:.88;transform:scale(1.02)}
+.modal-close-btn{position:absolute;top:.85rem;left:.85rem;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:.92rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:10}
+.modal-close-btn:hover{background:#e74c3c;color:#fff;border-color:#e74c3c;transform:scale(1.08)}
 
 /* ══ SOFTWARE STORE ══ */
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem;margin-top:1.5rem}
@@ -943,6 +945,28 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   .sr-section{padding:1.2rem 1.25rem}
   .sr-table td:first-child{white-space:normal;width:38%}
 }
+/* ══ COMPLIANCE PAGE ══ */
+.comp-gov-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem;cursor:pointer;transition:.2s;display:flex;flex-direction:column;gap:.5rem}
+.comp-gov-card:hover{border-color:rgba(34,211,238,.4);transform:translateY(-2px);box-shadow:0 6px 24px rgba(34,211,238,.1)}
+.comp-gov-card h4{margin:0;font-size:.88rem;font-weight:800;color:var(--text)}
+.comp-gov-card>p{margin:0;font-size:.73rem;color:var(--muted);line-height:1.5}
+.comp-gov-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;flex-shrink:0}
+.comp-gov-tag{display:inline-flex;align-items:center;padding:.2rem .6rem;border-radius:50px;font-size:.68rem;font-weight:700;background:rgba(34,211,238,.1);color:#22d3ee;border:1px solid rgba(34,211,238,.25);width:fit-content}
+.comp-gov-services{display:flex;flex-wrap:wrap;gap:.3rem}
+.comp-gov-svc{font-size:.66rem;padding:.16rem .45rem;border-radius:4px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:var(--muted)}
+.comp-gov-start{background:none;border:1px solid rgba(34,211,238,.3);color:#22d3ee;border-radius:8px;padding:.38rem .9rem;font-family:'Tajawal',sans-serif;font-size:.74rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:auto;width:100%}
+.comp-gov-start:hover{background:rgba(34,211,238,.1)}
+.comp-vendor-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem;cursor:pointer;transition:.2s}
+.comp-vendor-card:hover{border-color:rgba(34,211,238,.4);transform:translateY(-2px);box-shadow:0 6px 24px rgba(34,211,238,.1)}
+.comp-vendor-btn{background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.25);color:#22d3ee;border-radius:8px;padding:.35rem .8rem;font-family:'Tajawal',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;transition:.2s}
+.comp-vendor-btn:hover{background:rgba(34,211,238,.18)}
+.comp-check-item{display:block;cursor:pointer}
+.comp-check-item input{display:none}
+.comp-check-body{display:flex;align-items:center;gap:.7rem;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.75rem;transition:.2s}
+.comp-check-item input:checked~.comp-check-body{border-color:#22d3ee;background:rgba(34,211,238,.06)}
+.comp-check-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#fff;flex-shrink:0}
+.comp-check-title{font-size:.81rem;font-weight:800;color:var(--text)}
+.comp-check-sub{font-size:.67rem;color:var(--muted);margin-top:.12rem;line-height:1.4}
 </style>
 </head>
 <body>
@@ -968,16 +992,17 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
     <p class="nav-section">الأدوات الذكية</p>
 
+    <!-- ══ بوابة ريادة الأعمال (جديد) ══ -->
+    <div class="nav-item" id="nav-entrepreneur" onclick="goto('entrepreneur')">
+      <i class="fa-solid fa-rocket" style="color:#4E73C2"></i> بوابة ريادة الأعمال
+    </div>
+
     <!-- ══ 1. تحليل المشاريع وإعداد دراسات الجدوى ══ -->
     <div class="nav-item" id="nav-hub" onclick="goto('hub')">
       <i class="fa-solid fa-chart-mixed" style="color:#7B9ED4"></i> تحليل المشاريع ودراسات الجدوى
     </div>
 
-    <!-- ══ 2. روبوت المشاريع ══ -->
-    <div class="nav-item" id="nav-projectcopilot" onclick="goto('projectcopilot')">
-      <i class="fa-solid fa-rocket" style="color:#a855f7"></i> روبوت المشاريع
-      <span class="nav-badge" style="background:#a855f7">AI</span>
-    </div>
+
 
     <!-- ══ 3. أكاديمية جنان ══ -->
     <div class="nav-item" id="nav-academy" onclick="goto('academy')">
@@ -995,7 +1020,11 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       <span class="nav-badge" style="background:#16a34a">جديد</span>
     </div>
 
-    <p class="nav-section">خدمات التوريد</p>
+    <p class="nav-section">الامتثال والموردون</p>
+    <div class="nav-item" id="nav-compliance" onclick="goto('compliance')">
+      <i class="fa-solid fa-shield-check" style="color:#22d3ee"></i> تصحيح الأوضاع والاستشارة
+      <span class="nav-badge" style="background:#0891b2">جديد</span>
+    </div>
     <div class="nav-item" onclick="goto('supply')">
       <i class="fa-solid fa-store"></i> كتالوج الموردين
       <span class="nav-badge" style="background:#16a34a">جديد</span>
@@ -1037,7 +1066,56 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 </aside>
 
 <!-- ===== MAIN ===== -->
-<div class="main">
+  <div class="main">
+    <script>
+      // تفعيل إظهار صفحة بوابة ريادة الأعمال عند النقر على العنصر الجديد
+      function goto(page) {
+        // إخفاء جميع الصفحات
+        document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+        // إظهار الصفحة المطلوبة
+        if(page==='entrepreneur') {
+          document.getElementById('page-entrepreneur').classList.add('active');
+          document.getElementById('topbar-title').innerHTML = 'بوابة ريادة الأعمال';
+        } else if(document.getElementById('page-' + page)) {
+          document.getElementById('page-' + page).classList.add('active');
+          // تحديث عنوان التوب بار حسب الصفحة
+          if(page==='home') {
+            document.getElementById('topbar-title').innerHTML = 'نظرة عامة <span id="topbar-sub">مرحباً بك في منصة جنان بيز</span>';
+          } else if(page==='hub') {
+            document.getElementById('topbar-title').innerHTML = 'تحليل المشاريع ودراسات الجدوى';
+          } else if(page==='academy') {
+            document.getElementById('topbar-title').innerHTML = 'أكاديمية جنان للأعمال';
+          } else if(page==='design') {
+            document.getElementById('topbar-title').innerHTML = 'التصميم والإبداع';
+          } else if(page==='software') {
+            document.getElementById('topbar-title').innerHTML = 'متجر البرامج المميزة';
+          } else if(page==='compliance') {
+            document.getElementById('topbar-title').innerHTML = 'تصحيح الأوضاع والاستشارة';
+          } else if(page==='supply') {
+            document.getElementById('topbar-title').innerHTML = 'كتالوج الموردين';
+          } else if(page==='orders') {
+            document.getElementById('topbar-title').innerHTML = 'طلباتي';
+          } else if(page==='reports') {
+            document.getElementById('topbar-title').innerHTML = 'تقاريري';
+          } else if(page==='projects') {
+            document.getElementById('topbar-title').innerHTML = 'مشاريعي';
+          } else if(page==='settings') {
+            document.getElementById('topbar-title').innerHTML = 'الإعدادات';
+          } else if(page==='admin') {
+            document.getElementById('topbar-title').innerHTML = 'لوحة الإدمن';
+          } else {
+            document.getElementById('topbar-title').innerHTML = '';
+          }
+        }
+        // تفعيل العنصر النشط في الشريط الجانبي
+        document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+        if(page==='entrepreneur') {
+          document.getElementById('nav-entrepreneur').classList.add('active');
+        } else if(document.getElementById('nav-' + page)) {
+          document.getElementById('nav-' + page).classList.add('active');
+        }
+      }
+    </script>
 
   <!-- TOPBAR -->
   <div class="topbar">
@@ -1075,29 +1153,34 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
         <div><h2>ابدأ من هنا</h2><p>اختر الأداة المناسبة لاحتياجك</p></div>
       </div>
 
-      <!-- مجموعة تحليل المشاريع -->
+      <!-- ===== بوابة ريادة الأعمال (قسم مستقل) ===== -->
+      <!-- نهاية قسم نظرة عامة، بداية قسم جديد -->
+    </div> <!-- نهاية الصفحة الرئيسية -->
+
+    <!-- ===== بوابة ريادة الأعمال ===== -->
+    <div class="page" id="page-entrepreneur" style="display:none">
       <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.75rem">
         <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">
-          <div style="width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--green),var(--green-dp));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">
-            <i class="fa-solid fa-chart-mixed" style="color:#fff"></i>
+          <div style="width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#0B0E1A,#4E73C2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">
+            <i class="fa-solid fa-rocket" style="color:#fff"></i>
           </div>
           <div>
-            <div style="font-size:1rem;font-weight:800">تحليل المشاريع ودراسات الجدوى الاقتصادية</div>
-            <div style="font-size:.8rem;color:var(--muted)">خدمات متكاملة لتحليل مشروعك، دراسة جدواه، واستشارة أفضل استثمار لرأس مالك</div>
+            <div style="font-size:1.1rem;font-weight:900">بوابة ريادة الأعمال</div>
+            <div style="font-size:.85rem;color:var(--muted)">خدمات متميزة للمستثمرين ورواد الأعمال: تحليل مشاريع، دراسات جدوى، استشارات رأس مال، وخدمات المستثمرين</div>
           </div>
         </div>
         <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
-          <div class="feature-card" onclick="goto('robot')" style="padding:1.35rem">
-            <div class="fc-icon si-green" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-            <h3 style="font-size:.95rem">تحليل المشروع</h3>
-            <p style="font-size:.82rem">أجب على 15 سؤالاً واحصل على تقرير يُحدد الربحية وخطة رفع الأرباح</p>
-            <div class="fc-arrow" style="font-size:.8rem">ابدأ التحليل <i class="fa-solid fa-arrow-left"></i></div>
-          </div>
           <div class="feature-card" onclick="goto('analysis')" style="padding:1.35rem">
             <div class="fc-icon si-amber" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-file-chart-column"></i></div>
             <h3 style="font-size:.95rem">إعداد دراسات الجدوى</h3>
             <p style="font-size:.82rem">دراسة مبسطة أو مفصلة مع تقرير احترافي مقبول للبنوك والمستثمرين</p>
             <div class="fc-arrow" style="font-size:.8rem">ابدأ الدراسة <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+          <div class="feature-card" onclick="goto('robot')" style="padding:1.35rem">
+            <div class="fc-icon si-green" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h3 style="font-size:.95rem">تحليل المشاريع</h3>
+            <p style="font-size:.82rem">تحليل شامل لجدوى وربحية مشروعك بالأرقام، مع توصيات ذكية لتحسين الأداء واتخاذ القرار</p>
+            <div class="fc-arrow" style="font-size:.8rem">ابدأ التحليل <i class="fa-solid fa-arrow-left"></i></div>
           </div>
           <div class="feature-card" onclick="goto('capital')" style="padding:1.35rem">
             <div class="fc-icon si-purple" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-coins"></i></div>
@@ -1105,8 +1188,15 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             <p style="font-size:.82rem">حدد ميزانيتك وسنقترح أفضل المشاريع والاستثمارات الملائمة لك</p>
             <div class="fc-arrow" style="font-size:.8rem">استشر الآن <i class="fa-solid fa-arrow-left"></i></div>
           </div>
+          <div class="feature-card" onclick="goto('investor')" style="padding:1.35rem">
+            <div class="fc-icon si-navy" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-handshake"></i></div>
+            <h3 style="font-size:.95rem">خدمات المستثمرين</h3>
+            <p style="font-size:.82rem">ربطك بفرص استثمارية حقيقية، دعم التفاوض، وتسهيل التواصل مع رواد الأعمال والشركات الناشئة</p>
+            <div class="fc-arrow" style="font-size:.8rem">اكتشف الفرص <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
         </div>
       </div>
+    </div>
 
       <div class="cards-grid">
         <div class="feature-card" onclick="goto('reports')">
@@ -1153,37 +1243,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       <div class="hub-cards">
 
         <!-- بطاقة 1: تحليل المشروع -->
-        <div class="hub-card hc-blue" onclick="goto('robot')">
-          <div class="hub-card-icon" style="background:linear-gradient(135deg,#1E3A8A,#4E73C2)">
-            <i class="fa-solid fa-magnifying-glass-chart"></i>
-          </div>
-          <div class="hub-card-body">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap">
-              <div class="hub-card-badge">🤖 مجاني · AI</div>
-              <div style="font-size:.7rem;color:var(--muted);font-weight:600">⏱ 5 دقائق</div>
-            </div>
-            <h3>تحليل المشروع الاقتصادي</h3>
-            <p>أدخل أرقام مشروعك الحقيقية واحصل على تقرير ربحية شاملاً مع خطة تحسين فورية ومخصصة</p>
-            <div class="hub-divider"></div>
-            <ul class="hub-features">
-              <li><i class="fa-solid fa-check"></i> تحليل ربحية شهري وسنوي دقيق</li>
-              <li><i class="fa-solid fa-check"></i> نقطة التعادل + استرداد رأس المال</li>
-              <li><i class="fa-solid fa-check"></i> توقعات نمو 3 سنوات</li>
-              <li><i class="fa-solid fa-check"></i> خطة رفع الأرباح بالأرقام</li>
-              <li><i class="fa-solid fa-check"></i> تحليل المخاطر والمنافسة</li>
-            </ul>
-            <div class="hub-output-preview">
-              <div class="hop-label">ما ستحصل عليه:</div>
-              <div class="hop-chips">
-                <span>📊 تقرير مالي</span><span>📈 3 سنوات</span><span>💡 توصيات</span>
-              </div>
-            </div>
-            <div class="hub-card-footer">
-              <span class="hub-price" style="color:var(--green)">مجاني تماماً</span>
-              <button class="hub-btn" style="background:linear-gradient(135deg,#1E3A8A,#4E73C2)">ابدأ التحليل <i class="fa-solid fa-arrow-left"></i></button>
-            </div>
-          </div>
-        </div>
+
 
         <!-- بطاقة 2: إعداد دراسات الجدوى -->
         <div class="hub-card hc-indigo" onclick="goto('analysis')" style="position:relative">
@@ -1282,103 +1342,361 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
       <!-- خطوة 0: الترحيب والبدء -->
       <div id="pa-step-0" class="fs-step active">
-        <!-- Hero -->
-        <div class="pa-hero">
-          <div class="pa-hero-icon">
-            <i class="fa-solid fa-magnifying-glass-chart"></i>
-          </div>
-          <div class="pa-hero-text">
-            <div class="pa-hero-badge">تحليل مجاني · AI · نتائج فورية</div>
-            <h2>تحليل مشروعك الاقتصادي</h2>
-            <p>أدخل أرقام مشروعك الحقيقية وستحصل فوراً على تقرير شامل يجيبك على:<br/>
-            <strong>هل مشروعك مربح؟</strong> · <strong>كم نسبة الربح؟</strong> · <strong>ما خطة التحسين؟</strong></p>
+
+        <!-- ══ Hero Banner ══ -->
+        <div class="pa-hero" style="padding:0;overflow:hidden;border:none;background:none;display:block;margin-bottom:2rem">
+          <div style="background:linear-gradient(135deg,#040c1e 0%,#081840 40%,#0c2060 70%,#081535 100%);border-radius:22px;padding:2.75rem 2.5rem 2.25rem;position:relative;overflow:hidden;border:1px solid rgba(78,115,194,.25);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 1px rgba(78,115,194,.1) inset">
+            <!-- SVG background decoration -->
+            <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 820 290" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="hg1" cx="75%" cy="25%" r="55%">
+                  <stop offset="0%" stop-color="#3b6fd4" stop-opacity=".22"/>
+                  <stop offset="100%" stop-color="#3b6fd4" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="hg2" cx="15%" cy="85%" r="40%">
+                  <stop offset="0%" stop-color="#6042b8" stop-opacity=".15"/>
+                  <stop offset="100%" stop-color="#6042b8" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="hblur"><feGaussianBlur stdDeviation="2.5"/></filter>
+                <linearGradient id="linegrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#4E73C2" stop-opacity="0"/>
+                  <stop offset="30%" stop-color="#7eb8ff" stop-opacity=".7"/>
+                  <stop offset="70%" stop-color="#93c5fd" stop-opacity=".9"/>
+                  <stop offset="100%" stop-color="#7eb8ff" stop-opacity=".4"/>
+                </linearGradient>
+              </defs>
+              <!-- background glows -->
+              <rect width="820" height="290" fill="url(#hg1)"/>
+              <rect width="820" height="290" fill="url(#hg2)"/>
+              <!-- grid — fine mesh -->
+              <g stroke="#4E73C2" stroke-opacity=".13" stroke-width=".5">
+                <line x1="0" y1="58" x2="820" y2="58"/>
+                <line x1="0" y1="116" x2="820" y2="116"/>
+                <line x1="0" y1="174" x2="820" y2="174"/>
+                <line x1="0" y1="232" x2="820" y2="232"/>
+                <line x1="164" y1="0" x2="164" y2="290"/>
+                <line x1="328" y1="0" x2="328" y2="290"/>
+                <line x1="492" y1="0" x2="492" y2="290"/>
+                <line x1="656" y1="0" x2="656" y2="290"/>
+              </g>
+              <!-- glowing area fill -->
+              <path d="M0,240 C80,200 160,185 260,170 S400,115 500,90 S640,55 720,35 L820,18 L820,290 L0,290Z"
+                fill="rgba(78,115,194,.06)"/>
+              <!-- main chart line with glow -->
+              <path d="M0,240 C80,200 160,185 260,170 S400,115 500,90 S640,55 720,35 L820,18"
+                stroke="url(#linegrad)" stroke-width="1.5" fill="none" filter="url(#hblur)"/>
+              <path d="M0,240 C80,200 160,185 260,170 S400,115 500,90 S640,55 720,35 L820,18"
+                stroke="url(#linegrad)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+              <!-- data points with rings -->
+              <g filter="url(#hblur)" opacity=".6">
+                <circle cx="260" cy="170" r="8" fill="rgba(126,184,255,.3)"/>
+                <circle cx="500" cy="90"  r="8" fill="rgba(126,184,255,.3)"/>
+                <circle cx="720" cy="35"  r="10" fill="rgba(126,184,255,.3)"/>
+              </g>
+              <circle cx="260" cy="170" r="4" fill="#7eb8ff"/>
+              <circle cx="500" cy="90"  r="4" fill="#93c5fd"/>
+              <circle cx="720" cy="35"  r="5.5" fill="#bfdbfe"/>
+
+              <!-- animated pulse on last point -->
+              <circle cx="720" cy="35" r="12" fill="none" stroke="#93c5fd" stroke-width="1.5" opacity=".5">
+                <animate attributeName="r" from="8" to="22" dur="2.5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" from=".6" to="0" dur="2.5s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- bar chart accent (right side) -->
+              <g opacity=".18" fill="#4E73C2">
+                <rect x="570" y="200" width="14" height="70"/>
+                <rect x="592" y="175" width="14" height="95"/>
+                <rect x="614" y="155" width="14" height="115"/>
+                <rect x="636" y="130" width="14" height="140"/>
+              </g>
+
+              <!-- large orbit rings -->
+              <circle cx="720" cy="50" r="70" fill="none" stroke="#4E73C2" stroke-width=".8" stroke-opacity=".12"/>
+              <circle cx="720" cy="50" r="45" fill="none" stroke="#4E73C2" stroke-width=".8" stroke-opacity=".1"/>
+              <!-- sparkle dots -->
+              <circle cx="100" cy="40"  r="1.5" fill="#7eb8ff" opacity=".5"/>
+              <circle cx="140" cy="80"  r="1"   fill="#7eb8ff" opacity=".4"/>
+              <circle cx="350" cy="30"  r="1.5" fill="#93c5fd" opacity=".45"/>
+              <circle cx="460" cy="240" r="1.5" fill="#7eb8ff" opacity=".35"/>
+            </svg>
+
+            <!-- Content -->
+            <div style="position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap">
+              <!-- Right: text block -->
+              <div style="flex:1;min-width:260px">
+                <!-- live badge -->
+                <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(78,115,194,.18);border:1px solid rgba(78,115,194,.4);color:#a5c8ff;border-radius:30px;padding:.3rem 1rem;font-size:.7rem;font-weight:800;letter-spacing:.05em;margin-bottom:1.25rem;backdrop-filter:blur(8px)">
+                  <span style="width:7px;height:7px;border-radius:50%;background:#4fb;display:inline-block;box-shadow:0 0 8px #4fb;animation:pulse2 2s infinite"></span>
+                  محرك التحليل الاقتصادي — جنان بيز
+                </div>
+                <h2 style="font-size:1.75rem;font-weight:900;color:#fff;margin:0 0 .75rem;line-height:1.4;letter-spacing:-.01em">
+                  اعرف <span style="background:linear-gradient(90deg,#7eb8ff,#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">حقيقة أرقامك</span><br>قبل أن تُصرف ريالاً واحداً
+                </h2>
+                <p style="font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.9;margin:0 0 1.5rem;max-width:420px">
+                  أدخل بيانات مشروعك — وفي ثوانٍ تحصل على:<br>
+                  <strong style="color:rgba(255,255,255,.8)">هامش الربح · ROI · نقطة التعادل · خطة التحسين</strong>
+                </p>
+                <!-- trust strip -->
+                <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+                  <div style="display:flex;align-items:center;gap:.5rem">
+                    <div style="width:32px;height:32px;border-radius:9px;background:rgba(78,115,194,.18);border:1px solid rgba(78,115,194,.28);display:flex;align-items:center;justify-content:center;color:#7eb8ff;font-size:.8rem"><i class="fa-solid fa-bolt"></i></div>
+                    <div><div style="font-size:.76rem;font-weight:800;color:#fff">نتائج فورية</div><div style="font-size:.64rem;color:rgba(255,255,255,.4)">أقل من 60 ثانية</div></div>
+                  </div>
+                  <div style="width:1px;height:28px;background:rgba(78,115,194,.25)"></div>
+                  <div style="display:flex;align-items:center;gap:.5rem">
+                    <div style="width:32px;height:32px;border-radius:9px;background:rgba(78,115,194,.18);border:1px solid rgba(78,115,194,.28);display:flex;align-items:center;justify-content:center;color:#7eb8ff;font-size:.8rem"><i class="fa-solid fa-lock"></i></div>
+                    <div><div style="font-size:.76rem;font-weight:800;color:#fff">بياناتك محمية</div><div style="font-size:.64rem;color:rgba(255,255,255,.4)">لا تُحفظ أبداً</div></div>
+                  </div>
+                  <div style="width:1px;height:28px;background:rgba(78,115,194,.25)"></div>
+                  <div style="display:flex;align-items:center;gap:.5rem">
+                    <div style="width:32px;height:32px;border-radius:9px;background:rgba(78,115,194,.18);border:1px solid rgba(78,115,194,.28);display:flex;align-items:center;justify-content:center;color:#7eb8ff;font-size:.8rem"><i class="fa-solid fa-users"></i></div>
+                    <div><div style="font-size:.76rem;font-weight:800;color:#fff">+2,400 تحليل</div><div style="font-size:.64rem;color:rgba(255,255,255,.4)">أُجري حتى الآن</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Left: mini animated dashboard mockup -->
+              <div style="flex-shrink:0;width:170px;align-self:center;display:flex;flex-direction:column;gap:.6rem;opacity:.88">
+                <!-- mini KPIs -->
+                <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem 1rem;backdrop-filter:blur(8px)">
+                  <div style="font-size:.62rem;color:rgba(255,255,255,.45);margin-bottom:.25rem">صافي الربح</div>
+                  <div style="font-size:1.15rem;font-weight:900;color:#4fb;letter-spacing:-.01em">+34.2%</div>
+                </div>
+                <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem 1rem;backdrop-filter:blur(8px)">
+                  <div style="font-size:.62rem;color:rgba(255,255,255,.45);margin-bottom:.25rem">نقطة التعادل</div>
+                  <div style="font-size:1.15rem;font-weight:900;color:#7eb8ff">8.4 أشهر</div>
+                </div>
+                <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem 1rem;backdrop-filter:blur(8px)">
+                  <div style="font-size:.62rem;color:rgba(255,255,255,.45);margin-bottom:.25rem">عائد الاستثمار</div>
+                  <div style="font-size:1.15rem;font-weight:900;color:#fbbf24">ROI 128%</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Steps preview -->
-        <div class="pa-steps-preview">
-          <div class="psp-item">
-            <div class="psp-num">1</div>
-            <div class="psp-text">
-              <div class="psp-title">معلومات المشروع</div>
-              <div class="psp-sub">الاسم · النوع · المدينة</div>
+        <!-- ══ Steps Strip ══ -->
+        <div style="margin-bottom:2rem">
+          <div style="display:flex;align-items:center;gap:0;background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:1rem 1.5rem;overflow-x:auto;position:relative">
+            <!-- label -->
+            <div style="position:absolute;top:-10px;right:1.25rem;background:var(--bg2);border:1px solid var(--border);color:var(--muted);font-size:.63rem;font-weight:700;padding:.15rem .7rem;border-radius:20px;white-space:nowrap">مراحل التحليل — 6 خطوات</div>
+            <style>
+              @keyframes pulse2{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
+              @keyframes fadeSlideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+              .pa-stp{display:flex;align-items:center;gap:.5rem;flex-shrink:0;animation:fadeSlideIn .4s both}
+              .pa-stp-n{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1E3A8A,#4E73C2);color:#fff;font-size:.72rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(78,115,194,.35)}
+              .pa-stp-t{font-size:.75rem;font-weight:700;white-space:nowrap}
+              .pa-stp-s{font-size:.63rem;color:var(--muted);white-space:nowrap}
+              .pa-sep{flex-shrink:0;height:1px;width:22px;background:linear-gradient(90deg,rgba(78,115,194,.4),rgba(78,115,194,.1));margin:0 .4rem}
+            </style>
+            <div class="pa-stp" style="animation-delay:.05s"><div class="pa-stp-n">1</div><div><div class="pa-stp-t">المشروع</div><div class="pa-stp-s">الاسم · النوع</div></div></div>
+            <div class="pa-sep"></div>
+            <div class="pa-stp" style="animation-delay:.1s"><div class="pa-stp-n">2</div><div><div class="pa-stp-t">التمويل</div><div class="pa-stp-s">رأس المال</div></div></div>
+            <div class="pa-sep"></div>
+            <div class="pa-stp" style="animation-delay:.15s"><div class="pa-stp-n">3</div><div><div class="pa-stp-t">الإيرادات</div><div class="pa-stp-s">المبيعات</div></div></div>
+            <div class="pa-sep"></div>
+            <div class="pa-stp" style="animation-delay:.2s"><div class="pa-stp-n">4</div><div><div class="pa-stp-t">التكاليف الثابتة</div><div class="pa-stp-s">الإيجار · الرواتب</div></div></div>
+            <div class="pa-sep"></div>
+            <div class="pa-stp" style="animation-delay:.25s"><div class="pa-stp-n">5</div><div><div class="pa-stp-t">التكاليف المتغيرة</div><div class="pa-stp-s">بضاعة · تسويق</div></div></div>
+            <div class="pa-sep"></div>
+            <div class="pa-stp" style="animation-delay:.3s"><div class="pa-stp-n">6</div><div><div class="pa-stp-t">السوق والخبرة</div><div class="pa-stp-s">منافسة · تجربتك</div></div></div>
+          </div>
+        </div>
+
+        <!-- ══ Tier Cards ══ -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;align-items:stretch">
+
+          <!-- ─────────────────────────────────────────
+               الباقة المجانية
+          ───────────────────────────────────────── -->
+          <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(78,115,194,.3);display:flex;flex-direction:column;background:linear-gradient(160deg,#091630 0%,#0d1f42 60%,#091630 100%);position:relative;box-shadow:0 8px 32px rgba(0,0,0,.35),0 0 0 1px rgba(78,115,194,.08) inset">
+            <!-- top accent line -->
+            <div style="height:3px;background:linear-gradient(90deg,transparent,#4E73C2,#7eb8ff,transparent)"></div>
+
+            <!-- header -->
+            <div style="padding:1.6rem 1.75rem 1.1rem;position:relative">
+              <!-- free pill -->
+              <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.28);color:#4ade80;border-radius:20px;padding:.22rem .85rem;font-size:.65rem;font-weight:800;margin-bottom:1rem">
+                <i class="fa-solid fa-check-circle"></i> مجاني دائماً · بدون بطاقة
+              </div>
+              <!-- icon + title row -->
+              <div style="display:flex;align-items:center;gap:.9rem;margin-bottom:.9rem">
+                <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#1E3A8A,#4E73C2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;box-shadow:0 6px 18px rgba(78,115,194,.4);flex-shrink:0">
+                  <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div>
+                  <div style="font-size:1.05rem;font-weight:900;color:#fff;line-height:1.2">تحليل المشروع</div>
+                  <div style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:.15rem">حسابات مالية دقيقة · نتائج فورية</div>
+                </div>
+              </div>
+              <!-- price -->
+              <div style="display:flex;align-items:baseline;gap:.35rem">
+                <span style="font-size:2.4rem;font-weight:900;color:#fff;line-height:1">0</span>
+                <span style="font-size:.82rem;color:rgba(255,255,255,.4);font-weight:600">ريال</span>
+              </div>
+            </div>
+
+            <!-- divider -->
+            <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(78,115,194,.2),transparent);margin:0 1.75rem"></div>
+
+            <!-- features -->
+            <div style="padding:1.2rem 1.75rem;flex:1;display:flex;flex-direction:column;gap:0">
+              <div style="display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.4rem;flex:1">
+                <div style="display:flex;align-items:center;gap:.7rem">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.3)"/><path d="M5 8l2 2 4-4" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span style="font-size:.82rem;color:rgba(255,255,255,.85)"><strong style="color:#fff">هامش الربح</strong> الصافي والإجمالي</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:.7rem">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.3)"/><path d="M5 8l2 2 4-4" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span style="font-size:.82rem;color:rgba(255,255,255,.85)"><strong style="color:#fff">ROI</strong> ونقطة التعادل ومدة الاسترداد</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:.7rem">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.3)"/><path d="M5 8l2 2 4-4" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span style="font-size:.82rem;color:rgba(255,255,255,.85)"><strong style="color:#fff">توقعات نمو</strong> 3 سنوات بمعدل ذكي</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:.7rem">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.3)"/><path d="M5 8l2 2 4-4" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span style="font-size:.82rem;color:rgba(255,255,255,.85)"><strong style="color:#fff">تحليل التكاليف</strong> والنسب المعيارية</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:.7rem">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.3)"/><path d="M5 8l2 2 4-4" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span style="font-size:.82rem;color:rgba(255,255,255,.85)"><strong style="color:#fff">توصيات تحسين</strong> الربحية بالأرقام</span>
+                </div>
+              </div>
+
+              <button onclick="startProjectAnalysisWizard()"
+                style="width:100%;padding:.95rem;background:linear-gradient(135deg,#1E3A8A,#3b63c8);color:#fff;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:.92rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.6rem;box-shadow:0 6px 20px rgba(78,115,194,.28);transition:all .2s;letter-spacing:.01em"
+                onmouseover="this.style.background='linear-gradient(135deg,#2d52b5,#4E73C2)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 28px rgba(78,115,194,.45)'"
+                onmouseout="this.style.background='linear-gradient(135deg,#1E3A8A,#3b63c8)';this.style.transform='';this.style.boxShadow='0 6px 20px rgba(78,115,194,.28)'">
+                <i class="fa-solid fa-play-circle"></i> ابدأ تحليل مشروعك مجاناً
+              </button>
             </div>
           </div>
-          <div class="psp-line"></div>
-          <div class="psp-item">
-            <div class="psp-num">2</div>
-            <div class="psp-text">
-              <div class="psp-title">رأس المال والتمويل</div>
-              <div class="psp-sub">الميزانية · مصدر التمويل</div>
+
+          <!-- ─────────────────────────────────────────
+               الباقة المميزة
+          ───────────────────────────────────────── -->
+          <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(245,158,11,.35);display:flex;flex-direction:column;background:linear-gradient(160deg,#120800 0%,#2a1200 45%,#1a0a00 75%,#0e0600 100%);position:relative;box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 60px rgba(245,158,11,.06),0 0 0 1px rgba(245,158,11,.07) inset">
+            <!-- top accent line — gold -->
+            <div style="height:3px;background:linear-gradient(90deg,transparent,#b45309,#f59e0b,#fcd34d,#f59e0b,transparent)"></div>
+
+            <!-- popular badge -->
+            <div style="position:absolute;top:16px;left:14px;background:linear-gradient(135deg,#92400e,#d97706);color:#fff;font-size:.62rem;font-weight:900;padding:.25rem .8rem;border-radius:20px;letter-spacing:.05em;z-index:3;box-shadow:0 3px 10px rgba(245,158,11,.4)">
+              ★ الأكثر طلباً
             </div>
-          </div>
-          <div class="psp-line"></div>
-          <div class="psp-item">
-            <div class="psp-num">3</div>
-            <div class="psp-text">
-              <div class="psp-title">الإيرادات والعملاء</div>
-              <div class="psp-sub">المبيعات · الصفقات</div>
+
+            <!-- header -->
+            <div style="padding:1.6rem 1.75rem 1.1rem;position:relative;overflow:hidden">
+              <!-- glow orbs -->
+              <div style="position:absolute;top:-30px;left:20px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.18),transparent 65%);pointer-events:none"></div>
+              <div style="position:absolute;bottom:-20px;right:30px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(252,211,77,.1),transparent 65%);pointer-events:none"></div>
+
+              <!-- AI pill -->
+              <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.32);color:#fcd34d;border-radius:20px;padding:.22rem .85rem;font-size:.65rem;font-weight:800;margin-bottom:1rem;position:relative">
+                <i class="fa-solid fa-microchip"></i> تحليل بالذكاء الاصطناعي
+              </div>
+              <!-- icon + title -->
+              <div style="display:flex;align-items:center;gap:.9rem;margin-bottom:.9rem;position:relative">
+                <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;box-shadow:0 6px 18px rgba(245,158,11,.35);flex-shrink:0">
+                  <i class="fa-solid fa-brain"></i>
+                </div>
+                <div>
+                  <div style="font-size:1.05rem;font-weight:900;color:#fff;line-height:1.2">حلّل مشروعك بالذكاء</div>
+                  <div style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:.15rem">تقرير AI معمّق · مخصص لمشروعك</div>
+                </div>
+              </div>
+              <!-- price -->
+              <div style="display:flex;align-items:baseline;gap:.4rem;position:relative">
+                <span style="font-size:1rem;color:rgba(255,255,255,.3);text-decoration:line-through;font-weight:500">99</span>
+                <span style="font-size:2.4rem;font-weight:900;color:#fbbf24;line-height:1;text-shadow:0 0 20px rgba(251,191,36,.4)">49</span>
+                <span style="font-size:.82rem;color:rgba(255,255,255,.4);font-weight:600">ريال · مرة واحدة</span>
+              </div>
             </div>
-          </div>
-          <div class="psp-line"></div>
-          <div class="psp-item">
-            <div class="psp-num">4</div>
-            <div class="psp-text">
-              <div class="psp-title">التكاليف الثابتة</div>
-              <div class="psp-sub">الإيجار · الرواتب</div>
-            </div>
-          </div>
-          <div class="psp-line"></div>
-          <div class="psp-item">
-            <div class="psp-num">5</div>
-            <div class="psp-text">
-              <div class="psp-title">التكاليف المتغيرة</div>
-              <div class="psp-sub">البضاعة · التسويق</div>
-            </div>
-          </div>
-          <div class="psp-line"></div>
-          <div class="psp-item">
-            <div class="psp-num">6</div>
-            <div class="psp-text">
-              <div class="psp-title">المنافسة والخبرة</div>
-              <div class="psp-sub">السوق · تجربتك</div>
+
+            <!-- divider -->
+            <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(245,158,11,.2),transparent);margin:0 1.75rem"></div>
+
+            <!-- features -->
+            <div style="padding:1.1rem 1.75rem;flex:1;display:flex;flex-direction:column">
+
+              <!-- section 1 -->
+              <div style="margin-bottom:.9rem">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+                  <div style="width:18px;height:18px;border-radius:5px;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7l3-3 2 2 3-4" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <span style="font-size:.72rem;font-weight:900;color:#fcd34d;letter-spacing:.04em">التحليل المالي الشامل</span>
+                </div>
+                <div style="padding-right:1.6rem;display:flex;flex-direction:column;gap:.3rem">
+                  <div style="font-size:.77rem;color:rgba(255,255,255,.72)">هامش الربح · ROI · نقطة التعادل · مدة الاسترداد</div>
+                  <div style="font-size:.77rem;color:rgba(255,255,255,.72)">توقعات نمو 3 سنوات · تحليل التكاليف الكاملة</div>
+                </div>
+              </div>
+
+              <div style="height:1px;background:rgba(245,158,11,.1);margin-bottom:.9rem"></div>
+
+              <!-- section 2 -->
+              <div style="margin-bottom:.9rem">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+                  <div style="width:18px;height:18px;border-radius:5px;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="3.5" stroke="#fbbf24" stroke-width="1.3"/><circle cx="5" cy="5" r="1" fill="#fbbf24"/></svg>
+                  </div>
+                  <span style="font-size:.72rem;font-weight:900;color:#fcd34d;letter-spacing:.04em">دراسة السوق والمنافسة</span>
+                </div>
+                <div style="padding-right:1.6rem;display:flex;flex-direction:column;gap:.3rem">
+                  <div style="font-size:.77rem;color:rgba(255,255,255,.72)">تقييم AI لحجم السوق والطلب المتوقع</div>
+                  <div style="font-size:.77rem;color:rgba(255,255,255,.72)">تحليل المنافسين ونقاط القوة والضعف</div>
+                </div>
+              </div>
+
+              <div style="height:1px;background:rgba(245,158,11,.1);margin-bottom:.9rem"></div>
+
+              <!-- section 3 -->
+              <div style="margin-bottom:.9rem">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+                  <div style="width:18px;height:18px;border-radius:5px;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1.5" y="5" width="2" height="3.5" rx=".5" fill="#fbbf24"/><rect x="4" y="3" width="2" height="5.5" rx=".5" fill="#fbbf24"/><rect x="6.5" y="1.5" width="2" height="7" rx=".5" fill="#fbbf24"/></svg>
+                  </div>
+                  <span style="font-size:.72rem;font-weight:900;color:#fcd34d;letter-spacing:.04em">خطة العمل والتوصيات</span>
+                </div>
+                <div style="padding-right:1.6rem;display:flex;flex-direction:column;gap:.3rem">
+                  <div style="font-size:.77rem;color:rgba(255,255,255,.72)">خطة عمل تنفيذية 12 شهراً خطوة بخطوة</div>
+                  <div style="font-size:.77rem;color:rgba(255,255,255,.72)">توصيات AI صريحة: هل تبدأ أم تُعدّل؟</div>
+                </div>
+              </div>
+
+              <div style="height:1px;background:rgba(245,158,11,.1);margin-bottom:.9rem"></div>
+
+              <!-- section 4 -->
+              <div style="margin-bottom:1.2rem">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+                  <div style="width:18px;height:18px;border-radius:5px;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 8V4l3-3 3 3v4H6.5V6.5h-3V8H2Z" stroke="#fbbf24" stroke-width="1.2" stroke-linejoin="round"/></svg>
+                  </div>
+                  <span style="font-size:.72rem;font-weight:900;color:#fcd34d;letter-spacing:.04em">التقرير والتوثيق</span>
+                </div>
+                <div style="padding-right:1.6rem;display:flex;flex-direction:column;gap:.3rem">
+                  <div style="font-size:.77rem;color:rgba(255,255,255,.72)">تقرير PDF احترافي قابل للطباعة والمشاركة</div>
+                  <div style="font-size:.77rem;color:rgba(255,255,255,.72)">ملخص تنفيذي جاهز للعرض على المستثمرين</div>
+                </div>
+              </div>
+
+              <button onclick="showPremiumModal()"
+                style="width:100%;padding:.95rem;background:linear-gradient(135deg,#92400e,#c2740a,#e8960d);color:#fff;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:.92rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.6rem;box-shadow:0 6px 24px rgba(245,158,11,.32);transition:all .2s;letter-spacing:.01em"
+                onmouseover="this.style.background='linear-gradient(135deg,#b45309,#d97706,#f59e0b)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(245,158,11,.5)'"
+                onmouseout="this.style.background='linear-gradient(135deg,#92400e,#c2740a,#e8960d)';this.style.transform='';this.style.boxShadow='0 6px 24px rgba(245,158,11,.32)'">
+                <i class="fa-solid fa-crown"></i> ابدأ تحليل مشروعك بالذكاء
+              </button>
+
             </div>
           </div>
         </div>
 
-        <!-- What you'll get -->
-        <div class="pa-output-grid">
-          <div class="pa-output-card">
-            <div class="pa-oc-icon" style="background:rgba(78,115,194,.12);color:var(--green)"><i class="fa-solid fa-chart-pie"></i></div>
-            <div class="pa-oc-title">تحليل الربحية</div>
-            <div class="pa-oc-sub">هامش الربح + ROI + نقطة التعادل + مدة الاسترداد</div>
-          </div>
-          <div class="pa-output-card">
-            <div class="pa-oc-icon" style="background:rgba(34,197,94,.1);color:#16a34a"><i class="fa-solid fa-chart-line"></i></div>
-            <div class="pa-oc-title">توقعات 3 سنوات</div>
-            <div class="pa-oc-sub">جدول نمو الإيرادات والأرباح بمعدل نمو ذكي</div>
-          </div>
-          <div class="pa-output-card">
-            <div class="pa-oc-icon" style="background:rgba(245,158,11,.12);color:#d97706"><i class="fa-solid fa-lightbulb"></i></div>
-            <div class="pa-oc-title">خطة تحسين الربح</div>
-            <div class="pa-oc-sub">توصيات مخصصة بالأرقام لرفع الربحية فوراً</div>
-          </div>
-          <div class="pa-output-card">
-            <div class="pa-oc-icon" style="background:rgba(231,76,60,.08);color:#e74c3c"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="pa-oc-title">تقييم المخاطر</div>
-            <div class="pa-oc-sub">تحليل الإيجار والرواتب والمنافسة بمعايير المجال</div>
-          </div>
-        </div>
-
-        <!-- CTA -->
-        <div style="text-align:center;margin-top:2rem">
-          <button class="btn-primary" style="font-size:1rem;padding:1.1rem 3rem;border-radius:14px;box-shadow:0 8px 24px rgba(78,115,194,.3)" onclick="startProjectAnalysisWizard()">
-            <i class="fa-solid fa-play"></i> ابدأ التحليل الآن — مجاني
-          </button>
-          <p style="font-size:.76rem;color:var(--muted);margin-top:.75rem">
-            <i class="fa-solid fa-clock" style="margin-left:.3rem"></i>يستغرق حوالي 5 دقائق · لا يحفظ بياناتك · تقرير فوري
-          </p>
-        </div>
+        <p style="font-size:.73rem;color:var(--muted);text-align:center">
+          <i class="fa-solid fa-clock" style="margin-left:.3rem;color:rgba(255,255,255,.3)"></i>التحليل المجاني يستغرق ~5 دقائق · بياناتك لا تُحفظ ولا تُشارك مع أي طرف
+        </p>
       </div>
 
       <!-- خطوة 1: الأسئلة -->
@@ -1422,17 +1740,87 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
       <!-- ══ STEP 0: اختيار نوع الدراسة ══ -->
       <div id="fs-step-0" class="fs-step active">
-        <div class="sec-hd" style="margin-bottom:.25rem">
-          <div>
-            <h2><i class="fa-solid fa-file-chart-column" style="color:var(--green);margin-left:.5rem"></i>إعداد دراسات الجدوى الاقتصادية</h2>
-            <p>اختر نوع الدراسة المناسبة لمشروعك، وادفع رسومها، ثم أجب على الأسئلة لإعداد دراستك بدقة</p>
+
+        <!-- ── AI Hero Banner ── -->
+        <div style="background:linear-gradient(135deg,#040c1e 0%,#0a1a40 50%,#050e22 100%);border-radius:18px;padding:2rem 2.25rem 1.75rem;position:relative;overflow:hidden;border:1px solid rgba(78,115,194,.22);box-shadow:0 16px 48px rgba(0,0,0,.4);margin-bottom:2rem">
+          <!-- SVG BG -->
+          <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.25" viewBox="0 0 800 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="ag1" cx="80%" cy="40%" r="50%"><stop offset="0%" stop-color="#4E73C2" stop-opacity=".3"/><stop offset="100%" stop-color="#4E73C2" stop-opacity="0"/></radialGradient>
+            </defs>
+            <rect width="800" height="170" fill="url(#ag1)"/>
+            <g stroke="#4E73C2" stroke-opacity=".15" stroke-width=".5">
+              <line x1="0" y1="42" x2="800" y2="42"/><line x1="0" y1="84" x2="800" y2="84"/><line x1="0" y1="126" x2="800" y2="126"/>
+              <line x1="200" y1="0" x2="200" y2="170"/><line x1="400" y1="0" x2="400" y2="170"/><line x1="600" y1="0" x2="600" y2="170"/>
+            </g>
+            <!-- document icon lines -->
+            <rect x="620" y="25" width="60" height="80" rx="6" fill="none" stroke="#4E73C2" stroke-opacity=".3" stroke-width="1.2"/>
+            <line x1="630" y1="50" x2="670" y2="50" stroke="#4E73C2" stroke-opacity=".25" stroke-width="1"/>
+            <line x1="630" y1="62" x2="670" y2="62" stroke="#4E73C2" stroke-opacity=".2" stroke-width="1"/>
+            <line x1="630" y1="74" x2="655" y2="74" stroke="#4E73C2" stroke-opacity=".15" stroke-width="1"/>
+            <circle cx="700" cy="115" r="30" fill="none" stroke="#4E73C2" stroke-opacity=".15" stroke-width="1"/>
+            <circle cx="700" cy="115" r="18" fill="none" stroke="#4E73C2" stroke-opacity=".12" stroke-width="1"/>
+          </svg>
+          <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
+            <div style="flex:1;min-width:200px">
+              <!-- AI badge -->
+              <div style="display:inline-flex;align-items:center;gap:.45rem;background:rgba(78,115,194,.18);border:1px solid rgba(78,115,194,.38);color:#a5c8ff;border-radius:30px;padding:.25rem .95rem;font-size:.68rem;font-weight:800;letter-spacing:.05em;margin-bottom:1rem">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="3" fill="#4E73C2" opacity=".6"><animate attributeName="r" from="2" to="4" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" from=".8" to="0" dur="1.8s" repeatCount="indefinite"/></circle><circle cx="5" cy="5" r="2" fill="#7eb8ff"/></svg>
+                مدعوم بالذكاء الاصطناعي · جنان بيز
+              </div>
+              <h2 style="font-size:1.45rem;font-weight:900;color:#fff;margin:0 0 .6rem;line-height:1.35">
+                ابدأ إعداد دراسة الجدوى<br><span style="background:linear-gradient(90deg,#7eb8ff,#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">بالذكاء الاصطناعي</span>
+              </h2>
+              <p style="font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.8;margin:0">
+                أجب على أسئلة مشروعك — وتحصل على دراسة جدوى موثقة احترافياً<br>
+                <strong style="color:rgba(255,255,255,.72)">مقبولة للبنوك · صناديق التمويل · المستثمرين</strong>
+              </p>
+            </div>
+            <!-- mini stats -->
+            <div style="display:flex;gap:1rem;flex-shrink:0;flex-wrap:wrap">
+              <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.75rem 1.1rem;text-align:center;min-width:75px">
+                <div style="font-size:1.1rem;font-weight:900;color:#7eb8ff">+500</div>
+                <div style="font-size:.63rem;color:rgba(255,255,255,.4);margin-top:.2rem">دراسة أُعدّت</div>
+              </div>
+              <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.75rem 1.1rem;text-align:center;min-width:75px">
+                <div style="font-size:1.1rem;font-weight:900;color:#4ade80">دقائق</div>
+                <div style="font-size:.63rem;color:rgba(255,255,255,.4);margin-top:.2rem">وتُنجز الدراسة</div>
+              </div>
+              <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.75rem 1.1rem;text-align:center;min-width:75px">
+                <div style="font-size:1.1rem;font-weight:900;color:#fbbf24">PDF</div>
+                <div style="font-size:.63rem;color:rgba(255,255,255,.4);margin-top:.2rem">تقرير جاهز</div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <div class="sec-hd" style="margin-bottom:1.25rem">
+          <div>
+            <h2 style="font-size:1rem">اختر نوع الدراسة المناسبة لمشروعك</h2>
+            <p>ادفع رسومها، ثم أجب على الأسئلة لإعداد دراستك بدقة</p>
+          </div>
+        </div>
+
         <div class="study-types-grid">
           <!-- مبسطة -->
           <div class="study-card" id="sc-simple" onclick="selectStudyType('simple')">
-            <span class="study-badge simple"><i class="fa-solid fa-bolt" style="margin-left:.3rem"></i>سريعة ومختصرة</span>
-            <h3>دراسة الجدوى المبسطة</h3>
+            <span class="study-badge simple">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left:.3rem"><path d="M6.5 1L7.9 4.6H12L8.9 6.9 10 10.5 6.5 8.2 3 10.5l1.1-3.6L1 4.6h4.1z" fill="#4ade80"/></svg>
+              سريعة ومختصرة
+            </span>
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem">
+              <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#064e3b,#059669);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 6px 16px rgba(5,150,105,.3)">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="2" width="12" height="16" rx="2" stroke="#fff" stroke-width="1.5"/>
+                  <line x1="6" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+                  <line x1="6" y1="10" x2="12" y2="10" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+                  <line x1="6" y1="13" x2="10" y2="13" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+                  <circle cx="17" cy="17" r="4.5" fill="#059669" stroke="#fff" stroke-width="1.2"/>
+                  <path d="M15 17l1.5 1.5L19 15.5" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 style="margin:0;font-size:1.05rem">دراسة الجدوى المبسطة</h3>
+            </div>
             <p>مثالية للمشاريع الصغيرة والمبتدئين — تمنحك رؤية واضحة عن الجدوى المالية والربحية في وقت قصير</p>
             <div class="study-price">99 <span style="font-size:1rem;font-weight:400">ريال</span></div>
             <div class="study-price-note">دفعة واحدة · تقرير جاهز خلال دقائق</div>
@@ -1444,11 +1832,27 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
               <li><i class="fa-solid fa-circle-check"></i> تقييم مستوى المخاطرة</li>
             </ul>
           </div>
+
           <!-- مفصلة -->
           <div class="study-card" id="sc-detailed" onclick="selectStudyType('detailed')">
             <span class="study-recommend">الأكثر طلباً</span>
-            <span class="study-badge detailed"><i class="fa-solid fa-star" style="margin-left:.3rem"></i>شاملة ومتكاملة</span>
-            <h3>دراسة الجدوى المفصلة</h3>
+            <span class="study-badge detailed">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left:.3rem"><path d="M6.5 1L7.9 4.6H12L8.9 6.9 10 10.5 6.5 8.2 3 10.5l1.1-3.6L1 4.6h4.1z" fill="#fbbf24"/></svg>
+              شاملة ومتكاملة
+            </span>
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem">
+              <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 6px 16px rgba(217,119,6,.3)">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="13" height="17" rx="2" stroke="#fff" stroke-width="1.5"/>
+                  <line x1="5" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+                  <line x1="5" y1="10" x2="12" y2="10" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+                  <line x1="5" y1="13" x2="12" y2="13" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+                  <line x1="5" y1="16" x2="9" y2="16" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+                  <polyline points="14,14 16,17 20,11" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 style="margin:0;font-size:1.05rem">دراسة الجدوى المفصلة</h3>
+            </div>
             <p>مناسبة للمشاريع الجادة والبنوك وصناديق التمويل — تقرير احترافي بمعايير معتمدة يُقنع المستثمرين</p>
             <div class="study-price">299 <span style="font-size:1rem;font-weight:400">ريال</span></div>
             <div class="study-price-note">دفعة واحدة · تقرير احترافي شامل</div>
@@ -1895,96 +2299,426 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
     <!-- ===== CAPITAL ===== -->
     <div class="page" id="page-capital">
 
-      <!-- ══ STEP 0: ملف المستثمر ══ -->
+      <!-- ══ STEP 0: اختيار نوع الاستشارة ══ -->
       <div id="cap-step-0" class="cap-step active">
-        <!-- Hero -->
-        <div class="cap-hero">
-          <div class="cap-hero-icon"><i class="fa-solid fa-coins"></i></div>
-          <div>
-            <div class="cap-hero-badge">استشارة استثمارية ذكية · مجانية</div>
-            <h2>استشارة رأس المال الاستثماري</h2>
-            <p>أجب على 3 أسئلة بسيطة وستحصل على توصيات استثمارية مخصصة لك<br/>بناءً على ميزانيتك ومستوى مخاطرتك وقطاعاتك المفضلة</p>
-          </div>
-        </div>
 
-        <div class="cap-form-card">
-          <h3 style="font-size:.97rem;font-weight:800;margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem">
-            <i class="fa-solid fa-user-tie" style="color:var(--green)"></i> بناء ملف المستثمر
-          </h3>
+        <!-- ═══ HERO BANNER ═══ -->
+        <div style="background:linear-gradient(135deg,#0a1628 0%,#1a1430 50%,#0d1f3a 100%);border-radius:20px;padding:2.5rem 2rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden">
+          <!-- SVG background: growth chart + coins + grid -->
+          <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.12;pointer-events:none" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 240">
+            <!-- Grid lines -->
+            <line x1="0" y1="60" x2="600" y2="60" stroke="#f59e0b" stroke-width=".5"/>
+            <line x1="0" y1="120" x2="600" y2="120" stroke="#f59e0b" stroke-width=".5"/>
+            <line x1="0" y1="180" x2="600" y2="180" stroke="#f59e0b" stroke-width=".5"/>
+            <line x1="100" y1="0" x2="100" y2="240" stroke="#f59e0b" stroke-width=".5"/>
+            <line x1="200" y1="0" x2="200" y2="240" stroke="#f59e0b" stroke-width=".5"/>
+            <line x1="300" y1="0" x2="300" y2="240" stroke="#f59e0b" stroke-width=".5"/>
+            <line x1="400" y1="0" x2="400" y2="240" stroke="#f59e0b" stroke-width=".5"/>
+            <line x1="500" y1="0" x2="500" y2="240" stroke="#f59e0b" stroke-width=".5"/>
+            <!-- Growth chart line -->
+            <polyline points="40,200 120,170 200,145 270,130 340,100 400,80 470,55 540,35" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="40,200 120,170 200,145 270,130 340,100 400,80 470,55 540,35 540,240 40,240" fill="rgba(245,158,11,.15)"/>
+            <!-- Dots on chart -->
+            <circle cx="400" cy="80" r="4" fill="#f59e0b"/>
+            <circle cx="470" cy="55" r="4" fill="#f59e0b"/>
+            <circle cx="540" cy="35" r="6" fill="#f59e0b">
+              <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="1;.5;1" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Coins stack outline -->
+            <ellipse cx="80" cy="165" rx="30" ry="8" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <ellipse cx="80" cy="155" rx="30" ry="8" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <ellipse cx="80" cy="145" rx="30" ry="8" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <line x1="50" y1="145" x2="50" y2="165" stroke="#f59e0b" stroke-width="1.5"/>
+            <line x1="110" y1="145" x2="110" y2="165" stroke="#f59e0b" stroke-width="1.5"/>
+          </svg>
 
-          <!-- رأس المال -->
-          <div class="f-field" style="margin-bottom:1.25rem">
-            <label style="font-size:.87rem;font-weight:700">رأس المال المتاح للاستثمار (ريال) <span style="color:#e74c3c">*</span></label>
-            <div class="amount-display" id="cap-display">50,000 ريال</div>
-            <input type="range" class="range-input" id="cap-range" min="5000" max="500000" step="5000" value="50000" oninput="updateCapital(this.value)"/>
-            <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:-.3rem">
-              <span>5,000 ر</span><span>250,000 ر</span><span>500,000 ر</span>
-            </div>
-          </div>
-
-          <!-- ملاحظة عن الحد الأعلى -->
-          <div id="cap-range-note" style="font-size:.77rem;color:var(--muted);background:var(--bg2);border-radius:8px;padding:.5rem .85rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:.4rem">
-            <i class="fa-solid fa-circle-info" style="color:var(--green)"></i>
-            <span id="cap-range-note-text">هذا المبلغ يتيح لك 12 فرصة استثمارية في قاعدة بياناتنا</span>
-          </div>
-
-          <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
-            <!-- القطاع المفضل -->
-            <div class="f-field">
-              <label>القطاع المفضل</label>
-              <select id="cap-sector" onchange="updateCapitalNote()">
-                <option value="all">جميع القطاعات</option>
-                <option value="food">🍽 غذاء وضيافة</option>
-                <option value="tech">💻 تقنية ورقمي</option>
-                <option value="retail">🛍 تجارة وبيع</option>
-                <option value="service">🔧 خدمات</option>
-                <option value="real">🏢 عقارات</option>
-                <option value="mfg">🏭 تصنيع وإنتاج</option>
-              </select>
-            </div>
-            <!-- مستوى تحمل المخاطرة -->
-            <div class="f-field">
-              <label>مستوى تحمل المخاطرة</label>
-              <select id="cap-risk-tolerance">
-                <option value="any">أي مستوى</option>
-                <option value="low">منخفض جداً / محافظ</option>
-                <option value="mid">متوسط / معتدل</option>
-                <option value="high">مرتفع / مغامر</option>
-              </select>
-            </div>
+          <!-- Animated badge -->
+          <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.4);border-radius:50px;padding:.3rem .9rem;font-size:.75rem;color:#fbbf24;font-weight:700;margin-bottom:1rem;position:relative;z-index:1">
+            <span style="width:7px;height:7px;border-radius:50%;background:#fbbf24;display:inline-block">
+              <animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite" xmlns="http://www.w3.org/2000/svg"/>
+            </span>
+            مدعوم بالذكاء الاصطناعي · جنان بيز
           </div>
 
-          <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
-            <!-- هدف الاستثمار -->
-            <div class="f-field">
-              <label>هدفك الأساسي من الاستثمار</label>
-              <select id="cap-goal">
-                <option value="income">دخل شهري ثابت</option>
-                <option value="growth">نمو رأس المال على المدى البعيد</option>
-                <option value="fast">أرباح سريعة (6-12 شهر)</option>
-                <option value="stable">أمان وتنويع المحفظة</option>
-              </select>
-            </div>
-            <!-- خبرة الأعمال -->
-            <div class="f-field">
-              <label>خبرتك في الأعمال التجارية</label>
-              <select id="cap-exp">
-                <option value="none">مبتدئ — بدون خبرة سابقة</option>
-                <option value="little">خبرة محدودة (1-3 سنوات)</option>
-                <option value="mid">خبرة جيدة (3-7 سنوات)</option>
-                <option value="expert">خبير (أكثر من 7 سنوات)</option>
-              </select>
-            </div>
-          </div>
-
-          <button class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem" onclick="runCapitalConsultation()">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> احصل على توصياتي الاستثمارية
-          </button>
-          <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:.65rem">
-            <i class="fa-solid fa-shield-halved" style="color:var(--green);margin-left:.3rem"></i>
-            توصيات مبنية على بيانات 22 قطاع ومشروع · تحديث ربع سنوي
+          <!-- Main heading -->
+          <h2 style="font-size:1.6rem;font-weight:900;color:#fff;margin:0 0 .5rem;position:relative;z-index:1;line-height:1.35">
+            محفظتك الاستثمارية
+            <span style="background:linear-gradient(90deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"> الذكية</span>
+          </h2>
+          <p style="color:rgba(255,255,255,.75);font-size:.88rem;margin:0 0 1.5rem;position:relative;z-index:1;line-height:1.6">
+            توصيات استثمارية مخصصة بالذكاء الاصطناعي · بناءً على ميزانيتك وأهدافك ومستوى مخاطرتك<br/>
+            مقبولة لدى صناديق الاستثمار · 22 قطاع مُحلَّل
           </p>
+
+          <!-- Mini stats row -->
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1">
+            <div style="background:rgba(255,255,255,.08);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
+              <div style="font-size:1rem;font-weight:900;color:#fbbf24">+3,200</div>
+              <div style="font-size:.68rem;color:rgba(255,255,255,.6)">مستثمر استفاد</div>
+            </div>
+            <div style="background:rgba(255,255,255,.08);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
+              <div style="font-size:1rem;font-weight:900;color:#fbbf24">22</div>
+              <div style="font-size:.68rem;color:rgba(255,255,255,.6)">قطاع مُحلَّل</div>
+            </div>
+            <div style="background:rgba(255,255,255,.08);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
+              <div style="font-size:1rem;font-weight:900;color:#fbbf24">PDF</div>
+              <div style="font-size:.68rem;color:rgba(255,255,255,.6)">تقرير محفظة كامل</div>
+            </div>
+          </div>
         </div>
+
+        <!-- ═══ TIER CARDS ═══ -->
+        <h3 style="font-size:.95rem;font-weight:800;color:var(--text);margin:0 0 1rem;text-align:center">اختر نوع الاستشارة المناسبة لك</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+
+          <!-- ── FREE CARD ── -->
+          <div style="background:var(--card);border:2px solid #3b5bdb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;position:relative">
+            <!-- top accent -->
+            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#3b5bdb,#60a5fa);border-radius:16px 16px 0 0"></div>
+            <!-- NOTE: FREE & PREMIUM CARDS ALREADY EXIST BELOW — appending Funding Matrix + DDQ follows the card section -->
+            <!-- icon -->
+            <div style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#1e3a8a,#3b5bdb);display:flex;align-items:center;justify-content:center;margin-top:.3rem">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="11" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+                <polyline points="8,17 12,12 15,15 20,9" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="20" cy="9" r="2" fill="#93c5fd"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size:.97rem;font-weight:900;color:var(--text);margin:0 0 .25rem">توصية استثمارية</h3>
+              <div style="font-size:1.6rem;font-weight:900;color:#60a5fa;line-height:1">مجاناً <span style="font-size:.75rem;color:var(--muted);font-weight:600">· فوري</span></div>
+            </div>
+            <!-- features -->
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem;flex:1">
+              <li style="display:flex;align-items:flex-start;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.8)">
+                <svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="8" fill="#1e3a8a"/><path d="M5 8l2 2 4-4" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                3–5 فرص استثمارية موصى بها
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.8)">
+                <svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="8" fill="#1e3a8a"/><path d="M5 8l2 2 4-4" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                تصفية حسب قطاعك والمخاطرة
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.8)">
+                <svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="8" fill="#1e3a8a"/><path d="M5 8l2 2 4-4" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                تقرير أساسي بنقاط التعادل
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.8)">
+                <svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="8" fill="#1e3a8a"/><path d="M5 8l2 2 4-4" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                نتيجة فورية · بدون تسجيل
+              </li>
+            </ul>
+            <button onclick="showCapFreeForm()" style="background:linear-gradient(135deg,#1e40af,#3b5bdb);color:#fff;border:none;border-radius:10px;padding:.75rem;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;width:100%">
+              ابدأ الاستشارة المجانية
+            </button>
+          </div>
+
+          <!-- ── PREMIUM CARD ── -->
+          <div style="background:var(--card);border:2px solid #d97706;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;position:relative;box-shadow:0 0 24px rgba(245,158,11,.18)">
+            <!-- top accent -->
+            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#d97706,#fbbf24);border-radius:16px 16px 0 0"></div>
+            <!-- best badge -->
+            <div style="position:absolute;top:.85rem;left:.85rem;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;font-size:.67rem;font-weight:800;padding:.2rem .55rem;border-radius:50px">★ الأكثر طلباً</div>
+            <!-- icon -->
+            <div style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;margin-top:.3rem">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect x="5" y="8" width="18" height="15" rx="2" fill="none" stroke="#fcd34d" stroke-width="1.5"/>
+                <line x1="5" y1="12" x2="23" y2="12" stroke="#fcd34d" stroke-width="1.2"/>
+                <line x1="10" y1="8" x2="10" y2="5" stroke="#fcd34d" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="18" y1="8" x2="18" y2="5" stroke="#fcd34d" stroke-width="1.5" stroke-linecap="round"/>
+                <polyline points="9,19 12,16 15,18 20,14" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="20" cy="14" r="1.5" fill="#fbbf24"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size:.97rem;font-weight:900;color:var(--text);margin:0 0 .25rem">محفظة استثمارية ذكية</h3>
+              <div style="font-size:1.6rem;font-weight:900;color:#fbbf24;line-height:1">
+                149 <span style="font-size:.8rem;font-weight:700">ريال</span>
+                <span style="font-size:.8rem;text-decoration:line-through;color:var(--muted);font-weight:500;margin-right:.3rem">299</span>
+              </div>
+            </div>
+            <!-- features by section -->
+            <div style="display:flex;flex-direction:column;gap:.6rem;flex:1">
+              <!-- section 1 -->
+              <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:.55rem .7rem">
+                <div style="font-size:.75rem;font-weight:800;color:#fbbf24;margin-bottom:.3rem">
+                  <svg width="12" height="12" viewBox="0 0 12 12" style="display:inline;vertical-align:middle;margin-left:3px"><path d="M6 1l1.2 3.6H11L8.1 6.7l1.2 3.6L6 8.1 2.7 10.3l1.2-3.6L1 4.6h3.8z" fill="#f59e0b"/></svg>
+                  تحليل المحفظة الكاملة
+                </div>
+                <p style="font-size:.75rem;color:rgba(255,255,255,.7);margin:0;line-height:1.6">+15 فرصة استثمارية · تنويع القطاعات · مقارنة العوائد</p>
+              </div>
+              <!-- section 2 -->
+              <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:.55rem .7rem">
+                <div style="font-size:.75rem;font-weight:800;color:#fbbf24;margin-bottom:.3rem">
+                  <svg width="12" height="12" viewBox="0 0 12 12" style="display:inline;vertical-align:middle;margin-left:3px"><path d="M6 1l1.2 3.6H11L8.1 6.7l1.2 3.6L6 8.1 2.7 10.3l1.2-3.6L1 4.6h3.8z" fill="#f59e0b"/></svg>
+                  خطة الاستثمار 3 سنوات
+                </div>
+                <p style="font-size:.75rem;color:rgba(255,255,255,.7);margin:0;line-height:1.6">توقعات الأرباح الشهرية · نقطة التعادل · ROI السنوي</p>
+              </div>
+              <!-- section 3 -->
+              <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:.55rem .7rem">
+                <div style="font-size:.75rem;font-weight:800;color:#fbbf24;margin-bottom:.3rem">
+                  <svg width="12" height="12" viewBox="0 0 12 12" style="display:inline;vertical-align:middle;margin-left:3px"><path d="M6 1l1.2 3.6H11L8.1 6.7l1.2 3.6L6 8.1 2.7 10.3l1.2-3.6L1 4.6h3.8z" fill="#f59e0b"/></svg>
+                  تقرير PDF احترافي
+                </div>
+                <p style="font-size:.75rem;color:rgba(255,255,255,.7);margin:0;line-height:1.6">ملخص تنفيذي للمستثمرين · جاهز لصناديق التمويل</p>
+              </div>
+            </div>
+            <button onclick="showCapPremiumModal()" style="background:linear-gradient(135deg,#b45309,#d97706);color:#fff;border:none;border-radius:10px;padding:.75rem;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;width:100%;box-shadow:0 4px 14px rgba(217,119,6,.4)">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> احصل على محفظتك الذكية
+            </button>
+          </div>
+        </div>
+
+        <!-- ═══ FREE FORM (hidden, revealed on click) ═══ -->
+        <div id="cap-free-section" style="display:none;animation:fadeSlideIn .35s ease">
+          <div class="cap-form-card">
+            <h3 style="font-size:.97rem;font-weight:800;margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem">
+              <i class="fa-solid fa-user-tie" style="color:var(--green)"></i> بناء ملف المستثمر
+            </h3>
+
+            <!-- رأس المال -->
+            <div class="f-field" style="margin-bottom:1.25rem">
+              <label style="font-size:.87rem;font-weight:700">رأس المال المتاح للاستثمار (ريال) <span style="color:#e74c3c">*</span></label>
+              <div class="amount-display" id="cap-display">50,000 ريال</div>
+              <input type="range" class="range-input" id="cap-range" min="5000" max="500000" step="5000" value="50000" oninput="updateCapital(this.value)"/>
+              <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:-.3rem">
+                <span>5,000 ر</span><span>250,000 ر</span><span>500,000 ر</span>
+              </div>
+            </div>
+
+            <!-- ملاحظة عن الحد الأعلى -->
+            <div id="cap-range-note" style="font-size:.77rem;color:var(--muted);background:var(--bg2);border-radius:8px;padding:.5rem .85rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:.4rem">
+              <i class="fa-solid fa-circle-info" style="color:var(--green)"></i>
+              <span id="cap-range-note-text">هذا المبلغ يتيح لك 12 فرصة استثمارية في قاعدة بياناتنا</span>
+            </div>
+
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+              <div class="f-field">
+                <label>القطاع المفضل</label>
+                <select id="cap-sector" onchange="updateCapitalNote()">
+                  <option value="all">جميع القطاعات</option>
+                  <option value="food">🍽 غذاء وضيافة</option>
+                  <option value="tech">💻 تقنية ورقمي</option>
+                  <option value="retail">🛍 تجارة وبيع</option>
+                  <option value="service">🔧 خدمات</option>
+                  <option value="real">🏢 عقارات</option>
+                  <option value="mfg">🏭 تصنيع وإنتاج</option>
+                </select>
+              </div>
+              <div class="f-field">
+                <label>مستوى تحمل المخاطرة</label>
+                <select id="cap-risk-tolerance">
+                  <option value="any">أي مستوى</option>
+                  <option value="low">منخفض جداً / محافظ</option>
+                  <option value="mid">متوسط / معتدل</option>
+                  <option value="high">مرتفع / مغامر</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+              <div class="f-field">
+                <label>هدفك الأساسي من الاستثمار</label>
+                <select id="cap-goal">
+                  <option value="income">دخل شهري ثابت</option>
+                  <option value="growth">نمو رأس المال على المدى البعيد</option>
+                  <option value="fast">أرباح سريعة (6-12 شهر)</option>
+                  <option value="stable">أمان وتنويع المحفظة</option>
+                </select>
+              </div>
+              <div class="f-field">
+                <label>خبرتك في الأعمال التجارية</label>
+                <select id="cap-exp">
+                  <option value="none">مبتدئ — بدون خبرة سابقة</option>
+                  <option value="little">خبرة محدودة (1-3 سنوات)</option>
+                  <option value="mid">خبرة جيدة (3-7 سنوات)</option>
+                  <option value="expert">خبير (أكثر من 7 سنوات)</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem" onclick="runCapitalConsultation()">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> احصل على توصياتي الاستثمارية
+            </button>
+            <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:.65rem">
+              <i class="fa-solid fa-shield-halved" style="color:var(--green);margin-left:.3rem"></i>
+              توصيات مبنية على بيانات 22 قطاع ومشروع · تحديث ربع سنوي
+            </p>
+          </div>
+        </div>
+
+        <!-- ═══ PREMIUM MODAL ═══ -->
+        <!-- ══ SMART CONSULTATION MODAL ══ -->
+        <div id="cap-premium-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;align-items:center;justify-content:center" onclick="if(event.target===this)closeCapModal()">
+          <div style="background:var(--card);border-radius:20px;padding:2rem;width:92%;max-width:460px;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative;border:1px solid rgba(245,158,11,.3);max-height:90vh;overflow-y:auto">
+            <button onclick="closeCapModal()" style="position:absolute;top:.85rem;left:.85rem;background:var(--bg2);border:1px solid var(--border);width:34px;height:34px;border-radius:50%;cursor:pointer;color:var(--text);font-size:.95rem;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='#e74c3c';this.style.color='#fff'" onmouseout="this.style.background='var(--bg2)';this.style.color='var(--text)'"><i class="fa-solid fa-xmark"></i></button>
+
+            <!-- STEP A: بيانات المنشأة -->
+            <div id="cap-modal-step-a">
+              <div style="text-align:center;margin-bottom:1.5rem">
+                <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;margin:0 auto .85rem">
+                  <i class="fa-solid fa-building" style="color:#fcd34d;font-size:1.2rem"></i>
+                </div>
+                <h3 style="font-size:1.05rem;font-weight:900;margin:0 0 .3rem">بيانات منشأتك</h3>
+                <p style="font-size:.81rem;color:var(--muted);margin:0">ندّق على إيراداتك لنحدد نوع الاستشارة المناسبة</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:.85rem">
+                <div class="f-field">
+                  <label>اسمك الكريم <span style="color:#e74c3c">*</span></label>
+                  <input type="text" id="cap-pm-name" placeholder="مثال: محمد أحمد"/>
+                </div>
+                <div class="f-field">
+                  <label>اسم المنشأة <span style="color:#e74c3c">*</span></label>
+                  <input type="text" id="cap-pm-biz" placeholder="مثال: شركة النجاح التجارية"/>
+                </div>
+                <div class="f-field">
+                  <label>الإيرادات السنوية للمنشأة (ريال) <span style="color:#e74c3c">*</span></label>
+                  <input type="number" id="cap-pm-revenue" placeholder="مثال: 2500000" oninput="capUpdateRevenueHint(this.value)"/>
+                  <div id="cap-rev-hint" style="font-size:.75rem;margin-top:.35rem;padding:.4rem .7rem;border-radius:7px;display:none"></div>
+                </div>
+                <div class="f-field">
+                  <label>رقم الواتساب <span style="color:#e74c3c">*</span></label>
+                  <input type="tel" id="cap-pm-whatsapp" placeholder="05XXXXXXXX"/>
+                </div>
+              </div>
+              <button onclick="submitCapRequest()" style="background:linear-gradient(135deg,#1e40af,#3b5bdb);color:#fff;border:none;border-radius:12px;padding:1rem;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;margin-top:1.25rem">
+                <i class="fa-solid fa-magnifying-glass"></i> تحقّق من أهليتي
+              </button>
+            </div>
+
+            <!-- STEP B-FREE: مبروك — استشارتك مجانية -->
+            <div id="cap-modal-step-free" style="display:none;text-align:center">
+              <div style="background:linear-gradient(135deg,#064e3b,#059669);border-radius:14px;padding:1.5rem;margin-bottom:1.2rem">
+                <div style="font-size:2.5rem;margin-bottom:.5rem">🎉</div>
+                <h3 style="color:#fff;font-size:1.1rem;font-weight:900;margin:0 0 .4rem">تهانينا!</h3>
+                <p style="color:rgba(255,255,255,.85);font-size:.84rem;margin:0">إيرادات منشأتك تؤهّلك للحصول على استشارة رأس المال <strong style="color:#6ee7b7">مجاناً</strong></p>
+              </div>
+              <p style="font-size:.83rem;color:var(--muted);margin-bottom:1.2rem">سيتواصل معك مستشارنا على الواتساب خلال 24 ساعة لتحديد موعد الاستشارة</p>
+              <button onclick="sendFreeCapWhatsapp()" style="background:linear-gradient(135deg,#15803d,#22c55e);color:#fff;border:none;border-radius:12px;padding:1rem 1.5rem;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem">
+                <i class="fa-brands fa-whatsapp"></i> انتقل للواتساب الآن
+              </button>
+            </div>
+
+            <!-- STEP B-PAY: ادفع 100 ريال أولاً -->
+            <div id="cap-modal-step-pay" style="display:none">
+              <div style="text-align:center;margin-bottom:1.2rem">
+                <div style="background:linear-gradient(135deg,#7c2d12,#ea580c);border-radius:14px;padding:1.2rem;margin-bottom:1rem">
+                  <div style="font-size:1.8rem;font-weight:900;color:#fff">100 <span style="font-size:1rem">ريال</span></div>
+                  <p style="color:rgba(255,255,255,.85);font-size:.82rem;margin:.3rem 0 0">رسوم استشارة رأس المال — تُدفع مرة واحدة</p>
+                </div>
+                <p style="font-size:.82rem;color:var(--muted);margin:0 0 1rem">المنشآت التي إيراداتها أقل من 2 مليون ريال تخضع لرسوم رمزية قدرها <strong style="color:var(--text)">100 ريال</strong> تُسدَّد قبل بدء الاستشارة</p>
+              </div>
+              <!-- طرق الدفع -->
+              <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:1rem">
+                <p style="font-size:.8rem;font-weight:800;color:var(--text);margin:0 0 .75rem">اختر طريقة الدفع:</p>
+                <div style="display:flex;flex-direction:column;gap:.55rem">
+                  <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.83rem">
+                    <input type="radio" name="cap-pay-method" value="stc" checked style="accent-color:#d97706"/> STC Pay — 0551234567
+                  </label>
+                  <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.83rem">
+                    <input type="radio" name="cap-pay-method" value="bank" style="accent-color:#d97706"/> تحويل بنكي — IBAN: SA00 0000 0000 0000 0000 0000
+                  </label>
+                </div>
+              </div>
+              <div class="f-field" style="margin-bottom:1rem">
+                <label>رقم العملية / لقطة شاشة (اختياري)</label>
+                <input type="text" id="cap-pm-txn" placeholder="مثال: 1234567890"/>
+              </div>
+              <button onclick="sendPaidCapWhatsapp()" style="background:linear-gradient(135deg,#b45309,#d97706);color:#fff;border:none;border-radius:12px;padding:1rem;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;box-shadow:0 4px 14px rgba(217,119,6,.35);display:flex;align-items:center;justify-content:center;gap:.5rem">
+                <i class="fa-brands fa-whatsapp"></i> أكّد الدفع وانتقل للواتساب
+              </button>
+              <p style="text-align:center;font-size:.72rem;color:var(--muted);margin-top:.65rem">
+                <i class="fa-solid fa-shield-halved" style="color:#fbbf24;margin-left:.3rem"></i>
+                سيتواصل معك مستشارنا خلال 24 ساعة · ضمان استرداد 7 أيام
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ══ مصفوفة ملاءمة التمويل ══ -->
+        <div style="margin-top:1.75rem">
+          <div class="sec-hd" style="margin-bottom:1rem">
+            <div>
+              <h2 style="font-size:1rem;font-weight:800;margin:0;display:flex;align-items:center;gap:.5rem">
+                <i class="fa-solid fa-table-list" style="color:#f59e0b"></i> مصفوفة ملاءمة التمويل
+              </h2>
+              <p style="font-size:.82rem;color:var(--muted);margin:.25rem 0 0">اختر قناة التمويل الصح بناءً على وضعك الفعلي — لكل مرحلة خيار</p>
+            </div>
+          </div>
+          <div style="overflow-x:auto;margin-bottom:1rem">
+            <table class="sr-table" style="min-width:600px">
+              <thead>
+                <tr style="background:var(--bg2)">
+                  <td style="font-weight:800">قناة التمويل</td>
+                  <td style="font-weight:800;text-align:center">حجم التمويل</td>
+                  <td style="font-weight:800;text-align:center">التكلفة / الحصة</td>
+                  <td style="font-weight:800;text-align:center">المتطلبات</td>
+                  <td style="font-weight:800;text-align:center">الأنسب لـ</td>
+                  <td style="font-weight:800;text-align:center">اطلب</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-hand-holding-dollar" style="color:#93c5fd"></i></div><strong>كفالة صندوق المئوية</strong></div></td>
+                  <td style="text-align:center;font-size:.82rem">100K – 1M ريال</td>
+                  <td style="text-align:center;font-size:.82rem;color:var(--green)">بدون حصة</td>
+                  <td style="text-align:center;font-size:.78rem;color:var(--muted)">سجل تجاري + سعودي</td>
+                  <td style="text-align:center;font-size:.78rem">مشاريع ناشئة</td>
+                  <td style="text-align:center"><button onclick="showGovServiceModal('capital','كفالة صندوق المئوية','مجاناً','065f46','10b981','fa-chart-line')" class="comp-gov-start" style="font-size:.72rem;padding:.28rem .7rem;width:auto">تقدم</button></td>
+                </tr>
+                <tr style="background:var(--bg2)">
+                  <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#14532d,#16a34a);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-building-columns" style="color:#86efac"></i></div><strong>تمويل بنكي تجاري</strong></div></td>
+                  <td style="text-align:center;font-size:.82rem">200K – 5M ريال</td>
+                  <td style="text-align:center;font-size:.82rem;color:#d97706">7–12% سنوي</td>
+                  <td style="text-align:center;font-size:.78rem;color:var(--muted)">قوائم مالية 2 سنة</td>
+                  <td style="text-align:center;font-size:.78rem">منشآت قائمة</td>
+                  <td style="text-align:center"><button onclick="showGovServiceModal('capital','تجهيز ملف التمويل البنكي','199 ريال','065f46','10b981','fa-chart-line')" class="comp-gov-start" style="font-size:.72rem;padding:.28rem .7rem;width:auto">تجهيز الملف</button></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-handshake" style="color:#fcd34d"></i></div><strong>شريك استراتيجي</strong></div></td>
+                  <td style="text-align:center;font-size:.82rem">حسب الاتفاق</td>
+                  <td style="text-align:center;font-size:.82rem;color:#e74c3c">20–40% من الحصص</td>
+                  <td style="text-align:center;font-size:.78rem;color:var(--muted)">عرض قيمة واضح</td>
+                  <td style="text-align:center;font-size:.78rem">نمو سريع</td>
+                  <td style="text-align:center"><button onclick="showGovServiceModal('capital','تحليل هيكل الشراكة الاستراتيجية','مجاناً','065f46','10b981','fa-chart-line')" class="comp-gov-start" style="font-size:.72rem;padding:.28rem .7rem;width:auto">استشارة</button></td>
+                </tr>
+                <tr style="background:var(--bg2)">
+                  <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#4a044e,#9333ea);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-user-astronaut" style="color:#d8b4fe"></i></div><strong>مستثمر ملاك (Angel)</strong></div></td>
+                  <td style="text-align:center;font-size:.82rem">50K – 500K ريال</td>
+                  <td style="text-align:center;font-size:.82rem;color:#e74c3c">10–25% من الحصص</td>
+                  <td style="text-align:center;font-size:.78rem;color:var(--muted)">Pitch Deck + نمو ثابت</td>
+                  <td style="text-align:center;font-size:.78rem">تقنية / مبتكر</td>
+                  <td style="text-align:center"><button onclick="showGovServiceModal('capital','تحضير ملف Angel Investment','مجاناً','065f46','10b981','fa-chart-line')" class="comp-gov-start" style="font-size:.72rem;padding:.28rem .7rem;width:auto">جهّز الملف</button></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#0c4a6e,#0284c7);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-mosque" style="color:#7dd3fc"></i></div><strong>تمويل إسلامي (مرابحة)</strong></div></td>
+                  <td style="text-align:center;font-size:.82rem">100K – 3M ريال</td>
+                  <td style="text-align:center;font-size:.82rem;color:#d97706">هامش تجاري 5–9%</td>
+                  <td style="text-align:center;font-size:.78rem;color:var(--muted)">تقييم ائتماني جيد</td>
+                  <td style="text-align:center;font-size:.78rem">التوسع الثابت</td>
+                  <td style="text-align:center"><button onclick="showGovServiceModal('capital','التمويل الإسلامي — مقارنة العروض','مجاناً','065f46','10b981','fa-chart-line')" class="comp-gov-start" style="font-size:.72rem;padding:.28rem .7rem;width:auto">قارن</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ══ قائمة التحقق: جاهزية المستثمر (Due Diligence Checklist) ══ -->
+          <div style="margin-top:1.5rem">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem">
+              <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-folder-open" style="color:#93c5fd"></i></div>
+              <div>
+                <div style="font-size:.95rem;font-weight:800">غرفة البيانات — قائمة التحقق للجاهزية الاستثمارية</div>
+                <div style="font-size:.78rem;color:var(--muted)">المستثمرون الجادون يطلبون هذه المستندات — جهّزها مسبقاً</div>
+              </div>
+            </div>
+            <div id="ddq-container">
+              <!-- سيتم رسمها بـ JS عند فتح الصفحة -->
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- ══ STEP 1: نتائج الاستشارة ══ -->
@@ -2070,9 +2804,9 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       </div>
 
       <!-- نموذج طلب تصميم (مخفي) -->
-      <div id="design-order-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;display:none;align-items:center;justify-content:center">
+      <div id="design-order-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center" onclick="if(event.target===this)closeDesignOrder()">
         <div style="background:var(--card);border-radius:18px;padding:2rem;width:90%;max-width:480px;box-shadow:var(--shadow);position:relative">
-          <button onclick="closeDesignOrder()" style="position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted)"><i class="fa-solid fa-xmark"></i></button>
+          <button onclick="event.stopPropagation();closeDesignOrder()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
           <h3 id="design-order-title" style="margin-bottom:1.2rem">طلب تصميم</h3>
           <div class="f-field"><label>اسم المشروع / العلامة التجارية</label><input type="text" id="d-name" placeholder="مثال: مطعم الأصالة"/></div>
           <div class="f-field"><label>وصف المشروع وما تحتاجه</label><textarea id="d-desc" rows="3" placeholder="اشرح طلبك بالتفصيل..."></textarea></div>
@@ -2083,6 +2817,531 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           </button>
         </div>
       </div>
+
+      <!-- ===== مودال الاشتراك المميز ===== -->
+      <div id="premium-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;align-items:center;justify-content:center;padding:1rem" onclick="if(event.target===this)closePremiumModal()">
+        <div style="background:var(--card);border-radius:20px;width:90%;max-width:500px;box-shadow:0 25px 60px rgba(0,0,0,.4);position:relative;overflow:hidden">
+          <!-- هيدر ذهبي -->
+          <div style="background:linear-gradient(135deg,#1a0a00,#3d1f00);padding:2rem 2rem 1.5rem;text-align:center;position:relative">
+            <button onclick="closePremiumModal()" style="position:absolute;top:1rem;left:1rem;background:rgba(255,255,255,.1);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;color:#fff;font-size:.9rem;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-xmark"></i></button>
+            <div style="width:64px;height:64px;border-radius:50%;background:rgba(245,158,11,.2);border:2px solid #f59e0b;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.6rem">👑</div>
+            <h3 style="color:#fff;font-size:1.2rem;margin-bottom:.4rem">الباقة المميزة — Premium</h3>
+            <p style="color:rgba(255,255,255,.65);font-size:.83rem">تحليل AI عميق + دراسة جدوى كاملة + تقرير PDF</p>
+          </div>
+          <!-- محتوى المودال -->
+          <div style="padding:1.75rem 2rem">
+            <!-- السعر -->
+            <div style="text-align:center;margin-bottom:1.5rem">
+              <div style="font-size:.8rem;color:var(--muted);text-decoration:line-through;margin-bottom:.2rem">99 ريال / شهرياً</div>
+              <div style="font-size:2rem;font-weight:900;color:#d97706">49 ريال</div>
+              <div style="font-size:.78rem;color:var(--muted)">لمرة واحدة — وصول دائم</div>
+            </div>
+            <!-- مزايا -->
+            <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.5rem">
+              <div style="font-size:.82rem;display:flex;flex-direction:column;gap:.6rem">
+                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>تقرير AI مفصّل (5-8 صفحات) لمشروعك</div>
+                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>خطة عمل 12 شهراً خطوة بخطوة</div>
+                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>تحليل المنافسين والفرص في السوق</div>
+                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>توصيات تمويل ورأس المال</div>
+                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>تحميل التقرير PDF بتنسيق احترافي</div>
+                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>استخدام غير محدود للمدة الكاملة</div>
+              </div>
+            </div>
+            <!-- طرق الدفع -->
+            <div style="display:flex;gap:.65rem;margin-bottom:1.25rem;flex-wrap:wrap">
+              <button onclick="premiumCheckout('mada')" style="flex:1;min-width:120px;padding:.75rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);font-family:'Tajawal',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:.2s" onmouseover="this.style.borderColor='#d97706'" onmouseout="this.style.borderColor='var(--border)'">
+                <i class="fa-solid fa-credit-card" style="color:#00827a"></i> بطاقة مدى
+              </button>
+              <button onclick="premiumCheckout('visa')" style="flex:1;min-width:120px;padding:.75rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);font-family:'Tajawal',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:.2s" onmouseover="this.style.borderColor='#d97706'" onmouseout="this.style.borderColor='var(--border)'">
+                <i class="fa-brands fa-cc-visa" style="color:#1a1f71"></i> Visa / Mastercard
+              </button>
+            </div>
+            <button onclick="premiumCheckout('all')" style="width:100%;padding:1rem;background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(245,158,11,.3)">
+              <i class="fa-solid fa-crown"></i> اشترك الآن بـ 49 ريال
+            </button>
+            <p style="text-align:center;font-size:.72rem;color:var(--muted);margin-top:.85rem">
+              <i class="fa-solid fa-shield-halved" style="color:#22c55e;margin-left:.3rem"></i>دفع آمن · ضمان استرداد 7 أيام · لا اشتراك متكرر
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== COMPLIANCE & ADVISORY ===== -->
+    <div class="page" id="page-compliance">
+
+      <!-- ══ HERO BANNER ══ -->
+      <div style="background:linear-gradient(135deg,#030f1e 0%,#062040 50%,#0a1a30 100%);border-radius:20px;padding:2.5rem 2rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden">
+        <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.13;pointer-events:none" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 220">
+          <!-- shield outline -->
+          <path d="M300,20 L380,55 L380,120 Q380,170 300,200 Q220,170 220,120 L220,55 Z" fill="none" stroke="#22d3ee" stroke-width="1.5"/>
+          <path d="M300,38 L362,66 L362,120 Q362,158 300,182 Q238,158 238,120 L238,66 Z" fill="rgba(34,211,238,.08)"/>
+          <!-- checkmark inside shield -->
+          <polyline points="268,115 290,138 338,92" stroke="#22d3ee" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- grid lines -->
+          <line x1="0" y1="55" x2="600" y2="55" stroke="#22d3ee" stroke-width=".4"/>
+          <line x1="0" y1="110" x2="600" y2="110" stroke="#22d3ee" stroke-width=".4"/>
+          <line x1="0" y1="165" x2="600" y2="165" stroke="#22d3ee" stroke-width=".4"/>
+          <line x1="100" y1="0" x2="100" y2="220" stroke="#22d3ee" stroke-width=".4"/>
+          <line x1="200" y1="0" x2="200" y2="220" stroke="#22d3ee" stroke-width=".4"/>
+          <line x1="400" y1="0" x2="400" y2="220" stroke="#22d3ee" stroke-width=".4"/>
+          <line x1="500" y1="0" x2="500" y2="220" stroke="#22d3ee" stroke-width=".4"/>
+          <!-- doc icons left -->
+          <rect x="30" y="60" width="50" height="65" rx="4" fill="none" stroke="#22d3ee" stroke-width="1"/>
+          <line x1="38" y1="78" x2="72" y2="78" stroke="#22d3ee" stroke-width="1"/>
+          <line x1="38" y1="88" x2="65" y2="88" stroke="#22d3ee" stroke-width="1"/>
+          <line x1="38" y1="98" x2="70" y2="98" stroke="#22d3ee" stroke-width="1"/>
+          <circle cx="55" cy="114" r="6" fill="none" stroke="#22d3ee" stroke-width="1"/>
+          <polyline points="51,114 54,117 60,111" stroke="#22d3ee" stroke-width="1" fill="none"/>
+          <!-- doc icons right -->
+          <rect x="520" y="60" width="50" height="65" rx="4" fill="none" stroke="#22d3ee" stroke-width="1"/>
+          <line x1="528" y1="78" x2="562" y2="78" stroke="#22d3ee" stroke-width="1"/>
+          <line x1="528" y1="88" x2="555" y2="88" stroke="#22d3ee" stroke-width="1"/>
+          <line x1="528" y1="98" x2="560" y2="98" stroke="#22d3ee" stroke-width="1"/>
+          <circle cx="545" cy="114" r="6" fill="none" stroke="#22d3ee" stroke-width="1"/>
+          <polyline points="541,114 544,117 550,111" stroke="#22d3ee" stroke-width="1" fill="none"/>
+        </svg>
+
+        <!-- badge -->
+        <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.35);border-radius:50px;padding:.3rem .9rem;font-size:.75rem;color:#22d3ee;font-weight:700;margin-bottom:1rem;position:relative;z-index:1">
+          <span style="width:7px;height:7px;border-radius:50%;background:#22d3ee;animation:pulse 1.8s infinite;display:inline-block"></span>
+          خبراء معتمدون · ضمان المنصة
+        </div>
+
+        <h2 style="font-size:1.55rem;font-weight:900;color:#fff;margin:0 0 .5rem;position:relative;z-index:1;line-height:1.35">
+          تصحيح الأوضاع
+          <span style="background:linear-gradient(90deg,#22d3ee,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"> والاستشارة الإدارية</span>
+        </h2>
+        <p style="color:rgba(255,255,255,.75);font-size:.88rem;margin:0 0 1.5rem;position:relative;z-index:1;line-height:1.7">
+          نتحقق من امتثال منشأتك للأنظمة السعودية · نتابع ملفاتك الحكومية · نربطك بموردين وشركاء موثوقين بضمان المنصة
+        </p>
+
+        <!-- stats -->
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1">
+          <div style="background:rgba(255,255,255,.07);border:1px solid rgba(34,211,238,.2);border-radius:10px;padding:.5rem .9rem;text-align:center">
+            <div style="font-size:1rem;font-weight:900;color:#22d3ee">+800</div>
+            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">منشأة تم تصحيحها</div>
+          </div>
+          <div style="background:rgba(255,255,255,.07);border:1px solid rgba(34,211,238,.2);border-radius:10px;padding:.5rem .9rem;text-align:center">
+            <div style="font-size:1rem;font-weight:900;color:#22d3ee">6</div>
+            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">جهات حكومية مُغطّاة</div>
+          </div>
+          <div style="background:rgba(255,255,255,.07);border:1px solid rgba(34,211,238,.2);border-radius:10px;padding:.5rem .9rem;text-align:center">
+            <div style="font-size:1rem;font-weight:900;color:#22d3ee">48h</div>
+            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">متوسط وقت الاستجابة</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ SECTION 1: تصحيح الأوضاع ══ -->
+      <div class="sec-hd" style="margin-bottom:1rem">
+        <div>
+          <h2 style="font-size:1rem;font-weight:800;margin:0;display:flex;align-items:center;gap:.5rem">
+            <i class="fa-solid fa-shield-check" style="color:#22d3ee"></i> فحص وتصحيح الأوضاع التجارية
+          </h2>
+          <p style="font-size:.82rem;color:var(--muted);margin:.25rem 0 0">تحقق من امتثال منشأتك لجميع الأنظمة ثم اطلب التصحيح الفوري</p>
+        </div>
+      </div>
+
+      <!-- checklist فحص الأوضاع -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem">
+        <h3 style="font-size:.9rem;font-weight:800;margin:0 0 1.2rem;color:var(--text)">📋 قائمة فحص الامتثال — اختر ما يخصك</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem" id="compliance-checks">
+
+          <label class="comp-check-item">
+            <input type="checkbox" id="cc-cr" onchange="updateComplianceScore()"/>
+            <div class="comp-check-body">
+              <div class="comp-check-icon" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)"><i class="fa-solid fa-building-columns"></i></div>
+              <div>
+                <div class="comp-check-title">السجل التجاري</div>
+                <div class="comp-check-sub">تجديد · صحة البيانات · النشاط المرخص</div>
+              </div>
+            </div>
+          </label>
+
+          <label class="comp-check-item">
+            <input type="checkbox" id="cc-vat" onchange="updateComplianceScore()"/>
+            <div class="comp-check-body">
+              <div class="comp-check-icon" style="background:linear-gradient(135deg,#78350f,#d97706)"><i class="fa-solid fa-percent"></i></div>
+              <div>
+                <div class="comp-check-title">ضريبة القيمة المضافة</div>
+                <div class="comp-check-sub">تسجيل · إقرارات · الغرامات المتراكمة</div>
+              </div>
+            </div>
+          </label>
+
+          <label class="comp-check-item">
+            <input type="checkbox" id="cc-labor" onchange="updateComplianceScore()"/>
+            <div class="comp-check-body">
+              <div class="comp-check-icon" style="background:linear-gradient(135deg,#14532d,#16a34a)"><i class="fa-solid fa-users"></i></div>
+              <div>
+                <div class="comp-check-title">وزارة الموارد البشرية</div>
+                <div class="comp-check-sub">سعودة · رواتب · نزاعات عمالية</div>
+              </div>
+            </div>
+          </label>
+
+          <label class="comp-check-item">
+            <input type="checkbox" id="cc-gosi" onchange="updateComplianceScore()"/>
+            <div class="comp-check-body">
+              <div class="comp-check-icon" style="background:linear-gradient(135deg,#4a044e,#9333ea)"><i class="fa-solid fa-hand-holding-heart"></i></div>
+              <div>
+                <div class="comp-check-title">التأمينات الاجتماعية</div>
+                <div class="comp-check-sub">تسجيل الموظفين · الاشتراكات المتأخرة</div>
+              </div>
+            </div>
+          </label>
+
+          <label class="comp-check-item">
+            <input type="checkbox" id="cc-mun" onchange="updateComplianceScore()"/>
+            <div class="comp-check-body">
+              <div class="comp-check-icon" style="background:linear-gradient(135deg,#7c1d1d,#dc2626)"><i class="fa-solid fa-city"></i></div>
+              <div>
+                <div class="comp-check-title">البلدية والترخيص البلدي</div>
+                <div class="comp-check-sub">رخصة البناء · الاشتراطات الصحية</div>
+              </div>
+            </div>
+          </label>
+
+          <label class="comp-check-item">
+            <input type="checkbox" id="cc-invest" onchange="updateComplianceScore()"/>
+            <div class="comp-check-body">
+              <div class="comp-check-icon" style="background:linear-gradient(135deg,#0c4a6e,#0284c7)"><i class="fa-solid fa-globe"></i></div>
+              <div>
+                <div class="comp-check-title">وزارة الاستثمار</div>
+                <div class="comp-check-sub">تراخيص الاستثمار الأجنبي · SAGIA</div>
+              </div>
+            </div>
+          </label>
+
+        </div>
+
+        <!-- نتيجة الفحص -->
+        <div id="compliance-result" style="display:none;margin-top:1.2rem;padding:1rem;border-radius:12px;border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.06)">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="font-size:1.6rem;font-weight:900;color:#22d3ee" id="comp-score">0</div>
+            <div>
+              <div style="font-size:.85rem;font-weight:800;color:var(--text)">نقطة تحتاج مراجعة</div>
+              <div style="font-size:.75rem;color:var(--muted)" id="comp-score-label">حدد المجالات أعلاه</div>
+            </div>
+          </div>
+          <button onclick="showComplianceRequestModal()" style="background:linear-gradient(135deg,#0891b2,#22d3ee);color:#fff;border:none;border-radius:10px;padding:.75rem 1.5rem;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:800;cursor:pointer;width:100%">
+            <i class="fa-solid fa-paper-plane"></i> اطلب تصحيح الأوضاع الآن
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ SECTION 2: المتابعة الحكومية ══ -->
+      <div class="sec-hd" style="margin-bottom:1rem">
+        <div>
+          <h2 style="font-size:1rem;font-weight:800;margin:0;display:flex;align-items:center;gap:.5rem">
+            <i class="fa-solid fa-landmark" style="color:#f59e0b"></i> المتابعة الحكومية
+          </h2>
+          <p style="font-size:.82rem;color:var(--muted);margin:.25rem 0 0">نتابع ملفاتك مع الجهات الحكومية نيابةً عنك</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem">
+
+        <!-- وزارة التجارة / مركز الأعمال -->
+        <div class="comp-gov-card" onclick="showGovServiceModal('cr','وزارة التجارة — السجل التجاري','مجاناً','1e3a8a','3b82f6','fa-building-columns')">
+          <div style="display:flex;align-items:center;gap:.65rem">
+            <div class="comp-gov-icon" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)"><i class="fa-solid fa-building-columns"></i></div>
+            <div><h4>وزارة التجارة</h4><div style="font-size:.68rem;color:var(--muted)">السجل التجاري · مركز الأعمال</div></div>
+          </div>
+          <div class="comp-gov-services">
+            <span class="comp-gov-svc">تأسيس منشأة جديدة</span>
+            <span class="comp-gov-svc">إضافة نشاط تجاري</span>
+            <span class="comp-gov-svc">تجديد السجل التجاري</span>
+            <span class="comp-gov-svc">تعديل البيانات</span>
+            <span class="comp-gov-svc">تحويل الشكل القانوني</span>
+            <span class="comp-gov-svc">عقد التأسيس</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.3rem">
+            <div class="comp-gov-tag">مجاناً</div>
+            <button class="comp-gov-start">ابدأ الآن</button>
+          </div>
+        </div>
+
+        <!-- وزارة الاستثمار -->
+        <div class="comp-gov-card" onclick="showGovServiceModal('invest','وزارة الاستثمار (MISA)','199 ريال','0c4a6e','0284c7','fa-globe')">
+          <div style="display:flex;align-items:center;gap:.65rem">
+            <div class="comp-gov-icon" style="background:linear-gradient(135deg,#0c4a6e,#0284c7)"><i class="fa-solid fa-globe"></i></div>
+            <div><h4>وزارة الاستثمار</h4><div style="font-size:.68rem;color:var(--muted)">MISA · SAGIA · الاستثمار الأجنبي</div></div>
+          </div>
+          <div class="comp-gov-services">
+            <span class="comp-gov-svc">ترخيص الاستثمار</span>
+            <span class="comp-gov-svc">تعديل الترخيص</span>
+            <span class="comp-gov-svc">تمديد رخصة الاستثمار</span>
+            <span class="comp-gov-svc">فرع شركة أجنبية</span>
+            <span class="comp-gov-svc">تغيير النشاط الاستثماري</span>
+            <span class="comp-gov-svc">إلغاء الترخيص</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.3rem">
+            <div class="comp-gov-tag" style="background:rgba(245,158,11,.12);color:#d97706;border-color:rgba(245,158,11,.3)">199 ريال</div>
+            <button class="comp-gov-start">ابدأ الآن</button>
+          </div>
+        </div>
+
+        <!-- البلدية -->
+        <div class="comp-gov-card" onclick="showGovServiceModal('balady','البلدية والأمانة','79 ريال','7c1d1d','dc2626','fa-city')">
+          <div style="display:flex;align-items:center;gap:.65rem">
+            <div class="comp-gov-icon" style="background:linear-gradient(135deg,#7c1d1d,#dc2626)"><i class="fa-solid fa-city"></i></div>
+            <div><h4>البلدية والأمانة</h4><div style="font-size:.68rem;color:var(--muted)">الرخص البلدية · البيئة · البناء</div></div>
+          </div>
+          <div class="comp-gov-services">
+            <span class="comp-gov-svc">رخصة مزاولة النشاط</span>
+            <span class="comp-gov-svc">تجديد الرخصة البلدية</span>
+            <span class="comp-gov-svc">الاشتراطات الصحية</span>
+            <span class="comp-gov-svc">مخالفات بلدية وتسوية</span>
+            <span class="comp-gov-svc">رخصة البناء والتحسينات</span>
+            <span class="comp-gov-svc">شهادة إتمام البناء</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.3rem">
+            <div class="comp-gov-tag" style="background:rgba(245,158,11,.12);color:#d97706;border-color:rgba(245,158,11,.3)">79 ريال</div>
+            <button class="comp-gov-start">ابدأ الآن</button>
+          </div>
+        </div>
+
+        <!-- الموارد البشرية -->
+        <div class="comp-gov-card" onclick="showGovServiceModal('mol','وزارة الموارد البشرية','149 ريال','14532d','16a34a','fa-user-tie')">
+          <div style="display:flex;align-items:center;gap:.65rem">
+            <div class="comp-gov-icon" style="background:linear-gradient(135deg,#14532d,#16a34a)"><i class="fa-solid fa-user-tie"></i></div>
+            <div><h4>الموارد البشرية</h4><div style="font-size:.68rem;color:var(--muted)">HRSD · نطاقات · حماية الأجور</div></div>
+          </div>
+          <div class="comp-gov-services">
+            <span class="comp-gov-svc">مدد إقامات العمالة</span>
+            <span class="comp-gov-svc">حماية الأجور (WPS)</span>
+            <span class="comp-gov-svc">برامج السعودة (نطاقات)</span>
+            <span class="comp-gov-svc">تأشيرات استقدام</span>
+            <span class="comp-gov-svc">نزاعات عمالية</span>
+            <span class="comp-gov-svc">توثيق العقود</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.3rem">
+            <div class="comp-gov-tag" style="background:rgba(245,158,11,.12);color:#d97706;border-color:rgba(245,158,11,.3)">149 ريال</div>
+            <button class="comp-gov-start">ابدأ الآن</button>
+          </div>
+        </div>
+
+        <!-- التأمينات الاجتماعية -->
+        <div class="comp-gov-card" onclick="showGovServiceModal('gosi','التأمينات الاجتماعية (GOSI)','99 ريال','4a044e','9333ea','fa-hand-holding-heart')">
+          <div style="display:flex;align-items:center;gap:.65rem">
+            <div class="comp-gov-icon" style="background:linear-gradient(135deg,#4a044e,#9333ea)"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <div><h4>التأمينات الاجتماعية</h4><div style="font-size:.68rem;color:var(--muted)">GOSI · تسجيل · اشتراكات</div></div>
+          </div>
+          <div class="comp-gov-services">
+            <span class="comp-gov-svc">تسجيل صاحب العمل</span>
+            <span class="comp-gov-svc">تسجيل الموظفين</span>
+            <span class="comp-gov-svc">تسوية الاشتراكات المتأخرة</span>
+            <span class="comp-gov-svc">تعديل بيانات الموظفين</span>
+            <span class="comp-gov-svc">شهادة الالتزام</span>
+            <span class="comp-gov-svc">إيقاف الخدمة</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.3rem">
+            <div class="comp-gov-tag" style="background:rgba(245,158,11,.12);color:#d97706;border-color:rgba(245,158,11,.3)">99 ريال</div>
+            <button class="comp-gov-start">ابدأ الآن</button>
+          </div>
+        </div>
+
+        <!-- هيئة الزكاة والضريبة -->
+        <div class="comp-gov-card" onclick="showGovServiceModal('zatca','هيئة الزكاة والضريبة (ZATCA)','99 ريال','78350f','d97706','fa-receipt')">
+          <div style="display:flex;align-items:center;gap:.65rem">
+            <div class="comp-gov-icon" style="background:linear-gradient(135deg,#78350f,#d97706)"><i class="fa-solid fa-receipt"></i></div>
+            <div><h4>هيئة الزكاة والضريبة</h4><div style="font-size:.68rem;color:var(--muted)">ZATCA · ضريبة · فاتورة إلكترونية</div></div>
+          </div>
+          <div class="comp-gov-services">
+            <span class="comp-gov-svc">تسجيل ضريبة القيمة المضافة</span>
+            <span class="comp-gov-svc">الإقرارات الدورية</span>
+            <span class="comp-gov-svc">تسوية الغرامات</span>
+            <span class="comp-gov-svc">الفاتورة الإلكترونية (FATOORAH)</span>
+            <span class="comp-gov-svc">زكاة وضريبة الدخل</span>
+            <span class="comp-gov-svc">إيقاف التسجيل الضريبي</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.3rem">
+            <div class="comp-gov-tag" style="background:rgba(245,158,11,.12);color:#d97706;border-color:rgba(245,158,11,.3)">99 ريال</div>
+            <button class="comp-gov-start">ابدأ الآن</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ══ SECTION 3: دليل الموردين الموثوقين ══ -->
+      <div class="sec-hd" style="margin-bottom:1rem">
+        <div>
+          <h2 style="font-size:1rem;font-weight:800;margin:0;display:flex;align-items:center;gap:.5rem">
+            <i class="fa-solid fa-certificate" style="color:#22c55e"></i> موردون وشركاء موثوقون — بضمان المنصة
+          </h2>
+          <p style="font-size:.82rem;color:var(--muted);margin:.25rem 0 0">جميع المزودين تم التحقق منهم · لا تلاعب · ضمان الاسترداد</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem">
+
+        <div class="comp-vendor-card" onclick="showVendorRequestModal('legal')">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-scale-balanced" style="color:#93c5fd;font-size:1.1rem"></i></div>
+            <div><h4 style="margin:0;font-size:.93rem;font-weight:800">مكاتب المحاماة</h4><div style="font-size:.73rem;color:var(--muted)">عقود · نزاعات · قانون أعمال</div></div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin:0 0 .75rem;line-height:1.6">12 مكتب محاماة معتمد متاح في منطقتك</p>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:.3rem"><span style="color:#fbbf24;font-size:.8rem">★★★★★</span></div>
+            <button class="comp-vendor-btn">طلب عرض سعر</button>
+          </div>
+        </div>
+
+        <div class="comp-vendor-card" onclick="showVendorRequestModal('accounting')">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#14532d,#16a34a);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-calculator" style="color:#86efac;font-size:1.1rem"></i></div>
+            <div><h4 style="margin:0;font-size:.93rem;font-weight:800">مكاتب المحاسبة</h4><div style="font-size:.73rem;color:var(--muted)">دفاتر · ضريبة · تدقيق مالي</div></div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin:0 0 .75rem;line-height:1.6">9 مكتب محاسبة معتمد ومرخص من SOCPA</p>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:.3rem"><span style="color:#fbbf24;font-size:.8rem">★★★★☆</span></div>
+            <button class="comp-vendor-btn">طلب عرض سعر</button>
+          </div>
+        </div>
+
+        <div class="comp-vendor-card" onclick="showVendorRequestModal('furniture')">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-couch" style="color:#fcd34d;font-size:1.1rem"></i></div>
+            <div><h4 style="margin:0;font-size:.93rem;font-weight:800">تأثيث المكاتب</h4><div style="font-size:.73rem;color:var(--muted)">أثاث · مكاتب · قواطع</div></div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin:0 0 .75rem;line-height:1.6">7 شركات توريد أثاث مكتبي بأسعار الجملة</p>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:.3rem"><span style="color:#fbbf24;font-size:.8rem">★★★★★</span></div>
+            <button class="comp-vendor-btn">طلب عرض سعر</button>
+          </div>
+        </div>
+
+        <div class="comp-vendor-card" onclick="showVendorRequestModal('tech')">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#4a044e,#9333ea);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-network-wired" style="color:#d8b4fe;font-size:1.1rem"></i></div>
+            <div><h4 style="margin:0;font-size:.93rem;font-weight:800">تجهيزات تقنية</h4><div style="font-size:.73rem;color:var(--muted)">حواسيب · شبكات · سيرفرات</div></div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin:0 0 .75rem;line-height:1.6">5 موردي تقنية معتمدون من أرامكو وسابك</p>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:.3rem"><span style="color:#fbbf24;font-size:.8rem">★★★★★</span></div>
+            <button class="comp-vendor-btn">طلب عرض سعر</button>
+          </div>
+        </div>
+
+        <div class="comp-vendor-card" onclick="showVendorRequestModal('security')">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#7c1d1d,#dc2626);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-camera" style="color:#fca5a5;font-size:1.1rem"></i></div>
+            <div><h4 style="margin:0;font-size:.93rem;font-weight:800">أنظمة المراقبة والأمن</h4><div style="font-size:.73rem;color:var(--muted)">كاميرات · إنذار · تحكم بالدخول</div></div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin:0 0 .75rem;line-height:1.6">8 شركات أمن وحماية معتمدة وطنياً</p>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:.3rem"><span style="color:#fbbf24;font-size:.8rem">★★★★☆</span></div>
+            <button class="comp-vendor-btn">طلب عرض سعر</button>
+          </div>
+        </div>
+
+        <div class="comp-vendor-card" onclick="showVendorRequestModal('other')">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#0c4a6e,#0284c7);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-ellipsis" style="color:#7dd3fc;font-size:1.1rem"></i></div>
+            <div><h4 style="margin:0;font-size:.93rem;font-weight:800">طلب خدمة مخصصة</h4><div style="font-size:.73rem;color:var(--muted)">أي خدمة · أي مورد</div></div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin:0 0 .75rem;line-height:1.6">اكتب ما تحتاجه وسنجد لك المورد المناسب</p>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div></div>
+            <button class="comp-vendor-btn" style="background:linear-gradient(135deg,#0891b2,#22d3ee);color:#fff;border-color:transparent">اكتب طلبك</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ══ SECTION 4: استشارة رأس المال ══ -->
+      <div class="sec-hd" style="margin-bottom:1rem">
+        <div>
+          <h2 style="font-size:1rem;font-weight:800;margin:0;display:flex;align-items:center;gap:.5rem">
+            <i class="fa-solid fa-chart-line" style="color:#f59e0b"></i> استشارة رأس المال
+            <span style="font-size:.68rem;font-weight:700;background:linear-gradient(135deg,#065f46,#10b981);color:#fff;padding:.15rem .55rem;border-radius:50px;margin-right:.3rem">مجاناً</span>
+          </h2>
+          <p style="font-size:.82rem;color:var(--muted);margin:.25rem 0 0">تحليل مالي استرشادي غير ملزم — نستعرض خياراتك، القرار دائماً بيدك</p>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#0b1a2e,#0e2640);border:1px solid rgba(245,158,11,.25);border-radius:18px;padding:1.75rem;margin-bottom:1.5rem">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-magnifying-glass-chart" style="color:#93c5fd;font-size:.8rem"></i></div>
+              <div style="font-size:.82rem;font-weight:800;color:var(--text)">تحليل الملاءة المالية</div>
+            </div>
+            <p style="font-size:.74rem;color:var(--muted);margin:0;line-height:1.6">نفحص وضعك المالي الحالي: التدفقات النقدية، الالتزامات، نسب السيولة والمديونية</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#14532d,#16a34a);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-file-invoice-dollar" style="color:#86efac;font-size:.8rem"></i></div>
+              <div style="font-size:.82rem;font-weight:800;color:var(--text)">مراجعة القوائم المالية</div>
+            </div>
+            <p style="font-size:.74rem;color:var(--muted);margin:0;line-height:1.6">نقرأ ميزانيتك وقائمة دخلك ونشخّص نقاط القوة والضعف بوضوح</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-hand-holding-dollar" style="color:#fcd34d;font-size:.8rem"></i></div>
+              <div style="font-size:.82rem;font-weight:800;color:var(--text)">عرض خيارات التمويل</div>
+            </div>
+            <p style="font-size:.74rem;color:var(--muted);margin:0;line-height:1.6">نستعرض الخيارات المتاحة: بنوك تجارية، كفالة، صندوق المئوية، تمويل إسلامي، شركاء استراتيجيون</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#4a044e,#9333ea);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-folder-open" style="color:#d8b4fe;font-size:.8rem"></i></div>
+              <div style="font-size:.82rem;font-weight:800;color:var(--text)">تجهيز ملف التمويل</div>
+            </div>
+            <p style="font-size:.74rem;color:var(--muted);margin:0;line-height:1.6">نساعدك في إعداد الوثائق المطلوبة وتقديم ملف تمويل احترافي للبنوك والجهات الممولة</p>
+          </div>
+
+        </div>
+
+        <!-- disclaimer + CTA -->
+        <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:1rem;margin-bottom:1.2rem">
+          <div style="display:flex;align-items:flex-start;gap:.6rem">
+            <i class="fa-solid fa-circle-info" style="color:#f59e0b;margin-top:.1rem;flex-shrink:0"></i>
+            <p style="margin:0;font-size:.75rem;color:rgba(255,255,255,.75);line-height:1.7">
+              <strong style="color:#fbbf24">ملاحظة مهمة:</strong> هذه الجلسة إرشادية وتحليلية بالكامل — لا تُعدّ توصية ملزمة بالاستثمار في أي جهة أو أداة مالية. جميع القرارات تبقى بيدك أنت.
+            </p>
+          </div>
+        </div>
+
+        <button onclick="showGovServiceModal('capital','استشارة رأس المال — تحليل مالي استرشادي','مجاناً','065f46','10b981','fa-chart-line')" style="background:linear-gradient(135deg,#065f46,#10b981);color:#fff;border:none;border-radius:12px;padding:1rem;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem">
+          <i class="fa-brands fa-whatsapp"></i> احجز جلستك المجانية عبر الواتساب
+        </button>
+        <p style="text-align:center;font-size:.7rem;color:var(--muted);margin:.65rem 0 0">لا حجوزات مسبقة · تواصل فوري · خبراء ماليون معتمدون</p>
+      </div>
+
+      <!-- ══ MODAL: طلب تصحيح الأوضاع ══ -->
+      <div id="compliance-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;align-items:center;justify-content:center" onclick="if(event.target===this)closeComplianceModal()">
+        <div style="background:var(--card);border-radius:20px;padding:2rem;width:92%;max-width:460px;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative;border:1px solid rgba(34,211,238,.25);max-height:90vh;overflow-y:auto">
+          <button onclick="closeComplianceModal()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+          <div style="text-align:center;margin-bottom:1.5rem">
+            <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#0891b2,#22d3ee);display:flex;align-items:center;justify-content:center;margin:0 auto .85rem"><i class="fa-solid fa-shield-check" style="color:#fff;font-size:1.2rem"></i></div>
+            <h3 style="font-size:1rem;font-weight:900;margin:0 0 .3rem" id="comp-modal-title">طلب تصحيح الأوضاع</h3>
+            <p style="font-size:.8rem;color:var(--muted);margin:0" id="comp-modal-sub">سيتواصل معك متخصصنا خلال 24 ساعة</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:.85rem">
+            <div class="f-field"><label>الاسم الكريم *</label><input type="text" id="comp-req-name" placeholder="مثال: محمد العمري"/></div>
+            <div class="f-field"><label>اسم المنشأة *</label><input type="text" id="comp-req-biz" placeholder="مثال: شركة النجاح للتجارة"/></div>
+            <div class="f-field"><label>رقم الواتساب *</label><input type="tel" id="comp-req-phone" placeholder="05XXXXXXXX"/></div>
+            <div class="f-field"><label>وصف الطلب</label><textarea id="comp-req-notes" rows="3" placeholder="اشرح مشكلتك أو ما تحتاجه بالتفصيل..."></textarea></div>
+          </div>
+          <div id="comp-modal-price-note" style="background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.2);border-radius:10px;padding:.75rem;margin-top:1rem;font-size:.78rem;color:rgba(255,255,255,.75)"></div>
+          <button onclick="submitComplianceRequest()" style="background:linear-gradient(135deg,#0891b2,#22d3ee);color:#fff;border:none;border-radius:12px;padding:1rem;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;margin-top:1.2rem;display:flex;align-items:center;justify-content:center;gap:.5rem">
+            <i class="fa-brands fa-whatsapp"></i> <span id="comp-modal-btn-label">إرسال الطلب عبر الواتساب</span>
+          </button>
+          <p style="text-align:center;font-size:.72rem;color:var(--muted);margin-top:.65rem">
+            <i class="fa-solid fa-shield-halved" style="color:#22d3ee;margin-left:.3rem"></i>
+            جميع البيانات محمية · ضمان المنصة على جودة الخدمة
+          </p>
+        </div>
+      </div>
+
     </div>
 
     <!-- ===== SOFTWARE STORE ===== -->
@@ -2358,6 +3617,7 @@ const pageMap = {
   reports: {title:'تقاريري',      sub:'سجل وأرشيف تحليلاتك'},
   projects:{title:'مشاريعي',      sub:'متابعة خطط مشاريعك'},
   settings:{title:'الإعدادات',    sub:'إدارة بيانات حسابك'},
+  compliance:{title:'تصحيح الأوضاع والاستشارة الإدارية', sub:'امتثال تجاري · موردون موثوقون · متابعة حكومية'},
   supply:  {title:'كتالوج الموردين', sub:'عروض أسعار حصرية من موردينا المعتمدين'},
   orders:  {title:'طلباتي',       sub:'متابعة عروض الأسعار والطلبات المقدمة'},
   admin:   {title:'لوحة الإدمن — مركز التحكم', sub:'معاملات المستخدمين وذكاء المنصة التسويقي'},
@@ -2383,6 +3643,7 @@ function goto(page) {
   if(page==='software') renderSoftwarePage();
   if(page==='orders') renderOrdersPage();
   if(page==='admin') renderAdminPanel();
+  if(page==='compliance') initCompliancePage();
 }
 
 /* NAV GROUP — قائمة منسدلة في الشريط الجانبي */
@@ -2453,7 +3714,10 @@ function showDesignOrder(type) {
 }
 function closeDesignOrder() {
   document.getElementById('design-order-modal').style.display = 'none';
-  ['d-name','d-desc','d-colors','d-refs'].forEach(id => document.getElementById(id).value = '');
+  ['d-name','d-desc','d-colors','d-refs'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
 }
 function submitDesignOrder() {
   const name = document.getElementById('d-name').value.trim();
@@ -2561,13 +3825,289 @@ function acFilter(el, cat) {
   renderLibrary(cat);
 }
 
+/* ─── Academy Cover Generators ─── */
+function getLibCover(item) {
+  const cats = {
+    economy: {
+      g1:'#091e42', g2:'#0d47a1',
+      svg:`<svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- glow circle bg -->
+        <circle cx="130" cy="20" r="55" fill="rgba(96,165,250,.12)"/>
+        <!-- grid -->
+        <line x1="10" y1="108" x2="150" y2="108" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+        <line x1="10" y1="86"  x2="150" y2="86"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <line x1="10" y1="64"  x2="150" y2="64"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <line x1="10" y1="42"  x2="150" y2="42"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <!-- area fill -->
+        <path d="M10,90 C30,70 50,78 70,50 S110,60 150,28 L150,108 L10,108Z" fill="rgba(96,165,250,.18)"/>
+        <!-- chart line -->
+        <path d="M10,90 C30,70 50,78 70,50 S110,60 150,28" stroke="#60a5fa" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+        <!-- highlight dots -->
+        <circle cx="70"  cy="50" r="5" fill="#93c5fd" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="150" cy="28" r="6" fill="#60a5fa" stroke="#fff" stroke-width="2">
+          <animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <!-- KPI badge -->
+        <rect x="10" y="12" width="70" height="22" rx="5" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+        <rect x="16" y="18" width="8"  height="3" rx="1.5" fill="#60a5fa"/>
+        <rect x="28" y="18" width="28" height="3" rx="1.5" fill="rgba(255,255,255,.5)"/>
+        <rect x="16" y="25" width="18" height="3" rx="1.5" fill="rgba(255,255,255,.3)"/>
+        <!-- up arrow -->
+        <polygon points="140,108 148,92 156,108" fill="#34d399" opacity=".9"/>
+      </svg>`
+    },
+    invest: {
+      g1:'#1a0a00', g2:'#7c2d00',
+      svg:`<svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- warm glow -->
+        <circle cx="140" cy="15" r="50" fill="rgba(251,191,36,.1)"/>
+        <!-- bars with gradient feel -->
+        <rect x="10"  y="90" width="19" height="18" rx="2" fill="rgba(255,255,255,.2)"/>
+        <rect x="34"  y="72" width="19" height="36" rx="2" fill="rgba(255,255,255,.25)"/>
+        <rect x="58"  y="55" width="19" height="53" rx="2" fill="rgba(251,191,36,.4)"/>
+        <rect x="82"  y="65" width="19" height="43" rx="2" fill="rgba(255,255,255,.22)"/>
+        <rect x="106" y="38" width="19" height="70" rx="2" fill="#f59e0b" opacity=".75"/>
+        <rect x="130" y="20" width="19" height="88" rx="2" fill="#f59e0b" opacity=".95"/>
+        <!-- trend line -->
+        <polyline points="19,96 43,78 67,63 91,72 115,45 149,26" stroke="#fbbf24" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- arrow -->
+        <polygon points="155,20 145,26 151,32" fill="#fbbf24"/>
+        <!-- baseline -->
+        <line x1="6" y1="110" x2="154" y2="110" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+        <!-- coin top-left -->
+        <circle cx="20" cy="22" r="14" fill="rgba(251,191,36,.12)" stroke="rgba(251,191,36,.4)" stroke-width="1.5"/>
+        <circle cx="20" cy="22" r="8"  fill="rgba(251,191,36,.2)"/>
+        <text x="16" y="27" font-size="9" fill="#fbbf24" font-family="serif" font-weight="bold">$</text>
+      </svg>`
+    },
+    business: {
+      g1:'#051630', g2:'#0a2a60',
+      svg:`<svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- sky glow -->
+        <circle cx="80" cy="-10" r="70" fill="rgba(147,197,253,.07)"/>
+        <!-- main tower -->
+        <rect x="55" y="28" width="54" height="84" rx="2" fill="rgba(255,255,255,.1)" stroke="rgba(147,197,253,.4)" stroke-width="1.5"/>
+        <!-- lit windows -->
+        <rect x="62" y="38" width="11" height="10" rx="1" fill="#fbbf24" opacity=".7"/>
+        <rect x="78" y="38" width="11" height="10" rx="1" fill="#fbbf24" opacity=".5"/>
+        <rect x="94" y="38" width="11" height="10" rx="1" fill="#fbbf24" opacity=".7"/>
+        <rect x="62" y="54" width="11" height="10" rx="1" fill="rgba(255,255,255,.2)"/>
+        <rect x="78" y="54" width="11" height="10" rx="1" fill="#60a5fa" opacity=".6"/>
+        <rect x="94" y="54" width="11" height="10" rx="1" fill="rgba(255,255,255,.2)"/>
+        <rect x="62" y="70" width="11" height="10" rx="1" fill="#fbbf24" opacity=".6"/>
+        <rect x="78" y="70" width="11" height="10" rx="1" fill="rgba(255,255,255,.2)"/>
+        <rect x="94" y="70" width="11" height="10" rx="1" fill="#60a5fa" opacity=".5"/>
+        <!-- door -->
+        <rect x="74" y="96" width="16" height="16" rx="2" fill="rgba(255,255,255,.25)"/>
+        <!-- left building -->
+        <rect x="18" y="52" width="32" height="60" rx="2" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <rect x="24" y="62" width="8" height="8" rx="1" fill="#fbbf24" opacity=".4"/>
+        <rect x="36" y="62" width="8" height="8" rx="1" fill="#fbbf24" opacity=".35"/>
+        <rect x="24" y="76" width="8" height="8" rx="1" fill="rgba(255,255,255,.15)"/>
+        <rect x="36" y="76" width="8" height="8" rx="1" fill="rgba(255,255,255,.15)"/>
+        <!-- ground line -->
+        <line x1="0" y1="112" x2="160" y2="112" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+        <!-- stars -->
+        <circle cx="12"  cy="16" r="1.5" fill="rgba(255,255,255,.5)"/>
+        <circle cx="140" cy="12" r="2"   fill="rgba(255,255,255,.5)"/>
+        <circle cx="152" cy="28" r="1"   fill="rgba(255,255,255,.4)"/>
+      </svg>`
+    },
+    marketing: {
+      g1:'#17003d', g2:'#4c0080',
+      svg:`<svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- bg glow -->
+        <circle cx="120" cy="65" r="55" fill="rgba(192,132,252,.1)"/>
+        <!-- megaphone -->
+        <path d="M22,55 L22,80 L38,80 L38,55 Z" fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+        <path d="M38,44 L38,92 L94,112 L94,22 Z" fill="rgba(192,132,252,.25)" stroke="rgba(192,132,252,.4)" stroke-width="1.5"/>
+        <!-- signal rings -->
+        <path d="M104,48 Q120,65 104,82" stroke="#c084fc" stroke-width="3"   fill="none" stroke-linecap="round"/>
+        <path d="M112,38 Q134,65 112,92" stroke="#c084fc" stroke-width="2"   fill="none" stroke-linecap="round" opacity=".65"/>
+        <path d="M120,30 Q148,65 120,100" stroke="#c084fc" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".35"/>
+        <!-- handle -->
+        <rect x="12" y="62" width="12" height="20" rx="6" fill="rgba(255,255,255,.25)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+        <!-- signal dots -->
+        <circle cx="150" cy="30" r="5" fill="#e879f9" opacity=".8">
+          <animate attributeName="opacity" values=".8;.2;.8" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="148" cy="55" r="4" fill="#c084fc" opacity=".55"/>
+        <circle cx="153" cy="78" r="3" fill="#c084fc" opacity=".35"/>
+      </svg>`
+    },
+    seminar: {
+      g1:'#002820', g2:'#006048',
+      svg:`<svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- screen -->
+        <rect x="14" y="15" width="105" height="68" rx="5" fill="rgba(255,255,255,.08)" stroke="rgba(110,231,183,.4)" stroke-width="1.5"/>
+        <!-- screen glow -->
+        <rect x="18" y="19" width="97" height="60" rx="3" fill="rgba(110,231,183,.06)"/>
+        <!-- bar chart on screen -->
+        <rect x="28" y="62" width="11" height="12" rx="1" fill="rgba(255,255,255,.25)"/>
+        <rect x="44" y="52" width="11" height="22" rx="1" fill="rgba(255,255,255,.3)"/>
+        <rect x="60" y="40" width="11" height="34" rx="1" fill="#6ee7b7" opacity=".65"/>
+        <rect x="76" y="48" width="11" height="26" rx="1" fill="rgba(255,255,255,.25)"/>
+        <rect x="92" y="32" width="11" height="42" rx="1" fill="#6ee7b7" opacity=".8"/>
+        <!-- chart line overlay -->
+        <polyline points="33,62 49,52 65,40 81,48 97,32" stroke="#34d399" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- stand -->
+        <line x1="66" y1="83" x2="66" y2="100" stroke="rgba(255,255,255,.2)" stroke-width="2.5"/>
+        <line x1="46" y1="100" x2="86" y2="100" stroke="rgba(255,255,255,.2)" stroke-width="2.5"/>
+        <!-- mic right -->
+        <rect x="130" y="36" width="16" height="26" rx="8" fill="rgba(255,255,255,.15)" stroke="rgba(110,231,183,.4)" stroke-width="1.5"/>
+        <rect x="133" y="41" width="10" height="3" rx="1.5" fill="#6ee7b7" opacity=".7"/>
+        <rect x="133" y="49" width="10" height="3" rx="1.5" fill="#6ee7b7" opacity=".5"/>
+        <line x1="138" y1="64" x2="138" y2="78" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+        <line x1="128" y1="78" x2="148" y2="78" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+        <!-- pulse on mic -->
+        <path d="M150,46 Q157,50 150,56" stroke="#6ee7b7" stroke-width="2"   fill="none" stroke-linecap="round" opacity=".8"/>
+        <path d="M153,40 Q163,50 153,62" stroke="#6ee7b7" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".45"/>
+        <!-- audience dots -->
+        <circle cx="22"  cy="116" r="5" fill="rgba(255,255,255,.15)"/>
+        <circle cx="38"  cy="116" r="5" fill="rgba(255,255,255,.12)"/>
+        <circle cx="54"  cy="116" r="5" fill="rgba(255,255,255,.15)"/>
+        <circle cx="70"  cy="116" r="5" fill="rgba(255,255,255,.12)"/>
+        <circle cx="86"  cy="116" r="5" fill="rgba(255,255,255,.15)"/>
+      </svg>`
+    }
+  };
+  const c = cats[item.cat] || cats.seminar;
+  return `<div style="width:100%;height:100%;background:linear-gradient(135deg,${c.g1},${c.g2});position:relative;overflow:hidden">${c.svg}</div>`;
+}
+
+function getCourseCover(course) {
+  const cats = {
+    finance: {
+      g1:'#03122a', g2:'#054a8a',
+      svg:`<svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- glow -->
+        <circle cx="270" cy="25" r="80" fill="rgba(96,165,250,.1)"/>
+        <!-- coin stack -->
+        <rect x="24" y="46" width="62" height="44" rx="0" fill="rgba(255,255,255,.06)"/>
+        <ellipse cx="55" cy="90" rx="31" ry="8"  fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.22)" stroke-width="1"/>
+        <ellipse cx="55" cy="76" rx="31" ry="8"  fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.28)" stroke-width="1"/>
+        <ellipse cx="55" cy="62" rx="31" ry="8"  fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.32)" stroke-width="1"/>
+        <ellipse cx="55" cy="48" rx="31" ry="8"  fill="rgba(255,255,255,.26)" stroke="rgba(255,255,255,.38)" stroke-width="1"/>
+        <ellipse cx="55" cy="36" rx="31" ry="8"  fill="#60a5fa"               stroke="#93c5fd"               stroke-width="1"/>
+        <text x="50" y="41" font-size="10" fill="#fff" font-family="Georgia,serif" font-weight="bold">$</text>
+        <!-- chart area -->
+        <path d="M110,85 L145,62 L178,70 L212,42 L248,54 L282,24 L282,92 L110,92Z" fill="rgba(96,165,250,.15)"/>
+        <polyline points="110,85 145,62 178,70 212,42 248,54 282,24" stroke="#60a5fa" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="212" cy="42" r="5" fill="#93c5fd" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="282" cy="24" r="6" fill="#60a5fa" stroke="#fff" stroke-width="2">
+          <animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <line x1="100" y1="92" x2="290" y2="92" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+      </svg>`
+    },
+    startup: {
+      g1:'#200500', g2:'#6b1a00',
+      svg:`<svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- stars bg -->
+        <circle cx="40"  cy="20" r="1.8" fill="rgba(255,255,255,.55)"/>
+        <circle cx="80"  cy="40" r="1.2" fill="rgba(255,255,255,.4)"/>
+        <circle cx="25"  cy="55" r="1"   fill="rgba(255,255,255,.3)"/>
+        <circle cx="240" cy="18" r="2"   fill="rgba(255,255,255,.6)"/>
+        <circle cx="268" cy="38" r="1.5" fill="rgba(255,255,255,.45)"/>
+        <circle cx="285" cy="62" r="1"   fill="rgba(255,255,255,.3)"/>
+        <circle cx="210" cy="78" r="1.5" fill="rgba(255,255,255,.35)"/>
+        <circle cx="120" cy="15" r="1.2" fill="rgba(255,255,255,.4)"/>
+        <!-- rocket body -->
+        <path d="M150,8 L172,52 L163,94 L150,100 L137,94 L128,52 Z" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+        <!-- nose -->
+        <path d="M138,52 L150,8 L162,52 Z" fill="rgba(255,255,255,.25)"/>
+        <!-- window -->
+        <circle cx="150" cy="58" r="11" fill="rgba(255,255,255,.08)" stroke="rgba(255,165,0,.5)" stroke-width="1.8"/>
+        <circle cx="150" cy="58" r="5.5" fill="rgba(255,165,0,.2)"/>
+        <!-- fins -->
+        <path d="M128,72 L112,95 L133,83 Z" fill="rgba(251,146,60,.3)" stroke="rgba(251,146,60,.4)" stroke-width="1"/>
+        <path d="M172,72 L188,95 L167,83 Z" fill="rgba(251,146,60,.3)" stroke="rgba(251,146,60,.4)" stroke-width="1"/>
+        <!-- flames -->
+        <path d="M138,94 Q144,112 150,104 Q156,112 162,94" fill="#f97316" opacity=".85"/>
+        <path d="M141,94 Q147,108 150,100 Q153,108 159,94" fill="#fbbf24" opacity=".95"/>
+        <!-- beam -->
+        <path d="M150,8 L75,0 L142,28 Z" fill="rgba(255,255,255,.04)"/>
+        <path d="M150,8 L225,0 L158,28 Z" fill="rgba(255,255,255,.04)"/>
+      </svg>`
+    },
+    invest: {
+      g1:'#001805', g2:'#004d12',
+      svg:`<svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- green glow -->
+        <circle cx="270" cy="20" r="70" fill="rgba(74,222,128,.08)"/>
+        <!-- candlesticks -->
+        <line x1="35"  y1="28" x2="35"  y2="90" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <rect x="27"   y="42" width="16" height="28" rx="1.5" fill="#ef4444" opacity=".7"/>
+        <line x1="70"  y1="22" x2="70"  y2="84" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <rect x="62"   y="30" width="16" height="32" rx="1.5" fill="#22c55e" opacity=".8"/>
+        <line x1="105" y1="30" x2="105" y2="80" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <rect x="97"   y="38" width="16" height="24" rx="1.5" fill="#ef4444" opacity=".6"/>
+        <line x1="140" y1="18" x2="140" y2="76" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <rect x="132"  y="24" width="16" height="34" rx="1.5" fill="#22c55e" opacity=".85"/>
+        <line x1="175" y1="12" x2="175" y2="72" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <rect x="167"  y="18" width="16" height="30" rx="1.5" fill="#22c55e" opacity=".9"/>
+        <line x1="210" y1="8"  x2="210" y2="66" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <rect x="202"  y="14" width="16" height="28" rx="1.5" fill="#22c55e"/>
+        <line x1="245" y1="6"  x2="245" y2="62" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <rect x="237"  y="10" width="16" height="26" rx="1.5" fill="#22c55e"/>
+        <!-- trend line -->
+        <polyline points="35,70 70,56 105,60 140,40 175,34 210,26 252,18" stroke="#4ade80" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-dasharray="6,3"/>
+        <!-- up arrow -->
+        <polygon points="272,10 260,24 284,24" fill="#4ade80" opacity=".9"/>
+        <!-- baseline -->
+        <line x1="15" y1="94" x2="285" y2="94" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+        <text x="16" y="106" font-size="8" fill="rgba(255,255,255,.4)" font-family="monospace">الأسهم والصناديق</text>
+      </svg>`
+    },
+    marketing: {
+      g1:'#150030', g2:'#3d0090',
+      svg:`<svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+        <!-- glow bg -->
+        <circle cx="250" cy="55" r="72" fill="rgba(192,132,252,.1)"/>
+        <!-- funnel -->
+        <path d="M52,15 L248,15 L190,52 L190,96 L110,96 L110,52 Z" fill="rgba(192,132,252,.12)" stroke="rgba(192,132,252,.35)" stroke-width="1.5"/>
+        <line x1="110" y1="52" x2="190" y2="52" stroke="rgba(192,132,252,.4)" stroke-width="1.2"/>
+        <line x1="82"  y1="33" x2="218" y2="33" stroke="rgba(192,132,252,.25)" stroke-width="1"/>
+        <!-- funnel layers labels (dots) -->
+        <circle cx="150" cy="23" r="5" fill="#e879f9" opacity=".8"/>
+        <circle cx="150" cy="42" r="4" fill="#c084fc" opacity=".7"/>
+        <circle cx="150" cy="74" r="6" fill="#a855f7" opacity=".9">
+          <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <!-- target -->
+        <circle cx="38" cy="55" r="32" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/>
+        <circle cx="38" cy="55" r="20" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
+        <circle cx="38" cy="55" r="9"  fill="rgba(232,121,249,.35)" stroke="rgba(232,121,249,.6)" stroke-width="1.5"/>
+        <!-- arrow from funnel to target -->
+        <line x1="108" y1="74" x2="52" y2="62" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <polygon points="48,60 55,54 58,63" fill="#c084fc" opacity=".8"/>
+        <!-- stat pills -->
+        <rect x="220" y="76" width="65" height="20" rx="10" fill="rgba(255,255,255,.08)" stroke="rgba(192,132,252,.3)" stroke-width="1"/>
+        <rect x="225" y="81" width="22" height="3"  rx="1.5" fill="#c084fc" opacity=".7"/>
+        <rect x="225" y="88" width="36" height="3"  rx="1.5" fill="rgba(255,255,255,.3)"/>
+      </svg>`
+    }
+  };
+  const c = cats[course.cat] || {
+    g1:'#0a1628', g2:'#1a2e50',
+    svg:`<svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+      <circle cx="265" cy="28" r="64" fill="rgba(255,255,255,.05)"/>
+      <rect x="30" y="38" width="130" height="6" rx="3" fill="rgba(255,255,255,.18)"/>
+      <rect x="30" y="52" width="90"  height="5" rx="2.5" fill="rgba(255,255,255,.12)"/>
+      <rect x="30" y="65" width="110" height="5" rx="2.5" fill="rgba(255,255,255,.08)"/>
+      <rect x="30" y="78" width="70"  height="5" rx="2.5" fill="rgba(255,255,255,.06)"/>
+    </svg>`
+  };
+  return `<div style="width:100%;height:100%;background:linear-gradient(135deg,${c.g1},${c.g2});position:relative;overflow:hidden">${c.svg}</div>`;
+}
+
 function renderLibrary(cat) {
   libCurrentFilter = cat;
   const items = cat === 'all' ? LIB_ITEMS : LIB_ITEMS.filter(i => i.cat === cat);
   const grid = document.getElementById('lib-grid');
   grid.innerHTML = items.map(item => `
     <div class="lib-card">
-      <div class="lib-card-cover">${item.type === 'seminar' ? '🎙' : '📄'}</div>
+      <div class="lib-card-cover">${getLibCover(item)}</div>
       <div class="lib-card-body">
         <div class="lib-tag">${item.tag}</div>
         <h4>${item.title}</h4>
@@ -2596,7 +4136,7 @@ function renderCourses(cat) {
   const levelColor = {مبتدئ:'#22c55e', متوسط:'#f59e0b', متقدم:'#ef4444'};
   grid.innerHTML = items.map(course => `
     <div class="course-card">
-      <div class="course-cover">${course.img}
+      <div class="course-cover">${getCourseCover(course)}
         <span class="course-level" style="background:${levelColor[course.level]||'#888'}">${course.level}</span>
         <span class="${course.free ? 'course-free' : 'course-paid'}">${course.free ? 'مجانية 🎁' : 'مدفوعة'}</span>
       </div>
@@ -2616,6 +4156,19 @@ function renderCourses(cat) {
       </div>
     </div>`).join('');
   if (!items.length) grid.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted)">لا توجد دورات في هذا التصنيف</div>';
+}
+
+function showPremiumModal() {
+  const m = document.getElementById('premium-modal');
+  m.style.display = 'flex';
+}
+function closePremiumModal() {
+  document.getElementById('premium-modal').style.display = 'none';
+}
+function premiumCheckout(method) {
+  closePremiumModal();
+  showToast('✓ جارٍ توجيهك لبوابة الدفع الآمنة...');
+  // هنا يتم ربط بوابة الدفع (Moyasar / HyperPay) مستقبلاً
 }
 
 /* ── الأدوات المالية ── */
@@ -2726,9 +4279,21 @@ const PA_QUESTIONS = [
       { id:'pa_name',   label:'اسم المشروع',            type:'text',   placeholder:'مثال: مطعم شاورما الأصيل', required:true },
       { id:'pa_type',   label:'نوع النشاط التجاري',     type:'select', options:['تجارة تجزئة','مطعم / مقهى','خدمات مهنية','تقنية / تطبيقات','تصنيع / إنتاج','عقارات','تجارة إلكترونية','تعليم وتدريب','صحة وجمال','أخرى'], required:true },
       { id:'pa_city',   label:'المدينة والمنطقة',       type:'text',   placeholder:'مثال: الرياض — حي النزهة', required:true },
+      { id:'pa_desc',   label:'وصف موجز للمشروع وفكرته', type:'textarea', placeholder:'مثال: مطعم متخصص في الشاورما السورية في حي النزهة، يستهدف موظفي الشركات والأسر في وقت الغداء والعشاء', required:false },
     ]
   },
-  /* المجموعة 1: رأس المال والتمويل */
+  /* المجموعة 1: دراسة السوق والطلب — قبل أي أرقام مالية */
+  {
+    title: '📊 دراسة السوق والطلب',
+    fields: [
+      { id:'pa_market_size', label:'تقدير حجم السوق المستهدف في منطقتك', type:'select', options:['صغير — أقل من 500 عميل محتمل','متوسط — 500 إلى 2,000 عميل','كبير — 2,000 إلى 10,000 عميل','ضخم — أكثر من 10,000 عميل'], required:true },
+      { id:'pa_comp_count', label:'عدد المنافسين المباشرين في منطقتك', type:'select', options:['لا يوجد منافسون مباشرون','1-3 منافسين','4-10 منافسين','أكثر من 10 منافسين'], required:true },
+      { id:'pa_usp',        label:'ما الذي يميزك بوضوح عن المنافسين؟', type:'textarea', placeholder:'مثال: السعر أقل 20% + جودة أعلى + توصيل مجاني + وجبة مخصصة للأسر', required:true },
+      { id:'pa_demand_proof', label:'هل لديك دليل فعلي على الطلب؟', type:'select', options:['نعم — أجريت استطلاع عملاء','نعم — لدي طلبات مسبقة أو عقود','نعم — الفكرة مجربة في أسواق مشابهة','لا — فكرة جديدة لم تُختبر بعد'], required:true },
+      { id:'pa_channel',    label:'القناة الرئيسية للوصول للعملاء', type:'select', options:['موقع فيزيائي (محل / مكتب)','تطبيقات التوصيل (هنقرستيشن / تمامي)','وسائل التواصل الاجتماعي','موقع إلكتروني / متجر أونلاين','مبيعات مباشرة B2B','مزيج من القنوات'], required:true },
+    ]
+  },
+  /* المجموعة 2: رأس المال والتمويل */
   {
     title: 'رأس المال والتمويل',
     fields: [
@@ -2737,7 +4302,7 @@ const PA_QUESTIONS = [
       { id:'pa_funding', label:'مصدر التمويل',                              type:'select', options:['تمويل ذاتي بالكامل','قرض بنكي','شراكة تجارية','دعم حكومي (منشآت / صندوق المئوية)','مزيج من المصادر'], required:true },
     ]
   },
-  /* المجموعة 2: الإيرادات */
+  /* المجموعة 3: الإيرادات */
   {
     title: 'توقعات الإيرادات',
     fields: [
@@ -2746,7 +4311,7 @@ const PA_QUESTIONS = [
       { id:'pa_customers', label:'عدد العملاء أو الصفقات المتوقعة شهرياً',         type:'number', placeholder:'مثال: 300', required:false },
     ]
   },
-  /* المجموعة 3: التكاليف الثابتة */
+  /* المجموعة 4: التكاليف الثابتة */
   {
     title: 'التكاليف الثابتة الشهرية',
     fields: [
@@ -2756,7 +4321,7 @@ const PA_QUESTIONS = [
       { id:'pa_fixed_other',label:'تكاليف ثابتة أخرى — تأمين، صيانة... (ريال)',type:'number',placeholder:'مثال: 2000', required:false },
     ]
   },
-  /* المجموعة 4: التكاليف المتغيرة */
+  /* المجموعة 5: التكاليف المتغيرة */
   {
     title: 'التكاليف المتغيرة الشهرية',
     fields: [
@@ -2765,11 +4330,22 @@ const PA_QUESTIONS = [
       { id:'pa_var_other', label:'مصاريف متغيرة أخرى — توصيل، عمولات... (ريال)',type:'number',placeholder:'مثال: 2000', required:false },
     ]
   },
-  /* المجموعة 5: المنافسة والخبرة */
+  /* المجموعة 6: الجدوى التشغيلية */
   {
-    title: 'المنافسة والخبرة الشخصية',
+    title: '⚙ الجدوى التشغيلية — قدرتك على التنفيذ',
     fields: [
-      { id:'pa_comp',    label:'مستوى المنافسة في منطقتك',                   type:'select', options:['لا يوجد منافسون واضحون','منافسة منخفضة','منافسة متوسطة','منافسة عالية جداً'], required:true },
+      { id:'pa_team_size',  label:'عدد الموظفين المطلوبين لتشغيل المشروع', type:'select', options:['لا يوجد — أعمل منفرداً','1-3 موظفين','4-10 موظفين','أكثر من 10 موظفين'], required:true },
+      { id:'pa_tech_req',   label:'الكفاءة التقنية المطلوبة للتشغيل', type:'select', options:['بسيطة — لا تقنية متخصصة','متوسطة — Excel أو برامج محاسبة','متخصصة — نظام ERP أو تطبيق مخصص','عالية جداً — تقنية متقدمة / AI'], required:true },
+      { id:'pa_license_ready', label:'جاهزية التراخيص والتصاريح اللازمة', type:'select', options:['جميع التراخيص جاهزة','لدي سجل تجاري فقط','في مرحلة الاستخراج','لم أبدأ بعد'], required:true },
+      { id:'pa_supply_chain', label:'جاهزية سلسلة التوريد والموردين', type:'select', options:['عقود موردين موقعة','موردون محددون لكن غير موقعة','قائمة أولية بالموردين','لم أتواصل مع الموردين بعد'], required:false },
+      { id:'pa_workflow_desc', label:'صف ببساطة سير عمل يوم تشغيلي عادي', type:'textarea', placeholder:'مثال: الاستقبال الساعة 8 صباحاً، تجهيز المخزون، فتح المحل 10 صباحاً، خدمة العملاء، الجرد المسائي...', required:false },
+    ]
+  },
+  /* المجموعة 7: المنافسة والخبرة الشخصية */
+  {
+    title: 'خبرتك الشخصية ومستوى المنافسة',
+    fields: [
+      { id:'pa_comp',    label:'تقييمك الشامل لمستوى المنافسة',              type:'select', options:['لا يوجد منافسون واضحون','منافسة منخفضة','منافسة متوسطة','منافسة عالية جداً'], required:true },
       { id:'pa_exp',     label:'خبرتك الشخصية في هذا المجال',                type:'select', options:['أكثر من 5 سنوات','3-5 سنوات','1-3 سنوات','أقل من سنة / مبتدئ'], required:true },
       { id:'pa_target',  label:'من هو عميلك المستهدف؟ (اشرح باختصار)',       type:'textarea', placeholder:'مثال: أصحاب المكاتب والشركات الصغيرة في المنطقة، عمرهم 25-45 سنة', required:false },
     ]
@@ -3207,24 +4783,37 @@ function buildProjectAnalysisReport() {
       <div class="srbf-date"><i class="fa-solid fa-calendar"></i> ${new Date().toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric'})}</div>
     </div>
 
-    <!-- زر تحليل AI -->
+    <!-- قسم التحليل بالذكاء — مميز -->
     <div class="sr-section" id="pa-ai-section">
-      <div style="background:linear-gradient(135deg,#1E3A8A,#4E73C2);border-radius:14px;padding:1.5rem;text-align:center;color:#fff">
-        <div style="font-size:1.5rem;margin-bottom:.5rem">🤖</div>
-        <h3 style="color:#fff;margin-bottom:.5rem;font-size:1.05rem">هل تريد تحليلاً أعمق بالذكاء الاصطناعي؟</h3>
-        <p style="font-size:.85rem;opacity:.85;margin-bottom:1rem">سيقرأ مستشار AI مشروعك ويعطيك توصيات مخصصة وخطة عمل واقعية</p>
-        <button id="pa-ai-btn" onclick="runProjectAI()" style="background:#fff;color:#1E3A8A;border:none;padding:.85rem 2.5rem;border-radius:30px;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer">
-          <i class="fa-solid fa-robot"></i> احصل على تحليل AI الآن — مجاني
-        </button>
-      </div>
-      <div id="pa-ai-output" style="margin-top:1rem;display:none">
-        <div id="pa-ai-content" style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;font-size:.88rem;line-height:2;white-space:pre-wrap"></div>
+      <div style="background:linear-gradient(135deg,#1a0a00,#3d1f00);border-radius:14px;padding:1.75rem;text-align:center;color:#fff;position:relative;overflow:hidden;border:1.5px solid #f59e0b44">
+        <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\"><circle cx=\"180\" cy=\"20\" r=\"60\" fill=\"rgba(245,158,11,.06)\"/><circle cx=\"20\" cy=\"80\" r=\"40\" fill=\"rgba(245,158,11,.04)\"/></svg>');background-size:cover;pointer-events:none"></div>
+        <div style="position:relative">
+          <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.4);color:#fbbf24;font-size:.72rem;font-weight:800;padding:.25rem .85rem;border-radius:20px;margin-bottom:.75rem">
+            <i class="fa-solid fa-crown"></i> ميزة مميزة — Premium
+          </div>
+          <h3 style="color:#fff;margin:.5rem 0;font-size:1.1rem">تحليل AI العميق بقلم مستشار ذكي</h3>
+          <p style="font-size:.84rem;color:rgba(255,255,255,.7);margin-bottom:1.25rem;line-height:1.8">
+            احصل على تقييم صريح · خطة 12 شهراً · تحليل المنافسين · تقرير PDF جاهز للطباعة
+          </p>
+          <div style="display:flex;gap:.65rem;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:1.2rem;font-size:.8rem;color:rgba(255,255,255,.6)">
+            <span><i class="fa-solid fa-check" style="color:#fbbf24"></i> تحليل مخصص لمشروعك</span>
+            <span><i class="fa-solid fa-check" style="color:#fbbf24"></i> 5 صفحات تقرير مفصّل</span>
+            <span><i class="fa-solid fa-check" style="color:#fbbf24"></i> استراتيجية نمو واقعية</span>
+          </div>
+          <button onclick="showPremiumModal()" style="background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;border:none;padding:.95rem 2.5rem;border-radius:30px;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(245,158,11,.35);display:inline-flex;align-items:center;gap:.6rem">
+            <i class="fa-solid fa-crown"></i> فعّل التحليل المميز
+          </button>
+          <div style="margin-top:.85rem;font-size:.75rem;color:rgba(255,255,255,.4)">
+            <i class="fa-solid fa-lock" style="margin-left:.3rem"></i>اشترك مرة واحدة — استخدم للأبد
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="sr-cta">
       <button class="btn-primary" onclick="resetProjectAnalysis()"><i class="fa-solid fa-plus"></i> تحليل مشروع جديد</button>
       <button class="btn-primary" style="background:var(--navy)" onclick="goto('analysis')"><i class="fa-solid fa-file-chart-column"></i> إعداد دراسة جدوى مفصلة</button>
+      <button class="btn-primary" style="background:linear-gradient(135deg,#065f46,#10b981)" onclick="goto('capital')"><i class="fa-solid fa-chart-line"></i> استشارة رأس المال</button>
     </div>
   </div>`;
 }
@@ -5397,11 +6986,172 @@ function runCapitalConsultation() {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
+}
+
+/* Due Diligence Checklist */
+const DDQ_CATEGORIES = [
+  {
+    icon:'fa-file-contract', color:'#3b82f6', label:'الوثائق القانونية',
+    items:['سجل تجاري ساري المفعول','عقد التأسيس أو النظام الأساسي','قرار تعيين المدير المفوض','التراخيص والتصاريح القطاعية','سجل الملاك وهيكل الملكية (Cap Table)','أي عقود شراكة أو استثمار سابقة']
+  },
+  {
+    icon:'fa-file-invoice-dollar', color:'#10b981', label:'الوثائق المالية',
+    items:['القوائم المالية لآخر سنتين (ميزانية + دخل + تدفق نقدي)','كشف حساب بنكي لآخر 6 أشهر','الإقرارات الضريبية (ZATCA)','جدول الأصول الثابتة','قائمة الذمم المدينة والدائنة','دراسة الجدوى المالية المُعتمدة']
+  },
+  {
+    icon:'fa-cogs', color:'#f59e0b', label:'الوثائق التشغيلية',
+    items:['خطة الأعمال (Business Plan) مفصلة','الهيكل التنظيمي وقائمة الموظفين الرئيسيين','عقود الموردين والعملاء الرئيسيين','براءات الاختراع أو الملكية الفكرية (إن وجدت)','سياسة إدارة المخاطر والتأمينات','خطة النمو والتوسع للـ 3 سنوات القادمة']
+  },
+  {
+    icon:'fa-users', color:'#9333ea', label:'الفريق والكفاءات',
+    items:['سير ذاتية للمؤسسين والإدارة العليا','عقود العمل للموظفين الحيويين','انتهاء أي عقود عمل سابقة بشكل نظيف','خطة التوسع في الكوادر البشرية']
+  }
+];
+
+function renderDDQ() {
+  const container = document.getElementById('ddq-container');
+  if (!container) return;
+  container.innerHTML = DDQ_CATEGORIES.map((cat, ci) => `
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:.75rem;overflow:hidden">
+      <div onclick="toggleDDQ(${ci})" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.1rem;cursor:pointer">
+        <div style="display:flex;align-items:center;gap:.7rem">
+          <div style="width:32px;height:32px;border-radius:8px;background:${cat.color}22;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid ${cat.icon}" style="color:${cat.color};font-size:.85rem"></i></div>
+          <div style="font-size:.88rem;font-weight:800">${cat.label}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem">
+          <span id="ddq-score-${ci}" style="font-size:.75rem;color:var(--muted)">0/${cat.items.length}</span>
+          <i id="ddq-chev-${ci}" class="fa-solid fa-chevron-down" style="color:var(--muted);transition:.2s;font-size:.8rem"></i>
+        </div>
+      </div>
+      <div id="ddq-body-${ci}" style="display:none;padding:0 1.1rem 1rem">
+        ${cat.items.map((item, ii) => `
+          <label style="display:flex;align-items:center;gap:.65rem;padding:.5rem 0;cursor:pointer;border-top:1px solid var(--border)">
+            <input type="checkbox" id="ddq-${ci}-${ii}" onchange="updateDDQScore(${ci})" style="width:16px;height:16px;accent-color:${cat.color};cursor:pointer;flex-shrink:0"/>
+            <span style="font-size:.81rem;color:var(--text)">${item}</span>
+          </label>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function toggleDDQ(ci) {
+  const body = document.getElementById(`ddq-body-${ci}`);
+  const chev = document.getElementById(`ddq-chev-${ci}`);
+  if (!body) return;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  if (chev) chev.style.transform = open ? '' : 'rotate(180deg)';
+}
+
+function updateDDQScore(ci) {
+  const cat = DDQ_CATEGORIES[ci];
+  const checked = cat.items.filter((_, ii) => document.getElementById(`ddq-${ci}-${ii}`)?.checked).length;
+  const scoreEl = document.getElementById(`ddq-score-${ci}`);
+  if (scoreEl) {
+    scoreEl.textContent = `${checked}/${cat.items.length}`;
+    scoreEl.style.color = checked === cat.items.length ? '#10b981' : checked > 0 ? '#f59e0b' : 'var(--muted)';
+  }
+}
+
+function initCapital() {
+  renderDDQ();
+}
+
 function resetCapital() {
   document.getElementById('cap-step-1').classList.remove('active');
   document.getElementById('cap-step-0').classList.add('active');
+  // hide free form and reset tier selection
+  const freeSection = document.getElementById('cap-free-section');
+  if (freeSection) freeSection.style.display = 'none';
   window.scrollTo({top:0, behavior:'smooth'});
 }
+
+function showCapFreeForm() {
+  const sec = document.getElementById('cap-free-section');
+  if (!sec) return;
+  sec.style.display = 'block';
+  setTimeout(() => sec.scrollIntoView({behavior:'smooth', block:'start'}), 80);
+}
+
+// ── الإيراد الحد الفاصل لمجانية الاستشارة (2 مليون ريال)
+const CAP_FREE_THRESHOLD = 2000000;
+const CAP_WHATSAPP = '966500000000'; // ← غيّر لرقمك
+
+function showCapPremiumModal() {
+  const modal = document.getElementById('cap-premium-modal');
+  if (!modal) return;
+  // reset to step A
+  document.getElementById('cap-modal-step-a').style.display = 'block';
+  document.getElementById('cap-modal-step-free').style.display = 'none';
+  document.getElementById('cap-modal-step-pay').style.display = 'none';
+  document.getElementById('cap-rev-hint').style.display = 'none';
+  modal.style.display = 'flex';
+}
+
+function closeCapModal() {
+  document.getElementById('cap-premium-modal').style.display = 'none';
+}
+
+function capUpdateRevenueHint(val) {
+  const hint = document.getElementById('cap-rev-hint');
+  if (!hint || !val) { hint.style.display='none'; return; }
+  const n = parseFloat(val);
+  if (isNaN(n)) { hint.style.display='none'; return; }
+  hint.style.display = 'block';
+  if (n >= CAP_FREE_THRESHOLD) {
+    hint.style.background = 'rgba(5,150,105,.15)';
+    hint.style.color = '#6ee7b7';
+    hint.style.border = '1px solid rgba(5,150,105,.4)';
+    hint.innerHTML = '✅ مؤهَّل للاستشارة المجانية';
+  } else {
+    hint.style.background = 'rgba(234,88,12,.12)';
+    hint.style.color = '#fb923c';
+    hint.style.border = '1px solid rgba(234,88,12,.35)';
+    hint.innerHTML = '💡 رسوم رمزية 100 ريال — استشارة كاملة';
+  }
+}
+
+function submitCapRequest() {
+  const name = (document.getElementById('cap-pm-name')?.value || '').trim();
+  const biz  = (document.getElementById('cap-pm-biz')?.value  || '').trim();
+  const rev  = parseFloat(document.getElementById('cap-pm-revenue')?.value || 0);
+  const phone= (document.getElementById('cap-pm-whatsapp')?.value || '').trim();
+  if (!name || !biz || !rev || !phone) {
+    alert('يرجى تعبئة جميع الحقول المطلوبة');
+    return;
+  }
+  // store for use in next step
+  window._capFormData = { name, biz, rev, phone };
+  document.getElementById('cap-modal-step-a').style.display = 'none';
+  if (rev >= CAP_FREE_THRESHOLD) {
+    document.getElementById('cap-modal-step-free').style.display = 'block';
+  } else {
+    document.getElementById('cap-modal-step-pay').style.display = 'block';
+  }
+}
+
+function sendFreeCapWhatsapp() {
+  const d = window._capFormData || {};
+  const msg = encodeURIComponent(
+    `✅ طلب استشارة رأس المال — مجانية\n\nالاسم: ${d.name}\nالمنشأة: ${d.biz}\nالإيرادات السنوية: ${Number(d.rev).toLocaleString('ar-SA')} ريال\nالواتساب: ${d.phone}\n\nأرجو تحديد موعد الاستشارة المجانية.`
+  );
+  closeCapModal();
+  window.open(`https://wa.me/${CAP_WHATSAPP}?text=${msg}`, '_blank');
+}
+
+function sendPaidCapWhatsapp() {
+  const d = window._capFormData || {};
+  const txn = (document.getElementById('cap-pm-txn')?.value || '').trim();
+  const method = document.querySelector('input[name="cap-pay-method"]:checked')?.value || '';
+  const methodLabel = method === 'stc' ? 'STC Pay' : 'تحويل بنكي';
+  const msg = encodeURIComponent(
+    `💳 طلب استشارة رأس المال — مدفوعة\n\nالاسم: ${d.name}\nالمنشأة: ${d.biz}\nالإيرادات السنوية: ${Number(d.rev).toLocaleString('ar-SA')} ريال\nطريقة الدفع: ${methodLabel}\nرقم العملية: ${txn || 'لم يُذكر'}\n\nأرجو تأكيد استلام الدفعة وبدء الاستشارة.`
+  );
+  closeCapModal();
+  window.open(`https://wa.me/${CAP_WHATSAPP}?text=${msg}`, '_blank');
+}
+
+// Legacy alias (still used by submitCapPremiumRequest button if referenced elsewhere)
+function submitCapPremiumRequest() { submitCapRequest(); }
 
 /* ======================================================
    ADMIN INTELLIGENCE ENGINE
@@ -6325,6 +8075,102 @@ function viewOrderDetail(id) {
     `خصم المنصة: ${o.discount.toLocaleString('ar-SA')} ريال\n` +
     `الإجمالي: ${o.total.toLocaleString('ar-SA')} ريال`;
   alert(msg);
+}
+
+/* ══ COMPLIANCE PAGE FUNCTIONS ══ */
+const COMP_WA = '966500000000';
+
+const GOV_PRICE_MAP = {
+  cr: 'مجاناً — تشمل الفحص والإرشاد لأول مرة',
+  invest: '199 ريال — متابعة وتقديم الطلبات',
+  balady: '79 ريال — فحص ومتابعة الرخص البلدية',
+  mol: '149 ريال — متابعة ملف كامل مع الوزارة',
+  gosi: '99 ريال — تسجيل أو تسوية الاشتراكات',
+  zatca: '99 ريال — إقرار ضريبي أو تسوية غرامات',
+  capital: 'مجاناً — تحليل مالي استرشادي غير ملزم'
+};
+
+function showGovServiceModal(type, title, price, c1, c2, icon) {
+  const t = title || type;
+  const p = price || GOV_PRICE_MAP[type] || '';
+  document.getElementById('comp-modal-title').textContent = 'طلب خدمة: ' + t;
+  document.getElementById('comp-modal-sub').textContent = 'سيتواصل معك متخصصنا خلال 24 ساعة';
+  document.getElementById('comp-modal-price-note').textContent = '💡 التكلفة التقريبية: ' + (GOV_PRICE_MAP[type] || p);
+  document.getElementById('comp-modal-btn-label').textContent = 'إرسال الطلب عبر الواتساب';
+  document.getElementById('comp-req-name').value = '';
+  document.getElementById('comp-req-biz').value = '';
+  document.getElementById('comp-req-phone').value = '';
+  document.getElementById('comp-req-notes').value = '';
+  window._compModalType = type;
+  const modal = document.getElementById('compliance-modal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.querySelector('div').style.opacity = '1', 10);
+}
+
+function showComplianceRequestModal() {
+  const checked = [...document.querySelectorAll('#compliance-checks input:checked')].map(el => el.closest('label').querySelector('.comp-check-title').textContent);
+  const score = checked.length;
+  document.getElementById('comp-modal-title').textContent = 'طلب تصحيح الأوضاع';
+  document.getElementById('comp-modal-sub').textContent = score + ' نقطة محددة تحتاج مراجعة';
+  document.getElementById('comp-modal-price-note').textContent = checked.length ? 'الخدمات المطلوبة: ' + checked.join(' · ') : '';
+  document.getElementById('comp-modal-btn-label').textContent = 'إرسال الطلب عبر الواتساب';
+  document.getElementById('comp-req-notes').value = checked.length ? 'أحتاج مراجعة: ' + checked.join('، ') : '';
+  document.getElementById('comp-req-name').value = '';
+  document.getElementById('comp-req-biz').value = '';
+  document.getElementById('comp-req-phone').value = '';
+  window._compModalType = 'checklist';
+  document.getElementById('compliance-modal').style.display = 'flex';
+}
+
+function closeComplianceModal() {
+  document.getElementById('compliance-modal').style.display = 'none';
+}
+
+function submitComplianceRequest() {
+  const name = document.getElementById('comp-req-name').value.trim();
+  const biz  = document.getElementById('comp-req-biz').value.trim();
+  const phone= document.getElementById('comp-req-phone').value.trim();
+  const notes= document.getElementById('comp-req-notes').value.trim();
+  if (!name || !phone) { alert('الرجاء إدخال الاسم ورقم الواتساب على الأقل'); return; }
+  const type = window._compModalType || '';
+  const title = document.getElementById('comp-modal-title').textContent;
+  const msg = `مرحباً، أود الاستفسار عن خدمة: ${title}\n\nالاسم: ${name}\nالمنشأة: ${biz || 'غير محدد'}\nالجوال: ${phone}${notes ? '\n\nتفاصيل:\n' + notes : ''}`;
+  window.open('https://wa.me/' + COMP_WA + '?text=' + encodeURIComponent(msg), '_blank');
+  closeComplianceModal();
+}
+
+function showVendorRequestModal(type) {
+  const labels = { legal:'مكاتب المحاماة', accounting:'مكاتب المحاسبة', furniture:'تأثيث المكاتب', tech:'تجهيزات تقنية', security:'أنظمة المراقبة والأمن', other:'خدمة مخصصة' };
+  const lbl = labels[type] || 'خدمة';
+  document.getElementById('comp-modal-title').textContent = 'طلب عرض سعر: ' + lbl;
+  document.getElementById('comp-modal-sub').textContent = 'سنقدم لك عروض أسعار من موردين موثوقين خلال 24 ساعة';
+  document.getElementById('comp-modal-price-note').textContent = '✅ الطلب مجاني · لا التزام بالشراء · ضمان المنصة على جودة العروض';
+  document.getElementById('comp-modal-btn-label').textContent = 'إرسال طلب العرض';
+  document.getElementById('comp-req-name').value = '';
+  document.getElementById('comp-req-biz').value = '';
+  document.getElementById('comp-req-phone').value = '';
+  document.getElementById('comp-req-notes').value = type === 'other' ? '' : 'أحتاج عروض أسعار من ' + lbl;
+  window._compModalType = 'vendor_' + type;
+  document.getElementById('compliance-modal').style.display = 'flex';
+}
+
+function updateComplianceScore() {
+  const checked = [...document.querySelectorAll('#compliance-checks input:checked')];
+  const score = checked.length;
+  const result = document.getElementById('compliance-result');
+  const scoreEl = document.getElementById('comp-score');
+  const labelEl = document.getElementById('comp-score-label');
+  if (score === 0) { result.style.display = 'none'; return; }
+  result.style.display = 'block';
+  scoreEl.textContent = score;
+  const msgs = ['', 'نقطة مراجعة واحدة — ابدأ بالتصحيح!', 'نقطتان تحتاجان متابعة', 'ثلاث نقاط — ننصح بمراجعة شاملة', '4 نقاط — ملف متشعّب، نتابعه معك', '5 نقاط — وضع يحتاج اهتماماً عاجلاً', '6 نقاط — مراجعة شاملة مطلوبة حالاً'];
+  labelEl.textContent = msgs[Math.min(score, 6)] || score + ' نقاط تحتاج متابعة';
+}
+
+function initCompliancePage() {
+  // reset compliance checks on open
+  document.querySelectorAll('#compliance-checks input').forEach(el => el.checked = false);
+  updateComplianceScore();
 }
 
 </script>
