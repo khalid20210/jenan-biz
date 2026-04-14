@@ -1066,61 +1066,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 <!-- ===== MAIN ===== -->
   <div class="main">
     <script>
-      // تفعيل إظهار صفحة بوابة ريادة الأعمال عند النقر على العنصر الجديد
-      function goto(page) {
-        // إخفاء جميع الصفحات
-        document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-        // إظهار الصفحة المطلوبة
-        if(page==='entrepreneur') {
-          document.getElementById('page-entrepreneur').classList.add('active');
-          document.getElementById('topbar-title').innerHTML = 'بوابة ريادة الأعمال';
-        } else if(document.getElementById('page-' + page)) {
-          document.getElementById('page-' + page).classList.add('active');
-          // تحديث عنوان التوب بار حسب الصفحة
-          if(page==='home') {
-            document.getElementById('topbar-title').innerHTML = 'نظرة عامة <span id="topbar-sub">مرحباً بك في منصة جنان بيز</span>';
-          } else if(page==='hub') {
-            document.getElementById('topbar-title').innerHTML = 'تحليل المشاريع ودراسات الجدوى';
-          } else if(page==='robot') {
-            document.getElementById('topbar-title').innerHTML = '<span onclick="goto(\'entrepreneur\')" style="cursor:pointer;opacity:.7;font-size:.85em">← بوابة ريادة الأعمال</span> &nbsp;|&nbsp; تحليل المشاريع';
-          } else if(page==='analysis') {
-            document.getElementById('topbar-title').innerHTML = '<span onclick="goto(\'entrepreneur\')" style="cursor:pointer;opacity:.7;font-size:.85em">← بوابة ريادة الأعمال</span> &nbsp;|&nbsp; إعداد دراسات الجدوى';
-          } else if(page==='capital') {
-            document.getElementById('topbar-title').innerHTML = '<span onclick="goto(\'entrepreneur\')" style="cursor:pointer;opacity:.7;font-size:.85em">← بوابة ريادة الأعمال</span> &nbsp;|&nbsp; استشارة رأس المال';
-          } else if(page==='investor') {
-            document.getElementById('topbar-title').innerHTML = '<span onclick="goto(\'entrepreneur\')" style="cursor:pointer;opacity:.7;font-size:.85em">← بوابة ريادة الأعمال</span> &nbsp;|&nbsp; خدمات المستثمرين';
-          } else if(page==='academy') {
-            document.getElementById('topbar-title').innerHTML = 'أكاديمية جنان للأعمال';
-          } else if(page==='design') {
-            document.getElementById('topbar-title').innerHTML = 'التصميم والإبداع';
-          } else if(page==='software') {
-            document.getElementById('topbar-title').innerHTML = 'متجر البرامج المميزة';
-          } else if(page==='compliance') {
-            document.getElementById('topbar-title').innerHTML = 'تصحيح الأوضاع والاستشارة';
-          } else if(page==='supply') {
-            document.getElementById('topbar-title').innerHTML = 'كتالوج الموردين';
-          } else if(page==='orders') {
-            document.getElementById('topbar-title').innerHTML = 'طلباتي';
-          } else if(page==='reports') {
-            document.getElementById('topbar-title').innerHTML = 'تقاريري';
-          } else if(page==='projects') {
-            document.getElementById('topbar-title').innerHTML = 'مشاريعي';
-          } else if(page==='settings') {
-            document.getElementById('topbar-title').innerHTML = 'الإعدادات';
-          } else if(page==='admin') {
-            document.getElementById('topbar-title').innerHTML = 'لوحة الإدمن';
-          } else {
-            document.getElementById('topbar-title').innerHTML = '';
-          }
-        }
-        // تفعيل العنصر النشط في الشريط الجانبي
-        document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
-        if(page==='entrepreneur') {
-          document.getElementById('nav-entrepreneur').classList.add('active');
-        } else if(document.getElementById('nav-' + page)) {
-          document.getElementById('nav-' + page).classList.add('active');
-        }
-      }
+      // placeholder — دالة goto الرئيسية موجودة في أسفل الصفحة
     </script>
 
   <!-- TOPBAR -->
@@ -1163,7 +1109,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
     </div> <!-- نهاية الصفحة الرئيسية -->
 
     <!-- ===== بوابة ريادة الأعمال ===== -->
-    <div class="page" id="page-entrepreneur" style="display:none">
+    <div class="page" id="page-entrepreneur">
       <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.75rem">
         <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">
           <div style="width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#0B0E1A,#4E73C2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">
