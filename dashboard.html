@@ -997,11 +997,6 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       <i class="fa-solid fa-rocket" style="color:#4E73C2"></i> بوابة ريادة الأعمال
     </div>
 
-    <!-- ══ 1. تحليل المشاريع وإعداد دراسات الجدوى ══ -->
-    <div class="nav-item" id="nav-hub" onclick="goto('hub')">
-      <i class="fa-solid fa-chart-mixed" style="color:#7B9ED4"></i> تحليل المشاريع ودراسات الجدوى
-    </div>
-
 
 
     <!-- ══ 3. أكاديمية جنان ══ -->
@@ -1086,6 +1081,14 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             document.getElementById('topbar-title').innerHTML = 'نظرة عامة <span id="topbar-sub">مرحباً بك في منصة جنان بيز</span>';
           } else if(page==='hub') {
             document.getElementById('topbar-title').innerHTML = 'تحليل المشاريع ودراسات الجدوى';
+          } else if(page==='robot') {
+            document.getElementById('topbar-title').innerHTML = '<span onclick="goto(\'entrepreneur\')" style="cursor:pointer;opacity:.7;font-size:.85em">← بوابة ريادة الأعمال</span> &nbsp;|&nbsp; تحليل المشاريع';
+          } else if(page==='analysis') {
+            document.getElementById('topbar-title').innerHTML = '<span onclick="goto(\'entrepreneur\')" style="cursor:pointer;opacity:.7;font-size:.85em">← بوابة ريادة الأعمال</span> &nbsp;|&nbsp; إعداد دراسات الجدوى';
+          } else if(page==='capital') {
+            document.getElementById('topbar-title').innerHTML = '<span onclick="goto(\'entrepreneur\')" style="cursor:pointer;opacity:.7;font-size:.85em">← بوابة ريادة الأعمال</span> &nbsp;|&nbsp; استشارة رأس المال';
+          } else if(page==='investor') {
+            document.getElementById('topbar-title').innerHTML = '<span onclick="goto(\'entrepreneur\')" style="cursor:pointer;opacity:.7;font-size:.85em">← بوابة ريادة الأعمال</span> &nbsp;|&nbsp; خدمات المستثمرين';
           } else if(page==='academy') {
             document.getElementById('topbar-title').innerHTML = 'أكاديمية جنان للأعمال';
           } else if(page==='design') {
@@ -1342,6 +1345,10 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
     <!-- ===== ROBOT → تحليل المشاريع ===== -->
     <div class="page" id="page-robot">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;padding:.6rem 1rem;background:rgba(78,115,194,.08);border-radius:10px;border:1px solid rgba(78,115,194,.2)">
+        <button onclick="goto('entrepreneur')" style="background:none;border:none;cursor:pointer;color:var(--primary);font-family:inherit;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:.4rem"><i class="fa-solid fa-arrow-right"></i> بوابة ريادة الأعمال</button>
+        <span style="color:var(--muted);font-size:.85rem">/ تحليل المشاريع</span>
+      </div>
 
       <!-- خطوة 0: الترحيب والبدء -->
       <div id="pa-step-0" class="fs-step active">
@@ -1740,6 +1747,10 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
     <!-- ===== ANALYSIS ===== -->
     <div class="page" id="page-analysis">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;padding:.6rem 1rem;background:rgba(78,115,194,.08);border-radius:10px;border:1px solid rgba(78,115,194,.2)">
+        <button onclick="goto('entrepreneur')" style="background:none;border:none;cursor:pointer;color:var(--primary);font-family:inherit;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:.4rem"><i class="fa-solid fa-arrow-right"></i> بوابة ريادة الأعمال</button>
+        <span style="color:var(--muted);font-size:.85rem">/ إعداد دراسات الجدوى</span>
+      </div>
 
       <!-- ══ STEP 0: اختيار نوع الدراسة ══ -->
       <div id="fs-step-0" class="fs-step active">
@@ -2301,6 +2312,10 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
     <!-- ===== CAPITAL ===== -->
     <div class="page" id="page-capital">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;padding:.6rem 1rem;background:rgba(78,115,194,.08);border-radius:10px;border:1px solid rgba(78,115,194,.2)">
+        <button onclick="goto('entrepreneur')" style="background:none;border:none;cursor:pointer;color:var(--primary);font-family:inherit;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:.4rem"><i class="fa-solid fa-arrow-right"></i> بوابة ريادة الأعمال</button>
+        <span style="color:var(--muted);font-size:.85rem">/ استشارة رأس المال</span>
+      </div>
 
       <!-- ══ STEP 0: اختيار نوع الاستشارة ══ -->
       <div id="cap-step-0" class="cap-step active">
