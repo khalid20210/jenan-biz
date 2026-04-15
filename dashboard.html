@@ -2855,6 +2855,133 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
               </div>
             </div>
           </div>
+
+          <!-- ─── تكلفة البضاعة ─── -->
+          <div style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem">
+            <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.85rem">
+              <i class="fa-solid fa-boxes-stacking" style="color:#f59e0b;margin-left:.4rem"></i>
+              تكلفة البضاعة / المشتريات الشهرية
+            </div>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="f-field" style="margin:0">
+                <label>نسبة تكلفة البضاعة % من الإيراد</label>
+                <input type="number" id="ent-cogs-pct" placeholder="تلقائي حسب القطاع" min="0" max="100" step="1"/>
+                <small style="color:var(--muted);font-size:.72rem">اتركه فارغاً للاحتساب التلقائي</small>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>أو أدخل مبلغ المشتريات / شهر (ريال)</label>
+                <input type="number" id="ent-cogs-amt" placeholder="مثال: 18000" min="0"/>
+                <small style="color:var(--muted);font-size:.72rem">إذا أدخلت المبلغ يتجاهل النسبة</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── التأمينات الاجتماعية وتكاليف العمالة GOSI ─── -->
+          <div style="background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem">
+            <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.85rem">
+              <i class="fa-solid fa-users" style="color:#3b82f6;margin-left:.4rem"></i>
+              التأمينات الاجتماعية وتكاليف العمالة الكاملة
+            </div>
+            <div style="font-size:.78rem;font-weight:700;color:#60a5fa;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid rgba(59,130,246,.2)">
+              <i class="fa-solid fa-flag" style="margin-left:.3rem"></i> الموظفون السعوديون — GOSI 11.75% على صاحب العمل
+            </div>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+              <div class="f-field" style="margin:0">
+                <label>عدد الموظفين السعوديين</label>
+                <input type="number" id="ent-saudi-count" placeholder="مثال: 2" min="0" step="1"/>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>متوسط الراتب الأساسي (سعودي)</label>
+                <input type="number" id="ent-saudi-salary" placeholder="مثال: 5000" min="0"/>
+              </div>
+            </div>
+            <div style="font-size:.78rem;font-weight:700;color:#f59e0b;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid rgba(245,158,11,.2)">
+              <i class="fa-solid fa-earth-asia" style="margin-left:.3rem"></i> الموظفون غير السعوديين — التكلفة الفعلية الكاملة
+            </div>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="f-field" style="margin:0">
+                <label>عدد الموظفين غير السعوديين</label>
+                <input type="number" id="ent-nonsaudi-count" placeholder="مثال: 1" min="0" step="1"/>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>متوسط الراتب الأساسي (غير سعودي)</label>
+                <input type="number" id="ent-nonsaudi-salary" placeholder="مثال: 3000" min="0"/>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>رسوم تجديد الإقامة / سنة / عامل (ريال)</label>
+                <input type="number" id="ent-iqama-fee" min="0" value="9600"/>
+                <small style="color:var(--muted);font-size:.72rem">الافتراضي 9,600 ر.س/سنة → 800/شهر/عامل</small>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>تأمين صحي / سنة / عامل (ريال)</label>
+                <input type="number" id="ent-health-ins" min="0" value="600"/>
+                <small style="color:var(--muted);font-size:.72rem">الافتراضي 600 ر.س/سنة → 50/شهر/عامل</small>
+              </div>
+            </div>
+            <div style="background:rgba(245,158,11,.1);border-radius:8px;padding:.55rem .8rem;margin-top:.75rem;font-size:.72rem;color:rgba(200,200,200,.8);line-height:1.7">
+              سعودي: 11.75% GOSI على صاحب العمل · غير سعودي: 2% GOSI + رسوم إقامة (÷12) + تأمين صحي (÷12)
+            </div>
+          </div>
+
+          <!-- ─── الرسوم الحكومية والتشغيلية ─── -->
+          <div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem">
+            <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.85rem">
+              <i class="fa-solid fa-landmark" style="color:#10b981;margin-left:.4rem"></i>
+              الرسوم الحكومية والتكاليف التشغيلية (السنوية ÷12 تلقائياً)
+            </div>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="f-field" style="margin:0">
+                <label>رسوم السجل التجاري / سنة</label>
+                <input type="number" id="ent-cr-fee" min="0" value="2100"/>
+                <small style="color:var(--muted);font-size:.72rem">الافتراضي 2,100 ر.س/سنة → 175/شهر</small>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>رخصة بلدية + رسوم أخرى / سنة</label>
+                <input type="number" id="ent-muni-fee" placeholder="مثال: 2000" min="0"/>
+                <small style="color:var(--muted);font-size:.72rem">رخصة البلدية، الصنف التجاري</small>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>فاتورة الكهرباء / شهر</label>
+                <input type="number" id="ent-electricity" placeholder="مثال: 800" min="0"/>
+                <small style="color:var(--muted);font-size:.72rem">للمحلات، المصانع، المطاعم</small>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>وقود + صيانة سيارات / شهر</label>
+                <input type="number" id="ent-transport" placeholder="مثال: 3000" min="0"/>
+                <small style="color:var(--muted);font-size:.72rem">للتوزيع والتوصيل والمندوبين</small>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>رسوم حكومية متنوعة / سنة</label>
+                <input type="number" id="ent-gov-other" placeholder="مثال: 1000" min="0"/>
+                <small style="color:var(--muted);font-size:.72rem">شهادات، رخص، تجديدات أخرى</small>
+              </div>
+              <div class="f-field" style="margin:0">
+                <label>اشتراكات واتصالات / شهر</label>
+                <input type="number" id="ent-subscriptions" placeholder="مثال: 500" min="0"/>
+                <small style="color:var(--muted);font-size:.72rem">إنترنت، POS، أنظمة، هاتف</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── ضريبة القيمة المضافة ─── -->
+          <div style="background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+            <div>
+              <div style="font-size:.82rem;font-weight:700;color:var(--text)">
+                <i class="fa-solid fa-percent" style="color:#8b5cf6;margin-left:.4rem"></i>
+                مسجَّل في ضريبة القيمة المضافة (15%)؟
+              </div>
+              <div style="font-size:.72rem;color:var(--muted);margin-top:.25rem">إيراداتك المدخلة تشمل الضريبة؟</div>
+            </div>
+            <div style="display:flex;gap:.6rem;align-items:center">
+              <label style="display:flex;align-items:center;gap:.35rem;cursor:pointer;font-size:.82rem;font-weight:600">
+                <input type="radio" name="ent-vat" id="ent-vat-yes" value="yes"/> نعم، مسجّل
+              </label>
+              <label style="display:flex;align-items:center;gap:.35rem;cursor:pointer;font-size:.82rem;font-weight:600">
+                <input type="radio" name="ent-vat" id="ent-vat-no" value="no" checked/> لا
+              </label>
+            </div>
+          </div>
+
           <button class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:.9rem" onclick="calcEntrepreneurNeeds()">
             <i class="fa-solid fa-calculator"></i> احسب رأس المال المطلوب
           </button>
@@ -8516,7 +8643,38 @@ function calcEntrepreneurNeeds() {
   const rent    = parseFloat(document.getElementById('ent-rent')?.value)||0;
   const salary  = parseFloat(document.getElementById('ent-salary')?.value)||0;
   const other   = parseFloat(document.getElementById('ent-other')?.value)||0;
-  const revenue = parseFloat(document.getElementById('ent-revenue')?.value)||0;
+  let   revenue = parseFloat(document.getElementById('ent-revenue')?.value)||0;
+
+  // ─── COGS ───
+  const cogsPctInput = parseFloat(document.getElementById('ent-cogs-pct')?.value);
+  const cogsAmtInput = parseFloat(document.getElementById('ent-cogs-amt')?.value)||0;
+
+  // ─── GOSI + تكاليف العمالة الكاملة ───
+  const saudiCount        = parseFloat(document.getElementById('ent-saudi-count')?.value)||0;
+  const saudiSalaryAvg    = parseFloat(document.getElementById('ent-saudi-salary')?.value)||0;
+  const nonSaudiCount     = parseFloat(document.getElementById('ent-nonsaudi-count')?.value)||0;
+  const nonSaudiSalaryAvg = parseFloat(document.getElementById('ent-nonsaudi-salary')?.value)||0;
+  const iqamaFeeAnnual    = parseFloat(document.getElementById('ent-iqama-fee')?.value)||9600;
+  const healthInsAnnual   = parseFloat(document.getElementById('ent-health-ins')?.value)||600;
+  const gosiSaudi         = saudiCount * saudiSalaryAvg * 0.1175;
+  const gosiNonSaudi      = nonSaudiCount * nonSaudiSalaryAvg * 0.02;
+  const iqamaMonthly      = nonSaudiCount * (iqamaFeeAnnual / 12);
+  const healthInsMonthly  = nonSaudiCount * (healthInsAnnual / 12);
+  const gosiMonthly       = gosiSaudi + gosiNonSaudi + iqamaMonthly + healthInsMonthly;
+
+  // ─── الرسوم الحكومية والتشغيلية ───
+  const crFeeAnnual    = parseFloat(document.getElementById('ent-cr-fee')?.value)||2100;
+  const muniFeeAnnual  = parseFloat(document.getElementById('ent-muni-fee')?.value)||0;
+  const govOtherAnnual = parseFloat(document.getElementById('ent-gov-other')?.value)||0;
+  const electricity    = parseFloat(document.getElementById('ent-electricity')?.value)||0;
+  const transport      = parseFloat(document.getElementById('ent-transport')?.value)||0;
+  const subscriptions  = parseFloat(document.getElementById('ent-subscriptions')?.value)||0;
+  const govMonthly     = (crFeeAnnual + muniFeeAnnual + govOtherAnnual) / 12 + electricity + transport + subscriptions;
+
+  // ─── VAT ───
+  const vatRegistered = document.getElementById('ent-vat-yes')?.checked;
+  const revenueNet = vatRegistered ? revenue / 1.15 : revenue; // صافي الإيراد بدون الضريبة
+
   const BENCH = {
     'مطعم / مقهى':     {cogs:0.38,buffer:6},
     'تجارة تجزئة':     {cogs:0.55,buffer:4},
@@ -8529,10 +8687,24 @@ function calcEntrepreneurNeeds() {
     'عقارات':          {cogs:0.40,buffer:6},
     'أخرى':            {cogs:0.45,buffer:5},
   };
-  const bench      = BENCH[sector] || BENCH['أخرى'];
-  const monthlyExp = rent + salary + other;
-  const cogs       = revenue * bench.cogs;
-  const netMonthly = revenue - cogs - monthlyExp;
+  const bench = BENCH[sector] || BENCH['أخرى'];
+
+  // تكلفة البضاعة: المبلغ المباشر → النسبة المدخلة → النسبة التلقائية
+  let cogs;
+  let cogsLabel;
+  if (cogsAmtInput > 0) {
+    cogs = cogsAmtInput;
+    cogsLabel = `${cogs.toLocaleString('ar-SA')} ر.س (مبلغ مدخل)`;
+  } else if (!isNaN(cogsPctInput) && cogsPctInput > 0) {
+    cogs = revenueNet * (cogsPctInput / 100);
+    cogsLabel = `${cogs.toLocaleString('ar-SA')} ر.س (${cogsPctInput}% مدخلة)`;
+  } else {
+    cogs = revenueNet * bench.cogs;
+    cogsLabel = `${cogs.toLocaleString('ar-SA')} ر.س (${(bench.cogs*100).toFixed(0)}% تلقائي - ${sector})`;
+  }
+
+  const monthlyExp = rent + salary + other + gosiMonthly + govMonthly;
+  const netMonthly = revenueNet - cogs - monthlyExp;
   const workCap    = monthlyExp * bench.buffer;
   const totalCap   = setup + workCap;
   const payback    = netMonthly > 0 ? Math.ceil(totalCap / netMonthly) : 0;
@@ -8546,6 +8718,17 @@ function calcEntrepreneurNeeds() {
   else if (totalCap < 500000)  { fundSource = 'برنامج منشآت أو كفالة صندوق المئوية'; fundingType='تمويل تنموي للمشاريع الناشئة'; }
   else if (totalCap < 2000000) { fundSource = 'تمويل بنكي تجاري أو تمويل إسلامي (مرابحة)'; fundingType='تمويل بنكي / مرابحة'; }
   else                          { fundSource = 'شريك استراتيجي أو مستثمر ملاك أو صندوق SMEF'; fundingType='شراكة استثمارية أو مستثمر ملاك'; }
+  // ─── صفوف التفصيل الدقيق ───
+  const breakdownRows = [
+    `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#86efac">الإيراد الفعلي${vatRegistered?' (صافي بعد VAT 15%)':''}</td><td style="padding-right:.8rem;color:#86efac;font-weight:700;white-space:nowrap">+ ${Math.round(revenueNet).toLocaleString('ar-SA')}</td></tr>`,
+    `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">تكلفة البضاعة / المشتريات</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(cogs).toLocaleString('ar-SA')}</td></tr>`,
+    `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">إيجار + رواتب + مصاريف تشغيلية</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(rent+salary+other).toLocaleString('ar-SA')}</td></tr>`,
+    gosiSaudi > 0 ? `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">GOSI سعوديون (11.75%)</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(gosiSaudi).toLocaleString('ar-SA')}</td></tr>` : '',
+    (gosiNonSaudi + iqamaMonthly + healthInsMonthly) > 0 ? `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">GOSI + إقامات + تأمين صحي (غير سعوديين)</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(gosiNonSaudi+iqamaMonthly+healthInsMonthly).toLocaleString('ar-SA')}</td></tr>` : '',
+    govMonthly > 0 ? `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">رسوم حكومية + كهرباء + وقود + اشتراكات</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(govMonthly).toLocaleString('ar-SA')}</td></tr>` : '',
+    `<tr style="border-top:2px solid rgba(255,255,255,.2)"><td style="padding:.45rem 0;font-weight:900;color:${vColor}">صافي الربح الشهري</td><td style="padding-right:.8rem;font-weight:900;font-size:.92rem;color:${vColor};white-space:nowrap">${Math.round(netMonthly).toLocaleString('ar-SA')}</td></tr>`,
+  ].join('');
+
   const el = document.getElementById('ent-results');
   el.style.display = 'block';
   el.innerHTML = `
@@ -8570,6 +8753,14 @@ function calcEntrepreneurNeeds() {
           <div style="font-size:1.15rem;font-weight:900;color:var(--green)">${roi}%</div>
           <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.3rem">العائد السنوي ROI</div>
         </div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1rem">
+        <div style="font-size:.79rem;font-weight:800;color:#93c5fd;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem">
+          <i class="fa-solid fa-table-list"></i> تفصيل الحساب الشهري الدقيق
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:.77rem">
+          ${breakdownRows}
+        </table>
       </div>
       <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:1rem;margin-bottom:1rem">
         <div style="font-size:.82rem;font-weight:700;color:${vColor};margin-bottom:.4rem">الحكم: ${verdict}</div>
