@@ -1279,7 +1279,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           <i class="fa-solid fa-sack-dollar"></i> استشارة رأس المال
         </div>
         <div class="nav-sub-item" id="nav-investor" onclick="gotoSub('investor','navgrp-gateway','nav-investor')">
-          <i class="fa-solid fa-handshake"></i> الجاهزية والخدمات للمستثمرين
+          <i class="fa-solid fa-store"></i> سوق المشاريع
         </div>
       </div>
     </div>
@@ -3170,33 +3170,453 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       <div id="cap-step-1" style="display:none"></div>
     </div>
 
-    <!-- ===== INVESTOR ===== -->
+    <!-- ===== سوق المشاريع ===== -->
     <div class="page" id="page-investor">
 
       <!-- Breadcrumb -->
       <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;padding:.6rem 1rem;background:rgba(14,165,233,.08);border-radius:10px;border:1px solid rgba(14,165,233,.2)">
-        <button onclick="goto('entrepreneur')" style="background:none;border:none;cursor:pointer;color:#0ea5e9;font-family:inherit;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:.4rem"><i class="fa-solid fa-arrow-right"></i> بوابة ريادة الأعمال</button>
-        <span style="color:var(--muted);font-size:.85rem">/ خدمات المستثمرين</span>
+        <button onclick="goto('hub')" style="background:none;border:none;cursor:pointer;color:#0ea5e9;font-family:inherit;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:.4rem"><i class="fa-solid fa-arrow-right"></i> البوابة الرئيسية</button>
+        <span style="color:var(--muted);font-size:.85rem">/ سوق المشاريع</span>
       </div>
 
       <!-- Hero Banner -->
-      <div style="background:linear-gradient(135deg,#0a1628 0%,#0c2240 50%,#0d1f3a 100%);border-radius:20px;padding:2.5rem 2rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden">
-        <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.1;pointer-events:none" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 200">
-          <circle cx="500" cy="40" r="80" fill="none" stroke="#0ea5e9" stroke-width="1"/>
-          <circle cx="500" cy="40" r="50" fill="none" stroke="#0ea5e9" stroke-width=".6"/>
-          <line x1="0" y1="100" x2="600" y2="100" stroke="#0ea5e9" stroke-width=".4"/>
-          <line x1="0" y1="140" x2="600" y2="140" stroke="#0ea5e9" stroke-width=".4"/>
-          <line x1="150" y1="0" x2="150" y2="200" stroke="#0ea5e9" stroke-width=".4"/>
-          <line x1="350" y1="0" x2="350" y2="200" stroke="#0ea5e9" stroke-width=".4"/>
-          <polyline points="20,160 100,120 200,130 300,90 420,70 540,40" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="540" cy="40" r="5" fill="#38bdf8"><animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/></circle>
-        </svg>
-        <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.4);border-radius:50px;padding:.3rem .9rem;font-size:.75rem;color:#38bdf8;font-weight:700;margin-bottom:1rem;position:relative;z-index:1">
-          <span style="width:7px;height:7px;border-radius:50%;background:#38bdf8;display:inline-block"><animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite" xmlns="http://www.w3.org/2000/svg"/></span>
-          خدمات حصرية للمستثمرين · جنان بيز
+      <div style="background:linear-gradient(135deg,#0a1628 0%,#0c2240 50%,#0d1f3a 100%);border-radius:20px;padding:2rem 1.75rem 1.75rem;margin-bottom:1.5rem;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;opacity:.07;pointer-events:none;background:repeating-linear-gradient(45deg,#0ea5e9 0,#0ea5e9 1px,transparent 0,transparent 50%) 0/20px 20px"></div>
+        <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.4);border-radius:50px;padding:.3rem .9rem;font-size:.75rem;color:#38bdf8;font-weight:700;margin-bottom:.85rem;position:relative;z-index:1">
+          <span style="width:7px;height:7px;border-radius:50%;background:#38bdf8;display:inline-block;animation:blink 1.8s infinite"></span>
+          منصة وساطة محكمة · جنان بيز
         </div>
-        <h2 style="font-size:1.6rem;font-weight:900;color:#fff;margin:0 0 .5rem;position:relative;z-index:1">شريكك في <span style="background:linear-gradient(90deg,#0ea5e9,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">الاستثمار الذكي</span></h2>
-        <p style="color:rgba(255,255,255,.75);font-size:.88rem;margin:0 0 1.5rem;position:relative;z-index:1;line-height:1.6">نربطك بفرص استثمارية حقيقية · ندعم مفاوضاتك · ونسهّل تواصلك مع رواد الأعمال المتميزين</p>
+        <h2 style="font-size:1.55rem;font-weight:900;color:#fff;margin:0 0 .4rem;position:relative;z-index:1">سوق <span style="background:linear-gradient(90deg,#0ea5e9,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">المشاريع</span></h2>
+        <p style="color:rgba(255,255,255,.75);font-size:.86rem;margin:0 0 1.25rem;position:relative;z-index:1;line-height:1.6">بيع وشراء المشاريع القائمة بضمان الشفافية الكاملة · أرقام موثقة · هويات محمية · وساطة احترافية</p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;position:relative;z-index:1">
+          <div style="background:rgba(255,255,255,.08);border:1px solid rgba(14,165,233,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
+            <div style="font-size:1rem;font-weight:900;color:#38bdf8">مشاريع موثقة</div>
+            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">بمستندات رسمية</div>
+          </div>
+          <div style="background:rgba(255,255,255,.08);border:1px solid rgba(14,165,233,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
+            <div style="font-size:1rem;font-weight:900;color:#38bdf8">هوية مخفية</div>
+            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">حتى طلب المعاينة</div>
+          </div>
+          <div style="background:rgba(255,255,255,.08);border:1px solid rgba(14,165,233,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
+            <div style="font-size:1rem;font-weight:900;color:#38bdf8">حساب وسيط</div>
+            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">Escrow آمن</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div style="display:flex;gap:.6rem;margin-bottom:1.5rem;background:var(--bg3);border-radius:12px;padding:.4rem">
+        <button id="mkt-tab-browse" onclick="showMarketTab('browse')" style="flex:1;padding:.65rem;border-radius:9px;border:none;background:var(--primary);color:#fff;font-family:inherit;font-size:.88rem;font-weight:800;cursor:pointer;transition:var(--tr)">
+          <i class="fa-solid fa-magnifying-glass-dollar" style="margin-left:.4rem"></i> أبحث عن مشروع للشراء
+        </button>
+        <button id="mkt-tab-sell" onclick="showMarketTab('sell')" style="flex:1;padding:.65rem;border-radius:9px;border:none;background:transparent;color:var(--muted);font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer;transition:var(--tr)">
+          <i class="fa-solid fa-store" style="margin-left:.4rem"></i> أريد بيع مشروعي
+        </button>
+      </div>
+
+      <!-- ═══ TAB: تصفح / شراء ═══ -->
+      <div id="mkt-panel-browse">
+
+        <!-- فلاتر البحث -->
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem;margin-bottom:1.2rem">
+          <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.75rem"><i class="fa-solid fa-filter" style="color:var(--primary);margin-left:.4rem"></i>فلترة العروض</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem">
+            <div>
+              <label style="font-size:.75rem;color:var(--muted);display:block;margin-bottom:.3rem">نوع النشاط</label>
+              <select id="mkt-filter-type" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
+                <option value="">الكل</option>
+                <option>مطعم / مقهى</option>
+                <option>تجارة تجزئة</option>
+                <option>تجارة إلكترونية</option>
+                <option>خدمات</option>
+                <option>صناعة / إنتاج</option>
+                <option>عقارات</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:.75rem;color:var(--muted);display:block;margin-bottom:.3rem">المنطقة</label>
+              <select id="mkt-filter-city" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
+                <option value="">الكل</option>
+                <option>الرياض</option>
+                <option>جدة</option>
+                <option>الدمام / الخبر</option>
+                <option>مكة المكرمة</option>
+                <option>المدينة المنورة</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:.75rem;color:var(--muted);display:block;margin-bottom:.3rem">نطاق السعر</label>
+              <select id="mkt-filter-price" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
+                <option value="">الكل</option>
+                <option>أقل من 100 ألف</option>
+                <option>100 – 500 ألف</option>
+                <option>500 ألف – مليون</option>
+                <option>أكثر من مليون</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- قوائم المشاريع (Blind Profiles) -->
+        <div style="display:grid;gap:1rem;margin-bottom:1.5rem">
+
+          <!-- بطاقة 1 -->
+          <div style="background:var(--card);border:1.5px solid rgba(14,165,233,.25);border-radius:16px;padding:1.25rem">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+              <div style="display:flex;align-items:center;gap:.85rem">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                  <i class="fa-solid fa-utensils" style="color:#fff;font-size:1.1rem"></i>
+                </div>
+                <div>
+                  <div style="font-weight:800;font-size:.95rem;color:var(--text)">مطعم وجبات سريعة قائم</div>
+                  <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem"><i class="fa-solid fa-location-dot" style="margin-left:.3rem"></i>الرياض (المنطقة الشمالية) · 4 سنوات في السوق</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+                <span style="background:rgba(16,185,129,.12);color:#10b981;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700">✓ موثق</span>
+                <span style="background:rgba(14,165,233,.12);color:#0ea5e9;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700">متاح الآن</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:1rem">
+              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+                <div style="font-size:.92rem;font-weight:900;color:#10b981">42,000</div>
+                <div style="font-size:.68rem;color:var(--muted)">إيراد شهري (ر.س)</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+                <div style="font-size:.92rem;font-weight:900;color:#f59e0b">9,500</div>
+                <div style="font-size:.68rem;color:var(--muted)">صافي ربح (ر.س)</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+                <div style="font-size:.92rem;font-weight:900;color:#a855f7">280,000</div>
+                <div style="font-size:.68rem;color:var(--muted)">قيمة الأصول (ر.س)</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+                <div style="font-size:.92rem;font-weight:900;color:#0ea5e9">350,000</div>
+                <div style="font-size:.68rem;color:var(--muted)">السعر المطلوب (ر.س)</div>
+              </div>
+            </div>
+            <div style="font-size:.79rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.85rem;margin-bottom:.85rem;line-height:1.7">
+              <span style="margin-left:1.25rem"><i class="fa-solid fa-users" style="margin-left:.3rem"></i>5 موظفين</span>
+              <span style="margin-left:1.25rem"><i class="fa-solid fa-box" style="margin-left:.3rem"></i>مخزون: 28,000 ر.س</span>
+              <span><i class="fa-solid fa-circle-check" style="color:#10b981;margin-left:.3rem"></i>لا مديونيات</span>
+            </div>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+              <button onclick="showProjectReport('p001')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
+                <i class="fa-solid fa-file-chart-column" style="margin-left:.35rem"></i>التقرير المالي
+              </button>
+              <button onclick="openQA('p001')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
+                <i class="fa-solid fa-comments" style="margin-left:.35rem"></i>سؤال وجواب
+              </button>
+              <button onclick="requestInspection('p001','مطعم وجبات سريعة')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:none;background:linear-gradient(135deg,#0c4a6e,#0ea5e9);color:#fff;font-family:inherit;font-size:.83rem;font-weight:800;cursor:pointer">
+                <i class="fa-solid fa-eye" style="margin-left:.35rem"></i>طلب معاينة
+              </button>
+            </div>
+          </div>
+
+          <!-- بطاقة 2 -->
+          <div style="background:var(--card);border:1.5px solid rgba(168,85,247,.25);border-radius:16px;padding:1.25rem">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+              <div style="display:flex;align-items:center;gap:.85rem">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#4c0080,#a855f7);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                  <i class="fa-solid fa-cart-shopping" style="color:#fff;font-size:1.1rem"></i>
+                </div>
+                <div>
+                  <div style="font-weight:800;font-size:.95rem;color:var(--text)">محل تجزئة — إلكترونيات</div>
+                  <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem"><i class="fa-solid fa-location-dot" style="margin-left:.3rem"></i>جدة (المنطقة الغربية) · 6 سنوات في السوق</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:.5rem;align-items:center">
+                <span style="background:rgba(16,185,129,.12);color:#10b981;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700">✓ موثق</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:1rem">
+              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+                <div style="font-size:.92rem;font-weight:900;color:#10b981">95,000</div>
+                <div style="font-size:.68rem;color:var(--muted)">إيراد شهري (ر.س)</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+                <div style="font-size:.92rem;font-weight:900;color:#f59e0b">18,000</div>
+                <div style="font-size:.68rem;color:var(--muted)">صافي ربح (ر.س)</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+                <div style="font-size:.92rem;font-weight:900;color:#a855f7">520,000</div>
+                <div style="font-size:.68rem;color:var(--muted)">قيمة الأصول (ر.س)</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+                <div style="font-size:.92rem;font-weight:900;color:#0ea5e9">680,000</div>
+                <div style="font-size:.68rem;color:var(--muted)">السعر المطلوب (ر.س)</div>
+              </div>
+            </div>
+            <div style="font-size:.79rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.85rem;margin-bottom:.85rem;line-height:1.7">
+              <span style="margin-left:1.25rem"><i class="fa-solid fa-users" style="margin-left:.3rem"></i>3 موظفين</span>
+              <span style="margin-left:1.25rem"><i class="fa-solid fa-box" style="margin-left:.3rem"></i>مخزون: 180,000 ر.س</span>
+              <span style="color:#f59e0b"><i class="fa-solid fa-triangle-exclamation" style="margin-left:.3rem"></i>مديونية معلنة: 35,000 ر.س</span>
+            </div>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+              <button onclick="showProjectReport('p002')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
+                <i class="fa-solid fa-file-chart-column" style="margin-left:.35rem"></i>التقرير المالي
+              </button>
+              <button onclick="openQA('p002')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
+                <i class="fa-solid fa-comments" style="margin-left:.35rem"></i>سؤال وجواب
+              </button>
+              <button onclick="requestInspection('p002','محل إلكترونيات')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:none;background:linear-gradient(135deg,#0c4a6e,#0ea5e9);color:#fff;font-family:inherit;font-size:.83rem;font-weight:800;cursor:pointer">
+                <i class="fa-solid fa-eye" style="margin-left:.35rem"></i>طلب معاينة
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- باقة البحث الذهبية -->
+        <div style="background:linear-gradient(135deg,#1c1400,#2d1f00);border:2px solid #f59e0b;border-radius:18px;padding:1.5rem;margin-bottom:1rem">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem">
+            <i class="fa-solid fa-crown" style="color:#f59e0b;font-size:1.2rem"></i>
+            <div style="font-size:1rem;font-weight:900;color:#fde68a">باقة البحث الذهبية</div>
+          </div>
+          <p style="font-size:.84rem;color:rgba(255,255,255,.8);margin:0 0 1rem;line-height:1.7">لم تجد ما تبحث عنه؟ اشترك وسنبحث نيابةً عنك ونقدم لك عروضاً مطابقة لمواصفاتك خلال 3 أشهر.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.1rem">
+            <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:.75rem">
+              <div style="font-size:.75rem;color:#fcd34d;font-weight:700;margin-bottom:.25rem">الرسوم</div>
+              <div style="font-size:1.1rem;font-weight:900;color:#f59e0b">5,000 ر.س</div>
+              <div style="font-size:.7rem;color:rgba(255,255,255,.55)">تُخصم من عمولة الشراء عند الإتمام</div>
+            </div>
+            <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:.75rem">
+              <div style="font-size:.75rem;color:#fcd34d;font-weight:700;margin-bottom:.25rem">مدة العقد</div>
+              <div style="font-size:1.1rem;font-weight:900;color:#f59e0b">3 أشهر</div>
+              <div style="font-size:.7rem;color:rgba(255,255,255,.55)">أو 10 عروض مطابقة أيهما أسبق</div>
+            </div>
+          </div>
+          <div style="font-size:.76rem;color:rgba(255,255,255,.6);margin-bottom:1rem;line-height:1.6;background:rgba(0,0,0,.2);border-radius:8px;padding:.65rem">
+            ⚠️ <strong style="color:#fde68a">سياسة الاسترداد:</strong> لا استرداد بعد تقديم أول عرض مطابق · استرداد كامل فقط في حال انقضاء 3 أشهر بدون أي عرض
+          </div>
+          <button onclick="showGoldSearchForm()" style="width:100%;padding:.8rem;border-radius:10px;border:none;background:linear-gradient(135deg,#92400e,#f59e0b);color:#fff;font-family:inherit;font-size:.9rem;font-weight:800;cursor:pointer">
+            <i class="fa-solid fa-crown" style="margin-left:.4rem"></i>اشترك في باقة البحث الذهبية
+          </button>
+        </div>
+
+        <!-- نموذج البحث الذهبي -->
+        <div id="mkt-gold-form" style="display:none;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1rem">
+          <h3 style="font-size:.97rem;font-weight:800;margin:0 0 1rem"><i class="fa-solid fa-crown" style="color:#f59e0b;margin-left:.5rem"></i>تفاصيل طلب البحث</h3>
+          <div style="display:grid;gap:.85rem">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
+              <div class="f-field"><label>نوع النشاط المطلوب <span style="color:red">*</span></label>
+                <select id="gs-type"><option value="">اختر</option><option>مطعم / مقهى</option><option>تجارة تجزئة</option><option>تجارة إلكترونية</option><option>خدمات</option><option>صناعة / إنتاج</option><option>عقارات</option></select></div>
+              <div class="f-field"><label>المنطقة المفضلة <span style="color:red">*</span></label>
+                <select id="gs-city"><option value="">اختر</option><option>الرياض</option><option>جدة</option><option>الدمام / الخبر</option><option>مكة المكرمة</option><option>أي منطقة</option></select></div>
+              <div class="f-field"><label>الميزانية (من)</label><input type="number" id="gs-budget-min" placeholder="مثال: 200000"/></div>
+              <div class="f-field"><label>الميزانية (إلى)</label><input type="number" id="gs-budget-max" placeholder="مثال: 800000"/></div>
+              <div class="f-field"><label>الحد الأدنى للإيراد الشهري</label><input type="number" id="gs-rev-min" placeholder="مثال: 50000"/></div>
+              <div class="f-field"><label>عدد الموظفين (تقريباً)</label><input type="number" id="gs-employees" placeholder="مثال: 5"/></div>
+            </div>
+            <div class="f-field"><label>مواصفات إضافية</label><textarea id="gs-notes" rows="3" placeholder="صف ما تبحث عنه بالتفصيل..."></textarea></div>
+            <div class="f-field"><label>اسمك الكامل <span style="color:red">*</span></label><input type="text" id="gs-name" placeholder="الاسم"/></div>
+            <div class="f-field"><label>رقم التواصل <span style="color:red">*</span></label><input type="tel" id="gs-phone" placeholder="05xxxxxxxx"/></div>
+            <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:.85rem;font-size:.8rem;color:rgba(200,200,200,.85);line-height:1.6">
+              💳 بعد إرسال الطلب سيتواصل معك فريقنا لإتمام الدفع (5,000 ر.س) عبر البوابة الرسمية قبل بدء البحث.
+            </div>
+            <button onclick="submitGoldSearch()" style="padding:.8rem;border-radius:10px;border:none;background:linear-gradient(135deg,#92400e,#f59e0b);color:#fff;font-family:inherit;font-size:.9rem;font-weight:800;cursor:pointer;width:100%">
+              <i class="fa-solid fa-paper-plane" style="margin-left:.4rem"></i>إرسال طلب البحث
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /mkt-panel-browse -->
+
+      <!-- ═══ TAB: بيع مشروعي ═══ -->
+      <div id="mkt-panel-sell" style="display:none">
+
+        <!-- تنبيه الشروط -->
+        <div style="background:rgba(14,165,233,.07);border:1px solid rgba(14,165,233,.2);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1.25rem;font-size:.82rem;color:var(--text);line-height:1.75">
+          <strong style="color:#38bdf8;display:block;margin-bottom:.4rem"><i class="fa-solid fa-shield-halved" style="margin-left:.4rem"></i>معايير القبول في سوق المشاريع</strong>
+          ✅ تعبئة كاملة وصادقة لجميع الحقول · ✅ الإفصاح الكامل عن أي مديونيات · ✅ رفع المستندات الداعمة للحصول على شارة "موثق" · ⛔ ممنوع كتابة اسم المشروع أو عنوانه الدقيق أو رقم التواصل في الإعلان
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem">
+          <h3 style="font-size:.97rem;font-weight:800;margin:0 0 1.25rem"><i class="fa-solid fa-store" style="color:#10b981;margin-left:.5rem"></i>نموذج إدراج المشروع للبيع</h3>
+
+          <!-- بيانات النشاط -->
+          <div style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1.1rem">
+            <div style="font-size:.8rem;font-weight:800;color:#10b981;margin-bottom:.75rem">بيانات النشاط الأساسية</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
+              <div class="f-field"><label>نوع النشاط <span style="color:red">*</span></label>
+                <select id="sell-type">
+                  <option value="">اختر القطاع</option>
+                  <option>مطعم / مقهى</option><option>تجارة تجزئة</option><option>تجارة إلكترونية</option>
+                  <option>خدمات مهنية</option><option>صناعة / إنتاج</option><option>عقارات</option>
+                  <option>لوجستي / توزيع</option><option>صحة وجمال</option><option>تعليم وتدريب</option>
+                </select></div>
+              <div class="f-field"><label>المدينة / المنطقة <span style="color:red">*</span></label>
+                <select id="sell-city">
+                  <option value="">اختر</option>
+                  <option>الرياض</option><option>جدة</option><option>الدمام</option><option>الخبر</option>
+                  <option>مكة المكرمة</option><option>المدينة المنورة</option><option>أخرى</option>
+                </select></div>
+              <div class="f-field"><label>عمر المشروع (سنوات) <span style="color:red">*</span></label>
+                <input type="number" id="sell-age" placeholder="مثال: 4" min="0"/></div>
+              <div class="f-field"><label>مساحة المشروع (م²)</label>
+                <input type="number" id="sell-area" placeholder="مثال: 120" min="0"/></div>
+            </div>
+          </div>
+
+          <!-- التكاليف والإيرادات -->
+          <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1.1rem">
+            <div style="font-size:.8rem;font-weight:800;color:#60a5fa;margin-bottom:.75rem">البيانات المالية (شهرية)</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
+              <div class="f-field"><label>الإيجار الشهري (ر.س) <span style="color:red">*</span></label>
+                <input type="number" id="sell-rent" placeholder="مثال: 8000" min="0"/></div>
+              <div class="f-field"><label>رواتب العمالة الشهرية (ر.س) <span style="color:red">*</span></label>
+                <input type="number" id="sell-salaries" placeholder="مثال: 15000" min="0"/></div>
+              <div class="f-field"><label>الفواتير (كهرباء+مياه+اتصالات) <span style="color:red">*</span></label>
+                <input type="number" id="sell-bills" placeholder="مثال: 3000" min="0"/></div>
+              <div class="f-field"><label>مصاريف تشغيلية أخرى</label>
+                <input type="number" id="sell-other-exp" placeholder="مثال: 2000" min="0"/></div>
+              <div class="f-field"><label>الإيراد الشهري التقديري (ر.س) <span style="color:red">*</span></label>
+                <input type="number" id="sell-revenue" placeholder="مثال: 42000" min="0"/></div>
+              <div class="f-field"><label>صافي الربح الشهري (ر.س) <span style="color:red">*</span></label>
+                <input type="number" id="sell-net" placeholder="مثال: 9500" min="0"/></div>
+            </div>
+          </div>
+
+          <!-- العمالة والأصول -->
+          <div style="background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.15);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1.1rem">
+            <div style="font-size:.8rem;font-weight:800;color:#c084fc;margin-bottom:.75rem">العمالة والأصول والمخزون</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
+              <div class="f-field"><label>عدد الموظفين الكلي <span style="color:red">*</span></label>
+                <input type="number" id="sell-emp-total" placeholder="مثال: 5" min="0"/></div>
+              <div class="f-field"><label>منهم سعوديون</label>
+                <input type="number" id="sell-emp-saudi" placeholder="مثال: 2" min="0"/></div>
+              <div class="f-field"><label>قيمة المعدات والأصول الثابتة (ر.س) <span style="color:red">*</span></label>
+                <input type="number" id="sell-assets" placeholder="مثال: 280000" min="0"/></div>
+              <div class="f-field"><label>قيمة المخزون / البضاعة الحالية (ر.س) <span style="color:red">*</span></label>
+                <input type="number" id="sell-inventory" placeholder="مثال: 28000" min="0"/></div>
+              <div class="f-field" style="grid-column:span 2"><label>وصف مختصر للمعدات والأصول <span style="color:red">*</span></label>
+                <textarea id="sell-assets-desc" rows="2" placeholder="مثال: مطبخ مجهز كامل، 4 ثلاجات تجارية، كاميرات مراقبة..."></textarea></div>
+            </div>
+          </div>
+
+          <!-- السعر وحالة العمالة -->
+          <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1.1rem">
+            <div style="font-size:.8rem;font-weight:800;color:#fcd34d;margin-bottom:.75rem">السعر وتفاصيل العمالة</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
+              <div class="f-field"><label>السعر المطلوب للمشروع (ر.س) <span style="color:red">*</span></label>
+                <input type="number" id="sell-price" placeholder="مثال: 350000" min="0"/></div>
+              <div class="f-field"><label>حالة تأشيرات العمالة</label>
+                <select id="sell-visa">
+                  <option value="">اختر</option>
+                  <option>كل العمالة نظامية</option>
+                  <option>بعض العمالة غير نظامية</option>
+                  <option>جميع الإقامات سارية</option>
+                </select></div>
+            </div>
+          </div>
+
+          <!-- المديونيات (إلزامي) -->
+          <div style="background:rgba(239,68,68,.07);border:2px solid rgba(239,68,68,.25);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1.1rem">
+            <div style="font-size:.8rem;font-weight:800;color:#f87171;margin-bottom:.55rem">
+              <i class="fa-solid fa-triangle-exclamation" style="margin-left:.4rem"></i>الإفصاح عن المديونيات (إلزامي)
+            </div>
+            <div class="f-field" style="margin-bottom:.75rem"><label>المديونيات القائمة (للجهات أو العمالة أو الموردين) <span style="color:red">*</span></label>
+              <textarea id="sell-debts" rows="2" placeholder="إن لم يوجد اكتب: لا توجد مديونيات. إن وجدت: اذكر الجهة والمبلغ."></textarea></div>
+            <label style="display:flex;align-items:flex-start;gap:.65rem;cursor:pointer;font-size:.82rem;line-height:1.6">
+              <input type="checkbox" id="sell-disclosure-ack" style="margin-top:.2rem;flex-shrink:0"/>
+              <span>أُقر وأتعهد بأنني أفصحت عن كافة المديونيات والالتزامات المالية للمشروع، وأن أي مديونيات تظهر لاحقاً تُعدّ من مسؤوليتي وحدي ولا علاقة للمنصة بها.</span>
+            </label>
+          </div>
+
+          <!-- رفع المستندات -->
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1.25rem">
+            <div style="font-size:.8rem;font-weight:800;color:var(--text);margin-bottom:.3rem"><i class="fa-solid fa-lock" style="color:var(--muted);margin-left:.4rem"></i>المستندات الداعمة (للإدارة فقط — للحصول على شارة "موثق")</div>
+            <div style="font-size:.73rem;color:var(--muted);margin-bottom:.75rem">لن تُعرض على المشترين بأي شكل. للتحقق الداخلي فقط.</div>
+            <div style="display:grid;gap:.6rem">
+              <div><label style="font-size:.78rem;color:var(--muted);display:block;margin-bottom:.25rem">4 إقرارات ضريبية سنوية</label>
+                <input type="file" id="sell-doc-tax" multiple accept=".pdf,.jpg,.png" style="font-size:.78rem;color:var(--muted)"/></div>
+              <div><label style="font-size:.78rem;color:var(--muted);display:block;margin-bottom:.25rem">كشف حساب بنكي 6 أشهر</label>
+                <input type="file" id="sell-doc-bank" multiple accept=".pdf,.jpg,.png" style="font-size:.78rem;color:var(--muted)"/></div>
+              <div><label style="font-size:.78rem;color:var(--muted);display:block;margin-bottom:.25rem">ميزان مراجعة / قوائم مالية</label>
+                <input type="file" id="sell-doc-balance" accept=".pdf,.xlsx,.xls" style="font-size:.78rem;color:var(--muted)"/></div>
+            </div>
+          </div>
+
+          <!-- بيانات التواصل (للإدارة فقط) -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.25rem">
+            <div class="f-field"><label>اسمك (للإدارة فقط) <span style="color:red">*</span></label>
+              <input type="text" id="sell-owner-name" placeholder="الاسم الكامل"/></div>
+            <div class="f-field"><label>رقم التواصل (للإدارة فقط) <span style="color:red">*</span></label>
+              <input type="tel" id="sell-owner-phone" placeholder="05xxxxxxxx"/></div>
+          </div>
+
+          <div style="background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.15);border-radius:10px;padding:.75rem;font-size:.77rem;color:rgba(200,200,200,.75);margin-bottom:1.1rem;line-height:1.65">
+            ⛔ <strong style="color:#f87171">تحذير:</strong> ممنوع منعاً باتاً كتابة اسم المشروع أو عنوانه الدقيق أو رقم تواصل في أي حقل إعلاني. المخالفة تؤدي إلى حذف الإعلان فوراً.
+          </div>
+
+          <button onclick="submitListingForm()" style="width:100%;padding:.9rem;border-radius:12px;border:none;background:linear-gradient(135deg,#065f46,#10b981);color:#fff;font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer">
+            <i class="fa-solid fa-paper-plane" style="margin-left:.5rem"></i>إرسال الإعلان للمراجعة
+          </button>
+          <p style="text-align:center;font-size:.73rem;color:var(--muted);margin-top:.6rem">يُراجع الإعلان خلال 24-48 ساعة · لن تظهر بياناتك الشخصية للمشترين</p>
+        </div>
+      </div><!-- /mkt-panel-sell -->
+
+      <!-- ═══ Modals ═══ -->
+
+      <!-- تقرير مالي -->
+      <div id="mkt-report-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9000;overflow-y:auto;padding:1.5rem">
+        <div style="max-width:520px;margin:2rem auto;background:var(--card);border-radius:20px;padding:1.75rem;position:relative">
+          <button onclick="document.getElementById('mkt-report-modal').style.display='none'" style="position:absolute;top:1rem;left:1rem;background:rgba(255,255,255,.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;color:var(--text)">✕</button>
+          <div id="mkt-report-content"></div>
+          <button onclick="downloadPDFReport()" style="width:100%;margin-top:1.25rem;padding:.75rem;border-radius:10px;border:none;background:linear-gradient(135deg,#1e3a8a,#3b82f6);color:#fff;font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer">
+            <i class="fa-solid fa-file-pdf" style="margin-left:.4rem"></i>تحميل PDF (بعلامة مائية)
+          </button>
+        </div>
+      </div>
+
+      <!-- طلب معاينة -->
+      <div id="mkt-inspection-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9001;overflow-y:auto;padding:1.5rem">
+        <div style="max-width:500px;margin:2rem auto;background:var(--card);border-radius:20px;padding:1.75rem;position:relative">
+          <button onclick="document.getElementById('mkt-inspection-modal').style.display='none'" style="position:absolute;top:1rem;left:1rem;background:rgba(255,255,255,.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;color:var(--text)">✕</button>
+          <h3 style="font-size:1rem;font-weight:900;margin:0 0 .5rem"><i class="fa-solid fa-eye" style="color:#0ea5e9;margin-left:.5rem"></i>طلب معاينة المشروع</h3>
+          <div id="mkt-inspection-name" style="font-size:.84rem;color:var(--muted);margin-bottom:1.1rem"></div>
+          <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:1rem;margin-bottom:1.1rem;font-size:.82rem;line-height:1.7">
+            <strong style="color:#c084fc;display:block;margin-bottom:.4rem">شروط المعاينة:</strong>
+            ١. توقيع اتفاقية عدم إفصاح إلكترونية (NDA)<br>
+            ٢. دفع عربون جدية (يُحدد حسب المشروع) يُحفظ في حساب المنصة الوسيط<br>
+            ٣. بعد التحقق، يُكشف لك اسم وموقع المشروع وتُرتَّب المعاينة
+          </div>
+          <div style="display:grid;gap:.85rem">
+            <div class="f-field"><label>اسمك الكامل <span style="color:red">*</span></label><input type="text" id="ins-name" placeholder="الاسم"/></div>
+            <div class="f-field"><label>رقم التواصل <span style="color:red">*</span></label><input type="tel" id="ins-phone" placeholder="05xxxxxxxx"/></div>
+            <div class="f-field"><label>لماذا يستهويك هذا المشروع؟</label><textarea id="ins-reason" rows="2" placeholder="اختياري..."></textarea></div>
+            <label style="display:flex;align-items:flex-start;gap:.65rem;cursor:pointer;font-size:.81rem;line-height:1.6">
+              <input type="checkbox" id="ins-nda-ack" style="margin-top:.2rem;flex-shrink:0"/>
+              <span>أوافق على اتفاقية عدم الإفصاح (NDA) وأتعهد بعدم إجراء أي تواصل مع البائع خارج منصة جنان بيز طوال فترة التفاوض.</span>
+            </label>
+            <button onclick="submitInspectionRequest()" style="padding:.8rem;border-radius:10px;border:none;background:linear-gradient(135deg,#0c4a6e,#0ea5e9);color:#fff;font-family:inherit;font-size:.9rem;font-weight:800;cursor:pointer">
+              <i class="fa-solid fa-paper-plane" style="margin-left:.4rem"></i>إرسال طلب المعاينة
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- سؤال وجواب -->
+      <div id="mkt-qa-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9001;overflow-y:auto;padding:1.5rem">
+        <div style="max-width:500px;margin:2rem auto;background:var(--card);border-radius:20px;padding:1.75rem;position:relative">
+          <button onclick="document.getElementById('mkt-qa-modal').style.display='none'" style="position:absolute;top:1rem;left:1rem;background:rgba(255,255,255,.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;color:var(--text)">✕</button>
+          <h3 style="font-size:1rem;font-weight:900;margin:0 0 .4rem"><i class="fa-solid fa-comments" style="color:#10b981;margin-left:.5rem"></i>نظام سؤال وجواب</h3>
+          <p style="font-size:.79rem;color:var(--muted);margin:0 0 1.1rem;line-height:1.6">أسئلتك تُراجَع من الإدارة قبل إرسالها للبائع · لا تذكر معلومات شخصية في سؤالك</p>
+          <div style="background:var(--bg3);border-radius:10px;padding:.85rem;margin-bottom:1rem;min-height:80px;font-size:.82rem;color:var(--muted)">لا توجد أسئلة بعد. كن أول من يسأل.</div>
+          <div class="f-field"><label>سؤالك للبائع</label>
+            <textarea id="qa-question" rows="3" placeholder="مثال: هل يشمل السعر جميع المعدات؟ هل هناك التزامات تأجير طويل الأمد؟"></textarea>
+          </div>
+          <button onclick="submitQA()" style="width:100%;padding:.75rem;border-radius:10px;border:none;background:linear-gradient(135deg,#065f46,#10b981);color:#fff;font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:.75rem">
+            <i class="fa-solid fa-paper-plane" style="margin-left:.4rem"></i>إرسال السؤال للمراجعة
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /page-investor -->
+
+    <!-- ===== DESIGN ===== -->
+    <div class="page" id="page-design">
+      <div class="sec-hd">
         <div style="display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1">
           <div style="background:rgba(255,255,255,.08);border:1px solid rgba(14,165,233,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
             <div style="font-size:1rem;font-weight:900;color:#38bdf8">+850</div>
@@ -3262,106 +3682,9 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             <div style="font-size:.97rem;font-weight:800;color:var(--text);margin-bottom:.3rem">تقييم الفرصة بالذكاء الاصطناعي</div>
             <div style="font-size:.82rem;color:var(--muted);line-height:1.5">أدخل تفاصيل الفرصة وسيقيّمها الذكاء الاصطناعي: العائد · المخاطر · نقاط التعادل</div>
           </div>
-          <div style="display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:#f59e0b;font-weight:700;margin-top:auto">قيّم الفرصة <i class="fa-solid fa-arrow-left"></i></div>
-        </div>
-
       </div>
 
-      <!-- Dynamic section area -->
-      <div id="investor-section-area">
-
-        <!-- قسم: الفرص الاستثمارية -->
-        <div id="inv-sec-opportunities" style="display:none">
-          <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem">
-            <h3 style="font-size:.97rem;font-weight:800;margin:0 0 1.1rem"><i class="fa-solid fa-magnifying-glass-dollar" style="color:#0ea5e9;margin-left:.5rem"></i>الفرص الاستثمارية المتاحة</h3>
-            <div style="display:grid;gap:.85rem">
-              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-                <div style="display:flex;align-items:center;gap:.85rem">
-                  <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-utensils" style="color:#fff;font-size:.9rem"></i></div>
-                  <div><div style="font-weight:700;font-size:.9rem">مطعم وجبات سريعة — الرياض</div><div style="font-size:.78rem;color:var(--muted)">رأس مال: 180,000 ر.س · عائد متوقع: 28%</div></div>
-                </div>
-                <button style="background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border:none;border-radius:8px;padding:.45rem 1rem;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer">التفاصيل</button>
-              </div>
-              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-                <div style="display:flex;align-items:center;gap:.85rem">
-                  <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#14532d,#22c55e);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-mobile-screen" style="color:#fff;font-size:.9rem"></i></div>
-                  <div><div style="font-weight:700;font-size:.9rem">تطبيق خدمات رقمية — جدة</div><div style="font-size:.78rem;color:var(--muted)">رأس مال: 320,000 ر.س · عائد متوقع: 45%</div></div>
-                </div>
-                <button style="background:linear-gradient(135deg,#14532d,#22c55e);color:#fff;border:none;border-radius:8px;padding:.45rem 1rem;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer">التفاصيل</button>
-              </div>
-              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-                <div style="display:flex;align-items:center;gap:.85rem">
-                  <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#78350f,#f59e0b);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-warehouse" style="color:#fff;font-size:.9rem"></i></div>
-                  <div><div style="font-weight:700;font-size:.9rem">مستودع لوجستي — الدمام</div><div style="font-size:.78rem;color:var(--muted)">رأس مال: 750,000 ر.س · عائد متوقع: 22%</div></div>
-                </div>
-                <button style="background:linear-gradient(135deg,#78350f,#f59e0b);color:#fff;border:none;border-radius:8px;padding:.45rem 1rem;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer">التفاصيل</button>
-              </div>
-            </div>
-            <p style="font-size:.75rem;color:var(--muted);margin-top:1rem;text-align:center;padding:.6rem;background:rgba(14,165,233,.06);border-radius:8px">ℹ️ البيانات التوضيحية للعرض فقط · الفرص الحقيقية تُعرض بعد التسجيل</p>
-          </div>
-        </div>
-
-        <!-- قسم: دعم التفاوض / الاتصال -->
-        <div id="inv-sec-negotiation" style="display:none">
-          <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem">
-            <h3 style="font-size:.97rem;font-weight:800;margin:0 0 .5rem"><i class="fa-solid fa-handshake" style="color:#a855f7;margin-left:.5rem"></i>طلب دعم التفاوض</h3>
-            <p style="font-size:.84rem;color:var(--muted);margin:0 0 1.2rem">أرسل لنا تفاصيل الصفقة وسيتواصل معك أحد متخصصيينا خلال 24 ساعة</p>
-            <div style="display:grid;gap:.85rem">
-              <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">اسم المشروع أو الفرصة</label><input type="text" placeholder="مثال: مشروع مطعم الرياض" style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem;box-sizing:border-box"></div>
-              <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">قيمة الصفقة (ريال سعودي)</label><input type="number" placeholder="مثال: 500000" style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem;box-sizing:border-box"></div>
-              <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">تفاصيل إضافية</label><textarea rows="3" placeholder="صِف نوع الصفقة والتحديات التي تواجهها..." style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem;resize:vertical;box-sizing:border-box"></textarea></div>
-              <button style="background:linear-gradient(135deg,#4a1d96,#a855f7);color:#fff;border:none;border-radius:10px;padding:.8rem;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer">إرسال الطلب</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- قسم: ملف المستثمر -->
-        <div id="inv-sec-profile" style="display:none">
-          <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem">
-            <h3 style="font-size:.97rem;font-weight:800;margin:0 0 .5rem"><i class="fa-solid fa-id-card" style="color:#22c55e;margin-left:.5rem"></i>إنشاء ملف المستثمر</h3>
-            <p style="font-size:.84rem;color:var(--muted);margin:0 0 1.2rem">ملفك الاستثماري يُظهر لأصحاب المشاريع تفضيلاتك فتصلك الفرص المناسبة مباشرة</p>
-            <div style="display:grid;gap:.85rem">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
-                <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">الاسم</label><input type="text" placeholder="الاسم الكامل" style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem;box-sizing:border-box"></div>
-                <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">رقم التواصل</label><input type="tel" placeholder="05xxxxxxxx" style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem;box-sizing:border-box"></div>
-              </div>
-              <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">الميزانية الاستثمارية</label><select style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem"><option value="">اختر النطاق</option><option>أقل من 100,000 ر.س</option><option>100,000 – 500,000 ر.س</option><option>500,000 – 1,000,000 ر.س</option><option>أكثر من 1,000,000 ر.س</option></select></div>
-              <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">القطاعات المفضلة</label><div style="display:flex;flex-wrap:wrap;gap:.5rem">
-                <span style="padding:.35rem .8rem;border-radius:20px;border:1.5px solid var(--border);font-size:.8rem;cursor:pointer;transition:var(--tr)" onclick="this.classList.toggle('inv-tag-active');this.style.background=this.classList.contains('inv-tag-active')?'rgba(14,165,233,.15)':'';this.style.borderColor=this.classList.contains('inv-tag-active')?'#0ea5e9':''">🍽️ مطاعم</span>
-                <span style="padding:.35rem .8rem;border-radius:20px;border:1.5px solid var(--border);font-size:.8rem;cursor:pointer;transition:var(--tr)" onclick="this.classList.toggle('inv-tag-active');this.style.background=this.classList.contains('inv-tag-active')?'rgba(14,165,233,.15)':'';this.style.borderColor=this.classList.contains('inv-tag-active')?'#0ea5e9':''">💻 تقنية</span>
-                <span style="padding:.35rem .8rem;border-radius:20px;border:1.5px solid var(--border);font-size:.8rem;cursor:pointer;transition:var(--tr)" onclick="this.classList.toggle('inv-tag-active');this.style.background=this.classList.contains('inv-tag-active')?'rgba(14,165,233,.15)':'';this.style.borderColor=this.classList.contains('inv-tag-active')?'#0ea5e9':''">🏥 صحة</span>
-                <span style="padding:.35rem .8rem;border-radius:20px;border:1.5px solid var(--border);font-size:.8rem;cursor:pointer;transition:var(--tr)" onclick="this.classList.toggle('inv-tag-active');this.style.background=this.classList.contains('inv-tag-active')?'rgba(14,165,233,.15)':'';this.style.borderColor=this.classList.contains('inv-tag-active')?'#0ea5e9':''">🏗️ عقارات</span>
-                <span style="padding:.35rem .8rem;border-radius:20px;border:1.5px solid var(--border);font-size:.8rem;cursor:pointer;transition:var(--tr)" onclick="this.classList.toggle('inv-tag-active');this.style.background=this.classList.contains('inv-tag-active')?'rgba(14,165,233,.15)':'';this.style.borderColor=this.classList.contains('inv-tag-active')?'#0ea5e9':''">📦 لوجستي</span>
-                <span style="padding:.35rem .8rem;border-radius:20px;border:1.5px solid var(--border);font-size:.8rem;cursor:pointer;transition:var(--tr)" onclick="this.classList.toggle('inv-tag-active');this.style.background=this.classList.contains('inv-tag-active')?'rgba(14,165,233,.15)':'';this.style.borderColor=this.classList.contains('inv-tag-active')?'#0ea5e9':''">🎓 تعليم</span>
-              </div></div>
-              <button style="background:linear-gradient(135deg,#14532d,#22c55e);color:#fff;border:none;border-radius:10px;padding:.8rem;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer">حفظ الملف الاستثماري</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- قسم: تقييم الفرصة -->
-        <div id="inv-sec-evaluate" style="display:none">
-          <div id="inv-evaluate-form">
-            <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem">
-              <h3 style="font-size:.97rem;font-weight:800;margin:0 0 .5rem"><i class="fa-solid fa-chart-pie" style="color:#f59e0b;margin-left:.5rem"></i>تقييم الفرصة الاستثمارية بالذكاء الاصطناعي</h3>
-              <p style="font-size:.84rem;color:var(--muted);margin:0 0 1.2rem">أدخل أرقام الفرصة وسيعطيك الذكاء الاصطناعي تقييماً فورياً بالمخاطر والعائد ونقطة التعادل</p>
-              <div style="display:grid;gap:.85rem">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
-                  <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">رأس المال المطلوب (ر.س)</label><input id="inv-eval-capital" type="number" placeholder="مثال: 300000" style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem;box-sizing:border-box"></div>
-                  <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">الإيراد الشهري المتوقع (ر.س)</label><input id="inv-eval-revenue" type="number" placeholder="مثال: 80000" style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem;box-sizing:border-box"></div>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
-                  <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">التكاليف الشهرية (ر.س)</label><input id="inv-eval-costs" type="number" placeholder="مثال: 55000" style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem;box-sizing:border-box"></div>
-                  <div><label style="font-size:.84rem;font-weight:600;display:block;margin-bottom:.4rem">المدة الزمنية (سنوات)</label><select id="inv-eval-years" style="width:100%;padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.88rem"><option value="1">سنة واحدة</option><option value="2">سنتان</option><option value="3" selected>3 سنوات</option><option value="5">5 سنوات</option></select></div>
-                </div>
-                <button onclick="runInvestorEval()" style="background:linear-gradient(135deg,#78350f,#f59e0b);color:#fff;border:none;border-radius:10px;padding:.8rem;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer">قيّم الفرصة الآن</button>
-              </div>
-            </div>
-          </div>
-          <div id="inv-eval-result" style="display:none;margin-top:1rem"></div>
-        </div>
-
-      </div><!-- /investor-section-area -->
+      </div>
 
     </div><!-- /page-investor -->
 
@@ -4250,7 +4573,7 @@ const pageMap = {
   orders:  {title:'طلباتي',       sub:'متابعة عروض الأسعار والطلبات المقدمة'},
   admin:   {title:'لوحة الإدمن — مركز التحكم', sub:'معاملات المستخدمين وذكاء المنصة التسويقي'},
   entrepreneur:{title:'بوابة ريادة الأعمال', sub:'تحليل المشاريع · دراسات الجدوى · استشارات رأس المال · خدمات المستثمرين'},
-  investor:{title:'خدمات المستثمرين', sub:'فرص استثمارية حقيقية · دعم التفاوض · ربط رواد الأعمال بالمستثمرين'},
+  investor:{title:'سوق المشاريع', sub:'بيع وشراء المشاريع القائمة · وساطة محكمة · هوية مخفية · عمولة توثيق'},
 };
 function goto(page) {
   console.log('[goto] navigating to:', page);
@@ -4326,27 +4649,120 @@ function gotoSub(page, groupId, subItemId) {
   if(page==='admin') renderAdminPanel();
   if(page==='compliance') initCompliancePage();
 }
-/* ═══ INVESTOR PAGE FUNCTIONS ═══ */
-function showInvestorSection(sec) {
-  ['opportunities','negotiation','profile','evaluate'].forEach(s => {
-    const el = document.getElementById('inv-sec-'+s);
-    if(el) el.style.display = s===sec ? 'block' : 'none';
-  });
-  document.getElementById('investor-section-area').scrollIntoView({behavior:'smooth',block:'start'});
+/* ═══ MARKET (سوق المشاريع) FUNCTIONS ═══ */
+function showMarketTab(tab) {
+  document.getElementById('mkt-panel-browse').style.display = tab==='browse' ? 'block' : 'none';
+  document.getElementById('mkt-panel-sell').style.display   = tab==='sell'   ? 'block' : 'none';
+  const btnB = document.getElementById('mkt-tab-browse');
+  const btnS = document.getElementById('mkt-tab-sell');
+  btnB.style.background = tab==='browse' ? 'var(--primary)' : 'transparent';
+  btnB.style.color      = tab==='browse' ? '#fff' : 'var(--muted)';
+  btnS.style.background = tab==='sell'   ? 'var(--primary)' : 'transparent';
+  btnS.style.color      = tab==='sell'   ? '#fff' : 'var(--muted)';
 }
+function showGoldSearchForm() {
+  const f = document.getElementById('mkt-gold-form');
+  f.style.display = f.style.display==='none' ? 'block' : 'none';
+  if(f.style.display==='block') f.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function submitGoldSearch() {
+  const name  = document.getElementById('gs-name')?.value.trim();
+  const phone = document.getElementById('gs-phone')?.value.trim();
+  const type  = document.getElementById('gs-type')?.value;
+  if(!name || !phone || !type) { alert('يرجى تعبئة الاسم ورقم الجوال ونوع النشاط.'); return; }
+  alert('✅ تم استلام طلب البحث الذهبي! سيتواصل معك فريقنا خلال 24 ساعة لإتمام الدفع والبدء في البحث.');
+  document.getElementById('mkt-gold-form').style.display = 'none';
+}
+function showProjectReport(pid) {
+  const reports = {
+    p001: { title:'مطعم وجبات سريعة', city:'الرياض', revenue:42000, net:9500, assets:280000, inventory:28000, price:350000, age:4, emp:5, debts:'لا توجد' },
+    p002: { title:'محل إلكترونيات', city:'جدة', revenue:95000, net:18000, assets:520000, inventory:180000, price:680000, age:6, emp:3, debts:'35,000 ر.س للمورد الرئيسي' },
+  };
+  const r = reports[pid]; if(!r) return;
+  document.getElementById('mkt-report-content').innerHTML = `
+    <div style="text-align:center;margin-bottom:1.25rem">
+      <div style="font-size:.7rem;color:var(--muted);margin-bottom:.25rem">التقرير المالي التفصيلي — سري وموثق</div>
+      <div style="font-size:1.05rem;font-weight:900;color:var(--text)">${r.title}</div>
+      <div style="font-size:.8rem;color:var(--muted)">${r.city} · ${r.age} سنوات في السوق · ${r.emp} موظفين</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1rem">
+      <div style="background:var(--bg3);border-radius:10px;padding:.75rem;text-align:center">
+        <div style="font-size:.95rem;font-weight:900;color:#10b981">${r.revenue.toLocaleString('ar-SA')}</div>
+        <div style="font-size:.68rem;color:var(--muted)">إيراد شهري (ر.س)</div></div>
+      <div style="background:var(--bg3);border-radius:10px;padding:.75rem;text-align:center">
+        <div style="font-size:.95rem;font-weight:900;color:#f59e0b">${r.net.toLocaleString('ar-SA')}</div>
+        <div style="font-size:.68rem;color:var(--muted)">صافي ربح (ر.س)</div></div>
+      <div style="background:var(--bg3);border-radius:10px;padding:.75rem;text-align:center">
+        <div style="font-size:.95rem;font-weight:900;color:#a855f7">${r.assets.toLocaleString('ar-SA')}</div>
+        <div style="font-size:.68rem;color:var(--muted)">قيمة الأصول (ر.س)</div></div>
+      <div style="background:var(--bg3);border-radius:10px;padding:.75rem;text-align:center">
+        <div style="font-size:.95rem;font-weight:900;color:#38bdf8">${r.inventory.toLocaleString('ar-SA')}</div>
+        <div style="font-size:.68rem;color:var(--muted)">المخزون الحالي (ر.س)</div></div>
+    </div>
+    <div style="background:var(--bg3);border-radius:10px;padding:.85rem;font-size:.82rem;margin-bottom:.75rem">
+      <div style="font-weight:700;margin-bottom:.4rem">المديونيات المُعلنة</div>
+      <div style="color:${r.debts==='لا توجد'?'#10b981':'#f59e0b'}">${r.debts}</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#0a1628,#1a2755);border-radius:10px;padding:.85rem;text-align:center">
+      <div style="font-size:.75rem;color:rgba(255,255,255,.5)">السعر المطلوب</div>
+      <div style="font-size:1.3rem;font-weight:900;color:#38bdf8">${r.price.toLocaleString('ar-SA')} ر.س</div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.4)">ROI سنوي: ${((r.net*12/r.price)*100).toFixed(1)}%</div>
+    </div>`;
+  document.getElementById('mkt-report-modal').style.display = 'block';
+}
+function downloadPDFReport() {
+  alert('📄 سيتم توليد التقرير كـ PDF بعلامة مائية للمنصة. هذه الميزة ستكون متاحة في النسخة الكاملة.');
+}
+function requestInspection(pid, name) {
+  document.getElementById('mkt-inspection-name').textContent = 'المشروع: ' + name;
+  document.getElementById('mkt-inspection-modal').style.display = 'block';
+}
+function submitInspectionRequest() {
+  const name = document.getElementById('ins-name')?.value.trim();
+  const phone = document.getElementById('ins-phone')?.value.trim();
+  const nda   = document.getElementById('ins-nda-ack')?.checked;
+  if(!name || !phone) { alert('يرجى إدخال الاسم ورقم التواصل.'); return; }
+  if(!nda) { alert('يرجى الموافقة على اتفاقية عدم الإفصاح.'); return; }
+  alert('✅ تم استلام طلب المعاينة! سيتواصل معك فريقنا خلال 24 ساعة لترتيب التفاصيل والعربون.');
+  document.getElementById('mkt-inspection-modal').style.display = 'none';
+}
+function openQA(pid) {
+  document.getElementById('mkt-qa-modal').style.display = 'block';
+}
+function submitQA() {
+  const q = document.getElementById('qa-question')?.value.trim();
+  if(!q) { alert('يرجى كتابة سؤالك.'); return; }
+  alert('✅ تم إرسال سؤالك للمراجعة. سيُنشر بعد موافقة الإدارة خلال 24 ساعة.');
+  document.getElementById('qa-question').value = '';
+  document.getElementById('mkt-qa-modal').style.display = 'none';
+}
+function submitListingForm() {
+  const type  = document.getElementById('sell-type')?.value;
+  const city  = document.getElementById('sell-city')?.value;
+  const rev   = document.getElementById('sell-revenue')?.value;
+  const price = document.getElementById('sell-price')?.value;
+  const debts = document.getElementById('sell-debts')?.value.trim();
+  const ack   = document.getElementById('sell-disclosure-ack')?.checked;
+  const oname = document.getElementById('sell-owner-name')?.value.trim();
+  const ophone= document.getElementById('sell-owner-phone')?.value.trim();
+  if(!type||!city||!rev||!price||!oname||!ophone) { alert('يرجى تعبئة جميع الحقول الإلزامية.'); return; }
+  if(!debts) { alert('يرجى تعبئة حقل المديونيات (اكتب لا توجد إن لم يوجد شيء).'); return; }
+  if(!ack) { alert('يرجى الموافقة على إقرار الإفصاح عن المديونيات.'); return; }
+  alert('✅ تم استلام إعلانك! سيُراجع خلال 24-48 ساعة. ستتلقى إشعاراً عند النشر.');
+}
+/* LEGACY (kept for compatibility) */
+function showInvestorSection(sec) { showMarketTab('browse'); }
 function runInvestorEval() {
-  const capital = parseFloat(document.getElementById('inv-eval-capital').value)||0;
-  const revenue = parseFloat(document.getElementById('inv-eval-revenue').value)||0;
-  const costs   = parseFloat(document.getElementById('inv-eval-costs').value)||0;
-  const years   = parseInt(document.getElementById('inv-eval-years').value)||3;
+  const capital = parseFloat(document.getElementById('inv-eval-capital')?.value)||0;
+  const revenue = parseFloat(document.getElementById('inv-eval-revenue')?.value)||0;
+  const costs   = parseFloat(document.getElementById('inv-eval-costs')?.value)||0;
+  const years   = parseInt(document.getElementById('inv-eval-years')?.value)||3;
   if(!capital||!revenue||!costs){ alert('يرجى إدخال جميع الأرقام'); return; }
   const monthlyProfit = revenue - costs;
   const annualProfit  = monthlyProfit * 12;
   const roi           = capital > 0 ? ((annualProfit / capital)*100).toFixed(1) : 0;
-  const breakEvenMo   = monthlyProfit > 0 ? Math.ceil(capital / monthlyProfit) : '∞';
-  const totalProfit   = (annualProfit * years).toFixed(0);
-  const score         = roi > 30 ? 'ممتازة' : roi > 15 ? 'جيدة' : roi > 5 ? 'مقبولة' : 'ضعيفة';
-  const scoreColor    = roi > 30 ? '#22c55e' : roi > 15 ? '#f59e0b' : roi > 5 ? '#0ea5e9' : '#ef4444';
+  alert(`ROI: ${roi}% · ربح شهري: ${monthlyProfit.toLocaleString('ar-SA')} ر.س`);
+}
   document.getElementById('inv-eval-result').style.display = 'block';
   document.getElementById('inv-eval-result').innerHTML = `
     <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem">
