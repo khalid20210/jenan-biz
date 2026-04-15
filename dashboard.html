@@ -1509,7 +1509,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             <div class="hub-output-preview" style="margin-top:.75rem">
               <div class="hop-label">ما ستحصل عليه:</div>
               <div class="hop-chips">
-                <span>📄 تقرير PDF</span><span>💰 توقعات مالية</span><span>✅ معتمد ومصادق عليه</span>
+                <span>📄 تقرير PDF</span><span>💰 توقعات مالية</span><span>✅ تقرير بمراجعة دقيقة</span>
               </div>
             </div>
             <div class="hub-card-footer">
@@ -4129,6 +4129,8 @@ function goto(page) {
   console.log('[goto] navigating to:', page);
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-group-header').forEach(el => el.classList.remove('group-active'));
   if(page==='projectcopilot') { showProjectCopilotModal(); return; }
   const pageEl = document.getElementById('page-'+page);
   if(!pageEl){ console.error('[goto] page not found: page-'+page); return; }
@@ -4142,13 +4144,11 @@ function goto(page) {
     if(grp) grp.classList.add('open');
     document.getElementById('navgrp-gateway')?.querySelector('.nav-group-header')?.classList.add('group-active');
     const subId = 'nav-' + (page === 'paid-analysis' ? 'paid-analysis' : page);
-    document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
     document.getElementById(subId)?.classList.add('active');
   } else if(['software','design','supply'].includes(page)) {
     const grp = document.getElementById('navgrp-growth');
     if(grp) grp.classList.add('open');
     document.getElementById('navgrp-growth')?.querySelector('.nav-group-header')?.classList.add('group-active');
-    document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
     document.getElementById('nav-'+page)?.classList.add('active');
   }
   const m = pageMap[page]||{title:page,sub:''};
@@ -4191,10 +4191,12 @@ function gotoSub(page, groupId, subItemId) {
   closeSidebar();
   if(page==='robot') initProjectAnalysis();
   if(page==='paid-analysis') initPaidAnalysis();
+  if(page==='analysis') showFsStep(0);
   if(page==='academy') initAcademy();
   if(page==='capital') { resetCapital(); renderDDQ(); switchCapPath('entre'); }
   if(page==='software') renderSoftwarePage();
   if(page==='orders') renderOrdersPage();
+  if(page==='admin') renderAdminPanel();
   if(page==='compliance') initCompliancePage();
 }
 /* ═══ INVESTOR PAGE FUNCTIONS ═══ */
@@ -7584,9 +7586,9 @@ function runPaidAnalysis() {
         </div>
         <!-- Upgrade Banner -->
         <div style="margin:0 2rem 2rem;background:linear-gradient(135deg,#78350f,#d97706);border-radius:14px;padding:1.5rem;text-align:center;color:#fff">
-          <div style="font-size:.75rem;font-weight:800;margin-bottom:.5rem;opacity:.85">هل تريد التقرير الكامل + مصادقة مستشار معتمد؟</div>
+          <div style="font-size:.75rem;font-weight:800;margin-bottom:.5rem;opacity:.85">هل تريد التقرير الكامل + مراجعة دقيقة من فريق متخصص؟</div>
           <h3 style="margin:0 0 .5rem;font-size:1.05rem">ارقَ إلى باقة الجودة الصفرية Pro — 1,999 ريال</h3>
-          <p style="font-size:.8rem;opacity:.75;margin-bottom:1rem;line-height:1.7">تقرير احترافي معتمد · مراجعة بشرية إلزامية · تسليم 24-48 ساعة</p>
+          <p style="font-size:.8rem;opacity:.75;margin-bottom:1rem;line-height:1.7">تقرير احترافي بمراجعة دقيقة · مراجعة بشرية إلزامية · تسليم 24-48 ساعة</p>
           <button onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')" style="background:#fff;color:#78350f;border:none;padding:.75rem 1.75rem;border-radius:30px;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:800;cursor:pointer">
             انتقل لباقة Pro <i class="fa-solid fa-arrow-left"></i>
           </button>
