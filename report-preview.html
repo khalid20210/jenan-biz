@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معاينة تقرير التحليل الاقتصادي — جنان بيز</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    --bg:#0d1117; --bg2:#161b22; --bg3:#1c2333;
+    --card:#21262d; --border:rgba(255,255,255,.1);
+    --text:#e6edf3; --text-main:#e6edf3; --muted:#8b949e;
+    --green:#4E73C2; --green-d:#3b5fa8;
+    --amber:#f59e0b; --radius:14px; --tr:.2s;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;padding:2rem 1rem}
+  .page{max-width:920px;margin:0 auto}
+  .page-label{text-align:center;margin-bottom:1.5rem;color:var(--muted);font-size:.82rem;display:flex;align-items:center;justify-content:center;gap:.6rem}
+  .page-label span{background:rgba(78,115,194,.15);border:1px solid rgba(78,115,194,.3);color:#7B9ED4;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700}
+
+  /* ── REPORT ── */
+  .study-report{background:var(--bg3);border:1px solid rgba(78,115,194,.3);border-radius:20px;overflow:hidden;margin-bottom:2rem;box-shadow:0 8px 40px rgba(78,115,194,.12),0 0 0 1px rgba(78,115,194,.06) inset}
+  .sr-header{background:linear-gradient(150deg,#05091e 0%,#0d1e4a 30%,#1E3A8A 65%,#3b63c8 90%,#4E73C2 100%);color:#fff;padding:0;position:relative;overflow:hidden}
+  .sr-header h2{font-size:1.2rem;font-weight:900;margin-bottom:.3rem}
+  .sr-header p{font-size:.82rem;opacity:.8}
+  .sr-meta{display:flex;gap:1.75rem;margin-top:1.4rem;flex-wrap:wrap}
+  .sr-meta-item{text-align:center}
+  .sr-meta-item .val{font-size:1.5rem;font-weight:900}
+  .sr-meta-item .lbl{font-size:.68rem;opacity:.72;margin-top:.1rem}
+  .sr-section{padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
+  .sr-section:last-child{border-bottom:none}
+  .sr-section h3{font-size:.95rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;color:var(--text)}
+  .sr-section h3 i{color:#4E73C2}
+  .sr-table{width:100%;border-collapse:collapse;font-size:.87rem}
+  .sr-table tr{border-bottom:1px solid var(--border)}
+  .sr-table tr:last-child{border-bottom:none}
+  .sr-table td{padding:.7rem .6rem;vertical-align:top;line-height:1.6}
+  .sr-table td:first-child{font-weight:600;color:var(--muted);width:40%;white-space:nowrap}
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.85rem;margin:1rem 0}
+  .kpi-box{background:var(--bg2);border-radius:12px;padding:.95rem 1rem;border:1px solid var(--border)}
+  .kpi-box label{font-size:.71rem;color:var(--muted);display:block;margin-bottom:.3rem;font-weight:600}
+  .kpi-box span{font-size:1.1rem;font-weight:800;color:var(--text)}
+  .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin:.35rem 0}
+  .progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#1E3A8A,#4E73C2,#7B9ED4);transition:.8s}
+  .verdict{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1.1rem;border-radius:20px;font-size:.88rem;font-weight:700;margin-bottom:1.1rem}
+  .verdict.yes{background:rgba(78,115,194,.12);color:#4ade80}
+  .verdict.maybe{background:rgba(244,166,35,.12);color:var(--amber)}
+  .verdict.no{background:rgba(231,76,60,.1);color:#e74c3c}
+  .sr-risk-row{display:flex;align-items:center;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.87rem}
+  .sr-risk-row:last-child{border-bottom:none}
+  .sr-risk-label{flex:1}
+  .pill-risk{padding:.25rem .75rem;border-radius:20px;font-size:.74rem;font-weight:700}
+  .pr-low{background:rgba(34,197,94,.12);color:#16a34a}
+  .pr-mid{background:rgba(245,158,11,.12);color:#d97706}
+  .pr-high{background:rgba(231,76,60,.1);color:#e74c3c}
+  .sr-disclaimer{display:flex;gap:.75rem;align-items:flex-start;margin:1.5rem 2rem .5rem;padding:1rem 1.25rem;background:rgba(78,115,194,.07);border:1px solid rgba(78,115,194,.2);border-radius:12px;font-size:.8rem;color:var(--muted);line-height:1.6;direction:rtl;text-align:right}
+  .sr-brand-footer{display:flex;align-items:center;gap:1rem;justify-content:space-between;flex-wrap:wrap;margin:.5rem 2rem 0;padding:1.1rem 1.75rem;background:linear-gradient(120deg,#040c1e 0%,#0d1e4a 40%,#1E3A8A 75%,#2a55b8 100%);border-radius:12px 12px 0 0;color:#fff;border-top:3px solid transparent;background-clip:padding-box;position:relative;overflow:hidden}
+  .sr-brand-footer::before{content:'';position:absolute;inset:0;border-radius:12px 12px 0 0;border-top:3px solid transparent;background:linear-gradient(90deg,#1E3A8A,#4E73C2,#7B9ED4) border-box;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;pointer-events:none}
+  .srbf-logo{font-size:1rem;font-weight:900;display:flex;align-items:center;gap:.65rem;color:#fff}
+  .srbf-logo img{height:44px;width:auto;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 0 10px rgba(123,158,212,.45));opacity:.95}
+  .srbf-mid{font-size:.78rem;color:rgba(255,255,255,.65);flex:1;text-align:center}
+  .srbf-date{font-size:.78rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:.35rem}
+  @media(max-width:700px){.sr-meta{gap:1rem}.sr-section{padding:1.2rem 1.25rem}.sr-table td:first-child{white-space:normal;width:38%}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-label">
+    <i class="fa-solid fa-eye" style="color:#4E73C2"></i>
+    معاينة شكل التقرير — بيانات نموذجية
+    <span>مطعم / رياض</span>
+  </div>
+
+  <div class="study-report">
+
+    <!-- شريط العلامة التجارية -->
+    <div style="height:4px;background:linear-gradient(90deg,#1E3A8A,#4E73C2,#7B9ED4,#4E73C2,#1E3A8A)"></div>
+
+    <div class="sr-header">
+      <!-- SVG زخرفي -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.35" viewBox="0 0 820 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="rg1" cx="80%" cy="20%" r="50%">
+            <stop offset="0%" stop-color="#4E73C2" stop-opacity=".4"/>
+            <stop offset="100%" stop-color="#4E73C2" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="rg2" cx="10%" cy="90%" r="40%">
+            <stop offset="0%" stop-color="#7B9ED4" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#7B9ED4" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="820" height="220" fill="url(#rg1)"/>
+        <rect width="820" height="220" fill="url(#rg2)"/>
+        <g stroke="#7B9ED4" stroke-opacity=".12" stroke-width=".6">
+          <line x1="0" y1="55" x2="820" y2="55"/>
+          <line x1="0" y1="110" x2="820" y2="110"/>
+          <line x1="0" y1="165" x2="820" y2="165"/>
+          <line x1="205" y1="0" x2="205" y2="220"/>
+          <line x1="410" y1="0" x2="410" y2="220"/>
+          <line x1="615" y1="0" x2="615" y2="220"/>
+        </g>
+        <path d="M0,180 C120,160 200,140 300,110 S480,65 600,40 S720,22 820,14" stroke="#7B9ED4" stroke-width="1.5" fill="none" stroke-opacity=".5"/>
+        <circle cx="300" cy="110" r="3.5" fill="#7B9ED4" opacity=".6"/>
+        <circle cx="600" cy="40"  r="3.5" fill="#7B9ED4" opacity=".6"/>
+        <circle cx="820" cy="14"  r="5"   fill="#a5c8ff" opacity=".7">
+          <animate attributeName="r" from="4" to="12" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from=".7" to="0" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <text x="750" y="195" font-size="160" font-family="serif" font-weight="900" fill="#4E73C2" fill-opacity=".06" text-anchor="middle">J</text>
+      </svg>
+
+      <!-- محتوى الهيدر -->
+      <div style="position:relative;z-index:1;padding:1.75rem 2.25rem 1.25rem">
+
+        <!-- صف الشعار + بيانات المشروع -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.35rem">
+
+          <!-- الشعار + اسم المنصة -->
+          <div style="display:flex;align-items:center;gap:.9rem;flex-shrink:0">
+            <div style="width:68px;height:68px;border-radius:18px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,.25),0 0 0 4px rgba(78,115,194,.2)">
+              <img src="logo.png" alt="جنان بيز"
+                style="height:52px;width:auto;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 2px 8px rgba(74,108,194,.6));opacity:.95"
+                onerror="this.style.display='none'">
+            </div>
+            <div>
+              <div style="font-size:1.05rem;font-weight:900;color:#fff;letter-spacing:.3px;line-height:1.1">جنان بيز</div>
+              <div style="font-size:.65rem;color:rgba(255,255,255,.5);margin-top:.15rem">المنصة الذكية للأعمال والاستثمار</div>
+              <div style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75);border-radius:20px;padding:.12rem .6rem;font-size:.6rem;font-weight:700;margin-top:.3rem">
+                <span style="width:5px;height:5px;border-radius:50%;background:#4fbe7c;display:inline-block"></span>
+                تقرير التحليل الاقتصادي
+              </div>
+            </div>
+          </div>
+
+          <!-- بيانات المشروع -->
+          <div style="text-align:left;flex:1;min-width:180px">
+            <h2 style="font-size:1.15rem;color:#fff;margin:0 0 .3rem;font-weight:900">مطعم الأصالة السعودية</h2>
+            <p style="display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;color:rgba(255,255,255,.65);font-size:.8rem;margin:0">
+              <span>مطعم / مقهى</span>
+              <span style="opacity:.4">·</span>
+              <span>الرياض</span>
+              <span style="opacity:.4">·</span>
+              <span>١٤ أبريل ٢٠٢٦</span>
+            </p>
+            <div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap">
+              <span style="background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3);font-size:.62rem;font-weight:800;padding:.1rem .5rem;border-radius:10px">بيانات سوق 2026</span>
+              <span style="background:rgba(245,158,11,.18);color:#fbbf24;border:1px solid rgba(245,158,11,.32);font-size:.62rem;font-weight:800;padding:.1rem .5rem;border-radius:10px"><i class="fa-solid fa-crown" style="font-size:.55rem;margin-left:.25rem"></i>تحليل مميز</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- فاصل -->
+        <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);margin-bottom:.85rem"></div>
+
+        <!-- KPI Strip -->
+        <div class="sr-meta">
+          <div class="sr-meta-item">
+            <div class="val" style="color:#fff;text-shadow:0 0 18px rgba(165,200,255,.5)">78/100</div>
+            <div class="lbl" style="color:rgba(255,255,255,.6)">التقييم الشامل</div>
+          </div>
+          <div style="width:1px;height:40px;background:rgba(255,255,255,.1);flex-shrink:0;align-self:center"></div>
+          <div class="sr-meta-item">
+            <div class="val" style="color:#a5f3fc;text-shadow:0 0 14px rgba(165,243,252,.4)">18.4%</div>
+            <div class="lbl" style="color:rgba(255,255,255,.6)">هامش الربح الصافي</div>
+          </div>
+          <div style="width:1px;height:40px;background:rgba(255,255,255,.1);flex-shrink:0;align-self:center"></div>
+          <div class="sr-meta-item">
+            <div class="val" style="color:#6ee7b7">+9,200</div>
+            <div class="lbl" style="color:rgba(255,255,255,.6)">صافي الربح / شهر</div>
+          </div>
+          <div style="width:1px;height:40px;background:rgba(255,255,255,.1);flex-shrink:0;align-self:center"></div>
+          <div class="sr-meta-item">
+            <div class="val" style="color:#bfdbfe">62.0%</div>
+            <div class="lbl" style="color:rgba(255,255,255,.6)">هامش الربح الإجمالي</div>
+          </div>
+          <div style="width:1px;height:40px;background:rgba(255,255,255,.1);flex-shrink:0;align-self:center"></div>
+          <div class="sr-meta-item">
+            <div class="val" style="color:#fde68a">40,800</div>
+            <div class="lbl" style="color:rgba(255,255,255,.6)">إجمالي التكاليف/شهر</div>
+          </div>
+          <div style="width:1px;height:40px;background:rgba(255,255,255,.1);flex-shrink:0;align-self:center"></div>
+          <div class="sr-meta-item">
+            <div class="val" style="color:#c4b5fd">38,500</div>
+            <div class="lbl" style="color:rgba(255,255,255,.6)">نقطة التعادل الشهرية</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── الحكم النهائي ── -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-circle-check"></i>الحكم على المشروع</h3>
+      <div class="verdict yes" style="font-size:1.05rem;padding:.7rem 1.5rem">
+        ✅ المشروع واعد ويستحق المضي قُدُماً مع بعض التحسينات
+      </div>
+      <div style="margin-top:1.1rem">
+        <div style="display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.4rem"><span>التقييم الشامل</span><span style="font-weight:800">78/100</span></div>
+        <div class="progress-bar" style="height:10px"><div class="progress-fill" style="width:78%"></div></div>
+      </div>
+    </div>
+
+    <!-- ── الملخص المالي ── -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-calculator"></i>الملخص المالي الشهري</h3>
+      <div class="kpi-row">
+        <div class="kpi-box"><label>الإيرادات</label><span style="color:#4ade80">50,000 ر</span></div>
+        <div class="kpi-box"><label>تكلفة البضاعة</label><span>19,000 ر</span></div>
+        <div class="kpi-box"><label>إجمالي الربح</label><span style="color:#4ade80">31,000 ر</span></div>
+        <div class="kpi-box"><label>إجمالي التكاليف</label><span style="color:#e74c3c">40,800 ر</span></div>
+        <div class="kpi-box"><label>صافي الربح</label><span style="color:#4ade80;font-size:1.2rem;font-weight:800">+9,200 ر</span></div>
+        <div class="kpi-box"><label>نقطة التعادل</label><span>38,500 ر</span></div>
+      </div>
+      <table class="sr-table" style="margin-top:1.1rem">
+        <tr><td>الإيجار الشهري</td><td style="font-weight:700">5,000 ريال <span style="color:#4ade80;font-size:.78rem">(10.0%)</span></td></tr>
+        <tr><td>الرواتب الشهرية</td><td style="font-weight:700">12,000 ريال <span style="color:#4ade80;font-size:.78rem">(24.0%)</span></td></tr>
+        <tr><td>الكهرباء والمرافق</td><td style="font-weight:700">1,800 ريال</td></tr>
+        <tr><td>تكاليف ثابتة أخرى</td><td style="font-weight:700">1,000 ريال</td></tr>
+        <tr><td>الميزانية التسويقية</td><td style="font-weight:700">2,000 ريال</td></tr>
+        <tr><td>مصاريف متغيرة أخرى</td><td style="font-weight:700">0 ريال</td></tr>
+        <tr style="background:var(--bg2);font-weight:800"><td>إجمالي التكاليف الشهرية</td><td style="color:#e74c3c;font-weight:800">40,800 ريال</td></tr>
+      </table>
+
+      <!-- معدلات العملاء -->
+      <div style="background:var(--bg2);border-radius:10px;padding:.9rem 1rem;margin-top:.9rem;font-size:.85rem">
+        <div style="font-weight:700;margin-bottom:.3rem"><i class="fa-solid fa-users" style="color:#4ade80;margin-left:.4rem"></i>معدلات العملاء</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.5rem">
+          <div style="background:var(--card);border-radius:8px;padding:.5rem .75rem;text-align:center"><div style="font-size:1.1rem;font-weight:800;color:#4ade80">500</div><div style="font-size:.73rem;color:var(--muted)">عميل/شهر</div></div>
+          <div style="background:var(--card);border-radius:8px;padding:.5rem .75rem;text-align:center"><div style="font-size:1.1rem;font-weight:800;color:#f59e0b">100 ر</div><div style="font-size:.73rem;color:var(--muted)">متوسط الفاتورة</div></div>
+          <div style="background:var(--card);border-radius:8px;padding:.5rem .75rem;text-align:center"><div style="font-size:1.1rem;font-weight:800;color:#4ade80">50,000 ر</div><div style="font-size:.73rem;color:var(--muted)">الإيراد المُحتسب</div></div>
+        </div>
+        <div style="margin-top:.55rem;font-size:.78rem;color:#4ade80"><i class="fa-solid fa-check-circle"></i> الإيرادات المُدخلة تتطابق مع العدد × الفاتورة ✓</div>
+      </div>
+    </div>
+
+    <!-- ── توقعات 3 سنوات ── -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-chart-line"></i>توقعات النمو المالي لـ 3 سنوات</h3>
+      <table class="sr-table">
+        <tr style="background:var(--bg2)">
+          <td style="font-weight:800">السنة</td>
+          <td style="font-weight:800">الإيرادات الشهرية</td>
+          <td style="font-weight:800">إجمالي التكاليف</td>
+          <td style="font-weight:800">صافي الربح / شهر</td>
+          <td style="font-weight:800">هامش الربح</td>
+          <td style="font-weight:800">صافي سنوي</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الأولى</strong></td>
+          <td>50,000 ر</td>
+          <td>40,800 ر</td>
+          <td style="color:#4ade80;font-weight:700">+9,200 ر</td>
+          <td>18.4%</td>
+          <td style="font-weight:700">110,400 ر</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الثانية</strong> <span style="font-size:.71rem;color:var(--muted)">(نمو 11%)</span></td>
+          <td>55,500 ر</td>
+          <td>43,000 ر</td>
+          <td style="color:#4ade80;font-weight:700">+12,500 ر</td>
+          <td style="color:#4ade80">22.5%</td>
+          <td style="font-weight:700">150,000 ر</td>
+        </tr>
+        <tr>
+          <td><strong>السنة الثالثة</strong> <span style="font-size:.71rem;color:var(--muted)">(نمو 28.6%)</span></td>
+          <td>64,300 ر</td>
+          <td>45,800 ر</td>
+          <td style="color:#4ade80;font-weight:700">+18,500 ر</td>
+          <td style="color:#4ade80">28.8%</td>
+          <td style="color:#4ade80;font-weight:800">222,000 ر</td>
+        </tr>
+      </table>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.6rem"><i class="fa-solid fa-circle-info" style="margin-left:.3rem"></i>معدل النمو محسوب بناءً على مستوى المنافسة وطبيعة القطاع — الأرقام تقديرية محافظة</p>
+    </div>
+
+    <!-- ── توزيع التكاليف ── -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-chart-pie"></i>توزيع التكاليف من الإيرادات</h3>
+      <div style="margin-bottom:.85rem">
+        <div style="display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.3rem">
+          <span>تكلفة البضاعة/الخدمة</span>
+          <span style="font-weight:700;color:#4ade80">38.0% ✓ (الحد الأمثل: 38%)</span>
+        </div>
+        <div class="progress-bar"><div style="height:100%;border-radius:4px;width:38%;background:linear-gradient(90deg,#4ade80,#22c55e)"></div></div>
+      </div>
+      <div style="margin-bottom:.85rem">
+        <div style="display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.3rem">
+          <span>الرواتب والكوادر</span>
+          <span style="font-weight:700;color:#4ade80">24.0% ✓ (الحد الأمثل: 28%)</span>
+        </div>
+        <div class="progress-bar"><div style="height:100%;border-radius:4px;width:24%;background:linear-gradient(90deg,#4ade80,#22c55e)"></div></div>
+      </div>
+      <div style="margin-bottom:.85rem">
+        <div style="display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.3rem">
+          <span>الإيجار</span>
+          <span style="font-weight:700;color:#4ade80">10.0% ✓ (الحد الأمثل: 10%)</span>
+        </div>
+        <div class="progress-bar"><div style="height:100%;border-radius:4px;width:10%;background:linear-gradient(90deg,#4ade80,#22c55e)"></div></div>
+      </div>
+      <div style="margin-bottom:.85rem">
+        <div style="display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.3rem">
+          <span>التسويق</span>
+          <span style="font-weight:700;color:#4ade80">4.0% ✓ (الحد الأمثل: 8%)</span>
+        </div>
+        <div class="progress-bar"><div style="height:100%;border-radius:4px;width:4%;background:linear-gradient(90deg,#4ade80,#22c55e)"></div></div>
+      </div>
+    </div>
+
+    <!-- ── معايير السوق السعودي 2026 ── -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-globe"></i>مقارنة بمعايير السوق السعودي — أبريل 2026 · قطاع مطعم / مقهى</h3>
+      <div style="background:linear-gradient(135deg,#040c1e,#081535);border:1px solid rgba(78,115,194,.2);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:.85rem">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(78,115,194,.2);display:flex;align-items:center;justify-content:center;color:#7eb8ff;font-size:.9rem;flex-shrink:0"><i class="fa-solid fa-chart-bar"></i></div>
+          <div>
+            <div style="font-size:.88rem;font-weight:800;color:#fff">فرص قطاعك في 2026</div>
+            <div style="font-size:.76rem;color:rgba(255,255,255,.5)">نمو F&B +14% 2026 — طلب التوصيل والتجارب الغذائية الفريدة في ارتفاع مستمر</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem">
+          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:.7rem;text-align:center">
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-bottom:.2rem">حجم السوق السعودي</div>
+            <div style="font-size:.95rem;font-weight:800;color:#7eb8ff">72 مليار ريال</div>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:.7rem;text-align:center">
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-bottom:.2rem">نمو القطاع 2026</div>
+            <div style="font-size:.95rem;font-weight:800;color:#4ade80">11% سنوياً</div>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:.7rem;text-align:center">
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-bottom:.2rem">هامش القطاع المستهدف</div>
+            <div style="font-size:.95rem;font-weight:800;color:#4ade80">15%+ مطلوب</div>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:.7rem;text-align:center">
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-bottom:.2rem">ضريبة القيمة المضافة</div>
+            <div style="font-size:.95rem;font-weight:800;color:#f87171">15% سارية</div>
+          </div>
+        </div>
+      </div>
+      <table class="sr-table">
+        <tr style="background:var(--bg2)"><td style="font-weight:800">المؤشر</td><td style="font-weight:800">مشروعك</td><td style="font-weight:800">المعيار الأمثل 2026</td><td style="font-weight:800">التقييم</td></tr>
+        <tr><td>هامش الربح الصافي</td><td style="font-weight:700">18.4%</td><td>≥ 15%</td><td><span style="color:#4ade80;font-weight:800">✓ ممتاز</span></td></tr>
+        <tr><td>نسبة الإيجار</td><td style="font-weight:700">10.0%</td><td>≤ 10%</td><td><span style="color:#4ade80;font-weight:800">✓ ممتاز</span></td></tr>
+        <tr><td>نسبة الرواتب</td><td style="font-weight:700">24.0%</td><td>≤ 28%</td><td><span style="color:#4ade80;font-weight:800">✓ ممتاز</span></td></tr>
+        <tr><td>تكلفة البضاعة/الخدمة</td><td style="font-weight:700">38.0%</td><td>≤ 38%</td><td><span style="color:#4ade80;font-weight:800">✓ ممتاز</span></td></tr>
+        <tr><td>نسبة التكاليف الكلية</td><td style="font-weight:700">81.6%</td><td>≤ 85%</td><td><span style="color:#4ade80;font-weight:800">✓ ممتاز</span></td></tr>
+      </table>
+    </div>
+
+    <!-- ── تقييم المخاطر ── -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-shield-halved"></i>تقييم عوامل النجاح والمخاطر</h3>
+      <div class="sr-risk-row"><div class="sr-risk-label">مستوى المنافسة في المنطقة</div><div class="pill-risk pr-mid">منافسة متوسطة</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">الخبرة الشخصية في المجال</div><div class="pill-risk pr-low">أكثر من 5 سنوات ✓</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">هامش الربح مقارنةً بمعيار قطاعك</div><div class="pill-risk pr-low">ضمن المعيار ✓</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">نسبة التكاليف الثابتة من الإيرادات</div><div class="pill-risk pr-low">38.6%</div></div>
+    </div>
+
+    <!-- ── التوصيات ── -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-lightbulb"></i>فرص النمو والتوسع</h3>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1rem;border-right:4px solid #4ade80">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+          <div style="width:36px;height:36px;border-radius:50%;background:#4ade8022;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid fa-arrow-trend-up" style="color:#4ade80;font-size:.9rem"></i>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:.95rem;font-weight:800">توسيع قنوات التوصيل الرقمي</div>
+          </div>
+          <div style="background:#4ade8022;color:#4ade80;font-size:.72rem;font-weight:700;padding:.2rem .65rem;border-radius:20px">أولوية عالية</div>
+        </div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.85">
+          قطاع التوصيل في الرياض نما 34% في 2025 — التسجيل في منصات مثل هنقرستيشن وكريم ناو وجاهز يمكن أن يرفع إيراداتك 15-20% دون زيادة التكاليف الثابتة.
+          <br>• أضف خيار الجلسات المخصصة والحجز المسبق عبر تطبيقات المطاعم
+          <br>• استثمر في التصوير الاحترافي للقائمة على انستغرام وسناب — العائد مرتفع جداً
+        </div>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1rem;border-right:4px solid #f59e0b">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+          <div style="width:36px;height:36px;border-radius:50%;background:#f59e0b22;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid fa-percent" style="color:#f59e0b;font-size:.9rem"></i>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:.95rem;font-weight:800">فرصة رفع متوسط الفاتورة</div>
+          </div>
+          <div style="background:#f59e0b22;color:#f59e0b;font-size:.72rem;font-weight:700;padding:.2rem .65rem;border-radius:20px">أولوية متوسطة</div>
+        </div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.85">
+          متوسط فاتورتك الحالي 100 ريال — إضافة وجبات مجمّعة أو عروض Upselling (إضافات، مشروبات، حلويات) يمكن رفعه إلى 120 ريال دون زيادة العملاء.
+          <br>قارن: رفع الفاتورة 20 ريال × 500 عميل = 10,000 ريال إضافية شهرياً
+        </div>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1rem;border-right:4px solid #4E73C2">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+          <div style="width:36px;height:36px;border-radius:50%;background:#4E73C222;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid fa-handshake" style="color:#7B9ED4;font-size:.9rem"></i>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:.95rem;font-weight:800">شراكات مع الشركات والمكاتب القريبة</div>
+          </div>
+          <div style="background:#4E73C222;color:#7B9ED4;font-size:.72rem;font-weight:700;padding:.2rem .65rem;border-radius:20px">أولوية متوسطة</div>
+        </div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.85">
+          عقود الوجبات للشركات تضمن إيراداً شهرياً ثابتاً — تواصل مع المجمعات التجارية والمكاتب المحيطة وقدّم عروض غداء شركات بسعر مخصوم.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── الأدوات الحكومية ── -->
+    <div class="sr-section">
+      <h3><i class="fa-solid fa-landmark"></i>الأدوات الحكومية والمصادر الرسمية — السوق السعودي 2026</h3>
+
+      <!-- ZATCA -->
+      <div style="background:linear-gradient(135deg,#0a1628,#102240);border:1px solid rgba(245,158,11,.2);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:1rem">
+        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem">
+          <div style="width:34px;height:34px;border-radius:9px;background:rgba(245,158,11,.15);display:flex;align-items:center;justify-content:center;color:#fbbf24;flex-shrink:0"><i class="fa-solid fa-percent" style="font-size:.85rem"></i></div>
+          <div style="font-size:.9rem;font-weight:800;color:#fbbf24">الزكاة وضريبة القيمة المضافة — ZATCA 2026</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.65rem">
+          <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:.75rem;text-align:center">
+            <div style="font-size:.61rem;color:rgba(255,255,255,.4);margin-bottom:.25rem">VAT على إيراداتك السنوية (15%)</div>
+            <div style="font-size:1rem;font-weight:800;color:#fbbf24">90,000 ر</div>
+            <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:.15rem">إذا كنت خاضعاً للضريبة</div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:.75rem;text-align:center">
+            <div style="font-size:.61rem;color:rgba(255,255,255,.4);margin-bottom:.25rem">ضريبة المدخلات (استرداد تقديري)</div>
+            <div style="font-size:1rem;font-weight:800;color:#4ade80">49,000 ر</div>
+            <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:.15rem">من تكاليف مشمولة بالضريبة</div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:.75rem;text-align:center">
+            <div style="font-size:.61rem;color:rgba(255,255,255,.4);margin-bottom:.25rem">صافي VAT المستحق / سنة</div>
+            <div style="font-size:1rem;font-weight:800;color:#f87171">41,000 ر</div>
+            <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:.15rem">يُحدَّد دقيقاً عند التسجيل</div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:.75rem;text-align:center">
+            <div style="font-size:.61rem;color:rgba(255,255,255,.4);margin-bottom:.25rem">تقدير الزكاة السنوية (2.5%)</div>
+            <div style="font-size:1rem;font-weight:800;color:#fbbf24">2,760 ر</div>
+            <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:.15rem">من الأرباح السنوية بعد الحول</div>
+          </div>
+        </div>
+        <p style="font-size:.72rem;color:rgba(255,255,255,.35);margin-top:.7rem;margin-bottom:0"><i class="fa-solid fa-triangle-exclamation" style="color:#fbbf24;margin-left:.3rem"></i>أرقام تقديرية للتخطيط — التسجيل في ZATCA والإقرار يجب أن يتم بمساعدة محاسب معتمد</p>
+      </div>
+
+      <!-- نطاقات -->
+      <div style="background:linear-gradient(135deg,#040f24,#0a1e40);border:1px solid rgba(6,182,212,.2);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:1rem">
+        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem">
+          <div style="width:34px;height:34px;border-radius:9px;background:rgba(6,182,212,.15);display:flex;align-items:center;justify-content:center;color:#22d3ee;flex-shrink:0"><i class="fa-solid fa-users" style="font-size:.85rem"></i></div>
+          <div style="font-size:.9rem;font-weight:800;color:#22d3ee">نطاقات العمل (التوطين) — وزارة الموارد البشرية 2026</div>
+        </div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:.75rem">القطاع: <strong style="color:#22d3ee">المطاعم والضيافة</strong> · عدد الموظفين: <strong style="color:#fff">8 موظفين</strong></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin-bottom:.75rem">
+          <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:.7rem;text-align:center">
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-bottom:.2rem">الحد الأدنى للتوطين</div>
+            <div style="font-size:1rem;font-weight:800;color:#fbbf24">10%</div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:.7rem;text-align:center">
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-bottom:.2rem">النطاق الأخضر</div>
+            <div style="font-size:1rem;font-weight:800;color:#4ade80">30%</div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:.7rem;text-align:center">
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-bottom:.2rem">النطاق البلاتيني</div>
+            <div style="font-size:1rem;font-weight:800;color:#a78bfa">50%</div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:.7rem;text-align:center">
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-bottom:.2rem">سعوديون مطلوبون (حد أدنى)</div>
+            <div style="font-size:1rem;font-weight:800;color:#22d3ee">1 موظف</div>
+          </div>
+        </div>
+        <p style="font-size:.72rem;color:rgba(255,255,255,.35);margin:0"><i class="fa-solid fa-circle-info" style="color:#22d3ee;margin-left:.3rem"></i>تحقق من نسبتك الفعلية عبر بوابة مقيم أو أبشر أعمال</p>
+      </div>
+
+      <!-- التراخيص -->
+      <div style="background:linear-gradient(135deg,#100624,#1e0a40);border:1px solid rgba(139,92,246,.2);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:1rem">
+        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem">
+          <div style="width:34px;height:34px;border-radius:9px;background:rgba(139,92,246,.15);display:flex;align-items:center;justify-content:center;color:#a78bfa;flex-shrink:0"><i class="fa-solid fa-file-contract" style="font-size:.85rem"></i></div>
+          <div style="font-size:.9rem;font-weight:800;color:#a78bfa">تكاليف التراخيص والتأسيس — وزارة التجارة والبلديات 2026</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+          <div style="flex:1;min-width:180px">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.45);margin-bottom:.3rem">التكلفة التقديرية السنوية</div>
+            <div style="font-size:1rem;font-weight:800;color:#a78bfa">4,500—8,000 ريال/سنة</div>
+          </div>
+          <div style="flex:2;min-width:220px">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.45);margin-bottom:.3rem">ما يشمله الترخيص</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.75)">ترخيص بلدي + سجل تجاري + شهادة صحية + رخصة إعلانية</div>
+            <div style="font-size:.75rem;color:#fbbf24;margin-top:.35rem"><i class="fa-solid fa-triangle-exclamation" style="margin-left:.3rem"></i>شهادة صحية مطلوبة للعاملين — تجديد سنوي إلزامي عبر وزارة الصحة</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- برامج الدعم -->
+      <div>
+        <div style="font-size:.88rem;font-weight:800;color:var(--text-main);margin-bottom:.75rem"><i class="fa-solid fa-hand-holding-heart" style="color:#4ade80;margin-left:.4rem"></i>برامج الدعم الحكومي المتاحة لمشروعك</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.65rem">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:.9rem 1rem;border-right:3px solid #22d3ee">
+            <div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.45rem">
+              <div style="width:28px;height:28px;border-radius:8px;background:#22d3ee22;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-building" style="color:#22d3ee;font-size:.75rem"></i></div>
+              <div style="font-size:.8rem;font-weight:800;color:#22d3ee">منشآت</div>
+            </div>
+            <div style="font-size:.76rem;color:var(--muted);line-height:1.75">تدريب مجاني + استشارات + خدمات تمويلية للمنشآت الصغيرة والمتوسطة — monshaat.gov.sa</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:.9rem 1rem;border-right:3px solid #4ade80">
+            <div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.45rem">
+              <div style="width:28px;height:28px;border-radius:8px;background:#4ade8022;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-coins" style="color:#4ade80;font-size:.75rem"></i></div>
+              <div style="font-size:.8rem;font-weight:800;color:#4ade80">صندوق SMEF</div>
+            </div>
+            <div style="font-size:.76rem;color:var(--muted);line-height:1.75">قروض ميسّرة للمشاريع الصغيرة بضمانات مخففة وفترات سماح — smef.org.sa</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:.9rem 1rem;border-right:3px solid #f59e0b">
+            <div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.45rem">
+              <div style="width:28px;height:28px;border-radius:8px;background:#f59e0b22;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-globe" style="color:#f59e0b;font-size:.75rem"></i></div>
+              <div style="font-size:.8rem;font-weight:800;color:#f59e0b">MISA — وزارة الاستثمار</div>
+            </div>
+            <div style="font-size:.76rem;color:var(--muted);line-height:1.75">تسهيل تراخيص المستثمرين وحزم الدعم للقطاعات ذات الأولوية — misa.gov.sa</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:.9rem 1rem;border-right:3px solid #a78bfa">
+            <div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.45rem">
+              <div style="width:28px;height:28px;border-radius:8px;background:#a78bfa22;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-percent" style="color:#a78bfa;font-size:.75rem"></i></div>
+              <div style="font-size:.8rem;font-weight:800;color:#a78bfa">ZATCA — هيئة الزكاة</div>
+            </div>
+            <div style="font-size:.76rem;color:var(--muted);line-height:1.75">تسجيل ضريبة القيمة المضافة، إقرارات إلكترونية، أنظمة الفوترة zatca.gov.sa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── إخلاء مسؤولية ── -->
+    <div class="sr-disclaimer">
+      <i class="fa-solid fa-circle-info" style="color:var(--amber);flex-shrink:0;margin-top:.15rem"></i>
+      <span>هذا التقرير أُعدّ بواسطة <strong>منصة جنان بيز للأعمال</strong> استناداً إلى البيانات التي أدخلتها. جميع التوقعات والأرقام الواردة هي تقديرات إرشادية ولا تُعدّ ضماناً لأي نتائج فعلية. <strong>جنان بيز غير مسؤولة</strong> عن أي قرارات استثمارية أو تجارية تُتخذ بناءً على هذا التقرير. يُنصح بالتشاور مع مستشار مالي أو قانوني متخصص قبل اتخاذ أي قرار.</span>
+    </div>
+
+    <!-- ── التذييل ── -->
+    <div class="sr-brand-footer">
+      <div class="srbf-logo">
+        <img src="logo.png" alt="جنان بيز" onerror="this.style.display='none'">
+        <div>
+          <div style="font-size:1rem;font-weight:900;line-height:1.1">جنان بيز</div>
+          <div style="font-size:.6rem;color:rgba(255,255,255,.45);font-weight:400">المنصة الذكية للأعمال</div>
+        </div>
+      </div>
+      <div class="srbf-mid">
+        <div style="display:flex;align-items:center;justify-content:center;gap:.45rem;flex-wrap:wrap">
+          <span style="width:5px;height:5px;border-radius:50%;background:#4E73C2;display:inline-block;opacity:.7"></span>
+          تقرير تحليل اقتصادي شامل
+          <span style="width:5px;height:5px;border-radius:50%;background:#4E73C2;display:inline-block;opacity:.7"></span>
+          بيانات 2026
+        </div>
+      </div>
+      <div class="srbf-date"><i class="fa-solid fa-calendar" style="color:#7B9ED4"></i> ١٤ أبريل ٢٠٢٦</div>
+    </div>
+
+  </div><!-- end study-report -->
+
+  <div style="text-align:center;margin-top:1rem;padding-bottom:2rem">
+    <a href="dashboard.html" style="color:rgba(255,255,255,.35);font-size:.78rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem">
+      <i class="fa-solid fa-arrow-right"></i> العودة إلى لوحة التحكم
+    </a>
+  </div>
+
+</div>
+
+<script>
+  // تأخير بسيط لتشغيل progress bars
+  setTimeout(() => {
+    document.querySelectorAll('.progress-fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      requestAnimationFrame(() => { el.style.width = w; });
+    });
+  }, 100);
+</script>
+</body>
+</html>

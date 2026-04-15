@@ -11,14 +11,18 @@
       --blue:#4E73C2; --blue-d:#3558A8; --blue-dp:#1E3A8A;
       --green:#4E73C2; --green-d:#3558A8; --green-dp:#1E3A8A;
       --amber:#4E73C2; --navy:#07091A; --navy2:#0D1228;
-      --bg:#f5f7fc; --bg2:#eaeefc;
-      --text:#111827; --muted:#64748b;
-      --border:#dde3f2; --radius:14px;
+      --bg:#f0f4ff; --bg2:#e6ecf8;
+      --text:#07091A; --muted:#64748b;
+      --border:rgba(78,115,194,.18); --radius:14px;
       --tr:all .28s cubic-bezier(.4,0,.2,1);
+      --glass:rgba(255,255,255,.85);
+      --glass-border:rgba(78,115,194,.2);
+      --glow:0 0 0 3px rgba(78,115,194,.13);
     }
     [data-theme="dark"] {
       --bg:#07091A; --bg2:#0D1228; --text:#e2e8f8;
-      --muted:#7B9ED4; --border:#1a2448;
+      --muted:#7B9ED4; --border:rgba(78,115,194,.2);
+      --glass:rgba(17,24,40,.9);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;overflow:hidden}
@@ -27,133 +31,62 @@
       background:var(--bg); color:var(--text);
       height:100vh; display:flex; align-items:stretch;
       transition:background .3s,color .3s;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 30% 120%, rgba(78,115,194,.15) 0%,transparent 60%),
+        radial-gradient(circle, rgba(78,115,194,.06) 1px, transparent 1px);
+      background-size:100% 100%, 32px 32px;
     }
     a{text-decoration:none;color:inherit}
     input,button,select,textarea{font-family:'Tajawal',sans-serif}
 
-    /* ===== LEFT PANEL ===== */
-    .auth-left {
-      flex:1; min-width:0;
-      background:linear-gradient(150deg,#07091A 0%,#0C1230 45%,#111d4a 80%,#172060 100%);
-      display:flex; flex-direction:column; align-items:center;
-      justify-content:center; padding:0 2rem;
-      position:relative; overflow:hidden; height:100vh;
+    /* ── شعار نموذج التسجيل (خلفية فاتحة) ── */
+    .form-brand {
+      display:flex; align-items:center; gap:1.2rem;
+      margin-top:5rem;
+      margin-bottom:2.5rem; padding-bottom:1.75rem;
+      border-bottom:1px solid rgba(78,115,194,.15);
     }
-    /* subtle glow orbs */
-    .auth-left::before {
-      content:''; position:absolute; inset:0; pointer-events:none;
-      background:
-        radial-gradient(ellipse 60% 50% at 15% 80%, rgba(78,115,194,.28) 0%,transparent 70%),
-        radial-gradient(ellipse 50% 40% at 85% 10%, rgba(99,102,241,.18) 0%,transparent 65%),
-        radial-gradient(ellipse 40% 30% at 50% 45%, rgba(78,115,194,.08) 0%,transparent 70%);
+    .form-brand-img {
+      height:92px; width:auto; object-fit:contain;
+      filter:drop-shadow(0 4px 16px rgba(78,115,194,.25));
     }
-    /* dot grid */
-    .auth-left::after {
-      content:''; position:absolute; inset:0; pointer-events:none; opacity:.04;
-      background-image:radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1px);
-      background-size:28px 28px;
+    .form-brand-name {
+      display:block; font-size:1.75rem; font-weight:900;
+      background:linear-gradient(135deg,#07091A 0%,#4E73C2 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      letter-spacing:-.01em;
     }
-    .left-inner {
-      position:relative; z-index:2; width:100%; max-width:430px;
-      display:flex; flex-direction:column; gap:1rem;
-    }
-
-    /* ── Logo ── */
-    .l-brand { display:flex; align-items:center; gap:.65rem; margin-bottom:.2rem; }
-    .l-brand-j {
-      font-size:2.4rem; font-weight:900; color:#fff;
-      font-family:Georgia,serif; line-height:1;
-      text-shadow:0 0 40px rgba(78,115,194,.6);
-    }
-    .l-brand-words { display:flex; flex-direction:column; line-height:1.1; }
-    .l-brand-enan { font-size:.95rem; font-weight:400; color:rgba(255,255,255,.88); font-family:Georgia,serif; }
-    .l-brand-biz  { font-size:.8rem; font-weight:700; color:#7B9ED4; font-family:Georgia,serif; font-style:italic; letter-spacing:.1em; }
-
-    /* ── Hero ── */
-    .l-hero { text-align:center; }
-    .l-badge {
-      display:inline-flex; align-items:center; gap:.4rem;
-      background:rgba(78,115,194,.18); border:1px solid rgba(78,115,194,.38);
-      color:#7B9ED4; padding:.18rem .8rem; border-radius:50px;
-      font-size:.64rem; font-weight:700; letter-spacing:.07em; margin-bottom:.55rem;
-    }
-    .l-badge i { animation:flicker 2.5s infinite alternate; }
-    @keyframes flicker{from{opacity:.6}to{opacity:1}}
-    .l-hero h2 {
-      font-size:1.22rem; font-weight:800; color:#fff;
-      line-height:1.55; margin-bottom:.4rem;
-    }
-    .l-hero h2 em { color:#7B9ED4; font-style:normal; }
-    .l-sub {
-      font-size:.7rem; color:rgba(255,255,255,.42);
-      display:flex; align-items:center; justify-content:center; gap:.4rem; flex-wrap:wrap;
-    }
-    .l-sub span.sep { width:3px; height:3px; border-radius:50%; background:rgba(78,115,194,.5); display:inline-block; }
-
-    /* ── Cards ── */
-    .l-cards { display:flex; flex-direction:column; gap:.32rem; }
-    .l-card {
-      display:flex; align-items:center; gap:.7rem;
-      background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.07);
-      border-radius:12px; padding:.5rem .75rem; cursor:default;
-      transition:background .2s,border-color .2s,transform .2s;
-    }
-    .l-card:hover {
-      background:rgba(78,115,194,.16); border-color:rgba(78,115,194,.35);
-      transform:translateX(3px);
-    }
-    .l-card-ico {
-      width:34px; height:34px; border-radius:9px; flex-shrink:0;
-      display:flex; align-items:center; justify-content:center; font-size:.82rem;
-    }
-    .ico-b { background:rgba(78,115,194,.25);  color:#7B9ED4; }
-    .ico-p { background:rgba(139,92,246,.2);   color:#b094f8; }
-    .ico-g { background:rgba(34,197,94,.15);   color:#4ade80; }
-    .ico-y { background:rgba(251,191,36,.15);  color:#fbbf24; }
-    .l-card-body { flex:1; min-width:0; }
-    .l-card-body h4 { font-size:.74rem; font-weight:700; color:#fff; margin-bottom:.06rem; line-height:1.3; }
-    .l-card-body p  { font-size:.63rem; color:rgba(255,255,255,.42); line-height:1.4; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .l-card-arr { color:rgba(255,255,255,.18); font-size:.65rem; flex-shrink:0; transition:color .2s,transform .2s; }
-    .l-card:hover .l-card-arr { color:#7B9ED4; transform:translateX(-3px); }
-
-    /* ── Pills ── */
-    /* Pills Carousel */
-    .l-pills-wrap { overflow:hidden; }
-    .l-pills-lbl { font-size:.6rem; color:rgba(255,255,255,.25); font-weight:600; letter-spacing:.08em; margin-bottom:.4rem; text-align:center; }
-    .l-pills-stage { position:relative; height:2.1rem; }
-    .l-pills-row {
-      position:absolute; inset:0;
-      display:flex; align-items:center; justify-content:center; gap:.32rem;
-      opacity:0; transition:opacity .6s ease;
-    }
-    .l-pills-row.active { opacity:1; }
-    .l-pill {
-      display:inline-flex; align-items:center; gap:.24rem;
-      background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.085);
-      border-radius:50px; padding:.22rem .65rem;
-      color:rgba(255,255,255,.65); font-size:.65rem; font-weight:500;
-      white-space:nowrap; transition:background .2s,color .2s,border-color .2s;
-    }
-    .l-pill i { font-size:.6rem; color:#7B9ED4; }
-
-    /* ── Stats ── */
-    .l-stats {
-      display:flex;
-      background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.075);
-      border-radius:10px; overflow:hidden;
-    }
-    .l-stat { flex:1; text-align:center; padding:.45rem .4rem; }
-    .l-stat + .l-stat { border-right:1px solid rgba(255,255,255,.065); }
-    .l-stat-n { display:block; font-size:.95rem; font-weight:900; color:#7B9ED4; line-height:1; }
-    .l-stat-l { display:block; font-size:.58rem; color:rgba(255,255,255,.35); margin-top:.15rem; }
-    .l-copy { font-size:.6rem; color:rgba(255,255,255,.2); text-align:center; padding-top:.2rem; }
+    .form-brand-sub { display:block; font-size:.82rem; color:var(--muted); margin-top:.2rem; }
 
     /* ===== RIGHT PANEL ===== */
     .auth-right {
-      width:430px; min-width:280px; flex-shrink:0;
-      background:var(--bg); height:100vh;
-      display:flex; flex-direction:column; justify-content:center;
-      padding:2rem 2.25rem; position:relative; overflow-y:auto;
+      width:100%; max-width:520px; min-width:280px;
+      margin:0 auto;
+      background:var(--glass);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      min-height:100vh;
+      display:flex; flex-direction:column; justify-content:flex-start;
+      padding:4rem 2.75rem 3rem; position:relative; overflow-y:auto;
+    }
+    /* علامة مائية داخل تصميم الجانب الأيمن */
+    .auth-right-wm{
+      position:absolute;inset:0;pointer-events:none;
+      z-index:0;overflow:hidden;
+      display:flex;align-items:flex-end;justify-content:flex-start;
+    }
+    .auth-right-wm::before{
+      content:'ج';
+      font-family:'Tajawal',sans-serif;
+      font-size:420px;font-weight:900;
+      color:rgba(78,115,194,.045);
+      line-height:.8;
+      position:absolute;
+      bottom:-60px;right:-30px;
+    }
+    /* خط جانبي من ألوان الشعار */
+    .auth-right::after{
+      content:'';position:absolute;top:0;right:0;bottom:0;width:3px;
+      background:linear-gradient(180deg,transparent 0%,#4E73C2 30%,#7B9ED4 60%,transparent 100%);
     }
     .auth-top-bar {
       position:absolute; top:1.1rem; left:1.1rem; right:1.1rem;
@@ -162,36 +95,46 @@
     .back-link { font-size:.82rem; color:var(--muted); display:flex; align-items:center; gap:.38rem; transition:color .2s; }
     .back-link:hover { color:var(--blue); }
     #theme-toggle {
-      background:var(--bg2); border:1px solid var(--border);
+      background:rgba(78,115,194,.1); border:1px solid var(--glass-border);
       width:34px; height:34px; border-radius:50%; cursor:pointer;
-      color:var(--text); font-size:.82rem;
+      color:var(--blue); font-size:.82rem;
       display:flex; align-items:center; justify-content:center; transition:var(--tr);
     }
-    #theme-toggle:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+    #theme-toggle:hover { background:var(--blue); color:#fff; border-color:var(--blue); box-shadow:0 4px 14px rgba(78,115,194,.4); }
 
     /* ── Panels ── */
-    .panel { display:none; animation:slideUp .32s ease; }
+    .panel { display:none; animation:slideUp .32s ease; position:relative; z-index:1; }
     .panel.active { display:block; }
     @keyframes slideUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-    .panel-title { font-size:1.5rem; font-weight:800; color:var(--blue-dp); margin-bottom:.3rem; }
-    .panel-sub   { font-size:.88rem; color:var(--muted); margin-bottom:1.6rem; }
+    .panel-title { font-size:1.5rem; font-weight:900;
+      background:linear-gradient(135deg,#1E3A8A 0%,#4E73C2 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      margin-bottom:.3rem; }
+    .panel-sub   { font-size:.86rem; color:var(--muted); margin-bottom:1.6rem; }
 
     /* ── Fields ── */
     .field { margin-bottom:1rem; }
-    .field label { display:block; font-size:.82rem; font-weight:600; color:var(--text); margin-bottom:.38rem; }
+    .field label { display:block; font-size:.8rem; font-weight:700; color:var(--text); margin-bottom:.38rem; }
     .input-wrap { position:relative; }
     .input-wrap > i:not(.eye) {
       position:absolute; top:50%; right:.9rem; transform:translateY(-50%);
-      color:var(--muted); font-size:.85rem; pointer-events:none;
+      color:var(--blue); font-size:.82rem; pointer-events:none; opacity:.7;
     }
-    .input-wrap.has-eye i.eye { position:absolute; top:50%; left:.9rem; transform:translateY(-50%); cursor:pointer; color:var(--muted); font-size:.85rem; }
+    .input-wrap.has-eye i.eye { position:absolute; top:50%; left:.9rem; transform:translateY(-50%); cursor:pointer; color:var(--muted); font-size:.82rem; }
     .field input {
-      width:100%; padding:.76rem 2.6rem .76rem .95rem;
-      border:1.5px solid var(--border); border-radius:10px;
-      font-size:.9rem; background:var(--bg); color:var(--text);
+      width:100%; padding:.78rem 2.6rem .78rem .95rem;
+      border:1.5px solid var(--glass-border); border-radius:10px;
+      font-size:.9rem;
+      background:rgba(255,255,255,.7);
+      backdrop-filter:blur(8px);
+      color:var(--text);
       transition:var(--tr); outline:none;
     }
-    .field input:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(78,115,194,.1); }
+    .field input:focus {
+      border-color:var(--blue);
+      background:rgba(255,255,255,.95);
+      box-shadow:0 0 0 3px rgba(78,115,194,.14), 0 4px 16px rgba(78,115,194,.1);
+    }
     .field input.err { border-color:#e74c3c; }
     .field.has-eye input { padding-left:2.6rem; }
     .err-msg { font-size:.74rem; color:#e74c3c; margin-top:.25rem; display:none; }
@@ -214,18 +157,38 @@
 
     /* ── Buttons ── */
     .btn-auth {
-      width:100%; padding:.82rem; background:var(--blue); color:#fff;
-      border:none; border-radius:10px; font-size:.95rem; font-weight:700;
+      width:100%; padding:.86rem;
+      background:linear-gradient(135deg,#4E73C2 0%,#1E3A8A 100%);
+      color:#fff;
+      border:none; border-radius:11px; font-size:.95rem; font-weight:800;
       cursor:pointer; transition:var(--tr);
       display:flex; align-items:center; justify-content:center; gap:.5rem;
       margin-bottom:.9rem;
+      box-shadow:0 4px 20px rgba(78,115,194,.4);
+      position:relative;overflow:hidden;
     }
-    .btn-auth:hover { background:var(--blue-d); transform:translateY(-2px); box-shadow:0 8px 24px rgba(78,115,194,.3); }
+    .btn-auth::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+      opacity:0;transition:.2s;
+    }
+    .btn-auth:hover::before{opacity:1}
+    .btn-auth:hover {
+      transform:translateY(-2px);
+      box-shadow:0 8px 32px rgba(78,115,194,.5);
+    }
     .btn-auth:disabled { opacity:.6; cursor:not-allowed; transform:none; box-shadow:none; }
     .btn-ghost {
-      background:var(--bg2); color:var(--text); border:1.5px solid var(--border);
+      background:rgba(78,115,194,.06);
+      color:var(--blue);
+      border:1.5px solid var(--glass-border);
+      box-shadow:none;
     }
-    .btn-ghost:hover { border-color:var(--blue); background:rgba(78,115,194,.06); box-shadow:none; }
+    .btn-ghost:hover {
+      border-color:rgba(78,115,194,.4);
+      background:rgba(78,115,194,.12);
+      box-shadow:none;
+    }
 
     /* ── Divider ── */
     .divider { display:flex; align-items:center; gap:.9rem; margin:.85rem 0; color:var(--muted); font-size:.78rem; }
@@ -235,11 +198,18 @@
     .social-auth { display:grid; grid-template-columns:1fr 1fr; gap:.65rem; margin-bottom:1.1rem; }
     .soc-btn {
       display:flex; align-items:center; justify-content:center; gap:.5rem;
-      padding:.65rem; border-radius:10px; border:1.5px solid var(--border);
-      background:var(--bg); color:var(--text); font-size:.85rem; font-weight:600;
+      padding:.65rem; border-radius:10px;
+      border:1.5px solid var(--glass-border);
+      background:rgba(255,255,255,.7);
+      backdrop-filter:blur(8px);
+      color:var(--text); font-size:.85rem; font-weight:600;
       cursor:pointer; transition:var(--tr);
     }
-    .soc-btn:hover { border-color:var(--blue); background:rgba(78,115,194,.06); }
+    .soc-btn:hover {
+      border-color:rgba(78,115,194,.4);
+      background:rgba(255,255,255,.95);
+      box-shadow:0 4px 16px rgba(78,115,194,.15);
+    }
     .soc-btn i { font-size:1rem; }
     .soc-btn.google i { color:#ea4335; }
 
@@ -260,11 +230,16 @@
     /* ── OTP ── */
     .otp-row { display:flex; gap:.55rem; justify-content:center; margin:1.1rem 0; }
     .otp-row input {
-      width:48px; height:52px; text-align:center; font-size:1.3rem; font-weight:700;
-      border:1.5px solid var(--border); border-radius:10px;
-      background:var(--bg); color:var(--text); transition:var(--tr); outline:none;
+      width:48px; height:52px; text-align:center; font-size:1.3rem; font-weight:800;
+      border:1.5px solid var(--glass-border); border-radius:11px;
+      background:rgba(255,255,255,.75); color:var(--text);
+      transition:var(--tr); outline:none;
     }
-    .otp-row input:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(78,115,194,.1); }
+    .otp-row input:focus {
+      border-color:var(--blue);
+      background:rgba(255,255,255,.98);
+      box-shadow:0 0 0 3px rgba(78,115,194,.14),0 4px 12px rgba(78,115,194,.1);
+    }
     .resend-link { text-align:center; font-size:.8rem; color:var(--muted); margin-bottom:.9rem; }
     .resend-link a { color:var(--blue); cursor:pointer; }
 
@@ -277,22 +252,45 @@
     .reg-step { display:flex; align-items:center; }
     .reg-step-dot {
       width:30px; height:30px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700;
-      background:var(--bg2); border:2px solid var(--border); color:var(--muted); transition:.3s;
+      display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800;
+      background:rgba(255,255,255,.7); border:2px solid var(--glass-border); color:var(--muted); transition:.3s;
     }
-    .reg-step.active .reg-step-dot { background:var(--blue); border-color:var(--blue); color:#fff; }
-    .reg-step.done   .reg-step-dot { background:var(--blue-dp); border-color:var(--blue-dp); color:#fff; }
-    .reg-step-line { width:26px; height:2px; background:var(--border); transition:.3s; margin:0 .2rem; }
+    .reg-step.active .reg-step-dot {
+      background:linear-gradient(135deg,#4E73C2,#1E3A8A);
+      border-color:transparent; color:#fff;
+      box-shadow:0 4px 12px rgba(78,115,194,.45);
+    }
+    .reg-step.done   .reg-step-dot {
+      background:linear-gradient(135deg,#1E3A8A,#0f2060);
+      border-color:transparent; color:#fff;
+    }
+    .reg-step-line { width:26px; height:2px; background:var(--glass-border); transition:.3s; margin:0 .2rem; }
 
     /* ── Mobile logo ── */
     .mobile-logo { display:none; align-items:center; gap:.6rem; margin-bottom:1.5rem; }
-    .ml-name { display:block; font-size:1.3rem; font-weight:800; color:var(--blue-dp); }
-    .ml-sub  { display:block; font-size:.7rem; color:var(--muted); }
+    .mobile-logo img {
+      border-radius:0; /* بلا إطار */
+      mix-blend-mode:multiply; /* الأبيض يصبح شفافاً على الخلفية الفاتحة */
+      filter:drop-shadow(0 2px 6px rgba(78,115,194,.2));
+    }
+    .ml-name { display:block; font-size:1.3rem; font-weight:900;
+      background:linear-gradient(135deg,#1E3A8A,#4E73C2);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .ml-sub  { display:block; font-size:.68rem; color:var(--muted); }
+
+    /* ── شريط أزرق علوي للجانب الأيمن ── */
+    .auth-right-stripe { position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,transparent,#4E73C2 35%,#7B9ED4 65%,transparent); }
+    /* ── دائرة زخرفية ── */
+    .auth-right-deco { position:absolute;bottom:-70px;left:-70px;width:220px;height:220px;
+      border-radius:50%;pointer-events:none;
+      background:radial-gradient(circle,rgba(78,115,194,.08) 0%,transparent 70%); }
 
     @media(max-width:860px){
       .auth-left{display:none}
       .auth-right{width:100%;padding:4rem 1.6rem 2rem}
       .mobile-logo{display:flex}
+      .form-brand{display:none}
     }
     @media(max-width:430px){
       .row-2{grid-template-columns:1fr}
@@ -303,108 +301,29 @@
 <body>
 
 <!-- ===== LEFT PANEL ===== -->
-<div class="auth-left">
-  <div class="left-inner">
-
-    <!-- Logo -->
-    <div class="l-brand">
-      <span class="l-brand-j">J</span>
-      <div class="l-brand-words">
-        <span class="l-brand-enan">enan</span>
-        <span class="l-brand-biz">BIZ</span>
-      </div>
-    </div>
-
-    <!-- Hero -->
-    <div class="l-hero">
-      <div class="l-badge"><i class="fa-solid fa-bolt"></i> منصة الأعمال الذكية</div>
-      <h2>كل ما تحتاجه لتأسيس مشروعك<br>و<em>نموّه</em> في مكان واحد</h2>
-      <div class="l-sub">
-        <span>تحليل مشاريعك</span><span class="sep"></span>
-        <span>إعداد دراسات الجدوى</span><span class="sep"></span>
-        <span>برامج لا غنى عنها</span>
-      </div>
-    </div>
-
-    <!-- Feature Cards -->
-    <div class="l-cards">
-      <div class="l-card">
-        <div class="l-card-ico ico-b"><i class="fa-solid fa-chart-pie"></i></div>
-        <div class="l-card-body">
-          <h4>دراسات الجدوى بالذكاء الاصطناعي</h4>
-          <p>حلّل مشروعك في دقائق واعرف مدى ربحيته قبل أي استثمار</p>
-        </div>
-        <span class="l-card-arr"><i class="fa-solid fa-arrow-left"></i></span>
-      </div>
-      <div class="l-card">
-        <div class="l-card-ico ico-p"><i class="fa-solid fa-robot"></i></div>
-        <div class="l-card-body">
-          <h4>روبوت المشاريع الذكي</h4>
-          <p>من الفكرة إلى خطة عمل متكاملة – خطوة بخطوة بتقنية GPT</p>
-        </div>
-        <span class="l-card-arr"><i class="fa-solid fa-arrow-left"></i></span>
-      </div>
-      <div class="l-card">
-        <div class="l-card-ico ico-g"><i class="fa-solid fa-cubes"></i></div>
-        <div class="l-card-body">
-          <h4>متجر برامج نمو المنشآت</h4>
-          <p>محاسبة · موارد بشرية · أصول · نقاط بيع — كل ما تحتاجه في مكان واحد</p>
-        </div>
-        <span class="l-card-arr"><i class="fa-solid fa-arrow-left"></i></span>
-      </div>
-      <div class="l-card">
-        <div class="l-card-ico ico-y"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div class="l-card-body">
-          <h4>أكاديمية جنان للأعمال</h4>
-          <p>دورات متخصصة وشهادات معتمدة لتطوير كفاءتك الإدارية</p>
-        </div>
-        <span class="l-card-arr"><i class="fa-solid fa-arrow-left"></i></span>
-      </div>
-    </div>
-
-    <!-- Pills -->
-    <div class="l-pills-wrap">
-      <div class="l-pills-lbl">وأكثر من ذلك...</div>
-      <div class="l-pills-stage" id="pills-stage">
-        <div class="l-pills-row active">
-          <span class="l-pill"><i class="fa-solid fa-coins"></i> استشارة رأس المال</span>
-          <span class="l-pill"><i class="fa-solid fa-palette"></i> استوديو التصميم</span>
-          <span class="l-pill"><i class="fa-solid fa-book-open"></i> مركز المعرفة</span>
-        </div>
-        <div class="l-pills-row">
-          <span class="l-pill"><i class="fa-solid fa-cubes"></i> متجر البرامج</span>
-          <span class="l-pill"><i class="fa-solid fa-microscope"></i> أبحاث ودراسات</span>
-          <span class="l-pill"><i class="fa-solid fa-folder-open"></i> إدارة مشاريعي</span>
-        </div>
-        <div class="l-pills-row">
-          <span class="l-pill"><i class="fa-solid fa-clipboard-list"></i> تتبع الطلبات</span>
-          <span class="l-pill"><i class="fa-solid fa-robot"></i> مساعد ذكي</span>
-          <span class="l-pill"><i class="fa-solid fa-chart-line"></i> تحليل الأداء</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="l-stats">
-      <div class="l-stat"><span class="l-stat-n">2000+</span><span class="l-stat-l">عضو نشط</span></div>
-      <div class="l-stat"><span class="l-stat-n">50+</span><span class="l-stat-l">دورة تدريبية</span></div>
-      <div class="l-stat"><span class="l-stat-n">500+</span><span class="l-stat-l">مشروع مكتمل</span></div>
-    </div>
-
-    <p class="l-copy">© 2026 جنان بيز &middot; جميع الحقوق محفوظة</p>
-
-  </div>
-</div>
-
 <!-- ===== RIGHT PANEL ===== -->
 <div class="auth-right">
+  <!-- علامة مائية احترافية -->
+  <div class="auth-right-wm" aria-hidden="true"></div>
+  <div class="auth-right-stripe"></div>
+  <div class="auth-right-deco"></div>
   <div class="auth-top-bar">
     <a href="/index.html" class="back-link"><i class="fa-solid fa-arrow-right"></i> العودة للموقع</a>
     <button id="theme-toggle"><i class="fa-solid fa-moon" id="th-ico"></i></button>
   </div>
 
   <div class="mobile-logo">
-    <div><span class="ml-name">جنان بيز</span><span class="ml-sub">Jenan Biz</span></div>
+    <img src="logo.png" alt="جنان بيز" style="height:52px;width:auto;object-fit:contain">
+    <div><span class="ml-name">جنان بيز</span><span class="ml-sub">المنصة الذكية للأعمال</span></div>
+  </div>
+
+  <!-- شعار أعلى النموذج -->
+  <div class="form-brand">
+    <img src="logo.png" alt="جنان بيز" class="form-brand-img">
+    <div>
+      <span class="form-brand-name">جنان بيز</span>
+      <span class="form-brand-sub">المنصة الذكية للأعمال والاستثمار</span>
+    </div>
   </div>
 
   <!-- ===== LOGIN PANEL ===== -->
