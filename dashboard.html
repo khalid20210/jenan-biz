@@ -1157,6 +1157,17 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .pay-method i{font-size:1.6rem;display:block;margin-bottom:.4rem;color:var(--muted)}
 .pay-method.active i{color:var(--green)}
 .pay-method span{font-size:.8rem;font-weight:600}
+/* ── Points Discount Slider ── */
+.pts-slider-wrap{background:linear-gradient(135deg,rgba(14,30,60,.72),rgba(5,22,14,.72));border:1px solid rgba(56,189,248,.18);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.pts-rail-outer{position:relative;height:8px;border-radius:99px;background:rgba(255,255,255,.08);margin:.4rem 0 1rem;cursor:pointer}
+.pts-rail-outer input[type=range]{position:absolute;inset:-8px 0;width:100%;height:24px;opacity:0;cursor:pointer;margin:0;z-index:3}
+.pts-rail-fill{position:absolute;left:0;top:0;height:100%;border-radius:99px;background:linear-gradient(90deg,#1e40af,#0ea5e9,#10b981);transition:width .04s}
+.pts-thumb{position:absolute;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#38bdf8,#34d399);box-shadow:0 0 0 3px rgba(52,211,153,.35),0 2px 8px rgba(0,0,0,.5);pointer-events:none;z-index:2;transition:left .04s}
+/* ── Invoice Box ── */
+.inv-box{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.inv-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;font-size:.88rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.inv-row:last-child{border-bottom:none;border-top:2px solid rgba(255,255,255,.1);padding-top:.75rem;margin-top:.25rem}
+.inv-total-row{font-size:1.1rem;font-weight:900}
 /* study report */
 .study-report{background:var(--bg3);border:1px solid rgba(78,115,194,.3);border-radius:20px;overflow:hidden;margin-bottom:2rem;box-shadow:0 8px 40px rgba(78,115,194,.12),0 0 0 1px rgba(78,115,194,.06) inset}
 .sr-header{background:linear-gradient(150deg,#05091e 0%,#0d1e4a 30%,#1E3A8A 65%,#3b63c8 90%,#4E73C2 100%);color:#fff;padding:0;position:relative;overflow:hidden}
@@ -2339,6 +2350,65 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             </div>
             <div class="pay-summary-price" id="pay-plan-price">99 ريال</div>
           </div>
+
+          <!-- ══ شريط استخدام النقاط — خصم جزئي ══ -->
+          <div class="pts-slider-wrap" id="pts-slider-section">
+            <!-- العنوان وسعر الصرف -->
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.9rem">
+              <span style="font-size:.9rem;font-weight:800">
+                <i class="fa-solid fa-coins" style="color:#f59e0b;margin-left:.45rem"></i>استخدم نقاطك — خصم جزئي
+              </span>
+              <span style="font-size:.74rem;color:rgba(255,255,255,.5);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);padding:.22rem .75rem;border-radius:99px;white-space:nowrap">
+                10 نقاط = 1 ريال
+              </span>
+            </div>
+            <!-- معلومات الحد الأقصى -->
+            <div style="display:flex;justify-content:space-between;font-size:.73rem;color:rgba(255,255,255,.4);margin-bottom:.35rem">
+              <span>0</span>
+              <span>نقاطك المتاحة: <strong style="color:#f59e0b" id="pts-avail-count">5,000</strong>
+                &nbsp;·&nbsp; الحد الأقصى للخصم: <strong style="color:#34d399" id="pts-max-label">2,500</strong> نقطة</span>
+              <span id="pts-max-pts-edge">2,500</span>
+            </div>
+            <!-- الشريط المنزلق -->
+            <div class="pts-rail-outer" id="pts-rail">
+              <div class="pts-rail-fill" id="pts-fill" style="width:0%"></div>
+              <div class="pts-thumb"     id="pts-thumb" style="left:0%"></div>
+              <input type="range" id="pts-slider" min="0" max="2500" value="0" step="10"
+                     oninput="updatePointsDiscount(this.value)"
+                     aria-label="تحديد عدد النقاط المستخدمة للخصم">
+            </div>
+            <!-- بطاقتا الإحصاء -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.15rem">
+              <div style="background:rgba(14,165,233,.09);border:1px solid rgba(14,165,233,.22);border-radius:10px;padding:.8rem;text-align:center">
+                <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.25rem">النقاط المستهلكة</div>
+                <div style="font-size:1.2rem;font-weight:900;color:#38bdf8" id="pts-used-disp">0</div>
+              </div>
+              <div style="background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.22);border-radius:10px;padding:.8rem;text-align:center">
+                <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.25rem">قيمة الخصم</div>
+                <div style="font-size:1.2rem;font-weight:900;color:#34d399" id="pts-sar-disp">0 ريال</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══ الفاتورة النهائية ══ -->
+          <div class="inv-box">
+            <div style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem">
+              الفاتورة النهائية
+            </div>
+            <div class="inv-row">
+              <span style="color:rgba(255,255,255,.65)">المجموع الأساسي</span>
+              <span id="inv-base-price" style="font-weight:700">2,500 ريال</span>
+            </div>
+            <div class="inv-row">
+              <span style="color:rgba(255,255,255,.65)">خصم النقاط</span>
+              <span id="inv-pts-discount" style="color:#34d399;font-weight:800">— 0 ريال</span>
+            </div>
+            <div class="inv-row inv-total-row">
+              <span>الإجمالي المطلوب دفعه نقداً</span>
+              <span id="inv-final-total" style="color:var(--green);font-size:1.2rem">2,500 ريال</span>
+            </div>
+          </div>
+
           <p style="font-size:.85rem;font-weight:700;margin-bottom:.85rem">اختر طريقة الدفع:</p>
           <div class="pay-methods-grid">
             <div class="pay-method active" id="pm-card" onclick="selectPayMethod('card')">
@@ -7680,18 +7750,91 @@ function selectStudyType(type) {
   btn.style.cursor = 'pointer';
 }
 
+/* ─────────────────────────────────────────────────────
+   نظام نقاط الخصم — Checkout Points-to-Discount Slider
+   تبادل: 10 نقاط = 1 ريال · حد أقصى 10% أو 250 ريال
+   ───────────────────────────────────────────────────── */
+const _MOCK_USER_POINTS = 5000;  // نقاط المستخدم (تُجلب من API مستقبلاً)
+let _chkBasePrice = 2500;
+let _chkDiscount  = 0;
+
+function _initCheckoutSlider(basePrice) {
+  _chkBasePrice = basePrice;
+  _chkDiscount  = 0;
+
+  const maxDiscountSAR = Math.min(basePrice * 0.10, 250);  // 10% أو 250 ريال
+  const maxPts         = maxDiscountSAR * 10;              // 10 نقاط = 1 ريال
+  const userAvailPts   = Math.min(_MOCK_USER_POINTS, maxPts);
+
+  const fmt = v => Math.round(v).toLocaleString('ar-SA');
+
+  const slider = document.getElementById('pts-slider');
+  if (slider) { slider.max = maxPts; slider.value = 0; }
+
+  const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setTxt('pts-avail-count',   fmt(userAvailPts));
+  setTxt('pts-max-label',     fmt(maxPts));
+  setTxt('pts-max-pts-edge',  fmt(maxPts));
+  setTxt('pts-used-disp',     '0');
+  setTxt('pts-sar-disp',      '0 ريال');
+  setTxt('inv-base-price',    fmt(basePrice) + ' ريال');
+  setTxt('inv-pts-discount',  '— 0 ريال');
+  setTxt('inv-final-total',   fmt(basePrice) + ' ريال');
+
+  const fill  = document.getElementById('pts-fill');
+  const thumb = document.getElementById('pts-thumb');
+  if (fill)  fill.style.width = '0%';
+  if (thumb) thumb.style.left = '0%';
+
+  const payBtn = document.getElementById('pay-submit-btn');
+  if (payBtn && !window._payProcessing)
+    payBtn.innerHTML = '<i class="fa-solid fa-lock"></i> إتمام الدفع بأمان';
+}
+
+function updatePointsDiscount(rawVal) {
+  const ptsUsed    = parseInt(rawVal, 10) || 0;
+  const sliderEl   = document.getElementById('pts-slider');
+  const maxPts     = sliderEl ? (parseInt(sliderEl.max, 10) || 1) : 1;
+  const pctFill    = Math.min(100, (ptsUsed / maxPts) * 100);
+
+  const discountSAR = ptsUsed / 10;
+  _chkDiscount      = discountSAR;
+  const finalPrice  = Math.max(0, _chkBasePrice - discountSAR);
+  const fmt         = v => Math.round(v).toLocaleString('ar-SA');
+
+  // تحريك الشريط والإبهام
+  const fill  = document.getElementById('pts-fill');
+  const thumb = document.getElementById('pts-thumb');
+  if (fill)  fill.style.width = pctFill + '%';
+  if (thumb) thumb.style.left = pctFill + '%';
+
+  const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setTxt('pts-used-disp',    fmt(ptsUsed));
+  setTxt('pts-sar-disp',     '- ' + fmt(discountSAR) + ' ريال');
+  setTxt('inv-pts-discount', '— ' + fmt(discountSAR) + ' ريال');
+  setTxt('inv-final-total',  fmt(finalPrice) + ' ريال');
+
+  // تحديث نص زر الدفع ليعكس المبلغ الفعلي
+  const payBtn = document.getElementById('pay-submit-btn');
+  if (payBtn && !window._payProcessing)
+    payBtn.innerHTML = discountSAR > 0
+      ? '<i class="fa-solid fa-lock"></i> إتمام الدفع — ' + fmt(finalPrice) + ' ريال نقداً'
+      : '<i class="fa-solid fa-lock"></i> إتمام الدفع بأمان';
+}
+
 function proceedToPayment() {
   if (!fsState.type) { showToast('يرجى اختيار نوع الدراسة أولاً'); return; }
   // تحديث ملخص الدفع
   const planName  = fsState.type === 'simple' ? 'دراسة الجدوى المبسطة' : 'دراسة الجدوى المفصلة';
-  const planPrice = fsState.type === 'simple' ? '99 ريال' : '299 ريال';
   const pn = document.getElementById('pay-plan-name');  if (pn) pn.textContent = planName;
-  const pp = document.getElementById('pay-plan-price'); if (pp) pp.textContent = planPrice;
+  const pp = document.getElementById('pay-plan-price'); if (pp) pp.textContent = '2,500 ريال';
+  // تهيئة شريط النقاط بالسعر الأساسي
+  _initCheckoutSlider(2500);
   // الانتقال لخطوة الدفع
   showFsStep(1);
 }
 
-function backToTypes() { showFsStep(0); }
+
 
 function selectPayMethod(method) {
   fsState.payMethod = method;
