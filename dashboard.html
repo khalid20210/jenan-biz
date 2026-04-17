@@ -2390,6 +2390,15 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             </div>
           </div>
 
+          <!-- ══ تنبيه: دفع كاش كامل (يظهر عند إيقاف خصم النقاط) ══ -->
+          <div id="cash-only-notice" style="display:none;align-items:center;gap:.7rem;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.28);border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.25rem">
+            <i class="fa-solid fa-shield-halved" style="color:#f87171;font-size:1.1rem;flex-shrink:0"></i>
+            <div>
+              <div style="font-size:.82rem;font-weight:800;color:#fca5a5;margin-bottom:.15rem">هذه الخدمة تستوجب الدفع الكامل نقداً</div>
+              <div style="font-size:.73rem;color:rgba(255,255,255,.4)">لا يمكن استخدام نقاط الولاء على الأنظمة البرمجية والاشتراكات والخدمات المتقدمة</div>
+            </div>
+          </div>
+
           <!-- ══ الفاتورة النهائية ══ -->
           <div class="inv-box">
             <div style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem">
@@ -2399,7 +2408,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
               <span style="color:rgba(255,255,255,.65)">المجموع الأساسي</span>
               <span id="inv-base-price" style="font-weight:700">2,500 ريال</span>
             </div>
-            <div class="inv-row">
+            <div id="inv-pts-row" class="inv-row">
               <span style="color:rgba(255,255,255,.65)">خصم النقاط</span>
               <span id="inv-pts-discount" style="color:#34d399;font-weight:800">— 0 ريال</span>
             </div>
@@ -7753,38 +7762,57 @@ function selectStudyType(type) {
 /* ─────────────────────────────────────────────────────
    نظام نقاط الخصم — Checkout Points-to-Discount Slider
    تبادل: 10 نقاط = 1 ريال · حد أقصى 10% أو 250 ريال
+   ─────────────────────────────────────────────────────
+   WHITELIST: الخدمات المؤهلة لخصم النقاط فقط
+   كل ما لم يُذكر هنا يُعدّ cash-only (دفع كامل نقداً)
    ───────────────────────────────────────────────────── */
+const _PTS_ELIGIBLE_SERVICES = new Set(['simple', 'detailed']); // دراسات الجدوى فقط
+
 const _MOCK_USER_POINTS = 5000;  // نقاط المستخدم (تُجلب من API مستقبلاً)
-let _chkBasePrice = 2500;
-let _chkDiscount  = 0;
+let _chkBasePrice   = 2500;
+let _chkDiscount    = 0;
+let _chkAllowPoints = false;  // إيقاف افتراضي — يُفعَّل صراحةً للخدمات المؤهلة
 
-function _initCheckoutSlider(basePrice) {
-  _chkBasePrice = basePrice;
-  _chkDiscount  = 0;
+function _setPointsSliderVisibility(visible) {
+  const slider  = document.getElementById('pts-slider-section');
+  const notice  = document.getElementById('cash-only-notice');
+  const ptsRow  = document.getElementById('inv-pts-row');
+  if (slider)  slider.style.display  = visible ? 'block' : 'none';
+  if (notice)  notice.style.display  = visible ? 'none'  : 'flex';
+  if (ptsRow)  ptsRow.style.display  = visible ? 'flex'  : 'none';
+}
 
-  const maxDiscountSAR = Math.min(basePrice * 0.10, 250);  // 10% أو 250 ريال
-  const maxPts         = maxDiscountSAR * 10;              // 10 نقاط = 1 ريال
-  const userAvailPts   = Math.min(_MOCK_USER_POINTS, maxPts);
+function _initCheckoutSlider(basePrice, allowPoints) {
+  // allowPoints: true فقط للخدمات الواردة في _PTS_ELIGIBLE_SERVICES
+  _chkBasePrice   = basePrice;
+  _chkDiscount    = 0;
+  _chkAllowPoints = !!allowPoints;
+
+  _setPointsSliderVisibility(_chkAllowPoints);
 
   const fmt = v => Math.round(v).toLocaleString('ar-SA');
-
-  const slider = document.getElementById('pts-slider');
-  if (slider) { slider.max = maxPts; slider.value = 0; }
-
   const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-  setTxt('pts-avail-count',   fmt(userAvailPts));
-  setTxt('pts-max-label',     fmt(maxPts));
-  setTxt('pts-max-pts-edge',  fmt(maxPts));
-  setTxt('pts-used-disp',     '0');
-  setTxt('pts-sar-disp',      '0 ريال');
-  setTxt('inv-base-price',    fmt(basePrice) + ' ريال');
-  setTxt('inv-pts-discount',  '— 0 ريال');
-  setTxt('inv-final-total',   fmt(basePrice) + ' ريال');
 
-  const fill  = document.getElementById('pts-fill');
-  const thumb = document.getElementById('pts-thumb');
-  if (fill)  fill.style.width = '0%';
-  if (thumb) thumb.style.left = '0%';
+  setTxt('inv-base-price',   fmt(basePrice) + ' ريال');
+  setTxt('inv-pts-discount', '— 0 ريال');
+  setTxt('inv-final-total',  fmt(basePrice) + ' ريال');
+
+  if (_chkAllowPoints) {
+    const maxDiscountSAR = Math.min(basePrice * 0.10, 250);
+    const maxPts         = maxDiscountSAR * 10;
+    const userAvailPts   = Math.min(_MOCK_USER_POINTS, maxPts);
+    const slider = document.getElementById('pts-slider');
+    if (slider) { slider.max = maxPts; slider.value = 0; }
+    setTxt('pts-avail-count',  fmt(userAvailPts));
+    setTxt('pts-max-label',    fmt(maxPts));
+    setTxt('pts-max-pts-edge', fmt(maxPts));
+    setTxt('pts-used-disp',    '0');
+    setTxt('pts-sar-disp',     '0 ريال');
+    const fill  = document.getElementById('pts-fill');
+    const thumb = document.getElementById('pts-thumb');
+    if (fill)  fill.style.width = '0%';
+    if (thumb) thumb.style.left = '0%';
+  }
 
   const payBtn = document.getElementById('pay-submit-btn');
   if (payBtn && !window._payProcessing)
@@ -7792,6 +7820,9 @@ function _initCheckoutSlider(basePrice) {
 }
 
 function updatePointsDiscount(rawVal) {
+  // حماية: لا تُطبَّق الخصومات إذا لم تكن الخدمة مؤهلة
+  if (!_chkAllowPoints) { return; }
+
   const ptsUsed    = parseInt(rawVal, 10) || 0;
   const sliderEl   = document.getElementById('pts-slider');
   const maxPts     = sliderEl ? (parseInt(sliderEl.max, 10) || 1) : 1;
@@ -7802,7 +7833,6 @@ function updatePointsDiscount(rawVal) {
   const finalPrice  = Math.max(0, _chkBasePrice - discountSAR);
   const fmt         = v => Math.round(v).toLocaleString('ar-SA');
 
-  // تحريك الشريط والإبهام
   const fill  = document.getElementById('pts-fill');
   const thumb = document.getElementById('pts-thumb');
   if (fill)  fill.style.width = pctFill + '%';
@@ -7814,7 +7844,6 @@ function updatePointsDiscount(rawVal) {
   setTxt('inv-pts-discount', '— ' + fmt(discountSAR) + ' ريال');
   setTxt('inv-final-total',  fmt(finalPrice) + ' ريال');
 
-  // تحديث نص زر الدفع ليعكس المبلغ الفعلي
   const payBtn = document.getElementById('pay-submit-btn');
   if (payBtn && !window._payProcessing)
     payBtn.innerHTML = discountSAR > 0
@@ -7828,8 +7857,9 @@ function proceedToPayment() {
   const planName  = fsState.type === 'simple' ? 'دراسة الجدوى المبسطة' : 'دراسة الجدوى المفصلة';
   const pn = document.getElementById('pay-plan-name');  if (pn) pn.textContent = planName;
   const pp = document.getElementById('pay-plan-price'); if (pp) pp.textContent = '2,500 ريال';
-  // تهيئة شريط النقاط بالسعر الأساسي
-  _initCheckoutSlider(2500);
+  // تهيئة شريط النقاط — يُفعَّل فقط للخدمات الواردة في القائمة البيضاء
+  const eligible = _PTS_ELIGIBLE_SERVICES.has(fsState.type);
+  _initCheckoutSlider(2500, eligible);
   // الانتقال لخطوة الدفع
   showFsStep(1);
 }
