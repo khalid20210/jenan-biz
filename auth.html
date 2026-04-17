@@ -1,625 +1,522 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>تسجيل الدخول | جنان بيز المنصة الذكية</title>
+  <title>Jenan BIZ - تسجيل الدخول</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { tajawal: ['Tajawal', 'sans-serif'] } } }
+    }
+  </script>
   <style>
-    :root {
-      --blue:#4E73C2; --blue-d:#3558A8; --blue-dp:#1E3A8A;
-      --green:#4E73C2; --green-d:#3558A8; --green-dp:#1E3A8A;
-      --amber:#4E73C2; --navy:#07091A; --navy2:#0D1228;
-      --bg:#f0f4ff; --bg2:#e6ecf8;
-      --text:#07091A; --muted:#64748b;
-      --border:rgba(78,115,194,.18); --radius:14px;
-      --tr:all .28s cubic-bezier(.4,0,.2,1);
-      --glass:rgba(255,255,255,.85);
-      --glass-border:rgba(78,115,194,.2);
-      --glow:0 0 0 3px rgba(78,115,194,.13);
+    body { font-family: 'Tajawal', sans-serif; }
+    .glass-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    [data-theme="dark"] {
-      --bg:#07091A; --bg2:#0D1228; --text:#e2e8f8;
-      --muted:#7B9ED4; --border:rgba(78,115,194,.2);
-      --glass:rgba(17,24,40,.9);
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;overflow:hidden}
-    body{
-      font-family:'Tajawal',sans-serif;
-      background:var(--bg); color:var(--text);
-      height:100vh; display:flex; align-items:stretch;
-      transition:background .3s,color .3s;
-      background-image:
-        radial-gradient(ellipse 80% 60% at 30% 120%, rgba(78,115,194,.15) 0%,transparent 60%),
-        radial-gradient(circle, rgba(78,115,194,.06) 1px, transparent 1px);
-      background-size:100% 100%, 32px 32px;
-    }
-    a{text-decoration:none;color:inherit}
-    input,button,select,textarea{font-family:'Tajawal',sans-serif}
-
-    /* ── شعار نموذج التسجيل (خلفية فاتحة) ── */
-    .form-brand {
-      display:flex; align-items:center; gap:1.2rem;
-      margin-top:5rem;
-      margin-bottom:2.5rem; padding-bottom:1.75rem;
-      border-bottom:1px solid rgba(78,115,194,.15);
-    }
-    .form-brand-img {
-      height:92px; width:auto; object-fit:contain;
-      filter:drop-shadow(0 4px 16px rgba(78,115,194,.25));
-    }
-    .form-brand-name {
-      display:block; font-size:1.75rem; font-weight:900;
-      background:linear-gradient(135deg,#07091A 0%,#4E73C2 100%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-      letter-spacing:-.01em;
-    }
-    .form-brand-sub { display:block; font-size:.82rem; color:var(--muted); margin-top:.2rem; }
-
-    /* ===== RIGHT PANEL ===== */
-    .auth-right {
-      width:100%; max-width:520px; min-width:280px;
-      margin:0 auto;
-      background:var(--glass);
-      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-      min-height:100vh;
-      display:flex; flex-direction:column; justify-content:flex-start;
-      padding:4rem 2.75rem 3rem; position:relative; overflow-y:auto;
-    }
-    /* علامة مائية داخل تصميم الجانب الأيمن */
-    .auth-right-wm{
-      position:absolute;inset:0;pointer-events:none;
-      z-index:0;overflow:hidden;
-      display:flex;align-items:flex-end;justify-content:flex-start;
-    }
-    .auth-right-wm::before{
-      content:'ج';
-      font-family:'Tajawal',sans-serif;
-      font-size:420px;font-weight:900;
-      color:rgba(78,115,194,.045);
-      line-height:.8;
-      position:absolute;
-      bottom:-60px;right:-30px;
-    }
-    /* خط جانبي من ألوان الشعار */
-    .auth-right::after{
-      content:'';position:absolute;top:0;right:0;bottom:0;width:3px;
-      background:linear-gradient(180deg,transparent 0%,#4E73C2 30%,#7B9ED4 60%,transparent 100%);
-    }
-    .auth-top-bar {
-      position:absolute; top:1.1rem; left:1.1rem; right:1.1rem;
-      display:flex; align-items:center; justify-content:space-between;
-    }
-    .back-link { font-size:.82rem; color:var(--muted); display:flex; align-items:center; gap:.38rem; transition:color .2s; }
-    .back-link:hover { color:var(--blue); }
-    #theme-toggle {
-      background:rgba(78,115,194,.1); border:1px solid var(--glass-border);
-      width:34px; height:34px; border-radius:50%; cursor:pointer;
-      color:var(--blue); font-size:.82rem;
-      display:flex; align-items:center; justify-content:center; transition:var(--tr);
-    }
-    #theme-toggle:hover { background:var(--blue); color:#fff; border-color:var(--blue); box-shadow:0 4px 14px rgba(78,115,194,.4); }
-
-    /* ── Panels ── */
-    .panel { display:none; animation:slideUp .32s ease; position:relative; z-index:1; }
-    .panel.active { display:block; }
-    @keyframes slideUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-    .panel-title { font-size:1.5rem; font-weight:900;
-      background:linear-gradient(135deg,#1E3A8A 0%,#4E73C2 100%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-      margin-bottom:.3rem; }
-    .panel-sub   { font-size:.86rem; color:var(--muted); margin-bottom:1.6rem; }
-
-    /* ── Fields ── */
-    .field { margin-bottom:1rem; }
-    .field label { display:block; font-size:.8rem; font-weight:700; color:var(--text); margin-bottom:.38rem; }
-    .input-wrap { position:relative; }
-    .input-wrap > i:not(.eye) {
-      position:absolute; top:50%; right:.9rem; transform:translateY(-50%);
-      color:var(--blue); font-size:.82rem; pointer-events:none; opacity:.7;
-    }
-    .input-wrap.has-eye i.eye { position:absolute; top:50%; left:.9rem; transform:translateY(-50%); cursor:pointer; color:var(--muted); font-size:.82rem; }
-    .field input {
-      width:100%; padding:.78rem 2.6rem .78rem .95rem;
-      border:1.5px solid var(--glass-border); border-radius:10px;
-      font-size:.9rem;
-      background:rgba(255,255,255,.7);
-      backdrop-filter:blur(8px);
-      color:var(--text);
-      transition:var(--tr); outline:none;
-    }
-    .field input:focus {
-      border-color:var(--blue);
-      background:rgba(255,255,255,.95);
-      box-shadow:0 0 0 3px rgba(78,115,194,.14), 0 4px 16px rgba(78,115,194,.1);
-    }
-    .field input.err { border-color:#e74c3c; }
-    .field.has-eye input { padding-left:2.6rem; }
-    .err-msg { font-size:.74rem; color:#e74c3c; margin-top:.25rem; display:none; }
-    .row-2 { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; }
-
-    /* ── Password strength ── */
-    .pw-strength { margin-top:.45rem; }
-    .pw-bars { display:flex; gap:.28rem; margin-bottom:.25rem; }
-    .pw-bar { height:3px; flex:1; border-radius:2px; background:var(--border); transition:.3s; }
-    .pw-label { font-size:.72rem; color:var(--muted); }
-    .str-1 .pw-bar:nth-child(1){background:#e74c3c}
-    .str-2 .pw-bar:nth-child(1),.str-2 .pw-bar:nth-child(2){background:#e67e22}
-    .str-3 .pw-bar:nth-child(-n+3){background:var(--amber)}
-    .str-4 .pw-bar{background:var(--blue)}
-
-    /* ── Check row ── */
-    .check-row { display:flex; align-items:center; gap:.55rem; margin-bottom:1.1rem; cursor:pointer; }
-    .check-row input[type=checkbox] { width:16px; height:16px; accent-color:var(--blue); cursor:pointer; }
-    .check-row span { font-size:.82rem; color:var(--muted); }
-
-    /* ── Buttons ── */
-    .btn-auth {
-      width:100%; padding:.86rem;
-      background:linear-gradient(135deg,#4E73C2 0%,#1E3A8A 100%);
-      color:#fff;
-      border:none; border-radius:11px; font-size:.95rem; font-weight:800;
-      cursor:pointer; transition:var(--tr);
-      display:flex; align-items:center; justify-content:center; gap:.5rem;
-      margin-bottom:.9rem;
-      box-shadow:0 4px 20px rgba(78,115,194,.4);
-      position:relative;overflow:hidden;
-    }
-    .btn-auth::before{
-      content:'';position:absolute;inset:0;
-      background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
-      opacity:0;transition:.2s;
-    }
-    .btn-auth:hover::before{opacity:1}
-    .btn-auth:hover {
-      transform:translateY(-2px);
-      box-shadow:0 8px 32px rgba(78,115,194,.5);
-    }
-    .btn-auth:disabled { opacity:.6; cursor:not-allowed; transform:none; box-shadow:none; }
-    .btn-ghost {
-      background:rgba(78,115,194,.06);
-      color:var(--blue);
-      border:1.5px solid var(--glass-border);
-      box-shadow:none;
-    }
-    .btn-ghost:hover {
-      border-color:rgba(78,115,194,.4);
-      background:rgba(78,115,194,.12);
-      box-shadow:none;
-    }
-
-    /* ── Divider ── */
-    .divider { display:flex; align-items:center; gap:.9rem; margin:.85rem 0; color:var(--muted); font-size:.78rem; }
-    .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
-
-    /* ── Social ── */
-    .social-auth { display:grid; grid-template-columns:1fr 1fr; gap:.65rem; margin-bottom:1.1rem; }
-    .soc-btn {
-      display:flex; align-items:center; justify-content:center; gap:.5rem;
-      padding:.65rem; border-radius:10px;
-      border:1.5px solid var(--glass-border);
-      background:rgba(255,255,255,.7);
-      backdrop-filter:blur(8px);
-      color:var(--text); font-size:.85rem; font-weight:600;
-      cursor:pointer; transition:var(--tr);
-    }
-    .soc-btn:hover {
-      border-color:rgba(78,115,194,.4);
-      background:rgba(255,255,255,.95);
-      box-shadow:0 4px 16px rgba(78,115,194,.15);
-    }
-    .soc-btn i { font-size:1rem; }
-    .soc-btn.google i { color:#ea4335; }
-
-    /* ── Switch row ── */
-    .switch-row { text-align:center; font-size:.84rem; color:var(--muted); }
-    .switch-row a { color:var(--blue); font-weight:700; cursor:pointer; }
-    .switch-row a:hover { color:var(--blue-d); }
-
-    /* ── Success box ── */
-    .success-box {
-      background:rgba(78,115,194,.08); border:1px solid rgba(78,115,194,.28);
-      border-radius:12px; padding:1.4rem; text-align:center; display:none;
-    }
-    .success-box i { font-size:2.2rem; color:var(--blue); margin-bottom:.65rem; display:block; }
-    .success-box h3 { font-size:1rem; font-weight:700; color:var(--blue-dp); margin-bottom:.35rem; }
-    .success-box p { font-size:.84rem; color:var(--muted); }
-
-    /* ── OTP ── */
-    .otp-row { display:flex; gap:.55rem; justify-content:center; margin:1.1rem 0; }
-    .otp-row input {
-      width:48px; height:52px; text-align:center; font-size:1.3rem; font-weight:800;
-      border:1.5px solid var(--glass-border); border-radius:11px;
-      background:rgba(255,255,255,.75); color:var(--text);
-      transition:var(--tr); outline:none;
-    }
-    .otp-row input:focus {
-      border-color:var(--blue);
-      background:rgba(255,255,255,.98);
-      box-shadow:0 0 0 3px rgba(78,115,194,.14),0 4px 12px rgba(78,115,194,.1);
-    }
-    .resend-link { text-align:center; font-size:.8rem; color:var(--muted); margin-bottom:.9rem; }
-    .resend-link a { color:var(--blue); cursor:pointer; }
-
-    /* ── Spinner ── */
+    .panel { display: none; }
+    .panel.active { display: block; animation: slideUp .3s ease; }
+    @keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
     .spinner { display:none; width:18px; height:18px; border:2.5px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin .65s linear infinite; }
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    /* ── Register steps ── */
-    .register-steps { display:flex; align-items:center; justify-content:center; gap:.45rem; margin-bottom:1.6rem; }
-    .reg-step { display:flex; align-items:center; }
-    .reg-step-dot {
-      width:30px; height:30px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800;
-      background:rgba(255,255,255,.7); border:2px solid var(--glass-border); color:var(--muted); transition:.3s;
-    }
-    .reg-step.active .reg-step-dot {
-      background:linear-gradient(135deg,#4E73C2,#1E3A8A);
-      border-color:transparent; color:#fff;
-      box-shadow:0 4px 12px rgba(78,115,194,.45);
-    }
-    .reg-step.done   .reg-step-dot {
-      background:linear-gradient(135deg,#1E3A8A,#0f2060);
-      border-color:transparent; color:#fff;
-    }
-    .reg-step-line { width:26px; height:2px; background:var(--glass-border); transition:.3s; margin:0 .2rem; }
-
-    /* ── Mobile logo ── */
-    .mobile-logo { display:none; align-items:center; gap:.6rem; margin-bottom:1.5rem; }
-    .mobile-logo img {
-      border-radius:0; /* بلا إطار */
-      mix-blend-mode:multiply; /* الأبيض يصبح شفافاً على الخلفية الفاتحة */
-      filter:drop-shadow(0 2px 6px rgba(78,115,194,.2));
-    }
-    .ml-name { display:block; font-size:1.3rem; font-weight:900;
-      background:linear-gradient(135deg,#1E3A8A,#4E73C2);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-    .ml-sub  { display:block; font-size:.68rem; color:var(--muted); }
-
-    /* ── شريط أزرق علوي للجانب الأيمن ── */
-    .auth-right-stripe { position:absolute;top:0;left:0;right:0;height:3px;
-      background:linear-gradient(90deg,transparent,#4E73C2 35%,#7B9ED4 65%,transparent); }
-    /* ── دائرة زخرفية ── */
-    .auth-right-deco { position:absolute;bottom:-70px;left:-70px;width:220px;height:220px;
-      border-radius:50%;pointer-events:none;
-      background:radial-gradient(circle,rgba(78,115,194,.08) 0%,transparent 70%); }
-
-    @media(max-width:860px){
-      .auth-left{display:none}
-      .auth-right{width:100%;padding:4rem 1.6rem 2rem}
-      .mobile-logo{display:flex}
-      .form-brand{display:none}
-    }
-    @media(max-width:430px){
-      .row-2{grid-template-columns:1fr}
-      .otp-row input{width:40px;height:46px;font-size:1.1rem}
-    }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    .err-msg { font-size:.75rem; color:#ef4444; margin-top:.25rem; display:none; }
+    .pw-bar { height:3px; flex:1; border-radius:2px; background:#e2e8f0; transition:.3s; }
+    .str-1 .pw-bar:nth-child(1){background:#ef4444}
+    .str-2 .pw-bar:nth-child(1),.str-2 .pw-bar:nth-child(2){background:#f97316}
+    .str-3 .pw-bar:nth-child(-n+3){background:#eab308}
+    .str-4 .pw-bar{background:#22c55e}
+    .reg-step-dot { width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800; border:2px solid #cbd5e1; color:#94a3b8; background:#fff; transition:.3s; }
+    .reg-step.active .reg-step-dot { background:linear-gradient(135deg,#4E73C2,#1E3A8A); border-color:transparent; color:#fff; box-shadow:0 4px 12px rgba(78,115,194,.45); }
+    .reg-step.done   .reg-step-dot { background:linear-gradient(135deg,#1E3A8A,#0f2060); border-color:transparent; color:#fff; }
+    .reg-step-line { width:28px; height:2px; background:#e2e8f0; }
+    .field-err { border-color:#ef4444 !important; }
+    @media(max-width:768px) { .auth-left-panel { display:none !important; } }
   </style>
 </head>
-<body>
+<body class="min-h-screen flex bg-slate-50 antialiased" style="height:100vh;overflow:hidden">
 
 <!-- ===== LEFT PANEL ===== -->
+<div class="auth-left-panel relative flex flex-col justify-between overflow-hidden bg-slate-900"
+     style="flex:1;height:100vh;padding:1rem 2rem 0.8rem;">
+
+  <!-- خلفية نقطية -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(circle,rgba(78,115,194,.1) 1px,transparent 1px);background-size:26px 26px;"></div>
+  <div class="absolute pointer-events-none" style="top:-100px;left:-100px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(78,115,194,.15) 0%,transparent 70%);"></div>
+  <div class="absolute pointer-events-none" style="bottom:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,200,.05) 0%,transparent 70%);"></div>
+
+  <!-- شعار -->
+  <div class="relative z-10 flex justify-end items-center">
+    <div class="text-right">
+      <div class="leading-none" style="font-family:'Georgia',serif;font-size:1.75rem;font-weight:900;color:#fff;letter-spacing:-.5px;">Jenan <span style="color:#93c5fd;">BIZ</span></div>
+      <div class="text-xs mt-0.5" style="color:rgba(255,255,255,.45);">المنصة الذكية للأعمال</div>
+    </div>
+  </div>
+
+  <!-- العنوان -->
+  <div class="relative z-10 text-center">
+    <h2 class="text-xl font-black text-white mb-1">بوابتك نحو النجاح المالي</h2>
+    <p class="text-xs" style="color:rgba(255,255,255,.5);">كل ما تحتاجه لتأسيس مشروعك ونموه في مكان واحد</p>
+  </div>
+
+  <!-- البطاقات -->
+  <div class="relative z-10 flex flex-col gap-1.5">
+
+    <div class="glass-card p-2.5 rounded-xl flex items-center gap-3 hover:bg-white/10 transition cursor-default">
+      <div class="w-11 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(78,115,194,.25),rgba(30,58,138,.15));border:1px solid rgba(78,115,194,.35);box-shadow:0 0 16px rgba(78,115,194,.2),inset 0 1px 0 rgba(255,255,255,.08);">
+        <i class="fa-solid fa-file-invoice-dollar" style="color:#7ba7e8;filter:drop-shadow(0 0 6px rgba(78,115,194,.8));"></i>
+      </div>
+      <div class="flex-1">
+        <div class="text-white font-bold text-sm">إعداد دراسات جدوى متكاملة</div>
+        <div class="text-xs mt-0.5" style="color:rgba(255,255,255,.45);">تحليل شامل لفرص السوق والمخاطر</div>
+      </div>
+      <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+
+    <div class="glass-card p-2.5 rounded-xl flex items-center gap-3 hover:bg-white/10 transition cursor-default">
+      <div class="w-11 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(109,40,217,.15));border:1px solid rgba(139,92,246,.35);box-shadow:0 0 16px rgba(139,92,246,.2),inset 0 1px 0 rgba(255,255,255,.08);">
+        <i class="fa-solid fa-magnifying-glass-chart" style="color:#c4b5fd;filter:drop-shadow(0 0 6px rgba(139,92,246,.8));"></i>
+      </div>
+      <div class="flex-1">
+        <div class="text-white font-bold text-sm">تحليل وتقييم مشروعات</div>
+        <div class="text-xs mt-0.5" style="color:rgba(255,255,255,.45);">رؤى مدعومة بالذكاء الاصطناعي لأداء متفوق</div>
+      </div>
+      <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+
+    <div class="glass-card p-2.5 rounded-xl flex items-center gap-3 hover:bg-white/10 transition cursor-default">
+      <div class="w-11 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(180,83,9,.15));border:1px solid rgba(245,158,11,.35);box-shadow:0 0 16px rgba(245,158,11,.2),inset 0 1px 0 rgba(255,255,255,.08);">
+        <i class="fa-solid fa-graduation-cap" style="color:#fcd34d;filter:drop-shadow(0 0 6px rgba(245,158,11,.9));"></i>
+      </div>
+      <div class="flex-1">
+        <div class="text-white font-bold text-sm">أكاديمية جنان للأعمال</div>
+        <div class="text-xs mt-0.5" style="color:rgba(255,255,255,.45);">برامج تدريبية متخصصة لرواد الأعمال</div>
+      </div>
+      <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+
+    <div class="glass-card p-2.5 rounded-xl flex items-center gap-3 hover:bg-white/10 transition cursor-default">
+      <div class="w-11 h-10 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(34,197,94,.25),rgba(21,128,61,.15));border:1px solid rgba(34,197,94,.35);box-shadow:0 0 16px rgba(34,197,94,.2),inset 0 1px 0 rgba(255,255,255,.08);">
+        <i class="fa-solid fa-rocket" style="color:#86efac;filter:drop-shadow(0 0 6px rgba(34,197,94,.8));"></i>
+      </div>
+      <div class="flex-1">
+        <div class="text-white font-bold text-sm">متجر برامج نمو المشروع</div>
+        <div class="text-xs mt-0.5" style="color:rgba(255,255,255,.45);">أدوات وحلول برمجية لتحقيق التوسع</div>
+      </div>
+      <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+  </div>
+
+  <!-- المؤشرات -->
+  <div class="relative z-10 glass-card rounded-2xl p-2.5">
+    <div class="flex items-center justify-between gap-1">
+
+      <div class="text-center flex-1">
+        <svg width="52" height="52" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="5"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#00e396" stroke-width="5"
+            stroke-dasharray="145.2 163.4" stroke-dashoffset="40.8"
+            stroke-linecap="round" transform="rotate(-90 32 32)"
+            style="filter:drop-shadow(0 0 6px #00e396) drop-shadow(0 0 14px #00e396) drop-shadow(0 0 24px rgba(0,227,150,.4))"/>
+          <text x="32" y="36" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Tajawal,sans-serif">88%</text>
+        </svg>
+        <div class="text-xs" style="color:rgba(255,255,255,.55);">جاهزية التمويل</div>
+      </div>
+
+      <div class="text-center flex-1">
+        <svg width="52" height="52" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="5"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#4E73C2" stroke-width="5"
+            stroke-dasharray="145.2 163.4" stroke-dashoffset="40.8"
+            stroke-linecap="round" transform="rotate(-90 32 32)"
+            style="filter:drop-shadow(0 0 6px #4E73C2) drop-shadow(0 0 14px #4E73C2) drop-shadow(0 0 24px rgba(78,115,194,.4))"/>
+          <text x="32" y="36" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Tajawal,sans-serif">88%</text>
+        </svg>
+        <div class="text-xs" style="color:rgba(255,255,255,.55);">تقييم المخاطر</div>
+      </div>
+
+      <div class="flex-1 text-center">
+        <div class="text-blue-300 font-black text-xs mb-1">+12%</div>
+        <div class="flex items-end justify-center gap-0.5" style="height:28px;">
+          <div class="w-1.5 rounded-t" style="height:40%;background:rgba(78,115,194,.35)"></div>
+          <div class="w-1.5 rounded-t" style="height:65%;background:rgba(78,115,194,.55)"></div>
+          <div class="w-1.5 rounded-t" style="height:80%;background:rgba(78,115,194,.75)"></div>
+          <div class="w-1.5 rounded-t" style="height:100%;background:#4E73C2;box-shadow:0 0 8px rgba(78,115,194,.9),0 0 18px rgba(78,115,194,.5),0 0 30px rgba(78,115,194,.25)"></div>
+          <div class="w-1.5 rounded-t" style="height:85%;background:rgba(78,115,194,.6)"></div>
+        </div>
+        <div class="text-xs mt-1" style="color:rgba(255,255,255,.45);">تحليل السوق</div>
+      </div>
+
+      <div class="flex-1 text-center">
+        <div class="text-blue-300 font-black text-lg leading-none">108</div>
+        <div class="text-xs mt-1" style="color:rgba(255,255,255,.45);">عميل نشط</div>
+      </div>
+
+      <div class="flex-1 text-center">
+        <div class="font-black text-xs mb-1" style="color:#00e396;">+12%</div>
+        <svg width="46" height="28" viewBox="0 0 55 36">
+          <polyline points="2,30 10,22 18,26 26,14 34,18 42,8 53,12"
+            fill="none" stroke="#00e396" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            style="filter:drop-shadow(0 0 6px #00e396) drop-shadow(0 0 14px #00e396) drop-shadow(0 0 22px rgba(0,227,150,.35))"/>
+          <polygon points="2,30 10,22 18,26 26,14 34,18 42,8 53,12 53,34 2,34"
+            fill="rgba(0,201,167,.1)"/>
+        </svg>
+        <div class="text-xs" style="color:rgba(255,255,255,.45);">توقع الأرباح</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- إحصاءات -->
+  <div class="relative z-10 flex justify-center gap-6">
+    <div class="text-center">
+      <div class="text-white font-black">+500</div>
+      <div class="text-xs" style="color:rgba(255,255,255,.4);">مشروع مكتمل</div>
+    </div>
+    <div class="w-px" style="background:rgba(255,255,255,.1);"></div>
+    <div class="text-center">
+      <div class="text-white font-black">+50</div>
+      <div class="text-xs" style="color:rgba(255,255,255,.4);">دورة تدريبية</div>
+    </div>
+    <div class="w-px" style="background:rgba(255,255,255,.1);"></div>
+    <div class="text-center">
+      <div class="text-white font-black">+2000</div>
+      <div class="text-xs" style="color:rgba(255,255,255,.4);">عضو نشط</div>
+    </div>
+  </div>
+
+  <div class="relative z-10 text-center">
+    <p class="text-xs" style="color:rgba(255,255,255,.2);">&#169; 2026 جنان بيز &middot; جميع الحقوق محفوظة</p>
+  </div>
+</div>
+
 <!-- ===== RIGHT PANEL ===== -->
-<div class="auth-right">
-  <!-- علامة مائية احترافية -->
-  <div class="auth-right-wm" aria-hidden="true"></div>
-  <div class="auth-right-stripe"></div>
-  <div class="auth-right-deco"></div>
-  <div class="auth-top-bar">
-    <a href="/index.html" class="back-link"><i class="fa-solid fa-arrow-right"></i> العودة للموقع</a>
-    <button id="theme-toggle"><i class="fa-solid fa-moon" id="th-ico"></i></button>
+<div class="flex flex-col bg-slate-50 overflow-hidden relative" style="width:100%;max-width:500px;min-width:320px;height:100vh;flex-shrink:0;">
+
+  <!-- شريط علوي -->
+  <div class="flex items-center justify-between px-6 py-3 flex-shrink-0 border-b border-slate-100">
+    <a href="/" class="text-slate-500 text-sm flex items-center gap-1.5 hover:text-blue-600 transition">
+      <i class="fa-solid fa-arrow-right"></i> العودة للموقع
+    </a>
+    <button id="theme-toggle" class="w-9 h-9 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition border border-slate-200 bg-white">
+      <i class="fa-solid fa-moon" id="th-ico"></i>
+    </button>
   </div>
 
-  <div class="mobile-logo">
-    <img src="logo.png" alt="جنان بيز" style="height:52px;width:auto;object-fit:contain">
-    <div><span class="ml-name">جنان بيز</span><span class="ml-sub">المنصة الذكية للأعمال</span></div>
-  </div>
+  <div class="flex-1 flex flex-col justify-center px-8 py-4 overflow-y-auto">
 
-  <!-- شعار أعلى النموذج -->
-  <div class="form-brand">
-    <img src="logo.png" alt="جنان بيز" class="form-brand-img">
-    <div>
-      <span class="form-brand-name">جنان بيز</span>
-      <span class="form-brand-sub">المنصة الذكية للأعمال والاستثمار</span>
-    </div>
-  </div>
+    <!-- ===== LOGIN ===== -->
+    <div class="panel active" id="panel-login">
+      <h2 class="text-2xl font-black text-slate-800 mb-1">مرحباً بعودتك &#128075;</h2>
+      <p class="text-slate-500 text-sm mb-6">سجّل دخولك للوصول إلى منصتك الذكية</p>
 
-  <!-- ===== LOGIN PANEL ===== -->
-  <div class="panel active" id="panel-login">
-    <p class="panel-title">مرحباً بعودتك 👋</p>
-    <p class="panel-sub">سجّل دخولك للوصول إلى منصتك الذكية</p>
-
-    <form id="loginForm" novalidate>
-      <div class="field">
-        <label>البريد الإلكتروني أو اسم المستخدم</label>
-        <div class="input-wrap">
-          <i class="fa-solid fa-user"></i>
-          <input type="text" id="l-user" placeholder="example@email.com" autocomplete="username"/>
-        </div>
-        <p class="err-msg" id="l-user-err">يرجى إدخال البريد الإلكتروني أو اسم المستخدم</p>
-      </div>
-      <div class="field has-eye">
-        <label>كلمة المرور</label>
-        <div class="input-wrap has-eye">
-          <i class="fa-solid fa-lock"></i>
-          <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password"/>
-          <i class="fa-solid fa-eye eye" id="eye-l" onclick="toggleEye('l-pass','eye-l')"></i>
-        </div>
-        <p class="err-msg" id="l-pass-err">يرجى إدخال كلمة المرور</p>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;">
-        <label class="check-row" style="margin:0">
-          <input type="checkbox" id="remember"/> <span>تذكّرني</span>
-        </label>
-        <a onclick="show('reset')" style="font-size:.82rem;color:var(--blue);cursor:pointer;font-weight:600;">نسيت كلمة المرور؟</a>
-      </div>
-      <button type="submit" class="btn-auth" id="login-btn">
-        <span id="login-txt">تسجيل الدخول</span>
-        <div class="spinner" id="login-spin"></div>
-        <i class="fa-solid fa-arrow-left" id="login-icon"></i>
-      </button>
-    </form>
-
-    <div class="divider">أو</div>
-    <div class="social-auth">
-      <button class="soc-btn google" onclick="socialLogin()"><i class="fa-brands fa-google"></i> Google</button>
-      <button class="soc-btn apple"  onclick="socialLogin()"><i class="fa-brands fa-apple"></i> Apple</button>
-    </div>
-    <p class="switch-row">ليس لديك حساب؟ <a onclick="show('register')">إنشاء حساب مجاني</a></p>
-  </div>
-
-  <!-- ===== REGISTER PANEL ===== -->
-  <div class="panel" id="panel-register">
-    <p class="panel-title">إنشاء حساب جديد ✨</p>
-    <p class="panel-sub">انضم مجاناً وابدأ رحلتك مع المساعد الذكي</p>
-
-    <div class="register-steps" id="reg-steps">
-      <div class="reg-step active" id="rst-1"><div class="reg-step-dot">١</div></div>
-      <div class="reg-step-line" id="rl-1"></div>
-      <div class="reg-step" id="rst-2"><div class="reg-step-dot">٢</div></div>
-      <div class="reg-step-line" id="rl-2"></div>
-      <div class="reg-step" id="rst-3"><div class="reg-step-dot">٣</div></div>
-    </div>
-
-    <!-- Step 1 -->
-    <div id="reg-s1">
-      <form id="regForm1" novalidate>
-        <div class="row-2">
-          <div class="field">
-            <label>الاسم الأول</label>
-            <div class="input-wrap"><i class="fa-solid fa-user"></i>
-              <input type="text" id="r-fname" placeholder="محمد"/>
-            </div>
-            <p class="err-msg" id="r-fname-err">مطلوب</p>
+      <form id="loginForm" novalidate class="space-y-4">
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1.5">البريد الإلكتروني أو اسم المستخدم</label>
+          <div class="relative">
+            <input type="text" id="l-user" placeholder="example@email.com" autocomplete="username" dir="ltr"
+              class="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-left"/>
+            <i class="fa-solid fa-user absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-sm pointer-events-none"></i>
           </div>
-          <div class="field">
-            <label>اسم العائلة</label>
-            <div class="input-wrap"><i class="fa-solid fa-user"></i>
-              <input type="text" id="r-lname" placeholder="العمري"/>
-            </div>
-            <p class="err-msg" id="r-lname-err">مطلوب</p>
-          </div>
+          <p class="err-msg" id="l-user-err">يرجى إدخال البريد الإلكتروني أو اسم المستخدم</p>
         </div>
-        <div class="field">
-          <label>البريد الإلكتروني</label>
-          <div class="input-wrap"><i class="fa-solid fa-envelope"></i>
-            <input type="email" id="r-email" placeholder="example@email.com"/>
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1.5">كلمة المرور</label>
+          <div class="relative">
+            <input type="password" id="l-pass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" autocomplete="current-password"
+              class="w-full px-4 py-3 pr-10 pl-10 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"/>
+            <i class="fa-solid fa-lock absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-sm pointer-events-none"></i>
+            <i class="fa-solid fa-eye absolute top-1/2 -translate-y-1/2 left-3 text-slate-400 text-sm cursor-pointer" id="eye-l" onclick="toggleEye('l-pass','eye-l')"></i>
           </div>
-          <p class="err-msg" id="r-email-err">بريد إلكتروني غير صحيح</p>
+          <p class="err-msg" id="l-pass-err">يرجى إدخال كلمة المرور</p>
         </div>
-        <div class="field">
-          <label>رقم الجوال</label>
-          <div class="input-wrap"><i class="fa-solid fa-phone"></i>
-            <input type="tel" id="r-phone" placeholder="05xxxxxxxx" dir="ltr"/>
-          </div>
-          <p class="err-msg" id="r-phone-err">رقم غير صحيح</p>
+        <div class="flex items-center justify-between">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="remember" class="w-4 h-4 accent-blue-600"/>
+            <span class="text-sm text-slate-600">تذكّرني</span>
+          </label>
+          <a onclick="show('reset')" class="text-sm font-bold text-blue-600 hover:text-blue-700 cursor-pointer">نسيت كلمة المرور؟</a>
         </div>
-        <button type="submit" class="btn-auth">التالي <i class="fa-solid fa-arrow-left"></i></button>
+        <button type="submit" id="login-btn"
+          class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white font-bold transition hover:-translate-y-0.5 disabled:opacity-60"
+          style="background:linear-gradient(135deg,#4E73C2,#1E3A8A);box-shadow:0 4px 20px rgba(78,115,194,.35)">
+          <span id="login-txt">تسجيل الدخول</span>
+          <div class="spinner" id="login-spin"></div>
+          <i class="fa-solid fa-arrow-left" id="login-icon"></i>
+        </button>
       </form>
+
+      <div class="flex items-center gap-3 my-5">
+        <div class="flex-1 h-px bg-slate-200"></div>
+        <span class="text-slate-400 text-sm">أو</span>
+        <div class="flex-1 h-px bg-slate-200"></div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-5">
+        <button onclick="socialLogin()" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 text-sm font-semibold hover:bg-slate-50 transition">
+          <i class="fa-brands fa-google text-red-500"></i> Google
+        </button>
+        <button onclick="socialLogin()" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 text-sm font-semibold hover:bg-slate-50 transition">
+          <i class="fa-brands fa-apple"></i> Apple
+        </button>
+      </div>
+      <p class="text-center text-sm text-slate-500">ليس لديك حساب؟ <a onclick="show('register')" class="font-bold text-blue-600 hover:text-blue-700 cursor-pointer">إنشاء حساب مجاني</a></p>
     </div>
 
-    <!-- Step 2 -->
-    <div id="reg-s2" style="display:none">
-      <form id="regForm2" novalidate>
-        <div class="field">
-          <label>اسم المستخدم</label>
-          <div class="input-wrap"><i class="fa-solid fa-at"></i>
-            <input type="text" id="r-uname" placeholder="your_username" dir="ltr"/>
+    <!-- ===== REGISTER ===== -->
+    <div class="panel" id="panel-register">
+      <h2 class="text-2xl font-black text-slate-800 mb-1">إنشاء حساب جديد &#10024;</h2>
+      <p class="text-slate-500 text-sm mb-5">انضم مجاناً وابدأ رحلتك مع المساعد الذكي</p>
+
+      <div class="flex items-center justify-center gap-2 mb-6" id="reg-steps">
+        <div class="reg-step active" id="rst-1"><div class="reg-step-dot">١</div></div>
+        <div class="reg-step-line" id="rl-1"></div>
+        <div class="reg-step" id="rst-2"><div class="reg-step-dot">٢</div></div>
+        <div class="reg-step-line" id="rl-2"></div>
+        <div class="reg-step" id="rst-3"><div class="reg-step-dot">٣</div></div>
+      </div>
+
+      <div id="reg-s1">
+        <form id="regForm1" novalidate class="space-y-3">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1">الاسم الأول</label>
+              <div class="relative">
+                <input type="text" id="r-fname" placeholder="محمد"
+                  class="w-full px-3 py-2.5 pr-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm"/>
+                <i class="fa-solid fa-user absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-xs pointer-events-none"></i>
+              </div>
+              <p class="err-msg" id="r-fname-err">مطلوب</p>
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1">اسم العائلة</label>
+              <div class="relative">
+                <input type="text" id="r-lname" placeholder="العمري"
+                  class="w-full px-3 py-2.5 pr-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm"/>
+                <i class="fa-solid fa-user absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-xs pointer-events-none"></i>
+              </div>
+              <p class="err-msg" id="r-lname-err">مطلوب</p>
+            </div>
           </div>
-          <p class="err-msg" id="r-uname-err">اسم المستخدم لا يقل عن 4 أحرف</p>
-        </div>
-        <div class="field has-eye">
-          <label>كلمة المرور</label>
-          <div class="input-wrap has-eye"><i class="fa-solid fa-lock"></i>
-            <input type="password" id="r-pass" placeholder="••••••••" oninput="checkStrength(this.value)"/>
-            <i class="fa-solid fa-eye eye" id="eye-r" onclick="toggleEye('r-pass','eye-r')"></i>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">البريد الإلكتروني</label>
+            <div class="relative">
+              <input type="email" id="r-email" placeholder="example@email.com" dir="ltr"
+                class="w-full px-4 py-2.5 pr-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm"/>
+              <i class="fa-solid fa-envelope absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-xs pointer-events-none"></i>
+            </div>
+            <p class="err-msg" id="r-email-err">بريد إلكتروني غير صحيح</p>
           </div>
-          <div class="pw-strength" id="pw-str">
-            <div class="pw-bars"><div class="pw-bar"></div><div class="pw-bar"></div><div class="pw-bar"></div><div class="pw-bar"></div></div>
-            <span class="pw-label" id="pw-lbl">أدخل كلمة المرور</span>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">رقم الجوال</label>
+            <div class="relative">
+              <input type="tel" id="r-phone" placeholder="+966 5X XXX XXXX" dir="ltr"
+                class="w-full px-4 py-2.5 pr-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm"/>
+              <i class="fa-solid fa-phone absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-xs pointer-events-none"></i>
+            </div>
+            <p class="err-msg" id="r-phone-err">رقم الجوال غير صحيح</p>
           </div>
-          <p class="err-msg" id="r-pass-err">كلمة المرور لا تقل عن 8 أحرف</p>
-        </div>
-        <div class="field has-eye">
-          <label>تأكيد كلمة المرور</label>
-          <div class="input-wrap has-eye"><i class="fa-solid fa-lock"></i>
-            <input type="password" id="r-pass2" placeholder="••••••••"/>
-            <i class="fa-solid fa-eye eye" id="eye-r2" onclick="toggleEye('r-pass2','eye-r2')"></i>
-          </div>
-          <p class="err-msg" id="r-pass2-err">كلمتا المرور غير متطابقتين</p>
-        </div>
-        <div style="display:flex;gap:.65rem;margin-bottom:.5rem">
-          <button type="button" class="btn-auth btn-ghost" onclick="regStep(1)">
-            <i class="fa-solid fa-arrow-right"></i> رجوع
+          <button type="submit"
+            class="w-full py-3 rounded-xl text-white font-bold hover:-translate-y-0.5 transition"
+            style="background:linear-gradient(135deg,#4E73C2,#1E3A8A)">
+            التالي <i class="fa-solid fa-arrow-left mr-1"></i>
           </button>
-          <button type="submit" class="btn-auth">التالي <i class="fa-solid fa-arrow-left"></i></button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Step 3 – Verify OTP -->
-    <div id="reg-s3" style="display:none">
-      <p style="text-align:center;color:var(--muted);font-size:.88rem;margin-bottom:.25rem">تم إرسال رمز التحقق إلى</p>
-      <p style="text-align:center;font-weight:700;color:var(--blue);margin-bottom:1.2rem" id="otp-target"></p>
-
-      <div id="otp-dev-box" style="display:none;background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px dashed #f59e0b;border-radius:10px;padding:.7rem 1rem;margin-bottom:.9rem;text-align:center">
-        <div style="font-size:.78rem;color:#92400e;font-weight:700;margin-bottom:.3rem">⚠️ وضع التطوير — الخادم غير مهيّأ بعد</div>
-        <div style="font-size:1.6rem;font-weight:900;letter-spacing:8px;color:#1a2a5e" id="otp-dev-code">------</div>
-        <div style="font-size:.72rem;color:#78350f;margin-top:.25rem">أدخل هذا الرمز في الحقل بالأسفل</div>
+        </form>
       </div>
 
-      <div style="margin:1rem 0">
-        <input type="text" id="otp-single"
-          inputmode="numeric" autocomplete="one-time-code"
-          maxlength="8" placeholder="أدخل رمز التحقق"
-          dir="ltr"
-          style="width:100%;padding:.9rem;font-size:1.5rem;font-weight:900;letter-spacing:10px;text-align:center;border:2px solid var(--border);border-radius:12px;background:var(--bg);color:#1a2a5e;outline:none;font-family:monospace;transition:border-color .2s"
-          oninput="this.value=this.value.replace(/\D/g,'')"
-          onfocus="this.style.borderColor='var(--blue)'"
-          onblur="this.style.borderColor='var(--border)'"
-        />
-      </div>
-      <p class="err-msg" id="otp-err" style="display:block;text-align:center;visibility:hidden">رمز غير صحيح</p>
-      <div class="resend-link">لم يصلك الرمز؟ <a onclick="resendOTP()">إعادة الإرسال</a> <span id="otp-timer"></span></div>
-      <button class="btn-auth" onclick="verifyOTP()">تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i></button>
-      <button type="button" class="btn-auth btn-ghost" onclick="regStep(2)">
-        <i class="fa-solid fa-arrow-right"></i> رجوع
-      </button>
-    </div>
-
-    <!-- Success -->
-    <div class="success-box" id="reg-success">
-      <i class="fa-solid fa-circle-check"></i>
-      <h3>تم إنشاء حسابك بنجاح!</h3>
-      <p>جاري تحويلك إلى لوحة التحكم...</p>
-    </div>
-
-    <p class="switch-row" id="login-switch-row">لديك حساب بالفعل؟ <a onclick="show('login')">تسجيل الدخول</a></p>
-  </div>
-
-  <!-- ===== RESET PANEL ===== -->
-  <div class="panel" id="panel-reset">
-    <p class="panel-title">استعادة كلمة المرور 🔐</p>
-    <p class="panel-sub">أدخل بريدك الإلكتروني وسنرسل لك رمز التحقق</p>
-
-    <div id="reset-s1">
-      <form id="resetForm1" novalidate>
-        <div class="field">
-          <label>البريد الإلكتروني</label>
-          <div class="input-wrap"><i class="fa-solid fa-envelope"></i>
-            <input type="email" id="rs-email" placeholder="example@email.com"/>
+      <div id="reg-s2" style="display:none">
+        <form id="regForm2" novalidate class="space-y-3">
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">اسم المستخدم</label>
+            <div class="relative">
+              <input type="text" id="r-uname" placeholder="username123" dir="ltr"
+                class="w-full px-4 py-2.5 pr-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm"/>
+              <i class="fa-solid fa-at absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-xs pointer-events-none"></i>
+            </div>
+            <p class="err-msg" id="r-uname-err">4 أحرف على الأقل</p>
           </div>
-          <p class="err-msg" id="rs-email-err">بريد إلكتروني غير صحيح</p>
-        </div>
-        <button type="submit" class="btn-auth">إرسال رمز التحقق <i class="fa-solid fa-arrow-left"></i></button>
-      </form>
-    </div>
-
-    <div id="reset-s2" style="display:none">
-      <p style="text-align:center;color:var(--muted);font-size:.88rem;margin-bottom:1.2rem">أدخل الرمز المرسل إلى بريدك</p>
-      <div class="otp-row" id="rs-otp-inputs">
-        <input type="text" maxlength="1" oninput="otpMoveRs(this,0)"/>
-        <input type="text" maxlength="1" oninput="otpMoveRs(this,1)"/>
-        <input type="text" maxlength="1" oninput="otpMoveRs(this,2)"/>
-        <input type="text" maxlength="1" oninput="otpMoveRs(this,3)"/>
-        <input type="text" maxlength="1" oninput="otpMoveRs(this,4)"/>
-        <input type="text" maxlength="1" oninput="otpMoveRs(this,5)"/>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">كلمة المرور</label>
+            <div class="relative">
+              <input type="password" id="r-pass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" oninput="checkStrength(this.value)"
+                class="w-full px-4 py-2.5 pr-9 pl-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm"/>
+              <i class="fa-solid fa-lock absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-xs pointer-events-none"></i>
+              <i class="fa-solid fa-eye absolute top-1/2 -translate-y-1/2 left-3 text-slate-400 text-xs cursor-pointer" id="eye-r" onclick="toggleEye('r-pass','eye-r')"></i>
+            </div>
+            <p class="err-msg" id="r-pass-err">8 أحرف على الأقل</p>
+            <div class="pw-strength mt-2" id="pw-str">
+              <div class="flex gap-1 mb-1"><div class="pw-bar"></div><div class="pw-bar"></div><div class="pw-bar"></div><div class="pw-bar"></div></div>
+              <p class="text-xs text-slate-400" id="pw-lbl">أدخل كلمة المرور</p>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">تأكيد كلمة المرور</label>
+            <div class="relative">
+              <input type="password" id="r-pass2" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
+                class="w-full px-4 py-2.5 pr-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition text-sm"/>
+              <i class="fa-solid fa-lock absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-xs pointer-events-none"></i>
+            </div>
+            <p class="err-msg" id="r-pass2-err">كلمتا المرور غير متطابقتين</p>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" onclick="regStep(1)"
+              class="flex-1 py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 transition text-sm">رجوع</button>
+            <button type="submit"
+              class="flex-1 py-3 rounded-xl text-white font-bold hover:-translate-y-0.5 transition text-sm"
+              style="background:linear-gradient(135deg,#4E73C2,#1E3A8A)">التالي <i class="fa-solid fa-arrow-left mr-1"></i></button>
+          </div>
+        </form>
       </div>
-      <button class="btn-auth" onclick="verifyResetOTP()">التحقق <i class="fa-solid fa-arrow-left"></i></button>
-    </div>
 
-    <div id="reset-s3" style="display:none">
-      <div class="field has-eye">
-        <label>كلمة المرور الجديدة</label>
-        <div class="input-wrap has-eye"><i class="fa-solid fa-lock"></i>
-          <input type="password" id="rs-newpass" placeholder="••••••••"/>
-          <i class="fa-solid fa-eye eye" id="eye-rs" onclick="toggleEye('rs-newpass','eye-rs')"></i>
+      <div id="reg-s3" style="display:none">
+        <p class="text-slate-600 text-sm mb-3 text-center">
+          تم إرسال رمز التحقق إلى <strong id="otp-target" class="text-blue-600"></strong>
+        </p>
+        <div id="otp-dev-box" class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-3 text-center text-sm" style="display:none"></div>
+        <div class="flex justify-center mb-3">
+          <input type="text" id="otp-single" maxlength="8" placeholder="XXXXXX" dir="ltr"
+            class="text-center text-xl font-black tracking-widest rounded-xl border-2 border-slate-200 bg-white focus:outline-none focus:border-blue-500 py-3 w-52 transition"/>
+        </div>
+        <p class="err-msg text-center" id="otp-err" style="visibility:hidden;display:block;">رمز غير صحيح</p>
+        <div class="text-center text-sm text-slate-400 mb-4">
+          لم يصلك الرمز؟ <a onclick="resendOTP()" class="text-blue-600 font-bold cursor-pointer">إعادة إرسال</a>
+          <span id="otp-timer"></span>
+        </div>
+        <button onclick="verifyOTP()"
+          class="w-full py-3 rounded-xl text-white font-bold flex items-center justify-center gap-2 hover:-translate-y-0.5 transition"
+          style="background:linear-gradient(135deg,#4E73C2,#1E3A8A)">
+          تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i>
+        </button>
+        <div id="reg-success" class="text-center mt-4" style="display:none">
+          <i class="fa-solid fa-circle-check text-5xl text-emerald-500 mb-3 block"></i>
+          <h3 class="text-lg font-black text-slate-800">تم إنشاء حسابك بنجاح!</h3>
+          <p class="text-slate-500 text-sm mt-1">جارٍ تحويلك إلى لوحة التحكم...</p>
         </div>
       </div>
-      <div class="field has-eye">
-        <label>تأكيد كلمة المرور الجديدة</label>
-        <div class="input-wrap has-eye"><i class="fa-solid fa-lock"></i>
-          <input type="password" id="rs-newpass2" placeholder="••••••••"/>
-          <i class="fa-solid fa-eye eye" id="eye-rs2" onclick="toggleEye('rs-newpass2','eye-rs2')"></i>
-        </div>
-        <p class="err-msg" id="rs-pass-err">كلمتا المرور غير متطابقتين</p>
+
+      <p class="text-center text-sm text-slate-500 mt-5" id="login-switch-row">
+        لديك حساب؟ <a onclick="show('login')" class="font-bold text-blue-600 cursor-pointer">تسجيل الدخول</a>
+      </p>
+    </div>
+
+    <!-- ===== RESET ===== -->
+    <div class="panel" id="panel-reset">
+      <h2 class="text-2xl font-black text-slate-800 mb-1">استعادة كلمة المرور &#128273;</h2>
+      <p class="text-slate-500 text-sm mb-6">أدخل بريدك لإرسال رمز التحقق</p>
+
+      <div id="reset-s1">
+        <form id="resetForm1" novalidate class="space-y-4">
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">البريد الإلكتروني</label>
+            <div class="relative">
+              <input type="email" id="rs-email" placeholder="example@email.com" dir="ltr"
+                class="w-full px-4 py-3 pr-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"/>
+              <i class="fa-solid fa-envelope absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-sm pointer-events-none"></i>
+            </div>
+            <p class="err-msg" id="rs-email-err">بريد إلكتروني غير صحيح</p>
+          </div>
+          <button type="submit"
+            class="w-full py-3 rounded-xl text-white font-bold hover:-translate-y-0.5 transition"
+            style="background:linear-gradient(135deg,#4E73C2,#1E3A8A)">
+            إرسال رمز التحقق <i class="fa-solid fa-paper-plane mr-1"></i>
+          </button>
+          <button type="button" onclick="show('login')"
+            class="w-full py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 transition">
+            <i class="fa-solid fa-arrow-right ml-1"></i> رجوع
+          </button>
+        </form>
       </div>
-      <button class="btn-auth" onclick="saveNewPass()">حفظ كلمة المرور الجديدة <i class="fa-solid fa-check"></i></button>
+
+      <div id="reset-s2" style="display:none" class="space-y-4">
+        <p class="text-slate-600 text-sm text-center">أدخل رمز التحقق المرسل إلى بريدك</p>
+        <div class="flex gap-2 justify-center" id="rs-otp-inputs">
+          <input type="text" maxlength="1" oninput="otpMoveRs(this,0)" dir="ltr"
+            class="w-11 h-12 text-center text-xl font-black rounded-xl border-2 border-slate-200 bg-white focus:outline-none focus:border-blue-500 transition"/>
+          <input type="text" maxlength="1" oninput="otpMoveRs(this,1)" dir="ltr"
+            class="w-11 h-12 text-center text-xl font-black rounded-xl border-2 border-slate-200 bg-white focus:outline-none focus:border-blue-500 transition"/>
+          <input type="text" maxlength="1" oninput="otpMoveRs(this,2)" dir="ltr"
+            class="w-11 h-12 text-center text-xl font-black rounded-xl border-2 border-slate-200 bg-white focus:outline-none focus:border-blue-500 transition"/>
+          <input type="text" maxlength="1" oninput="otpMoveRs(this,3)" dir="ltr"
+            class="w-11 h-12 text-center text-xl font-black rounded-xl border-2 border-slate-200 bg-white focus:outline-none focus:border-blue-500 transition"/>
+          <input type="text" maxlength="1" oninput="otpMoveRs(this,4)" dir="ltr"
+            class="w-11 h-12 text-center text-xl font-black rounded-xl border-2 border-slate-200 bg-white focus:outline-none focus:border-blue-500 transition"/>
+          <input type="text" maxlength="1" oninput="otpMoveRs(this,5)" dir="ltr"
+            class="w-11 h-12 text-center text-xl font-black rounded-xl border-2 border-slate-200 bg-white focus:outline-none focus:border-blue-500 transition"/>
+        </div>
+        <button onclick="verifyResetOTP()"
+          class="w-full py-3 rounded-xl text-white font-bold hover:-translate-y-0.5 transition"
+          style="background:linear-gradient(135deg,#4E73C2,#1E3A8A)">تحقق من الرمز</button>
+      </div>
+
+      <div id="reset-s3" style="display:none" class="space-y-4">
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1">كلمة المرور الجديدة</label>
+          <div class="relative">
+            <input type="password" id="rs-newpass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
+              class="w-full px-4 py-3 pr-9 pl-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"/>
+            <i class="fa-solid fa-lock absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-sm pointer-events-none"></i>
+            <i class="fa-solid fa-eye absolute top-1/2 -translate-y-1/2 left-3 text-slate-400 text-sm cursor-pointer" id="eye-rs" onclick="toggleEye('rs-newpass','eye-rs')"></i>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1">تأكيد كلمة المرور</label>
+          <div class="relative">
+            <input type="password" id="rs-newpass2" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
+              class="w-full px-4 py-3 pr-9 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"/>
+            <i class="fa-solid fa-lock absolute top-1/2 -translate-y-1/2 right-3 text-blue-400 text-sm pointer-events-none"></i>
+          </div>
+          <p class="err-msg" id="rs-pass-err">كلمتا المرور غير متطابقتين</p>
+        </div>
+        <button onclick="saveNewPass()"
+          class="w-full py-3 rounded-xl text-white font-bold hover:-translate-y-0.5 transition"
+          style="background:linear-gradient(135deg,#4E73C2,#1E3A8A)">
+          حفظ كلمة المرور الجديدة <i class="fa-solid fa-floppy-disk mr-1"></i>
+        </button>
+        <div id="reset-success" class="text-center py-4" style="display:none">
+          <i class="fa-solid fa-circle-check text-5xl text-emerald-500 mb-3 block"></i>
+          <h3 class="text-lg font-black text-slate-800">تم تغيير كلمة المرور!</h3>
+          <p class="text-slate-500 text-sm mt-1">جارٍ تحويلك لتسجيل الدخول...</p>
+        </div>
+      </div>
     </div>
 
-    <div class="success-box" id="reset-success">
-      <i class="fa-solid fa-circle-check"></i>
-      <h3>تم تغيير كلمة المرور بنجاح!</h3>
-      <p>يمكنك الآن تسجيل الدخول بكلمة مرورك الجديدة</p>
-    </div>
-
-    <p class="switch-row" style="margin-top:1rem"><a onclick="show('login')"><i class="fa-solid fa-arrow-right"></i> العودة لتسجيل الدخول</a></p>
   </div>
 
-  <p style="position:absolute;bottom:.75rem;left:0;right:0;text-align:center;font-size:.65rem;color:var(--muted)">
-    © 2026 جنان بيز &middot; جميع الحقوق محفوظة &middot; Jenan Biz
-  </p>
-</div><!-- end auth-right -->
+  <div class="text-center pb-4 text-xs text-slate-400">
+    &#169; 2026 جنان بيز &middot; جميع الحقوق محفوظة
+  </div>
+</div>
 
 <script>
-  /* ===== PILLS CAROUSEL ===== */
-  (function(){
-    const rows = document.querySelectorAll('.l-pills-row');
-    if (!rows.length) return;
-    let cur = 0;
-    setInterval(() => {
-      rows[cur].classList.remove('active');
-      cur = (cur + 1) % rows.length;
-      rows[cur].classList.add('active');
-    }, 2800);
-  })();
-
-  /* ===== THEME ===== */
-  const html = document.documentElement;
-  const thIco = document.getElementById('th-ico');
-  const saved = localStorage.getItem('jb-theme') || 'light';
-  html.setAttribute('data-theme', saved);
-  thIco.className = saved==='dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-  document.getElementById('theme-toggle').addEventListener('click',()=>{
-    const n = html.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', n);
-    localStorage.setItem('jb-theme', n);
-    thIco.className = n==='dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-  });
-
-  /* ===== PANEL SWITCH ===== */
+  /* ===== Panel switch ===== */
   function show(name) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('panel-'+name).classList.add('active');
+    document.getElementById('panel-' + name)?.classList.add('active');
   }
 
-  /* ===== EYE TOGGLE ===== */
-  function toggleEye(inputId, iconId) {
-    const inp = document.getElementById(inputId);
-    const ico = document.getElementById(iconId);
-    if (inp.type==='password') { inp.type='text'; ico.classList.replace('fa-eye','fa-eye-slash'); }
-    else { inp.type='password'; ico.classList.replace('fa-eye-slash','fa-eye'); }
+  /* ===== Theme toggle ===== */
+  const thIco = document.getElementById('th-ico');
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('bg-slate-900');
+    thIco.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  });
+
+  /* ===== Eye toggle ===== */
+  function toggleEye(inpId, icoId) {
+    const inp = document.getElementById(inpId);
+    const ico = document.getElementById(icoId);
+    if (inp.type === 'password') { inp.type = 'text'; ico.classList.replace('fa-eye','fa-eye-slash'); }
+    else { inp.type = 'password'; ico.classList.replace('fa-eye-slash','fa-eye'); }
   }
 
-  /* ===== VALIDATE ===== */
-  function showErr(id, msg) {
-    const el = document.getElementById(id);
-    if (el) { el.textContent = msg||el.textContent; el.style.display='block'; }
-  }
-  function clearErr(id) {
-    const el = document.getElementById(id);
-    if (el) el.style.display='none';
-  }
-  function markInvalid(inpId, errId, msg) {
-    document.getElementById(inpId)?.classList.add('err');
-    showErr(errId, msg);
-  }
-  function markValid(inpId, errId) {
-    document.getElementById(inpId)?.classList.remove('err');
-    clearErr(errId);
-  }
+  /* ===== Validation ===== */
+  function showErr(id, msg) { const el = document.getElementById(id); if (el) { if(msg) el.textContent = msg; el.style.display = 'block'; } }
+  function clearErr(id)     { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
+  function markInvalid(inpId, errId, msg) { document.getElementById(inpId)?.classList.add('field-err'); showErr(errId, msg); }
+  function markValid(inpId, errId)        { document.getElementById(inpId)?.classList.remove('field-err'); clearErr(errId); }
 
   /* ===== LOGIN ===== */
   document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -630,23 +527,16 @@
     if (!u) { markInvalid('l-user','l-user-err'); ok=false; } else markValid('l-user','l-user-err');
     if (!p) { markInvalid('l-pass','l-pass-err'); ok=false; } else markValid('l-pass','l-pass-err');
     if (!ok) return;
-
     const btn = document.getElementById('login-btn');
     const txt = document.getElementById('login-txt');
     const spin = document.getElementById('login-spin');
     const ico = document.getElementById('login-icon');
     btn.disabled=true; txt.textContent='جاري الدخول...'; spin.style.display='block'; ico.style.display='none';
-
     setTimeout(() => {
       const existing = JSON.parse(localStorage.getItem('jb-user') || '{}');
       const nameToUse = existing.name && existing.name !== 'المستخدم' && existing.name !== 'مستخدم جديد'
-        ? existing.name
-        : u.includes('@') ? u.split('@')[0] : u;
-      localStorage.setItem('jb-user', JSON.stringify({
-        name: nameToUse,
-        email: u,
-        username: existing.username || ''
-      }));
+        ? existing.name : u.includes('@') ? u.split('@')[0] : u;
+      localStorage.setItem('jb-user', JSON.stringify({ name: nameToUse, email: u, username: existing.username || '' }));
       window.location.href = '/dashboard';
     }, 1400);
   });
@@ -659,7 +549,7 @@
     });
     ['rst-1','rst-2','rst-3'].forEach((id,i) => {
       const el = document.getElementById(id);
-      el.className = 'reg-step' + (i+1<n?' done':i+1===n?' active':'');
+      el.className = 'reg-step' + (i+1<n ? ' done' : i+1===n ? ' active' : '');
     });
     document.getElementById('login-switch-row').style.display = n===1 ? 'block' : 'none';
   }
@@ -697,10 +587,6 @@
     sendOTP(regData.email, regData.fname + ' ' + regData.lname);
   });
 
-  /* OTP */
-  function otpMove(inp, idx) {
-    // kept for compatibility — not used with single input
-  }
   function otpMoveRs(inp, idx) {
     inp.value=inp.value.replace(/\D/g,'');
     if(inp.value.length===1){
@@ -721,10 +607,7 @@
       if(t<=0) clearInterval(otpTimerInterval);
     },1000);
   }
-  function resendOTP() {
-    startOTPTimer();
-    sendOTP(regData.email, regData.fname + ' ' + regData.lname);
-  }
+  function resendOTP() { startOTPTimer(); sendOTP(regData.email, regData.fname + ' ' + regData.lname); }
 
   /* ===== RESET ===== */
   document.getElementById('resetForm1').addEventListener('submit', function(e) {
@@ -753,11 +636,11 @@
     setTimeout(()=>show('login'), 2500);
   }
 
-  /* ===== PASSWORD STRENGTH ===== */
+  /* ===== Password Strength ===== */
   function checkStrength(val) {
     const el=document.getElementById('pw-str');
     const lbl=document.getElementById('pw-lbl');
-    el.className='pw-strength';
+    el.className='pw-strength mt-2';
     if(!val){lbl.textContent='أدخل كلمة المرور';return;}
     let s=0;
     if(val.length>=8)s++;
@@ -765,20 +648,19 @@
     if(/\d/.test(val))s++;
     if(/[^A-Za-z0-9]/.test(val))s++;
     const labels=['ضعيفة جداً','ضعيفة','متوسطة','قوية'];
-    const colors=['#e74c3c','#e67e22','var(--amber)','var(--green)'];
+    const colors=['#ef4444','#f97316','#eab308','#22c55e'];
     el.classList.add('str-'+s);
-    lbl.textContent='قوة كلمة المرور: '+labels[s-1];
-    lbl.style.color=colors[s-1]||'var(--muted)';
+    lbl.textContent='قوة كلمة المرور: '+(labels[s-1]||'');
+    lbl.style.color=colors[s-1]||'#94a3b8';
   }
 
-  /* ===== SOCIAL (demo) ===== */
+  /* ===== Social ===== */
   function socialLogin() {
     localStorage.setItem('jb-user', JSON.stringify({name:'مستخدم جديد', email:'user@social.com'}));
     window.location.href='/dashboard';
   }
 
-  /* ===== OTP API ===== */
-  /* ===== Supabase OTP مباشرةً (لا يحتاج Python backend) ===== */
+  /* ===== OTP via Supabase ===== */
   const SUPA_URL = 'https://fzhyegvydtrowesqjipo.supabase.co';
   const SUPA_KEY = 'sb_publishable_pMp72pZVf3rGRt8770DHJQ_E9jI2Xtv';
 
@@ -787,90 +669,58 @@
     try {
       const res = await fetch(`${SUPA_URL}/auth/v1/otp`, {
         method: 'POST',
-        headers: {
-          'apikey':       SUPA_KEY,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: target.trim().toLowerCase(),
-          options: { should_create_user: true }
-        })
+        headers: { 'apikey': SUPA_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: target.trim().toLowerCase(), options: { should_create_user: true } })
       });
-      if (res.ok || res.status === 204) {
-        // تم الإرسال بنجاح — أخفِ صندوق التطوير
-        if (box) box.style.display = 'none';
-        return;
-      }
+      if (res.ok || res.status === 204) { if (box) box.style.display = 'none'; return; }
       throw new Error(await res.text());
     } catch (err) {
       console.warn('[OTP-WARN]', err);
-      // Supabase لم يرسل — اعرض صندوق التجريب
       if (box) {
-        box.innerHTML =
-          '<div style="font-size:.8rem;color:#92400e;font-weight:700;margin-bottom:.3rem">⚠️ تعذّر إرسال الرمز — وضع التجريب</div>' +
-          '<div style="font-size:.85rem;color:#1a2a5e">أي رمز مؤلف من 6 أرقام سيُقبل</div>';
+        box.innerHTML = '<div style="font-size:.8rem;color:#92400e;font-weight:700;margin-bottom:.3rem">&#9888;&#65039; تعذّر إرسال الرمز — وضع التجريب</div><div style="font-size:.85rem;color:#1a2a5e">أي رمز مؤلف من 6 أرقام سيُقبل</div>';
         box.style.display = 'block';
       }
     }
   }
 
-  /* verifyOTP — يتحقق عبر Supabase Auth */
   async function verifyOTP() {
     const single = document.getElementById('otp-single');
-    const code   = (single ? single.value : [...document.querySelectorAll('#otp-inputs input')].map(i=>i.value).join('')).trim();
-    const errEl  = document.getElementById('otp-err');
-    const btn    = document.querySelector('#reg-s3 .btn-auth');
-
-    if (code.length < 6 || code.length > 8) {
-      errEl.style.visibility = 'visible';
-      errEl.textContent = 'الرجاء إدخال الرمز (6 أو 8 أرقام)';
-      return;
-    }
+    const code = (single ? single.value : '').trim();
+    const errEl = document.getElementById('otp-err');
+    const btn = document.querySelector('#reg-s3 button');
+    if (code.length < 6 || code.length > 8) { errEl.style.visibility='visible'; errEl.textContent='الرجاء إدخال الرمز (6 أو 8 أرقام)'; return; }
     errEl.style.visibility = 'hidden';
-    if (btn) { btn.disabled = true; btn.textContent = '⏳ جارٍ التحقق...'; }
-
-    const email = (regData.email || '').trim().toLowerCase();
+    if (btn) { btn.disabled=true; btn.textContent='&#9203; جارٍ التحقق...'; }
+    const email = (regData.email||'').trim().toLowerCase();
     let verified = false;
-
     try {
       const res = await fetch(`${SUPA_URL}/auth/v1/verify`, {
         method: 'POST',
-        headers: {
-          'apikey':       SUPA_KEY,
-          'Content-Type': 'application/json'
-        },
+        headers: { 'apikey': SUPA_KEY, 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'email', email, token: code })
       });
-
-      if (res.ok || res.status === 200) {
-        verified = true;
-      } else {
+      if (res.ok || res.status === 200) { verified = true; }
+      else {
         const data = await res.json().catch(() => ({}));
-        errEl.style.visibility = 'visible';
+        errEl.style.visibility='visible';
         errEl.textContent = data.msg || data.message || 'رمز غير صحيح';
-        if (btn) { btn.disabled = false; btn.innerHTML = 'تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i>'; }
+        if (btn) { btn.disabled=false; btn.innerHTML='تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i>'; }
         return;
       }
     } catch {
-      // Supabase غير متاح — اقبل أي رمز 6-8 أرقام كـ fallback
       verified = /^\d{6,8}$/.test(code);
       if (!verified) {
-        errEl.style.visibility = 'visible';
-        errEl.textContent = 'الرجاء إدخال رمز صحيح (6 أو 8 أرقام)';
-        if (btn) { btn.disabled = false; btn.innerHTML = 'تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i>'; }
+        errEl.style.visibility='visible';
+        errEl.textContent='الرجاء إدخال رمز صحيح (6 أو 8 أرقام)';
+        if (btn) { btn.disabled=false; btn.innerHTML='تحقق وإنشاء الحساب <i class="fa-solid fa-check"></i>'; }
         return;
       }
     }
-
     if (verified) {
-      document.getElementById('reg-s3').style.display = 'none';
-      document.getElementById('reg-success').style.display = 'block';
-      document.getElementById('login-switch-row').style.display = 'none';
-      localStorage.setItem('jb-user', JSON.stringify({
-        name:     regData.fname + ' ' + regData.lname,
-        email:    regData.email,
-        username: regData.username
-      }));
+      document.getElementById('reg-s3').style.display='none';
+      document.getElementById('reg-success').style.display='block';
+      document.getElementById('login-switch-row').style.display='none';
+      localStorage.setItem('jb-user', JSON.stringify({ name: regData.fname+' '+regData.lname, email: regData.email, username: regData.username }));
       setTimeout(() => { window.location.href = '/dashboard'; }, 2000);
     }
   }
