@@ -3070,95 +3070,6 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
         <div id="inv-results" style="display:none"></div>
       </div>
 
-      <!-- ═══ DIVIDER ═══ -->
-      <div style="display:flex;align-items:center;gap:1rem;margin:2rem 0 1.5rem">
-        <div style="flex:1;height:1px;background:var(--border)"></div>
-        <div class="capital-divider-label" style="font-size:.8rem;color:var(--muted);font-weight:600;white-space:nowrap">أدوات إضافية</div>
-        <div style="flex:1;height:1px;background:var(--border)"></div>
-      </div>
-
-      <!-- ═══ مصفوفة ملاءمة التمويل ═══ -->
-      <div style="margin-top:0">
-        <div class="sec-hd" style="margin-bottom:1rem">
-          <div>
-            <h2 style="font-size:1rem;font-weight:800;margin:0;display:flex;align-items:center;gap:.5rem">
-              <i class="fa-solid fa-table-list" style="color:#f59e0b"></i> مصفوفة ملاءمة التمويل
-            </h2>
-            <p style="font-size:.82rem;color:var(--muted);margin:.25rem 0 0">اختر قناة التمويل الصح بناءً على وضعك الفعلي — لكل مرحلة خيار</p>
-          </div>
-        </div>
-        <div style="overflow-x:auto;margin-bottom:1rem">
-          <table class="sr-table" style="min-width:600px">
-            <thead>
-              <tr style="background:var(--bg2)">
-                <td style="font-weight:800">قناة التمويل</td>
-                <td style="font-weight:800;text-align:center">حجم التمويل</td>
-                <td style="font-weight:800;text-align:center">التكلفة / الحصة</td>
-                <td style="font-weight:800;text-align:center">المتطلبات</td>
-                <td style="font-weight:800;text-align:center">الأنسب لـ</td>
-                <td style="font-weight:800;text-align:center">اطلب</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-hand-holding-dollar" style="color:#93c5fd"></i></div><strong>كفالة صندوق المئوية</strong></div></td>
-                <td style="text-align:center;font-size:.82rem">100K – 1M ريال</td>
-                <td style="text-align:center;font-size:.82rem;color:var(--green)">بدون حصة</td>
-                <td style="text-align:center;font-size:.78rem;color:var(--muted)">سجل تجاري + سعودي</td>
-                <td style="text-align:center;font-size:.78rem">مشاريع ناشئة</td>
-                <td style="text-align:center"><button onclick="openInvestmentReadinessPath('كفالة صندوق المئوية')" class="comp-gov-start" style="font-size:.72rem;padding:.32rem .78rem;width:auto;background:linear-gradient(135deg,#1e3a8a,#4f46e5);border-color:rgba(123,158,212,.5);color:#fff">قدم الآن</button></td>
-              </tr>
-              <tr style="background:var(--bg2)">
-                <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#14532d,#16a34a);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-building-columns" style="color:#86efac"></i></div><strong>تمويل بنكي تجاري</strong></div></td>
-                <td style="text-align:center;font-size:.82rem">200K – 5M ريال</td>
-                <td style="text-align:center;font-size:.82rem;color:#d97706">7–12% سنوي</td>
-                <td style="text-align:center;font-size:.78rem;color:var(--muted)">قوائم مالية 2 سنة</td>
-                <td style="text-align:center;font-size:.78rem">منشآت قائمة</td>
-                <td style="text-align:center"><button onclick="openInvestmentReadinessPath('تمويل بنكي تجاري')" class="comp-gov-start" style="font-size:.72rem;padding:.32rem .78rem;width:auto;background:linear-gradient(135deg,#1e3a8a,#4f46e5);border-color:rgba(123,158,212,.5);color:#fff">قدم الآن</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-handshake" style="color:#fcd34d"></i></div><strong>شريك استراتيجي</strong></div></td>
-                <td style="text-align:center;font-size:.82rem">حسب الاتفاق</td>
-                <td style="text-align:center;font-size:.82rem;color:#e74c3c">20–40% من الحصص</td>
-                <td style="text-align:center;font-size:.78rem;color:var(--muted)">عرض قيمة واضح</td>
-                <td style="text-align:center;font-size:.78rem">نمو سريع</td>
-                <td style="text-align:center"><button onclick="openInvestmentReadinessPath('شريك استراتيجي')" class="comp-gov-start" style="font-size:.72rem;padding:.32rem .78rem;width:auto;background:linear-gradient(135deg,#1e3a8a,#4f46e5);border-color:rgba(123,158,212,.5);color:#fff">قدم الآن</button></td>
-              </tr>
-              <tr style="background:var(--bg2)">
-                <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#4a044e,#9333ea);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-user-astronaut" style="color:#d8b4fe"></i></div><strong>مستثمر ملاك (Angel)</strong></div></td>
-                <td style="text-align:center;font-size:.82rem">50K – 500K ريال</td>
-                <td style="text-align:center;font-size:.82rem;color:#e74c3c">10–25% من الحصص</td>
-                <td style="text-align:center;font-size:.78rem;color:var(--muted)">Pitch Deck + نمو ثابت</td>
-                <td style="text-align:center;font-size:.78rem">تقنية / مبتكر</td>
-                <td style="text-align:center"><button onclick="openInvestmentReadinessPath('مستثمر ملاك Angel')" class="comp-gov-start" style="font-size:.72rem;padding:.32rem .78rem;width:auto;background:linear-gradient(135deg,#1e3a8a,#4f46e5);border-color:rgba(123,158,212,.5);color:#fff">قدم الآن</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:.5rem"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#0c4a6e,#0284c7);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0"><i class="fa-solid fa-mosque" style="color:#7dd3fc"></i></div><strong>تمويل إسلامي (مرابحة)</strong></div></td>
-                <td style="text-align:center;font-size:.82rem">100K – 3M ريال</td>
-                <td style="text-align:center;font-size:.82rem;color:#d97706">هامش تجاري 5–9%</td>
-                <td style="text-align:center;font-size:.78rem;color:var(--muted)">تقييم ائتماني جيد</td>
-                <td style="text-align:center;font-size:.78rem">التوسع الثابت</td>
-                <td style="text-align:center"><button onclick="openInvestmentReadinessPath('تمويل إسلامي مرابحة')" class="comp-gov-start" style="font-size:.72rem;padding:.32rem .78rem;width:auto;background:linear-gradient(135deg,#1e3a8a,#4f46e5);border-color:rgba(123,158,212,.5);color:#fff">قدم الآن</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- DDQ -->
-        <div style="margin-top:1.5rem">
-          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem">
-            <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-folder-open" style="color:#93c5fd"></i></div>
-            <div>
-              <div style="font-size:.95rem;font-weight:800">غرفة البيانات — قائمة التحقق للجاهزية الاستثمارية</div>
-              <div style="font-size:.78rem;color:var(--muted)">المستثمرون الجادون يطلبون هذه المستندات — جهّزها مسبقاً</div>
-            </div>
-          </div>
-          <div id="ddq-container">
-            <!-- سيتم رسمها بـ JS عند فتح الصفحة -->
-          </div>
-        </div>
-      </div>
-
       <!-- legacy compatibility -->
       <div id="cap-step-0" style="display:none"></div>
       <div id="cap-free-section" style="display:none"></div>
@@ -3223,7 +3134,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem">
             <div>
               <label style="font-size:.75rem;color:var(--muted);display:block;margin-bottom:.3rem">نوع النشاط</label>
-              <select id="mkt-filter-type" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
+              <select id="mkt-filter-type" onchange="applyMarketFilters()" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
                 <option value="">الكل</option>
                 <option>مطعم / مقهى</option>
                 <option>تجارة تجزئة</option>
@@ -3235,7 +3146,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             </div>
             <div>
               <label style="font-size:.75rem;color:var(--muted);display:block;margin-bottom:.3rem">المنطقة</label>
-              <select id="mkt-filter-city" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
+              <select id="mkt-filter-city" onchange="applyMarketFilters()" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
                 <option value="">الكل</option>
                 <option>الرياض</option>
                 <option>جدة</option>
@@ -3246,7 +3157,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             </div>
             <div>
               <label style="font-size:.75rem;color:var(--muted);display:block;margin-bottom:.3rem">نطاق السعر</label>
-              <select id="mkt-filter-price" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
+              <select id="mkt-filter-price" onchange="applyMarketFilters()" style="width:100%;padding:.55rem .75rem;border-radius:9px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem">
                 <option value="">الكل</option>
                 <option>أقل من 100 ألف</option>
                 <option>100 – 500 ألف</option>
@@ -3258,114 +3169,8 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
         </div>
 
         <!-- قوائم المشاريع (Blind Profiles) -->
-        <div style="display:grid;gap:1rem;margin-bottom:1.5rem">
-
-          <!-- بطاقة 1 -->
-          <div style="background:var(--card);border:1.5px solid rgba(14,165,233,.25);border-radius:16px;padding:1.25rem">
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
-              <div style="display:flex;align-items:center;gap:.85rem">
-                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                  <i class="fa-solid fa-utensils" style="color:#fff;font-size:1.1rem"></i>
-                </div>
-                <div>
-                  <div style="font-weight:800;font-size:.95rem;color:var(--text)">مطعم وجبات سريعة قائم</div>
-                  <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem"><i class="fa-solid fa-location-dot" style="margin-left:.3rem"></i>الرياض (المنطقة الشمالية) · 4 سنوات في السوق</div>
-                </div>
-              </div>
-              <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
-                <span style="background:rgba(16,185,129,.12);color:#10b981;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700">✓ موثق</span>
-                <span style="background:rgba(14,165,233,.12);color:#0ea5e9;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700">متاح الآن</span>
-              </div>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:1rem">
-              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
-                <div style="font-size:.92rem;font-weight:900;color:#10b981">42,000</div>
-                <div style="font-size:.68rem;color:var(--muted)">إيراد شهري (ر.س)</div>
-              </div>
-              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
-                <div style="font-size:.92rem;font-weight:900;color:#f59e0b">9,500</div>
-                <div style="font-size:.68rem;color:var(--muted)">صافي ربح (ر.س)</div>
-              </div>
-              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
-                <div style="font-size:.92rem;font-weight:900;color:#a855f7">280,000</div>
-                <div style="font-size:.68rem;color:var(--muted)">قيمة الأصول (ر.س)</div>
-              </div>
-              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
-                <div style="font-size:.92rem;font-weight:900;color:#0ea5e9">350,000</div>
-                <div style="font-size:.68rem;color:var(--muted)">السعر المطلوب (ر.س)</div>
-              </div>
-            </div>
-            <div style="font-size:.79rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.85rem;margin-bottom:.85rem;line-height:1.7">
-              <span style="margin-left:1.25rem"><i class="fa-solid fa-users" style="margin-left:.3rem"></i>5 موظفين</span>
-              <span style="margin-left:1.25rem"><i class="fa-solid fa-box" style="margin-left:.3rem"></i>مخزون: 28,000 ر.س</span>
-              <span><i class="fa-solid fa-circle-check" style="color:#10b981;margin-left:.3rem"></i>لا مديونيات</span>
-            </div>
-            <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-              <button onclick="showProjectReport('p001')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
-                <i class="fa-solid fa-file-chart-column" style="margin-left:.35rem"></i>التقرير المالي
-              </button>
-              <button onclick="openQA('p001')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
-                <i class="fa-solid fa-comments" style="margin-left:.35rem"></i>سؤال وجواب
-              </button>
-              <button onclick="requestInspection('p001','مطعم وجبات سريعة')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:none;background:linear-gradient(135deg,#0c4a6e,#0ea5e9);color:#fff;font-family:inherit;font-size:.83rem;font-weight:800;cursor:pointer">
-                <i class="fa-solid fa-eye" style="margin-left:.35rem"></i>طلب معاينة
-              </button>
-            </div>
-          </div>
-
-          <!-- بطاقة 2 -->
-          <div style="background:var(--card);border:1.5px solid rgba(168,85,247,.25);border-radius:16px;padding:1.25rem">
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
-              <div style="display:flex;align-items:center;gap:.85rem">
-                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#4c0080,#a855f7);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                  <i class="fa-solid fa-cart-shopping" style="color:#fff;font-size:1.1rem"></i>
-                </div>
-                <div>
-                  <div style="font-weight:800;font-size:.95rem;color:var(--text)">محل تجزئة — إلكترونيات</div>
-                  <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem"><i class="fa-solid fa-location-dot" style="margin-left:.3rem"></i>جدة (المنطقة الغربية) · 6 سنوات في السوق</div>
-                </div>
-              </div>
-              <div style="display:flex;gap:.5rem;align-items:center">
-                <span style="background:rgba(16,185,129,.12);color:#10b981;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700">✓ موثق</span>
-              </div>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:1rem">
-              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
-                <div style="font-size:.92rem;font-weight:900;color:#10b981">95,000</div>
-                <div style="font-size:.68rem;color:var(--muted)">إيراد شهري (ر.س)</div>
-              </div>
-              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
-                <div style="font-size:.92rem;font-weight:900;color:#f59e0b">18,000</div>
-                <div style="font-size:.68rem;color:var(--muted)">صافي ربح (ر.س)</div>
-              </div>
-              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
-                <div style="font-size:.92rem;font-weight:900;color:#a855f7">520,000</div>
-                <div style="font-size:.68rem;color:var(--muted)">قيمة الأصول (ر.س)</div>
-              </div>
-              <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
-                <div style="font-size:.92rem;font-weight:900;color:#0ea5e9">680,000</div>
-                <div style="font-size:.68rem;color:var(--muted)">السعر المطلوب (ر.س)</div>
-              </div>
-            </div>
-            <div style="font-size:.79rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.85rem;margin-bottom:.85rem;line-height:1.7">
-              <span style="margin-left:1.25rem"><i class="fa-solid fa-users" style="margin-left:.3rem"></i>3 موظفين</span>
-              <span style="margin-left:1.25rem"><i class="fa-solid fa-box" style="margin-left:.3rem"></i>مخزون: 180,000 ر.س</span>
-              <span style="color:#f59e0b"><i class="fa-solid fa-triangle-exclamation" style="margin-left:.3rem"></i>مديونية معلنة: 35,000 ر.س</span>
-            </div>
-            <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-              <button onclick="showProjectReport('p002')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
-                <i class="fa-solid fa-file-chart-column" style="margin-left:.35rem"></i>التقرير المالي
-              </button>
-              <button onclick="openQA('p002')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
-                <i class="fa-solid fa-comments" style="margin-left:.35rem"></i>سؤال وجواب
-              </button>
-              <button onclick="requestInspection('p002','محل إلكترونيات')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:none;background:linear-gradient(135deg,#0c4a6e,#0ea5e9);color:#fff;font-family:inherit;font-size:.83rem;font-weight:800;cursor:pointer">
-                <i class="fa-solid fa-eye" style="margin-left:.35rem"></i>طلب معاينة
-              </button>
-            </div>
-          </div>
-
-        </div>
+        <!-- بطاقات المشاريع — تُرسم بـ renderProjectCards() -->
+        <div id="mkt-projects-list" style="margin-bottom:1.5rem"></div>
 
         <!-- باقة البحث الذهبية -->
         <div style="background:linear-gradient(135deg,#1c1400,#2d1f00);border:2px solid #f59e0b;border-radius:18px;padding:1.5rem;margin-bottom:1rem">
@@ -4570,12 +4375,137 @@ function gotoSub(page, groupId, subItemId) {
   if(page==='analysis') showFsStep(0);
   if(page==='academy') initAcademy();
   if(page==='capital') { resetCapital(); renderDDQ(); switchCapPath('entre'); }
+  if(page==='investor') { showMarketTab('browse'); }
   if(page==='software') renderSoftwarePage();
   if(page==='orders') renderOrdersPage();
   if(page==='admin') renderAdminPanel();
   if(page==='compliance') initCompliancePage();
 }
-/* ═══ MARKET (سوق المشاريع) FUNCTIONS ═══ */
+
+// بيانات المشاريع المتاحة — مرجع مركزي تستخدمه الفلاتر
+const MKT_PROJECTS = [
+  {
+    id:'p001', title:'مطعم وجبات سريعة قائم', type:'مطعم / مقهى', city:'الرياض',
+    revenue:42000, net:9500, assets:280000, price:350000, age:4, emp:5,
+    inventory:28000, debts:'لا توجد', icon:'fa-utensils', verified:true,
+    iconBg:'linear-gradient(135deg,#1e3a8a,#3b82f6)', borderColor:'rgba(14,165,233,.25)',
+  },
+  {
+    id:'p002', title:'محل تجزئة — إلكترونيات', type:'تجارة تجزئة', city:'جدة',
+    revenue:95000, net:18000, assets:520000, price:680000, age:6, emp:3,
+    inventory:180000, debts:'35,000 ر.س للمورد الرئيسي', icon:'fa-cart-shopping', verified:true,
+    iconBg:'linear-gradient(135deg,#4c0080,#a855f7)', borderColor:'rgba(168,85,247,.25)',
+  },
+  {
+    id:'p003', title:'صالون حلاقة رجالي فاخر', type:'خدمات', city:'الرياض',
+    revenue:28000, net:11000, assets:120000, price:160000, age:3, emp:4,
+    inventory:8000, debts:'لا توجد', icon:'fa-cut', verified:true,
+    iconBg:'linear-gradient(135deg,#065f46,#10b981)', borderColor:'rgba(16,185,129,.25)',
+  },
+  {
+    id:'p004', title:'مركز تدريب ومهارات مهنية', type:'خدمات', city:'الدمام',
+    revenue:55000, net:22000, assets:380000, price:480000, age:5, emp:6,
+    inventory:12000, debts:'لا توجد', icon:'fa-graduation-cap', verified:false,
+    iconBg:'linear-gradient(135deg,#7c2d12,#f59e0b)', borderColor:'rgba(245,158,11,.25)',
+  },
+  {
+    id:'p005', title:'متجر إلكتروني — عطور وعناية', type:'تجارة إلكترونية', city:'الرياض',
+    revenue:38000, net:14000, assets:95000, price:180000, age:2, emp:2,
+    inventory:42000, debts:'لا توجد', icon:'fa-spray-can-sparkles', verified:true,
+    iconBg:'linear-gradient(135deg,#3b0764,#7c3aed)', borderColor:'rgba(124,58,237,.25)',
+  },
+  {
+    id:'p006', title:'مطبخ حلويات ووجبات منزلية', type:'مطعم / مقهى', city:'جدة',
+    revenue:19000, net:7500, assets:85000, price:120000, age:2, emp:3,
+    inventory:5000, debts:'لا توجد', icon:'fa-cake-candles', verified:false,
+    iconBg:'linear-gradient(135deg,#831843,#ec4899)', borderColor:'rgba(236,72,153,.25)',
+  },
+];
+
+function renderProjectCards(list) {
+  const container = document.getElementById('mkt-projects-list');
+  if (!container) return;
+  if (!list.length) {
+    container.innerHTML = `<div style="text-align:center;padding:2.5rem;color:var(--muted);font-size:.9rem">
+      <i class="fa-solid fa-magnifying-glass" style="font-size:2rem;opacity:.3;display:block;margin-bottom:.75rem"></i>
+      لا توجد مشاريع تطابق الفلاتر المحددة
+    </div>`;
+    return;
+  }
+  container.innerHTML = list.map(r => `
+    <div style="background:var(--card);border:1.5px solid ${r.borderColor};border-radius:16px;padding:1.25rem;margin-bottom:1rem">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+        <div style="display:flex;align-items:center;gap:.85rem">
+          <div style="width:48px;height:48px;border-radius:12px;background:${r.iconBg};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid ${r.icon}" style="color:#fff;font-size:1.1rem"></i>
+          </div>
+          <div>
+            <div style="font-weight:800;font-size:.95rem;color:var(--text)">${r.title}</div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem"><i class="fa-solid fa-location-dot" style="margin-left:.3rem"></i>${r.city} · ${r.age} سنوات في السوق</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+          ${r.verified ? '<span style="background:rgba(16,185,129,.12);color:#10b981;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700">✓ موثق</span>' : ''}
+          <span style="background:rgba(14,165,233,.12);color:#0ea5e9;padding:.25rem .75rem;border-radius:20px;font-size:.75rem;font-weight:700">متاح الآن</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:1rem">
+        <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+          <div style="font-size:.92rem;font-weight:900;color:#10b981">${r.revenue.toLocaleString('ar-SA')}</div>
+          <div style="font-size:.68rem;color:var(--muted)">إيراد شهري (ر.س)</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+          <div style="font-size:.92rem;font-weight:900;color:#f59e0b">${r.net.toLocaleString('ar-SA')}</div>
+          <div style="font-size:.68rem;color:var(--muted)">صافي ربح (ر.س)</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+          <div style="font-size:.92rem;font-weight:900;color:#a855f7">${r.assets.toLocaleString('ar-SA')}</div>
+          <div style="font-size:.68rem;color:var(--muted)">قيمة الأصول (ر.س)</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:10px;padding:.65rem;text-align:center">
+          <div style="font-size:.92rem;font-weight:900;color:#0ea5e9">${r.price.toLocaleString('ar-SA')}</div>
+          <div style="font-size:.68rem;color:var(--muted)">السعر المطلوب (ر.س)</div>
+        </div>
+      </div>
+      <div style="font-size:.79rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.85rem;margin-bottom:.85rem;line-height:1.7">
+        <span style="margin-left:1.25rem"><i class="fa-solid fa-users" style="margin-left:.3rem"></i>${r.emp} موظفين</span>
+        <span style="margin-left:1.25rem"><i class="fa-solid fa-box" style="margin-left:.3rem"></i>مخزون: ${r.inventory.toLocaleString('ar-SA')} ر.س</span>
+        ${r.debts==='لا توجد'
+          ? '<span><i class="fa-solid fa-circle-check" style="color:#10b981;margin-left:.3rem"></i>لا مديونيات</span>'
+          : `<span style="color:#f59e0b"><i class="fa-solid fa-triangle-exclamation" style="margin-left:.3rem"></i>مديونية معلنة: ${r.debts}</span>`}
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+        <button onclick="showProjectReport('${r.id}')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
+          <i class="fa-solid fa-file-chart-column" style="margin-left:.35rem"></i>التقرير المالي
+        </button>
+        <button onclick="openQA('${r.id}')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer">
+          <i class="fa-solid fa-comments" style="margin-left:.35rem"></i>سؤال وجواب
+        </button>
+        <button onclick="requestInspection('${r.id}','${r.title}')" style="flex:1;min-width:130px;padding:.6rem;border-radius:9px;border:none;background:linear-gradient(135deg,#0c4a6e,#0ea5e9);color:#fff;font-family:inherit;font-size:.83rem;font-weight:800;cursor:pointer">
+          <i class="fa-solid fa-eye" style="margin-left:.35rem"></i>طلب معاينة
+        </button>
+      </div>
+    </div>`).join('');
+}
+
+function applyMarketFilters() {
+  const typeFilter  = document.getElementById('mkt-filter-type')?.value  || '';
+  const cityFilter  = document.getElementById('mkt-filter-city')?.value  || '';
+  const priceFilter = document.getElementById('mkt-filter-price')?.value || '';
+  let filtered = MKT_PROJECTS.filter(p => {
+    if (typeFilter  && p.type !== typeFilter)  return false;
+    if (cityFilter  && p.city !== cityFilter)  return false;
+    if (priceFilter) {
+      if (priceFilter === 'أقل من 100 ألف'       && p.price >= 100000)  return false;
+      if (priceFilter === '100 – 500 ألف'         && (p.price < 100000 || p.price > 500000)) return false;
+      if (priceFilter === '500 ألف – مليون'       && (p.price < 500000 || p.price > 1000000)) return false;
+      if (priceFilter === 'أكثر من مليون'         && p.price <= 1000000) return false;
+    }
+    return true;
+  });
+  renderProjectCards(filtered);
+}
+
 function showMarketTab(tab) {
   document.getElementById('mkt-panel-browse').style.display = tab==='browse' ? 'block' : 'none';
   document.getElementById('mkt-panel-sell').style.display   = tab==='sell'   ? 'block' : 'none';
@@ -4585,6 +4515,7 @@ function showMarketTab(tab) {
   btnB.style.color      = tab==='browse' ? '#fff' : 'var(--muted)';
   btnS.style.background = tab==='sell'   ? 'var(--primary)' : 'transparent';
   btnS.style.color      = tab==='sell'   ? '#fff' : 'var(--muted)';
+  if (tab === 'browse') renderProjectCards(MKT_PROJECTS);
 }
 function showGoldSearchForm() {
   const f = document.getElementById('mkt-gold-form');
@@ -4595,16 +4526,14 @@ function submitGoldSearch() {
   const name  = document.getElementById('gs-name')?.value.trim();
   const phone = document.getElementById('gs-phone')?.value.trim();
   const type  = document.getElementById('gs-type')?.value;
-  if(!name || !phone || !type) { alert('يرجى تعبئة الاسم ورقم الجوال ونوع النشاط.'); return; }
-  alert('✅ تم استلام طلب البحث الذهبي! سيتواصل معك فريقنا خلال 24 ساعة لإتمام الدفع والبدء في البحث.');
+  if (!name || !phone || !type) { showToast('⚠ يرجى تعبئة الاسم ورقم الجوال ونوع النشاط.'); return; }
+  if (!/^05\d{8}$/.test(phone.replace(/[\s-]/g, ''))) { showToast('⚠ رقم الجوال يجب أن يبدأ بـ 05 ويتكون من 10 أرقام'); return; }
+  showToast('✅ تم استلام طلب البحث الذهبي! سيتواصل معك فريقنا خلال 24 ساعة لإتمام الدفع والبدء في البحث.');
   document.getElementById('mkt-gold-form').style.display = 'none';
 }
 function showProjectReport(pid) {
-  const reports = {
-    p001: { title:'مطعم وجبات سريعة', city:'الرياض', revenue:42000, net:9500, assets:280000, inventory:28000, price:350000, age:4, emp:5, debts:'لا توجد' },
-    p002: { title:'محل إلكترونيات', city:'جدة', revenue:95000, net:18000, assets:520000, inventory:180000, price:680000, age:6, emp:3, debts:'35,000 ر.س للمورد الرئيسي' },
-  };
-  const r = reports[pid]; if(!r) return;
+  const r = MKT_PROJECTS.find(p => p.id === pid);
+  if (!r) return;
   document.getElementById('mkt-report-content').innerHTML = `
     <div style="text-align:center;margin-bottom:1.25rem">
       <div style="font-size:.7rem;color:var(--muted);margin-bottom:.25rem">التقرير المالي التفصيلي — سري وموثق</div>
@@ -4637,7 +4566,7 @@ function showProjectReport(pid) {
   document.getElementById('mkt-report-modal').style.display = 'block';
 }
 function downloadPDFReport() {
-  alert('📄 سيتم توليد التقرير كـ PDF بعلامة مائية للمنصة. هذه الميزة ستكون متاحة في النسخة الكاملة.');
+  showToast('📄 سيتم توليد التقرير كـ PDF بعلامة مائية للمنصة. هذه الميزة ستكون متاحة في النسخة الكاملة.');
 }
 function requestInspection(pid, name) {
   document.getElementById('mkt-inspection-name').textContent = 'المشروع: ' + name;
@@ -4647,18 +4576,24 @@ function submitInspectionRequest() {
   const name = document.getElementById('ins-name')?.value.trim();
   const phone = document.getElementById('ins-phone')?.value.trim();
   const nda   = document.getElementById('ins-nda-ack')?.checked;
-  if(!name || !phone) { alert('يرجى إدخال الاسم ورقم التواصل.'); return; }
-  if(!nda) { alert('يرجى الموافقة على اتفاقية عدم الإفصاح.'); return; }
-  alert('✅ تم استلام طلب المعاينة! سيتواصل معك فريقنا خلال 24 ساعة لترتيب التفاصيل والعربون.');
+  if (!name || !phone) { showToast('⚠ يرجى إدخال الاسم ورقم التواصل.'); return; }
+  if (!/^05\d{8}$/.test(phone.replace(/[\s-]/g, ''))) { showToast('⚠ رقم الجوال يجب أن يبدأ بـ 05 ويتكون من 10 أرقام'); return; }
+  if (!nda) { showToast('⚠ يرجى الموافقة على اتفاقية عدم الإفصاح.'); return; }
+  showToast('✅ تم استلام طلب المعاينة! سيتواصل معك فريقنا خلال 24 ساعة لترتيب التفاصيل والعربون.');
   document.getElementById('mkt-inspection-modal').style.display = 'none';
 }
 function openQA(pid) {
-  document.getElementById('mkt-qa-modal').style.display = 'block';
+  const modal = document.getElementById('mkt-qa-modal');
+  const proj = MKT_PROJECTS.find(p => p.id === pid);
+  const h = modal.querySelector('h3');
+  if (h && proj) h.innerHTML = `<i class="fa-solid fa-comments" style="color:#10b981;margin-left:.5rem"></i>سؤال وجواب — ${proj.title}`;
+  modal.dataset.pid = pid;
+  modal.style.display = 'block';
 }
 function submitQA() {
   const q = document.getElementById('qa-question')?.value.trim();
-  if(!q) { alert('يرجى كتابة سؤالك.'); return; }
-  alert('✅ تم إرسال سؤالك للمراجعة. سيُنشر بعد موافقة الإدارة خلال 24 ساعة.');
+  if (!q) { showToast('⚠ يرجى كتابة سؤالك قبل الإرسال.'); return; }
+  showToast('✅ تم إرسال سؤالك للمراجعة. سيُنشر بعد موافقة الإدارة خلال 24 ساعة.');
   document.getElementById('qa-question').value = '';
   document.getElementById('mkt-qa-modal').style.display = 'none';
 }
@@ -4671,10 +4606,11 @@ function submitListingForm() {
   const ack   = document.getElementById('sell-disclosure-ack')?.checked;
   const oname = document.getElementById('sell-owner-name')?.value.trim();
   const ophone= document.getElementById('sell-owner-phone')?.value.trim();
-  if(!type||!city||!rev||!price||!oname||!ophone) { alert('يرجى تعبئة جميع الحقول الإلزامية.'); return; }
-  if(!debts) { alert('يرجى تعبئة حقل المديونيات (اكتب لا توجد إن لم يوجد شيء).'); return; }
-  if(!ack) { alert('يرجى الموافقة على إقرار الإفصاح عن المديونيات.'); return; }
-  alert('✅ تم استلام إعلانك! سيُراجع خلال 24-48 ساعة. ستتلقى إشعاراً عند النشر.');
+  if (!type || !city || !rev || !price || !oname || !ophone) { showToast('⚠ يرجى تعبئة جميع الحقول الإلزامية.'); return; }
+  if (!debts) { showToast('⚠ يرجى تعبئة حقل المديونيات (اكتب لا توجد إن لم يوجد شيء).'); return; }
+  if (!ack) { showToast('⚠ يرجى الموافقة على إقرار الإفصاح عن المديونيات.'); return; }
+  if (!/^05\d{8}$/.test(ophone.replace(/[\s-]/g, ''))) { showToast('⚠ رقم الجوال يجب أن يبدأ بـ 05 ويتكون من 10 أرقام'); return; }
+  showToast('✅ تم استلام إعلانك! سيُراجع خلال 24-48 ساعة. ستتلقى إشعاراً عند النشر.');
 }
 /* LEGACY (kept for compatibility) */
 function showInvestorSection(sec) { showMarketTab('browse'); }
@@ -4683,11 +4619,11 @@ function runInvestorEval() {
   const revenue = parseFloat(document.getElementById('inv-eval-revenue')?.value)||0;
   const costs   = parseFloat(document.getElementById('inv-eval-costs')?.value)||0;
   const years   = parseInt(document.getElementById('inv-eval-years')?.value)||3;
-  if(!capital||!revenue||!costs){ alert('يرجى إدخال جميع الأرقام'); return; }
+  if (!capital || !revenue || !costs) { showToast('⚠ يرجى إدخال جميع الأرقام'); return; }
   const monthlyProfit = revenue - costs;
   const annualProfit  = monthlyProfit * 12;
   const roi           = capital > 0 ? ((annualProfit / capital)*100).toFixed(1) : 0;
-  alert(`ROI: ${roi}% · ربح شهري: ${monthlyProfit.toLocaleString('ar-SA')} ر.س`);
+  showToast(`ROI: ${roi}% · ربح شهري: ${monthlyProfit.toLocaleString('ar-SA')} ر.س`);
 }
 function logout(){
   localStorage.removeItem('jb-user');
@@ -5362,6 +5298,33 @@ const PA_QUESTIONS = [
 
 let paState = { currentGroup: 0, answers: {}, started: false };
 
+// ── دوال الأمان والمساعدة ──────────────────────────────────────────────
+/** يُعقِّم النص قبل إدراجه في innerHTML لمنع XSS */
+function escHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+/** يُحوِّل نص حجم الفريق (قيمة select) إلى رقم */
+function parseTeamSize(val) {
+  if (!val) return 0;
+  if (val.includes('منفرداً') || val.includes('لا يوجد')) return 1;
+  const m = val.match(/\d+/);
+  return m ? parseInt(m[0], 10) : 0;
+}
+/** يحفظ إجابات الاستبيان في sessionStorage */
+function savePaSession() {
+  try { sessionStorage.setItem('jb-pa-answers', JSON.stringify(paState.answers)); } catch(e) {}
+}
+/** يُعيد تحميل الإجابات من sessionStorage */
+function loadPaSession() {
+  try { return JSON.parse(sessionStorage.getItem('jb-pa-answers') || '{}'); } catch(e) { return {}; }
+}
+// ──────────────────────────────────────────────────────────────────────
+
 function initProjectAnalysis() {
   if (!paState.started) {
     showPaStep(0);
@@ -5369,7 +5332,9 @@ function initProjectAnalysis() {
 }
 
 function startProjectAnalysisWizard(tier = 'free') {
-  paState = { currentGroup: 0, answers: {}, started: true, tier: tier };
+  // استعادة الإجابات من sessionStorage إن وجدت (تحسين تجربة المستخدم)
+  const savedAnswers = loadPaSession();
+  paState = { currentGroup: 0, answers: Object.keys(savedAnswers).length ? savedAnswers : {}, started: true, tier: tier };
   renderPaStepsBar();
   renderPaGroup();
   showPaStep(1);
@@ -5406,14 +5371,16 @@ function renderPaGroup() {
   const group = PA_QUESTIONS[paState.currentGroup];
   const container = document.getElementById('pa-questions-container');
   container.innerHTML = group.fields.map(q => {
-    const val = (paState.answers[q.id] || '').replace(/"/g,'&quot;');
+    const rawVal = paState.answers[q.id] || '';
+    const val = escHtml(rawVal); // تعقيم كامل لمنع XSS
+    const optLabel = q.required ? '' : ' <span style="color:var(--muted);font-weight:400;font-size:.77rem">(اختياري)</span>';
     if (q.type === 'select') {
-      const opts = q.options.map(o => `<option value="${o}"${val===o?' selected':''}>${o}</option>`).join('');
-      return `<div class="f-field"><label>${q.label}${q.required?'':' <span style="color:var(--muted);font-weight:400;font-size:.77rem">(اختياري)</span>'}</label><select id="${q.id}"><option value="">اختر...</option>${opts}</select></div>`;
+      const opts = q.options.map(o => `<option value="${escHtml(o)}"${rawVal===o?' selected':''}>${escHtml(o)}</option>`).join('');
+      return `<div class="f-field"><label>${q.label}${optLabel}</label><select id="${q.id}"><option value="">اختر...</option>${opts}</select></div>`;
     } else if (q.type === 'textarea') {
-      return `<div class="f-field" style="grid-column:1/-1"><label>${q.label}${q.required?'':' <span style="color:var(--muted);font-weight:400;font-size:.77rem">(اختياري)</span>'}</label><textarea id="${q.id}" placeholder="${q.placeholder||''}" rows="3" style="resize:vertical">${val}</textarea></div>`;
+      return `<div class="f-field" style="grid-column:1/-1"><label>${q.label}${optLabel}</label><textarea id="${q.id}" placeholder="${escHtml(q.placeholder||'')}" rows="3" style="resize:vertical">${val}</textarea></div>`;
     } else {
-      return `<div class="f-field"><label>${q.label}${q.required?'':' <span style="color:var(--muted);font-weight:400;font-size:.77rem">(اختياري)</span>'}</label><input type="${q.type}" id="${q.id}" placeholder="${q.placeholder||''}" value="${val}"/></div>`;
+      return `<div class="f-field"><label>${q.label}${optLabel}</label><input type="${q.type}" id="${q.id}" placeholder="${escHtml(q.placeholder||'')}" value="${val}"/></div>`;
     }
   }).join('');
 
@@ -5438,8 +5405,20 @@ function paNavNext() {
       setTimeout(() => { el.style.borderColor = ''; }, 2200);
       return;
     }
+    // تحقق من أن الحقول المالية لا تحتوي على أرقام سالبة
+    if (q.type === 'number' && val !== '') {
+      const num = parseFloat(val);
+      if (isNaN(num) || num < 0) {
+        showToast('القيمة يجب أن تكون صفراً أو أكبر: ' + q.label);
+        el.focus();
+        el.style.borderColor = '#e74c3c';
+        setTimeout(() => { el.style.borderColor = ''; }, 2200);
+        return;
+      }
+    }
     paState.answers[q.id] = val;
   }
+  savePaSession();
   if (paState.currentGroup < PA_QUESTIONS.length - 1) {
     paState.currentGroup++;
     renderPaStepsBar();
@@ -5453,6 +5432,7 @@ function paNavNext() {
 function paNavPrev() {
   const group = PA_QUESTIONS[paState.currentGroup];
   group.fields.forEach(q => { const el = document.getElementById(q.id); if (el) paState.answers[q.id] = el.value.trim(); });
+  savePaSession();
   if (paState.currentGroup > 0) {
     paState.currentGroup--;
     renderPaStepsBar();
@@ -5490,6 +5470,14 @@ function generateProjectAnalysisReport() {
 
 function buildProjectAnalysisReport() {
   const a = paState.answers;
+
+  // ── تعقيم مدخلات المستخدم النصية (XSS prevention) ──
+  const safeName = escHtml(a.pa_name) || 'المشروع';
+  const safeType = escHtml(a.pa_type) || '';
+  const safeCity = escHtml(a.pa_city) || '';
+  const safeDesc = escHtml(a.pa_desc) || '';
+  const safeComp = escHtml(a.pa_comp) || '—';
+  const safeExp  = escHtml(a.pa_exp)  || '—';
 
   // ── معايير القطاعات — السوق السعودي أبريل 2026 ──
   const sector = a.pa_type || 'أخرى';
@@ -5583,7 +5571,7 @@ function buildProjectAnalysisReport() {
     'أخرى':            {minPct:10, greenPct:25, platPct:45, label:'القطاعات العامة'},
   };
   const nitaqat    = NITAQAT_2026[sector] || NITAQAT_2026['أخرى'];
-  const teamSize   = parseFloat(a.pa_team_size) || 0;
+  const teamSize   = parseTeamSize(a.pa_team_size); // إصلاح: تحليل نص الـ select بدقة
   const saudiNeeded = teamSize > 0 ? Math.ceil(teamSize * nitaqat.minPct / 100) : 0;
   const nitaqatColor = teamSize > 0 && saudiNeeded >= 1 ? '#4ade80' : '#fbbf24';
 
@@ -5620,11 +5608,13 @@ function buildProjectAnalysisReport() {
   const paY2Rev    = Math.round(revenue * (1 + paGrowthRate));
   const paY2Total  = Math.round(totalFixed + varRatio * paY2Rev);
   const paY2Net    = paY2Rev - paY2Total;
-  const paY3Rev    = Math.round(revenue * (1 + paGrowthRate * 2.6));
+  // نمو مُركَّب صحيح للسنة الثالثة: (1+g)^2
+  const paY3Rev    = Math.round(revenue * Math.pow(1 + paGrowthRate, 2));
   const paY3Total  = Math.round(totalFixed + varRatio * paY3Rev);
   const paY3Net    = paY3Rev - paY3Total;
   const paY2Margin = paY2Rev > 0 ? (paY2Net/paY2Rev*100).toFixed(1) : '0';
   const paY3Margin = paY3Rev > 0 ? (paY3Net/paY3Rev*100).toFixed(1) : '0';
+  const paY3GrowthPct = ((Math.pow(1 + paGrowthRate, 2) - 1) * 100).toFixed(0); // للعرض
 
 
   const neededRevForGoodMargin = totalFixed / bench.netTarget; // إيراد مطلوب لهامش القطاع المستهدف 2026
@@ -5774,11 +5764,11 @@ function buildProjectAnalysisReport() {
 
           <!-- بيانات المشروع + الشارة -->
           <div style="text-align:left;flex:1;min-width:180px">
-            <h2 style="font-size:1.15rem;color:#fff;margin:0 0 .3rem;font-weight:900">${a.pa_name||'المشروع'}</h2>
+            <h2 style="font-size:1.15rem;color:#fff;margin:0 0 .3rem;font-weight:900">${safeName}</h2>
             <p style="display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;color:rgba(255,255,255,.65);font-size:.8rem;margin:0">
-              <span>${a.pa_type||''}</span>
+              <span>${safeType}</span>
               <span style="opacity:.4">·</span>
-              <span>${a.pa_city||''}</span>
+              <span>${safeCity}</span>
               <span style="opacity:.4">·</span>
               <span>${new Date().toLocaleDateString('ar-SA')}</span>
             </p>
@@ -5900,7 +5890,7 @@ function buildProjectAnalysisReport() {
           <td style="font-weight:700">${(paY2Net*12).toLocaleString('ar-SA')} ر</td>
         </tr>
         <tr>
-          <td><strong>السنة الثالثة</strong> <span style="font-size:.71rem;color:var(--muted)">(نمو ${(paGrowthRate*260).toFixed(0)}%)</span></td>
+          <td><strong>السنة الثالثة</strong> <span style="font-size:.71rem;color:var(--muted)">(نمو ${paY3GrowthPct}% مُركَّب)</span></td>
           <td>${paY3Rev.toLocaleString('ar-SA')} ر</td>
           <td>${paY3Total.toLocaleString('ar-SA')} ر</td>
           <td style="color:${paY3Net>=0?'var(--green)':'#e74c3c'};font-weight:700">${paY3Net>=0?'+':''}${paY3Net.toLocaleString('ar-SA')} ر</td>
@@ -5976,8 +5966,8 @@ function buildProjectAnalysisReport() {
     <!-- تقييم المخاطر -->
     <div class="sr-section">
       <h3><i class="fa-solid fa-shield-halved"></i>تقييم عوامل النجاح والمخاطر</h3>
-      <div class="sr-risk-row"><div class="sr-risk-label">مستوى المنافسة في المنطقة</div><div class="pill-risk ${['لا يوجد منافسون واضحون','منافسة منخفضة'].includes(a.pa_comp)?'pr-low':a.pa_comp==='منافسة متوسطة'?'pr-mid':'pr-high'}">${a.pa_comp||'—'}</div></div>
-      <div class="sr-risk-row"><div class="sr-risk-label">الخبرة الشخصية في المجال</div><div class="pill-risk ${(a.pa_exp||'').includes('5 سنوات')?'pr-low':(a.pa_exp||'').includes('3-5')||((a.pa_exp||'').includes('1-3'))?'pr-mid':'pr-high'}">${a.pa_exp||'—'}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">مستوى المنافسة في المنطقة</div><div class="pill-risk ${['لا يوجد منافسون واضحون','منافسة منخفضة'].includes(a.pa_comp)?'pr-low':a.pa_comp==='منافسة متوسطة'?'pr-mid':'pr-high'}">${safeComp}</div></div>
+      <div class="sr-risk-row"><div class="sr-risk-label">الخبرة الشخصية في المجال</div><div class="pill-risk ${(a.pa_exp||'').includes('5 سنوات')?'pr-low':(a.pa_exp||'').includes('3-5')||((a.pa_exp||'').includes('1-3'))?'pr-mid':'pr-high'}">${safeExp}</div></div>
       <div class="sr-risk-row"><div class="sr-risk-label">هامش الربح مقارنةً بمعيار قطاعك</div><div class="pill-risk ${netMargin>=bench.netTarget*100?'pr-low':netMargin>=bench.netTarget*50?'pr-mid':'pr-high'}">${netMargin>=bench.netTarget*100?'ضمن المعيار ✓':netMargin>=0?'دون المعيار ⚠':'خسارة 🚨'}</div></div>
       <div class="sr-risk-row"><div class="sr-risk-label">نسبة التكاليف الثابتة من الإيرادات</div><div class="pill-risk ${revenue>0&&totalFixed/revenue<0.40?'pr-low':totalFixed/revenue<0.6?'pr-mid':'pr-high'}">${revenue>0?(totalFixed/revenue*100).toFixed(1)+'%':'—'}</div></div>
     </div>
@@ -6324,6 +6314,7 @@ function showPaStep(step) {
 
 function resetProjectAnalysis(goToPremium = false) {
   paState = { currentGroup: 0, answers: {}, started: false };
+  try { sessionStorage.removeItem('jb-pa-answers'); } catch(e) {}
   if (goToPremium) {
     showPaStep(0);
     // تمرير نص بسيط للبطاقة المدفوعة
@@ -7691,8 +7682,13 @@ function selectStudyType(type) {
 
 function proceedToPayment() {
   if (!fsState.type) { showToast('يرجى اختيار نوع الدراسة أولاً'); return; }
-  // تخطّي الدفع — الانتقال مباشرة للأسئلة
-  startQuestionnaire();
+  // تحديث ملخص الدفع
+  const planName  = fsState.type === 'simple' ? 'دراسة الجدوى المبسطة' : 'دراسة الجدوى المفصلة';
+  const planPrice = fsState.type === 'simple' ? '99 ريال' : '299 ريال';
+  const pn = document.getElementById('pay-plan-name');  if (pn) pn.textContent = planName;
+  const pp = document.getElementById('pay-plan-price'); if (pp) pp.textContent = planPrice;
+  // الانتقال لخطوة الدفع
+  showFsStep(1);
 }
 
 function backToTypes() { showFsStep(0); }
@@ -7715,14 +7711,36 @@ function formatExpiry(el) {
 }
 
 function processPayment() {
+  const cardNum  = (document.getElementById('pay-card-num')?.value  || '').replace(/\s/g, '');
+  const cardExp  = (document.getElementById('pay-card-exp')?.value  || '').replace(/\s/g, '');
+  const cardCvv  = (document.getElementById('pay-card-cvv')?.value  || '').trim();
+  const cardName = (document.getElementById('pay-card-name')?.value || '').trim();
   const btn = document.getElementById('pay-submit-btn');
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جارٍ معالجة الدفع...';
+
+  // ─── التحقق من بيانات البطاقة ───
+  if (!cardName) { showToast('⚠ أدخل اسم حامل البطاقة كما هو مكتوب عليها'); return; }
+  if (cardNum.length !== 16 || !/^\d+$/.test(cardNum)) { showToast('⚠ رقم البطاقة يجب أن يكون 16 رقماً صحيحاً'); return; }
+  const expClean = cardExp.replace(/\s/g, '');
+  if (!/^\d{2}\/\d{2}$/.test(expClean)) { showToast('⚠ أدخل تاريخ الانتهاء بصيغة MM/YY'); return; }
+  const [mon, yr] = expClean.split('/').map(Number);
+  if (mon < 1 || mon > 12) { showToast('⚠ رقم الشهر في تاريخ الانتهاء غير صحيح'); return; }
+  const now = new Date();
+  if (new Date(2000 + yr, mon - 1) < new Date(now.getFullYear(), now.getMonth())) { showToast('⚠ البطاقة منتهية الصلاحية'); return; }
+  if (!/^\d{3,4}$/.test(cardCvv)) { showToast('⚠ رمز CVV يجب أن يكون 3 أو 4 أرقام'); return; }
+
+  // ─── منع الضغط المزدوج ───
+  if (window._payProcessing) return;
+  window._payProcessing = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جارٍ معالجة الدفع بأمان...';
   btn.disabled = true;
+
   setTimeout(() => {
+    window._payProcessing = false;
+    const ref = 'JBZ-' + Date.now().toString().slice(-8);
+    showToast('✅ تم الدفع بنجاح! رقم المرجع: ' + ref);
+    startQuestionnaire();
     btn.innerHTML = '<i class="fa-solid fa-lock"></i> إتمام الدفع بأمان';
     btn.disabled = false;
-    showToast('✅ تم الدفع بنجاح! ابدأ الإجابة على الأسئلة');
-    startQuestionnaire();
   }, 2000);
 }
 
@@ -8880,6 +8898,12 @@ function resetFeasibility() {
   document.getElementById('sc-detailed').classList.remove('selected');
   const btn = document.getElementById('fs-next-0');
   btn.disabled = true; btn.style.opacity = '.45'; btn.style.cursor = 'not-allowed';
+  // مسح حقول بطاقة الدفع
+  ['pay-card-num','pay-card-exp','pay-card-cvv','pay-card-name'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  // إعادة طريقة الدفع للافتراضي
+  selectPayMethod('card');
   showFsStep(0);
 }
 
@@ -8954,6 +8978,12 @@ function calcEntrepreneurNeeds() {
   const salary  = parseFloat(document.getElementById('ent-salary')?.value)||0;
   const other   = parseFloat(document.getElementById('ent-other')?.value)||0;
   let   revenue = parseFloat(document.getElementById('ent-revenue')?.value)||0;
+
+  // ─── تحقق من القيم السالبة ───
+  if (setup < 0 || rent < 0 || salary < 0 || other < 0 || revenue < 0) {
+    showToast('⚠ لا يمكن إدخال قيم سالبة في الحقول المالية');
+    return;
+  }
 
   // ─── COGS ───
   const cogsPctInput = parseFloat(document.getElementById('ent-cogs-pct')?.value);
@@ -9164,10 +9194,11 @@ function calcInvestorROI() {
   const capital = parseFloat(document.getElementById('inv-capital')?.value)||0;
   const period  = parseInt(document.getElementById('inv-period')?.value)||3;
   const el0     = document.getElementById('inv-capital');
-  const roiMin  = parseFloat(el0?.dataset.roiMin||10);
-  const roiMax  = parseFloat(el0?.dataset.roiMax||18);
-  const sName   = el0?.dataset.sectorName||'القطاع المختار';
-  if (capital <= 0) { alert('أدخل رأس المال المتاح للاستثمار'); return; }
+  const roiMin  = parseFloat(el0?.dataset.roiMin||0);
+  const roiMax  = parseFloat(el0?.dataset.roiMax||0);
+  const sName   = el0?.dataset.sectorName||'';
+  if (capital <= 0) { showToast('أدخل رأس المال المتاح للاستثمار'); return; }
+  if (!sName || roiMin === 0) { showToast('يرجى اختيار القطاع من البطاقات أعلاه أولاً'); return; }
   const earnMin    = Math.round(capital * (roiMin/100) * period);
   const earnMax    = Math.round(capital * (roiMax/100) * period);
   const earnAvg    = Math.round((earnMin+earnMax)/2);
@@ -9445,12 +9476,31 @@ function initCapital() {
 }
 
 function resetCapital() {
-  ['ent-setup','ent-rent','ent-salary','ent-other','ent-revenue'].forEach(id => {
-    const e = document.getElementById(id); if (e) e.value = '';
-  });
-  const er = document.getElementById('ent-results');    if (er) er.style.display = 'none';
-  const ir = document.getElementById('inv-results');    if (ir) ir.style.display = 'none';
+  // جميع حقول رائد الأعمال
+  const allFields = [
+    'ent-setup','ent-rent','ent-salary','ent-other','ent-revenue',
+    'ent-cogs-pct','ent-cogs-amt',
+    'ent-saudi-count','ent-saudi-salary',
+    'ent-nonsaudi-count','ent-nonsaudi-salary',
+    'ent-electricity','ent-transport','ent-muni-fee','ent-gov-other','ent-subscriptions',
+    'inv-capital'
+  ];
+  allFields.forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
+  // إعادة القيم الافتراضية
+  const iqama = document.getElementById('ent-iqama-fee'); if (iqama) iqama.value = '9600';
+  const health = document.getElementById('ent-health-ins'); if (health) health.value = '600';
+  const cr = document.getElementById('ent-cr-fee'); if (cr) cr.value = '2100';
+  // إلغاء تحديد VAT
+  const vatNo = document.getElementById('ent-vat-no'); if (vatNo) vatNo.checked = true;
+  // إخفاء النتائج
+  const er = document.getElementById('ent-results');       if (er) er.style.display = 'none';
+  const ir = document.getElementById('inv-results');        if (ir) ir.style.display = 'none';
   const sd = document.getElementById('cap-sector-detail'); if (sd) sd.style.display = 'none';
+  // إعادة ضبط بطاقات القطاعات
+  document.querySelectorAll('.cap-sector-card').forEach(c => {
+    c.style.borderColor = 'var(--border)';
+    c.style.background  = 'var(--bg3)';
+  });
   switchCapPath('entre');
   window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -9501,7 +9551,7 @@ function submitCapRequest() {
   const rev  = parseFloat(document.getElementById('cap-pm-revenue')?.value || 0);
   const phone= (document.getElementById('cap-pm-whatsapp')?.value || '').trim();
   if (!name || !biz || !rev || !phone) {
-    alert('يرجى تعبئة جميع الحقول المطلوبة');
+    showToast('⚠ يرجى تعبئة جميع الحقول المطلوبة');
     return;
   }
   // store for use in next step

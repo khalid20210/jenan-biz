@@ -101,6 +101,39 @@ class BusinessAnalyzer {
     return fullStudy;
   }
 
+  /* ============ تنزيل PDF للتقرير ============ */
+
+  /**
+   * يُرسل بيانات المشروع للـ API ويُنزّل تقرير الجدوى كـ PDF
+   * @param {object} input — نفس حقول quickAnalysis
+   */
+  async downloadReportPdf(input) {
+    this._validateInput(input);
+    return this.api.analyzeProjectPdf({
+      capital:          input.capital,
+      monthly_rent:     input.monthlyRent,
+      num_employees:    input.numEmployees,
+      avg_daily_revenue: input.avgTicket,
+      sector:           input.sector,
+      region:           input.region || "",
+    });
+  }
+
+  /* ============ تنزيل PDF للدراسة الكاملة ============ */
+
+  /**
+   * يُولّد دراسة جدوى AI ثم يُنزّلها كـ PDF
+   * @param {object} input  — نفس حقول generateFeasibilityStudy
+   * @param {string} depth  — "simplified" | "detailed"
+   */
+  async downloadStudyPdf(input, depth = "simplified") {
+    const study = await this.generateFeasibilityStudy(input, depth);
+    return this.api.generateStudyPdf({
+      content:  typeof study.aiStudy === "string" ? study.aiStudy : JSON.stringify(study.aiStudy),
+      study_id: `JS-${Date.now()}`,
+    });
+  }
+
   /* ============ منطق داخلي ============ */
 
   _validateInput(input) {

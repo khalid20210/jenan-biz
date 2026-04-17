@@ -119,11 +119,11 @@
       <div class="text-center flex-1">
         <svg width="52" height="52" viewBox="0 0 64 64">
           <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="5"/>
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#00e396" stroke-width="5"
+          <circle id="gauge-funding" cx="32" cy="32" r="26" fill="none" stroke="#00e396" stroke-width="5"
             stroke-dasharray="145.2 163.4" stroke-dashoffset="40.8"
             stroke-linecap="round" transform="rotate(-90 32 32)"
             style="filter:drop-shadow(0 0 6px #00e396) drop-shadow(0 0 14px #00e396) drop-shadow(0 0 24px rgba(0,227,150,.4))"/>
-          <text x="32" y="36" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Tajawal,sans-serif">88%</text>
+          <text id="gauge-funding-txt" x="32" y="36" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Tajawal,sans-serif">--</text>
         </svg>
         <div class="text-xs" style="color:rgba(255,255,255,.55);">جاهزية التمويل</div>
       </div>
@@ -131,17 +131,17 @@
       <div class="text-center flex-1">
         <svg width="52" height="52" viewBox="0 0 64 64">
           <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="5"/>
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#4E73C2" stroke-width="5"
+          <circle id="gauge-risk" cx="32" cy="32" r="26" fill="none" stroke="#4E73C2" stroke-width="5"
             stroke-dasharray="145.2 163.4" stroke-dashoffset="40.8"
             stroke-linecap="round" transform="rotate(-90 32 32)"
             style="filter:drop-shadow(0 0 6px #4E73C2) drop-shadow(0 0 14px #4E73C2) drop-shadow(0 0 24px rgba(78,115,194,.4))"/>
-          <text x="32" y="36" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Tajawal,sans-serif">88%</text>
+          <text id="gauge-risk-txt" x="32" y="36" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Tajawal,sans-serif">--</text>
         </svg>
         <div class="text-xs" style="color:rgba(255,255,255,.55);">تقييم المخاطر</div>
       </div>
 
       <div class="flex-1 text-center">
-        <div class="text-blue-300 font-black text-xs mb-1">+12%</div>
+        <div id="stat-growth" class="text-blue-300 font-black text-xs mb-1">...</div>
         <div class="flex items-end justify-center gap-0.5" style="height:28px;">
           <div class="w-1.5 rounded-t" style="height:40%;background:rgba(78,115,194,.35)"></div>
           <div class="w-1.5 rounded-t" style="height:65%;background:rgba(78,115,194,.55)"></div>
@@ -153,12 +153,12 @@
       </div>
 
       <div class="flex-1 text-center">
-        <div class="text-blue-300 font-black text-lg leading-none">108</div>
-        <div class="text-xs mt-1" style="color:rgba(255,255,255,.45);">عميل نشط</div>
+        <div id="stat-users" class="text-blue-300 font-black text-lg leading-none">...</div>
+        <div class="text-xs mt-1" style="color:rgba(255,255,255,.45);">عضو نشط</div>
       </div>
 
       <div class="flex-1 text-center">
-        <div class="font-black text-xs mb-1" style="color:#00e396;">+12%</div>
+        <div id="stat-profit" class="font-black text-xs mb-1" style="color:#00e396;">...</div>
         <svg width="46" height="28" viewBox="0 0 55 36">
           <polyline points="2,30 10,22 18,26 26,14 34,18 42,8 53,12"
             fill="none" stroke="#00e396" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -174,18 +174,18 @@
   <!-- إحصاءات -->
   <div class="relative z-10 flex justify-center gap-6">
     <div class="text-center">
-      <div class="text-white font-black">+500</div>
-      <div class="text-xs" style="color:rgba(255,255,255,.4);">مشروع مكتمل</div>
+      <div id="stat-reports" class="text-white font-black">...</div>
+      <div class="text-xs" style="color:rgba(255,255,255,.4);">تقرير مكتمل</div>
     </div>
     <div class="w-px" style="background:rgba(255,255,255,.1);"></div>
     <div class="text-center">
-      <div class="text-white font-black">+50</div>
+      <div id="stat-courses" class="text-white font-black">...</div>
       <div class="text-xs" style="color:rgba(255,255,255,.4);">دورة تدريبية</div>
     </div>
     <div class="w-px" style="background:rgba(255,255,255,.1);"></div>
     <div class="text-center">
-      <div class="text-white font-black">+2000</div>
-      <div class="text-xs" style="color:rgba(255,255,255,.4);">عضو نشط</div>
+      <div id="stat-members" class="text-white font-black">...</div>
+      <div class="text-xs" style="color:rgba(255,255,255,.4);">عضو مسجل</div>
     </div>
   </div>
 
@@ -724,6 +724,54 @@
       setTimeout(() => { window.location.href = '/dashboard'; }, 2000);
     }
   }
+
+  /* ===== إحصاءات المنصة الحية ===== */
+  const CIRC = 163.4; // محيط الدائرة = 2 * π * 26
+
+  function setGauge(circleId, textId, pct) {
+    const arc = (pct / 100) * CIRC;
+    const circle = document.getElementById(circleId);
+    const text   = document.getElementById(textId);
+    if (circle) circle.setAttribute('stroke-dasharray', `${arc.toFixed(1)} ${CIRC}`);
+    if (text)   text.textContent = pct + '%';
+  }
+
+  function fmt(n) {
+    if (n >= 1000) return '+' + (n / 1000).toFixed(1) + 'k';
+    return '+' + n;
+  }
+
+  async function loadStats() {
+    try {
+      const res  = await fetch('/api/public-stats');
+      if (!res.ok) return;
+      const data = await res.json();
+
+      setGauge('gauge-funding', 'gauge-funding-txt', data.funding_score);
+      setGauge('gauge-risk',    'gauge-risk-txt',    data.risk_score);
+
+      const gr = document.getElementById('stat-growth');
+      const us = document.getElementById('stat-users');
+      const pr = document.getElementById('stat-profit');
+      const rp = document.getElementById('stat-reports');
+      const co = document.getElementById('stat-courses');
+      const mb = document.getElementById('stat-members');
+
+      if (gr) gr.textContent = '+' + data.growth_pct + '%';
+      if (us) us.textContent = data.active_users.toLocaleString('ar-SA');
+      if (pr) pr.textContent = '+' + data.growth_pct + '%';
+      if (rp) rp.textContent = fmt(data.reports_done);
+      if (co) co.textContent = '+' + data.courses;
+      if (mb) mb.textContent = fmt(data.active_users);
+
+    } catch (e) {
+      console.warn('[stats]', e);
+    }
+  }
+
+  // تحميل فوري ثم تحديث كل 30 ثانية
+  loadStats();
+  setInterval(loadStats, 30000);
 </script>
 </body>
 </html>
