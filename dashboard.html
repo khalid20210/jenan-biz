@@ -3582,11 +3582,6 @@ function toggleNotifPanel(){
           <div class="ds-result-actions">
             <button class="ds-dl-btn" onclick="downloadDesignAI()"><i class="fa-solid fa-download"></i> تحميل PNG</button>
             <button class="ds-regen-btn" onclick="generateDesignAI()"><i class="fa-solid fa-rotate"></i> تصميم جديد</button>
-            <button class="ds-wa-btn" onclick="orderDesignFull()"><i class="fa-brands fa-whatsapp"></i> طلب نسخة احترافية</button>
-          </div>
-          <div style="background:rgba(236,72,153,.07);border:1px solid rgba(236,72,153,.15);border-radius:10px;padding:.75rem 1rem;margin-top:.85rem;font-size:.77rem;color:#888;line-height:1.6">
-            <i class="fa-solid fa-circle-info" style="color:#ec4899;margin-left:.4rem"></i>
-            هذا التصميم مُولَّد حصرياً لك بالذكاء الاصطناعي. للحصول على نسخة قابلة للتحرير (SVG/AI) ومُراجَعة من مصمم بشري — اضغط "طلب نسخة احترافية".
           </div>
         </div>
       </div>
@@ -3595,22 +3590,7 @@ function toggleNotifPanel(){
         <i class="fa-solid fa-shield-halved"></i>
         <div>
           <h4>تصميمك ملكك حصراً</h4>
-          <p>كل تصميم يُنشأ بشكل فريد لك — لا يُشارَك مع أي عميل آخر. يمكنك تحميله مباشرة أو طلب نسخة احترافية قابلة للتحرير.</p>
-        </div>
-      </div>
-
-      <!-- modal طلب نسخة احترافية -->
-      <div id="design-order-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;align-items:center;justify-content:center;padding:1rem" onclick="if(event.target===this)closeDesignOrder()">
-        <div style="background:var(--card);border-radius:20px;padding:2rem;width:90%;max-width:480px;box-shadow:var(--shadow);position:relative">
-          <button onclick="event.stopPropagation();closeDesignOrder()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
-          <h3 style="margin-bottom:.3rem;font-size:1.05rem">🎨 طلب نسخة احترافية</h3>
-          <p style="font-size:.8rem;color:#888;margin-bottom:1.25rem">سيتواصل معك فريقنا خلال 4 ساعات لإنجاز نسختك القابلة للتحرير</p>
-          <div class="f-field"><label>اسمك الكريم <span style="color:#ef4444">*</span></label><input type="text" id="d-name" placeholder="الاسم الكامل"/></div>
-          <div class="f-field"><label>رقم الواتساب <span style="color:#ef4444">*</span></label><input type="tel" id="d-phone" placeholder="05xxxxxxxx"/></div>
-          <div class="f-field"><label>ملاحظات إضافية</label><textarea id="d-desc" rows="2" placeholder="أي تعديلات تريدها على التصميم..."></textarea></div>
-          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem" onclick="submitDesignOrder()">
-            <i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر واتساب
-          </button>
+          <p>كل تصميم يُنشأ بشكل فريد لك بالذكاء الاصطناعي — لا يُشارَك مع أي عميل آخر. حمّله مباشرة بصيغة PNG.</p>
         </div>
       </div>
 
