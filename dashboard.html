@@ -1916,11 +1916,24 @@ function toggleNotifPanel(){
   if(!p) return;
   p.style.display=p.style.display==='none'?'block':'none';
 }
-/* تطبيق الثيم المحفوظ فور تحميل الـ head */
-(function(){
-  var t=localStorage.getItem('jb-theme')||'light';
-  document.documentElement.setAttribute('data-theme',t);
-})();
+function logout(){
+  localStorage.removeItem('jb-user');
+  window.location.href='auth.html';
+}
+function openPlanModal(){
+  document.getElementById('plan-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePlanModal(e){
+  if(e && e.target!==document.getElementById('plan-modal-overlay')) return;
+  document.getElementById('plan-modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function togglePlan(idx){
+  var cards=document.querySelectorAll('.plan-card');
+  cards.forEach(function(c,i){ if(i===idx){ c.classList.toggle('active'); } else { c.classList.remove('active'); } });
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanModal();});
 </script>
 </head>
 <body>
@@ -2089,7 +2102,7 @@ function toggleNotifPanel(){
   </div>
 
   <!-- لوحة الإشعارات -->
-  <div id="notif-panel" style="display:none;position:fixed;top:72px;left:1.5rem;width:300px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);z-index:500;padding:1rem;direction:rtl">
+  <div id="notif-panel" style="display:none;position:fixed;top:3.8rem;left:1.5rem;width:300px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);z-index:500;padding:1rem;direction:rtl">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
       <span style="font-weight:800;font-size:.95rem">الإشعارات</span>
       <button onclick="toggleNotifPanel()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.9rem"><i class="fa-solid fa-xmark"></i></button>
@@ -5914,29 +5927,6 @@ function runInvestorEval() {
   const annualProfit  = monthlyProfit * 12;
   const roi           = capital > 0 ? ((annualProfit / capital)*100).toFixed(1) : 0;
   showToast(`ROI: ${roi}% · ربح شهري: ${monthlyProfit.toLocaleString('ar-SA')} ر.س`);
-}
-function logout(){
-  localStorage.removeItem('jb-user');
-  window.location.href='auth.html';
-}
-
-/* ══ PLANS MODAL ══ */
-function openPlanModal(){
-  document.getElementById('plan-modal-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePlanModal(e){
-  if(e && e.target!==document.getElementById('plan-modal-overlay')) return;
-  document.getElementById('plan-modal-overlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanModal();});
-function togglePlan(idx){
-  var cards=document.querySelectorAll('.plan-card');
-  cards.forEach(function(c,i){
-    if(i===idx){ c.classList.toggle('active'); }
-    else { c.classList.remove('active'); }
-  });
 }
 
 /* ══ PROGRESS BARS UPDATE ══ */
