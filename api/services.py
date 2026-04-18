@@ -378,10 +378,12 @@ class ChatInput(BaseModel):
 
 
 class DesignInput(BaseModel):
-    business_name: str
-    sector:        Optional[str] = ""
-    primary_color: Optional[str] = "#4E73C2"
-    style:         Optional[str] = "modern"
+    design_type:   str = Field(..., max_length=40)   # logo, social, banner, menu, packaging, motion, presentation, catalogue, print, ebook, stationery
+    business_name: str = Field(..., max_length=100)
+    sector:        Optional[str] = Field("", max_length=80)
+    primary_color: Optional[str] = Field("#4E73C2", max_length=20)
+    style:         Optional[str] = Field("modern", max_length=40)   # modern, classic, minimalist, bold, elegant
+    description:   Optional[str] = Field("", max_length=500)
 
 
 class CertificateInput(BaseModel):
@@ -880,26 +882,108 @@ async def chat_ai(data: ChatInput, request: Request, user_id: str = Depends(get_
         raise HTTPException(503, str(e))
 
 
-# ---- توليد نصوص التصميم ----
-@app.post("/api/generate-design")
-async def generate_design_text(data: DesignInput, user_id: str = Depends(get_user_id)):
+# ---- توليد تصاميم بالذكاء الاصطناعي (DALL-E 3) ----
+_DS_PROMPTS = {
+    "logo": (
+        "A professional minimalist logo design for a brand named '{name}' in the {sector} industry. "
+        "Style: {style}. Color palette inspired by {color}. "
+        "Clean vector-style graphic, white background, no text, no letters, pure icon symbol only. "
+        "High quality, scalable, suitable for all media."
+    ),
+    "stationery": (
+        "A premium corporate stationery set mockup for brand '{name}' in {sector}. "
+        "Includes: letterhead paper, business card, envelope — flat lay on marble surface. "
+        "Color palette: {color}. Style: {style}. "
+        "Professional photography-style product mockup, no text visible."
+    ),
+    "social": (
+        "A stylish social media post template design for brand '{name}' in {sector}. "
+        "Modern {style} style, color theme: {color}. "
+        "Clean layout with geometric shapes and decorative elements, white/neutral placeholder for text. "
+        "Instagram and Twitter compatible square format."
+    ),
+    "banner": (
+        "A professional digital advertising banner design for '{name}' brand in {sector}. "
+        "{style} style, dominant color: {color}. "
+        "Wide horizontal format with dynamic shapes and abstract background. No text. High contrast."
+    ),
+    "menu": (
+        "A premium restaurant menu design layout for '{name}' in {sector}. "
+        "{style} aesthetic with {color} color scheme. "
+        "Elegant food photography placeholders, decorative dividers, luxury paper texture. No text."
+    ),
+    "packaging": (
+        "A stunning product packaging design for '{name}' brand in {sector}. "
+        "{style} style with {color} palette. "
+        "3D mockup of box or bottle with clean label design. White background. High-end product photography style."
+    ),
+    "motion": (
+        "A vibrant motion graphic storyboard frame for '{name}' brand in {sector}. "
+        "{style} style, color: {color}. "
+        "Dynamic composition with geometric shapes, gradients, and abstract animation elements. No text."
+    ),
+    "presentation": (
+        "A professional PowerPoint presentation slide template for '{name}' company in {sector}. "
+        "{style} design, {color} color scheme. "
+        "Clean slide layout with charts placeholder, icon areas, and sidebar. Corporate look."
+    ),
+    "catalogue": (
+        "A luxury product catalogue spread design for '{name}' in {sector}. "
+        "{style} layout with {color} accents. "
+        "Double-page magazine spread with product image placeholders and elegant typography areas. No text."
+    ),
+    "print": (
+        "A collection of print marketing materials for '{name}' brand in {sector}: "
+        "flyer, brochure, sticker on flat lay. {style} style, {color} palette. "
+        "Clean design, white background, professional photography style."
+    ),
+    "ebook": (
+        "A professional ebook cover design for '{name}' publication in {sector}. "
+        "{style} style, {color} dominant color. "
+        "3D book mockup, elegant typography placeholders, abstract background illustration. No visible text."
+    ),
+}
 
-    prompt = (
-        f"اقترح شعاراً مكتوباً (tagline) احترافياً ومختصراً لمنشأة '{data.business_name}' "
-        f"في قطاع {data.sector or 'غير محدد'} بالأسلوب {data.style}. "
-        "الرد يكون: الشعار فقط، بدون شرح."
+@app.post("/api/generate-design")
+@limiter.limit("6/minute")
+async def generate_design_image(request: Request, data: DesignInput, user_id: str = Depends(get_user_id)):
+    """يولّد صورة تصميم احترافية بـ DALL-E 3 ويعيدها بـ base64."""
+    import base64 as _b64
+
+    style_map = {
+        "modern":     "modern and contemporary",
+        "classic":    "classic and timeless",
+        "minimalist": "minimalist and clean",
+        "bold":       "bold and vibrant",
+        "elegant":    "elegant and luxury",
+    }
+    style_txt = style_map.get(data.style or "modern", data.style or "modern")
+    tpl = _DS_PROMPTS.get(data.design_type, _DS_PROMPTS["logo"])
+    dalle_prompt = tpl.format(
+        name   = _sanitize(data.business_name, 80),
+        sector = _sanitize(data.sector or "business", 60),
+        color  = _sanitize(data.primary_color or "#4E73C2", 20),
+        style  = style_txt,
     )
+    if data.description:
+        dalle_prompt += f" Additional notes: {_sanitize(data.description, 200)}"
 
     try:
-        response = await client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=60,
-            temperature=0.9,
+        oai = get_openai_client()
+        img_resp = await oai.images.generate(
+            model="dall-e-3",
+            prompt=dalle_prompt,
+            n=1,
+            size="1024x1024",
+            quality="standard",
+            response_format="b64_json",
         )
-        return {"tagline": response.choices[0].message.content.strip()}
+        b64_data = img_resp.data[0].b64_json
+        revised  = img_resp.data[0].revised_prompt or ""
+        return {"success": True, "image_b64": b64_data, "revised_prompt": revised[:300]}
     except openai.APIError as e:
-        raise HTTPException(503, str(e))
+        raise HTTPException(503, f"خطأ في توليد التصميم: {str(e)}")
+
 
 
 # ---- إصدار الشهادات ----

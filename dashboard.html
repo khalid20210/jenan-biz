@@ -1078,11 +1078,6 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .ds-stat-num{font-size:1.5rem;font-weight:900;color:#ec4899;display:block}
 .ds-stat-lbl{font-size:.72rem;color:rgba(255,255,255,.55)}
 .ds-hero-icon{width:90px;height:90px;border-radius:24px;background:rgba(236,72,153,.15);border:1.5px solid rgba(236,72,153,.3);display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0}
-.ds-process{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.75rem}
-.ds-step{background:var(--card);border-radius:14px;padding:1.1rem 1rem;border:1px solid var(--border);text-align:center;position:relative}
-.ds-step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center;margin:0 auto .6rem}
-.ds-step h4{font-size:.85rem;font-weight:800;color:var(--text);margin-bottom:.3rem}
-.ds-step p{font-size:.75rem;color:var(--muted);line-height:1.5;margin:0}
 .ds-section-title{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
 .ds-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
 .design-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-bottom:2rem}
@@ -1090,6 +1085,32 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .ds-guarantee i{font-size:1.8rem;color:#ec4899;flex-shrink:0}
 .ds-guarantee h4{font-size:.92rem;font-weight:800;color:var(--text);margin-bottom:.2rem}
 .ds-guarantee p{font-size:.78rem;color:var(--muted);margin:0}
+/* === AI GENERATOR === */
+.ds-ai-box{background:var(--card);border:1px solid rgba(236,72,153,.25);border-radius:20px;padding:1.75rem;margin-bottom:1.75rem;box-shadow:0 4px 24px rgba(236,72,153,.08)}
+.ds-ai-types{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.65rem;margin-bottom:1.25rem}
+.ds-ai-type{background:var(--bg3);border:2px solid var(--border);border-radius:12px;padding:.7rem .5rem;cursor:pointer;transition:var(--tr);text-align:center;font-size:.78rem;font-weight:700;color:var(--muted)}
+.ds-ai-type:hover{border-color:rgba(236,72,153,.5);color:var(--text)}
+.ds-ai-type.active{border-color:#ec4899;background:rgba(236,72,153,.1);color:#ec4899}
+.ds-ai-type i{display:block;font-size:1.3rem;margin-bottom:.3rem}
+.ds-ai-form{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.1rem}
+.ds-ai-form .full{grid-column:1/-1}
+.ds-styles{display:flex;gap:.5rem;flex-wrap:wrap}
+.ds-style-btn{background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:.35rem .8rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;color:var(--muted);transition:var(--tr)}
+.ds-style-btn.active{border-color:#ec4899;color:#ec4899;background:rgba(236,72,153,.1)}
+.ds-gen-btn{width:100%;padding:1rem;background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fff;border:none;border-radius:14px;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:.6rem}
+.ds-gen-btn:hover{opacity:.9;transform:translateY(-1px)}
+.ds-gen-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.ds-result-area{display:none;margin-top:1.5rem;animation:fadeUp .4s ease}
+.ds-result-img{width:100%;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.3);display:block}
+.ds-result-actions{display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap}
+.ds-result-actions button{flex:1;min-width:120px;padding:.65rem 1rem;border-radius:10px;border:none;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:.5rem}
+.ds-dl-btn{background:var(--green);color:#fff}
+.ds-dl-btn:hover{background:#0ea06a}
+.ds-regen-btn{background:var(--bg3);color:var(--text);border:1px solid var(--border)!important}
+.ds-wa-btn{background:#16a34a;color:#fff}
+.ds-ai-loader{display:none;flex-direction:column;align-items:center;padding:2.5rem;gap:1rem}
+.ds-ai-spinner{width:56px;height:56px;border-radius:50%;border:4px solid rgba(236,72,153,.2);border-top-color:#ec4899;animation:spin .8s linear infinite}
+.ds-ai-loader p{color:var(--muted);font-size:.88rem;text-align:center}
 /* modal multi-step */
 .ds-modal-steps{position:relative}
 .ds-modal-step{display:none}
@@ -3416,201 +3437,127 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
       <div class="ds-hero">
         <div class="ds-hero-grid">
           <div>
-            <h2 class="ds-hero" style="background:none;border-radius:0;padding:0;margin:0"><i class="fa-solid fa-pen-nib" style="color:#ec4899;margin-left:.5rem"></i>استوديو التصميم والإبداع</h2>
-            <p style="color:rgba(255,255,255,.7);font-size:.88rem;margin-top:.4rem">نبني هويتك البصرية من الصفر — شعار، هوية، سوشيال ميديا، وكل ما تحتاجه</p>
+            <h2 style="font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:.4rem">
+              <i class="fa-solid fa-wand-magic-sparkles" style="color:#ec4899;margin-left:.5rem"></i>
+              استوديو التصميم بالذكاء الاصطناعي
+            </h2>
+            <p style="color:rgba(255,255,255,.7);font-size:.88rem;margin:0">
+              صف علامتك التجارية وسيُنشئ الذكاء الاصطناعي تصميمك الاحترافي فوراً — شعار، هوية، سوشيال، وأكثر
+            </p>
             <div class="ds-stats">
-              <div class="ds-stat"><span class="ds-stat-num">+500</span><span class="ds-stat-lbl">عميل سعيد</span></div>
-              <div class="ds-stat"><span class="ds-stat-num">+1200</span><span class="ds-stat-lbl">تصميم مُسلَّم</span></div>
-              <div class="ds-stat"><span class="ds-stat-num">5★</span><span class="ds-stat-lbl">تقييم متوسط</span></div>
-              <div class="ds-stat"><span class="ds-stat-num">100%</span><span class="ds-stat-lbl">رضا مضمون</span></div>
+              <div class="ds-stat"><span class="ds-stat-num">DALL-E 3</span><span class="ds-stat-lbl">محرك التصميم</span></div>
+              <div class="ds-stat"><span class="ds-stat-num">11</span><span class="ds-stat-lbl">نوع تصميم</span></div>
+              <div class="ds-stat"><span class="ds-stat-num">ثوانٍ</span><span class="ds-stat-lbl">وقت الإنشاء</span></div>
+              <div class="ds-stat"><span class="ds-stat-num">100%</span><span class="ds-stat-lbl">حصري لك</span></div>
             </div>
           </div>
-          <div class="ds-hero-icon">🎨</div>
+          <div class="ds-hero-icon">🤖</div>
         </div>
       </div>
 
-      <!-- كيف نعمل معك -->
-      <div class="ds-section-title"><i class="fa-solid fa-arrow-trend-up" style="color:#ec4899"></i> كيف نعمل معك</div>
-      <div class="ds-process">
-        <div class="ds-step">
-          <div class="ds-step-num">1</div>
-          <h4>اختر خدمتك</h4>
-          <p>اضغط على الخدمة التي تناسبك وأرسل تفاصيل طلبك</p>
+      <!-- صندوق توليد AI -->
+      <div class="ds-ai-box">
+        <div class="ds-section-title" style="margin-bottom:1rem">
+          <i class="fa-solid fa-layer-group" style="color:#ec4899"></i> اختر نوع التصميم
         </div>
-        <div class="ds-step">
-          <div class="ds-step-num">2</div>
-          <h4>نراجع الطلب</h4>
-          <p>يتواصل معك فريقنا خلال 4 ساعات لتأكيد التفاصيل والسعر</p>
+        <div class="ds-ai-types">
+          <div class="ds-ai-type active" data-type="logo" onclick="dsSelectType(this)"><i class="fa-solid fa-star"></i>شعار</div>
+          <div class="ds-ai-type" data-type="stationery" onclick="dsSelectType(this)"><i class="fa-solid fa-id-card"></i>هوية بصرية</div>
+          <div class="ds-ai-type" data-type="social" onclick="dsSelectType(this)"><i class="fa-brands fa-instagram"></i>سوشيال ميديا</div>
+          <div class="ds-ai-type" data-type="banner" onclick="dsSelectType(this)"><i class="fa-solid fa-rectangle-ad"></i>بنر إعلاني</div>
+          <div class="ds-ai-type" data-type="menu" onclick="dsSelectType(this)"><i class="fa-solid fa-utensils"></i>منيو طعام</div>
+          <div class="ds-ai-type" data-type="packaging" onclick="dsSelectType(this)"><i class="fa-solid fa-box-open"></i>تغليف منتج</div>
+          <div class="ds-ai-type" data-type="motion" onclick="dsSelectType(this)"><i class="fa-solid fa-film"></i>موشن جرافيك</div>
+          <div class="ds-ai-type" data-type="presentation" onclick="dsSelectType(this)"><i class="fa-solid fa-display"></i>عرض تقديمي</div>
+          <div class="ds-ai-type" data-type="catalogue" onclick="dsSelectType(this)"><i class="fa-solid fa-book-open"></i>كتالوج</div>
+          <div class="ds-ai-type" data-type="print" onclick="dsSelectType(this)"><i class="fa-solid fa-print"></i>مطبوعات</div>
+          <div class="ds-ai-type" data-type="ebook" onclick="dsSelectType(this)"><i class="fa-solid fa-book"></i>غلاف كتاب</div>
         </div>
-        <div class="ds-step">
-          <div class="ds-step-num">3</div>
-          <h4>نبدأ التصميم</h4>
-          <p>تصميم احترافي مع تعديلات مجانية حتى رضاك التام</p>
+
+        <div class="ds-section-title"><i class="fa-solid fa-pen" style="color:#ec4899"></i> تفاصيل علامتك التجارية</div>
+        <div class="ds-ai-form">
+          <div class="f-field" style="margin:0">
+            <label>اسم العلامة التجارية <span style="color:#ef4444">*</span></label>
+            <input type="text" id="ds-brand" placeholder="مثال: جنان بيز" maxlength="80"/>
+          </div>
+          <div class="f-field" style="margin:0">
+            <label>القطاع / الصناعة</label>
+            <input type="text" id="ds-sector" placeholder="مثال: مطاعم، عقار، تقنية..." maxlength="60"/>
+          </div>
+          <div class="f-field" style="margin:0">
+            <label>اللون الرئيسي المفضل</label>
+            <div style="display:flex;gap:.5rem;align-items:center">
+              <input type="color" id="ds-color" value="#8b5cf6" style="width:44px;height:38px;border-radius:8px;border:1px solid #333;cursor:pointer;padding:2px" oninput="document.getElementById('ds-color-txt').value=this.value"/>
+              <input type="text" id="ds-color-txt" value="#8b5cf6" placeholder="#8b5cf6" maxlength="20" style="flex:1" oninput="document.getElementById('ds-color').value=this.value"/>
+            </div>
+          </div>
+          <div class="f-field" style="margin:0">
+            <label>أسلوب التصميم</label>
+            <div class="ds-styles" style="margin-top:.4rem">
+              <button class="ds-style-btn active" data-style="modern"     onclick="dsSelectStyle(this)">عصري</button>
+              <button class="ds-style-btn"         data-style="classic"    onclick="dsSelectStyle(this)">كلاسيكي</button>
+              <button class="ds-style-btn"         data-style="minimalist" onclick="dsSelectStyle(this)">مينيمال</button>
+              <button class="ds-style-btn"         data-style="bold"       onclick="dsSelectStyle(this)">جريء</button>
+              <button class="ds-style-btn"         data-style="elegant"    onclick="dsSelectStyle(this)">فاخر</button>
+            </div>
+          </div>
+          <div class="f-field full" style="margin:0">
+            <label>وصف إضافي (اختياري)</label>
+            <input type="text" id="ds-desc" placeholder="مثال: نريد إحساس فاخراً بألوان الذهبي والأسود..." maxlength="300"/>
+          </div>
         </div>
-        <div class="ds-step">
-          <div class="ds-step-num">4</div>
-          <h4>تسليم الملفات</h4>
-          <p>تحصل على جميع صيغ الملفات جاهزة للطباعة والنشر</p>
+
+        <button class="ds-gen-btn" id="ds-gen-btn" onclick="generateDesignAI()">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          ولّد تصميمي بالذكاء الاصطناعي
+        </button>
+
+        <div class="ds-ai-loader" id="ds-loader">
+          <div class="ds-ai-spinner"></div>
+          <p id="ds-loader-msg">يعمل الذكاء الاصطناعي على إنشاء تصميمك...<br><small style="opacity:.6">قد يستغرق 15-30 ثانية</small></p>
+        </div>
+
+        <div class="ds-result-area" id="ds-result">
+          <div class="ds-section-title" style="margin-bottom:.75rem">
+            <i class="fa-solid fa-check-circle" style="color:#22c55e"></i> تصميمك جاهز!
+          </div>
+          <img id="ds-result-img" class="ds-result-img" src="" alt="تصميم مولّد بالذكاء الاصطناعي"/>
+          <p id="ds-result-note" style="font-size:.75rem;color:#888;margin-top:.6rem;line-height:1.6"></p>
+          <div class="ds-result-actions">
+            <button class="ds-dl-btn" onclick="downloadDesignAI()"><i class="fa-solid fa-download"></i> تحميل PNG</button>
+            <button class="ds-regen-btn" onclick="generateDesignAI()"><i class="fa-solid fa-rotate"></i> تصميم جديد</button>
+            <button class="ds-wa-btn" onclick="orderDesignFull()"><i class="fa-brands fa-whatsapp"></i> طلب نسخة احترافية</button>
+          </div>
+          <div style="background:rgba(236,72,153,.07);border:1px solid rgba(236,72,153,.15);border-radius:10px;padding:.75rem 1rem;margin-top:.85rem;font-size:.77rem;color:#888;line-height:1.6">
+            <i class="fa-solid fa-circle-info" style="color:#ec4899;margin-left:.4rem"></i>
+            هذا التصميم مُولَّد حصرياً لك بالذكاء الاصطناعي. للحصول على نسخة قابلة للتحرير (SVG/AI) ومُراجَعة من مصمم بشري — اضغط "طلب نسخة احترافية".
+          </div>
         </div>
       </div>
 
-      <!-- الخدمات -->
-      <div class="ds-section-title"><i class="fa-solid fa-layer-group" style="color:#ec4899"></i> خدماتنا</div>
-      <div class="design-grid">
-        <div class="design-service-card" onclick="showDesignOrder('logo')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#ec4899,#f43f5e)"><i class="fa-solid fa-star"></i></div>
-          <h3>تصميم شعار احترافي</h3>
-          <p>شعار فريد يعبر عن هويتك التجارية — مناسب لجميع المنصات والأحجام</p>
-          <div class="ds-tags"><span>SVG + PNG</span><span>3 مقترحات</span><span>تعديلات غير محدودة</span></div>
-          <div class="ds-price">من <strong>299 ر.س</strong> · التسليم خلال 3 أيام</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('stationery')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)"><i class="fa-solid fa-id-card"></i></div>
-          <h3>هوية بصرية كاملة</h3>
-          <p>شعار + ورق رسمي + بطاقة أعمال + غلاف سوشيال ميديا وأكثر</p>
-          <div class="ds-tags"><span>8 قطع</span><span>Editable</span><span>جاهزة للطباعة</span></div>
-          <div class="ds-price">من <strong>599 ر.س</strong> · التسليم خلال 5 أيام</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('social')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8)"><i class="fa-brands fa-instagram"></i></div>
-          <h3>قوالب سوشيال ميديا</h3>
-          <p>قوالب جاهزة للنشر على إنستقرام، تويتر، سناب شات وتيك توك</p>
-          <div class="ds-tags"><span>15 قالب</span><span>Post + Story + Reel</span><span>Editable</span></div>
-          <div class="ds-price">من <strong>199 ر.س</strong> · التسليم خلال يومين</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('banner')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fa-solid fa-rectangle-ad"></i></div>
-          <h3>بنر وإعلانات رقمية</h3>
-          <p>تصميم بنرات إعلانية لجوجل، سوشيال ميديا والمواقع الإلكترونية</p>
-          <div class="ds-tags"><span>جميع الأحجام</span><span>GIF متحرك</span><span>HTML5</span></div>
-          <div class="ds-price">من <strong>149 ر.س</strong> · التسليم خلال 24 ساعة</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('menu')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-utensils"></i></div>
-          <h3>منيو وقائمة طعام</h3>
-          <p>قائمة طعام أنيقة للطباعة أو رقمية بـ QR Code قابل للتحديث</p>
-          <div class="ds-tags"><span>A4 + A3</span><span>PDF</span><span>QR Code</span></div>
-          <div class="ds-price">من <strong>249 ر.س</strong> · التسليم خلال 3 أيام</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('packaging')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)"><i class="fa-solid fa-box-open"></i></div>
-          <h3>تصميم تغليف وعبوات</h3>
-          <p>تصميم علبة، مكيف، قارورة، أو كيس بهوية بصرية مميزة</p>
-          <div class="ds-tags"><span>Dieline</span><span>3D Mockup</span><span>جاهز للطباعة</span></div>
-          <div class="ds-price">من <strong>399 ر.س</strong> · التسليم خلال 4 أيام</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('motion')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#6366f1,#4f46e5)"><i class="fa-solid fa-film"></i></div>
-          <h3>موشن جرافيك وإنفوجرافيك</h3>
-          <p>فيديوهات تعريفية متحركة وإنفوجرافيك احترافي لمشروعك</p>
-          <div class="ds-tags"><span>MP4</span><span>GIF</span><span>مدة 30-60 ث</span></div>
-          <div class="ds-price">من <strong>499 ر.س</strong> · التسليم خلال 5 أيام</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('presentation')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#f97316,#ea580c)"><i class="fa-solid fa-display"></i></div>
-          <h3>تصميم عرض تقديمي</h3>
-          <p>عروض PowerPoint وKeynote احترافية لاجتماعاتك واستثماراتك</p>
-          <div class="ds-tags"><span>PPTX + PDF</span><span>Animated</span><span>Editable</span></div>
-          <div class="ds-price">من <strong>349 ر.س</strong> · التسليم خلال 3 أيام</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('catalogue')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#0891b2,#0e7490)"><i class="fa-solid fa-book-open"></i></div>
-          <h3>كتالوج وبروشور منتجات</h3>
-          <p>كتالوج منتجاتك بتصميم راقٍ مناسب للطباعة والتوزيع الرقمي</p>
-          <div class="ds-tags"><span>A4 / A5</span><span>PDF تفاعلي</span><span>طباعة عالية الدقة</span></div>
-          <div class="ds-price">من <strong>449 ر.س</strong> · التسليم خلال 4 أيام</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('print')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)"><i class="fa-solid fa-print"></i></div>
-          <h3>مواد الطباعة والدعاية</h3>
-          <p>بطاقات أعمال، ختم رسمي، ستيكر، لافتات، وكل مواد الدعاية</p>
-          <div class="ds-tags"><span>CMYK</span><span>جاهز للطباعة</span><span>أحجام متعددة</span></div>
-          <div class="ds-price">من <strong>129 ر.س</strong> · التسليم خلال يومين</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-        <div class="design-service-card" onclick="showDesignOrder('ebook')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#be123c,#9f1239)"><i class="fa-solid fa-book"></i></div>
-          <h3>غلاف كتاب ومحتوى رقمي</h3>
-          <p>تصميم غلاف كتاب إلكتروني أو ورقي + تنسيق داخلي احترافي</p>
-          <div class="ds-tags"><span>eBook</span><span>PDF</span><span>Amazon KDP</span></div>
-          <div class="ds-price">من <strong>299 ر.س</strong> · التسليم خلال 3 أيام</div>
-          <button class="ds-btn">اطلب الآن</button>
-        </div>
-      </div>
-
-      <!-- ضمان الجودة -->
       <div class="ds-guarantee">
         <i class="fa-solid fa-shield-halved"></i>
         <div>
-          <h4>ضمان الرضا التام</h4>
-          <p>تعديلات غير محدودة حتى رضاك الكامل — أو استرداد كامل للمبلغ خلال 7 أيام</p>
+          <h4>تصميمك ملكك حصراً</h4>
+          <p>كل تصميم يُنشأ بشكل فريد لك — لا يُشارَك مع أي عميل آخر. يمكنك تحميله مباشرة أو طلب نسخة احترافية قابلة للتحرير.</p>
         </div>
       </div>
 
-      <!-- modal طلب التصميم متعدد الخطوات -->
+      <!-- modal طلب نسخة احترافية -->
       <div id="design-order-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;align-items:center;justify-content:center;padding:1rem" onclick="if(event.target===this)closeDesignOrder()">
-        <div style="background:var(--card);border-radius:20px;padding:2rem;width:90%;max-width:500px;box-shadow:var(--shadow);position:relative;max-height:90vh;overflow-y:auto">
+        <div style="background:var(--card);border-radius:20px;padding:2rem;width:90%;max-width:480px;box-shadow:var(--shadow);position:relative">
           <button onclick="event.stopPropagation();closeDesignOrder()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
-
-          <!-- مؤشر الخطوات -->
-          <div class="ds-step-indicator">
-            <div class="ds-step-dot active" id="ds-dot-1"></div>
-            <div class="ds-step-dot" id="ds-dot-2"></div>
-          </div>
-
-          <div class="ds-modal-steps">
-            <!-- الخطوة 1: تفاصيل الطلب -->
-            <div class="ds-modal-step active" id="ds-ms-1">
-              <h3 id="design-order-title" style="margin-bottom:1.2rem;font-size:1.05rem">طلب تصميم</h3>
-              <div class="f-field"><label>اسم المشروع / العلامة التجارية <span style="color:#ef4444">*</span></label><input type="text" id="d-name" placeholder="مثال: مطعم الأصالة"/></div>
-              <div class="f-field"><label>صف طلبك بالتفصيل <span style="color:#ef4444">*</span></label><textarea id="d-desc" rows="3" placeholder="ما الذي تحتاجه بالضبط؟ أي تفاصيل تساعدنا..."></textarea></div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
-                <div class="f-field" style="margin:0"><label>الألوان المفضلة</label><input type="text" id="d-colors" placeholder="أخضر، ذهبي..."/></div>
-                <div class="f-field" style="margin:0"><label>رقم التواصل (واتساب)</label><input type="tel" id="d-phone" placeholder="05xxxxxxxx"/></div>
-              </div>
-              <div class="f-field"><label>أمثلة مرجعية (اختياري)</label><input type="text" id="d-refs" placeholder="روابط تصاميم أعجبتك..."/></div>
-              <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem" onclick="dsNextStep()">
-                التالي — اختيار الباقة <i class="fa-solid fa-arrow-left"></i>
-              </button>
-            </div>
-
-            <!-- الخطوة 2: اختيار الباقة -->
-            <div class="ds-modal-step" id="ds-ms-2">
-              <h3 style="margin-bottom:.4rem;font-size:1.05rem">اختر الباقة المناسبة</h3>
-              <p style="font-size:.8rem;color:var(--muted);margin-bottom:.75rem">جميع الباقات تشمل تعديلات مجانية حتى رضاك</p>
-              <div class="ds-pkg-grid">
-                <div class="ds-pkg" onclick="selectDsPkg(this,'أساسية')">
-                  <div class="ds-pkg-name">⚡ أساسية</div>
-                  <div class="ds-pkg-price" id="ds-pkg-price-basic">---</div>
-                  <div class="ds-pkg-desc">تصميم احترافي + 3 تعديلات + ملفات PNG/PDF</div>
-                </div>
-                <div class="ds-pkg" onclick="selectDsPkg(this,'احترافية')">
-                  <div class="ds-pkg-name">🏆 احترافية</div>
-                  <div class="ds-pkg-price" id="ds-pkg-price-pro">---</div>
-                  <div class="ds-pkg-desc">تعديلات غير محدودة + جميع الصيغ + أولوية التنفيذ</div>
-                </div>
-              </div>
-              <div style="display:flex;gap:.75rem;margin-top:1rem">
-                <button class="ds-btn" style="background:var(--bg);color:var(--text);border:1px solid var(--border);flex:1" onclick="dsPrevStep()">
-                  <i class="fa-solid fa-arrow-right"></i> رجوع
-                </button>
-                <button class="btn-primary" style="flex:2;justify-content:center" onclick="submitDesignOrder()">
-                  <i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر واتساب
-                </button>
-              </div>
-            </div>
-          </div>
+          <h3 style="margin-bottom:.3rem;font-size:1.05rem">🎨 طلب نسخة احترافية</h3>
+          <p style="font-size:.8rem;color:#888;margin-bottom:1.25rem">سيتواصل معك فريقنا خلال 4 ساعات لإنجاز نسختك القابلة للتحرير</p>
+          <div class="f-field"><label>اسمك الكريم <span style="color:#ef4444">*</span></label><input type="text" id="d-name" placeholder="الاسم الكامل"/></div>
+          <div class="f-field"><label>رقم الواتساب <span style="color:#ef4444">*</span></label><input type="tel" id="d-phone" placeholder="05xxxxxxxx"/></div>
+          <div class="f-field"><label>ملاحظات إضافية</label><textarea id="d-desc" rows="2" placeholder="أي تعديلات تريدها على التصميم..."></textarea></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem" onclick="submitDesignOrder()">
+            <i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر واتساب
+          </button>
         </div>
       </div>
+
     </div>
 
     <!-- ===== COMPLIANCE & ADVISORY ===== -->
@@ -4726,93 +4673,85 @@ function showToast(msg) {
 /* ======================================================
    DESIGN STUDIO ENGINE — التصميم والإبداع
 ====================================================== */
-let _designOrderType = '';
 const DESIGN_WA = '966500000000'; // رقم واتساب الاستوديو
-let _designOrderType = '';
-let _dsPkg = '';
+let _dsType  = 'logo';
+let _dsStyle = 'modern';
+let _dsB64   = '';
+let _dsBrand = '';
 
-const DS_SERVICES = {
-  logo:        {title:'تصميم شعار احترافي',       priceBasic:'299 ر.س', pricePro:'499 ر.س'},
-  stationery:  {title:'هوية بصرية كاملة',          priceBasic:'599 ر.س', pricePro:'899 ر.س'},
-  social:      {title:'قوالب سوشيال ميديا',         priceBasic:'199 ر.س', pricePro:'349 ر.س'},
-  banner:      {title:'بنر وإعلانات رقمية',         priceBasic:'149 ر.س', pricePro:'249 ر.س'},
-  menu:        {title:'منيو وقائمة طعام',            priceBasic:'249 ر.س', pricePro:'399 ر.س'},
-  packaging:   {title:'تصميم تغليف وعبوات',         priceBasic:'399 ر.س', pricePro:'649 ر.س'},
-  motion:      {title:'موشن جرافيك وإنفوجرافيك',   priceBasic:'499 ر.س', pricePro:'799 ر.س'},
-  presentation:{title:'تصميم عرض تقديمي',           priceBasic:'349 ر.س', pricePro:'549 ر.س'},
-  catalogue:   {title:'كتالوج وبروشور منتجات',      priceBasic:'449 ر.س', pricePro:'699 ر.س'},
-  print:       {title:'مواد الطباعة والدعاية',       priceBasic:'129 ر.س', pricePro:'229 ر.س'},
-  ebook:       {title:'غلاف كتاب ومحتوى رقمي',     priceBasic:'299 ر.س', pricePro:'499 ر.س'},
-};
-
-function showDesignOrder(type) {
-  _designOrderType = type;
-  _dsPkg = '';
-  const svc = DS_SERVICES[type] || {title:'طلب تصميم', priceBasic:'---', pricePro:'---'};
-  document.getElementById('design-order-title').textContent = svc.title;
-  document.getElementById('ds-pkg-price-basic').textContent = svc.priceBasic;
-  document.getElementById('ds-pkg-price-pro').textContent   = svc.pricePro;
-  // إعادة ضبط الخطوات
-  document.getElementById('ds-ms-1').classList.add('active');
-  document.getElementById('ds-ms-2').classList.remove('active');
-  document.getElementById('ds-dot-1').classList.add('active');
-  document.getElementById('ds-dot-2').classList.remove('active');
-  document.querySelectorAll('.ds-pkg').forEach(p=>p.classList.remove('selected'));
-  const modal = document.getElementById('design-order-modal');
-  modal.style.display = 'flex';
+function dsSelectType(el) {
+  document.querySelectorAll('.ds-ai-type').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  _dsType = el.dataset.type;
 }
 
-function dsNextStep() {
-  const name = (document.getElementById('d-name')?.value||'').trim();
-  const desc = (document.getElementById('d-desc')?.value||'').trim();
-  if (!name || !desc) return showToast('يرجى ملء اسم المشروع والوصف');
-  document.getElementById('ds-ms-1').classList.remove('active');
-  document.getElementById('ds-ms-2').classList.add('active');
-  document.getElementById('ds-dot-1').classList.remove('active');
-  document.getElementById('ds-dot-2').classList.add('active');
+function dsSelectStyle(el) {
+  document.querySelectorAll('.ds-style-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  _dsStyle = el.dataset.style;
 }
 
-function dsPrevStep() {
-  document.getElementById('ds-ms-2').classList.remove('active');
-  document.getElementById('ds-ms-1').classList.add('active');
-  document.getElementById('ds-dot-2').classList.remove('active');
-  document.getElementById('ds-dot-1').classList.add('active');
+async function generateDesignAI() {
+  const brand = (document.getElementById('ds-brand')?.value||'').trim();
+  if (!brand) return showToast('يرجى إدخال اسم العلامة التجارية');
+  _dsBrand = brand;
+  const sector = document.getElementById('ds-sector')?.value||'';
+  const color  = document.getElementById('ds-color-txt')?.value||'#8b5cf6';
+  const desc   = document.getElementById('ds-desc')?.value||'';
+
+  const btn    = document.getElementById('ds-gen-btn');
+  const loader = document.getElementById('ds-loader');
+  const result = document.getElementById('ds-result');
+  btn.disabled = true;
+  loader.style.display = 'flex';
+  result.style.display = 'none';
+
+  try {
+    const token = localStorage.getItem('sb_token') || '';
+    const resp = await fetch('/api/generate-design', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body: JSON.stringify({design_type:_dsType, business_name:brand, sector, primary_color:color, style:_dsStyle, description:desc})
+    });
+    const data = await resp.json();
+    if (!resp.ok || !data.success) throw new Error(data.detail || 'خطأ في التوليد');
+
+    _dsB64 = data.image_b64;
+    document.getElementById('ds-result-img').src = 'data:image/png;base64,' + _dsB64;
+    document.getElementById('ds-result-note').textContent = data.revised_prompt || '';
+    loader.style.display = 'none';
+    result.style.display = 'block';
+  } catch(e) {
+    loader.style.display = 'none';
+    showToast('⚠ ' + (e.message || 'فشل التوليد — تحقق من الاتصال'));
+  } finally {
+    btn.disabled = false;
+  }
 }
 
-function selectDsPkg(el, pkg) {
-  document.querySelectorAll('.ds-pkg').forEach(p=>p.classList.remove('selected'));
-  el.classList.add('selected');
-  _dsPkg = pkg;
+function downloadDesignAI() {
+  if (!_dsB64) return;
+  const a = document.createElement('a');
+  a.href = 'data:image/png;base64,' + _dsB64;
+  a.download = 'jenan-design-' + _dsBrand.replace(/\s+/g,'-') + '.png';
+  a.click();
+}
+
+function orderDesignFull() {
+  document.getElementById('design-order-modal').style.display = 'flex';
 }
 
 function closeDesignOrder() {
   document.getElementById('design-order-modal').style.display = 'none';
-  ['d-name','d-desc','d-colors','d-phone','d-refs'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.value = '';
-  });
-  _dsPkg = '';
-  _designOrderType = '';
 }
 
 function submitDesignOrder() {
-  if (!_dsPkg) return showToast('يرجى اختيار الباقة أولاً');
-  const svc    = DS_SERVICES[_designOrderType] || {title:'تصميم'};
-  const name   = (document.getElementById('d-name')?.value||'').trim();
-  const desc   = (document.getElementById('d-desc')?.value||'').trim();
-  const colors = (document.getElementById('d-colors')?.value||'').trim();
-  const phone  = (document.getElementById('d-phone')?.value||'').trim();
-  const refs   = (document.getElementById('d-refs')?.value||'').trim();
-  const price  = _dsPkg==='أساسية' ? svc.priceBasic : svc.pricePro;
-  const msg = `🎨 طلب تصميم — استوديو جنان بيز\n\n` +
-    `الخدمة: ${svc.title}\n` +
-    `الباقة: ${_dsPkg} (${price})\n` +
-    `المشروع: ${name}\n` +
-    `التفاصيل: ${desc}\n` +
-    (colors ? `الألوان: ${colors}\n` : '') +
-    (phone  ? `واتساب العميل: ${phone}\n` : '') +
-    (refs   ? `مراجع: ${refs}\n` : '') +
-    `\nأرجو التواصل لتأكيد الطلب.`;
+  const name  = (document.getElementById('d-name')?.value||'').trim();
+  const phone = (document.getElementById('d-phone')?.value||'').trim();
+  if (!name || !phone) return showToast('يرجى ملء الاسم ورقم الواتساب');
+  const desc = document.getElementById('d-desc')?.value||'';
+  const typeNames = {logo:'شعار',stationery:'هوية بصرية',social:'سوشيال ميديا',banner:'بنر',menu:'منيو',packaging:'تغليف',motion:'موشن',presentation:'عرض تقديمي',catalogue:'كتالوج',print:'مطبوعات',ebook:'غلاف كتاب'};
+  const msg = `🎨 طلب نسخة احترافية — استوديو جنان بيز\n\nالعميل: ${name}\nواتساب: ${phone}\nنوع التصميم: ${typeNames[_dsType]||_dsType}\nالعلامة التجارية: ${_dsBrand}\n${desc?'ملاحظات: '+desc:''}`;
   closeDesignOrder();
   window.open('https://wa.me/' + DESIGN_WA + '?text=' + encodeURIComponent(msg), '_blank');
 }
