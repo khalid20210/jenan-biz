@@ -1124,6 +1124,16 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .ds-step-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:var(--tr)}
 .ds-step-dot.active{background:#ec4899;width:24px;border-radius:4px}
 
+/* ══ REFERRAL PAGE ══ */
+.ref-badge-rewarded{background:#dcfce7;color:#15803d;padding:.2rem .55rem;border-radius:20px;font-size:.72rem;font-weight:700}
+.ref-badge-pending{background:#fef9c3;color:#92400e;padding:.2rem .55rem;border-radius:20px;font-size:.72rem;font-weight:700}
+.ref-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.ref-row:last-child{border-bottom:none}
+.pts-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--border);font-size:.83rem}
+.pts-row:last-child{border-bottom:none}
+.pts-earn{color:#10b981;font-weight:700}
+.pts-spend{color:#ef4444;font-weight:700}
+
 /* ══ SOFTWARE STORE ══ */
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem;margin-top:1.5rem}
 .sw-card{background:var(--card);border-radius:16px;padding:1.4rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:.7rem;transition:var(--tr)}
@@ -1468,6 +1478,11 @@ function toggleNotifPanel(){
     <!-- ══ تقاريري ووثائقي ══ -->
     <div class="nav-item" id="nav-reports" onclick="goto('reports')">
       <i class="fa-solid fa-file-lines"></i> تقاريري ووثائقي
+    </div>
+
+    <!-- ══ الإحالات والنقاط ══ -->
+    <div class="nav-item" id="nav-referral" onclick="goto('referral')">
+      <i class="fa-solid fa-gift" style="color:#f59e0b"></i> الإحالات والنقاط 🎁
     </div>
 
     <!-- ══ أعمالي وطلباتي ══ -->
@@ -4134,6 +4149,127 @@ function toggleNotifPanel(){
       </div>
     </div>
 
+    <!-- ===== REFERRAL (نظام الإحالات والنقاط) ===== -->
+    <div class="page" id="page-referral">
+
+      <!-- HERO -->
+      <div style="background:linear-gradient(135deg,#7c3aed,#ec4899);border-radius:20px;padding:2rem;margin-bottom:1.5rem;color:#fff;position:relative;overflow:hidden">
+        <div style="position:absolute;left:-20px;top:-20px;font-size:8rem;opacity:.07;line-height:1">🎁</div>
+        <h2 style="font-size:1.4rem;font-weight:900;margin-bottom:.3rem">
+          <i class="fa-solid fa-users" style="margin-left:.5rem;color:#fbbf24"></i>
+          برنامج الإحالات — اربح مع كل صديق
+        </h2>
+        <p style="opacity:.85;font-size:.88rem;margin:0">
+          شارك رابطك الخاص — لكل صديق يشترك ويدفع أول فاتورة تحصل على <strong>100 نقطة (= 10 ريال)</strong> تخصم من خدماتك القادمة
+        </p>
+        <div style="display:flex;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap">
+          <div style="background:rgba(255,255,255,.15);border-radius:12px;padding:.75rem 1.25rem;text-align:center">
+            <div style="font-size:1.5rem;font-weight:900" id="ref-count-rewarded">—</div>
+            <div style="font-size:.75rem;opacity:.8">إحالات ناجحة</div>
+          </div>
+          <div style="background:rgba(255,255,255,.15);border-radius:12px;padding:.75rem 1.25rem;text-align:center">
+            <div style="font-size:1.5rem;font-weight:900" id="ref-points-balance">—</div>
+            <div style="font-size:.75rem;opacity:.8">نقطة في رصيدك</div>
+          </div>
+          <div style="background:rgba(255,255,255,.15);border-radius:12px;padding:.75rem 1.25rem;text-align:center">
+            <div style="font-size:1.5rem;font-weight:900" id="ref-sar-balance">—</div>
+            <div style="font-size:.75rem;opacity:.8">ريال قابل للخصم</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- رابط الإحالة -->
+      <div style="background:var(--card);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem;box-shadow:var(--shadow)">
+        <div style="font-weight:700;margin-bottom:.75rem;font-size:.95rem">
+          <i class="fa-solid fa-link" style="color:#7c3aed;margin-left:.4rem"></i>
+          رابط الإحالة الخاص بك
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <input type="text" id="ref-link-input" readonly
+            style="flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:.65rem 1rem;font-size:.85rem;color:var(--text);direction:ltr;text-align:left"
+            value="جارٍ التحميل..."/>
+          <button onclick="copyRefLink()" style="background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;border:none;border-radius:10px;padding:.65rem 1.1rem;cursor:pointer;font-weight:700;white-space:nowrap;font-size:.85rem">
+            <i class="fa-solid fa-copy"></i> نسخ
+          </button>
+          <button onclick="shareRefLink()" style="background:#25D366;color:#fff;border:none;border-radius:10px;padding:.65rem 1.1rem;cursor:pointer;font-weight:700;white-space:nowrap;font-size:.85rem">
+            <i class="fa-brands fa-whatsapp"></i> مشاركة
+          </button>
+        </div>
+        <p style="font-size:.75rem;color:var(--muted);margin-top:.5rem;margin-bottom:0">
+          <i class="fa-solid fa-circle-info" style="color:#7c3aed"></i>
+          أرسل الرابط لأصدقائك — عند اشتراك أي منهم ستحصل على <strong>100 نقطة</strong> فور أول دفعة
+        </p>
+      </div>
+
+      <!-- معادلة النقاط -->
+      <div style="background:var(--card);border-radius:16px;padding:1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow)">
+        <div style="font-weight:700;margin-bottom:1rem;font-size:.95rem">
+          <i class="fa-solid fa-star" style="color:#f59e0b;margin-left:.4rem"></i>
+          كيف تعمل النقاط؟
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem">
+          <div style="background:var(--bg);border-radius:12px;padding:1rem;text-align:center">
+            <div style="font-size:2rem;margin-bottom:.3rem">🎁</div>
+            <div style="font-weight:700;font-size:.9rem;margin-bottom:.25rem">إحالة ناجحة</div>
+            <div style="color:#7c3aed;font-weight:900;font-size:1.1rem">+100 نقطة</div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">لكل صديق يدفع</div>
+          </div>
+          <div style="background:var(--bg);border-radius:12px;padding:1rem;text-align:center">
+            <div style="font-size:2rem;margin-bottom:.3rem">💎</div>
+            <div style="font-weight:700;font-size:.9rem;margin-bottom:.25rem">قيمة 100 نقطة</div>
+            <div style="color:#10b981;font-weight:900;font-size:1.1rem">= 10 ريال</div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">خصم مباشر على فاتورتك</div>
+          </div>
+          <div style="background:var(--bg);border-radius:12px;padding:1rem;text-align:center">
+            <div style="font-size:2rem;margin-bottom:.3rem">🏪</div>
+            <div style="font-weight:700;font-size:.9rem;margin-bottom:.25rem">أين تُستخدم؟</div>
+            <div style="color:#ec4899;font-weight:900;font-size:.9rem">جنان بيز ✅</div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">جنان برو ⛔ (تقنية)</div>
+          </div>
+          <div style="background:var(--bg);border-radius:12px;padding:1rem;text-align:center">
+            <div style="font-size:2rem;margin-bottom:.3rem">📊</div>
+            <div style="font-weight:700;font-size:.9rem;margin-bottom:.25rem">حد الخصم</div>
+            <div style="color:#f59e0b;font-weight:900;font-size:1.1rem">50%</div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">من قيمة الفاتورة</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قائمة الإحالات -->
+      <div style="background:var(--card);border-radius:16px;padding:1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <div style="font-weight:700;font-size:.95rem">
+            <i class="fa-solid fa-users-line" style="color:#7c3aed;margin-left:.4rem"></i>
+            إحالاتك
+          </div>
+          <button onclick="loadReferralData()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:.3rem .75rem;font-size:.78rem;cursor:pointer;color:var(--muted)">
+            <i class="fa-solid fa-rotate"></i> تحديث
+          </button>
+        </div>
+        <div id="ref-list-container">
+          <div style="text-align:center;padding:2rem;color:var(--muted)">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size:1.5rem;margin-bottom:.5rem;display:block"></i>
+            جارٍ التحميل...
+          </div>
+        </div>
+      </div>
+
+      <!-- سجل النقاط -->
+      <div style="background:var(--card);border-radius:16px;padding:1.25rem;box-shadow:var(--shadow)">
+        <div style="font-weight:700;margin-bottom:1rem;font-size:.95rem">
+          <i class="fa-solid fa-clock-rotate-left" style="color:#ec4899;margin-left:.4rem"></i>
+          سجل معاملاتك النقطية
+        </div>
+        <div id="ref-history-container">
+          <div style="text-align:center;padding:2rem;color:var(--muted)">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size:1.5rem;margin-bottom:.5rem;display:block"></i>
+            جارٍ التحميل...
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /page-referral -->
+
     <!-- ===== SETTINGS (placeholder) ===== -->
     <div class="page" id="page-settings">
       <div class="form-card">
@@ -4412,6 +4548,7 @@ function goto(page) {
   if(page==='orders') renderOrdersPage();
   if(page==='admin') renderAdminPanel();
   if(page==='compliance') initCompliancePage();
+  if(page==='referral') loadReferralData();
   // مزامنة روبوت جنان العالمي
   if (typeof _jbSyncPage === 'function') _jbSyncPage();
   // مزامنة مستشار الاستثمار
@@ -10241,6 +10378,113 @@ function renderSupplyGrid() {
     </div>`;
   }).join('');
 }
+
+// ════════════════════════════════════════════════════════
+// نظام الإحالات والنقاط — Referral & Rewards JS
+// ════════════════════════════════════════════════════════
+const _API_BASE = (typeof API_BASE !== 'undefined') ? API_BASE : 'http://localhost:8002';
+let _refProfile = null;
+
+async function loadReferralData() {
+  try {
+    const token   = localStorage.getItem('jenan_token') || '';
+    const headers = { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) };
+    const refCode = localStorage.getItem('jenan_ref_code') || '';
+
+    const profRes = await fetch(`${_API_BASE}/api/referral/profile`, {
+      method: 'POST', headers,
+      body: JSON.stringify({ referred_by: refCode || null }),
+    });
+    if (!profRes.ok) { _renderRefError('تعذّر تحميل ملف الإحالة'); return; }
+    _refProfile = await profRes.json();
+
+    document.getElementById('ref-points-balance').textContent = (_refProfile.points_balance ?? 0).toLocaleString('ar-SA');
+    document.getElementById('ref-sar-balance').textContent    = (_refProfile.points_in_sar ?? 0) + ' ريال';
+    document.getElementById('ref-link-input').value           = _refProfile.referral_link || '';
+
+    const listRes  = await fetch(`${_API_BASE}/api/referral/list`, { headers });
+    const listData = listRes.ok ? await listRes.json() : { referrals: [], rewarded: 0 };
+    document.getElementById('ref-count-rewarded').textContent = listData.rewarded ?? 0;
+    _renderReferralList(listData.referrals || []);
+
+    const histRes  = await fetch(`${_API_BASE}/api/referral/history`, { headers });
+    const histData = histRes.ok ? await histRes.json() : { history: [] };
+    _renderPointsHistory(histData.history || []);
+
+  } catch (e) {
+    _renderRefError('تحقق من تشغيل السيرفر');
+    console.error('[referral]', e);
+  }
+}
+
+function _renderReferralList(refs) {
+  const el = document.getElementById('ref-list-container');
+  if (!refs.length) {
+    el.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--muted)">
+      <i class="fa-solid fa-user-plus" style="font-size:2rem;opacity:.3;display:block;margin-bottom:.5rem"></i>
+      لا توجد إحالات بعد — شارك رابطك مع أصدقائك!
+    </div>`; return;
+  }
+  el.innerHTML = refs.map(r => {
+    const badge = r.reward_status === 'rewarded'
+      ? `<span class="ref-badge-rewarded">✅ تمت المكافأة</span>`
+      : `<span class="ref-badge-pending">⏳ في انتظار الدفع</span>`;
+    const pts  = r.reward_status === 'rewarded' ? `+${r.reward_points} نقطة` : '—';
+    const date = new Date(r.rewarded_at || r.created_at).toLocaleDateString('ar-SA');
+    return `<div class="ref-row">
+      <div><div style="font-weight:600">${badge}</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">${date}</div></div>
+      <div style="font-weight:700;color:#7c3aed">${pts}</div>
+    </div>`;
+  }).join('');
+}
+
+function _renderPointsHistory(history) {
+  const el = document.getElementById('ref-history-container');
+  if (!history.length) { el.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--muted)">لا توجد معاملات بعد</div>`; return; }
+  const iconMap = { referral_reward:'🎁', signup_bonus:'🎉', redeemed:'💳', expired:'⏰', admin_credit:'⭐' };
+  el.innerHTML = history.map(h => {
+    const isEarn = h.points > 0;
+    const date   = new Date(h.created_at).toLocaleDateString('ar-SA');
+    return `<div class="pts-row">
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <span style="font-size:1.2rem">${iconMap[h.action_type]||'📌'}</span>
+        <div><div>${h.description||h.action_type}</div>
+          <div style="font-size:.72rem;color:var(--muted)">${date}</div></div>
+      </div>
+      <div class="${isEarn?'pts-earn':'pts-spend'}">${isEarn?'+':''}${h.points} نقطة</div>
+    </div>`;
+  }).join('');
+}
+
+function _renderRefError(msg) {
+  ['ref-list-container','ref-history-container'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--muted)">${msg}</div>`;
+  });
+}
+
+function copyRefLink() {
+  const val = document.getElementById('ref-link-input').value;
+  if (!val || val === 'جارٍ التحميل...') return;
+  navigator.clipboard.writeText(val).then(() => {
+    if (typeof showToast === 'function') showToast('تم نسخ رابط الإحالة ✅');
+    else alert('تم النسخ!');
+  });
+}
+
+function shareRefLink() {
+  const val = document.getElementById('ref-link-input').value;
+  if (!val || val === 'جارٍ التحميل...') return;
+  const msg = encodeURIComponent(`🎁 انضم معي في منصة جنان بيز — الذكاء الاصطناعي لرواد الأعمال السعوديين!\nسجّل من خلال رابطي وابدأ تجربتك:\n${val}`);
+  window.open(`https://wa.me/?text=${msg}`, '_blank');
+}
+
+// التقاط كود الإحالة من URL عند التحميل
+(function(){
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('ref')) localStorage.setItem('jenan_ref_code', p.get('ref'));
+})();
 
 function changeQty(id, delta) {
   const inp = document.getElementById('qty-'+id);

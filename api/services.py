@@ -196,6 +196,28 @@ except ImportError as _rag_err:
     _RAG_AVAILABLE = False
     logger.warning(f"rag_engine غير متاح: {_rag_err}")
 
+# ---- محرك الإحالات والنقاط ----
+try:
+    try:
+        from api.referral_engine import (
+            get_or_create_profile, trigger_referral_reward,
+            calculate_points_discount, redeem_points_for_payment,
+            get_points_history, get_referrals_list,
+            points_to_sar, is_pro_service,
+        )
+    except ImportError:
+        from referral_engine import (
+            get_or_create_profile, trigger_referral_reward,
+            calculate_points_discount, redeem_points_for_payment,
+            get_points_history, get_referrals_list,
+            points_to_sar, is_pro_service,
+        )
+    _REFERRAL_AVAILABLE = True
+    logger.info("referral_engine loaded — Referral & Rewards system enabled")
+except ImportError as _ref_err:
+    _REFERRAL_AVAILABLE = False
+    logger.warning(f"referral_engine غير متاح: {_ref_err}")
+
 # ---- Rate Limiter (IP-based) ----
 limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
 
@@ -1693,6 +1715,97 @@ async def software_inquire(data: SoftwareInquiryInput, request: Request):
 
 
 # ════════════════════════════════════════════════════════
+# نقاط نهاية الإحالات والنقاط — Referral & Rewards
+# ════════════════════════════════════════════════════════
+
+class ReferralRegisterInput(BaseModel):
+    referred_by: Optional[str] = None   # كود الإحالة (اختياري)
+
+
+@app.post("/api/referral/profile")
+async def referral_get_profile(data: ReferralRegisterInput, user_id: str = Depends(get_user_id)):
+    """
+    جلب أو إنشاء ملف الإحالة للمستخدم الحالي.
+    يُعيد: referral_code, points_balance, referral_link.
+    """
+    if not _REFERRAL_AVAILABLE:
+        raise HTTPException(503, "نظام الإحالات غير مفعَّل")
+    profile = await get_or_create_profile(user_id, data.referred_by)
+    ref_code = profile.get("referral_code", "")
+    base_url  = os.getenv("APP_BASE_URL", "https://jenan.biz")
+    return {
+        **profile,
+        "referral_link": f"{base_url}/dashboard.html?ref={ref_code}",
+        "points_in_sar": points_to_sar(profile.get("points_balance", 0)),
+        "rate_info":     "100 نقطة = 10 ريال",
+    }
+
+
+@app.get("/api/referral/history")
+async def referral_points_history(user_id: str = Depends(get_user_id)):
+    """سجل المعاملات النقطية للمستخدم (آخر 30)."""
+    if not _REFERRAL_AVAILABLE:
+        raise HTTPException(503, "نظام الإحالات غير مفعَّل")
+    history = await get_points_history(user_id, limit=30)
+    return {"history": history, "count": len(history)}
+
+
+@app.get("/api/referral/list")
+async def referral_list(user_id: str = Depends(get_user_id)):
+    """قائمة الإحالات الصادرة من المستخدم."""
+    if not _REFERRAL_AVAILABLE:
+        raise HTTPException(503, "نظام الإحالات غير مفعَّل")
+    refs = await get_referrals_list(user_id)
+    total_earned = sum(r.get("reward_points", 0) for r in refs if r.get("reward_status") == "rewarded")
+    return {
+        "referrals":    refs,
+        "count":        len(refs),
+        "rewarded":     sum(1 for r in refs if r.get("reward_status") == "rewarded"),
+        "pending":      sum(1 for r in refs if r.get("reward_status") == "pending"),
+        "total_earned": total_earned,
+        "earned_sar":   points_to_sar(total_earned),
+    }
+
+
+class PointsDiscountInput(BaseModel):
+    amount_sar:  float
+    service_id:  str
+
+
+@app.post("/api/referral/points/calculate")
+async def referral_points_calculate(data: PointsDiscountInput, user_id: str = Depends(get_user_id)):
+    """
+    حساب قيمة خصم النقاط المتاح لفاتورة محددة.
+    يتحقق تلقائياً إذا كانت الخدمة من نوع جنان برو (تُعطَّل النقاط).
+    """
+    if not _REFERRAL_AVAILABLE:
+        raise HTTPException(503, "نظام الإحالات غير مفعَّل")
+    return await calculate_points_discount(user_id, data.amount_sar, data.service_id)
+
+
+class PointsRedeemInput(BaseModel):
+    points:     int
+    payment_id: str
+    service_id: str
+
+
+@app.post("/api/referral/points/redeem")
+async def referral_points_redeem(data: PointsRedeemInput, user_id: str = Depends(get_user_id)):
+    """
+    استرداد النقاط فعلياً (خصم من الرصيد) عند اكتمال الدفع.
+    ⛔ مُحجوب لخدمات جنان برو.
+    """
+    if not _REFERRAL_AVAILABLE:
+        raise HTTPException(503, "نظام الإحالات غير مفعَّل")
+    if is_pro_service(data.service_id):
+        raise HTTPException(400, "النقاط لا تُستخدم في خدمات جنان برو")
+    result = await redeem_points_for_payment(user_id, data.points, data.payment_id, data.service_id)
+    if not result.get("success"):
+        raise HTTPException(400, result.get("reason", "فشل استرداد النقاط"))
+    return result
+
+
+# ════════════════════════════════════════════════════════
 # نقاط نهاية بوابة الدفع — Payment Gateway Endpoints
 # ════════════════════════════════════════════════════════
 
@@ -1785,14 +1898,24 @@ async def payment_webhook(request: Request):
     """
     استقبال إشعارات Moyasar (webhook) عند اكتمال/فشل الدفع.
     يجب تسجيل هذا العنوان في لوحة تحكم Moyasar.
+    عند نجاح الدفع: يُطلق مكافأة الإحالة تلقائياً إن وُجدت.
     """
-    payload = await request.json()
+    payload    = await request.json()
     payment_id = payload.get("id")
     status     = payload.get("status")
     metadata   = payload.get("metadata", {})
 
-    # هنا: تحديث قاعدة البيانات، إرسال إيميل تأكيد، تفعيل البرنامج ...
     logger.info(f"[Webhook] payment_id={payment_id}, status={status}, meta={metadata}")
+
+    # إطلاق مكافأة الإحالة عند أول دفعة ناجحة
+    if status == "paid" and payment_id and _REFERRAL_AVAILABLE:
+        user_id = metadata.get("user_id") or metadata.get("customer_id")
+        if user_id:
+            try:
+                reward_result = await trigger_referral_reward(user_id, payment_id)
+                logger.info(f"[Webhook] referral_reward → {reward_result}")
+            except Exception as _rr_err:
+                logger.warning(f"[Webhook] referral_reward error: {_rr_err}")
 
     return {"received": True}
 
