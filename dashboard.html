@@ -49,8 +49,8 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
 /* Hero */
 .bento-hero{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  margin-bottom:1.75rem;padding:1.5rem 2rem;
+  display:flex;flex-direction:column;
+  margin-bottom:1.75rem;padding:1.25rem 1.75rem 1.5rem;
   background:var(--glass);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border:1px solid var(--glass-border);
@@ -601,36 +601,45 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   letter-spacing:.15em;
 }
 
-/* TOPBAR */
-.topbar{
-  height:64px;
-  background:var(--glass);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--glass-border);
-  display:flex;align-items:center;padding:0 1.75rem;gap:1rem;
-  position:sticky;top:0;z-index:100;
-  box-shadow:0 4px 24px rgba(78,115,194,.1);
-  position:sticky;top:0;
+/* TOPBAR — مُزال، عناصره انتقلت لـ hero toolbar */
+.topbar-title{ display:none; }
+
+/* Hero Toolbar */
+.bento-hero-toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1rem;
 }
-/* شريط تحتي متدرج من ألوان الشعار */
-.topbar::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent 0%,#4E73C2 30%,#7B9ED4 70%,transparent 100%);
+.hero-ham{
+  display:none;width:36px;height:36px;border-radius:9px;
+  border:1px solid var(--glass-border);background:rgba(78,115,194,.07);
+  cursor:pointer;font-size:.95rem;color:var(--text);
+  align-items:center;justify-content:center;transition:var(--tr);
 }
-.topbar-title{font-size:1.1rem;font-weight:900;color:var(--text);flex:1;position:relative}
-.topbar-title span{font-size:.8rem;font-weight:400;color:var(--muted);margin-right:.5rem}
-.tb-btn{
-  width:38px;height:38px;border-radius:50%;
+.hero-ham:hover{background:rgba(78,115,194,.15);}
+.hero-actions{
+  display:flex;align-items:center;gap:.5rem;margin-right:auto;
+}
+.hero-action-btn{
+  width:36px;height:36px;border-radius:50%;
   border:1px solid var(--glass-border);
-  background:var(--glass);
-  cursor:pointer;color:var(--muted);font-size:.9rem;
-  display:flex;align-items:center;justify-content:center;transition:var(--tr);position:relative;
+  background:rgba(255,255,255,.55);
+  cursor:pointer;color:var(--muted);font-size:.88rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:var(--tr);position:relative;
   backdrop-filter:blur(8px);
 }
-.tb-btn:hover{
+.hero-action-btn:hover{
   background:linear-gradient(135deg,#4E73C2,#1E3A8A);
   color:#fff;border-color:transparent;
-  box-shadow:0 4px 16px rgba(78,115,194,.4);
+  box-shadow:0 4px 14px rgba(78,115,194,.35);
+}
+[data-theme="dark"] .hero-action-btn{background:rgba(255,255,255,.06);}
+.hero-logout-btn:hover{
+  background:linear-gradient(135deg,#dc2626,#b91c1c) !important;
+  box-shadow:0 4px 14px rgba(220,38,38,.35) !important;
+}
+.bento-hero-body{
+  display:flex;align-items:flex-end;justify-content:space-between;
 }
 .notif-dot{
   position:absolute;top:6px;right:6px;width:8px;height:8px;
@@ -647,7 +656,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   align-items:center;justify-content:center;transition:var(--tr)}
 
 /* CONTENT */
-.content{flex:1;padding:1rem 1.75rem 2rem;position:relative;z-index:1}
+.content{flex:1;padding:.75rem 1.75rem 2rem;position:relative;z-index:1}
 .page{display:none!important}
 .page.active{display:block!important;animation:fadeUp .35s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -1004,6 +1013,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   .sidebar.open{transform:translateX(0)}
   .main{margin-right:0}
   .ham-btn{display:flex}
+  .hero-ham{display:flex !important}
   .chat-sidebar{display:none}
 }
 .overlay{
@@ -1931,16 +1941,8 @@ function toggleNotifPanel(){
       // placeholder — دالة goto الرئيسية موجودة في أسفل الصفحة
     </script>
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <button class="ham-btn" id="ham-btn" onclick="openSidebar()"><i class="fa-solid fa-bars"></i></button>
-    <div class="topbar-title" id="topbar-title">نظرة عامة <span id="topbar-sub">مرحباً بك في منصة جنان بيز</span></div>
-    <button class="tb-btn" id="notif-btn" title="الإشعارات" onclick="toggleNotifPanel()"><i class="fa-solid fa-bell"></i><span class="notif-dot" id="notif-dot"></span></button>
-    <button class="tb-btn" id="theme-toggle" title="تبديل المظهر" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="th-ico"></i></button>
-  </div>
-
-  <!-- لوحة الإشعارات -->
-  <div id="notif-panel" style="display:none;position:fixed;top:72px;left:1.5rem;width:300px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);z-index:500;padding:1rem;direction:rtl">
+  <!-- لوحة الإشعارات — مثبّتة بالزاوية العلوية اليسرى -->
+  <div id="notif-panel" style="display:none;position:fixed;top:1rem;left:1.5rem;width:300px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);z-index:600;padding:1rem;direction:rtl">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
       <span style="font-weight:800;font-size:.95rem">الإشعارات</span>
       <button onclick="toggleNotifPanel()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.9rem"><i class="fa-solid fa-xmark"></i></button>
@@ -1955,22 +1957,40 @@ function toggleNotifPanel(){
   <div class="content">
 
     <!-- ===== HOME ===== -->
-    <!-- ══════════════════════════════════════════════════════════
-         OVERVIEW — BENTO GRID HOME
-    ══════════════════════════════════════════════════════════ -->
     <div class="page active" id="page-home">
 
-      <!-- ─── Hero Greeting ─────────────────────────────────────── -->
+      <!-- ─── Hero Card (يحتوي على أدوات الهيدر + التحية) ─── -->
       <div class="bento-hero">
-        <div class="bento-hero-left">
-          <div class="bento-greeting-eyebrow">لوحة التحكم</div>
-          <h1 class="bento-greeting-title"><strong>مرحباً، <span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
-          <p class="bento-greeting-sub">إليك نظرة سريعة على حسابك وخدماتك</p>
+        <!-- صف الأدوات العلوي -->
+        <div class="bento-hero-toolbar">
+          <button class="ham-btn hero-ham" id="ham-btn" onclick="openSidebar()">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="hero-actions">
+            <button class="hero-action-btn" id="theme-toggle" title="تبديل المظهر" onclick="toggleTheme()">
+              <i class="fa-solid fa-moon" id="th-ico"></i>
+            </button>
+            <button class="hero-action-btn" id="notif-btn" title="الإشعارات" onclick="toggleNotifPanel()">
+              <i class="fa-solid fa-bell"></i>
+              <span class="notif-dot" id="notif-dot"></span>
+            </button>
+            <button class="hero-action-btn hero-logout-btn" title="تسجيل الخروج" onclick="logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+          </div>
         </div>
-        <div class="bento-hero-right">
-          <div class="bento-plan-badge" id="bento-plan-badge">
-            <i class="fa-solid fa-user-check"></i>
-            <span id="bento-plan-label">حساب أساسي</span>
+        <!-- التحية الرئيسية -->
+        <div class="bento-hero-body">
+          <div class="bento-hero-left">
+            <div class="bento-greeting-eyebrow">لوحة التحكم</div>
+            <h1 class="bento-greeting-title"><strong>مرحباً، <span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
+            <p class="bento-greeting-sub">إليك نظرة سريعة على حسابك وخدماتك</p>
+          </div>
+          <div class="bento-hero-right">
+            <div class="bento-plan-badge" id="bento-plan-badge">
+              <i class="fa-solid fa-user-check"></i>
+              <span id="bento-plan-label">حساب أساسي</span>
+            </div>
           </div>
         </div>
       </div>
@@ -5341,7 +5361,8 @@ function goto(page) {
     document.getElementById('nav-'+page)?.classList.add('active');
   }
   const m = pageMap[page]||{title:page,sub:''};
-  document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
+  const _tt = document.getElementById('topbar-title');
+  if(_tt) _tt.innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
   closeSidebar();
   if(page==='robot') initProjectAnalysis();
   if(page==='paid-analysis') initPaidAnalysis();
@@ -5381,7 +5402,8 @@ function gotoSub(page, groupId, subItemId) {
   if(page==='projectcopilot') { showProjectCopilotModal(); return; }
   document.getElementById('page-'+page)?.classList.add('active');
   const m = pageMap[page]||{title:page,sub:''};
-  document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
+  const _tt2 = document.getElementById('topbar-title');
+  if(_tt2) _tt2.innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
   closeSidebar();
   if(page==='robot') initProjectAnalysis();
   if(page==='paid-analysis') initPaidAnalysis();
