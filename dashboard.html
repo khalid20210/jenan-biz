@@ -173,6 +173,24 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-hero-cell .bento-greeting-title{font-size:1.45rem;margin-bottom:.3rem}
 .bento-hero-cell .bento-plan-badge{margin-top:auto;align-self:flex-start}
 
+/* Hero quick-stats chips */
+.bento-hero-stats{
+  display:flex;gap:.55rem;margin-top:.85rem;flex-wrap:wrap;
+}
+.bento-hero-stat-chip{
+  display:flex;align-items:center;gap:.4rem;
+  padding:.32rem .72rem;border-radius:30px;
+  background:rgba(78,115,194,.09);border:1px solid rgba(78,115,194,.18);
+  font-size:.75rem;font-weight:700;color:var(--text);
+  transition:background .2s;
+}
+.bento-hero-stat-chip i{font-size:.72rem;opacity:.75}
+.bento-hero-stat-chip.chip-green{background:rgba(5,150,105,.09);border-color:rgba(5,150,105,.22)}
+.bento-hero-stat-chip.chip-green i{color:#059669}
+.bento-hero-stat-chip.chip-amber{background:rgba(217,119,6,.09);border-color:rgba(217,119,6,.2)}
+.bento-hero-stat-chip.chip-amber i{color:#d97706}
+.bento-hero-stat-chip.chip-blue i{color:#4E73C2}
+
 /* Upgrade bar cell — صف 2 بعرض عمودين */
 .bento-pricing{
   grid-column:2 / 4;grid-row:2;
@@ -353,7 +371,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
 /* Wallet cell */
 .bento-wallet{
-  grid-column:1;grid-row:2;
+  grid-column:3;grid-row:1;
   background:linear-gradient(145deg,#fffbeb 0%,#fef3c7 60%,#fff8e1 100%) !important;
   border-color:rgba(245,158,11,.25) !important;
 }
@@ -381,7 +399,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
 /* Referral cell — صف 1 عمود 2 */
 .bento-referral{
-  grid-column:2 / 4;grid-row:1;
+  grid-column:2;grid-row:1;
   cursor:default;
 }
 .bento-referral:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.1)}
@@ -2200,6 +2218,24 @@ function toggleNotifPanel(){
               <div class="bento-greeting-eyebrow">لوحة التحكم</div>
               <h1 class="bento-greeting-title"><strong>مرحباً،<br><span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
               <p class="bento-greeting-sub">إليك نظرة سريعة على حسابك وخدماتك</p>
+              <!-- عدادات سريعة: إحالات + مكافآت + قيد الانتظار -->
+              <div class="bento-hero-stats">
+                <div class="bento-hero-stat-chip chip-blue">
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span id="hero-stat-referrals" class="bento-loading">0</span>
+                  <span style="opacity:.65;font-weight:600">إحالة</span>
+                </div>
+                <div class="bento-hero-stat-chip chip-green">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span id="hero-stat-rewarded" class="bento-loading">0</span>
+                  <span style="opacity:.65;font-weight:600">مكافأة</span>
+                </div>
+                <div class="bento-hero-stat-chip chip-amber">
+                  <i class="fa-solid fa-clock"></i>
+                  <span id="hero-stat-pending" class="bento-loading">0</span>
+                  <span style="opacity:.65;font-weight:600">قيد الانتظار</span>
+                </div>
+              </div>
             </div>
             <!-- badge الباقة -->
             <div class="bento-plan-badge" id="bento-plan-badge" style="margin-top:.75rem">
@@ -5506,6 +5542,14 @@ function initBentoHome(){
     if(elT) elT.textContent = d.referral.total || 0;
     if(elR) elR.textContent = d.referral.rewarded || 0;
     if(elP) elP.textContent = d.referral.pending || 0;
+
+    /* عدادات Hero card */
+    var hT = document.getElementById('hero-stat-referrals');
+    var hR = document.getElementById('hero-stat-rewarded');
+    var hP = document.getElementById('hero-stat-pending');
+    if(hT){ hT.textContent = d.referral.total || 0; hT.classList.remove('bento-loading'); }
+    if(hR){ hR.textContent = d.referral.rewarded || 0; hR.classList.remove('bento-loading'); }
+    if(hP){ hP.textContent = d.referral.pending || 0; hP.classList.remove('bento-loading'); }
 
     /* إحصاءات سريعة */
     var elRep = document.getElementById('sc-reports');
