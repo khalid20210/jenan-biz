@@ -43,6 +43,324 @@ body{
 a{text-decoration:none;color:inherit}
 button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
+/* ════════════════════════════════════════
+   BENTO GRID — OVERVIEW HOME
+════════════════════════════════════════ */
+
+/* Hero */
+.bento-hero{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:1.75rem;padding:1.75rem 2rem;
+  background:var(--glass);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  position:relative;overflow:hidden;
+  box-shadow:0 4px 32px rgba(78,115,194,.1);
+}
+.bento-hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#4E73C2 0%,#7B9ED4 50%,#f59e0b 100%);
+}
+.bento-hero::after{
+  content:'';position:absolute;bottom:-60px;left:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(78,115,194,.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.bento-greeting-eyebrow{
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:.4rem;opacity:.75;
+}
+.bento-greeting-title{
+  font-size:1.9rem;font-weight:900;line-height:1.2;
+  background:linear-gradient(135deg,var(--text) 0%,#4E73C2 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:.4rem;
+}
+.bento-greeting-sub{font-size:.9rem;color:var(--muted);font-weight:500}
+.bento-plan-badge{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.55rem 1.25rem;border-radius:30px;
+  background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.08));
+  border:1px solid rgba(245,158,11,.35);
+  color:#b45309;font-size:.85rem;font-weight:700;
+  white-space:nowrap;
+}
+[data-theme="dark"] .bento-plan-badge{color:#fbbf24;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.12)}
+
+/* Grid container */
+.bento-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap:1.1rem;
+}
+
+/* Base cell */
+.bento-cell{
+  background:var(--glass);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  position:relative;overflow:hidden;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  cursor:pointer;
+}
+.bento-cell:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 48px rgba(78,115,194,.18);
+  border-color:rgba(78,115,194,.38);
+}
+.bento-cell-inner{padding:1.5rem;position:relative;z-index:2}
+.bento-cell-label{
+  font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:.5rem;margin-bottom:.9rem;
+}
+.bento-cell-arrow{
+  display:inline-flex;align-items:center;gap:.4rem;margin-top:1.1rem;
+  font-size:.8rem;font-weight:700;color:var(--brand);
+}
+
+/* Glow overlays */
+.bento-cell-glow{
+  position:absolute;top:-40px;left:-40px;
+  width:140px;height:140px;border-radius:50%;
+  filter:blur(40px);opacity:.35;pointer-events:none;z-index:1;
+  transition:opacity .3s;
+}
+.bento-cell:hover .bento-cell-glow{opacity:.6}
+.bento-glow-gold{background:#f59e0b}
+.bento-glow-purple{background:#7c3aed}
+.bento-glow-blue{background:#4E73C2}
+.bento-glow-cyan{background:#0ea5e9}
+
+/* Wallet cell */
+.bento-wallet{
+  grid-column:1;grid-row:1;
+  background:linear-gradient(145deg,#fffbeb 0%,#fef3c7 60%,#fff8e1 100%) !important;
+  border-color:rgba(245,158,11,.25) !important;
+}
+[data-theme="dark"] .bento-wallet{
+  background:linear-gradient(145deg,rgba(30,20,5,.9) 0%,rgba(40,28,5,.9) 100%) !important;
+}
+.bento-wallet:hover{border-color:rgba(245,158,11,.55) !important}
+.bento-wallet-amount{
+  display:flex;align-items:baseline;gap:.4rem;margin-bottom:.4rem;
+}
+.bento-wallet-num{
+  font-size:2.8rem;font-weight:900;line-height:1;
+  background:linear-gradient(135deg,#b45309,#d97706);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.bento-wallet-cur{font-size:1rem;font-weight:700;color:#b45309;opacity:.8}
+.bento-wallet-sub{font-size:.8rem;color:#92400e;opacity:.75;font-weight:500}
+[data-theme="dark"] .bento-wallet-sub{color:#fbbf24}
+.bento-wallet-icon-bg{
+  position:absolute;bottom:-18px;left:-18px;
+  font-size:7rem;color:rgba(245,158,11,.08);z-index:1;
+  pointer-events:none;transform:rotate(-15deg);
+}
+.bento-wallet .bento-cell-arrow{color:#b45309}
+
+/* Referral cell */
+.bento-referral{
+  grid-column:2 / 4;grid-row:1;
+  cursor:default;
+}
+.bento-referral:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.1)}
+.bento-ref-link-row{display:flex;gap:.6rem;align-items:center;margin-bottom:1rem}
+.bento-ref-input{
+  flex:1;border:1.5px solid var(--glass-border);
+  border-radius:10px;padding:.6rem 1rem;
+  font-size:.82rem;color:var(--text);background:var(--bg);
+  direction:ltr;text-align:left;outline:none;font-family:'Tajawal',sans-serif;
+  transition:border-color .2s;
+}
+.bento-ref-input:focus{border-color:rgba(124,58,237,.5)}
+.bento-ref-copy-btn{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.6rem 1.2rem;border-radius:10px;border:none;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;
+  white-space:nowrap;transition:transform .2s,box-shadow .2s;
+  font-family:'Tajawal',sans-serif;
+}
+.bento-ref-copy-btn:hover{transform:scale(1.04);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+.bento-ref-copy-btn:active{transform:scale(.97)}
+.bento-ref-stats{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.bento-ref-stat{text-align:center}
+.bento-ref-stat-num{
+  display:block;font-size:1.5rem;font-weight:900;
+  background:linear-gradient(135deg,var(--text),#4E73C2);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.bento-green{background:linear-gradient(135deg,#059669,#10b981) !important;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.bento-amber{background:linear-gradient(135deg,#d97706,#f59e0b) !important;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.bento-ref-stat-lbl{font-size:.72rem;color:var(--muted);font-weight:600}
+.bento-ref-divider{width:1px;height:36px;background:var(--glass-border)}
+.bento-ref-share-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.55rem 1.1rem;border-radius:10px;border:none;
+  background:linear-gradient(135deg,#075e54,#25D366);
+  color:#fff;font-weight:700;font-size:.83rem;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;font-family:'Tajawal',sans-serif;
+}
+.bento-ref-share-btn:hover{transform:scale(1.03);box-shadow:0 6px 18px rgba(37,211,102,.35)}
+
+/* Mini stats cell */
+.bento-stats-mini{
+  grid-column:1;grid-row:2;
+  cursor:default;padding:1.3rem 1.4rem;
+}
+.bento-stats-mini:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.08)}
+.bento-mini-stat{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.6rem .8rem;cursor:pointer;border-radius:10px;
+  transition:background .2s;
+}
+.bento-mini-stat:hover{background:rgba(78,115,194,.06)}
+.bento-mini-icon{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;
+}
+.bento-mini-num{font-size:1.4rem;font-weight:900;line-height:1;
+  background:linear-gradient(135deg,var(--text),#4E73C2);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.bento-mini-lbl{font-size:.73rem;color:var(--muted);margin-top:.1rem;font-weight:500}
+.bento-mini-sep{height:1px;background:var(--glass-border);margin:.15rem 0}
+
+/* Product cards */
+.bento-product{grid-row:2;min-height:220px}
+.bento-biz{grid-column:2}
+.bento-pro{grid-column:3}
+.bento-product-noise{
+  position:absolute;inset:0;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.4;
+}
+.bento-biz{
+  background:linear-gradient(145deg,#EEF4FF 0%,#dbeafe 60%,#e0eaff 100%) !important;
+  border-color:rgba(78,115,194,.28) !important;
+}
+[data-theme="dark"] .bento-biz{background:linear-gradient(145deg,rgba(7,15,40,.95) 0%,rgba(14,24,56,.95) 100%) !important;}
+.bento-biz:hover{box-shadow:0 20px 56px rgba(78,115,194,.28) !important;border-color:rgba(78,115,194,.5) !important;}
+.bento-pro{
+  background:linear-gradient(145deg,#ecfeff 0%,#cffafe 60%,#e0f7ff 100%) !important;
+  border-color:rgba(14,165,233,.28) !important;
+}
+[data-theme="dark"] .bento-pro{background:linear-gradient(145deg,rgba(3,25,40,.95) 0%,rgba(5,35,55,.95) 100%) !important;}
+.bento-pro:hover{box-shadow:0 20px 56px rgba(14,165,233,.28) !important;border-color:rgba(14,165,233,.5) !important;}
+.bento-product-tag{
+  display:inline-flex;align-items:center;
+  padding:.28rem .8rem;border-radius:20px;
+  background:rgba(78,115,194,.12);border:1px solid rgba(78,115,194,.22);
+  color:#1e3a8a;font-size:.68rem;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:.75rem;
+}
+[data-theme="dark"] .bento-product-tag{color:#93c5fd;background:rgba(78,115,194,.2)}
+.bento-pro-tag{background:rgba(14,165,233,.12);border-color:rgba(14,165,233,.22);color:#075985;}
+[data-theme="dark"] .bento-pro-tag{color:#7dd3fc;background:rgba(14,165,233,.2)}
+.bento-product-title{font-size:1.6rem;font-weight:900;line-height:1.1;margin-bottom:.6rem;color:var(--text);}
+.bento-product-title span{
+  color:#4E73C2;
+}
+.bento-pro-span{
+  color:#0ea5e9;
+}
+.bento-product-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:.85rem}
+.bento-product-features{display:flex;flex-wrap:wrap;gap:.4rem .7rem;margin-bottom:1rem}
+.bento-product-features span{font-size:.73rem;font-weight:600;color:#1e3a8a;display:flex;align-items:center;gap:.3rem}
+[data-theme="dark"] .bento-product-features span{color:#93c5fd}
+.bento-product-features span i{font-size:.6rem;color:#4E73C2}
+.bento-pro-features span{color:#075985}
+[data-theme="dark"] .bento-pro-features span{color:#7dd3fc}
+.bento-pro-features span i{color:#0ea5e9}
+.bento-product-cta{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.55rem 1.2rem;border-radius:12px;
+  background:linear-gradient(135deg,#4E73C2,#1e3a8a);
+  color:#fff;font-size:.82rem;font-weight:800;
+  transition:transform .2s,box-shadow .2s;
+}
+.bento-product:hover .bento-product-cta{transform:scale(1.04);box-shadow:0 6px 20px rgba(78,115,194,.45)}
+.bento-pro-cta{background:linear-gradient(135deg,#0ea5e9,#075985)}
+.bento-product:hover .bento-pro-cta{box-shadow:0 6px 20px rgba(14,165,233,.45)}
+.bento-product-emblem{
+  position:absolute;bottom:-10px;left:-10px;
+  font-size:5.5rem;opacity:.07;z-index:1;pointer-events:none;
+  transition:opacity .3s,transform .3s;color:#1e3a8a;
+}
+.bento-product:hover .bento-product-emblem{opacity:.12;transform:scale(1.05) rotate(-8deg)}
+.bento-pro-emblem{color:#075985}
+
+/* Quick access */
+.bento-quick-access{grid-column:1;grid-row:3;cursor:default}
+.bento-quick-access:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.08)}
+.bento-quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.bento-quick-item{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.5rem;padding:.9rem .5rem;border-radius:12px;
+  background:rgba(78,115,194,.04);border:1px solid transparent;
+  font-size:.78rem;font-weight:700;color:var(--text);
+  cursor:pointer;transition:background .2s,border-color .2s,transform .2s;text-align:center;
+}
+.bento-quick-item:hover{background:rgba(78,115,194,.09);border-color:rgba(78,115,194,.18);transform:scale(1.04)}
+.bento-quick-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;
+}
+
+/* Upgrade cell */
+.bento-upgrade{
+  grid-column:2 / 4;grid-row:3;
+  background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 60%,#f0e6ff 100%) !important;
+  border-color:rgba(124,58,237,.22) !important;cursor:default;
+}
+[data-theme="dark"] .bento-upgrade{background:linear-gradient(135deg,rgba(22,10,40,.95) 0%,rgba(30,14,55,.95) 100%) !important;}
+.bento-upgrade:hover{transform:none;box-shadow:0 8px 32px rgba(124,58,237,.15)}
+.bento-upgrade-icon{
+  width:48px;height:48px;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:#fff;margin-bottom:.85rem;
+  box-shadow:0 6px 20px rgba(124,58,237,.35);
+}
+.bento-upgrade-title{font-size:1.05rem;font-weight:900;margin-bottom:.35rem;color:var(--text)}
+.bento-upgrade-desc{font-size:.83rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.bento-upgrade-btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.65rem 1.5rem;border-radius:12px;border:none;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:#fff;font-size:.88rem;font-weight:800;cursor:pointer;
+  font-family:'Tajawal',sans-serif;transition:transform .2s,box-shadow .2s;
+}
+.bento-upgrade-btn:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(124,58,237,.45)}
+
+/* Responsive */
+@media(max-width:960px){
+  .bento-grid{grid-template-columns:1fr 1fr;gap:.9rem}
+  .bento-wallet{grid-column:1;grid-row:1}
+  .bento-referral{grid-column:2;grid-row:1}
+  .bento-stats-mini{grid-column:1 / 3;grid-row:2}
+  .bento-biz{grid-column:1;grid-row:3}
+  .bento-pro{grid-column:2;grid-row:3}
+  .bento-quick-access{grid-column:1;grid-row:4}
+  .bento-upgrade{grid-column:2;grid-row:4}
+}
+@media(max-width:640px){
+  .bento-grid{grid-template-columns:1fr;gap:.8rem}
+  .bento-wallet,.bento-referral,.bento-stats-mini,
+  .bento-biz,.bento-pro,.bento-quick-access,.bento-upgrade{grid-column:1 !important;grid-row:auto !important}
+  .bento-hero{flex-direction:column;align-items:flex-start;gap:1rem}
+  .bento-greeting-title{font-size:1.45rem}
+  .bento-ref-link-row{flex-wrap:wrap}
+  .bento-ref-copy-btn{width:100%}
+}
+
 /* SIDEBAR */
 .sidebar{
   width:var(--sidebar);min-height:100vh;
@@ -1548,64 +1866,223 @@ function toggleNotifPanel(){
   <div class="content">
 
     <!-- ===== HOME ===== -->
+    <!-- ══════════════════════════════════════════════════════════
+         OVERVIEW — BENTO GRID HOME
+    ══════════════════════════════════════════════════════════ -->
     <div class="page active" id="page-home">
-      <div class="stats-row">
-        <div class="stat-card" onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')" style="cursor:pointer" title="إعداد دراسة الجدوى">
-          <div class="stat-icon si-green"><i class="fa-solid fa-file-chart-column"></i></div>
-          <div><div class="stat-num" id="sc-reports">0</div><div class="stat-lbl">التقارير المُنجزة</div></div>
+
+      <!-- ─── Hero Greeting ─────────────────────────────────────── -->
+      <div class="bento-hero">
+        <div class="bento-hero-left">
+          <div class="bento-greeting-eyebrow">لوحة التحكم</div>
+          <h1 class="bento-greeting-title">مرحباً، <span id="bento-user-name">المستخدم</span> 👋</h1>
+          <p class="bento-greeting-sub">إليك نظرة سريعة على حسابك وخدماتك</p>
         </div>
-        <div class="stat-card" onclick="gotoSub('robot','navgrp-gateway','nav-robot')" style="cursor:pointer" title="تحليل المشروع">
-          <div class="stat-icon si-amber"><i class="fa-solid fa-robot"></i></div>
-          <div><div class="stat-num" id="sc-chats">0</div><div class="stat-lbl">جلسات المساعد</div></div>
-        </div>
-        <div class="stat-card" onclick="goto('reports')" style="cursor:pointer" title="تقاريري">
-          <div class="stat-icon si-navy"><i class="fa-solid fa-folder-open"></i></div>
-          <div><div class="stat-num">0</div><div class="stat-lbl">المشاريع المحفوظة</div></div>
-        </div>
-        <div class="stat-card" onclick="gotoSub('investor','navgrp-gateway','nav-investor')" style="cursor:pointer" title="سوق المشاريع">
-          <div class="stat-icon si-purple"><i class="fa-solid fa-coins"></i></div>
-          <div><div class="stat-num">0</div><div class="stat-lbl">استشارات رأس المال</div></div>
+        <div class="bento-hero-right">
+          <div class="bento-plan-badge" id="bento-plan-badge">
+            <i class="fa-solid fa-crown"></i>
+            <span id="bento-plan-label">الباقة المجانية</span>
+          </div>
         </div>
       </div>
 
-      <div class="sec-hd">
-        <div><h2>ابدأ من هنا</h2><p>اختر الأداة المناسبة لاحتياجك</p></div>
-      </div>
+      <!-- ─── Bento Grid ─────────────────────────────────────────── -->
+      <div class="bento-grid">
 
-      <!-- بطاقات الوصول السريع -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem">
-        <div onclick="gotoSub('robot','navgrp-gateway','nav-robot')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#064e3b,#059669);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-magnifying-glass-chart" style="color:#fff"></i></div>
-          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">تحليل المشروع</div>
-          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">تحليل شامل للجدوى والربحية</div>
+        <!-- ══ خلية 1: رصيد المحفظة (كبيرة) ══ -->
+        <div class="bento-cell bento-wallet" onclick="goto('referral')">
+          <div class="bento-cell-glow bento-glow-gold"></div>
+          <div class="bento-cell-inner">
+            <div class="bento-cell-label">
+              <i class="fa-solid fa-wallet"></i> رصيد المحفظة
+            </div>
+            <div class="bento-wallet-amount">
+              <span class="bento-wallet-num" id="bento-wallet-sar">0.00</span>
+              <span class="bento-wallet-cur">ر.س</span>
+            </div>
+            <div class="bento-wallet-sub">
+              <span id="bento-wallet-pts">0</span> نقطة
+              &nbsp;·&nbsp;
+              قابلة للخصم في <span style="color:#f59e0b;font-weight:700">جنان بيز</span>
+            </div>
+            <div class="bento-cell-arrow"><i class="fa-solid fa-arrow-left"></i> إدارة المحفظة</div>
+          </div>
+          <div class="bento-wallet-icon-bg"><i class="fa-solid fa-wallet"></i></div>
         </div>
-        <div onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='var(--amber)'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-file-chart-column" style="color:#fff"></i></div>
-          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">إعداد دراسة الجدوى</div>
-          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">تقرير احترافي للبنوك والمستثمرين</div>
-        </div>
-        <div onclick="gotoSub('investor','navgrp-gateway','nav-investor')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='#4E73C2'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-handshake" style="color:#fff"></i></div>
-          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">سوق المشاريع</div>
-          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">فرص استثمارية وشراكات</div>
-        </div>
-        <div onclick="gotoSub('design','navgrp-growth','nav-design')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='#ec4899'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#831843,#ec4899);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-palette" style="color:#fff"></i></div>
-          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">استوديو التصميم</div>
-          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">شعارات وهويات بصرية</div>
-        </div>
-        <div onclick="goto('academy')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='#7c3aed'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#4c1d95,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-graduation-cap" style="color:#fff"></i></div>
-          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">جنان للأعمال</div>
-          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">كورسات ودورات تدريبية</div>
-        </div>
-        <div onclick="gotoSub('software','navgrp-growth','nav-software')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='#0ea5e9'" onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#0c4a6e,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-box-open" style="color:#fff"></i></div>
-          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">متجر البرمجيات</div>
-          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">حلول وخدمات رقمية</div>
-        </div>
-      </div>
 
+        <!-- ══ خلية 2: رابط الإحالة ══ -->
+        <div class="bento-cell bento-referral">
+          <div class="bento-cell-glow bento-glow-purple"></div>
+          <div class="bento-cell-inner">
+            <div class="bento-cell-label">
+              <i class="fa-solid fa-link"></i> رابط الإحالة
+            </div>
+            <div class="bento-ref-link-row">
+              <input id="bento-ref-input" type="text" readonly
+                class="bento-ref-input" value="جارٍ التحميل..." />
+              <button class="bento-ref-copy-btn" onclick="bentoCopyRef(event)">
+                <i class="fa-solid fa-copy"></i>
+                <span>نسخ</span>
+              </button>
+            </div>
+            <div class="bento-ref-stats">
+              <div class="bento-ref-stat">
+                <span class="bento-ref-stat-num" id="bento-ref-total">0</span>
+                <span class="bento-ref-stat-lbl">إحالة</span>
+              </div>
+              <div class="bento-ref-divider"></div>
+              <div class="bento-ref-stat">
+                <span class="bento-ref-stat-num bento-green" id="bento-ref-rewarded">0</span>
+                <span class="bento-ref-stat-lbl">مكافأة</span>
+              </div>
+              <div class="bento-ref-divider"></div>
+              <div class="bento-ref-stat">
+                <span class="bento-ref-stat-num bento-amber" id="bento-ref-pending">0</span>
+                <span class="bento-ref-stat-lbl">قيد الانتظار</span>
+              </div>
+            </div>
+            <button class="bento-ref-share-btn" onclick="bentoCopyRef(event);bentoShareRef()">
+              <i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب
+            </button>
+          </div>
+        </div>
+
+        <!-- ══ خلية 3: إحصائيات سريعة ══ -->
+        <div class="bento-cell bento-stats-mini">
+          <div class="bento-mini-stat" onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')">
+            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.12));color:#4E73C2">
+              <i class="fa-solid fa-file-chart-column"></i>
+            </div>
+            <div>
+              <div class="bento-mini-num" id="sc-reports">0</div>
+              <div class="bento-mini-lbl">تقرير مُنجز</div>
+            </div>
+          </div>
+          <div class="bento-mini-sep"></div>
+          <div class="bento-mini-stat" onclick="gotoSub('robot','navgrp-gateway','nav-robot')">
+            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(99,0,162,.08));color:#7c3aed">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div>
+              <div class="bento-mini-num" id="sc-chats">0</div>
+              <div class="bento-mini-lbl">جلسة مساعد</div>
+            </div>
+          </div>
+          <div class="bento-mini-sep"></div>
+          <div class="bento-mini-stat" onclick="gotoSub('investor','navgrp-gateway','nav-investor')">
+            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.08));color:#10b981">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <div>
+              <div class="bento-mini-num">0</div>
+              <div class="bento-mini-lbl">شراكة نشطة</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ خلية 4: جنان بيز (بطاقة الأعمال — كبيرة) ══ -->
+        <div class="bento-cell bento-product bento-biz" onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')">
+          <div class="bento-product-noise"></div>
+          <div class="bento-cell-glow bento-glow-blue"></div>
+          <div class="bento-cell-inner">
+            <div class="bento-product-tag">حلول الأعمال</div>
+            <h2 class="bento-product-title">jenan <span>biz</span></h2>
+            <p class="bento-product-desc">
+              دراسات الجدوى · تحليل المشاريع · استشارات الاستثمار
+              <br>تقارير احترافية للبنوك والمستثمرين
+            </p>
+            <div class="bento-product-features">
+              <span><i class="fa-solid fa-check"></i> دراسة الجدوى</span>
+              <span><i class="fa-solid fa-check"></i> تحليل السوق</span>
+              <span><i class="fa-solid fa-check"></i> تقرير مالي</span>
+              <span><i class="fa-solid fa-check"></i> نقاط المحفظة</span>
+            </div>
+            <div class="bento-product-cta">
+              <span>ابدأ الآن</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </div>
+          </div>
+          <div class="bento-product-emblem bento-biz-emblem">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+        </div>
+
+        <!-- ══ خلية 5: جنان برو (بطاقة التقنية — كبيرة) ══ -->
+        <div class="bento-cell bento-product bento-pro" onclick="gotoSub('software','navgrp-growth','nav-software')">
+          <div class="bento-product-noise"></div>
+          <div class="bento-cell-glow bento-glow-cyan"></div>
+          <div class="bento-cell-inner">
+            <div class="bento-product-tag bento-pro-tag">الخدمات التقنية</div>
+            <h2 class="bento-product-title">jenan <span class="bento-pro-span">pro</span></h2>
+            <p class="bento-product-desc">
+              برمجة مخصصة · ERP · نقاط البيع · تطبيقات
+              <br>حلول تقنية متكاملة للأعمال السعودية
+            </p>
+            <div class="bento-product-features bento-pro-features">
+              <span><i class="fa-solid fa-check"></i> نظام ERP</span>
+              <span><i class="fa-solid fa-check"></i> تطبيقات موبايل</span>
+              <span><i class="fa-solid fa-check"></i> متجر إلكتروني</span>
+              <span><i class="fa-solid fa-check"></i> نقاط البيع</span>
+            </div>
+            <div class="bento-product-cta bento-pro-cta">
+              <span>استفسر الآن</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </div>
+          </div>
+          <div class="bento-product-emblem bento-pro-emblem">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+        </div>
+
+        <!-- ══ خلية 6: وصول سريع (2 بطاقات صغيرة) ══ -->
+        <div class="bento-cell bento-quick-access">
+          <div class="bento-cell-label" style="margin-bottom:.9rem">
+            <i class="fa-solid fa-bolt"></i> وصول سريع
+          </div>
+          <div class="bento-quick-grid">
+            <div class="bento-quick-item" onclick="gotoSub('robot','navgrp-gateway','nav-robot')">
+              <div class="bento-quick-icon" style="background:linear-gradient(135deg,#4c1d95,#7c3aed)">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <span>المساعد الذكي</span>
+            </div>
+            <div class="bento-quick-item" onclick="gotoSub('design','navgrp-growth','nav-design')">
+              <div class="bento-quick-icon" style="background:linear-gradient(135deg,#831843,#ec4899)">
+                <i class="fa-solid fa-palette"></i>
+              </div>
+              <span>استوديو التصميم</span>
+            </div>
+            <div class="bento-quick-item" onclick="goto('academy')">
+              <div class="bento-quick-icon" style="background:linear-gradient(135deg,#064e3b,#10b981)">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <span>الأكاديمية</span>
+            </div>
+            <div class="bento-quick-item" onclick="gotoSub('investor','navgrp-gateway','nav-investor')">
+              <div class="bento-quick-icon" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <span>سوق المشاريع</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ خلية 7: الباقة الحالية / Upgrade ══ -->
+        <div class="bento-cell bento-upgrade" id="bento-upgrade-cell">
+          <div class="bento-cell-glow bento-glow-purple" style="opacity:.4"></div>
+          <div class="bento-cell-inner">
+            <div class="bento-upgrade-icon"><i class="fa-solid fa-rocket"></i></div>
+            <div class="bento-upgrade-title" id="bento-upgrade-title">ترقية الباقة</div>
+            <p class="bento-upgrade-desc" id="bento-upgrade-desc">
+              احصل على دراسات جدوى غير محدودة وتقارير احترافية
+            </p>
+            <button class="bento-upgrade-btn" onclick="goto('billing')">
+              <i class="fa-solid fa-crown"></i> اشترك الآن
+            </button>
+          </div>
+        </div>
+
+      </div><!-- end bento-grid -->
     </div> <!-- نهاية الصفحة الرئيسية -->
 
     <!-- ===== بوابة ريادة الأعمال ===== -->
@@ -4467,6 +4944,93 @@ document.getElementById('user-name').textContent = uName;
 document.getElementById('user-av').textContent = uName.charAt(0)||'م';
 if(document.getElementById('sett-name')) document.getElementById('sett-name').value = uName;
 if(document.getElementById('sett-email')) document.getElementById('sett-email').value = u.email||'';
+
+/* ══════════════════════════════════════════════
+   BENTO GRID — DATA INIT
+══════════════════════════════════════════════ */
+function initBentoHome(){
+  /* اسم المستخدم */
+  const el = document.getElementById('bento-user-name');
+  if(el) el.textContent = uName;
+
+  /* رابط الإحالة + إحصاءاته */
+  const token = localStorage.getItem('jb-token') || u.token || '';
+  if(!token) return;
+
+  fetch('/api/referral/link', {
+    headers:{ 'Authorization':'Bearer '+token }
+  }).then(r=>r.ok?r.json():null).then(d=>{
+    if(!d) return;
+    const inp = document.getElementById('bento-ref-input');
+    if(inp) inp.value = d.referral_link || '';
+    const elT = document.getElementById('bento-ref-total');   if(elT) elT.textContent = d.total||0;
+    const elR = document.getElementById('bento-ref-rewarded'); if(elR) elR.textContent = d.rewarded||0;
+    const elP = document.getElementById('bento-ref-pending');  if(elP) elP.textContent = d.pending||0;
+  }).catch(()=>{});
+
+  /* رصيد المحفظة */
+  fetch('/api/wallet/balance', {
+    headers:{ 'Authorization':'Bearer '+token }
+  }).then(r=>r.ok?r.json():null).then(d=>{
+    if(!d) return;
+    const elS = document.getElementById('bento-wallet-sar'); if(elS) elS.textContent = Number(d.balance_sar||0).toFixed(2);
+    const elPt = document.getElementById('bento-wallet-pts'); if(elPt) elPt.textContent = d.points||0;
+  }).catch(()=>{});
+
+  /* باقة المستخدم */
+  fetch('/api/subscriptions/status', {
+    headers:{ 'Authorization':'Bearer '+token }
+  }).then(r=>r.ok?r.json():null).then(d=>{
+    if(!d) return;
+    const badge = document.getElementById('bento-plan-badge');
+    const lbl = document.getElementById('bento-plan-label');
+    const upgTitle = document.getElementById('bento-upgrade-title');
+    const upgDesc = document.getElementById('bento-upgrade-desc');
+    const plan = d.plan || 'free';
+    if(lbl) lbl.textContent = plan==='pro'?'جنان برو':plan==='biz'?'جنان بيز':'الباقة المجانية';
+    if(badge){
+      badge.style.background = plan!=='free'
+        ? 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))'
+        : '';
+      badge.style.borderColor = plan!=='free' ? 'rgba(78,115,194,.35)' : '';
+      badge.style.color = plan!=='free' ? '#1e3a8a' : '';
+    }
+    if(plan!=='free'){
+      const cell = document.getElementById('bento-upgrade-cell');
+      if(cell){ cell.style.display='none'; }
+    } else {
+      if(upgTitle) upgTitle.textContent = 'ترقية الباقة';
+      if(upgDesc)  upgDesc.textContent  = 'احصل على دراسات جدوى غير محدودة وتقارير احترافية';
+    }
+  }).catch(()=>{});
+}
+/* تشغيل عند تحميل الصفحة */
+document.addEventListener('DOMContentLoaded', initBentoHome);
+
+/* نسخ رابط الإحالة */
+function bentoCopyRef(e){
+  if(e && e.stopPropagation) e.stopPropagation();
+  const inp = document.getElementById('bento-ref-input');
+  if(!inp) return;
+  const val = inp.value;
+  if(!val || val==='جارٍ التحميل...') return;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(val).then(()=>showToast && showToast('تم نسخ رابط الإحالة ✅')).catch(()=>{});
+  } else {
+    inp.select(); document.execCommand('copy');
+    if(typeof showToast === 'function') showToast('تم النسخ ✅');
+  }
+}
+
+/* مشاركة عبر واتساب */
+function bentoShareRef(){
+  const inp = document.getElementById('bento-ref-input');
+  if(!inp) return;
+  const val = inp.value;
+  if(!val || val==='جارٍ التحميل...') return;
+  const msg = 'انضم معي على منصة جنان بيز للحصول على حلول الأعمال والاستشارات:\n' + val;
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
 
 /* THEME */
 const html = document.documentElement;
