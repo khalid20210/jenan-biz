@@ -1336,6 +1336,27 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .inv-analyze-btn:hover{background:rgba(14,165,233,.2);border-color:#0ea5e9}
 @media(max-width:500px){.inv-adv-drawer{width:100%;border-radius:16px 16px 0 0}}
 </style>
+<script>
+/* دوال الـ topbar — معرّفة مبكراً لضمان عملها دائماً */
+function toggleTheme(){
+  var h=document.documentElement;
+  var n=h.getAttribute('data-theme')==='dark'?'light':'dark';
+  h.setAttribute('data-theme',n);
+  localStorage.setItem('jb-theme',n);
+  var ico=document.getElementById('th-ico');
+  if(ico) ico.className=n==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
+}
+function toggleNotifPanel(){
+  var p=document.getElementById('notif-panel');
+  if(!p) return;
+  p.style.display=p.style.display==='none'?'block':'none';
+}
+/* تطبيق الثيم المحفوظ فور تحميل الـ head */
+(function(){
+  var t=localStorage.getItem('jb-theme')||'light';
+  document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
 </head>
 <body>
 
@@ -4317,17 +4338,8 @@ if(document.getElementById('sett-email')) document.getElementById('sett-email').
 /* THEME */
 const html = document.documentElement;
 const thIco = document.getElementById('th-ico');
-const savedTheme = localStorage.getItem('jb-theme')||'light';
-html.setAttribute('data-theme', savedTheme);
-thIco.className = savedTheme==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
-
-/* THEME */
-function toggleTheme(){
-  const n = html.getAttribute('data-theme')==='dark'?'light':'dark';
-  html.setAttribute('data-theme',n);
-  localStorage.setItem('jb-theme',n);
-  thIco.className = n==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
-}
+/* تحديث الأيقونة فقط — الثيم يُطبَّق في الـ head */
+(function(){ var t=localStorage.getItem('jb-theme')||'light'; if(thIco) thIco.className=t==='dark'?'fa-solid fa-sun':'fa-solid fa-moon'; })();
 
 /* NOTIFICATIONS */
 function toggleNotifPanel(){
