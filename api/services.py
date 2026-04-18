@@ -314,6 +314,18 @@ async def dashboard_html():
     resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
     return resp
 
+@app.get("/pricing")
+async def pricing():
+    resp = FileResponse(os.path.join(BASE_DIR, "pricing.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
+
+@app.get("/pricing.html")
+async def pricing_html():
+    resp = FileResponse(os.path.join(BASE_DIR, "pricing.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
+
 @app.get("/auth.html")
 async def auth_html():
     resp = FileResponse(os.path.join(BASE_DIR, "auth.html"))
