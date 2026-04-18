@@ -1503,19 +1503,19 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
     <!-- ===== HOME ===== -->
     <div class="page active" id="page-home">
       <div class="stats-row">
-        <div class="stat-card">
+        <div class="stat-card" onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')" style="cursor:pointer" title="إعداد دراسة الجدوى">
           <div class="stat-icon si-green"><i class="fa-solid fa-file-chart-column"></i></div>
           <div><div class="stat-num" id="sc-reports">0</div><div class="stat-lbl">التقارير المُنجزة</div></div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" onclick="gotoSub('robot','navgrp-gateway','nav-robot')" style="cursor:pointer" title="تحليل المشروع">
           <div class="stat-icon si-amber"><i class="fa-solid fa-robot"></i></div>
           <div><div class="stat-num" id="sc-chats">0</div><div class="stat-lbl">جلسات المساعد</div></div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" onclick="goto('reports')" style="cursor:pointer" title="تقاريري">
           <div class="stat-icon si-navy"><i class="fa-solid fa-folder-open"></i></div>
           <div><div class="stat-num">0</div><div class="stat-lbl">المشاريع المحفوظة</div></div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" onclick="gotoSub('investor','navgrp-gateway','nav-investor')" style="cursor:pointer" title="سوق المشاريع">
           <div class="stat-icon si-purple"><i class="fa-solid fa-coins"></i></div>
           <div><div class="stat-num">0</div><div class="stat-lbl">استشارات رأس المال</div></div>
         </div>
@@ -1525,7 +1525,40 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
         <div><h2>ابدأ من هنا</h2><p>اختر الأداة المناسبة لاحتياجك</p></div>
       </div>
 
-      <!-- نهاية قسم نظرة عامة، بداية قسم جديد -->
+      <!-- بطاقات الوصول السريع -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem">
+        <div onclick="gotoSub('robot','navgrp-gateway','nav-robot')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#064e3b,#059669);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-magnifying-glass-chart" style="color:#fff"></i></div>
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">تحليل المشروع</div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">تحليل شامل للجدوى والربحية</div>
+        </div>
+        <div onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='var(--amber)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#78350f,#d97706);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-file-chart-column" style="color:#fff"></i></div>
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">إعداد دراسة الجدوى</div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">تقرير احترافي للبنوك والمستثمرين</div>
+        </div>
+        <div onclick="gotoSub('investor','navgrp-gateway','nav-investor')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='#4E73C2'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-handshake" style="color:#fff"></i></div>
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">سوق المشاريع</div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">فرص استثمارية وشراكات</div>
+        </div>
+        <div onclick="gotoSub('design','navgrp-growth','nav-design')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='#ec4899'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#831843,#ec4899);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-palette" style="color:#fff"></i></div>
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">استوديو التصميم</div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">شعارات وهويات بصرية</div>
+        </div>
+        <div onclick="goto('academy')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='#7c3aed'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#4c1d95,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-graduation-cap" style="color:#fff"></i></div>
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">جنان للأعمال</div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">كورسات ودورات تدريبية</div>
+        </div>
+        <div onclick="gotoSub('software','navgrp-growth','nav-software')" style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.25rem;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='#0ea5e9'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#0c4a6e,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem"><i class="fa-solid fa-box-open" style="color:#fff"></i></div>
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.3rem">متجر البرمجيات</div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">حلول وخدمات رقمية</div>
+        </div>
+      </div>
+
     </div> <!-- نهاية الصفحة الرئيسية -->
 
     <!-- ===== بوابة ريادة الأعمال ===== -->
