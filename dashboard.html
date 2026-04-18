@@ -49,8 +49,8 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
 /* Hero */
 .bento-hero{
-  display:flex;flex-direction:column;
-  margin-bottom:1.75rem;padding:1.25rem 1.75rem 1.5rem;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:1.75rem;padding:1.5rem 2rem;
   background:var(--glass);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border:1px solid var(--glass-border);
@@ -86,33 +86,14 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-greeting-sub{font-size:.9rem;color:var(--muted);font-weight:500}
 .bento-plan-badge{
-  display:inline-flex;align-items:center;gap:.45rem;
-  padding:.4rem 1rem;border-radius:30px;
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.55rem 1.25rem;border-radius:30px;
   background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.08));
   border:1px solid rgba(245,158,11,.35);
-  color:#b45309;font-size:.78rem;font-weight:700;
-  white-space:nowrap;transition:background .3s,border-color .3s,color .3s;
+  color:#b45309;font-size:.85rem;font-weight:700;
+  white-space:nowrap;
 }
 [data-theme="dark"] .bento-plan-badge{color:#fbbf24;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.12)}
-/* بلاتيني */
-.bento-plan-badge.is-platinum{
-  background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.12));
-  border-color:rgba(139,92,246,.45);color:#4f46e5;
-}
-[data-theme="dark"] .bento-plan-badge.is-platinum{color:#a78bfa;border-color:rgba(139,92,246,.5);background:rgba(99,102,241,.15)}
-/* مشترك — خلية الترقية */
-.bento-upgrade.is-subscribed{
-  background:linear-gradient(135deg,rgba(5,150,105,.08),rgba(16,185,129,.05)) !important;
-  border-color:rgba(16,185,129,.3) !important;
-}
-.bento-upgrade.is-subscribed .bento-upgrade-icon{
-  background:linear-gradient(135deg,#059669,#10b981);
-  box-shadow:0 6px 20px rgba(16,185,129,.35);
-}
-.bento-upgrade.is-subscribed .bento-upgrade-btn{
-  background:linear-gradient(135deg,#059669,#10b981);
-  cursor:default;pointer-events:none;
-}
 
 /* Grid container */
 .bento-grid{
@@ -120,7 +101,6 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
   gap:1.1rem;
-  margin-top:1.1rem;
 }
 
 /* Base cell */
@@ -161,218 +141,9 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-glow-blue{background:#4E73C2}
 .bento-glow-cyan{background:#0ea5e9}
 
-/* Hero cell — كامل العرض ملاصق للحواف */
-.bento-hero-cell{
-  grid-column:1 / 4;grid-row:1;
-  cursor:default;
-  border-radius:0 !important;
-  border-right:none !important;
-  border-left:none !important;
-  border-top:none !important;
-  border-bottom-color:rgba(78,115,194,.12) !important;
-  margin:-0.75rem -1.75rem 0;
-  width:calc(100% + 3.5rem);
-  background:linear-gradient(135deg,rgba(255,255,255,.9) 0%,rgba(238,244,255,.95) 100%) !important;
-  box-shadow:0 2px 16px rgba(78,115,194,.07) !important;
-}
-[data-theme="dark"] .bento-hero-cell{
-  background:linear-gradient(135deg,rgba(15,22,48,.95) 0%,rgba(10,15,35,.98) 100%) !important;
-}
-.bento-hero-cell:hover{transform:none !important;box-shadow:0 2px 16px rgba(78,115,194,.07) !important}
-.bento-hero-cell .bento-cell-inner{
-  display:flex;flex-direction:row;align-items:center;
-  gap:1.25rem;padding:1rem 1.75rem;
-  min-height:unset;
-}
-.bento-hero-cell .bento-hero-toolbar{
-  margin-bottom:0;display:flex;align-items:center;gap:.45rem;
-  order:1;flex-shrink:0;
-}
-.bento-hero-cell .bento-greeting-title{font-size:1.15rem;margin-bottom:0;white-space:nowrap}
-.bento-hero-cell .bento-plan-badge{margin-top:0;align-self:center;margin-right:auto;flex-shrink:0}
-
-/* Hero quick-stats chips */
-.bento-hero-stats{
-  display:flex;gap:.45rem;margin-top:0;flex-wrap:nowrap;
-  flex-shrink:1;
-}
-.bento-hero-stat-chip{
-  display:flex;align-items:center;gap:.35rem;
-  padding:.28rem .65rem;border-radius:30px;
-  background:rgba(78,115,194,.08);border:1px solid rgba(78,115,194,.16);
-  font-size:.72rem;font-weight:700;color:var(--text);
-  transition:background .2s;white-space:nowrap;
-}
-.bento-hero-stat-chip i{font-size:.68rem;opacity:.8}
-.bento-hero-stat-chip.chip-green{background:rgba(5,150,105,.08);border-color:rgba(5,150,105,.2)}
-.bento-hero-stat-chip.chip-green i{color:#059669}
-.bento-hero-stat-chip.chip-amber{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.18)}
-.bento-hero-stat-chip.chip-amber i{color:#d97706}
-.bento-hero-stat-chip.chip-blue i{color:#4E73C2}
-
-/* Upgrade bar cell — col 2-4 row 2 (عريض) */
-.bento-pricing{
-  grid-column:2 / 4;grid-row:2;
-  cursor:default;overflow:hidden;
-  background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%) !important;
-  border-color:rgba(139,92,246,.6) !important;
-}
-.bento-pricing:hover{transform:none;box-shadow:0 8px 32px rgba(99,102,241,.35)}
-.bento-pricing .bento-cell-label{color:rgba(255,255,255,.8)}
-.bento-pricing .bento-cell-label i{color:rgba(255,255,255,.75) !important}
-.bento-pricing .bento-cell-label span{color:#fff !important}
-
-/* Plans bars — بدون حواجز، مجرد صفوف أنيقة */
-.bento-plans-grid{
-  display:flex;flex-direction:column;
-  gap:0;margin-top:.35rem;
-}
-.bento-plan-bar{
-  display:flex;align-items:center;gap:.6rem;
-  padding:.52rem 0;
-  border:none;border-radius:0;
-  background:transparent;
-  cursor:pointer;transition:opacity .18s;position:relative;
-}
-.bento-plan-bar:not(:last-child){
-  border-bottom:1px solid rgba(255,255,255,.1);
-  padding-bottom:.6rem;margin-bottom:.08rem;
-}
-.bento-plan-bar:hover{opacity:.78}
-.bento-plan-bar-icon{
-  width:28px;height:28px;border-radius:7px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.75rem;color:#fff;flex-shrink:0;
-  box-shadow:0 2px 8px rgba(0,0,0,.25);
-}
-.bento-plan-bar-body{flex:1;min-width:0}
-.bento-plan-bar-top{
-  display:flex;justify-content:space-between;align-items:baseline;
-  margin-bottom:.3rem;
-}
-.bento-plan-bar-name{font-size:.76rem;font-weight:800;color:#fff}
-.bento-plan-bar-price{font-size:.83rem;font-weight:900;color:#fff;white-space:nowrap}
-.bento-plan-bar-price em{font-size:.56rem;font-style:normal;color:rgba(255,255,255,.6);margin-right:.1rem}
-.bento-plan-bar-track{
-  height:5px;border-radius:3px;
-  background:rgba(255,255,255,.14);overflow:hidden;
-}
-.bento-plan-bar-fill{
-  height:100%;border-radius:3px;
-  transition:width .7s cubic-bezier(.4,0,.2,1);
-}
-.bento-plan-bar-popular-badge{
-  display:inline-flex;align-items:center;
-  background:rgba(251,191,36,.22);border:1px solid rgba(251,191,36,.35);
-  color:#fde68a;font-size:.54rem;font-weight:800;
-  padding:.08rem .4rem;border-radius:20px;margin-right:.35rem;
-  vertical-align:middle;
-}
-.bento-plan-bar.is-active-plan .bento-plan-bar-name{color:#6ee7b7}
-.bento-plan-bar.is-active-plan .bento-plan-bar-price{color:#6ee7b7}
-
-/* Plan Details Modal */
-.plan-modal-overlay{
-  position:fixed;inset:0;z-index:9000;
-  background:rgba(10,12,30,.62);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .25s ease;
-}
-.plan-modal-overlay.open{
-  opacity:1;pointer-events:auto;
-}
-.plan-modal{
-  background:var(--glass);
-  border:1px solid var(--glass-border);
-  border-radius:22px;
-  box-shadow:0 24px 80px rgba(10,12,30,.35);
-  width:min(520px,92vw);
-  max-height:88vh;overflow-y:auto;
-  padding:2rem 1.75rem 1.75rem;
-  transform:translateY(28px) scale(.96);
-  transition:transform .28s cubic-bezier(.34,1.56,.64,1);
-  position:relative;
-}
-[data-theme="dark"] .plan-modal{background:#0f1630;border-color:rgba(99,102,241,.2)}
-.plan-modal-overlay.open .plan-modal{transform:translateY(0) scale(1)}
-.plan-modal-close{
-  position:absolute;top:1rem;left:1rem;
-  width:32px;height:32px;border-radius:50%;border:none;
-  background:rgba(99,102,241,.1);color:var(--text);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:.85rem;transition:background .2s;
-}
-.plan-modal-close:hover{background:rgba(99,102,241,.22)}
-.plan-modal-header{
-  display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;
-  padding-bottom:1rem;border-bottom:1px solid var(--glass-border);
-}
-.plan-modal-icon{
-  width:52px;height:52px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;color:#fff;flex-shrink:0;
-}
-.plan-modal-title{font-size:1.25rem;font-weight:900;color:var(--text)}
-.plan-modal-price{
-  font-size:1.6rem;font-weight:900;color:#4f46e5;
-  margin-top:.1rem;
-}
-.plan-modal-price span{font-size:.8rem;color:var(--muted);font-weight:600}
-.plan-modal-features-title{
-  font-size:.8rem;font-weight:800;color:var(--muted);
-  text-transform:uppercase;letter-spacing:.08em;
-  margin-bottom:.65rem;
-}
-.plan-modal-features{
-  list-style:none;padding:0;margin:0 0 1.25rem;
-  display:flex;flex-direction:column;gap:.45rem;
-}
-.plan-modal-features li{
-  display:flex;align-items:center;gap:.65rem;
-  font-size:.9rem;color:var(--text);padding:.45rem .6rem;
-  border-radius:9px;background:rgba(99,102,241,.05);
-}
-.plan-modal-features li i{
-  width:20px;text-align:center;flex-shrink:0;
-  color:#4f46e5;font-size:.85rem;
-}
-.plan-modal-wl-note{
-  display:flex;align-items:flex-start;gap:.6rem;
-  padding:.75rem 1rem;border-radius:12px;margin-bottom:1.25rem;
-  background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(217,119,6,.06));
-  border:1px solid rgba(245,158,11,.3);
-  font-size:.8rem;color:#92400e;line-height:1.55;
-}
-[data-theme="dark"] .plan-modal-wl-note{color:#fcd34d;background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2)}
-.plan-modal-wl-note i{color:#f59e0b;flex-shrink:0;margin-top:.15rem}
-.plan-modal-btn{
-  width:100%;padding:.85rem;border:none;border-radius:13px;
-  font-size:.95rem;font-weight:800;cursor:pointer;
-  font-family:'Tajawal',sans-serif;color:#fff;
-  transition:transform .2s,box-shadow .2s;
-}
-.plan-modal-btn:hover{transform:scale(1.02)}
-.plan-modal-btn-green{background:linear-gradient(135deg,#059669,#10b981);box-shadow:0 6px 18px rgba(16,185,129,.3)}
-.plan-modal-btn-purple{background:linear-gradient(135deg,#4f46e5,#7c3aed);box-shadow:0 6px 18px rgba(99,102,241,.35)}
-.plan-modal-btn-gold{background:linear-gradient(135deg,#b45309,#d97706);box-shadow:0 6px 18px rgba(217,119,6,.3)}
-
-/* White-label section */
-.plan-modal-wl-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.25rem;
-}
-.plan-modal-wl-item{
-  display:flex;align-items:center;gap:.5rem;
-  padding:.55rem .75rem;border-radius:10px;
-  background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);
-  font-size:.78rem;color:var(--text);
-}
-.plan-modal-wl-item strong{color:#b45309;font-size:.82rem}
-[data-theme="dark"] .plan-modal-wl-item strong{color:#fbbf24}
-
 /* Wallet cell */
 .bento-wallet{
-  grid-column:1;grid-row:2;
+  grid-column:1;grid-row:1;
   background:linear-gradient(145deg,#fffbeb 0%,#fef3c7 60%,#fff8e1 100%) !important;
   border-color:rgba(245,158,11,.25) !important;
 }
@@ -398,9 +169,9 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-wallet .bento-cell-arrow{color:#b45309}
 
-/* Referral cell — col 1 row 2 */
+/* Referral cell */
 .bento-referral{
-  grid-column:1;grid-row:2;
+  grid-column:2 / 4;grid-row:1;
   cursor:default;
 }
 .bento-referral:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.1)}
@@ -441,7 +212,12 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-ref-share-btn:hover{transform:scale(1.03);box-shadow:0 6px 18px rgba(37,211,102,.35)}
 
-/* Mini stats cell — removed */
+/* Mini stats cell */
+.bento-stats-mini{
+  grid-column:1;grid-row:2;
+  cursor:default;padding:1.3rem 1.4rem;
+}
+.bento-stats-mini:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.08)}
 .bento-mini-stat{
   display:flex;align-items:center;gap:.85rem;
   padding:.6rem .8rem;cursor:pointer;border-radius:10px;
@@ -459,8 +235,8 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-mini-lbl{font-size:.73rem;color:var(--muted);margin-top:.1rem;font-weight:500}
 .bento-mini-sep{height:1px;background:var(--glass-border);margin:.15rem 0}
 
-/* Product cards — moved to row 3 */
-.bento-product{grid-row:3;min-height:200px}
+/* Product cards */
+.bento-product{grid-row:2;min-height:220px}
 .bento-biz{grid-column:2}
 .bento-pro{grid-column:3}
 .bento-product-noise{
@@ -524,7 +300,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-pro-emblem{color:#075985}
 
 /* Quick access */
-.bento-quick-access{grid-column:1;grid-row:3;cursor:default;padding:1.5rem;overflow:visible}
+.bento-quick-access{grid-column:1;grid-row:3;cursor:default;padding:1.5rem}
 .bento-quick-access:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.08)}
 .bento-quick-dots{
   display:inline-flex;gap:4px;align-items:center;
@@ -558,21 +334,31 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;
 }
 
-/* (upgrade cell removed — replaced by bento-pricing in row 1) */
-
-/* Wallet promo hint */
-.bento-wallet-promo-hint{
-  display:flex;align-items:center;gap:.5rem;
-  margin-top:.7rem;padding:.5rem .75rem;
-  background:linear-gradient(135deg,rgba(180,83,9,.12),rgba(217,119,6,.07));
-  border:1px solid rgba(217,119,6,.3);border-radius:10px;
-  font-size:.78rem;color:#92400e;line-height:1.5;
+/* Upgrade cell */
+.bento-upgrade{
+  grid-column:2 / 4;grid-row:3;
+  background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 60%,#f0e6ff 100%) !important;
+  border-color:rgba(124,58,237,.22) !important;cursor:default;
 }
-.bento-wallet-promo-hint i{
-  font-size:.85rem;color:#f59e0b;flex-shrink:0;
-  background:rgba(245,158,11,.15);padding:.35rem;border-radius:50%;
+[data-theme="dark"] .bento-upgrade{background:linear-gradient(135deg,rgba(22,10,40,.95) 0%,rgba(30,14,55,.95) 100%) !important;}
+.bento-upgrade:hover{transform:none;box-shadow:0 8px 32px rgba(124,58,237,.15)}
+.bento-upgrade-icon{
+  width:48px;height:48px;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:#fff;margin-bottom:.85rem;
+  box-shadow:0 6px 20px rgba(124,58,237,.35);
 }
-[data-theme="dark"] .bento-wallet-promo-hint{color:#fcd34d;background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.2);}
+.bento-upgrade-title{font-size:1.05rem;font-weight:900;margin-bottom:.35rem;color:var(--text)}
+.bento-upgrade-desc{font-size:.83rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.bento-upgrade-btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.65rem 1.5rem;border-radius:12px;border:none;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:#fff;font-size:.88rem;font-weight:800;cursor:pointer;
+  font-family:'Tajawal',sans-serif;transition:transform .2s,box-shadow .2s;
+}
+.bento-upgrade-btn:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(124,58,237,.45)}
 
 /* Promo referral hint */
 .bento-ref-promo-hint{
@@ -625,13 +411,13 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 #page-home.active .bento-cell{
   animation:bentoFadeUp .5s ease both;
 }
-#page-home.active .bento-hero-cell    {animation-delay:.0s}
-#page-home.active .bento-referral     {animation-delay:.05s}
-#page-home.active .bento-wallet       {animation-delay:.1s}
-#page-home.active .bento-pricing      {animation-delay:.15s}
-#page-home.active .bento-quick-access {animation-delay:.25s}
-#page-home.active .bento-biz          {animation-delay:.3s}
-#page-home.active .bento-pro          {animation-delay:.35s}
+#page-home.active .bento-wallet   {animation-delay:.05s}
+#page-home.active .bento-referral {animation-delay:.1s}
+#page-home.active .bento-stats-mini{animation-delay:.15s}
+#page-home.active .bento-biz      {animation-delay:.2s}
+#page-home.active .bento-pro      {animation-delay:.25s}
+#page-home.active .bento-quick-access{animation-delay:.3s}
+#page-home.active .bento-upgrade  {animation-delay:.35s}
 
 /* Loading skeleton */
 .bento-loading{
@@ -645,22 +431,21 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 
 /* Responsive */
-@media(max-width:960px){
-  .bento-grid{grid-template-columns:1fr 1fr;gap:.9rem}
-  .bento-hero-cell{grid-column:1/3;grid-row:1}
-  .bento-wallet{grid-column:1;grid-row:2}
-  .bento-pricing{grid-column:2;grid-row:2}
-  .bento-quick-access{grid-column:1;grid-row:3}
-  .bento-biz{grid-column:1;grid-row:4}
-  .bento-pro{grid-column:2;grid-row:4}
+@media(max-width:960px){  .bento-grid{grid-template-columns:1fr 1fr;gap:.9rem}
+  .bento-wallet{grid-column:1;grid-row:1}
+  .bento-referral{grid-column:2;grid-row:1}
+  .bento-stats-mini{grid-column:1 / 3;grid-row:2}
+  .bento-biz{grid-column:1;grid-row:3}
+  .bento-pro{grid-column:2;grid-row:3}
+  .bento-quick-access{grid-column:1;grid-row:4}
+  .bento-upgrade{grid-column:2;grid-row:4}
 }
 @media(max-width:640px){
   .bento-grid{grid-template-columns:1fr;gap:.8rem}
-  .bento-hero-cell,.bento-pricing,.bento-wallet,
-  .bento-referral,.bento-quick-access,
-  .bento-biz,.bento-pro{grid-column:1 !important;grid-row:auto !important}
-  .bento-plans-grid{grid-template-columns:1fr 1fr 1fr}
-  .bento-greeting-title{font-size:1.35rem}
+  .bento-wallet,.bento-referral,.bento-stats-mini,
+  .bento-biz,.bento-pro,.bento-quick-access,.bento-upgrade{grid-column:1 !important;grid-row:auto !important}
+  .bento-hero{flex-direction:column;align-items:flex-start;gap:1rem}
+  .bento-greeting-title{font-size:1.45rem}
   .bento-ref-link-row{flex-wrap:wrap}
   .bento-ref-copy-btn{width:100%}
 }
@@ -816,53 +601,36 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   letter-spacing:.15em;
 }
 
-/* TOPBAR — مُزال، عناصره انتقلت لـ hero toolbar */
-.topbar-title{ display:none; }
-
-/* Hero Toolbar */
-.bento-hero-toolbar{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:1rem;
+/* TOPBAR */
+.topbar{
+  height:64px;
+  background:var(--glass);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--glass-border);
+  display:flex;align-items:center;padding:0 1.75rem;gap:1rem;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 24px rgba(78,115,194,.1);
+  position:sticky;top:0;
 }
-.hero-ham{
-  display:none;width:36px;height:36px;border-radius:9px;
-  border:1px solid var(--glass-border);background:rgba(78,115,194,.07);
-  cursor:pointer;font-size:.95rem;color:var(--text);
-  align-items:center;justify-content:center;transition:var(--tr);
+/* شريط تحتي متدرج من ألوان الشعار */
+.topbar::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent 0%,#4E73C2 30%,#7B9ED4 70%,transparent 100%);
 }
-.hero-ham:hover{background:rgba(78,115,194,.15);}
-.hero-actions{
-  display:flex;align-items:center;gap:.5rem;margin-right:auto;
-}
-.hero-action-btn{
-  width:40px;height:40px;border-radius:50%;
-  border:1.5px solid var(--glass-border);
-  background:rgba(255,255,255,.7);
+.topbar-title{font-size:1.1rem;font-weight:900;color:var(--text);flex:1;position:relative}
+.topbar-title span{font-size:.8rem;font-weight:400;color:var(--muted);margin-right:.5rem}
+.tb-btn{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--glass-border);
+  background:var(--glass);
   cursor:pointer;color:var(--muted);font-size:.9rem;
-  display:flex;align-items:center;justify-content:center;
-  transition:var(--tr);position:relative;
+  display:flex;align-items:center;justify-content:center;transition:var(--tr);position:relative;
   backdrop-filter:blur(8px);
-  flex-shrink:0;
 }
-/* separator بعد أيقونات التحكم */
-.hero-toolbar-divider{
-  width:1px;height:28px;
-  background:linear-gradient(to bottom,transparent,var(--glass-border),transparent);
-  margin:0 .3rem;flex-shrink:0;
-}
-
-.hero-action-btn:hover{
+.tb-btn:hover{
   background:linear-gradient(135deg,#4E73C2,#1E3A8A);
   color:#fff;border-color:transparent;
-  box-shadow:0 4px 14px rgba(78,115,194,.35);
-}
-[data-theme="dark"] .hero-action-btn{background:rgba(255,255,255,.06);}
-.hero-logout-btn:hover{
-  background:linear-gradient(135deg,#dc2626,#b91c1c) !important;
-  box-shadow:0 4px 14px rgba(220,38,38,.35) !important;
-}
-.bento-hero-body{
-  display:flex;align-items:flex-end;justify-content:space-between;
+  box-shadow:0 4px 16px rgba(78,115,194,.4);
 }
 .notif-dot{
   position:absolute;top:6px;right:6px;width:8px;height:8px;
@@ -879,7 +647,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   align-items:center;justify-content:center;transition:var(--tr)}
 
 /* CONTENT */
-.content{flex:1;padding:.75rem 1.75rem 2rem;position:relative;z-index:1;padding-top:0}
+.content{flex:1;padding:1rem 1.75rem 2rem;position:relative;z-index:1}
 .page{display:none!important}
 .page.active{display:block!important;animation:fadeUp .35s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -1236,7 +1004,6 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   .sidebar.open{transform:translateX(0)}
   .main{margin-right:0}
   .ham-btn{display:flex}
-  .hero-ham{display:flex !important}
   .chat-sidebar{display:none}
 }
 .overlay{
@@ -2164,8 +1931,16 @@ function toggleNotifPanel(){
       // placeholder — دالة goto الرئيسية موجودة في أسفل الصفحة
     </script>
 
-  <!-- لوحة الإشعارات — مثبّتة بالزاوية العلوية اليسرى -->
-  <div id="notif-panel" style="display:none;position:fixed;top:1rem;left:1.5rem;width:300px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);z-index:600;padding:1rem;direction:rtl">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <button class="ham-btn" id="ham-btn" onclick="openSidebar()"><i class="fa-solid fa-bars"></i></button>
+    <div class="topbar-title" id="topbar-title">نظرة عامة <span id="topbar-sub">مرحباً بك في منصة جنان بيز</span></div>
+    <button class="tb-btn" id="notif-btn" title="الإشعارات" onclick="toggleNotifPanel()"><i class="fa-solid fa-bell"></i><span class="notif-dot" id="notif-dot"></span></button>
+    <button class="tb-btn" id="theme-toggle" title="تبديل المظهر" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="th-ico"></i></button>
+  </div>
+
+  <!-- لوحة الإشعارات -->
+  <div id="notif-panel" style="display:none;position:fixed;top:72px;left:1.5rem;width:300px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);z-index:500;padding:1rem;direction:rtl">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
       <span style="font-weight:800;font-size:.95rem">الإشعارات</span>
       <button onclick="toggleNotifPanel()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.9rem"><i class="fa-solid fa-xmark"></i></button>
@@ -2180,7 +1955,25 @@ function toggleNotifPanel(){
   <div class="content">
 
     <!-- ===== HOME ===== -->
+    <!-- ══════════════════════════════════════════════════════════
+         OVERVIEW — BENTO GRID HOME
+    ══════════════════════════════════════════════════════════ -->
     <div class="page active" id="page-home">
+
+      <!-- ─── Hero Greeting ─────────────────────────────────────── -->
+      <div class="bento-hero">
+        <div class="bento-hero-left">
+          <div class="bento-greeting-eyebrow">لوحة التحكم</div>
+          <h1 class="bento-greeting-title"><strong>مرحباً، <span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
+          <p class="bento-greeting-sub">إليك نظرة سريعة على حسابك وخدماتك</p>
+        </div>
+        <div class="bento-hero-right">
+          <div class="bento-plan-badge" id="bento-plan-badge">
+            <i class="fa-solid fa-user-check"></i>
+            <span id="bento-plan-label">حساب أساسي</span>
+          </div>
+        </div>
+      </div>
 
       <!-- ─── بانر الإيداع الافتتاحي (يظهر فقط لأول 100 مستخدم) ─── -->
       <div class="bento-promo-banner" id="bento-promo-banner" style="display:none">
@@ -2199,119 +1992,7 @@ function toggleNotifPanel(){
       <!-- ─── Bento Grid ─────────────────────────────────────────── -->
       <div class="bento-grid">
 
-        <!-- ══ خلية 1: البطاقة الترحيبية (كامل العرض) ══ -->
-        <div class="bento-cell bento-hero-cell">
-          <div class="bento-cell-inner">
-            <!-- toolbar: hamburger + icons (يمين) -->
-            <div class="bento-hero-toolbar">
-              <button class="ham-btn hero-ham" id="ham-btn" onclick="openSidebar()">
-                <i class="fa-solid fa-bars"></i>
-              </button>
-              <button class="hero-action-btn" id="theme-toggle" title="تبديل المظهر" onclick="toggleTheme()">
-                <i class="fa-solid fa-moon" id="th-ico"></i>
-              </button>
-              <button class="hero-action-btn" id="notif-btn" title="الإشعارات" onclick="toggleNotifPanel()">
-                <i class="fa-solid fa-bell"></i>
-                <span class="notif-dot" id="notif-dot"></span>
-              </button>
-              <button class="hero-action-btn hero-logout-btn" title="تسجيل الخروج" onclick="logout()">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              </button>
-              <div class="hero-toolbar-divider"></div>
-            </div>
-            <!-- التحية (وسط) -->
-            <div style="flex:1;text-align:right;min-width:0">
-              <div class="bento-greeting-eyebrow" style="font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;opacity:.55;margin-bottom:.1rem">لوحة التحكم</div>
-              <h1 class="bento-greeting-title"><strong>مرحباً، <span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
-            </div>
-            <!-- chips العدادات (وسط) -->
-            <div class="bento-hero-stats" style="margin-top:0">
-              <div class="bento-hero-stat-chip chip-blue">
-                <i class="fa-solid fa-user-plus"></i>
-                <span id="hero-stat-referrals" class="bento-loading">0</span>
-                <span style="opacity:.65;font-weight:600">إحالة</span>
-              </div>
-              <div class="bento-hero-stat-chip chip-green">
-                <i class="fa-solid fa-circle-check"></i>
-                <span id="hero-stat-rewarded" class="bento-loading">0</span>
-                <span style="opacity:.65;font-weight:600">مكافأة</span>
-              </div>
-              <div class="bento-hero-stat-chip chip-amber">
-                <i class="fa-solid fa-clock"></i>
-                <span id="hero-stat-pending" class="bento-loading">0</span>
-                <span style="opacity:.65;font-weight:600">انتظار</span>
-              </div>
-            </div>
-            <!-- badge الباقة (أقصى اليسار) -->
-            <div class="bento-plan-badge" id="bento-plan-badge">
-              <i class="fa-solid fa-user-check"></i>
-              <span id="bento-plan-label">حساب أساسي</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ══ خلية 2: ترقية الباقة (Col 2, Row 2) ══ -->
-        <div class="bento-cell bento-pricing" id="bento-pricing-cell">
-          <div class="bento-cell-inner">
-            <div class="bento-cell-label">
-              <i class="fa-solid fa-arrow-up-right-dots" style="color:#7c3aed"></i>
-              <span style="color:#4f46e5;font-weight:900">ترقية باقتك</span>
-            </div>
-            <div class="bento-plans-grid">
-
-              <!-- شريط الانطلاق -->
-              <div class="bento-plan-bar" id="plan-bar-launch" onclick="openPlanModal('launch')">
-                <div class="bento-plan-bar-icon" style="background:linear-gradient(135deg,#059669,#10b981)">
-                  <i class="fa-solid fa-seedling"></i>
-                </div>
-                <div class="bento-plan-bar-body">
-                  <div class="bento-plan-bar-top">
-                    <span class="bento-plan-bar-name">باقة الانطلاق</span>
-                    <span class="bento-plan-bar-price">149 <em>ر.س</em></span>
-                  </div>
-                  <div class="bento-plan-bar-track">
-                    <div class="bento-plan-bar-fill" style="width:25%;background:linear-gradient(90deg,#059669,#34d399);box-shadow:0 0 6px #10b98180"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- شريط رواد الأعمال -->
-              <div class="bento-plan-bar" id="plan-bar-entrepreneur" onclick="openPlanModal('entrepreneur')">
-                <div class="bento-plan-bar-icon" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">
-                  <i class="fa-solid fa-rocket"></i>
-                </div>
-                <div class="bento-plan-bar-body">
-                  <div class="bento-plan-bar-top">
-                    <span class="bento-plan-bar-name">رواد الأعمال <span class="bento-plan-bar-popular-badge">⭐</span></span>
-                    <span class="bento-plan-bar-price">500 <em>ر.س</em></span>
-                  </div>
-                  <div class="bento-plan-bar-track">
-                    <div class="bento-plan-bar-fill" style="width:60%;background:linear-gradient(90deg,#8b5cf6,#e879f9);box-shadow:0 0 6px #a855f780"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- شريط المستثمر -->
-              <div class="bento-plan-bar" id="plan-bar-investor" onclick="openPlanModal('investor')">
-                <div class="bento-plan-bar-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
-                  <i class="fa-solid fa-gem"></i>
-                </div>
-                <div class="bento-plan-bar-body">
-                  <div class="bento-plan-bar-top">
-                    <span class="bento-plan-bar-name">باقة المستثمر</span>
-                    <span class="bento-plan-bar-price">1200 <em>ر.س</em></span>
-                  </div>
-                  <div class="bento-plan-bar-track">
-                    <div class="bento-plan-bar-fill" style="width:100%;background:linear-gradient(90deg,#f59e0b,#fde68a);box-shadow:0 0 6px #f59e0b80"></div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- ══ خلية 3: رصيد المحفظة (يسار في RTL = Col 3, Row 1) ══ -->
+        <!-- ══ خلية 1: رصيد المحفظة (كبيرة) ══ -->
         <div class="bento-cell bento-wallet" onclick="goto('referral')">
           <div class="bento-cell-glow bento-glow-gold"></div>
           <div class="bento-cell-inner">
@@ -2322,13 +2003,83 @@ function toggleNotifPanel(){
               <span class="bento-wallet-num" id="bento-wallet-sar">0.00</span>
               <span class="bento-wallet-cur">ر.س</span>
             </div>
-            <div class="bento-wallet-promo-hint">
-              <i class="fa-solid fa-percent"></i>
-              <span>اكسب <strong>5% عمولة فورية</strong> عن كل إحالة ناجحة</span>
-            </div>
             <div class="bento-cell-arrow" style="margin-top:.6rem"><i class="fa-solid fa-arrow-left"></i> إدارة المحفظة</div>
           </div>
           <div class="bento-wallet-icon-bg"><i class="fa-solid fa-wallet"></i></div>
+        </div>
+
+        <!-- ══ خلية 2: رابط الإحالة ══ -->
+        <div class="bento-cell bento-referral">
+          <div class="bento-cell-glow bento-glow-purple"></div>
+          <div class="bento-cell-inner">
+            <div class="bento-cell-label">
+              <i class="fa-solid fa-link"></i> رابط الإحالة
+            </div>
+            <div class="bento-ref-link-row">
+              <input id="bento-ref-input" type="text" readonly
+                class="bento-ref-input" value="جارٍ التحميل..." />
+              <button class="bento-ref-copy-btn" onclick="bentoCopyRef(event)">
+                <i class="fa-solid fa-copy"></i>
+                <span>نسخ</span>
+              </button>
+            </div>
+            <div class="bento-ref-stats">
+              <div class="bento-ref-stat">
+                <span class="bento-ref-stat-num" id="bento-ref-total">0</span>
+                <span class="bento-ref-stat-lbl">إحالة</span>
+              </div>
+              <div class="bento-ref-divider"></div>
+              <div class="bento-ref-stat">
+                <span class="bento-ref-stat-num bento-green" id="bento-ref-rewarded">0</span>
+                <span class="bento-ref-stat-lbl">مكافأة</span>
+              </div>
+              <div class="bento-ref-divider"></div>
+              <div class="bento-ref-stat">
+                <span class="bento-ref-stat-num bento-amber" id="bento-ref-pending">0</span>
+                <span class="bento-ref-stat-lbl">قيد الانتظار</span>
+              </div>
+            </div>
+            <button class="bento-ref-share-btn" onclick="bentoCopyRef(event);bentoShareRef()">
+              <i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب
+            </button>
+            <div class="bento-ref-promo-hint">
+              <i class="fa-solid fa-circle-info"></i>
+              احصل على <strong>عمولة 10%</strong> كرصيد في محفظتك عن أول خدمة يطلبها من تُحيله للمنصة
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ خلية 3: إحصائيات سريعة ══ -->
+        <div class="bento-cell bento-stats-mini">
+          <div class="bento-mini-stat" onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')">
+            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.12));color:#4E73C2">
+              <i class="fa-solid fa-file-chart-column"></i>
+            </div>
+            <div>
+              <div class="bento-mini-num" id="sc-reports">0</div>
+              <div class="bento-mini-lbl">تقرير مُنجز</div>
+            </div>
+          </div>
+          <div class="bento-mini-sep"></div>
+          <div class="bento-mini-stat" onclick="gotoSub('robot','navgrp-gateway','nav-robot')">
+            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(99,0,162,.08));color:#7c3aed">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div>
+              <div class="bento-mini-num" id="sc-chats">0</div>
+              <div class="bento-mini-lbl">جلسة مساعد</div>
+            </div>
+          </div>
+          <div class="bento-mini-sep"></div>
+          <div class="bento-mini-stat" onclick="gotoSub('investor','navgrp-gateway','nav-investor')">
+            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.08));color:#10b981">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <div>
+              <div class="bento-mini-num" id="sc-partners">0</div>
+              <div class="bento-mini-lbl">شراكة نشطة</div>
+            </div>
+          </div>
         </div>
 
         <!-- ══ خلية 4: جنان بيز (بطاقة الأعمال — كبيرة) ══ -->
@@ -2385,7 +2136,7 @@ function toggleNotifPanel(){
           </div>
         </div>
 
-        <!-- ══ خلية 6: وصول سريع (Col 1, Row 3) ══ -->
+        <!-- ══ خلية 6: وصول سريع — دوّار كل 20 ثانية ══ -->
         <div class="bento-cell bento-quick-access">
           <div class="bento-cell-label" style="margin-bottom:.9rem">
             <i class="fa-solid fa-bolt"></i> وصول سريع
@@ -2394,68 +2145,23 @@ function toggleNotifPanel(){
           <div class="bento-quick-grid" id="bento-quick-grid"></div>
         </div>
 
+        <!-- ══ خلية 7: الباقة الحالية / Upgrade ══ -->
+        <div class="bento-cell bento-upgrade" id="bento-upgrade-cell">
+          <div class="bento-cell-glow bento-glow-purple" style="opacity:.4"></div>
+          <div class="bento-cell-inner">
+            <div class="bento-upgrade-icon"><i class="fa-solid fa-rocket"></i></div>
+            <div class="bento-upgrade-title" id="bento-upgrade-title">ترقية الباقة</div>
+            <p class="bento-upgrade-desc" id="bento-upgrade-desc">
+              احصل على دراسات جدوى غير محدودة وتقارير احترافية
+            </p>
+            <button class="bento-upgrade-btn" onclick="goto('referral')">
+              <i class="fa-solid fa-crown"></i> اشترك الآن
+            </button>
+          </div>
+        </div>
+
       </div><!-- end bento-grid -->
-
-      <!-- عناصر مخفية للإحالة (يستخدمها JS) -->
-      <input id="bento-ref-input" type="hidden" value="" />
-      <span id="bento-ref-total" style="display:none">0</span>
-      <span id="bento-ref-rewarded" style="display:none">0</span>
-      <span id="bento-ref-pending" style="display:none">0</span>
     </div> <!-- نهاية الصفحة الرئيسية -->
-
-    <!-- ══════════════════════════════════════════════════════════
-         مودال تفاصيل الباقة
-    ══════════════════════════════════════════════════════════ -->
-    <div class="plan-modal-overlay" id="plan-modal-overlay" onclick="closePlanModal(event)">
-      <div class="plan-modal" id="plan-modal">
-        <button class="plan-modal-close" onclick="closePlanModal()" aria-label="إغلاق">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <!-- Header -->
-        <div class="plan-modal-header">
-          <div class="plan-modal-icon" id="pm-icon"></div>
-          <div>
-            <div class="plan-modal-title" id="pm-name"></div>
-            <div class="plan-modal-price" id="pm-price"></div>
-          </div>
-        </div>
-        <!-- الخدمات المشمولة -->
-        <div class="plan-modal-features-title">الخدمات المشمولة</div>
-        <ul class="plan-modal-features" id="pm-features"></ul>
-        <!-- تنبيه الوترمارك -->
-        <div class="plan-modal-wl-note">
-          <i class="fa-solid fa-stamp"></i>
-          <span>
-            جميع التقارير والدراسات تحمل شعار جنان بيز كعلامة مائية.
-            لإزالة العلامة المائية يمكن الحصول على <strong>ترخيص الوايت ليبل</strong> كإضافة منفصلة.
-          </span>
-        </div>
-        <!-- أسعار الوايت ليبل -->
-        <div class="plan-modal-features-title" style="margin-top:0">إضافة: إزالة العلامة المائية (دفع مرة واحدة)</div>
-        <div class="plan-modal-wl-grid">
-          <div class="plan-modal-wl-item">
-            <i class="fa-solid fa-brain" style="color:#7c3aed;width:16px"></i>
-            <div><div style="font-size:.7rem;color:var(--muted)">تحليل ذكي</div><strong>450 ر.س</strong></div>
-          </div>
-          <div class="plan-modal-wl-item">
-            <i class="fa-solid fa-pen-nib" style="color:#4E73C2;width:16px"></i>
-            <div><div style="font-size:.7rem;color:var(--muted)">تحليل يدوي</div><strong>250 ر.س</strong></div>
-          </div>
-          <div class="plan-modal-wl-item">
-            <i class="fa-solid fa-file-lines" style="color:#059669;width:16px"></i>
-            <div><div style="font-size:.7rem;color:var(--muted)">دراسة مبسطة</div><strong>1,250 ر.س</strong></div>
-          </div>
-          <div class="plan-modal-wl-item">
-            <i class="fa-solid fa-file-chart-column" style="color:#b45309;width:16px"></i>
-            <div><div style="font-size:.7rem;color:var(--muted)">دراسة مفصلة</div><strong>2,000 ر.س</strong></div>
-          </div>
-        </div>
-        <!-- CTA -->
-        <button class="plan-modal-btn" id="pm-btn" onclick="closePlanModal();goto('billing')">
-          <i class="fa-solid fa-crown"></i> اشترك الآن
-        </button>
-      </div>
-    </div>
 
     <!-- ===== بوابة ريادة الأعمال ===== -->
     <div class="page" id="page-entrepreneur">
@@ -4999,134 +4705,6 @@ function toggleNotifPanel(){
     </div>
 
     <!-- ===== REFERRAL (نظام الإحالات والنقاط) ===== -->
-    <!-- ===== صفحة الاشتراك ===== -->
-    <div class="page" id="page-billing">
-
-      <!-- Hero -->
-      <div style="background:linear-gradient(135deg,#0f172a,#1e3a8a);border-radius:20px;padding:2rem;margin-bottom:1.5rem;color:#fff;position:relative;overflow:hidden">
-        <div style="position:absolute;left:-20px;top:-20px;font-size:8rem;opacity:.06;line-height:1">🏆</div>
-        <h2 style="font-size:1.4rem;font-weight:900;margin-bottom:.3rem">
-          <i class="fa-solid fa-tags" style="margin-left:.5rem;color:#93c5fd"></i>
-          اختر الباقة المناسبة لنشاطك
-        </h2>
-        <p style="opacity:.85;font-size:.88rem;margin:0">
-          كل باقة مصممة لمرحلة مختلفة من رحلتك التجارية · دفع آمن عبر Moyasar
-        </p>
-        <!-- إشعار الإحالة -->
-        <div style="margin-top:1rem;display:inline-flex;align-items:center;gap:.6rem;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.4);border-radius:10px;padding:.5rem 1rem;font-size:.82rem">
-          <i class="fa-solid fa-percent" style="color:#fcd34d"></i>
-          <span>اكسب <strong>5%</strong> عمولة فورية على كل إحالة (7.45 — 25 — 60 ر.س)</span>
-        </div>
-      </div>
-
-      <!-- شبكة الباقات الثلاث -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.25rem" id="billing-plans-grid">
-
-        <!-- باقة الانطلاق -->
-        <div style="background:var(--card,var(--glass));border-radius:18px;padding:1.5rem;box-shadow:var(--shadow);border:1.5px solid rgba(5,150,105,.25);position:relative">
-          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem">
-            <div style="width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;box-shadow:0 6px 18px rgba(16,185,129,.35)">
-              <i class="fa-solid fa-seedling"></i>
-            </div>
-            <div>
-              <div style="font-size:1rem;font-weight:900;color:var(--text)">باقة الانطلاق</div>
-              <div style="font-size:.75rem;color:var(--muted)">مثالية للمبتدئين</div>
-            </div>
-            <div style="margin-right:auto;text-align:left">
-              <div style="font-size:1.6rem;font-weight:900;color:#059669">149<span style="font-size:.8rem;color:var(--muted);font-weight:600"> ر.س</span></div>
-            </div>
-          </div>
-          <ul style="list-style:none;padding:0;margin:0 0 1.25rem;display:flex;flex-direction:column;gap:.5rem">
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#059669;width:14px"></i> تحليل مشروع واحد</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#059669;width:14px"></i> تصميم شعار احترافي</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#059669;width:14px"></i> خدمتا تصميم إضافيتان</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#059669;width:14px"></i> تحميل 10 دراسات/ندوات</li>
-          </ul>
-          <button onclick="startCheckout('launch_monthly',149)" id="btn-launch"
-            style="width:100%;padding:.8rem;border:none;border-radius:12px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-size:.9rem;font-weight:800;cursor:pointer;font-family:'Tajawal',sans-serif;transition:transform .2s,box-shadow .2s">
-            <i class="fa-solid fa-seedling"></i> اشترك بـ 149 ر.س
-          </button>
-          <div style="text-align:center;margin-top:.6rem;font-size:.72rem;color:var(--muted)">عمولة إحالة: <strong style="color:#059669">7.45 ر.س</strong></div>
-        </div>
-
-        <!-- باقة رواد الأعمال (الأبرز) -->
-        <div style="background:linear-gradient(145deg,rgba(99,102,241,.08),rgba(139,92,246,.05));border-radius:18px;padding:1.5rem;box-shadow:var(--shadow),0 8px 32px rgba(99,102,241,.18);border:2px solid rgba(99,102,241,.45);position:relative">
-          <!-- شارة الأكثر طلباً -->
-          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:.72rem;font-weight:800;padding:.3rem 1rem;border-radius:20px;white-space:nowrap">
-            ⭐ الأكثر طلباً
-          </div>
-          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;margin-top:.5rem">
-            <div style="width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;box-shadow:0 6px 18px rgba(99,102,241,.4)">
-              <i class="fa-solid fa-rocket"></i>
-            </div>
-            <div>
-              <div style="font-size:1rem;font-weight:900;color:var(--text)">باقة رواد الأعمال</div>
-              <div style="font-size:.75rem;color:var(--muted)">للمشاريع المتنامية</div>
-            </div>
-            <div style="margin-right:auto;text-align:left">
-              <div style="font-size:1.6rem;font-weight:900;color:#4f46e5">500<span style="font-size:.8rem;color:var(--muted);font-weight:600"> ر.س</span></div>
-            </div>
-          </div>
-          <ul style="list-style:none;padding:0;margin:0 0 1.25rem;display:flex;flex-direction:column;gap:.5rem">
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#4f46e5;width:14px"></i> 3 تحليلات مشاريع متقدمة</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#4f46e5;width:14px"></i> دراسة جدوى مبسطة كاملة</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#4f46e5;width:14px"></i> 5 خدمات تصميم احترافية</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#4f46e5;width:14px"></i> تحميل 25 دراسة/ندوة</li>
-          </ul>
-          <button onclick="startCheckout('entrepreneur_monthly',500)" id="btn-entrepreneur"
-            style="width:100%;padding:.8rem;border:none;border-radius:12px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:.9rem;font-weight:800;cursor:pointer;font-family:'Tajawal',sans-serif;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 20px rgba(99,102,241,.4)">
-            <i class="fa-solid fa-rocket"></i> اشترك بـ 500 ر.س
-          </button>
-          <div style="text-align:center;margin-top:.6rem;font-size:.72rem;color:var(--muted)">عمولة إحالة: <strong style="color:#4f46e5">25 ر.س</strong></div>
-        </div>
-
-        <!-- باقة المستثمر -->
-        <div style="background:linear-gradient(145deg,rgba(180,83,9,.06),rgba(217,119,6,.03));border-radius:18px;padding:1.5rem;box-shadow:var(--shadow);border:1.5px solid rgba(217,119,6,.3);position:relative">
-          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem">
-            <div style="width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,#b45309,#d97706);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;box-shadow:0 6px 18px rgba(217,119,6,.35)">
-              <i class="fa-solid fa-gem"></i>
-            </div>
-            <div>
-              <div style="font-size:1rem;font-weight:900;color:var(--text)">باقة المستثمر</div>
-              <div style="font-size:.75rem;color:var(--muted)">للمستثمرين ورواد الأعمال</div>
-            </div>
-            <div style="margin-right:auto;text-align:left">
-              <div style="font-size:1.6rem;font-weight:900;color:#b45309">1200<span style="font-size:.8rem;color:var(--muted);font-weight:600"> ر.س</span></div>
-            </div>
-          </div>
-          <ul style="list-style:none;padding:0;margin:0 0 1.25rem;display:flex;flex-direction:column;gap:.5rem">
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#b45309;width:14px"></i> 5 تحليلات مشاريع</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#b45309;width:14px"></i> دراستا جدوى مبسطة</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#b45309;width:14px"></i> دراسة جدوى مفصلة كاملة</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check" style="color:#b45309;width:14px"></i> 10 خدمات تصميم</li>
-            <li style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-gem" style="color:#b45309;width:14px"></i> <strong>تحميلات لامحدودة</strong></li>
-          </ul>
-          <button onclick="startCheckout('investor_monthly',1200)" id="btn-investor"
-            style="width:100%;padding:.8rem;border:none;border-radius:12px;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;font-size:.9rem;font-weight:800;cursor:pointer;font-family:'Tajawal',sans-serif;transition:transform .2s,box-shadow .2s">
-            <i class="fa-solid fa-gem"></i> اشترك بـ 1200 ر.س
-          </button>
-          <div style="text-align:center;margin-top:.6rem;font-size:.72rem;color:var(--muted)">عمولة إحالة: <strong style="color:#b45309">60 ر.س</strong></div>
-        </div>
-
-      </div><!-- end billing-plans-grid -->
-
-      <!-- ضمانات -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:.75rem;background:var(--glass);border-radius:12px;border:1px solid var(--glass-border);font-size:.78rem;color:var(--muted);flex-wrap:wrap">
-        <span><i class="fa-solid fa-shield-halved" style="color:#4E73C2"></i> دفع آمن ومشفر</span>
-        <span><i class="fa-solid fa-rotate-right" style="color:#4E73C2"></i> قابل للإلغاء في أي وقت</span>
-        <span><i class="fa-solid fa-headset" style="color:#4E73C2"></i> دعم فني 24/7</span>
-        <span><i class="fa-solid fa-gift" style="color:#f59e0b"></i> هدية 50 ر.س للأوائل</span>
-      </div>
-
-      <!-- رسالة المشترك الحالي -->
-      <div id="billing-active-msg" style="display:none;margin-top:1rem;background:linear-gradient(135deg,rgba(5,150,105,.1),rgba(16,185,129,.06));border:1px solid rgba(16,185,129,.3);border-radius:16px;padding:1.5rem;text-align:center">
-        <div style="font-size:2rem;margin-bottom:.5rem">🎉</div>
-        <div style="font-weight:900;font-size:1.05rem;color:#059669">أنت مشترك بالفعل!</div>
-        <div style="font-size:.85rem;color:var(--muted);margin-top:.3rem" id="billing-active-detail">اشتراكك نشط — استمتع بجميع خدمات باقتك</div>
-      </div>
-
-    </div><!-- end page-billing -->
-
     <div class="page" id="page-referral">
 
       <!-- HERO -->
@@ -5525,14 +5103,6 @@ function initBentoHome(){
     if(elR) elR.textContent = d.referral.rewarded || 0;
     if(elP) elP.textContent = d.referral.pending || 0;
 
-    /* عدادات Hero card */
-    var hT = document.getElementById('hero-stat-referrals');
-    var hR = document.getElementById('hero-stat-rewarded');
-    var hP = document.getElementById('hero-stat-pending');
-    if(hT){ hT.textContent = d.referral.total || 0; hT.classList.remove('bento-loading'); }
-    if(hR){ hR.textContent = d.referral.rewarded || 0; hR.classList.remove('bento-loading'); }
-    if(hP){ hP.textContent = d.referral.pending || 0; hP.classList.remove('bento-loading'); }
-
     /* إحصاءات سريعة */
     var elRep = document.getElementById('sc-reports');
     var elCht = document.getElementById('sc-chats');
@@ -5543,50 +5113,23 @@ function initBentoHome(){
 
     /* الباقة */
     var plan = (d.subscription && d.subscription.plan) ? d.subscription.plan : 'free';
-    var planLabels = {
-      free:         'حساب أساسي',
-      launch:       'باقة الانطلاق',
-      entrepreneur: 'باقة رواد الأعمال',
-      investor:     'باقة المستثمر',
-      platinum:     'بلاتيني',
-      biz:          'jenan biz',
-      pro:          'jenan pro',
-    };
-    var planIcons = {
-      free:         'fa-solid fa-user-check',
-      launch:       'fa-solid fa-seedling',
-      entrepreneur: 'fa-solid fa-rocket',
-      investor:     'fa-solid fa-gem',
-      platinum:     'fa-solid fa-gem',
-      biz:          'fa-solid fa-briefcase',
-      pro:          'fa-solid fa-terminal',
-    };
-    var lbl   = document.getElementById('bento-plan-label');
+    var planLabels = { free:'حساب أساسي', biz:'jenan biz', pro:'jenan pro' };
+    var planIcons  = { free:'fa-solid fa-user-check', biz:'fa-solid fa-briefcase', pro:'fa-solid fa-terminal' };
+    var lbl = document.getElementById('bento-plan-label');
     var badge = document.getElementById('bento-plan-badge');
     if(lbl) lbl.textContent = planLabels[plan] || planLabels.free;
     if(badge){
       var ico = badge.querySelector('i');
       if(ico) ico.className = planIcons[plan] || planIcons.free;
-      badge.classList.remove('is-platinum');
-      if(plan !== 'free') badge.classList.add('is-platinum');
-    }
-    /* تحديد الشريط النشط في ترقية الباقة */
-    var planToBar = {
-      launch:       'plan-bar-launch',
-      entrepreneur: 'plan-bar-entrepreneur',
-      investor:     'plan-bar-investor',
-      platinum:     'plan-bar-investor',
-      biz:          'plan-bar-entrepreneur',
-      pro:          'plan-bar-investor',
-    };
-    var activeBarId = planToBar[plan];
-    if(activeBarId){
-      var activeBar = document.getElementById(activeBarId);
-      if(activeBar){
-        activeBar.classList.add('is-active-plan');
-        activeBar.onclick = null; /* لا تفتح المودال للباقة الحالية */
-        activeBar.style.cursor = 'default';
+      if(plan !== 'free'){
+        badge.style.background = 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))';
+        badge.style.borderColor = 'rgba(78,115,194,.35)';
+        badge.style.color = '#1e3a8a';
       }
+    }
+    if(plan !== 'free'){
+      var cell = document.getElementById('bento-upgrade-cell');
+      if(cell) cell.style.display = 'none';
     }
 
     /* بانر الإيداع الافتتاحي */
@@ -5605,17 +5148,7 @@ function initBentoHome(){
   });
 }
 /* تشغيل عند تحميل الصفحة */
-document.addEventListener('DOMContentLoaded', function(){
-  initBentoHome();
-  if(typeof window._initQuickAccess === 'function') window._initQuickAccess();
-});
-/* fallback: تأكد من تشغيل الكاروسيل بعد اكتمال تحميل الموارد */
-window.addEventListener('load', function(){
-  var grid = document.getElementById('bento-quick-grid');
-  if(grid && !grid.innerHTML.trim()){
-    if(typeof window._initQuickAccess === 'function') window._initQuickAccess();
-  }
-});
+document.addEventListener('DOMContentLoaded', initBentoHome);
 
 /* نسخ رابط الإحالة */
 function bentoCopyRef(e){
@@ -5731,9 +5264,6 @@ function bentoShareRef(){
     _startRotation();
   }
 
-  /* تعريض الدالة للـ global scope لتُستدعى بشكل موثوق */
-  window._initQuickAccess = initQuickAccess;
-
   /* تشغيل بعد تحميل الصفحة */
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', initQuickAccess);
@@ -5811,8 +5341,7 @@ function goto(page) {
     document.getElementById('nav-'+page)?.classList.add('active');
   }
   const m = pageMap[page]||{title:page,sub:''};
-  const _tt = document.getElementById('topbar-title');
-  if(_tt) _tt.innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
+  document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
   closeSidebar();
   if(page==='robot') initProjectAnalysis();
   if(page==='paid-analysis') initPaidAnalysis();
@@ -5824,7 +5353,6 @@ function goto(page) {
   if(page==='admin') renderAdminPanel();
   if(page==='compliance') initCompliancePage();
   if(page==='referral') loadReferralData();
-  if(page==='billing')  initBillingPage();
   // مزامنة روبوت جنان العالمي
   if (typeof _jbSyncPage === 'function') _jbSyncPage();
   // مزامنة مستشار الاستثمار
@@ -5853,8 +5381,7 @@ function gotoSub(page, groupId, subItemId) {
   if(page==='projectcopilot') { showProjectCopilotModal(); return; }
   document.getElementById('page-'+page)?.classList.add('active');
   const m = pageMap[page]||{title:page,sub:''};
-  const _tt2 = document.getElementById('topbar-title');
-  if(_tt2) _tt2.innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
+  document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
   closeSidebar();
   if(page==='robot') initProjectAnalysis();
   if(page==='paid-analysis') initPaidAnalysis();
@@ -11661,155 +11188,6 @@ function renderSupplyGrid() {
 // ════════════════════════════════════════════════════════
 const _API_BASE = (typeof API_BASE !== 'undefined') ? API_BASE : 'http://localhost:8002';
 let _refProfile = null;
-
-/* ===== صفحة الاشتراك (Billing) ===== */
-function initBillingPage(){
-  var token = localStorage.getItem('jb-token') || '';
-  var activeMsg    = document.getElementById('billing-active-msg');
-  var activeDetail = document.getElementById('billing-active-detail');
-  var planLabels   = { launch:'باقة الانطلاق', entrepreneur:'باقة رواد الأعمال',
-                       investor:'باقة المستثمر', platinum:'بلاتيني' };
-  var planBtnIds   = { launch:'btn-launch', entrepreneur:'btn-entrepreneur', investor:'btn-investor' };
-  if(!token) return;
-  fetch('/api/dashboard/overview', { headers:{ 'Authorization':'Bearer '+token } })
-  .then(function(r){ return r.ok ? r.json() : null; })
-  .then(function(d){
-    if(!d) return;
-    var plan = (d.subscription && d.subscription.plan) ? d.subscription.plan : 'free';
-    if(plan !== 'free'){
-      /* مشترك — تعطيل زر الباقة الحالية وإظهار رسالة الترحيب */
-      if(activeMsg) activeMsg.style.display = 'block';
-      if(activeDetail) activeDetail.textContent = 'اشتراكك في ' + (planLabels[plan] || plan) + ' نشط — استمتع بجميع الخدمات';
-      var activeBtnId = planBtnIds[plan] || (plan==='biz'?'btn-entrepreneur':plan==='pro'?'btn-investor':null);
-      if(activeBtnId){
-        var btn = document.getElementById(activeBtnId);
-        if(btn){ btn.textContent = '✓ باقتك الحالية'; btn.disabled = true; btn.style.opacity = '.65'; btn.style.cursor = 'default'; }
-      }
-    } else {
-      if(activeMsg) activeMsg.style.display = 'none';
-    }
-  }).catch(function(){});
-}
-
-/* ══════════════════════════════════════════════
-   مودال تفاصيل الباقة
-══════════════════════════════════════════════ */
-var _PLAN_DATA = {
-  launch: {
-    name: 'باقة الانطلاق',
-    price: '149',
-    icon: 'fa-solid fa-seedling',
-    iconBg: 'linear-gradient(135deg,#059669,#10b981)',
-    btnClass: 'plan-modal-btn-green',
-    features: [
-      {icon:'fa-solid fa-magnifying-glass-chart', text:'تحليل مشروع واحد'},
-      {icon:'fa-solid fa-palette', text:'تصميم شعار احترافي'},
-      {icon:'fa-solid fa-pen-ruler', text:'خدمتا تصميم إضافيتان'},
-      {icon:'fa-solid fa-download', text:'10 تحميلات دراسات/ندوات'},
-      {icon:'fa-solid fa-stamp', text:'تقارير بعلامة جنان بيز'},
-    ],
-    plan_type: 'launch_monthly'
-  },
-  entrepreneur: {
-    name: 'رواد الأعمال',
-    price: '500',
-    icon: 'fa-solid fa-rocket',
-    iconBg: 'linear-gradient(135deg,#4f46e5,#7c3aed)',
-    btnClass: 'plan-modal-btn-purple',
-    features: [
-      {icon:'fa-solid fa-magnifying-glass-chart', text:'3 تحليلات مشاريع متقدمة'},
-      {icon:'fa-solid fa-file-lines', text:'دراسة جدوى مبسطة كاملة'},
-      {icon:'fa-solid fa-pen-ruler', text:'5 خدمات تصميم'},
-      {icon:'fa-solid fa-download', text:'25 تحميلاً دراسات/ندوات'},
-      {icon:'fa-solid fa-headset', text:'دعم فني مخصص'},
-      {icon:'fa-solid fa-stamp', text:'تقارير بعلامة جنان بيز'},
-    ],
-    plan_type: 'entrepreneur_monthly'
-  },
-  investor: {
-    name: 'باقة المستثمر',
-    price: '1200',
-    icon: 'fa-solid fa-gem',
-    iconBg: 'linear-gradient(135deg,#b45309,#d97706)',
-    btnClass: 'plan-modal-btn-gold',
-    features: [
-      {icon:'fa-solid fa-magnifying-glass-chart', text:'5 تحليلات مشاريع'},
-      {icon:'fa-solid fa-file-lines', text:'دراستا جدوى مبسطة'},
-      {icon:'fa-solid fa-file-chart-column', text:'دراسة جدوى مفصلة'},
-      {icon:'fa-solid fa-pen-ruler', text:'10 خدمات تصميم'},
-      {icon:'fa-solid fa-infinity', text:'تحميلات لامحدودة'},
-      {icon:'fa-solid fa-handshake', text:'وصول لسوق المستثمرين'},
-      {icon:'fa-solid fa-stamp', text:'تقارير بعلامة جنان بيز'},
-    ],
-    plan_type: 'investor_monthly'
-  }
-};
-
-function openPlanModal(planKey) {
-  var d = _PLAN_DATA[planKey];
-  if(!d) return;
-  document.getElementById('pm-name').textContent  = d.name;
-  document.getElementById('pm-price').innerHTML   = d.price + ' <span>ر.س / شهرياً</span>';
-  var ico = document.getElementById('pm-icon');
-  ico.innerHTML = '<i class="' + d.icon + '"></i>';
-  ico.style.background = d.iconBg;
-  var featHtml = d.features.map(function(f){
-    return '<li><i class="' + f.icon + '"></i>' + f.text + '</li>';
-  }).join('');
-  document.getElementById('pm-features').innerHTML = featHtml;
-  var btn = document.getElementById('pm-btn');
-  btn.className = 'plan-modal-btn ' + d.btnClass;
-  btn.onclick = function(){ closePlanModal(); startCheckout(d.plan_type, parseInt(d.price)); };
-  var overlay = document.getElementById('plan-modal-overlay');
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closePlanModal(evt) {
-  if(evt && evt.target !== document.getElementById('plan-modal-overlay')) return;
-  document.getElementById('plan-modal-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') closePlanModal();
-});
-
-/* بدء عملية الدفع عبر Moyasar */
-function startCheckout(planType, amountSar){
-  var token = localStorage.getItem('jb-token') || '';
-  if(!token){ alert('يرجى تسجيل الدخول أولاً'); return; }
-  /* تعطيل الزر المضغوط */
-  var planBtnMap = {
-    launch_monthly:'btn-launch',
-    entrepreneur_monthly:'btn-entrepreneur',
-    investor_monthly:'btn-investor',
-    platinum_monthly:'billing-subscribe-btn'
-  };
-  var btnId = planBtnMap[planType];
-  var btn = btnId ? document.getElementById(btnId) : null;
-  if(btn){ btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جارٍ التحضير...'; }
-
-  fetch('/api/payment/checkout', {
-    method:'POST',
-    headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json' },
-    body: JSON.stringify({ plan_type: planType, amount_sar: amountSar })
-  })
-  .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
-  .then(function(data){
-    if(data && data.checkout_url){
-      window.location.href = data.checkout_url;
-    } else {
-      alert('حدث خطأ أثناء إنشاء رابط الدفع. حاول مجدداً.');
-      if(btn){ btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-gem"></i> اشترك الآن'; }
-    }
-  })
-  .catch(function(err){
-    alert('تعذّر الاتصال بخادم الدفع. حاول مجدداً.');
-    if(btn){ btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-gem"></i> اشترك الآن'; }
-  });
-}
-/* ===== نهاية صفحة الاشتراك ===== */
 
 async function loadReferralData() {
   try {
