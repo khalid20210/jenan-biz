@@ -966,9 +966,66 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .tool-result{background:var(--green-lt);border:1px solid rgba(78,115,194,.2);border-radius:10px;padding:1rem;margin-top:1rem;text-align:center;display:none}
 .tool-result .big{font-size:1.6rem;font-weight:800;color:var(--green)}
 .tool-result .small{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+/* ── Academy v2 Upgrades ── */
+.ac-search-wrap{position:relative;margin-bottom:1.25rem}
+.ac-search-wrap input{width:100%;padding:.65rem 1rem .65rem 2.6rem;border-radius:12px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:'Tajawal',sans-serif;font-size:.9rem;transition:var(--tr);box-sizing:border-box}
+.ac-search-wrap input:focus{border-color:var(--green);outline:none;box-shadow:0 0 0 3px rgba(78,115,194,.12)}
+.ac-search-wrap i{position:absolute;right:.95rem;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:.85rem}
+.ac-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.88rem;grid-column:1/-1}
+.ac-empty i{display:block;font-size:2rem;margin-bottom:.75rem;color:var(--border)}
+/* bookmark */
+.lib-bm{position:absolute;top:.55rem;left:.55rem;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:.78rem;transition:var(--tr);z-index:5}
+.lib-bm:hover,.lib-bm.bm-on{color:#f59e0b;background:rgba(0,0,0,.7)}
+.lib-card-cover{position:relative}
+/* progress */
+.cpw{background:rgba(255,255,255,.08);border-radius:99px;height:5px;overflow:hidden;margin:.45rem 0 .3rem}
+.cpf{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),#34d399);transition:width .5s ease}
+.cp-lbl{font-size:.7rem;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:.5rem}
+/* rating stars */
+.stars{color:#f59e0b;font-size:.75rem;letter-spacing:1px}
+/* enrollment button */
+.enroll-btn.enrolled{background:rgba(34,197,94,.12);color:#16a34a;border:1px solid rgba(34,197,94,.25);cursor:default}
+/* badges */
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.badge-card{background:var(--bg3);border:1.5px solid var(--border);border-radius:14px;padding:.9rem 1rem;display:flex;align-items:center;gap:.75rem;transition:var(--tr)}
+.badge-card.earned{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.05)}
+.badge-card.earned .badge-icon{color:#f59e0b}
+.badge-icon{font-size:1.4rem;flex-shrink:0;color:var(--muted)}
+.badge-name{font-size:.82rem;font-weight:800}
+.badge-desc{font-size:.7rem;color:var(--muted)}
+/* learning path */
+.lp-header{background:linear-gradient(135deg,#0f0033,#3b0088);border-radius:16px;padding:1.75rem 1.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.lp-header::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(139,92,246,.2),transparent 60%);pointer-events:none}
+.lp-step-row{background:var(--bg3);border:1.5px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;margin-bottom:.85rem;display:flex;gap:1rem;align-items:flex-start;transition:var(--tr)}
+.lp-step-row:hover{border-color:rgba(139,92,246,.35);box-shadow:var(--shadow)}
+.lp-step-row.done{border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.04)}
+.lp-num{width:36px;height:36px;border-radius:50%;background:var(--bg2);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.88rem;flex-shrink:0;color:var(--muted)}
+.lp-step-row.done .lp-num{background:var(--green);border-color:var(--green);color:#fff}
+.lp-step-row.current .lp-num{background:#8b5cf6;border-color:#8b5cf6;color:#fff}
+.lp-step-title{font-size:.92rem;font-weight:800;margin-bottom:.2rem}
+.lp-step-desc{font-size:.78rem;color:var(--muted)}
+/* quiz */
+.lp-quiz-wrap{background:linear-gradient(135deg,#0f0033,#1a0050);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:1.75rem;margin-bottom:1.5rem}
+.lp-quiz-q{font-size:1rem;font-weight:800;margin-bottom:1.1rem}
+.lp-quiz-opt{padding:.7rem 1rem;border:1.5px solid rgba(255,255,255,.12);border-radius:10px;cursor:pointer;margin-bottom:.5rem;font-size:.88rem;transition:var(--tr);color:rgba(255,255,255,.8)}
+.lp-quiz-opt:hover{border-color:#8b5cf6;background:rgba(139,92,246,.12)}
+.lp-quiz-opt.sel{border-color:#8b5cf6;background:rgba(139,92,246,.2);color:#c4b5fd}
+/* my progress */
+.mp-enrolled-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;margin-bottom:.85rem;transition:var(--tr)}
+.mp-enrolled-card:hover{border-color:var(--green);box-shadow:var(--shadow)}
+.mp-course-icon{width:46px;height:46px;border-radius:12px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.mp-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem}
+.mp-stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+.mp-stat-box .val{font-size:1.5rem;font-weight:900;color:var(--green)}
+.mp-stat-box .lbl{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+/* learning path steps */
+.lp-steps{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem}
+/* new tool card improvement */
+.tool-tag{display:inline-block;padding:.15rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;background:rgba(78,115,194,.12);color:#7B9ED4;margin-bottom:.5rem}
 @media(max-width:900px){
   .ac-main-cards{grid-template-columns:1fr}
   .ac-hero{flex-direction:column;text-align:center}
+  .mp-stats-row{grid-template-columns:1fr 1fr}
 }
 
 /* ══ HUB CARDS ══ */
@@ -2511,14 +2568,20 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             <p>منصة تعليمية متكاملة تجمع بين الدراسة الأكاديمية، التدريب العملي،<br/>وأدوات المال الذكية — كل ما تحتاجه لتبني قرارات أعمال رابحة</p>
             <div class="ac-hero-stats">
               <div class="ac-stat"><div class="val">+200</div><div class="lbl">دراسة وندوة</div></div>
-              <div class="ac-stat"><div class="val">35</div><div class="lbl">دورة تدريبية</div></div>
-              <div class="ac-stat"><div class="val">8</div><div class="lbl">أدوات مالية</div></div>
-              <div class="ac-stat"><div class="val">5000+</div><div class="lbl">متعلم نشط</div></div>
+              <div class="ac-stat"><div class="val">42</div><div class="lbl">دورة تدريبية</div></div>
+              <div class="ac-stat"><div class="val">11</div><div class="lbl">أداة مالية</div></div>
+              <div class="ac-stat"><div class="val">+7,500</div><div class="lbl">متعلم نشط</div></div>
             </div>
           </div>
         </div>
 
-        <div class="ac-main-cards">
+        <!-- شريط البحث العام -->
+        <div class="ac-search-wrap" style="margin-bottom:1.5rem">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="ابحث في المكتبة، الدورات، والأدوات..." oninput="acGlobalSearch(this.value)" id="ac-global-search"/>
+        </div>
+
+        <div class="ac-main-cards" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
           <!-- مكتبة الدراسات -->
           <div class="ac-main-card" style="--ac-color:#4E73C2" onclick="openAcSection(1)">
             <div class="ac-card-banner" style="background:linear-gradient(135deg,#4E73C2,#2d4f9e)">
@@ -2527,67 +2590,38 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
                 <circle cx="-10" cy="140" r="65" fill="rgba(255,255,255,.05)"/>
                 <rect x="88" y="32" width="28" height="72" rx="5" fill="rgba(255,255,255,.22)"/>
                 <rect x="90" y="34" width="8" height="68" rx="3" fill="rgba(255,255,255,.32)"/>
-                <rect x="101" y="44" width="12" height="2.5" rx="1" fill="rgba(255,255,255,.5)"/>
-                <rect x="101" y="51" width="9" height="2" rx="1" fill="rgba(255,255,255,.35)"/>
                 <rect x="122" y="20" width="34" height="84" rx="5" fill="rgba(255,255,255,.28)"/>
                 <rect x="124" y="22" width="9" height="80" rx="3" fill="rgba(255,255,255,.38)"/>
-                <rect x="136" y="34" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.55)"/>
-                <rect x="136" y="42" width="12" height="2" rx="1" fill="rgba(255,255,255,.4)"/>
                 <rect x="162" y="38" width="24" height="66" rx="5" fill="rgba(255,255,255,.2)"/>
-                <rect x="164" y="40" width="6" height="62" rx="3" fill="rgba(255,255,255,.28)"/>
-                <rect x="173" y="50" width="11" height="2" rx="1" fill="rgba(255,255,255,.45)"/>
                 <rect x="76" y="104" width="124" height="5" rx="2" fill="rgba(255,255,255,.22)"/>
                 <polyline points="200,95 217,68 232,80 248,50 265,62 282,38" stroke="rgba(255,255,255,.7)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                 <circle cx="282" cy="38" r="5" fill="rgba(255,255,255,.9)"/>
-                <circle cx="50" cy="78" r="24" stroke="rgba(255,255,255,.4)" stroke-width="3" fill="none"/>
-                <line x1="68" y1="96" x2="80" y2="108" stroke="rgba(255,255,255,.4)" stroke-width="3" stroke-linecap="round"/>
               </svg>
             </div>
-            <div class="ac-main-icon" style="background:rgba(78,115,194,.12);color:var(--green)">
-              <i class="fa-solid fa-book-open"></i>
-            </div>
+            <div class="ac-main-icon" style="background:rgba(78,115,194,.12);color:var(--green)"><i class="fa-solid fa-book-open"></i></div>
             <h3>مكتبة الدراسات والندوات</h3>
-            <p>مئات الدراسات الاقتصادية والتقارير المالية والندوات المسجلة — ابحث واستعرض ما يخدم مشروعك</p>
-            <div class="ac-chip-row">
-              <span class="ac-chip">📊 اقتصاد كلي</span>
-              <span class="ac-chip">💼 إدارة أعمال</span>
-              <span class="ac-chip">📈 استثمار</span>
-              <span class="ac-chip">🎙 ندوات مسجلة</span>
-            </div>
+            <p>+200 دراسة اقتصادية وتقرير مالي وندوة مسجلة — ابحث واستعرض ما يخدم مشروعك</p>
+            <div class="ac-chip-row"><span class="ac-chip">📊 اقتصاد</span><span class="ac-chip">💼 أعمال</span><span class="ac-chip">📈 استثمار</span><span class="ac-chip">🎙 ندوات</span></div>
             <div class="ac-enter-btn">استعرض المكتبة <i class="fa-solid fa-arrow-left"></i></div>
           </div>
 
           <!-- دورات المال والأعمال -->
-          <div class="ac-main-card" style="--ac-color:#7B9ED4" onclick="openAcSection(2)">
+          <div class="ac-main-card" style="--ac-color:#f59e0b" onclick="openAcSection(2)">
             <div class="ac-card-banner" style="background:linear-gradient(135deg,#f59e0b,#c2650a)">
               <svg viewBox="0 0 320 155" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="-15" cy="-15" r="80" fill="rgba(255,255,255,.06)"/>
-                <circle cx="310" cy="155" r="70" fill="rgba(255,255,255,.05)"/>
                 <rect x="95" y="35" width="130" height="82" rx="8" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
-                <rect x="102" y="42" width="116" height="60" rx="5" fill="rgba(255,255,255,.12)"/>
                 <line x1="110" y1="54" x2="206" y2="54" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round"/>
                 <line x1="110" y1="64" x2="190" y2="64" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/>
                 <line x1="110" y1="73" x2="200" y2="73" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/>
-                <line x1="110" y1="82" x2="175" y2="82" stroke="rgba(255,255,255,.25)" stroke-width="1.5" stroke-linecap="round"/>
-                <polygon points="160,10 130,30 190,30" fill="rgba(255,255,255,.55)"/>
-                <rect x="145" y="30" width="30" height="5" rx="1" fill="rgba(255,255,255,.45)"/>
                 <circle cx="55" cy="90" r="28" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
-                <text x="55" y="96" text-anchor="middle" font-size="24" fill="rgba(255,255,255,.8)">👤</text>
                 <circle cx="265" cy="50" r="22" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
-                <text x="265" y="57" text-anchor="middle" font-size="18" fill="rgba(255,255,255,.75)">🎓</text>
               </svg>
             </div>
-            <div class="ac-main-icon" style="background:rgba(123,158,212,.15);color:var(--amber)">
-              <i class="fa-solid fa-chalkboard-user"></i>
-            </div>
+            <div class="ac-main-icon" style="background:rgba(245,158,11,.12);color:var(--amber)"><i class="fa-solid fa-chalkboard-user"></i></div>
             <h3>دورات المال والأعمال</h3>
-            <p>دورات تدريبية منتظمة يقدّمها خبراء معتمدون في المحاسبة، الريادة، والتخطيط المالي</p>
-            <div class="ac-chip-row">
-              <span class="ac-chip">💰 محاسبة مالية</span>
-              <span class="ac-chip">🚀 ريادة أعمال</span>
-              <span class="ac-chip">📉 التخطيط المالي</span>
-              <span class="ac-chip">🏦 الاستثمار</span>
-            </div>
+            <p>42 دورة تدريبية يقدّمها خبراء معتمدون في المحاسبة والريادة والتخطيط المالي</p>
+            <div class="ac-chip-row"><span class="ac-chip">💰 محاسبة</span><span class="ac-chip">🚀 ريادة</span><span class="ac-chip">📉 تخطيط مالي</span><span class="ac-chip">🏦 استثمار</span></div>
             <div class="ac-enter-btn">تصفح الدورات <i class="fa-solid fa-arrow-left"></i></div>
           </div>
 
@@ -2595,37 +2629,73 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           <div class="ac-main-card" style="--ac-color:#22c55e" onclick="openAcSection(3)">
             <div class="ac-card-banner" style="background:linear-gradient(135deg,#22c55e,#15803d)">
               <svg viewBox="0 0 320 155" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="300" cy="10" r="70" fill="rgba(255,255,255,.06)"/>
-                <circle cx="20" cy="145" r="55" fill="rgba(255,255,255,.05)"/>
                 <rect x="105" y="22" width="110" height="110" rx="14" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
                 <rect x="113" y="32" width="94" height="28" rx="6" fill="rgba(255,255,255,.22)"/>
                 <text x="160" y="52" text-anchor="middle" font-size="16" font-weight="bold" fill="rgba(255,255,255,.9)">12,580</text>
                 <rect x="113" y="68" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
                 <rect x="145" y="68" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
-                <rect x="177" y="68" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
-                <rect x="113" y="91" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
-                <rect x="145" y="91" width="26" height="18" rx="4" fill="rgba(255,255,255,.25)"/>
-                <rect x="177" y="91" width="26" height="30" rx="4" fill="rgba(255,255,255,.4)"/>
-                <rect x="113" y="114" width="58" height="18" rx="4" fill="rgba(255,255,255,.18)"/>
+                <rect x="177" y="68" width="26" height="30" rx="4" fill="rgba(255,255,255,.4)"/>
                 <circle cx="55" cy="60" r="22" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
-                <line x1="46" y1="60" x2="64" y2="60" stroke="rgba(255,255,255,.7)" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="55" y1="51" x2="55" y2="69" stroke="rgba(255,255,255,.7)" stroke-width="2.5" stroke-linecap="round"/>
-                <circle cx="262" cy="105" r="22" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
-                <text x="262" y="112" text-anchor="middle" font-size="18" fill="rgba(255,255,255,.7)">💰</text>
               </svg>
             </div>
-            <div class="ac-main-icon" style="background:rgba(34,197,94,.1);color:#16a34a">
-              <i class="fa-solid fa-calculator"></i>
-            </div>
+            <div class="ac-main-icon" style="background:rgba(34,197,94,.1);color:#16a34a"><i class="fa-solid fa-calculator"></i></div>
             <h3>أدوات المال الذكية</h3>
-            <p>حاسبات مالية فورية تساعدك في اتخاذ قرارات الأعمال بدقة — قرض، ربح، استثمار، تعادل</p>
-            <div class="ac-chip-row">
-              <span class="ac-chip">🏦 حاسبة القرض</span>
-              <span class="ac-chip">💹 العائد على الاستثمار</span>
-              <span class="ac-chip">⚖ نقطة التعادل</span>
-              <span class="ac-chip">💵 صافي الراتب</span>
-            </div>
+            <p>11 حاسبة مالية فورية — قرض، ربح، استثمار، تعادل، راتب، زكاة، تسعير، ومزيد</p>
+            <div class="ac-chip-row"><span class="ac-chip">🏦 القرض</span><span class="ac-chip">💹 ROI</span><span class="ac-chip">⚖ التعادل</span><span class="ac-chip">💵 الراتب</span></div>
             <div class="ac-enter-btn">افتح الأدوات <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+
+          <!-- مسار التعلم الشخصي (جديد) -->
+          <div class="ac-main-card" style="--ac-color:#8b5cf6" onclick="openAcSection(4)">
+            <div class="ac-card-banner" style="background:linear-gradient(135deg,#2e1065,#7c3aed)">
+              <svg viewBox="0 0 320 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="160" cy="78" r="60" fill="rgba(167,139,250,.1)"/>
+                <path d="M100,120 Q130,70 160,60 Q190,50 220,80 Q240,100 260,70" stroke="rgba(167,139,250,.7)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="8,4"/>
+                <circle cx="100" cy="120" r="9" fill="#8b5cf6" stroke="#c4b5fd" stroke-width="2"/>
+                <circle cx="160" cy="60"  r="9" fill="#7c3aed" stroke="#c4b5fd" stroke-width="2"/>
+                <circle cx="260" cy="70"  r="12" fill="#6d28d9" stroke="#a78bfa" stroke-width="2.5">
+                  <animate attributeName="r" values="10;13;10" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <text x="255" y="76" text-anchor="middle" font-size="10" fill="#fff">🎓</text>
+                <rect x="34" y="28" width="80" height="24" rx="6" fill="rgba(167,139,250,.18)" stroke="rgba(167,139,250,.4)" stroke-width="1"/>
+                <rect x="40" y="33" width="36" height="3" rx="2" fill="rgba(255,255,255,.5)"/>
+                <rect x="40" y="41" width="24" height="3" rx="2" fill="rgba(255,255,255,.3)"/>
+                <rect x="210" y="110" width="70" height="22" rx="6" fill="rgba(167,139,250,.18)" stroke="rgba(167,139,250,.4)" stroke-width="1"/>
+                <rect x="216" y="115" width="30" height="3" rx="2" fill="rgba(255,255,255,.5)"/>
+                <rect x="216" y="123" width="20" height="3" rx="2" fill="rgba(255,255,255,.3)"/>
+              </svg>
+            </div>
+            <div class="ac-main-icon" style="background:rgba(139,92,246,.12);color:#8b5cf6"><i class="fa-solid fa-map-signs"></i></div>
+            <h3>مسار التعلم الشخصي</h3>
+            <p>أجب على 5 أسئلة ونصمّم لك خطة تعلم مخصصة تناسب مستواك وأهدافك المالية</p>
+            <div class="ac-chip-row"><span class="ac-chip">🧩 مخصص</span><span class="ac-chip">📍 مرحلي</span><span class="ac-chip">✅ تقدمي</span><span class="ac-chip">🤖 ذكي</span></div>
+            <div class="ac-enter-btn">ابدأ مسارك <i class="fa-solid fa-arrow-left"></i></div>
+          </div>
+
+          <!-- تقدمي وإنجازاتي (جديد) -->
+          <div class="ac-main-card" style="--ac-color:#ec4899" onclick="openAcSection(5)">
+            <div class="ac-card-banner" style="background:linear-gradient(135deg,#500724,#be185d)">
+              <svg viewBox="0 0 320 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="160" cy="65" r="45" fill="rgba(236,72,153,.1)"/>
+                <polygon points="160,18 174,54 213,54 182,76 193,112 160,90 127,112 138,76 107,54 146,54" fill="rgba(236,72,153,.25)" stroke="rgba(236,72,153,.6)" stroke-width="2"/>
+                <polygon points="160,30 171,56 200,56 177,72 186,98 160,82 134,98 143,72 120,56 149,56" fill="rgba(255,255,255,.18)"/>
+                <circle cx="70"  cy="45" r="15" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+                <text x="70" y="51" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.8)">🥇</text>
+                <circle cx="252" cy="45" r="15" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+                <text x="252" y="51" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.8)">🥈</text>
+                <rect x="40"  y="110" width="60" height="8" rx="4" fill="rgba(255,255,255,.12)"/>
+                <rect x="40"  y="110" width="42" height="8" rx="4" fill="#ec4899" opacity=".7"/>
+                <rect x="130" y="110" width="60" height="8" rx="4" fill="rgba(255,255,255,.12)"/>
+                <rect x="130" y="110" width="28" height="8" rx="4" fill="#f472b6" opacity=".6"/>
+                <rect x="220" y="110" width="60" height="8" rx="4" fill="rgba(255,255,255,.12)"/>
+                <rect x="220" y="110" width="50" height="8" rx="4" fill="#ec4899" opacity=".8"/>
+              </svg>
+            </div>
+            <div class="ac-main-icon" style="background:rgba(236,72,153,.1);color:#ec4899"><i class="fa-solid fa-trophy"></i></div>
+            <h3>تقدمي وإنجازاتي</h3>
+            <p>تابع دوراتك المسجلة، كتبك المحفوظة، وشاراتك — لوحة تقدم شخصية متكاملة</p>
+            <div class="ac-chip-row"><span class="ac-chip">📚 دوراتي</span><span class="ac-chip">🔖 محفوظاتي</span><span class="ac-chip">🏅 شاراتي</span><span class="ac-chip">📊 إحصائياتي</span></div>
+            <div class="ac-enter-btn">افتح لوحتي <i class="fa-solid fa-arrow-left"></i></div>
           </div>
         </div>
       </div>
@@ -2637,17 +2707,20 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           <span style="color:var(--muted)">/</span>
           <div class="ac-section-title"><i class="fa-solid fa-book-open" style="color:var(--green);margin-left:.4rem"></i>مكتبة الدراسات والندوات</div>
         </div>
+        <div class="ac-search-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="lib-search" placeholder="ابحث في المكتبة..." oninput="acLibSearch(this.value)"/>
+        </div>
         <div class="ac-filters">
           <div class="ac-filter active" onclick="acFilter(this,'all')">الكل</div>
           <div class="ac-filter" onclick="acFilter(this,'economy')">اقتصاد كلي</div>
           <div class="ac-filter" onclick="acFilter(this,'business')">إدارة أعمال</div>
           <div class="ac-filter" onclick="acFilter(this,'invest')">استثمار</div>
           <div class="ac-filter" onclick="acFilter(this,'marketing')">تسويق</div>
+          <div class="ac-filter" onclick="acFilter(this,'legal')">قانوني ⚖</div>
           <div class="ac-filter" onclick="acFilter(this,'seminar')">🎙 ندوات</div>
         </div>
-        <div class="lib-grid" id="lib-grid">
-          <!-- يتم توليد المحتوى من JS -->
-        </div>
+        <div class="lib-grid" id="lib-grid"><!-- JS --></div>
       </div>
 
       <!-- ── القسم 2: دورات المال والأعمال ── -->
@@ -2657,17 +2730,20 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           <span style="color:var(--muted)">/</span>
           <div class="ac-section-title"><i class="fa-solid fa-chalkboard-user" style="color:var(--amber);margin-left:.4rem"></i>دورات المال والأعمال</div>
         </div>
+        <div class="ac-search-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="course-search" placeholder="ابحث في الدورات..." oninput="acCourseSearch(this.value)"/>
+        </div>
         <div class="ac-filters">
           <div class="ac-filter active" onclick="courseFilter(this,'all')">الكل</div>
           <div class="ac-filter" onclick="courseFilter(this,'finance')">مالية</div>
           <div class="ac-filter" onclick="courseFilter(this,'startup')">ريادة</div>
           <div class="ac-filter" onclick="courseFilter(this,'marketing')">تسويق</div>
           <div class="ac-filter" onclick="courseFilter(this,'invest')">استثمار</div>
+          <div class="ac-filter" onclick="courseFilter(this,'hr')">موارد بشرية</div>
           <div class="ac-filter" onclick="courseFilter(this,'free')">مجانية 🎁</div>
         </div>
-        <div class="course-grid" id="course-grid">
-          <!-- يتم توليد المحتوى من JS -->
-        </div>
+        <div class="course-grid" id="course-grid"><!-- JS --></div>
       </div>
 
       <!-- ── القسم 3: أدوات المال الذكية ── -->
@@ -2680,16 +2756,15 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
         <div class="tools-grid">
           <!-- حاسبة القرض البنكي -->
           <div class="tool-card">
+            <div class="tool-tag">تمويل</div>
             <h4><i class="fa-solid fa-building-columns"></i> حاسبة القرض البنكي</h4>
             <p>احسب قسطك الشهري وإجمالي الفوائد لأي قرض</p>
             <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
-              <div class="f-field"><label>مبلغ القرض (ريال)</label><input type="number" id="loan-amount" placeholder="100000"/></div>
-              <div class="f-field"><label>نسبة الفائدة السنوية %</label><input type="number" id="loan-rate" placeholder="5" step="0.1"/></div>
-              <div class="f-field" style="grid-column:1/-1"><label>مدة القرض (بالأشهر)</label><input type="number" id="loan-months" placeholder="36"/></div>
+              <div class="f-field"><label>مبلغ القرض (ريال)</label><input type="number" id="loan-amount" placeholder="100000" min="0"/></div>
+              <div class="f-field"><label>نسبة الفائدة السنوية %</label><input type="number" id="loan-rate" placeholder="5" step="0.1" min="0"/></div>
+              <div class="f-field" style="grid-column:1/-1"><label>مدة القرض (بالأشهر)</label><input type="number" id="loan-months" placeholder="36" min="1"/></div>
             </div>
-            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcLoan()">
-              <i class="fa-solid fa-calculator"></i> احسب الآن
-            </button>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcLoan()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
             <div class="tool-result" id="loan-result">
               <div class="big" id="loan-monthly">—</div>
               <div class="small">القسط الشهري</div>
@@ -2702,17 +2777,16 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
           <!-- حاسبة الربح والخسارة -->
           <div class="tool-card">
+            <div class="tool-tag">تحليل مالي</div>
             <h4><i class="fa-solid fa-chart-line"></i> حاسبة الربح والخسارة</h4>
             <p>احسب هامش الربح الإجمالي والصافي لمشروعك بدقة</p>
             <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
-              <div class="f-field"><label>الإيرادات الشهرية (ريال)</label><input type="number" id="pl-revenue" placeholder="80000"/></div>
-              <div class="f-field"><label>تكلفة البضاعة (ريال)</label><input type="number" id="pl-cogs" placeholder="30000"/></div>
-              <div class="f-field"><label>مصاريف التشغيل (ريال)</label><input type="number" id="pl-opex" placeholder="25000"/></div>
-              <div class="f-field"><label>مصاريف أخرى (ريال)</label><input type="number" id="pl-other" placeholder="5000"/></div>
+              <div class="f-field"><label>الإيرادات الشهرية (ريال)</label><input type="number" id="pl-revenue" placeholder="80000" min="0"/></div>
+              <div class="f-field"><label>تكلفة البضاعة (ريال)</label><input type="number" id="pl-cogs" placeholder="30000" min="0"/></div>
+              <div class="f-field"><label>مصاريف التشغيل (ريال)</label><input type="number" id="pl-opex" placeholder="25000" min="0"/></div>
+              <div class="f-field"><label>مصاريف أخرى (ريال)</label><input type="number" id="pl-other" placeholder="5000" min="0"/></div>
             </div>
-            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcPL()">
-              <i class="fa-solid fa-calculator"></i> احسب الآن
-            </button>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcPL()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
             <div class="tool-result" id="pl-result">
               <div class="big" id="pl-net">—</div>
               <div class="small">صافي الربح الشهري</div>
@@ -2726,19 +2800,18 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
           <!-- حاسبة نقطة التعادل -->
           <div class="tool-card">
+            <div class="tool-tag">تعادل</div>
             <h4><i class="fa-solid fa-scale-balanced"></i> حاسبة نقطة التعادل</h4>
             <p>اعرف الحد الأدنى للمبيعات الذي يغطي تكاليفك الثابتة</p>
             <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
-              <div class="f-field" style="grid-column:1/-1"><label>التكاليف الثابتة الشهرية (ريال)</label><input type="number" id="be-fixed" placeholder="40000"/></div>
-              <div class="f-field"><label>سعر بيع الوحدة (ريال)</label><input type="number" id="be-price" placeholder="150"/></div>
-              <div class="f-field"><label>تكلفة الوحدة (ريال)</label><input type="number" id="be-cost" placeholder="60"/></div>
+              <div class="f-field" style="grid-column:1/-1"><label>التكاليف الثابتة الشهرية (ريال)</label><input type="number" id="be-fixed" placeholder="40000" min="0"/></div>
+              <div class="f-field"><label>سعر بيع الوحدة (ريال)</label><input type="number" id="be-price" placeholder="150" min="0"/></div>
+              <div class="f-field"><label>تكلفة الوحدة (ريال)</label><input type="number" id="be-cost" placeholder="60" min="0"/></div>
             </div>
-            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcBreakEven()">
-              <i class="fa-solid fa-calculator"></i> احسب الآن
-            </button>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcBreakEven()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
             <div class="tool-result" id="be-result">
               <div class="big" id="be-units">—</div>
-              <div class="small">وحدة يجب بيعها شهرياً للوصول للتعادل</div>
+              <div class="small">وحدة يجب بيعها شهرياً للتعادل</div>
               <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
                 <div><div style="font-weight:800;color:var(--text)" id="be-revenue">—</div>إيرادات التعادل</div>
                 <div><div style="font-weight:800;color:var(--text)" id="be-margin">—</div>هامش المساهمة</div>
@@ -2748,16 +2821,15 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
           <!-- حاسبة العائد على الاستثمار -->
           <div class="tool-card">
+            <div class="tool-tag">استثمار</div>
             <h4><i class="fa-solid fa-arrow-trend-up"></i> حاسبة العائد على الاستثمار ROI</h4>
             <p>احسب نسبة العائد السنوي لأي استثمار أو مشروع</p>
             <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
-              <div class="f-field"><label>مبلغ الاستثمار (ريال)</label><input type="number" id="roi-invest" placeholder="200000"/></div>
-              <div class="f-field"><label>صافي الربح الشهري (ريال)</label><input type="number" id="roi-profit" placeholder="15000"/></div>
-              <div class="f-field" style="grid-column:1/-1"><label>عدد أشهر الاسترداد المتوقعة</label><input type="number" id="roi-months" placeholder="18"/></div>
+              <div class="f-field"><label>مبلغ الاستثمار (ريال)</label><input type="number" id="roi-invest" placeholder="200000" min="0"/></div>
+              <div class="f-field"><label>صافي الربح الشهري (ريال)</label><input type="number" id="roi-profit" placeholder="15000" min="0"/></div>
+              <div class="f-field" style="grid-column:1/-1"><label>عدد أشهر الاسترداد المتوقعة</label><input type="number" id="roi-months" placeholder="18" min="1"/></div>
             </div>
-            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcROI()">
-              <i class="fa-solid fa-calculator"></i> احسب الآن
-            </button>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcROI()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
             <div class="tool-result" id="roi-result">
               <div class="big" id="roi-pct">—</div>
               <div class="small">العائد السنوي على الاستثمار</div>
@@ -2770,6 +2842,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
           <!-- حاسبة الزكاة -->
           <div class="tool-card">
+            <div class="tool-tag">شرعي</div>
             <h4><i class="fa-solid fa-star-and-crescent"></i> حاسبة زكاة المال والأعمال</h4>
             <p>احسب مقدار الزكاة الواجبة على أموالك أو مشروعك التجاري</p>
             <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
@@ -2779,11 +2852,9 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
                   <option value="trade">زكاة عروض التجارة</option>
                 </select>
               </div>
-              <div class="f-field" style="grid-column:1/-1"><label>إجمالي المال / البضاعة (ريال)</label><input type="number" id="zakat-amount" placeholder="مثال: 100000"/></div>
+              <div class="f-field" style="grid-column:1/-1"><label>إجمالي المال / البضاعة (ريال)</label><input type="number" id="zakat-amount" placeholder="100000" min="0"/></div>
             </div>
-            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcZakat()">
-              <i class="fa-solid fa-calculator"></i> احسب الآن
-            </button>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcZakat()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
             <div class="tool-result" id="zakat-result">
               <div class="big" id="zakat-due">—</div>
               <div class="small">مقدار الزكاة الواجبة (2.5%)</div>
@@ -2793,17 +2864,16 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
           <!-- حاسبة التسعير المثالي -->
           <div class="tool-card">
+            <div class="tool-tag">تسعير</div>
             <h4><i class="fa-solid fa-tag"></i> حاسبة التسعير المثالي</h4>
             <p>احسب السعر الأمثل للمنتج أو الخدمة بناءً على التكلفة والهامش المستهدف</p>
             <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
-              <div class="f-field"><label>تكلفة المنتج / الخدمة (ريال)</label><input type="number" id="price-cost" placeholder="80"/></div>
-              <div class="f-field"><label>هامش الربح المستهدف %</label><input type="number" id="price-margin" placeholder="40"/></div>
-              <div class="f-field"><label>نسبة الضريبة % (اختياري)</label><input type="number" id="price-vat" placeholder="15"/></div>
-              <div class="f-field"><label>عدد الوحدات / الخدمات شهرياً</label><input type="number" id="price-units" placeholder="200"/></div>
+              <div class="f-field"><label>تكلفة المنتج / الخدمة (ريال)</label><input type="number" id="price-cost" placeholder="80" min="0"/></div>
+              <div class="f-field"><label>هامش الربح المستهدف %</label><input type="number" id="price-margin" placeholder="40" min="0"/></div>
+              <div class="f-field"><label>نسبة الضريبة % (اختياري)</label><input type="number" id="price-vat" placeholder="15" min="0"/></div>
+              <div class="f-field"><label>عدد الوحدات / الخدمات شهرياً</label><input type="number" id="price-units" placeholder="200" min="0"/></div>
             </div>
-            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcPricing()">
-              <i class="fa-solid fa-calculator"></i> احسب الآن
-            </button>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcPricing()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
             <div class="tool-result" id="price-result">
               <div class="big" id="price-final">—</div>
               <div class="small">السعر المثالي شاملاً الضريبة</div>
@@ -2813,10 +2883,155 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
               </div>
             </div>
           </div>
+
+          <!-- حاسبة صافي الراتب 🆕 -->
+          <div class="tool-card">
+            <div class="tool-tag">دخل</div>
+            <h4><i class="fa-solid fa-wallet"></i> حاسبة صافي الراتب</h4>
+            <p>احسب راتبك الصافي بعد الاستقطاعات والتأمينات وفق نظام العمل السعودي</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>الراتب الأساسي (ريال)</label><input type="number" id="sal-basic" placeholder="8000" min="0"/></div>
+              <div class="f-field"><label>بدل السكن (ريال)</label><input type="number" id="sal-housing" placeholder="2000" min="0"/></div>
+              <div class="f-field"><label>بدل النقل (ريال)</label><input type="number" id="sal-transport" placeholder="600" min="0"/></div>
+              <div class="f-field"><label>بدلات أخرى (ريال)</label><input type="number" id="sal-other" placeholder="0" min="0"/></div>
+            </div>
+            <div class="f-field" style="margin-top:.5rem">
+              <label>جنسية الموظف</label>
+              <select id="sal-nationality">
+                <option value="saudi">سعودي</option>
+                <option value="expat">وافد</option>
+              </select>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcSalaryNet()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
+            <div class="tool-result" id="sal-result">
+              <div class="big" id="sal-net">—</div>
+              <div class="small">صافي الراتب الشهري</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="sal-gross">—</div>إجمالي الراتب</div>
+                <div><div style="font-weight:800;color:#e74c3c" id="sal-gosi">—</div>اشتراك التأمين</div>
+                <div><div style="font-weight:800;color:var(--green)" id="sal-annual">—</div>الراتب السنوي</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- حاسبة الاستثمار المركّب 🆕 -->
+          <div class="tool-card">
+            <div class="tool-tag">استثمار مركّب</div>
+            <h4><i class="fa-solid fa-chart-pie"></i> حاسبة الاستثمار المركّب</h4>
+            <p>اكتشف قوة الفائدة المركّبة — كيف تنمو أموالك مع إضافات منتظمة بمرور السنين</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>رأس المال الابتدائي (ريال)</label><input type="number" id="ci-principal" placeholder="50000" min="0"/></div>
+              <div class="f-field"><label>إضافة شهرية (ريال)</label><input type="number" id="ci-monthly" placeholder="2000" min="0"/></div>
+              <div class="f-field"><label>العائد السنوي المتوقع %</label><input type="number" id="ci-rate" placeholder="8" step="0.5" min="0"/></div>
+              <div class="f-field"><label>عدد السنوات</label><input type="number" id="ci-years" placeholder="10" min="1" max="50"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcCompoundInvestment()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
+            <div class="tool-result" id="ci-result">
+              <div class="big" id="ci-final">—</div>
+              <div class="small">القيمة النهائية للاستثمار</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="ci-invested">—</div>ما دفعته</div>
+                <div><div style="font-weight:800;color:var(--green)" id="ci-gain">—</div>الأرباح المُركَّبة</div>
+                <div><div style="font-weight:800;color:#f59e0b" id="ci-x">—</div>معامل النمو</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- حاسبة هدف الادخار 🆕 -->
+          <div class="tool-card">
+            <div class="tool-tag">ادخار</div>
+            <h4><i class="fa-solid fa-piggy-bank"></i> حاسبة هدف الادخار</h4>
+            <p>حدد هدفك المالي وسيخبرك التطبيق بالمبلغ الشهري اللازم للوصول إليه</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>المبلغ المستهدف (ريال)</label><input type="number" id="sg-goal" placeholder="100000" min="0"/></div>
+              <div class="f-field"><label>المدخرات الحالية (ريال)</label><input type="number" id="sg-current" placeholder="10000" min="0"/></div>
+              <div class="f-field"><label>العائد السنوي المتوقع %</label><input type="number" id="sg-rate" placeholder="5" step="0.5" min="0"/></div>
+              <div class="f-field"><label>المدة المستهدفة (بالأشهر)</label><input type="number" id="sg-months" placeholder="36" min="1"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcSavingsGoal()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
+            <div class="tool-result" id="sg-result">
+              <div class="big" id="sg-monthly">—</div>
+              <div class="small">المبلغ الشهري اللازم للادخار</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="sg-total-saved">—</div>مجموع ما ستدخره</div>
+                <div><div style="font-weight:800;color:var(--green)" id="sg-interest-earned">—</div>فوائد محققة</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- حاسبة تكاليف الموظف 🆕 -->
+          <div class="tool-card">
+            <div class="tool-tag">موارد بشرية</div>
+            <h4><i class="fa-solid fa-user-tie"></i> حاسبة التكلفة الكاملة للموظف</h4>
+            <p>احسب التكلفة الفعلية للموظف على صاحب العمل شاملاً كل الاستقطاعات والمزايا</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>الراتب الأساسي (ريال)</label><input type="number" id="ec-basic" placeholder="8000" min="0"/></div>
+              <div class="f-field"><label>إجمالي البدلات (ريال)</label><input type="number" id="ec-allowances" placeholder="3000" min="0"/></div>
+              <div class="f-field"><label>جنسية الموظف</label>
+                <select id="ec-nationality">
+                  <option value="saudi">سعودي</option>
+                  <option value="expat">وافد</option>
+                </select>
+              </div>
+              <div class="f-field"><label>رسوم الإقامة السنوية (للوافد)</label><input type="number" id="ec-iqama" placeholder="2400" min="0"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcEmployeeCost()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
+            <div class="tool-result" id="ec-result">
+              <div class="big" id="ec-total">—</div>
+              <div class="small">التكلفة الشهرية الكاملة للموظف</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="ec-gosi-er">—</div>حصة صاحب العمل (GOSI)</div>
+                <div><div style="font-weight:800;color:var(--green)" id="ec-annual">—</div>التكلفة السنوية</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- حاسبة الإيجار أم الشراء 🆕 -->
+          <div class="tool-card">
+            <div class="tool-tag">عقارات</div>
+            <h4><i class="fa-solid fa-house"></i> حاسبة الإيجار مقابل الشراء</h4>
+            <p>هل يستحق الشراء؟ احسب نقطة التعادل بين دفع الإيجار وامتلاك العقار</p>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="f-field"><label>سعر العقار (ريال)</label><input type="number" id="rb-price" placeholder="800000" min="0"/></div>
+              <div class="f-field"><label>الإيجار الشهري الحالي (ريال)</label><input type="number" id="rb-rent" placeholder="4000" min="0"/></div>
+              <div class="f-field"><label>الدفعة الأولى %</label><input type="number" id="rb-down" placeholder="20" min="0" max="100"/></div>
+              <div class="f-field"><label>نسبة التمويل % / سنة</label><input type="number" id="rb-rate" placeholder="4.5" step="0.1" min="0"/></div>
+            </div>
+            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcRentBuy()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
+            <div class="tool-result" id="rb-result">
+              <div class="big" id="rb-verdict">—</div>
+              <div class="small" id="rb-verdict-note">نتيجة المقارنة</div>
+              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
+                <div><div style="font-weight:800;color:var(--text)" id="rb-mortgage">—</div>القسط الشهري</div>
+                <div><div style="font-weight:800;color:var(--green)" id="rb-breakeven">—</div>نقطة التعادل</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- ── القسم 4: مسار التعلم الشخصي (جديد) ── -->
+      <div id="ac-section-4" class="ac-section">
+        <div class="ac-back-bar">
+          <button class="ac-back-btn" onclick="openAcSection(0)"><i class="fa-solid fa-arrow-right"></i> الأكاديمية</button>
+          <span style="color:var(--muted)">/</span>
+          <div class="ac-section-title"><i class="fa-solid fa-map-signs" style="color:#8b5cf6;margin-left:.4rem"></i>مسار التعلم الشخصي</div>
+        </div>
+        <div id="lp-container"><!-- JS --></div>
+      </div>
+
+      <!-- ── القسم 5: تقدمي وإنجازاتي (جديد) ── -->
+      <div id="ac-section-5" class="ac-section">
+        <div class="ac-back-bar">
+          <button class="ac-back-btn" onclick="openAcSection(0)"><i class="fa-solid fa-arrow-right"></i> الأكاديمية</button>
+          <span style="color:var(--muted)">/</span>
+          <div class="ac-section-title"><i class="fa-solid fa-trophy" style="color:#ec4899;margin-left:.4rem"></i>تقدمي وإنجازاتي</div>
+        </div>
+        <div id="mp-container"><!-- JS --></div>
+      </div>
+
     </div>
+
 
     <!-- ===== CAPITAL ===== -->
     <div class="page" id="page-capital">
@@ -4809,6 +5024,7 @@ function swFilter(el, cat) {
    ACADEMY ENGINE — أكاديمية جنان للمال والأعمال
 ====================================================== */
 const LIB_ITEMS = [
+  /* ── الموجودة أصلاً ── */
   {cat:'economy', type:'study',  title:'تأثير ارتفاع أسعار الفائدة على المشاريع الصغيرة في السعودية',       tag:'اقتصاد كلي',   date:'مارس 2025',  pages:28},
   {cat:'invest',  type:'study',  title:'دليل الاستثمار في صناديق الريت للمستثمر المبتدئ',                   tag:'استثمار',      date:'فبراير 2025', pages:42},
   {cat:'business',type:'study',  title:'أفضل ممارسات الحوكمة المؤسسية للشركات العائلية',                   tag:'إدارة أعمال',  date:'يناير 2025',  pages:35},
@@ -4821,29 +5037,68 @@ const LIB_ITEMS = [
   {cat:'marketing',type:'study', title:'بناء هوية علامة تجارية قوية بميزانية محدودة',                      tag:'تسويق',        date:'يونيو 2024',  pages:14},
   {cat:'seminar', type:'seminar',title:'ندوة: فرص التمويل الحكومي والبنكي للمشاريع الناشئة',               tag:'ندوة مسجلة',   date:'مايو 2024',   mins:75},
   {cat:'invest',  type:'study',  title:'تقرير: أداء محافظ التقنية في أسواق الخليج خلال 2024',              tag:'استثمار',      date:'أبريل 2024',  pages:38},
+  /* ── 8 إضافات جديدة ── */
+  {cat:'legal',   type:'study',  title:'دليل المستثمر القانوني: الأنظمة الناظمة للشركات السعودية',          tag:'قانوني',       date:'مارس 2026',   pages:44},
+  {cat:'economy', type:'study',  title:'أثر رؤية 2030 على قطاع التقنية والابتكار في المملكة',              tag:'اقتصاد كلي',   date:'فبراير 2026', pages:38},
+  {cat:'invest',  type:'seminar',title:'ندوة: صناديق الاستثمار المتداولة ETF للمبتدئين',                   tag:'ندوة مسجلة',   date:'يناير 2026',  mins:85},
+  {cat:'legal',   type:'study',  title:'حقوق الموظف وصاحب العمل وفق نظام العمل السعودي المحدّث',           tag:'قانوني',       date:'ديسمبر 2025', pages:52},
+  {cat:'business',type:'seminar',title:'ندوة: كيف تحوّل شركتك الصغيرة إلى علامة تجارية معروفة؟',          tag:'ندوة مسجلة',   date:'نوفمبر 2025', mins:70},
+  {cat:'marketing',type:'study', title:'التسويق عبر المؤثرين في السوق السعودي: دراسة وأرقام 2025',         tag:'تسويق',        date:'أكتوبر 2025', pages:26},
+  {cat:'legal',   type:'study',  title:'الدليل الشامل لضريبة القيمة المضافة وتقديم الإقرارات الضريبية',    tag:'قانوني',       date:'سبتمبر 2025', pages:60},
+  {cat:'invest',  type:'study',  title:'الذكاء الاصطناعي والاستثمار: كيف تستخدم الأدوات الذكية في تحليل الأسواق', tag:'استثمار', date:'أغسطس 2025', pages:34},
 ];
 
 const COURSES = [
-  {cat:'finance',   free:false, level:'مبتدئ',  title:'أساسيات المحاسبة المالية للمشاريع الصغيرة', instructor:'أ. مها الشمراني', sessions:12, hours:18, enrolled:842,  img:'💰'},
-  {cat:'startup',   free:true,  level:'مبتدئ',  title:'مقدمة في ريادة الأعمال وبناء الفكرة',       instructor:'م. عبدالله القحطاني', sessions:8, hours:10, enrolled:2140, img:'🚀'},
-  {cat:'invest',    free:false, level:'متوسط',  title:'الاستثمار في الأسهم: من الصفر للاحتراف',    instructor:'د. رانيا العمري',    sessions:16, hours:24, enrolled:560,  img:'📈'},
-  {cat:'marketing', free:false, level:'مبتدئ',  title:'التسويق الرقمي وبناء الحضور الإلكتروني',    instructor:'خبير التسويق خالد آل محمد',sessions:10,hours:15,enrolled:991, img:'📱'},
-  {cat:'finance',   free:false, level:'متقدم',  title:'التخطيط المالي الاستراتيجي وإدارة التدفق النقدي',instructor:'أ. نورة السعيد', sessions:20, hours:30, enrolled:334, img:'📊'},
-  {cat:'startup',   free:false, level:'متوسط',  title:'كيف تكتب خطة عمل احترافية تقنع المستثمرين',instructor:'م. فيصل العتيبي',   sessions:6,  hours:9,  enrolled:1250, img:'📝'},
-  {cat:'invest',    free:true,  level:'مبتدئ',  title:'فقه المال: الحلال والحرام في الاستثمار',     instructor:'الشيخ أحمد الدوسري', sessions:5,  hours:6,  enrolled:3200, img:'🕌'},
-  {cat:'finance',   free:false, level:'متوسط',  title:'ضريبة القيمة المضافة والزكاة للمحاسب',      instructor:'أ. سلطان الغامدي',   sessions:8,  hours:12, enrolled:488,  img:'🧾'},
+  /* ── الموجودة أصلاً ── */
+  {cat:'finance',   free:false, level:'مبتدئ',  title:'أساسيات المحاسبة المالية للمشاريع الصغيرة', instructor:'أ. مها الشمراني',         sessions:12, hours:18, enrolled:842,  img:'💰'},
+  {cat:'startup',   free:true,  level:'مبتدئ',  title:'مقدمة في ريادة الأعمال وبناء الفكرة',       instructor:'م. عبدالله القحطاني',      sessions:8,  hours:10, enrolled:2140, img:'🚀'},
+  {cat:'invest',    free:false, level:'متوسط',  title:'الاستثمار في الأسهم: من الصفر للاحتراف',    instructor:'د. رانيا العمري',          sessions:16, hours:24, enrolled:560,  img:'📈'},
+  {cat:'marketing', free:false, level:'مبتدئ',  title:'التسويق الرقمي وبناء الحضور الإلكتروني',    instructor:'خالد آل محمد',             sessions:10, hours:15, enrolled:991,  img:'📱'},
+  {cat:'finance',   free:false, level:'متقدم',  title:'التخطيط المالي الاستراتيجي وإدارة التدفق النقدي', instructor:'أ. نورة السعيد',    sessions:20, hours:30, enrolled:334,  img:'📊'},
+  {cat:'startup',   free:false, level:'متوسط',  title:'كيف تكتب خطة عمل احترافية تقنع المستثمرين', instructor:'م. فيصل العتيبي',        sessions:6,  hours:9,  enrolled:1250, img:'📝'},
+  {cat:'invest',    free:true,  level:'مبتدئ',  title:'فقه المال: الحلال والحرام في الاستثمار',     instructor:'الشيخ أحمد الدوسري',      sessions:5,  hours:6,  enrolled:3200, img:'🕌'},
+  {cat:'finance',   free:false, level:'متوسط',  title:'ضريبة القيمة المضافة والزكاة للمحاسب',      instructor:'أ. سلطان الغامدي',        sessions:8,  hours:12, enrolled:488,  img:'🧾'},
+  /* ── 7 إضافات جديدة ── */
+  {cat:'hr',        free:false, level:'مبتدئ',  title:'إدارة الموارد البشرية للمدير الجديد',        instructor:'أ. لمياء الدوسري',        sessions:10, hours:14, enrolled:620,  img:'👥'},
+  {cat:'hr',        free:false, level:'متوسط',  title:'قانون العمل السعودي من الألف إلى الياء',     instructor:'المستشار سامي العنزي',     sessions:8,  hours:12, enrolled:840,  img:'⚖'},
+  {cat:'invest',    free:false, level:'متوسط',  title:'الاستثمار العقاري في السوق السعودي 2026',    instructor:'م. عمر الشهراني',         sessions:14, hours:20, enrolled:390,  img:'🏠'},
+  {cat:'marketing', free:true,  level:'مبتدئ',  title:'صناعة المحتوى الرقمي وإدارة الحسابات',       instructor:'سارة القرني',             sessions:7,  hours:9,  enrolled:1780, img:'🎥'},
+  {cat:'startup',   free:false, level:'متقدم',  title:'الحصول على التمويل: من الفكرة إلى الجولة الأولى', instructor:'د. خالد المطيري',    sessions:12, hours:18, enrolled:280,  img:'💼'},
+  {cat:'finance',   free:false, level:'متوسط',  title:'إدارة التدفق النقدي وتخطيط السيولة للشركات', instructor:'أ. هند الرويلي',         sessions:9,  hours:14, enrolled:445,  img:'💵'},
+  {cat:'hr',        free:true,  level:'مبتدئ',  title:'بناء فريق العمل وإدارته في بيئة الأعمال السعودية', instructor:'د. منى الزهراني',   sessions:6,  hours:8,  enrolled:1120, img:'🤝'},
+];
+
+/* ── بيانات مسار التعلم ── */
+const LP_QUIZ = [
+  { q:'ما هدفك الرئيسي من التعلم؟', opts:['بدء مشروع جديد','تطوير مشروع قائم','تحسين إدارتي المالية الشخصية','البحث عن فرص استثمار مناسبة','التقدم الوظيفي وتطوير مهاراتي'] },
+  { q:'ما مستواك الحالي في عالم الأعمال؟', opts:['مبتدئ تماماً — لا خبرة سابقة','لديّ فكرة أو مشروع ناشئ','أعمل منذ أقل من 3 سنوات','أعمل منذ أكثر من 3 سنوات','مستثمر أو شريك في عدة مشاريع'] },
+  { q:'كم الوقت الذي تستطيع تخصيصه للتعلم أسبوعياً؟', opts:['أقل من ساعة واحدة','من ساعة إلى 3 ساعات','من 3 إلى 7 ساعات','من 7 إلى 15 ساعة','أكثر من 15 ساعة'] },
+  { q:'ما أبرز تحدياتك في الوقت الحالي؟', opts:['فهم القوائم المالية وتحليلها','إيجاد تمويل وجذب المستثمرين','التسويق وجذب العملاء','إدارة الفريق وتطوير الكفاءات','التخطيط الاستراتيجي لمستقبل المشروع'] },
+  { q:'ما نوع المحتوى التعليمي الذي تفضله؟', opts:['مقاطع فيديو قصيرة ومركّزة','دراسات وتقارير تحليلية عميقة','دورات تفاعلية ذات مهام عملية','ندوات مباشرة مع خبراء','مقالات وملخصات سريعة للقراءة'] },
+];
+
+/* ── الشارات ── */
+const BADGES = [
+  { id:'first_enroll', name:'أول خطوة',       desc:'سجّلت أول دورة',         icon:'🚀', check:(e)=>e.length>=1 },
+  { id:'bookworm',     name:'محب المعرفة',     desc:'حفظت 5 دراسات',          icon:'📚', check:(e,b)=>b.length>=5 },
+  { id:'graduate',     name:'متخرج الأكاديمية',desc:'أكملت دورة كاملة (100%)' ,icon:'🎓', check:(e)=>e.some(idx=>getCourseProgress(idx)>=100) },
+  { id:'triple',       name:'المثلث الذهبي',   desc:'دورة + دراسة + أداة مالية', icon:'🏅', check:(e,b)=>e.length>=1 && b.length>=1 },
+  { id:'calculator',   name:'المحلل المالي',   desc:'استخدم 3 حاسبات على الأقل', icon:'🧮', check:()=>+(localStorage.getItem('ac_calc_uses')||0)>=3 },
 ];
 
 let acCurrentSection = 0;
 let libCurrentFilter = 'all';
 let courseCurrentFilter = 'all';
+let _lpState = { step: 0, answers: {} };
 
 function openAcSection(n) {
   document.querySelectorAll('#page-academy .ac-section').forEach(s => s.classList.remove('active'));
   document.getElementById(n === 0 ? 'ac-landing' : 'ac-section-' + n).classList.add('active');
   acCurrentSection = n;
-  if (n === 1) renderLibrary('all');
-  if (n === 2) renderCourses('all');
+  if (n === 1) { renderLibrary('all'); document.getElementById('lib-search').value = ''; }
+  if (n === 2) { renderCourses('all'); document.getElementById('course-search').value = ''; }
+  if (n === 4) renderLearningPath();
+  if (n === 5) renderMyProgress();
   document.querySelector('.main-content').scrollTop = 0;
 }
 
@@ -4852,7 +5107,48 @@ function initAcademy() { openAcSection(0); }
 function acFilter(el, cat) {
   document.querySelectorAll('#ac-section-1 .ac-filter').forEach(f => f.classList.remove('active'));
   el.classList.add('active');
-  renderLibrary(cat);
+  libCurrentFilter = cat;
+  renderLibrary(cat, document.getElementById('lib-search').value);
+}
+
+function acLibSearch(q) { renderLibrary(libCurrentFilter, q); }
+
+function acCourseSearch(q) { renderCourses(courseCurrentFilter, q); }
+
+function acGlobalSearch(q) {
+  if (!q.trim()) return;
+  const ql = q.trim().toLowerCase();
+  const libHit = LIB_ITEMS.some(i => i.title.toLowerCase().includes(ql));
+  const crsHit = COURSES.some(c => c.title.toLowerCase().includes(ql));
+  if (libHit) { openAcSection(1); setTimeout(() => { document.getElementById('lib-search').value = q; acLibSearch(q); }, 80); }
+  else if (crsHit) { openAcSection(2); setTimeout(() => { document.getElementById('course-search').value = q; acCourseSearch(q); }, 80); }
+}
+
+/* ── Bookmarks (localStorage) ── */
+function getBookmarks() { try { return JSON.parse(localStorage.getItem('ac_bookmarks') || '[]'); } catch { return []; } }
+function isBookmarked(idx) { return getBookmarks().includes(idx); }
+function acBookmark(idx) {
+  let bm = getBookmarks();
+  if (bm.includes(idx)) bm = bm.filter(i => i !== idx);
+  else bm.push(idx);
+  localStorage.setItem('ac_bookmarks', JSON.stringify(bm));
+  renderLibrary(libCurrentFilter, document.getElementById('lib-search').value);
+}
+
+/* ── Enrollment (localStorage) ── */
+function getEnrolled() { try { return JSON.parse(localStorage.getItem('ac_enrolled') || '[]'); } catch { return []; } }
+function isEnrolled(idx) { return getEnrolled().includes(idx); }
+function enrollCourse(idx) {
+  let en = getEnrolled();
+  if (!en.includes(idx)) { en.push(idx); localStorage.setItem('ac_enrolled', JSON.stringify(en)); }
+  setCourseProgress(idx, 0);
+  renderCourses(courseCurrentFilter, document.getElementById('course-search').value);
+  showToast('✅ تم تسجيلك في الدورة بنجاح!');
+}
+function getCourseProgress(idx) { try { return +(JSON.parse(localStorage.getItem('ac_progress')||'{}')[idx]||0); } catch { return 0; } }
+function setCourseProgress(idx, p) {
+  let pr = {}; try { pr = JSON.parse(localStorage.getItem('ac_progress')||'{}'); } catch {}
+  pr[idx] = p; localStorage.setItem('ac_progress', JSON.stringify(pr));
 }
 
 /* ─── Academy Cover Generators ─── */
@@ -5131,16 +5427,22 @@ function getCourseCover(course) {
   return `<div style="width:100%;height:100%;background:linear-gradient(135deg,${c.g1},${c.g2});position:relative;overflow:hidden">${c.svg}</div>`;
 }
 
-function renderLibrary(cat) {
+function renderLibrary(cat, searchQ = '') {
   libCurrentFilter = cat;
-  const items = cat === 'all' ? LIB_ITEMS : LIB_ITEMS.filter(i => i.cat === cat);
+  let items = cat === 'all' ? LIB_ITEMS : LIB_ITEMS.filter(i => i.cat === cat);
+  if (searchQ) { const ql = searchQ.toLowerCase(); items = items.filter(i => i.title.toLowerCase().includes(ql)); }
   const grid = document.getElementById('lib-grid');
-  grid.innerHTML = items.map(item => `
+  grid.innerHTML = items.map((item, idx) => `
     <div class="lib-card">
-      <div class="lib-card-cover">${getLibCover(item)}</div>
+      <div class="lib-card-cover">
+        ${getLibCover(item)}
+        <button class="lib-bm ${isBookmarked(idx) ? 'bm-on' : ''}" onclick="event.stopPropagation();acBookmark(${idx})" title="${isBookmarked(idx) ? 'إلغاء الحفظ' : 'حفظ الدراسة'}">
+          <i class="fa-${isBookmarked(idx) ? 'solid' : 'regular'} fa-bookmark"></i>
+        </button>
+      </div>
       <div class="lib-card-body">
         <div class="lib-tag">${item.tag}</div>
-        <h4>${item.title}</h4>
+        <h4>${escHtml(item.title)}</h4>
         <div class="lib-meta">
           <span><i class="fa-solid fa-calendar-days"></i> ${item.date}</span>
           ${item.pages ? `<span><i class="fa-solid fa-file-lines"></i> ${item.pages} صفحة</span>` : `<span><i class="fa-solid fa-clock"></i> ${item.mins} دقيقة</span>`}
@@ -5150,42 +5452,187 @@ function renderLibrary(cat) {
         </button>
       </div>
     </div>`).join('');
-  if (!items.length) grid.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted)">لا توجد نتائج في هذا التصنيف</div>';
+  if (!items.length) grid.innerHTML = '<div class="ac-empty"><i class="fa-solid fa-book-open"></i><br/>لا توجد نتائج مطابقة</div>';
 }
 
 function courseFilter(el, cat) {
   document.querySelectorAll('#ac-section-2 .ac-filter').forEach(f => f.classList.remove('active'));
   el.classList.add('active');
-  renderCourses(cat);
+  courseCurrentFilter = cat;
+  renderCourses(cat, document.getElementById('course-search').value);
 }
 
-function renderCourses(cat) {
+function renderCourses(cat, searchQ = '') {
   courseCurrentFilter = cat;
-  const items = cat === 'all' ? COURSES : cat === 'free' ? COURSES.filter(c => c.free) : COURSES.filter(c => c.cat === cat);
+  let items = cat === 'all' ? COURSES : cat === 'free' ? COURSES.filter(c => c.free) : COURSES.filter(c => c.cat === cat);
+  if (searchQ) { const ql = searchQ.toLowerCase(); items = items.filter(c => c.title.toLowerCase().includes(ql)); }
   const grid = document.getElementById('course-grid');
   const levelColor = {مبتدئ:'#22c55e', متوسط:'#f59e0b', متقدم:'#ef4444'};
-  grid.innerHTML = items.map(course => `
+  grid.innerHTML = items.map((course, i) => {
+    const idx = COURSES.indexOf(course);
+    const enrolled = isEnrolled(idx);
+    const progress = getCourseProgress(idx);
+    return `
     <div class="course-card">
       <div class="course-cover">${getCourseCover(course)}
         <span class="course-level" style="background:${levelColor[course.level]||'#888'}">${course.level}</span>
         <span class="${course.free ? 'course-free' : 'course-paid'}">${course.free ? 'مجانية 🎁' : 'مدفوعة'}</span>
       </div>
       <div class="course-body">
-        <h4>${course.title}</h4>
+        <h4>${escHtml(course.title)}</h4>
         <div class="lib-meta" style="margin:.4rem 0">
-          <span><i class="fa-solid fa-user-tie"></i> ${course.instructor}</span>
+          <span><i class="fa-solid fa-user-tie"></i> ${escHtml(course.instructor)}</span>
         </div>
         <div class="lib-meta">
           <span><i class="fa-solid fa-video"></i> ${course.sessions} جلسة</span>
           <span><i class="fa-solid fa-clock"></i> ${course.hours} ساعة</span>
           <span><i class="fa-solid fa-users"></i> ${course.enrolled.toLocaleString('ar')}</span>
         </div>
-        <button class="enroll-btn ${course.free ? '' : 'paid'}" onclick="showToast('تم تسجيلك في الدورة، ستصلك رسالة تفعيل!')">
-          ${course.free ? 'سجّل مجاناً' : 'اشترك الآن'}
+        ${enrolled ? `<div class="cpw"><div class="cpf" style="width:${progress}%"></div></div><div style="font-size:.72rem;color:var(--muted);margin:.3rem 0 .5rem">تقدمك: ${progress}%</div>` : ''}
+        <button class="enroll-btn ${enrolled ? 'enrolled' : course.free ? '' : 'paid'}" onclick="${enrolled ? `setCourseProgress(${idx},Math.min(100,getCourseProgress(${idx})+10));renderCourses('${courseCurrentFilter}',document.getElementById('course-search').value)` : `enrollCourse(${idx})`}">
+          ${enrolled ? '<i class="fa-solid fa-play-circle"></i> تابع الدورة' : course.free ? 'سجّل مجاناً' : 'اشترك الآن'}
         </button>
       </div>
-    </div>`).join('');
-  if (!items.length) grid.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted)">لا توجد دورات في هذا التصنيف</div>';
+    </div>`;
+  }).join('');
+  if (!items.length) grid.innerHTML = '<div class="ac-empty"><i class="fa-solid fa-chalkboard-user"></i><br/>لا توجد دورات مطابقة</div>';
+}
+
+/* ── مسار التعلم الشخصي ── */
+function renderLearningPath() {
+  const c = document.getElementById('lp-container');
+  if (!c) return;
+  const done = Object.keys(_lpState.answers).length >= LP_QUIZ.length;
+  if (done) { c.innerHTML = buildLearningPath(); return; }
+  const step = _lpState.step;
+  const q = LP_QUIZ[step];
+  c.innerHTML = `
+    <div class="lp-header">
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem">السؤال ${step+1} من ${LP_QUIZ.length}</div>
+      <div class="cpw" style="margin-bottom:1rem"><div class="cpf" style="width:${((step)/LP_QUIZ.length*100).toFixed(0)}%"></div></div>
+      <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:1.25rem">${escHtml(q.q)}</h3>
+    </div>
+    <div class="lp-quiz-wrap">
+      ${q.opts.map((opt,i)=>`<div class="lp-quiz-opt ${_lpState.answers[step]===i?'sel':''}" onclick="lpSelectOpt(${step},${i})">${escHtml(opt)}</div>`).join('')}
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1.5rem">
+      ${step>0?`<button class="btn-secondary" onclick="lpPrevQ()"><i class="fa-solid fa-arrow-right"></i> السابق</button>`:''}
+      <button class="btn-primary" onclick="lpNextQ()" style="flex:1;justify-content:center" ${_lpState.answers[step]===undefined?'disabled':''}>
+        ${step<LP_QUIZ.length-1?'التالي <i class="fa-solid fa-arrow-left"></i>':'<i class="fa-solid fa-wand-magic-sparkles"></i> بناء مساري الآن'}
+      </button>
+    </div>`;
+}
+
+function lpSelectOpt(q, opt) {
+  _lpState.answers[q] = opt;
+  renderLearningPath();
+}
+
+function lpNextQ() {
+  if (_lpState.answers[_lpState.step] === undefined) return;
+  if (_lpState.step < LP_QUIZ.length - 1) { _lpState.step++; renderLearningPath(); }
+  else { _lpState.step = LP_QUIZ.length; renderLearningPath(); }
+}
+
+function lpPrevQ() {
+  if (_lpState.step > 0) { _lpState.step--; renderLearningPath(); }
+}
+
+function buildLearningPath() {
+  const goal = _lpState.answers[0] || 0; // 0=بدء مشروع, 1=تطوير, 2=مالية, 3=استثمار, 4=وظيفي
+  const lvl  = _lpState.answers[1] || 0; // 0=مبتدئ..4=متمرس
+  const time  = _lpState.answers[2] || 0;
+  const chal  = _lpState.answers[3] || 0;
+  const ctype = _lpState.answers[4] || 0;
+  const paths = [
+    { icon:'🚀', title:'مسار ريادة الأعمال', steps:['مقدمة في ريادة الأعمال وبناء الفكرة','كيف تكتب خطة عمل احترافية','أساسيات المحاسبة المالية','استراتيجيات التسويق الرقمي','الحصول على التمويل: من الفكرة إلى الجولة الأولى'] },
+    { icon:'📈', title:'مسار تطوير المشروع', steps:['التخطيط المالي الاستراتيجي','إدارة التدفق النقدي وتخطيط السيولة','التسويق الرقمي وبناء الحضور الإلكتروني','إدارة الموارد البشرية للمدير الجديد','الاستثمار العقاري في السوق السعودي 2026'] },
+    { icon:'💵', title:'مسار المال الشخصي', steps:['فقه المال: الحلال والحرام في الاستثمار','الاستثمار في الأسهم: من الصفر للاحتراف','ندوة: صناديق الاستثمار المتداولة ETF','تحليل مقارن: الذهب أم العقار أم الأسهم؟','دليل الاستثمار في صناديق الريت'] },
+    { icon:'🏦', title:'مسار الاستثمار المتقدم', steps:['الاستثمار في الأسهم: من الصفر للاحتراف','الاستثمار العقاري في السوق السعودي 2026','الذكاء الاصطناعي والاستثمار','ندوة: صناديق الاستثمار المتداولة ETF','التخطيط المالي الاستراتيجي'] },
+    { icon:'💼', title:'مسار التطوير الوظيفي', steps:['أساسيات المحاسبة المالية للمشاريع الصغيرة','ضريبة القيمة المضافة والزكاة للمحاسب','قانون العمل السعودي من الألف إلى الياء','إدارة الموارد البشرية للمدير الجديد','التخطيط المالي الاستراتيجي'] },
+  ];
+  const chosen = paths[goal] || paths[0];
+  const tools = ['استخدم حاسبة القرض لتخطيط التمويل','جرّب حاسبة نقطة التعادل لمشروعك','احسب ROI استثمارك القادم','اعرف راتبك الصافي عبر الحاسبة','استكشف مسار الادخار المثالي'];
+  return `
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="font-size:3rem;margin-bottom:.5rem">${chosen.icon}</div>
+      <h2 style="font-size:1.3rem;font-weight:900;color:var(--text)">${chosen.title}</h2>
+      <p style="color:var(--muted);font-size:.85rem">مسار مخصص بناءً على إجاباتك — 5 خطوات تعليمية موجّهة</p>
+    </div>
+    <div class="lp-steps">
+      ${chosen.steps.map((s,i)=>`
+        <div class="lp-step-row">
+          <div class="lp-num">${i+1}</div>
+          <div style="flex:1">
+            <div style="font-weight:700;color:var(--text)">${escHtml(s)}</div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">${['دورة تدريبية','دراسة متعمقة','ندوة تفاعلية','دورة تدريبية','مشروع تطبيقي'][i]}</div>
+          </div>
+          <span style="font-size:.75rem;padding:.2rem .6rem;border-radius:20px;background:rgba(34,197,94,.1);color:var(--green)">الخطوة ${i+1}</span>
+        </div>`).join('')}
+    </div>
+    <div style="margin-top:1.5rem;padding:1rem;background:rgba(139,92,246,.08);border-radius:12px;border:1px solid rgba(139,92,246,.2)">
+      <div style="font-weight:700;color:#8b5cf6;margin-bottom:.6rem"><i class="fa-solid fa-calculator"></i> أداة مالية مقترحة لمرحلتك</div>
+      <div style="font-size:.85rem;color:var(--muted)">${tools[goal]||tools[0]}</div>
+      <button class="btn-primary" style="margin-top:.75rem" onclick="openAcSection(3)"><i class="fa-solid fa-arrow-left"></i> افتح الأدوات المالية</button>
+    </div>
+    <button class="btn-secondary" style="margin-top:1rem;width:100%;justify-content:center" onclick="_lpState={step:0,answers:{}};renderLearningPath()">
+      <i class="fa-solid fa-rotate-right"></i> إعادة الاختبار
+    </button>`;
+}
+
+/* ── تقدمي وإنجازاتي ── */
+function renderMyProgress() {
+  const enrolled = getEnrolled();
+  const bookmarks = getBookmarks();
+  const completed = enrolled.filter(idx => getCourseProgress(idx) >= 100);
+  const earnedBadges = BADGES.filter(b => { try { return b.check(enrolled, bookmarks); } catch { return false; } });
+  const c = document.getElementById('mp-container');
+  if (!c) return;
+  c.innerHTML = `
+    <div class="mp-stats-row">
+      <div class="mp-stat-box"><div class="val">${enrolled.length}</div><div class="lbl">دورة مسجّلة</div></div>
+      <div class="mp-stat-box"><div class="val">${bookmarks.length}</div><div class="lbl">دراسة محفوظة</div></div>
+      <div class="mp-stat-box"><div class="val">${completed.length}</div><div class="lbl">دورة مكتملة</div></div>
+      <div class="mp-stat-box"><div class="val">${earnedBadges.length}</div><div class="lbl">شارة محققة</div></div>
+    </div>
+
+    <h4 style="font-weight:800;margin:1.5rem 0 .75rem"><i class="fa-solid fa-graduation-cap" style="color:#ec4899;margin-left:.4rem"></i>دوراتي المسجّلة</h4>
+    ${enrolled.length===0?'<div class="ac-empty"><i class="fa-solid fa-chalkboard-user"></i><br/>لم تسجل في أي دورة بعد — اذهب إلى الدورات وابدأ!</div>':
+    enrolled.map(idx=>{
+      const crs = COURSES[idx]; if(!crs) return '';
+      const p = getCourseProgress(idx);
+      return `<div class="mp-enrolled-card">
+        <div style="font-weight:700;color:var(--text);margin-bottom:.4rem">${escHtml(crs.title)}</div>
+        <div class="cpw"><div class="cpf" style="width:${p}%"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-top:.3rem">
+          <span>${p}% مكتمل</span>
+          ${p>=100?'<span style="color:var(--green)">✅ مكتملة</span>':'<span>يتبقى ${100-p}%</span>'}
+        </div>
+      </div>`;
+    }).join('')}
+
+    <h4 style="font-weight:800;margin:1.5rem 0 .75rem"><i class="fa-solid fa-bookmark" style="color:#f59e0b;margin-left:.4rem"></i>الدراسات المحفوظة</h4>
+    ${bookmarks.length===0?'<div class="ac-empty"><i class="fa-solid fa-book-open"></i><br/>لم تحفظ أي دراسة بعد — ابحث في المكتبة واحفظ ما يعجبك</div>':
+    bookmarks.map(idx=>{
+      const item = LIB_ITEMS[idx]; if(!item) return '';
+      return `<div class="mp-enrolled-card" style="display:flex;align-items:center;gap:.75rem">
+        <div class="lib-tag" style="flex-shrink:0">${item.tag}</div>
+        <div style="flex:1;font-size:.85rem;font-weight:600;color:var(--text)">${escHtml(item.title)}</div>
+        <button class="lib-bm bm-on" onclick="acBookmark(${idx});renderMyProgress()" title="إلغاء الحفظ"><i class="fa-solid fa-bookmark"></i></button>
+      </div>`;
+    }).join('')}
+
+    <h4 style="font-weight:800;margin:1.5rem 0 .75rem"><i class="fa-solid fa-trophy" style="color:#ec4899;margin-left:.4rem"></i>شاراتي</h4>
+    <div class="badge-grid">
+      ${BADGES.map(b=>{
+        const earned = earnedBadges.some(e=>e.id===b.id);
+        return `<div class="badge-card ${earned?'earned':''}">
+          <div style="font-size:1.8rem;margin-bottom:.4rem">${b.icon}</div>
+          <div style="font-weight:700;font-size:.85rem;color:${earned?'var(--text)':'var(--muted)'}">${b.name}</div>
+          <div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">${b.desc}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
 }
 
 function showPremiumModal() {
@@ -5296,6 +5743,122 @@ function calcPricing() {
   document.getElementById('price-before-vat').textContent = fmt0(beforeVat);
   document.getElementById('price-monthly-profit').textContent = fmt(profit);
   document.getElementById('price-result').style.display = 'block';
+}
+
+/* ── حاسبة صافي الراتب ── */
+function calcSalaryNet() {
+  const basic   = +document.getElementById('sal-basic').value;
+  const housing = +document.getElementById('sal-housing').value || 0;
+  const transp  = +document.getElementById('sal-transport').value || 0;
+  const other   = +document.getElementById('sal-other').value || 0;
+  const nat     = document.getElementById('sal-nationality').value;
+  if (!basic) return showToast('أدخل الراتب الأساسي أولاً');
+  const gross = basic + housing + transp + other;
+  // معدلات التأمينات الاجتماعية GOSI
+  const gosiEmployee = nat === 'saudi' ? basic * 0.10 : 0;
+  const net = gross - gosiEmployee;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  document.getElementById('sal-net').textContent = fmt(net);
+  document.getElementById('sal-gross').textContent = fmt(gross);
+  document.getElementById('sal-gosi').textContent = gosiEmployee > 0 ? fmt(gosiEmployee) : 'لا يُطبَّق';
+  document.getElementById('sal-annual').textContent = fmt(net * 12);
+  document.getElementById('sal-result').style.display = 'block';
+  _trackCalcUse();
+}
+
+/* ── حاسبة الاستثمار المركّب ── */
+function calcCompoundInvestment() {
+  const P = +document.getElementById('ci-principal').value || 0;
+  const PMT = +document.getElementById('ci-monthly').value || 0;
+  const rate = +document.getElementById('ci-rate').value;
+  const years = +document.getElementById('ci-years').value;
+  if ((!P && !PMT) || !rate || !years) return showToast('تأكد من ملء الحقول المطلوبة');
+  const r = rate / 100 / 12;
+  const n = years * 12;
+  const fv = P * Math.pow(1+r, n) + (r > 0 ? PMT * (Math.pow(1+r, n) - 1) / r : PMT * n);
+  const invested = P + PMT * n;
+  const gain = fv - invested;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  document.getElementById('ci-final').textContent = fmt(fv);
+  document.getElementById('ci-invested').textContent = fmt(invested);
+  document.getElementById('ci-gain').textContent = fmt(gain);
+  document.getElementById('ci-x').textContent = (fv / (invested || 1)).toFixed(2) + 'x';
+  document.getElementById('ci-result').style.display = 'block';
+  _trackCalcUse();
+}
+
+/* ── حاسبة هدف الادخار ── */
+function calcSavingsGoal() {
+  const goal    = +document.getElementById('sg-goal').value;
+  const current = +document.getElementById('sg-current').value || 0;
+  const rate    = +document.getElementById('sg-rate').value || 0;
+  const months  = +document.getElementById('sg-months').value;
+  if (!goal || !months) return showToast('تأكد من ملء الحقول المطلوبة');
+  const r = rate / 100 / 12;
+  const n = months;
+  const fvCurrent = current * Math.pow(1+r, n);
+  const need = goal - fvCurrent;
+  const monthly = need <= 0 ? 0 : (r > 0 ? need * r / (Math.pow(1+r, n) - 1) : need / n);
+  const totalSaved = monthly * n;
+  const interestEarned = goal - current - totalSaved;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  document.getElementById('sg-monthly').textContent = monthly > 0 ? fmt(monthly) : 'محققت هدفك!';
+  document.getElementById('sg-monthly').style.color = monthly <= 0 ? 'var(--green)' : 'var(--text)';
+  document.getElementById('sg-total-saved').textContent = fmt(totalSaved);
+  document.getElementById('sg-interest-earned').textContent = fmt(Math.max(0, interestEarned));
+  document.getElementById('sg-result').style.display = 'block';
+  _trackCalcUse();
+}
+
+/* ── حاسبة تكلفة الموظف الكاملة ── */
+function calcEmployeeCost() {
+  const basic       = +document.getElementById('ec-basic').value;
+  const allowances  = +document.getElementById('ec-allowances').value || 0;
+  const nat         = document.getElementById('ec-nationality').value;
+  const iqama       = +document.getElementById('ec-iqama').value || 0;
+  if (!basic) return showToast('أدخل الراتب الأساسي أولاً');
+  const gross = basic + allowances;
+  const gosiER  = nat === 'saudi' ? basic * 0.1175 : basic * 0.02;
+  const iqamaMonthly = nat === 'expat' ? iqama / 12 : 0;
+  const total = gross + gosiER + iqamaMonthly;
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  const fmt2 = v => v.toLocaleString('ar-SA', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' ر.س';
+  document.getElementById('ec-total').textContent = fmt(total);
+  document.getElementById('ec-gosi-er').textContent = fmt2(gosiER) + (iqamaMonthly ? ` + ${fmt2(iqamaMonthly)} إقامة` : '');
+  document.getElementById('ec-annual').textContent = fmt(total * 12);
+  document.getElementById('ec-result').style.display = 'block';
+  _trackCalcUse();
+}
+
+/* ── حاسبة الإيجار مقابل الشراء ── */
+function calcRentBuy() {
+  const price   = +document.getElementById('rb-price').value;
+  const rent    = +document.getElementById('rb-rent').value;
+  const down    = +document.getElementById('rb-down').value || 20;
+  const rate    = +document.getElementById('rb-rate').value;
+  if (!price || !rent || !rate) return showToast('تأكد من ملء الحقول المطلوبة');
+  const loan = price * (1 - down / 100);
+  const mr = rate / 100 / 12;
+  const n = 360; // 30 سنة
+  const mortgage = loan * mr * Math.pow(1+mr, n) / (Math.pow(1+mr, n) - 1);
+  // نقطة التعادل تقريبية: متى يصبح الرهن أرخص من الإيجار مع الأخذ بعين الاعتبار بناء الملكية
+  // نفترض زيادة الإيجار 3% سنوياً وعائد استثمار الدفعة الأولى 5%
+  const breakeven = Math.ceil(Math.log(mortgage/rent) / Math.log(1.003)) || '—';
+  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
+  const verdict = mortgage <= rent ? 'الشراء أفضل' : 'الإيجار أوفر حالياً';
+  const verdictColor = mortgage <= rent ? 'var(--green)' : '#f59e0b';
+  document.getElementById('rb-verdict').textContent = verdict;
+  document.getElementById('rb-verdict').style.color = verdictColor;
+  document.getElementById('rb-verdict-note').textContent = `القسط الشهري مقابل إيجار ${fmt(rent)}`;
+  document.getElementById('rb-mortgage').textContent = fmt(mortgage);
+  document.getElementById('rb-breakeven').textContent = typeof breakeven === 'number' ? breakeven + ' شهراً' : '—';
+  document.getElementById('rb-result').style.display = 'block';
+  _trackCalcUse();
+}
+
+function _trackCalcUse() {
+  const uses = +(localStorage.getItem('ac_calc_uses') || 0) + 1;
+  localStorage.setItem('ac_calc_uses', uses);
 }
 
 /* ======================================================
