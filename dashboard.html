@@ -191,9 +191,9 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-hero-stat-chip.chip-amber i{color:#d97706}
 .bento-hero-stat-chip.chip-blue i{color:#4E73C2}
 
-/* Upgrade bar cell — col 2 row 2 */
+/* Upgrade bar cell — col 2-4 row 2 (عريض) */
 .bento-pricing{
-  grid-column:2;grid-row:2;
+  grid-column:2 / 4;grid-row:2;
   cursor:default;overflow:hidden;
   background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%) !important;
   border-color:rgba(139,92,246,.6) !important;
@@ -353,7 +353,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
 /* Wallet cell */
 .bento-wallet{
-  grid-column:3;grid-row:2;
+  grid-column:1;grid-row:2;
   background:linear-gradient(145deg,#fffbeb 0%,#fef3c7 60%,#fff8e1 100%) !important;
   border-color:rgba(245,158,11,.25) !important;
 }
@@ -629,10 +629,9 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 @media(max-width:960px){
   .bento-grid{grid-template-columns:1fr 1fr;gap:.9rem}
   .bento-hero-cell{grid-column:1/3;grid-row:1}
-  .bento-referral{grid-column:1;grid-row:2}
+  .bento-wallet{grid-column:1;grid-row:2}
   .bento-pricing{grid-column:2;grid-row:2}
-  .bento-wallet{grid-column:1;grid-row:3}
-  .bento-quick-access{grid-column:2;grid-row:3}
+  .bento-quick-access{grid-column:1;grid-row:3}
   .bento-biz{grid-column:1;grid-row:4}
   .bento-pro{grid-column:2;grid-row:4}
 }
@@ -2362,43 +2361,6 @@ function toggleNotifPanel(){
           </div>
         </div>
 
-        <!-- ══ خلية 5: رابط الإحالة (Col 2/4, Row 2) ══ -->
-        <div class="bento-cell bento-referral">
-          <div class="bento-cell-glow bento-glow-purple"></div>
-          <div class="bento-cell-inner">
-            <div class="bento-cell-label">
-              <i class="fa-solid fa-link"></i> رابط الإحالة
-            </div>
-            <div class="bento-ref-link-row">
-              <input id="bento-ref-input" type="text" readonly
-                class="bento-ref-input" value="جارٍ التحميل..." />
-              <button class="bento-ref-copy-btn" onclick="bentoCopyRef(event)">
-                <i class="fa-solid fa-copy"></i>
-                <span>نسخ</span>
-              </button>
-            </div>
-            <div class="bento-ref-stats">
-              <div class="bento-ref-stat">
-                <span class="bento-ref-stat-num" id="bento-ref-total">0</span>
-                <span class="bento-ref-stat-lbl">إحالة</span>
-              </div>
-              <div class="bento-ref-divider"></div>
-              <div class="bento-ref-stat">
-                <span class="bento-ref-stat-num bento-green" id="bento-ref-rewarded">0</span>
-                <span class="bento-ref-stat-lbl">مكافأة</span>
-              </div>
-              <div class="bento-ref-divider"></div>
-              <div class="bento-ref-stat">
-                <span class="bento-ref-stat-num bento-amber" id="bento-ref-pending">0</span>
-                <span class="bento-ref-stat-lbl">قيد الانتظار</span>
-              </div>
-            </div>
-            <button class="bento-ref-share-btn" onclick="bentoCopyRef(event);bentoShareRef()">
-              <i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب
-            </button>
-          </div>
-        </div>
-
         <!-- ══ خلية 6: وصول سريع (Col 1, Row 3) ══ -->
         <div class="bento-cell bento-quick-access">
           <div class="bento-cell-label" style="margin-bottom:.9rem">
@@ -2409,6 +2371,12 @@ function toggleNotifPanel(){
         </div>
 
       </div><!-- end bento-grid -->
+
+      <!-- عناصر مخفية للإحالة (يستخدمها JS) -->
+      <input id="bento-ref-input" type="hidden" value="" />
+      <span id="bento-ref-total" style="display:none">0</span>
+      <span id="bento-ref-rewarded" style="display:none">0</span>
+      <span id="bento-ref-pending" style="display:none">0</span>
     </div> <!-- نهاية الصفحة الرئيسية -->
 
     <!-- ══════════════════════════════════════════════════════════
