@@ -360,6 +360,20 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-upgrade-btn:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(124,58,237,.45)}
 
+/* Wallet promo hint */
+.bento-wallet-promo-hint{
+  display:flex;align-items:center;gap:.5rem;
+  margin-top:.7rem;padding:.5rem .75rem;
+  background:linear-gradient(135deg,rgba(180,83,9,.12),rgba(217,119,6,.07));
+  border:1px solid rgba(217,119,6,.3);border-radius:10px;
+  font-size:.78rem;color:#92400e;line-height:1.5;
+}
+.bento-wallet-promo-hint i{
+  font-size:.85rem;color:#f59e0b;flex-shrink:0;
+  background:rgba(245,158,11,.15);padding:.35rem;border-radius:50%;
+}
+[data-theme="dark"] .bento-wallet-promo-hint{color:#fcd34d;background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.2);}
+
 /* Promo referral hint */
 .bento-ref-promo-hint{
   margin-top:.75rem;padding:.55rem .75rem;
@@ -2023,6 +2037,10 @@ function toggleNotifPanel(){
               <span class="bento-wallet-num" id="bento-wallet-sar">0.00</span>
               <span class="bento-wallet-cur">ر.س</span>
             </div>
+            <div class="bento-wallet-promo-hint">
+              <i class="fa-solid fa-percent"></i>
+              <span>اكسب <strong>10% عمولة</strong> كرصيد فوري عن كل إحالة ناجحة</span>
+            </div>
             <div class="bento-cell-arrow" style="margin-top:.6rem"><i class="fa-solid fa-arrow-left"></i> إدارة المحفظة</div>
           </div>
           <div class="bento-wallet-icon-bg"><i class="fa-solid fa-wallet"></i></div>
@@ -2062,10 +2080,6 @@ function toggleNotifPanel(){
             <button class="bento-ref-share-btn" onclick="bentoCopyRef(event);bentoShareRef()">
               <i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب
             </button>
-            <div class="bento-ref-promo-hint">
-              <i class="fa-solid fa-circle-info"></i>
-              احصل على <strong>عمولة 10%</strong> كرصيد في محفظتك عن أول خدمة يطلبها من تُحيله للمنصة
-            </div>
           </div>
         </div>
 
