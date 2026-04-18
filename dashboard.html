@@ -177,64 +177,80 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-pricing{
   grid-column:2 / 4;grid-row:2;
   cursor:default;overflow:visible;
-  background:linear-gradient(145deg,rgba(99,102,241,.06),rgba(139,92,246,.04)) !important;
-  border-color:rgba(99,102,241,.28) !important;
+  background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%) !important;
+  border-color:rgba(139,92,246,.6) !important;
 }
-.bento-pricing:hover{transform:none;box-shadow:0 4px 24px rgba(99,102,241,.12)}
+.bento-pricing:hover{transform:none;box-shadow:0 8px 32px rgba(99,102,241,.35)}
+.bento-pricing .bento-cell-label{color:rgba(255,255,255,.8)}
+.bento-pricing .bento-cell-label i{color:rgba(255,255,255,.75) !important}
+.bento-pricing .bento-cell-label span{color:#fff !important}
 
 /* Plans horizontal bars */
 .bento-plans-grid{
   display:flex;flex-direction:column;
-  gap:.55rem;margin-top:.55rem;
+  gap:.5rem;margin-top:.55rem;
 }
 .bento-plan-bar{
   display:flex;align-items:center;gap:.75rem;
-  padding:.7rem 1rem;border-radius:12px;
-  border:1.5px solid var(--glass-border);
-  background:rgba(255,255,255,.6);
-  cursor:pointer;transition:all .22s ease;position:relative;
+  padding:.7rem 1rem .95rem;
+  border-radius:12px;
+  border:none;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(6px);
+  cursor:pointer;transition:all .22s ease;position:relative;overflow:hidden;
 }
-[data-theme="dark"] .bento-plan-bar{background:rgba(255,255,255,.04)}
 .bento-plan-bar:hover{
-  border-color:rgba(99,102,241,.5);
-  box-shadow:0 4px 16px rgba(99,102,241,.18);
+  background:rgba(255,255,255,.22);
   transform:translateX(-3px);
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
 }
 .bento-plan-bar-icon{
   width:36px;height:36px;border-radius:10px;
   display:flex;align-items:center;justify-content:center;
   font-size:.95rem;color:#fff;flex-shrink:0;
-  box-shadow:0 3px 10px rgba(0,0,0,.15);
+  box-shadow:0 3px 10px rgba(0,0,0,.25);
 }
 .bento-plan-bar-info{flex:1;min-width:0}
-.bento-plan-bar-name{font-size:.82rem;font-weight:800;color:var(--text);line-height:1.2}
-.bento-plan-bar-tagline{font-size:.68rem;color:var(--muted);margin-top:.05rem}
+.bento-plan-bar-name{font-size:.82rem;font-weight:800;color:#fff;line-height:1.2}
+.bento-plan-bar-tagline{font-size:.68rem;color:rgba(255,255,255,.7);margin-top:.05rem}
 .bento-plan-bar-price{
-  font-size:1.05rem;font-weight:900;color:#4f46e5;
+  font-size:1.05rem;font-weight:900;color:#fff;
   white-space:nowrap;flex-shrink:0;
 }
-.bento-plan-bar-price span{font-size:.62rem;color:var(--muted);font-weight:600}
+.bento-plan-bar-price span{font-size:.62rem;color:rgba(255,255,255,.75);font-weight:600}
 .bento-plan-bar-arrow{
-  font-size:.75rem;color:var(--muted);flex-shrink:0;
+  font-size:.75rem;color:rgba(255,255,255,.6);flex-shrink:0;
   transition:color .2s,transform .2s;
 }
-.bento-plan-bar:hover .bento-plan-bar-arrow{color:#4f46e5;transform:translateX(-3px)}
+.bento-plan-bar:hover .bento-plan-bar-arrow{color:#fff;transform:translateX(-3px)}
 .bento-plan-bar-popular{
-  border-color:rgba(99,102,241,.5) !important;
-  background:linear-gradient(135deg,rgba(99,102,241,.09),rgba(139,92,246,.05)) !important;
+  background:rgba(255,255,255,.22) !important;
 }
 .bento-plan-bar-popular-badge{
   position:absolute;top:-8px;right:1rem;
-  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  background:linear-gradient(135deg,#f59e0b,#f97316);
   color:#fff;font-size:.58rem;font-weight:800;
   padding:.15rem .6rem;border-radius:20px;white-space:nowrap;
 }
-.bento-plan-bar.is-active-plan{
-  border-color:rgba(16,185,129,.5) !important;
-  background:linear-gradient(135deg,rgba(16,185,129,.09),rgba(5,150,105,.04)) !important;
+/* Progress bar (أسفل كل شريط) */
+.bento-plan-bar-progress{
+  position:absolute;bottom:0;left:0;right:0;height:4px;
+  background:rgba(255,255,255,.15);
 }
-.bento-plan-bar.is-active-plan .bento-plan-bar-price{color:#059669}
-.bento-plan-bar.is-active-plan .bento-plan-bar-arrow::before{content:'\2713';color:#059669}
+.bento-plan-bar-progress-fill{
+  height:100%;border-radius:2px;
+  background:rgba(255,255,255,.75);
+  transition:width .5s ease;
+}
+.bento-plan-bar.is-active-plan .bento-plan-bar-progress-fill{
+  background:linear-gradient(90deg,#34d399,#10b981);
+}
+.bento-plan-bar.is-active-plan{
+  background:rgba(52,211,153,.2) !important;
+  box-shadow:inset 0 0 0 1.5px rgba(52,211,153,.4);
+}
+.bento-plan-bar.is-active-plan .bento-plan-bar-price{color:#6ee7b7}
+.bento-plan-bar.is-active-plan .bento-plan-bar-arrow::before{content:'\2713';color:#6ee7b7}
 
 /* Plan Details Modal */
 .plan-modal-overlay{
@@ -337,7 +353,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
 /* Wallet cell */
 .bento-wallet{
-  grid-column:3;grid-row:1;
+  grid-column:1;grid-row:2;
   background:linear-gradient(145deg,#fffbeb 0%,#fef3c7 60%,#fff8e1 100%) !important;
   border-color:rgba(245,158,11,.25) !important;
 }
@@ -365,7 +381,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
 /* Referral cell — صف 1 عمود 2 */
 .bento-referral{
-  grid-column:2;grid-row:1;
+  grid-column:2 / 4;grid-row:1;
   cursor:default;
 }
 .bento-referral:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.1)}
@@ -2213,7 +2229,7 @@ function toggleNotifPanel(){
                 </div>
                 <div class="bento-plan-bar-price">149 <span>ر.س</span></div>
                 <i class="fa-solid fa-chevron-left bento-plan-bar-arrow"></i>
-              </div>
+                <div class="bento-plan-bar-progress"><div class="bento-plan-bar-progress-fill" style="width:25%"></div></div>
 
               <!-- شريط رواد الأعمال -->
               <div class="bento-plan-bar bento-plan-bar-popular" id="plan-bar-entrepreneur" onclick="openPlanModal('entrepreneur')">
@@ -2227,7 +2243,7 @@ function toggleNotifPanel(){
                 </div>
                 <div class="bento-plan-bar-price">500 <span>ر.س</span></div>
                 <i class="fa-solid fa-chevron-left bento-plan-bar-arrow"></i>
-              </div>
+                <div class="bento-plan-bar-progress"><div class="bento-plan-bar-progress-fill" style="width:60%"></div></div>
 
               <!-- شريط المستثمر -->
               <div class="bento-plan-bar" id="plan-bar-investor" onclick="openPlanModal('investor')">
@@ -2240,7 +2256,7 @@ function toggleNotifPanel(){
                 </div>
                 <div class="bento-plan-bar-price">1200 <span>ر.س</span></div>
                 <i class="fa-solid fa-chevron-left bento-plan-bar-arrow"></i>
-              </div>
+                <div class="bento-plan-bar-progress"><div class="bento-plan-bar-progress-fill" style="width:100%"></div></div>
 
             </div>
           </div>
