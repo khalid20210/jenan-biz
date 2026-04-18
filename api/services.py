@@ -1186,14 +1186,15 @@ async def rag_ingest(
     if SUPABASE_URL and SUPABASE_ANON_KEY:
         try:
             import httpx as _hx
+            _svc_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY", SUPABASE_ANON_KEY)
             ct = 'application/pdf' if ext == 'pdf' else \
                  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
             up = await _hx.AsyncClient(timeout=30).put(
                 f"{SUPABASE_URL}/storage/v1/object/knowledge-base/documents/{filename}",
                 content=file_bytes,
                 headers={
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': f'Bearer {SUPABASE_ANON_KEY}',
+                    'apikey': _svc_key,
+                    'Authorization': f'Bearer {_svc_key}',
                     'Content-Type': ct,
                     'x-upsert': 'true',
                 },

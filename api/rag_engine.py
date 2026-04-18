@@ -31,13 +31,19 @@ _BATCH_SIZE = 50   # عدد النصوص في كل طلب embedding
 def _sb_url() -> str:
     return os.getenv("SUPABASE_URL", "").rstrip("/")
 
-def _sb_key() -> str:
+def _sb_anon_key() -> str:
     return os.getenv("SUPABASE_ANON_KEY", "")
 
-def _sb_hdrs() -> Dict[str, str]:
+def _sb_svc_key() -> str:
+    """service_role — للعمليات الكتابية (insert/delete)"""
+    return os.getenv("SUPABASE_SERVICE_ROLE_KEY", "") or _sb_anon_key()
+
+def _sb_hdrs(write: bool = False) -> Dict[str, str]:
+    """write=True يستخدم service_role للإدراج/الحذف"""
+    key = _sb_svc_key() if write else _sb_anon_key()
     return {
-        "apikey":        _sb_key(),
-        "Authorization": f"Bearer {_sb_key()}",
+        "apikey":        key,
+        "Authorization": f"Bearer {key}",
         "Content-Type":  "application/json",
     }
 
@@ -92,9 +98,9 @@ async def ingest_chunks(
       {doc_id, chunks_stored, success, tokens_used}
     """
     url  = _sb_url()
-    hdrs = _sb_hdrs()
+    hdrs = _sb_hdrs(write=True)
 
-    if not url or not _sb_key():
+    if not url or not _sb_anon_key():
         raise RuntimeError("SUPABASE_URL أو SUPABASE_ANON_KEY غير موجود في .env")
 
     d_id  = doc_id_from_filename(filename)
@@ -107,7 +113,7 @@ async def ingest_chunks(
     async with httpx.AsyncClient(timeout=15) as client:
         del_resp = await client.delete(
             f"{url}/rest/v1/{_TABLE}?doc_id=eq.{d_id}",
-            headers=hdrs,
+            headers={**hdrs, "Prefer": "return=minimal"},
         )
         logger.info(f"[RAG] deleted old chunks for doc_id={d_id}: {del_resp.status_code}")
 
@@ -166,9 +172,9 @@ async def search(
       [{id, doc_id, filename, chunk_id, header, content, similarity}]
     """
     url  = _sb_url()
-    hdrs = _sb_hdrs()
+    hdrs = _sb_hdrs(write=False)
 
-    if not url or not _sb_key():
+    if not url or not _sb_anon_key():
         logger.warning("[RAG] Supabase not configured — skipping search")
         return []
 
@@ -179,7 +185,7 @@ async def search(
         resp = await client.post(
             f"{url}/rest/v1/rpc/match_chunks",
             json={
-                "query_embedding": _vec_str(q_emb),
+                "query_embedding": q_emb,          # array مباشرة — لا string
                 "match_threshold": threshold,
                 "match_count":     top_k,
             },
@@ -199,12 +205,12 @@ async def search(
 async def delete_document(doc_id: str) -> bool:
     """يحذف جميع chunks الوثيقة من pgvector."""
     url  = _sb_url()
-    hdrs = _sb_hdrs()
+    hdrs = _sb_hdrs(write=True)
 
     async with httpx.AsyncClient(timeout=15) as client:
         resp = await client.delete(
             f"{url}/rest/v1/{_TABLE}?doc_id=eq.{doc_id}",
-            headers=hdrs,
+            headers={**hdrs, "Prefer": "return=minimal"},
         )
     ok = resp.status_code in (200, 204)
     logger.info(f"[RAG] delete doc_id={doc_id}: {'OK' if ok else 'FAIL'} {resp.status_code}")
