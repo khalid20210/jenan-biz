@@ -521,26 +521,10 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .btn-primary:hover{background:var(--green-d);transform:translateY(-2px);box-shadow:0 8px 20px rgba(78,115,194,.3)}
 
-/* ── CAPITAL CONSULTATION ───────────────────────── */
-.cap-step{display:none}
 .cap-step.active{display:block}
-.cap-hero{
-  background:linear-gradient(135deg,#451A03,#92400E,#d97706);
-  border-radius:18px;padding:1.75rem 2rem;margin-bottom:1.5rem;
-  display:flex;align-items:flex-start;gap:1.25rem;
-}
-.cap-hero-icon{
-  width:60px;height:60px;border-radius:16px;flex-shrink:0;
-  background:rgba(255,255,255,.15);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.7rem;color:#fff;
-}
 .cap-hero h2{font-size:1.2rem;font-weight:900;color:#fff;margin:.4rem 0 .45rem}
 .cap-hero p{font-size:.84rem;color:rgba(255,255,255,.75);line-height:1.7}
-.cap-hero-badge{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);color:#fff;border-radius:20px;padding:.2rem .85rem;font-size:.73rem;font-weight:700;margin-bottom:.5rem}
-.cap-form-card{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:1.75rem}
 /* Profile summary */
-.cap-profile-card{background:linear-gradient(135deg,#0B0E1A,#1a2755);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem;border:1px solid rgba(78,115,194,.2)}
 .cpc-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
 .cpc-icon{width:48px;height:48px;border-radius:14px;background:rgba(78,115,194,.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#7B9ED4;flex-shrink:0}
 .cpc-title{font-size:.97rem;font-weight:800;color:#fff}
@@ -552,89 +536,19 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .cpc-tags{display:flex;flex-wrap:wrap;gap:.5rem}
 .cpc-tag{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border-radius:20px;padding:.2rem .75rem;font-size:.74rem;font-weight:600}
 /* Project cards */
-.cap-project-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;margin-bottom:.9rem;position:relative;transition:var(--tr)}
 .cap-project-card:hover{border-color:var(--green);box-shadow:0 4px 20px rgba(0,0,0,.1)}
-.cap-top-pick{border-color:#f59e0b;background:linear-gradient(135deg,rgba(245,158,11,.05),var(--bg3))}
-.cap-rank-badge{display:inline-block;background:rgba(245,158,11,.15);color:#d97706;border-radius:20px;padding:.2rem .75rem;font-size:.72rem;font-weight:700;margin-bottom:.6rem}
-.cap-project-inner{display:flex;align-items:flex-start;gap:1rem}
-.cap-proj-icon{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:rgba(78,115,194,.1);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
 .cpi-top{background:rgba(245,158,11,.15);color:#d97706}
-.cap-proj-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:.5rem;margin-top:.55rem}
 .cpm-item{background:var(--bg2);border-radius:8px;padding:.45rem .6rem;text-align:center}
 .cpm-val{font-size:.9rem;font-weight:800}
 .cpm-lbl{font-size:.68rem;color:var(--muted);margin-top:.1rem}
-.cap-empty{text-align:center;padding:3rem;background:var(--bg3);border-radius:16px;border:1px dashed var(--border);color:var(--muted)}
 /* Portfolio */
-.cap-portfolio{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-top:1.25rem}
-.cap-port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.9rem}
-.cap-port-item{background:var(--bg2);border-radius:12px;padding:1rem;text-align:center}
 .cport-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin:0 auto .65rem}
 .cport-title{font-size:.75rem;color:var(--muted);font-weight:600;margin-bottom:.25rem}
 .cport-val{font-size:1rem;font-weight:800}
 .cport-sub{font-size:.69rem;color:var(--muted);margin-top:.2rem}
 
-/* Capital page redesign inspired by Jenan Biz brand */
-#page-capital{
-  position:relative;
-  background:linear-gradient(180deg,rgba(78,115,194,.07),rgba(123,158,212,.03));
-  border:1px solid rgba(78,115,194,.1);
-  border-radius:18px;
-  padding:1rem;
-}
-#page-capital::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  border-radius:18px;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 85% 8%, rgba(123,158,212,.08), transparent 40%),
-    radial-gradient(circle at 12% 88%, rgba(78,115,194,.06), transparent 46%);
-}
-#page-capital > *{position:relative;z-index:1}
-#page-capital .capital-crumb{
-  background:linear-gradient(135deg,rgba(8,15,40,.9),rgba(10,21,52,.88)) !important;
-  border:1px solid rgba(123,158,212,.34) !important;
-  box-shadow:0 8px 24px rgba(6,10,30,.38);
-}
-#page-capital .capital-hero{
-  border:1px solid rgba(123,158,212,.28) !important;
-  box-shadow:0 14px 38px rgba(8,12,34,.4);
-}
-#page-capital .capital-chip{
-  background:rgba(78,115,194,.18) !important;
-  border-color:rgba(123,158,212,.45) !important;
-  color:#bfd5ff !important;
-}
-#page-capital .capital-title{
-  letter-spacing:.01em;
-  text-shadow:0 8px 24px rgba(78,115,194,.28);
-}
-#page-capital .capital-sub{color:rgba(220,232,255,.8) !important}
-#page-capital .capital-stat{
-  background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.05)) !important;
-  border:1px solid rgba(123,158,212,.24) !important;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
-}
-#page-capital .capital-path-grid{gap:.85rem !important}
-#page-capital .capital-path-btn{
-  border-radius:16px !important;
-  box-shadow:0 8px 22px rgba(7,10,28,.24);
-}
-#page-capital .capital-card,
-#page-capital .cap-form-card{
-  background:linear-gradient(180deg,rgba(11,21,52,.58),rgba(12,23,58,.42)) !important;
-  border:1px solid rgba(123,158,212,.22) !important;
-  box-shadow:0 10px 28px rgba(6,9,28,.28);
-}
-#page-capital .capital-card .f-field label,
-#page-capital .cap-form-card .f-field label{color:#d9e7ff}
-#page-capital .capital-divider-label{color:#a8bde8 !important}
+
 @media(max-width:700px){
-  #page-capital{padding:.7rem}
-  #page-capital .capital-hero{padding:1.5rem 1rem 1.2rem !important}
-  #page-capital .capital-title{font-size:1.35rem !important}
-  #page-capital .capital-path-grid{grid-template-columns:1fr !important}
 }
 @media(max-width:700px){
   .cap-hero{flex-direction:column}
@@ -684,7 +598,6 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   .main{margin-right:0}
   .ham-btn{display:flex}
   .chat-sidebar{display:none}
-  .capital-tool{grid-template-columns:1fr}
   .overlay{display:block}
 }
 .overlay{
@@ -1446,9 +1359,6 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
         <div class="nav-sub-item" id="nav-analysis" onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')">
           <i class="fa-solid fa-file-chart-column"></i> إعداد دراسة الجدوى الموحدة
         </div>
-        <div class="nav-sub-item" id="nav-capital" onclick="gotoSub('capital','navgrp-gateway','nav-capital')">
-          <i class="fa-solid fa-sack-dollar"></i> استشارة رأس المال
-        </div>
         <div class="nav-sub-item" id="nav-investor" onclick="gotoSub('investor','navgrp-gateway','nav-investor')">
           <i class="fa-solid fa-store"></i> سوق المشاريع
         </div>
@@ -1590,12 +1500,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             <p style="font-size:.82rem;color:var(--muted);line-height:1.7">دراسة مبسطة أو مفصلة مع تقرير احترافي مقبول للبنوك والمستثمرين</p>
             <div style="margin-top:.75rem;font-size:.8rem;color:#4E73C2;font-weight:700">ابدأ الدراسة <i class="fa-solid fa-arrow-left"></i></div>
           </div>
-          <div style="background:#EEF2FC;border:2px solid #4E73C2;border-radius:14px;padding:1.35rem;cursor:pointer;transition:all .25s ease" onclick="goto('capital')" onmouseover="this.style.background='#dbe4f8'" onmouseout="this.style.background='#EEF2FC'">
-            <div class="fc-icon si-purple" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-coins"></i></div>
-            <h3 style="font-size:.95rem;margin-top:.75rem;margin-bottom:.5rem">استشارة رأس المال</h3>
-            <p style="font-size:.82rem;color:var(--muted);line-height:1.7">حدد ميزانيتك وسنقترح أفضل المشاريع والاستثمارات الملائمة لك</p>
-            <div style="margin-top:.75rem;font-size:.8rem;color:#4E73C2;font-weight:700">استشر الآن <i class="fa-solid fa-arrow-left"></i></div>
-          </div>
+          
           <div style="background:#EEF2FC;border:2px solid #4E73C2;border-radius:14px;padding:1.35rem;cursor:pointer;transition:all .25s ease" onclick="goto('investor')" onmouseover="this.style.background='#dbe4f8'" onmouseout="this.style.background='#EEF2FC'">
             <div class="fc-icon si-navy" style="width:46px;height:46px;border-radius:11px;font-size:1.15rem"><i class="fa-solid fa-handshake"></i></div>
             <h3 style="font-size:.95rem;margin-top:.75rem;margin-bottom:.5rem">خدمات المستثمرين</h3>
@@ -1689,41 +1594,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             </div>
           </div>
         </div>
-
-        <!-- بطاقة 3: استشارة رأس المال -->
-        <div class="hub-card hc-amber" onclick="goto('capital')">
-          <div class="hub-card-icon" style="background:linear-gradient(135deg,#92400E,#f59e0b)">
-            <i class="fa-solid fa-coins"></i>
-          </div>
-          <div class="hub-card-body">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap">
-              <div class="hub-card-badge" style="background:rgba(245,158,11,.15);color:#d97706">💡 استشارة ذكية</div>
-              <div style="font-size:.7rem;color:var(--muted);font-weight:600">⏱ 3 دقائق</div>
-            </div>
-            <h3>استشارة رأس المال الاستثماري</h3>
-            <p>حدد ميزانيتك ومستوى مخاطرتك وقطاعك المفضل — واحصل على أفضل فرص الاستثمار الموصى بها بالأرقام</p>
-            <div class="hub-divider"></div>
-            <ul class="hub-features">
-              <li><i class="fa-solid fa-check"></i> ملف مستثمر مخصص لك</li>
-              <li><i class="fa-solid fa-check"></i> توصيات مرتبة بالعائد والمخاطرة</li>
-              <li><i class="fa-solid fa-check"></i> مقارنة 22 فئة مشروع</li>
-              <li><i class="fa-solid fa-check"></i> حاسبة ROI لكل فرصة</li>
-              <li><i class="fa-solid fa-check"></i> خارطة طريق للبداية</li>
-            </ul>
-            <div class="hub-output-preview">
-              <div class="hop-label">ما ستحصل عليه:</div>
-              <div class="hop-chips">
-                <span>🎯 فرص مطابقة</span><span>📊 تحليل ROI</span><span>🗺 خطة عمل</span>
-              </div>
-            </div>
-            <div class="hub-card-footer">
-              <span class="hub-price" style="color:#d97706">مجاني تماماً</span>
-              <button class="hub-btn" style="background:linear-gradient(135deg,#92400E,#f59e0b)">ابدأ الاستشارة <i class="fa-solid fa-arrow-left"></i></button>
-            </div>
-          </div>
-        </div>
-
-      </div>
+</div>
 
       <!-- Trust bar -->
       <div class="hub-trust">
@@ -2724,7 +2595,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             <div class="ac-main-icon" style="background:rgba(245,158,11,.12);color:var(--amber)"><i class="fa-solid fa-chalkboard-user"></i></div>
             <h3>دورات المال والأعمال</h3>
             <p>42 دورة تدريبية يقدّمها خبراء معتمدون في المحاسبة والريادة والتخطيط المالي</p>
-            <div class="ac-chip-row"><span class="ac-chip">💰 محاسبة</span><span class="ac-chip">🚀 ريادة</span><span class="ac-chip">📉 تخطيط مالي</span><span class="ac-chip">🏦 استثمار</span></div>
+            <div class="ac-chip-row"><span class="ac-chip">💰 محاسبة</span><span class="ac-chip">🚀 ريادة</span><span class="ac-chip">📉 تخطيط مالي</span></div>
             <div class="ac-enter-btn">تصفح الدورات <i class="fa-solid fa-arrow-left"></i></div>
           </div>
 
@@ -2743,8 +2614,8 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
             </div>
             <div class="ac-main-icon" style="background:rgba(34,197,94,.1);color:#16a34a"><i class="fa-solid fa-calculator"></i></div>
             <h3>أدوات المال الذكية</h3>
-            <p>11 حاسبة مالية فورية — قرض، ربح، استثمار، تعادل، راتب، زكاة، تسعير، ومزيد</p>
-            <div class="ac-chip-row"><span class="ac-chip">🏦 القرض</span><span class="ac-chip">💹 ROI</span><span class="ac-chip">⚖ التعادل</span><span class="ac-chip">💵 الراتب</span></div>
+            <p>10 حاسبات مالية فورية — ربح، استثمار، تعادل، راتب، زكاة، تسعير، ومزيد</p>
+            <div class="ac-chip-row"><span class="ac-chip">💹 ROI</span><span class="ac-chip">⚖ التعادل</span><span class="ac-chip">💵 الراتب</span></div>
             <div class="ac-enter-btn">افتح الأدوات <i class="fa-solid fa-arrow-left"></i></div>
           </div>
 
@@ -2857,26 +2728,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           <div class="ac-section-title"><i class="fa-solid fa-calculator" style="color:#16a34a;margin-left:.4rem"></i>أدوات المال الذكية</div>
         </div>
         <div class="tools-grid">
-          <!-- حاسبة القرض البنكي -->
-          <div class="tool-card">
-            <div class="tool-tag">تمويل</div>
-            <h4><i class="fa-solid fa-building-columns"></i> حاسبة القرض البنكي</h4>
-            <p>احسب قسطك الشهري وإجمالي الفوائد لأي قرض</p>
-            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
-              <div class="f-field"><label>مبلغ القرض (ريال)</label><input type="number" id="loan-amount" placeholder="100000" min="0"/></div>
-              <div class="f-field"><label>نسبة الفائدة السنوية %</label><input type="number" id="loan-rate" placeholder="5" step="0.1" min="0"/></div>
-              <div class="f-field" style="grid-column:1/-1"><label>مدة القرض (بالأشهر)</label><input type="number" id="loan-months" placeholder="36" min="1"/></div>
-            </div>
-            <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.75rem" onclick="calcLoan()"><i class="fa-solid fa-calculator"></i> احسب الآن</button>
-            <div class="tool-result" id="loan-result">
-              <div class="big" id="loan-monthly">—</div>
-              <div class="small">القسط الشهري</div>
-              <div style="display:flex;justify-content:space-around;margin-top:.85rem;font-size:.8rem;color:var(--muted)">
-                <div><div style="font-weight:800;color:var(--text)" id="loan-total">—</div>إجمالي المبلغ</div>
-                <div><div style="font-weight:800;color:#e74c3c" id="loan-interest">—</div>إجمالي الفوائد</div>
-              </div>
-            </div>
-          </div>
+
 
           <!-- حاسبة الربح والخسارة -->
           <div class="tool-card">
@@ -3135,348 +2987,6 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
     </div>
 
-
-    <!-- ===== CAPITAL ===== -->
-    <div class="page" id="page-capital">
-      <!-- Breadcrumb -->
-      <div class="capital-crumb" style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;padding:.6rem 1rem;background:rgba(78,115,194,.08);border-radius:10px;border:1px solid rgba(78,115,194,.2)">
-        <button onclick="goto('hub')" style="background:none;border:none;cursor:pointer;color:var(--primary);font-family:inherit;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:.4rem"><i class="fa-solid fa-arrow-right"></i> بوابة الجاهزية والاستثمار</button>
-        <span style="color:var(--muted);font-size:.85rem">/ استشارة رأس المال</span>
-      </div>
-
-      <!-- ═══ HERO ═══ -->
-      <div class="capital-hero" style="background:linear-gradient(135deg,#0a1628 0%,#12133a 50%,#0d1f3a 100%);border-radius:20px;padding:2.5rem 2rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden">
-        <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.1;pointer-events:none" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 200">
-          <line x1="0" y1="50" x2="600" y2="50" stroke="#4E73C2" stroke-width=".5"/>
-          <line x1="0" y1="100" x2="600" y2="100" stroke="#4E73C2" stroke-width=".5"/>
-          <line x1="0" y1="150" x2="600" y2="150" stroke="#4E73C2" stroke-width=".5"/>
-          <line x1="120" y1="0" x2="120" y2="200" stroke="#4E73C2" stroke-width=".5"/>
-          <line x1="280" y1="0" x2="280" y2="200" stroke="#4E73C2" stroke-width=".5"/>
-          <line x1="440" y1="0" x2="440" y2="200" stroke="#4E73C2" stroke-width=".5"/>
-          <polyline points="30,170 100,140 180,120 260,95 340,75 420,55 510,35" fill="none" stroke="#7B9ED4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="30,170 100,140 180,120 260,95 340,75 420,55 510,35 510,200 30,200" fill="rgba(78,115,194,.12)"/>
-          <circle cx="510" cy="35" r="5" fill="#7B9ED4"><animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/></circle>
-          <text x="80" y="90" font-size="22" fill="#4E73C2" opacity=".4" font-family="sans-serif">ر</text>
-          <text x="310" y="130" font-size="16" fill="#4E73C2" opacity=".35" font-family="sans-serif">%</text>
-        </svg>
-        <div class="capital-chip" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(78,115,194,.15);border:1px solid rgba(78,115,194,.4);border-radius:50px;padding:.3rem .9rem;font-size:.75rem;color:#7B9ED4;font-weight:700;margin-bottom:1rem;position:relative;z-index:1">
-          <span style="width:7px;height:7px;border-radius:50%;background:#7B9ED4;display:inline-block"><animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite" xmlns="http://www.w3.org/2000/svg"/></span>
-          استشارة رأس المال · جنان بيز 2026
-        </div>
-        <h2 class="capital-title" style="font-size:1.6rem;font-weight:900;color:#fff;margin:0 0 .5rem;position:relative;z-index:1;line-height:1.35">
-          استشارة رأس المال
-        </h2>
-        <p class="capital-sub" style="color:rgba(255,255,255,.75);font-size:.88rem;margin:0 0 1.5rem;position:relative;z-index:1;line-height:1.6">
-          احسب احتياجك الفعلي من رأس المال · اكتشف عوائد أبرز القطاعات السعودية 2026 · وجهّز ملفك للحصول على التمويل
-        </p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1">
-          <div class="capital-stat" style="background:rgba(255,255,255,.08);border:1px solid rgba(78,115,194,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
-            <div style="font-size:1rem;font-weight:900;color:#7B9ED4">9</div>
-            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">قطاعات مُحلَّلة</div>
-          </div>
-          <div class="capital-stat" style="background:rgba(255,255,255,.08);border:1px solid rgba(78,115,194,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
-            <div style="font-size:1rem;font-weight:900;color:#7B9ED4">مجاناً</div>
-            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">كل الأدوات متاحة</div>
-          </div>
-          <div class="capital-stat" style="background:rgba(255,255,255,.08);border:1px solid rgba(78,115,194,.25);border-radius:10px;padding:.5rem .9rem;text-align:center">
-            <div style="font-size:1rem;font-weight:900;color:#7B9ED4">2026</div>
-            <div style="font-size:.68rem;color:rgba(255,255,255,.6)">بيانات محدّثة</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══ PATH SELECTOR ═══ -->
-      <div class="capital-path-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
-        <button class="capital-path-btn" id="captab-entre" onclick="switchCapPath('entre')" style="background:var(--green);color:#fff;border:2px solid var(--green);border-radius:14px;padding:1.25rem 1rem;cursor:pointer;font-family:'Tajawal',sans-serif;transition:var(--tr);text-align:right">
-          <div style="width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin-bottom:.7rem">
-            <i class="fa-solid fa-seedling" style="font-size:1.2rem;color:#fff"></i>
-          </div>
-          <div style="font-size:1rem;font-weight:800;margin-bottom:.2rem">رائد الأعمال</div>
-          <div style="font-size:.78rem;opacity:.85;font-weight:400">أحتاج رأس مال أو تمويل لمشروعي</div>
-        </button>
-        <button class="capital-path-btn" id="captab-investor" onclick="switchCapPath('investor')" style="background:var(--bg3);color:var(--text);border:2px solid var(--border);border-radius:14px;padding:1.25rem 1rem;cursor:pointer;font-family:'Tajawal',sans-serif;transition:var(--tr);text-align:right">
-          <div style="width:42px;height:42px;border-radius:10px;background:rgba(78,115,194,.12);display:flex;align-items:center;justify-content:center;margin-bottom:.7rem">
-            <i class="fa-solid fa-chart-line" style="font-size:1.2rem;color:var(--primary)"></i>
-          </div>
-          <div style="font-size:1rem;font-weight:800;margin-bottom:.2rem">مستثمر</div>
-          <div style="font-size:.78rem;color:var(--muted);font-weight:400">أريد الاستثمار واكتشاف العوائد</div>
-        </button>
-      </div>
-
-      <!-- ═══ PANEL A: رائد الأعمال ═══ -->
-      <div id="cap-panel-entre">
-        <div class="cap-form-card capital-card">
-          <h3 style="font-size:1rem;font-weight:800;margin:0 0 .4rem;display:flex;align-items:center;gap:.5rem">
-            <i class="fa-solid fa-calculator" style="color:var(--green)"></i> حاسبة رأس المال المطلوب
-          </h3>
-          <p style="font-size:.82rem;color:var(--muted);margin:0 0 1.5rem;line-height:1.6">أدخل تكاليف مشروعك لمعرفة رأس المال الكافي، صافي الربح، وفترة الاسترداد</p>
-          <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
-            <div class="f-field">
-              <label>نوع المشروع / القطاع <span style="color:#e74c3c">*</span></label>
-              <select id="ent-sector">
-                <option value="أخرى">اختر القطاع</option>
-                <option value="مطعم / مقهى">مطعم / مقهى</option>
-                <option value="تجارة تجزئة">تجارة تجزئة</option>
-                <option value="تجارة إلكترونية">تجارة إلكترونية</option>
-                <option value="خدمات مهنية">خدمات مهنية</option>
-                <option value="تقنية / تطبيقات">تقنية / تطبيقات</option>
-                <option value="صحة وجمال">صحة وجمال</option>
-                <option value="تعليم وتدريب">تعليم وتدريب</option>
-                <option value="تصنيع / إنتاج">تصنيع / إنتاج</option>
-                <option value="عقارات">عقارات</option>
-              </select>
-            </div>
-            <div class="f-field">
-              <label>تكلفة التأسيس (ريال) <span style="color:#e74c3c">*</span></label>
-              <input type="number" id="ent-setup" placeholder="مثال: 80000" min="0"/>
-            </div>
-          </div>
-          <div style="background:rgba(78,115,194,.06);border:1px solid rgba(78,115,194,.15);border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem">
-            <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.85rem">التكاليف الشهرية الثابتة</div>
-            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem">
-              <div class="f-field" style="margin:0">
-                <label>إيجار شهري</label>
-                <input type="number" id="ent-rent" placeholder="مثال: 8000" min="0"/>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>رواتب الموظفين</label>
-                <input type="number" id="ent-salary" placeholder="مثال: 15000" min="0"/>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>مصاريف تشغيلية أخرى</label>
-                <input type="number" id="ent-other" placeholder="مثال: 5000" min="0"/>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>الإيرادات المتوقعة / شهر <span style="color:var(--green)">✦</span></label>
-                <input type="number" id="ent-revenue" placeholder="مثال: 40000" min="0"/>
-              </div>
-            </div>
-          </div>
-
-          <!-- ─── تكلفة البضاعة ─── -->
-          <div style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem">
-            <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.85rem">
-              <i class="fa-solid fa-boxes-stacking" style="color:#f59e0b;margin-left:.4rem"></i>
-              تكلفة البضاعة / المشتريات الشهرية
-            </div>
-            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem">
-              <div class="f-field" style="margin:0">
-                <label>نسبة تكلفة البضاعة % من الإيراد</label>
-                <input type="number" id="ent-cogs-pct" placeholder="تلقائي حسب القطاع" min="0" max="100" step="1"/>
-                <small style="color:var(--muted);font-size:.72rem">اتركه فارغاً للاحتساب التلقائي</small>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>أو أدخل مبلغ المشتريات / شهر (ريال)</label>
-                <input type="number" id="ent-cogs-amt" placeholder="مثال: 18000" min="0"/>
-                <small style="color:var(--muted);font-size:.72rem">إذا أدخلت المبلغ يتجاهل النسبة</small>
-              </div>
-            </div>
-          </div>
-
-          <!-- ─── التأمينات الاجتماعية وتكاليف العمالة GOSI ─── -->
-          <div style="background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem">
-            <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.85rem">
-              <i class="fa-solid fa-users" style="color:#3b82f6;margin-left:.4rem"></i>
-              التأمينات الاجتماعية وتكاليف العمالة الكاملة
-            </div>
-            <div style="font-size:.78rem;font-weight:700;color:#60a5fa;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid rgba(59,130,246,.2)">
-              <i class="fa-solid fa-flag" style="margin-left:.3rem"></i> الموظفون السعوديون — GOSI 11.75% على صاحب العمل
-            </div>
-            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
-              <div class="f-field" style="margin:0">
-                <label>عدد الموظفين السعوديين</label>
-                <input type="number" id="ent-saudi-count" placeholder="مثال: 2" min="0" step="1"/>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>متوسط الراتب الأساسي (سعودي)</label>
-                <input type="number" id="ent-saudi-salary" placeholder="مثال: 5000" min="0"/>
-              </div>
-            </div>
-            <div style="font-size:.78rem;font-weight:700;color:#f59e0b;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid rgba(245,158,11,.2)">
-              <i class="fa-solid fa-earth-asia" style="margin-left:.3rem"></i> الموظفون غير السعوديين — التكلفة الفعلية الكاملة
-            </div>
-            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem">
-              <div class="f-field" style="margin:0">
-                <label>عدد الموظفين غير السعوديين</label>
-                <input type="number" id="ent-nonsaudi-count" placeholder="مثال: 1" min="0" step="1"/>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>متوسط الراتب الأساسي (غير سعودي)</label>
-                <input type="number" id="ent-nonsaudi-salary" placeholder="مثال: 3000" min="0"/>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>رسوم تجديد الإقامة / سنة / عامل (ريال)</label>
-                <input type="number" id="ent-iqama-fee" min="0" value="9600"/>
-                <small style="color:var(--muted);font-size:.72rem">الافتراضي 9,600 ر.س/سنة → 800/شهر/عامل</small>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>تأمين صحي / سنة / عامل (ريال)</label>
-                <input type="number" id="ent-health-ins" min="0" value="600"/>
-                <small style="color:var(--muted);font-size:.72rem">الافتراضي 600 ر.س/سنة → 50/شهر/عامل</small>
-              </div>
-            </div>
-            <div style="background:rgba(245,158,11,.1);border-radius:8px;padding:.55rem .8rem;margin-top:.75rem;font-size:.72rem;color:rgba(200,200,200,.8);line-height:1.7">
-              سعودي: 11.75% GOSI على صاحب العمل · غير سعودي: 2% GOSI + رسوم إقامة (÷12) + تأمين صحي (÷12)
-            </div>
-          </div>
-
-          <!-- ─── الرسوم الحكومية والتشغيلية ─── -->
-          <div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1.25rem">
-            <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.85rem">
-              <i class="fa-solid fa-landmark" style="color:#10b981;margin-left:.4rem"></i>
-              الرسوم الحكومية والتكاليف التشغيلية (السنوية ÷12 تلقائياً)
-            </div>
-            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem">
-              <div class="f-field" style="margin:0">
-                <label>رسوم السجل التجاري / سنة</label>
-                <input type="number" id="ent-cr-fee" min="0" value="2100"/>
-                <small style="color:var(--muted);font-size:.72rem">الافتراضي 2,100 ر.س/سنة → 175/شهر</small>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>رخصة بلدية + رسوم أخرى / سنة</label>
-                <input type="number" id="ent-muni-fee" placeholder="مثال: 2000" min="0"/>
-                <small style="color:var(--muted);font-size:.72rem">رخصة البلدية، الصنف التجاري</small>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>فاتورة الكهرباء / شهر</label>
-                <input type="number" id="ent-electricity" placeholder="مثال: 800" min="0"/>
-                <small style="color:var(--muted);font-size:.72rem">للمحلات، المصانع، المطاعم</small>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>وقود + صيانة سيارات / شهر</label>
-                <input type="number" id="ent-transport" placeholder="مثال: 3000" min="0"/>
-                <small style="color:var(--muted);font-size:.72rem">للتوزيع والتوصيل والمندوبين</small>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>رسوم حكومية متنوعة / سنة</label>
-                <input type="number" id="ent-gov-other" placeholder="مثال: 1000" min="0"/>
-                <small style="color:var(--muted);font-size:.72rem">شهادات، رخص، تجديدات أخرى</small>
-              </div>
-              <div class="f-field" style="margin:0">
-                <label>اشتراكات واتصالات / شهر</label>
-                <input type="number" id="ent-subscriptions" placeholder="مثال: 500" min="0"/>
-                <small style="color:var(--muted);font-size:.72rem">إنترنت، POS، أنظمة، هاتف</small>
-              </div>
-            </div>
-          </div>
-
-          <!-- ─── ضريبة القيمة المضافة ─── -->
-          <div style="background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-            <div>
-              <div style="font-size:.82rem;font-weight:700;color:var(--text)">
-                <i class="fa-solid fa-percent" style="color:#8b5cf6;margin-left:.4rem"></i>
-                مسجَّل في ضريبة القيمة المضافة (15%)؟
-              </div>
-              <div style="font-size:.72rem;color:var(--muted);margin-top:.25rem">إيراداتك المدخلة تشمل الضريبة؟</div>
-            </div>
-            <div style="display:flex;gap:.6rem;align-items:center">
-              <label style="display:flex;align-items:center;gap:.35rem;cursor:pointer;font-size:.82rem;font-weight:600">
-                <input type="radio" name="ent-vat" id="ent-vat-yes" value="yes"/> نعم، مسجّل
-              </label>
-              <label style="display:flex;align-items:center;gap:.35rem;cursor:pointer;font-size:.82rem;font-weight:600">
-                <input type="radio" name="ent-vat" id="ent-vat-no" value="no" checked/> لا
-              </label>
-            </div>
-          </div>
-
-          <button class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:.9rem" onclick="calcEntrepreneurNeeds()">
-            <i class="fa-solid fa-calculator"></i> احسب رأس المال المطلوب
-          </button>
-          <p style="text-align:center;font-size:.74rem;color:var(--muted);margin-top:.6rem">
-            <i class="fa-solid fa-shield-halved" style="color:var(--green);margin-left:.3rem"></i>
-            بيانات خاصة · لا تُرسَل لأي جهة · نتيجة فورية
-          </p>
-        </div>
-        <div id="ent-results" style="display:none"></div>
-      </div>
-
-      <!-- ═══ PANEL B: المستثمر ═══ -->
-      <div id="cap-panel-investor" style="display:none">
-        <div style="font-size:.97rem;font-weight:800;margin-bottom:1rem;color:var(--text)">اختر القطاع لعرض مؤشراته</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.25rem">
-          <div id="capsec-food" class="cap-sector-card" onclick="showCapSector('food')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-utensils" style="font-size:1.5rem;color:var(--green);margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">مطعم/مقهى</div>
-            <div style="font-size:.7rem;color:#22c55e;font-weight:600;margin-top:.25rem">12–18% عائد</div>
-          </div>
-          <div id="capsec-retail" class="cap-sector-card" onclick="showCapSector('retail')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-store" style="font-size:1.5rem;color:#f59e0b;margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">تجارة تجزئة</div>
-            <div style="font-size:.7rem;color:#f59e0b;font-weight:600;margin-top:.25rem">8–14% عائد</div>
-          </div>
-          <div id="capsec-ecom" class="cap-sector-card" onclick="showCapSector('ecom')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-laptop" style="font-size:1.5rem;color:#38bdf8;margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">تجارة إلكترونية</div>
-            <div style="font-size:.7rem;color:#38bdf8;font-weight:600;margin-top:.25rem">15–25% عائد</div>
-          </div>
-          <div id="capsec-prof" class="cap-sector-card" onclick="showCapSector('prof')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-briefcase" style="font-size:1.5rem;color:#7B9ED4;margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">خدمات مهنية</div>
-            <div style="font-size:.7rem;color:#7B9ED4;font-weight:600;margin-top:.25rem">20–30% عائد</div>
-          </div>
-          <div id="capsec-tech" class="cap-sector-card" onclick="showCapSector('tech')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-microchip" style="font-size:1.5rem;color:#a855f7;margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">تقنية/تطبيقات</div>
-            <div style="font-size:.7rem;color:#a855f7;font-weight:600;margin-top:.25rem">25–40% عائد</div>
-          </div>
-          <div id="capsec-beauty" class="cap-sector-card" onclick="showCapSector('beauty')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-heart-pulse" style="font-size:1.5rem;color:#f472b6;margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">صحة وجمال</div>
-            <div style="font-size:.7rem;color:#f472b6;font-weight:600;margin-top:.25rem">18–28% عائد</div>
-          </div>
-          <div id="capsec-edu" class="cap-sector-card" onclick="showCapSector('edu')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-graduation-cap" style="font-size:1.5rem;color:#fbbf24;margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">تعليم وتدريب</div>
-            <div style="font-size:.7rem;color:#fbbf24;font-weight:600;margin-top:.25rem">18–25% عائد</div>
-          </div>
-          <div id="capsec-mfg" class="cap-sector-card" onclick="showCapSector('mfg')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-industry" style="font-size:1.5rem;color:#94a3b8;margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">تصنيع/إنتاج</div>
-            <div style="font-size:.7rem;color:#94a3b8;font-weight:600;margin-top:.25rem">10–16% عائد</div>
-          </div>
-          <div id="capsec-real" class="cap-sector-card" onclick="showCapSector('real')" style="background:var(--bg3);border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:var(--tr);text-align:center">
-            <i class="fa-solid fa-building" style="font-size:1.5rem;color:#64748b;margin-bottom:.5rem;display:block"></i>
-            <div style="font-size:.8rem;font-weight:700">عقارات</div>
-            <div style="font-size:.7rem;color:#64748b;font-weight:600;margin-top:.25rem">8–15% عائد</div>
-          </div>
-        </div>
-        <div id="cap-sector-detail" style="display:none"></div>
-        <div class="cap-form-card capital-card" style="margin-top:1.25rem">
-          <h3 style="font-size:1rem;font-weight:800;margin:0 0 .4rem;display:flex;align-items:center;gap:.5rem">
-            <i class="fa-solid fa-sack-dollar" style="color:#f59e0b"></i> حاسبة العوائد الاستثمارية
-          </h3>
-          <p style="font-size:.82rem;color:var(--muted);margin:0 0 1.25rem;line-height:1.6">اختر القطاع أعلاه ثم أدخل رأس مالك لحساب العوائد المتوقعة</p>
-          <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
-            <div class="f-field">
-              <label>رأس المال المتاح للاستثمار (ريال) <span style="color:#e74c3c">*</span></label>
-              <input type="number" id="inv-capital" placeholder="مثال: 200000" min="0"/>
-            </div>
-            <div class="f-field">
-              <label>مدة الاستثمار</label>
-              <select id="inv-period">
-                <option value="1">سنة واحدة</option>
-                <option value="3" selected>3 سنوات</option>
-                <option value="5">5 سنوات</option>
-              </select>
-            </div>
-          </div>
-          <button class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:.9rem" onclick="calcInvestorROI()">
-            <i class="fa-solid fa-chart-line"></i> احسب العوائد المتوقعة
-          </button>
-        </div>
-        <div id="inv-results" style="display:none"></div>
-      </div>
-
-      <!-- legacy compatibility -->
-      <div id="cap-step-0" style="display:none"></div>
-      <div id="cap-free-section" style="display:none"></div>
-      <div id="cap-premium-modal" style="display:none"></div>
-      <div id="cap-profile-summary" style="display:none"></div>
-      <div id="cap-results" style="display:none"></div>
-      <div id="cap-portfolio-analysis" style="display:none"></div>
-
-      <div id="cap-step-1" style="display:none"></div>
-    </div>
 
     <!-- ===== سوق المشاريع ===== -->
     <div class="page" id="page-investor">
@@ -4434,7 +3944,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
           </div>
         </div>
 
-        <button onclick="showGovServiceModal('capital','استشارة رأس المال — تحليل مالي استرشادي','مجاناً','065f46','10b981','fa-chart-line')" style="background:linear-gradient(135deg,#065f46,#10b981);color:#fff;border:none;border-radius:12px;padding:1rem;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem">
+        <button onclick="showGovServiceModal(,'استشارة رأس المال — تحليل مالي استرشادي','مجاناً','065f46','10b981','fa-chart-line')" style="background:linear-gradient(135deg,#065f46,#10b981);color:#fff;border:none;border-radius:12px;padding:1rem;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem">
           <i class="fa-brands fa-whatsapp"></i> احجز جلستك المجانية عبر الواتساب
         </button>
         <p style="text-align:center;font-size:.7rem;color:var(--muted);margin:.65rem 0 0">لا حجوزات مسبقة · تواصل فوري · خبراء ماليون معتمدون</p>
@@ -4738,7 +4248,6 @@ const pageMap = {
   academy: {title:'أكاديمية جنان للمال والأعمال', sub:'مكتبة · دورات · أدوات مالية ذكية'},
   design:  {title:'التصميم والإبداع', sub:'شعارات · هوية بصرية · تصاميم احترافية لمشروعك'},
   software:{title:'متجر البرامج المميزة', sub:'أفضل البرامج والأدوات الرقمية لإدارة مشروعك'},
-  capital: {title:'استشارة رأس المال', sub:'تجهيز الملف الاستثماري · رفع الجاهزية · تقليل مخاطر الرفض'},
   reports: {title:'تقاريري',      sub:'سجل وأرشيف تحليلاتك'},
   projects:{title:'مشاريعي',      sub:'متابعة خطط مشاريعك'},
   settings:{title:'الإعدادات',    sub:'إدارة بيانات حسابك'},
@@ -4763,7 +4272,7 @@ function goto(page) {
     if(n.getAttribute('onclick')?.includes("'"+page+"'")) n.classList.add('active');
   });
   // تفعيل nav-group الصحيح للصفحات الفرعية
-  if(['robot','paid-analysis','analysis','capital','investor'].includes(page)) {
+  if(['robot','paid-analysis','analysis','investor'].includes(page)) {
     const grp = document.getElementById('navgrp-gateway');
     if(grp) grp.classList.add('open');
     document.getElementById('navgrp-gateway')?.querySelector('.nav-group-header')?.classList.add('group-active');
@@ -4782,7 +4291,6 @@ function goto(page) {
   if(page==='paid-analysis') initPaidAnalysis();
   if(page==='analysis') showFsStep(0);
   if(page==='academy') initAcademy();
-  if(page==='capital') { resetCapital(); renderDDQ(); switchCapPath('entre'); }
   if(page==='software') renderSoftwarePage();
   if(page==='orders') renderOrdersPage();
   if(page==='admin') renderAdminPanel();
@@ -4821,7 +4329,6 @@ function gotoSub(page, groupId, subItemId) {
   if(page==='paid-analysis') initPaidAnalysis();
   if(page==='analysis') showFsStep(0);
   if(page==='academy') initAcademy();
-  if(page==='capital') { resetCapital(); renderDDQ(); switchCapPath('entre'); }
   if(page==='investor') { showMarketTab('browse'); }
   if(page==='software') renderSoftwarePage();
   if(page==='orders') renderOrdersPage();
@@ -5812,21 +5319,6 @@ function premiumCheckout(method) {
 }
 
 /* ── الأدوات المالية ── */
-function calcLoan() {
-  const P = +document.getElementById('loan-amount').value;
-  const r = (+document.getElementById('loan-rate').value / 100) / 12;
-  const n = +document.getElementById('loan-months').value;
-  if (!P || !r || !n) return showToast('تأكد من ملء جميع الحقول');
-  const monthly = r ? P * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1) : P/n;
-  const total = monthly * n;
-  const interest = total - P;
-  const fmt = v => v.toLocaleString('ar-SA', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ر.س';
-  document.getElementById('loan-monthly').textContent = fmt(monthly);
-  document.getElementById('loan-total').textContent = fmt(total);
-  document.getElementById('loan-interest').textContent = fmt(interest);
-  document.getElementById('loan-result').style.display = 'block';
-}
-
 function calcPL() {
   const rev = +document.getElementById('pl-revenue').value;
   const cogs = +document.getElementById('pl-cogs').value;
@@ -6993,7 +6485,7 @@ function buildProjectAnalysisReport() {
     <div class="sr-cta">
       <button class="btn-primary" onclick="resetProjectAnalysis()"><i class="fa-solid fa-plus"></i> تحليل مشروع جديد</button>
       <button class="btn-primary" style="background:var(--navy)" onclick="goto('analysis')"><i class="fa-solid fa-file-chart-column"></i> إعداد دراسة جدوى مفصلة</button>
-      <button class="btn-primary" style="background:linear-gradient(135deg,#065f46,#10b981)" onclick="goto('capital')"><i class="fa-solid fa-chart-line"></i> استشارة رأس المال</button>
+      <button class="btn-primary" style="background:linear-gradient(135deg,#065f46,#10b981)" onclick="goto()"><i class="fa-solid fa-chart-line"></i> استشارة رأس المال</button>
     </div>
   </div>`;
 }
@@ -7747,7 +7239,7 @@ const AI_FLOW = [
   { step:'concept',    question:'ممتاز! أخبرني بفكرتك بكلماتك — ما الذي ستقدمه بالتحديد؟\n(اكتب بحرية)', replies:[] },
   { step:'city',       question:'في أي مدينة ستفتتح المشروع؟', replies:Object.keys(KSA.cities) },
   { step:'district',   question:null /* dynamic by city */ },
-  { step:'capital',    question:'ما المبلغ الإجمالي المتاح لديك لهذا المشروع (رأس المال الكامل)؟\n\nأدخل المبلغ بالأرقام أو اختر نطاقاً:', replies:['أقل من 50,000 ريال','50,000 - 100,000 ريال','100,000 - 250,000 ريال','250,000 - 500,000 ريال','500,000 - 1,000,000 ريال','أكثر من مليون ريال'] },
+  { step:,    question:'ما المبلغ الإجمالي المتاح لديك لهذا المشروع (رأس المال الكامل)؟\n\nأدخل المبلغ بالأرقام أو اختر نطاقاً:', replies:['أقل من 50,000 ريال','50,000 - 100,000 ريال','100,000 - 250,000 ريال','250,000 - 500,000 ريال','500,000 - 1,000,000 ريال','أكثر من مليون ريال'] },
   { step:'shopsize',   question:null /* dynamic by sector */ },
   { step:'products',   question:'ما المنتجات أو الخدمات الرئيسية التي ستقدمها؟\n(مثال: قهوة مختصة، كيك، عصائر)', replies:[] },
   { step:'customers',  question:'من هو عميلك المستهدف الرئيسي؟', replies:['شباب (18-30 سنة)','عائلات','موظفون ورجال أعمال','طلاب','نساء','الجميع'] },
@@ -8269,7 +7761,7 @@ function routeInput(text) {
   if (t === 'تغيير رأس المال') {
     AI_COLLECT.capital = null;
     addBotMessage('ما المبلغ المتاح لديك؟', ['أقل من 50,000 ريال','50,000 - 100,000 ريال','100,000 - 250,000 ريال','250,000 - 500,000 ريال','500,000 - 1,000,000 ريال','أكثر من مليون ريال']);
-    AI_STEP = 'capital'; return;
+    AI_STEP = ; return;
   }
 
   // Welcome triggers
@@ -8320,12 +7812,12 @@ function routeInput(text) {
   if (AI_STEP === 'district') {
     AI_COLLECT.district = t;
     addBotMessage(`${t} — موقع جيد 🏘️\n\nما المبلغ الإجمالي المتاح لديك لهذا المشروع؟\n(يشمل التأسيس + رأس المال التشغيلي الأول)`, ['أقل من 50,000 ريال','50,000 - 100,000 ريال','100,000 - 250,000 ريال','250,000 - 500,000 ريال','500,000 - 1,000,000 ريال','أكثر من مليون ريال']);
-    AI_STEP = 'capital';
+    AI_STEP = ;
     return;
   }
 
   // Step: capital
-  if (AI_STEP === 'capital') {
+  if (AI_STEP === ) {
     AI_COLLECT.capital = CAPITAL_MAP[t] ? t : t;
     if (!CAPITAL_MAP[t]) {
       const num = parseInt(t.replace(/[^0-9]/g,''));
@@ -9856,636 +9348,8 @@ const PROJECTS_DB = [
   { name:'صيدلية فرنشايز',        icon:'fa-pills',           min:180000, max:400000, roi:20, sector:['service','all'],       risk:'منخفض',        period:'6-10 أشهر',   desc:'استقرار تام — الدواء ضرورة لا كمالية — العمل تحت مظلة شركة كبرى',     setup:'200,000 - 400,000 ر' },
 ];
 
-/* ── مركز التمويل — حاسبة رائد الأعمال ── */
-function switchCapPath(path) {
-  ['entre','investor'].forEach(t => {
-    const panel = document.getElementById('cap-panel-'+t);
-    const tab   = document.getElementById('captab-'+t);
-    if (panel) panel.style.display = t===path ? 'block' : 'none';
-    if (tab) {
-      tab.style.background  = t===path ? 'var(--green)' : 'var(--bg3)';
-      tab.style.color       = t===path ? '#fff' : 'var(--text)';
-      tab.style.borderColor = t===path ? 'var(--green)' : 'var(--border)';
-    }
-  });
-}
 
-function calcEntrepreneurNeeds() {
-  const sector  = document.getElementById('ent-sector')?.value || 'أخرى';
-  const setup   = parseFloat(document.getElementById('ent-setup')?.value)||0;
-  const rent    = parseFloat(document.getElementById('ent-rent')?.value)||0;
-  const salary  = parseFloat(document.getElementById('ent-salary')?.value)||0;
-  const other   = parseFloat(document.getElementById('ent-other')?.value)||0;
-  let   revenue = parseFloat(document.getElementById('ent-revenue')?.value)||0;
 
-  // ─── تحقق من القيم السالبة ───
-  if (setup < 0 || rent < 0 || salary < 0 || other < 0 || revenue < 0) {
-    showToast('⚠ لا يمكن إدخال قيم سالبة في الحقول المالية');
-    return;
-  }
-
-  // ─── COGS ───
-  const cogsPctInput = parseFloat(document.getElementById('ent-cogs-pct')?.value);
-  const cogsAmtInput = parseFloat(document.getElementById('ent-cogs-amt')?.value)||0;
-
-  // ─── GOSI + تكاليف العمالة الكاملة ───
-  const saudiCount        = parseFloat(document.getElementById('ent-saudi-count')?.value)||0;
-  const saudiSalaryAvg    = parseFloat(document.getElementById('ent-saudi-salary')?.value)||0;
-  const nonSaudiCount     = parseFloat(document.getElementById('ent-nonsaudi-count')?.value)||0;
-  const nonSaudiSalaryAvg = parseFloat(document.getElementById('ent-nonsaudi-salary')?.value)||0;
-  const iqamaFeeAnnual    = parseFloat(document.getElementById('ent-iqama-fee')?.value)||9600;
-  const healthInsAnnual   = parseFloat(document.getElementById('ent-health-ins')?.value)||600;
-  const gosiSaudi         = saudiCount * saudiSalaryAvg * 0.1175;
-  const gosiNonSaudi      = nonSaudiCount * nonSaudiSalaryAvg * 0.02;
-  const iqamaMonthly      = nonSaudiCount * (iqamaFeeAnnual / 12);
-  const healthInsMonthly  = nonSaudiCount * (healthInsAnnual / 12);
-  const gosiMonthly       = gosiSaudi + gosiNonSaudi + iqamaMonthly + healthInsMonthly;
-
-  // ─── الرسوم الحكومية والتشغيلية ───
-  const crFeeAnnual    = parseFloat(document.getElementById('ent-cr-fee')?.value)||2100;
-  const muniFeeAnnual  = parseFloat(document.getElementById('ent-muni-fee')?.value)||0;
-  const govOtherAnnual = parseFloat(document.getElementById('ent-gov-other')?.value)||0;
-  const electricity    = parseFloat(document.getElementById('ent-electricity')?.value)||0;
-  const transport      = parseFloat(document.getElementById('ent-transport')?.value)||0;
-  const subscriptions  = parseFloat(document.getElementById('ent-subscriptions')?.value)||0;
-  const govMonthly     = (crFeeAnnual + muniFeeAnnual + govOtherAnnual) / 12 + electricity + transport + subscriptions;
-
-  // ─── VAT ───
-  const vatRegistered = document.getElementById('ent-vat-yes')?.checked;
-  const revenueNet = vatRegistered ? revenue / 1.15 : revenue; // صافي الإيراد بدون الضريبة
-
-  const BENCH = {
-    'مطعم / مقهى':     {cogs:0.38,buffer:6},
-    'تجارة تجزئة':     {cogs:0.55,buffer:4},
-    'تجارة إلكترونية': {cogs:0.50,buffer:3},
-    'خدمات مهنية':     {cogs:0.28,buffer:4},
-    'تقنية / تطبيقات': {cogs:0.22,buffer:6},
-    'صحة وجمال':       {cogs:0.35,buffer:5},
-    'تعليم وتدريب':    {cogs:0.20,buffer:3},
-    'تصنيع / إنتاج':   {cogs:0.55,buffer:8},
-    'عقارات':          {cogs:0.40,buffer:6},
-    'أخرى':            {cogs:0.45,buffer:5},
-  };
-  const bench = BENCH[sector] || BENCH['أخرى'];
-
-  // تكلفة البضاعة: المبلغ المباشر → النسبة المدخلة → النسبة التلقائية
-  let cogs;
-  let cogsLabel;
-  if (cogsAmtInput > 0) {
-    cogs = cogsAmtInput;
-    cogsLabel = `${cogs.toLocaleString('ar-SA')} ر.س (مبلغ مدخل)`;
-  } else if (!isNaN(cogsPctInput) && cogsPctInput > 0) {
-    cogs = revenueNet * (cogsPctInput / 100);
-    cogsLabel = `${cogs.toLocaleString('ar-SA')} ر.س (${cogsPctInput}% مدخلة)`;
-  } else {
-    cogs = revenueNet * bench.cogs;
-    cogsLabel = `${cogs.toLocaleString('ar-SA')} ر.س (${(bench.cogs*100).toFixed(0)}% تلقائي - ${sector})`;
-  }
-
-  const monthlyExp = rent + salary + other + gosiMonthly + govMonthly;
-  const netMonthly = revenueNet - cogs - monthlyExp;
-  const workCap    = monthlyExp * bench.buffer;
-  const totalCap   = setup + workCap;
-  const payback    = netMonthly > 0 ? Math.ceil(totalCap / netMonthly) : 0;
-  const roi        = totalCap > 0 ? (netMonthly*12/totalCap*100).toFixed(0) : 0;
-  let verdict,vColor,advice,fundSource,fundingType;
-  if      (netMonthly >= monthlyExp*0.3) { verdict='مشروع مربح قوي';           vColor='var(--green)'; advice='الأرقام قوية — ابدأ بتأمين رأس المال والترخيص.'; }
-  else if (netMonthly > 0)               { verdict='مربح — يحتاج تحسين';        vColor='#f59e0b';      advice='الربح موجود لكن محدود — راجع تكاليف البضاعة أو زد الإيرادات.'; }
-  else if (revenue === 0)                { verdict='أدخل الأرقام للحصول على الحكم'; vColor='var(--muted)'; advice='أدخل الإيرادات المتوقعة لاستكمال الحساب.'; }
-  else                                   { verdict='خسارة شهرية — يحتاج مراجعة'; vColor='#e74c3c';     advice='التكاليف تتجاوز الإيرادات — راجع الهيكل المالي قبل الإطلاق.'; }
-  if      (totalCap < 100000)  { fundSource = 'ذاتي أو برنامج منشآت (حتى 300,000 ريال)'; fundingType='تمويل ذاتي مع دعم حكومي'; }
-  else if (totalCap < 500000)  { fundSource = 'برنامج منشآت أو كفالة صندوق المئوية'; fundingType='تمويل تنموي للمشاريع الناشئة'; }
-  else if (totalCap < 2000000) { fundSource = 'تمويل بنكي تجاري أو تمويل إسلامي (مرابحة)'; fundingType='تمويل بنكي / مرابحة'; }
-  else                          { fundSource = 'شريك استراتيجي أو مستثمر ملاك أو صندوق SMEF'; fundingType='شراكة استثمارية أو مستثمر ملاك'; }
-  // ─── صفوف التفصيل الدقيق ───
-  const breakdownRows = [
-    `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#86efac">الإيراد الفعلي${vatRegistered?' (صافي بعد VAT 15%)':''}</td><td style="padding-right:.8rem;color:#86efac;font-weight:700;white-space:nowrap">+ ${Math.round(revenueNet).toLocaleString('ar-SA')}</td></tr>`,
-    `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">تكلفة البضاعة / المشتريات</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(cogs).toLocaleString('ar-SA')}</td></tr>`,
-    `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">إيجار + رواتب + مصاريف تشغيلية</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(rent+salary+other).toLocaleString('ar-SA')}</td></tr>`,
-    gosiSaudi > 0 ? `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">GOSI سعوديون (11.75%)</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(gosiSaudi).toLocaleString('ar-SA')}</td></tr>` : '',
-    (gosiNonSaudi + iqamaMonthly + healthInsMonthly) > 0 ? `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">GOSI + إقامات + تأمين صحي (غير سعوديين)</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(gosiNonSaudi+iqamaMonthly+healthInsMonthly).toLocaleString('ar-SA')}</td></tr>` : '',
-    govMonthly > 0 ? `<tr><td style="padding:.28rem 0;border-top:1px solid rgba(255,255,255,.06);color:#fca5a5">رسوم حكومية + كهرباء + وقود + اشتراكات</td><td style="padding-right:.8rem;color:#fca5a5;font-weight:700;white-space:nowrap">− ${Math.round(govMonthly).toLocaleString('ar-SA')}</td></tr>` : '',
-    `<tr style="border-top:2px solid rgba(255,255,255,.2)"><td style="padding:.45rem 0;font-weight:900;color:${vColor}">صافي الربح الشهري</td><td style="padding-right:.8rem;font-weight:900;font-size:.92rem;color:${vColor};white-space:nowrap">${Math.round(netMonthly).toLocaleString('ar-SA')}</td></tr>`,
-  ].join('');
-
-  const el = document.getElementById('ent-results');
-  el.style.display = 'block';
-  el.innerHTML = `
-    <div style="background:linear-gradient(135deg,#0a1628,#1a2755);border-radius:16px;padding:1.5rem;border:1px solid rgba(78,115,194,.25);margin-top:1.25rem">
-      <h3 style="font-size:1rem;font-weight:800;color:#fff;margin:0 0 1.25rem;display:flex;align-items:center;gap:.5rem">
-        <i class="fa-solid fa-file-invoice-dollar" style="color:#7B9ED4"></i> نتائج حاسبة رأس المال
-      </h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.85rem;margin-bottom:1.25rem">
-        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:1rem;text-align:center">
-          <div style="font-size:1.15rem;font-weight:900;color:#f59e0b">${totalCap.toLocaleString('ar-SA')} ر</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.3rem">إجمالي رأس المال المطلوب</div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:1rem;text-align:center">
-          <div style="font-size:1.15rem;font-weight:900;color:${vColor}">${netMonthly.toLocaleString('ar-SA')} ر</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.3rem">صافي الربح الشهري</div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:1rem;text-align:center">
-          <div style="font-size:1.15rem;font-weight:900;color:#38bdf8">${payback > 100 || payback===0 ? '∞' : payback+' شهر'}</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.3rem">فترة الاسترداد</div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:1rem;text-align:center">
-          <div style="font-size:1.15rem;font-weight:900;color:var(--green)">${roi}%</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.3rem">العائد السنوي ROI</div>
-        </div>
-      </div>
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1rem">
-        <div style="font-size:.79rem;font-weight:800;color:#93c5fd;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem">
-          <i class="fa-solid fa-table-list"></i> تفصيل الحساب الشهري الدقيق
-        </div>
-        <table style="width:100%;border-collapse:collapse;font-size:.77rem">
-          ${breakdownRows}
-        </table>
-      </div>
-      <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:1rem;margin-bottom:1rem">
-        <div style="font-size:.82rem;font-weight:700;color:${vColor};margin-bottom:.4rem">الحكم: ${verdict}</div>
-        <div style="font-size:.8rem;color:rgba(255,255,255,.7);line-height:1.6">${advice}</div>
-      </div>
-      <div style="background:rgba(78,115,194,.1);border:1px solid rgba(78,115,194,.2);border-radius:10px;padding:1rem;display:flex;align-items:flex-start;gap:.6rem;margin-bottom:1.25rem">
-        <i class="fa-solid fa-lightbulb" style="color:#7B9ED4;margin-top:.15rem;flex-shrink:0"></i>
-        <div>
-          <div style="font-size:.78rem;font-weight:700;color:#93c5fd;margin-bottom:.2rem">توصية مصدر التمويل المناسب</div>
-          <div style="font-size:.8rem;color:rgba(255,255,255,.7)">${fundSource}</div>
-        </div>
-      </div>
-      <div style="background:linear-gradient(135deg,rgba(76,29,149,.34),rgba(217,119,6,.28));border:1px solid rgba(196,181,253,.45);border-radius:12px;padding:1rem 1.1rem;margin-bottom:1.25rem;box-shadow:0 8px 24px rgba(76,29,149,.22)">
-        <div style="font-size:.84rem;font-weight:800;color:#f5d0fe;line-height:1.85;margin-bottom:.8rem">
-          بناءً على أرقامك، مشروعك يحتاج إلى <strong style="color:#fde68a">${fundingType}</strong>. ابدأ الآن بإعداد ملفك الاحترافي في باقة الجاهزية Pro لتقليل مخاطر الرفض.
-        </div>
-        <button onclick="openInvestmentReadinessPath('${fundingType}')" style="background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;border:none;padding:.65rem 1.1rem;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem">
-          <i class="fa-solid fa-crown"></i> احصل على الجاهزية Pro
-        </button>
-      </div>
-      <div style="display:flex;gap:.85rem;flex-wrap:wrap">
-        <button class="btn-primary" onclick="goto('analysis')" style="flex:1;justify-content:center;min-width:160px">
-          <i class="fa-solid fa-file-chart-column"></i> أعدّ دراسة جدوى كاملة
-        </button>
-        <button onclick="document.getElementById('ent-results').style.display='none'" style="padding:.7rem 1.25rem;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.6);font-family:'Tajawal',sans-serif;font-size:.88rem;cursor:pointer">
-          <i class="fa-solid fa-rotate"></i> احسب مرة ثانية
-        </button>
-      </div>
-    </div>`;
-  el.scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-function openInvestmentReadinessPath(sourceLabel='') {
-  try { localStorage.setItem('jb-investment-readiness-source', sourceLabel || 'capital-matrix'); } catch(e) {}
-  goto('paid-analysis');
-  setTimeout(() => {
-    if (typeof initPaidAnalysisFlow === 'function') initPaidAnalysisFlow();
-    const panel = document.getElementById('pa2-form-section');
-    if (panel) panel.scrollIntoView({behavior:'smooth', block:'start'});
-  }, 250);
-}
-
-/* ── مركز التمويل — مستكشف القطاع للمستثمر ── */
-function showCapSector(code) {
-  document.querySelectorAll('.cap-sector-card').forEach(c => {
-    c.style.borderColor = 'var(--border)';
-    c.style.background  = 'var(--bg3)';
-  });
-  const clicked = document.getElementById('capsec-'+code);
-  if (clicked) { clicked.style.borderColor='var(--green)'; clicked.style.background='rgba(16,185,129,.06)'; }
-  const CAP_SECTORS = {
-    food:   {name:'مطعم / مقهى',     roi:[12,18],risk:'متوسط',          minCap:80000,  mktSize:'72 مليار',    growth:14,icon:'fa-utensils',     note:'الطلب على التوصيل والتجارب الغذائية في ارتفاع مستمر'},
-    retail: {name:'تجارة تجزئة',     roi:[8,14], risk:'منخفض-متوسط',   minCap:50000,  mktSize:'430 مليار',   growth:9, icon:'fa-store',          note:'44% من إنفاق الأسرة السعودية يذهب للتجزئة'},
-    ecom:   {name:'تجارة إلكترونية', roi:[15,25],risk:'متوسط',          minCap:20000,  mktSize:'45 مليار',    growth:20,icon:'fa-laptop',          note:'نمو E-Commerce السعودي 19-22% سنوياً — الأعلى بالمنطقة'},
-    prof:   {name:'خدمات مهنية',     roi:[20,30],risk:'منخفض',          minCap:30000,  mktSize:'280 مليار',   growth:13,icon:'fa-briefcase',       note:'إصلاحات سوق العمل وتوطين المهن الاستشارية يرفعان الطلب'},
-    tech:   {name:'تقنية / تطبيقات', roi:[25,40],risk:'مرتفع',          minCap:100000, mktSize:'32 مليار',    growth:25,icon:'fa-microchip',       note:'30% من استثمارات PIF 2026 مخصصة للتقنية'},
-    beauty: {name:'صحة وجمال',       roi:[18,28],risk:'منخفض-متوسط',   minCap:60000,  mktSize:'58 مليار',    growth:15,icon:'fa-heart-pulse',     note:'نمو التجميل الطبي والعناية الذاتية 22% 2026'},
-    edu:    {name:'تعليم وتدريب',    roi:[18,25],risk:'منخفض',          minCap:25000,  mktSize:'37 مليار',    growth:17,icon:'fa-graduation-cap',  note:'دعم حكومي مباشر وبرامج منح تدريبية 2026'},
-    mfg:    {name:'تصنيع / إنتاج',   roi:[10,16],risk:'متوسط-مرتفع',   minCap:200000, mktSize:'600 مليار',   growth:10,icon:'fa-industry',        note:'رؤية 2030 ترفع نسبة التصنيع المحلي إلى 50%'},
-    real:   {name:'عقارات',          roi:[8,15], risk:'منخفض',          minCap:500000, mktSize:'1,700 مليار', growth:8, icon:'fa-building',        note:'الطلب الإسكاني يفوق العرض — الإيجارات والسكن الميسّر'},
-  };
-  const s = CAP_SECTORS[code];
-  if (!s) return;
-  const riskColor = {'منخفض':'#16a34a','منخفض-متوسط':'#84cc16','متوسط':'#f59e0b','متوسط-مرتفع':'#f97316','مرتفع':'#e74c3c'}[s.risk]||'#f59e0b';
-  const det = document.getElementById('cap-sector-detail');
-  det.style.display = 'block';
-  det.innerHTML = `
-    <div style="background:var(--bg3);border:1.5px solid var(--green);border-radius:16px;padding:1.5rem;margin-bottom:1rem">
-      <div style="display:flex;align-items:center;gap:.85rem;margin-bottom:1.25rem">
-        <div style="width:52px;height:52px;border-radius:14px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--green);flex-shrink:0">
-          <i class="fa-solid ${s.icon}"></i>
-        </div>
-        <div>
-          <div style="font-size:1.05rem;font-weight:900">${s.name}</div>
-          <div style="font-size:.8rem;color:var(--muted);margin-top:.15rem">${s.note}</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem">
-        <div class="cpm-item"><div class="cpm-val" style="color:var(--green)">${s.roi[0]}–${s.roi[1]}%</div><div class="cpm-lbl">العائد السنوي</div></div>
-        <div class="cpm-item"><div class="cpm-val" style="color:${riskColor}">${s.risk}</div><div class="cpm-lbl">مستوى المخاطرة</div></div>
-        <div class="cpm-item"><div class="cpm-val">${(s.minCap/1000).toFixed(0)}K+ ر</div><div class="cpm-lbl">أقل رأس مال</div></div>
-        <div class="cpm-item"><div class="cpm-val" style="color:#38bdf8">${s.mktSize} ر</div><div class="cpm-lbl">حجم السوق</div></div>
-        <div class="cpm-item"><div class="cpm-val" style="color:#a855f7">+${s.growth}%</div><div class="cpm-lbl">نمو سنوي</div></div>
-      </div>
-    </div>`;
-  const invCap = document.getElementById('inv-capital');
-  if (invCap) { invCap.dataset.roiMin=s.roi[0]; invCap.dataset.roiMax=s.roi[1]; invCap.dataset.sectorName=s.name; }
-}
-
-function calcInvestorROI() {
-  const capital = parseFloat(document.getElementById('inv-capital')?.value)||0;
-  const period  = parseInt(document.getElementById('inv-period')?.value)||3;
-  const el0     = document.getElementById('inv-capital');
-  const roiMin  = parseFloat(el0?.dataset.roiMin||0);
-  const roiMax  = parseFloat(el0?.dataset.roiMax||0);
-  const sName   = el0?.dataset.sectorName||'';
-  if (capital <= 0) { showToast('أدخل رأس المال المتاح للاستثمار'); return; }
-  if (!sName || roiMin === 0) { showToast('يرجى اختيار القطاع من البطاقات أعلاه أولاً'); return; }
-  const earnMin    = Math.round(capital * (roiMin/100) * period);
-  const earnMax    = Math.round(capital * (roiMax/100) * period);
-  const earnAvg    = Math.round((earnMin+earnMax)/2);
-  const monthlyAvg = Math.round(earnAvg/(period*12));
-  const el = document.getElementById('inv-results');
-  el.style.display = 'block';
-  el.innerHTML = `
-    <div style="background:linear-gradient(135deg,#0a1628,#1a2755);border-radius:16px;padding:1.5rem;border:1px solid rgba(78,115,194,.25);margin-top:1.25rem">
-      <h3 style="font-size:1rem;font-weight:800;color:#fff;margin:0 0 1.25rem">
-        توقعات الاستثمار في ${sName} لمدة ${period} ${period===1?'سنة':'سنوات'}
-      </h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.85rem;margin-bottom:1.25rem">
-        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:1rem;text-align:center">
-          <div style="font-size:1.15rem;font-weight:900;color:#f59e0b">${earnAvg.toLocaleString('ar-SA')} ر</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.3rem">العائد المتوقع (متوسط)</div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:1rem;text-align:center">
-          <div style="font-size:1.15rem;font-weight:900;color:var(--green)">${monthlyAvg.toLocaleString('ar-SA')} ر</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.3rem">ربح شهري متوسط</div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:1rem;text-align:center">
-          <div style="font-size:1.15rem;font-weight:900;color:#38bdf8">${(capital+earnMin).toLocaleString('ar-SA')}–${(capital+earnMax).toLocaleString('ar-SA')} ر</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.3rem">إجمالي الثروة المتوقعة</div>
-        </div>
-      </div>
-      <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:.85rem 1rem;font-size:.8rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:1.25rem">
-        <strong style="color:#fbbf24">ملاحظة:</strong> هذه توقعات استرشادية بناءً على متوسطات القطاع 2026. النتائج تتوقف على اختيار المشروع وإدارته.
-      </div>
-      <button class="btn-primary" onclick="goto('analysis')" style="width:100%;justify-content:center">
-        <i class="fa-solid fa-file-chart-column"></i> أعدّ دراسة جدوى قبل الاستثمار
-      </button>
-    </div>`;
-  el.scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-function updateCapitalNote() { /* no-op — backward compat */ }
-function updateResults()       { /* no-op — backward compat */ }
-
-function runCapitalConsultation() {
-  const capital      = parseInt(document.getElementById('cap-range').value);
-  const sector       = document.getElementById('cap-sector').value;
-  const riskPref     = document.getElementById('cap-risk-tolerance').value;
-  const goal         = document.getElementById('cap-goal').value;
-  const exp          = document.getElementById('cap-exp').value;
-
-  // فلترة المشاريع المطابقة
-  let filtered = PROJECTS_DB.filter(p => p.min <= capital && p.max >= capital && (sector === 'all' || p.sector.includes(sector)));
-
-  // تطبيق فلتر المخاطرة
-  if (riskPref === 'low') filtered = filtered.filter(p => ['منخفض جداً','منخفض','منخفض-متوسط'].includes(p.risk));
-  else if (riskPref === 'mid') filtered = filtered.filter(p => ['منخفض-متوسط','متوسط','متوسط-مرتفع'].includes(p.risk));
-  else if (riskPref === 'high') filtered = filtered.filter(p => ['متوسط-مرتفع','مرتفع'].includes(p.risk));
-
-  // رتّب حسب الهدف
-  if (goal === 'income')  filtered.sort((a,b) => b.roi - a.roi);
-  else if (goal === 'fast') filtered.sort((a,b) => (parseInt(a.period)||12) - (parseInt(b.period)||12));
-  else if (goal === 'stable') filtered.sort((a,b) => {
-    const riskOrder = {'منخفض جداً':0,'منخفض':1,'منخفض-متوسط':2,'متوسط':3,'متوسط-مرتفع':4,'مرتفع':5};
-    return (riskOrder[a.risk]||3) - (riskOrder[b.risk]||3);
-  });
-  else filtered.sort((a,b) => b.roi - a.roi);
-
-  const top = filtered.slice(0, 5);
-
-  // ملخص الملف الاستثماري
-  const riskMap = {'any':'غير محدد','low':'منخفض / محافظ','mid':'متوسط','high':'مرتفع / مغامر'};
-  const goalMap = {'income':'دخل شهري ثابت','growth':'نمو رأس المال','fast':'أرباح سريعة','stable':'أمان وتنويع'};
-  const expMap  = {'none':'مبتدئ','little':'خبرة محدودة','mid':'خبرة جيدة','expert':'خبير'};
-  const sectorMap = {'all':'جميع القطاعات','food':'غذاء وضيافة','tech':'تقنية ورقمي','retail':'تجارة وبيع','service':'خدمات','real':'عقارات','mfg':'تصنيع وإنتاج'};
-
-  const avgROI  = top.length ? Math.round(top.reduce((a,p) => a+p.roi, 0) / top.length) : 0;
-  const bestROI = top.length ? Math.max(...top.map(p => p.roi)) : 0;
-  const annualIncome = Math.round(capital * avgROI / 100);
-
-  document.getElementById('cap-profile-summary').innerHTML = `
-    <div class="cap-profile-card">
-      <div class="cpc-header">
-        <div class="cpc-icon"><i class="fa-solid fa-user-tie"></i></div>
-        <div>
-          <div class="cpc-title">ملف المستثمر الشخصي</div>
-          <div class="cpc-sub">بناءً على إجاباتك — تم تخصيص هذه التوصيات لك</div>
-        </div>
-      </div>
-      <div class="cpc-stats">
-        <div class="cpc-stat"><div class="cps-val" style="color:var(--green)">${capital.toLocaleString('ar-SA')} ر</div><div class="cps-lbl">رأس المال المتاح</div></div>
-        <div class="cpc-stat"><div class="cps-val" style="color:#d97706">${avgROI}%</div><div class="cps-lbl">متوسط العائد المتوقع</div></div>
-        <div class="cpc-stat"><div class="cps-val" style="color:var(--green)">${annualIncome.toLocaleString('ar-SA')} ر</div><div class="cps-lbl">العائد السنوي المتوقع</div></div>
-        <div class="cpc-stat"><div class="cps-val">${top.length}</div><div class="cps-lbl">فرص مطابقة</div></div>
-      </div>
-      <div class="cpc-tags">
-        <span class="cpc-tag"><i class="fa-solid fa-bullseye"></i> ${goalMap[goal]}</span>
-        <span class="cpc-tag"><i class="fa-solid fa-shield-halved"></i> مخاطرة ${riskMap[riskPref]}</span>
-        <span class="cpc-tag"><i class="fa-solid fa-briefcase"></i> ${expMap[exp]}</span>
-        <span class="cpc-tag"><i class="fa-solid fa-industry"></i> ${sectorMap[sector]}</span>
-      </div>
-    </div>`;
-
-  // بطاقات المشاريع
-  const container = document.getElementById('cap-results');
-  if (!top.length) {
-    container.innerHTML = `<div class="cap-empty">
-      <i class="fa-solid fa-magnifying-glass" style="font-size:2rem;margin-bottom:.75rem;opacity:.4"></i>
-      <p>لا توجد فرص مطابقة لمعاييرك — جرب توسيع نطاق المخاطرة أو تغيير القطاع</p>
-      <button class="btn-primary" style="margin-top:1rem" onclick="resetCapital()">تعديل المعايير</button>
-    </div>`;
-  } else {
-    container.innerHTML = `<h3 style="font-size:.97rem;font-weight:800;margin:1.25rem 0 .85rem;display:flex;align-items:center;gap:.5rem">
-      <i class="fa-solid fa-stars" style="color:#f59e0b"></i> أفضل ${top.length} فرص استثمارية موصى بها
-    </h3>` + top.map((p, idx) => {
-      const riskColor = {'منخفض جداً':'#16a34a','منخفض':'#22c55e','منخفض-متوسط':'#84cc16','متوسط':'#f59e0b','متوسط-مرتفع':'#f97316','مرتفع':'#e74c3c'}[p.risk] || '#f59e0b';
-      const monthlyEst = Math.round(capital * p.roi / 100 / 12);
-      return `
-      <div class="cap-project-card ${idx === 0 ? 'cap-top-pick' : ''}">
-        ${idx === 0 ? '<div class="cap-rank-badge">🥇 الأفضل لك</div>' : idx === 1 ? '<div class="cap-rank-badge" style="background:rgba(148,163,184,.12);color:#94a3b8">🥈 اختيار ثانٍ</div>' : ''}
-        <div class="cap-project-inner">
-          <div class="cap-proj-icon ${idx === 0 ? 'cpi-top' : ''}">
-            <i class="fa-solid ${p.icon}"></i>
-          </div>
-          <div style="flex:1;min-width:0">
-            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.35rem">
-              <div style="font-size:.97rem;font-weight:800">${p.name}</div>
-              <span style="background:${riskColor}18;color:${riskColor};font-size:.7rem;font-weight:700;padding:.15rem .6rem;border-radius:20px">مخاطرة ${p.risk}</span>
-            </div>
-            <div style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem;line-height:1.55">${p.desc}</div>
-            <div class="cap-proj-metrics">
-              <div class="cpm-item">
-                <div class="cpm-val" style="color:var(--green)">${p.roi}%</div>
-                <div class="cpm-lbl">عائد سنوي متوقع</div>
-              </div>
-              <div class="cpm-item">
-                <div class="cpm-val">${monthlyEst.toLocaleString('ar-SA')} ر</div>
-                <div class="cpm-lbl">ربح شهري مقدّر</div>
-              </div>
-              <div class="cpm-item">
-                <div class="cpm-val">${p.period}</div>
-                <div class="cpm-lbl">مدة الاسترداد</div>
-              </div>
-              <div class="cpm-item">
-                <div class="cpm-val" style="font-size:.82rem">${(p.min/1000).toFixed(0)}k – ${p.max>=999999?'∞':(p.max/1000).toFixed(0)+'k'} ر</div>
-                <div class="cpm-lbl">نطاق رأس المال</div>
-              </div>
-            </div>
-            ${p.setup ? `<div style="font-size:.74rem;color:var(--muted);margin-top:.4rem"><i class="fa-solid fa-coins" style="color:var(--amber);margin-left:.3rem"></i>تكلفة التأسيس: ${p.setup}</div>` : ''}
-          </div>
-          <div style="flex-shrink:0">
-            <button onclick="goto('robot')" style="padding:.5rem 1rem;border-radius:8px;border:1.5px solid var(--green);background:transparent;color:var(--green);font-family:'Tajawal',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;white-space:nowrap">
-              <i class="fa-solid fa-magnifying-glass-chart"></i> حلّل مشروعاً
-            </button>
-          </div>
-        </div>
-      </div>`}).join('');
-  }
-
-  // تحليل المحفظة
-  if (top.length >= 2) {
-    const riskProfile = riskPref === 'low' ? 'محافظة' : riskPref === 'mid' ? 'متوازنة' : 'عدوانية';
-    document.getElementById('cap-portfolio-analysis').innerHTML = `
-      <div class="cap-portfolio">
-        <h3 style="font-size:.97rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
-          <i class="fa-solid fa-chart-pie" style="color:#7B9ED4"></i> تحليل المحفظة المقترحة
-        </h3>
-        <div class="cap-port-grid">
-          <div class="cap-port-item">
-            <div class="cport-icon" style="background:rgba(78,115,194,.12)"><i class="fa-solid fa-sack-dollar" style="color:var(--green)"></i></div>
-            <div class="cport-title">أعلى عائد ممكن</div>
-            <div class="cport-val">${bestROI}% سنوياً</div>
-            <div class="cport-sub">على أفضل فرصة في قائمتك</div>
-          </div>
-          <div class="cap-port-item">
-            <div class="cport-icon" style="background:rgba(245,158,11,.1)"><i class="fa-solid fa-scale-balanced" style="color:#d97706"></i></div>
-            <div class="cport-title">نوع المحفظة</div>
-            <div class="cport-val">${riskProfile}</div>
-            <div class="cport-sub">بناءً على تفضيلك للمخاطرة</div>
-          </div>
-          <div class="cap-port-item">
-            <div class="cport-icon" style="background:rgba(34,197,94,.1)"><i class="fa-solid fa-calendar-check" style="color:#16a34a"></i></div>
-            <div class="cport-title">العائد السنوي</div>
-            <div class="cport-val">${annualIncome.toLocaleString('ar-SA')} ريال</div>
-            <div class="cport-sub">بمتوسط عائد ${avgROI}% على رأس مالك</div>
-          </div>
-          <div class="cap-port-item">
-            <div class="cport-icon" style="background:rgba(168,85,247,.1)"><i class="fa-solid fa-lightbulb" style="color:#a855f7"></i></div>
-            <div class="cport-title">توصية الخبراء</div>
-            <div class="cport-val" style="font-size:.82rem">${exp === 'none' ? 'ابدأ بمشروع واحد صغير' : exp === 'little' ? 'مشروع واحد مركّز' : 'يمكن تنويع محفظتك'}</div>
-            <div class="cport-sub">بناءً على خبرتك في الأعمال</div>
-          </div>
-        </div>
-        <div style="background:var(--bg2);border-radius:10px;padding:1rem 1.25rem;margin-top:1rem;font-size:.84rem;line-height:1.8;color:var(--muted)">
-          <strong style="color:var(--text)"><i class="fa-solid fa-road" style="color:var(--green);margin-left:.4rem"></i>خارطة طريق للبداية:</strong><br/>
-          1. ابدأ بإعداد دراسة جدوى للمشروع الذي اخترته (99-299 ريال)<br/>
-          2. قدّم الدراسة لجهات التمويل إن احتجت دعماً مالياً<br/>
-          3. استخدم "تحليل المشروع" المجاني لإدخال أرقامك الفعلية وتتبع الأداء
-        </div>
-        <div style="display:flex;gap:.85rem;flex-wrap:wrap;margin-top:1rem">
-          <button class="btn-primary" onclick="goto('analysis')"><i class="fa-solid fa-file-chart-column"></i> أعدّ دراسة جدوى الآن</button>
-          <button class="btn-primary" style="background:var(--card);color:var(--text);border:1.5px solid var(--border)" onclick="resetCapital()"><i class="fa-solid fa-rotate"></i> استشارة جديدة</button>
-        </div>
-      </div>`;
-  } else {
-    document.getElementById('cap-portfolio-analysis').innerHTML = '';
-  }
-
-  // انتقل للخطوة 1
-  document.getElementById('cap-step-0').classList.remove('active');
-  document.getElementById('cap-step-1').classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-/* Due Diligence Checklist */
-const DDQ_CATEGORIES = [
-  {
-    icon:'fa-file-contract', color:'#3b82f6', label:'الوثائق القانونية',
-    items:['سجل تجاري ساري المفعول','عقد التأسيس أو النظام الأساسي','قرار تعيين المدير المفوض','التراخيص والتصاريح القطاعية','سجل الملاك وهيكل الملكية (Cap Table)','أي عقود شراكة أو استثمار سابقة']
-  },
-  {
-    icon:'fa-file-invoice-dollar', color:'#10b981', label:'الوثائق المالية',
-    items:['القوائم المالية لآخر سنتين (ميزانية + دخل + تدفق نقدي)','كشف حساب بنكي لآخر 6 أشهر','الإقرارات الضريبية (ZATCA)','جدول الأصول الثابتة','قائمة الذمم المدينة والدائنة','دراسة الجدوى المالية المُعتمدة']
-  },
-  {
-    icon:'fa-cogs', color:'#f59e0b', label:'الوثائق التشغيلية',
-    items:['خطة الأعمال (Business Plan) مفصلة','الهيكل التنظيمي وقائمة الموظفين الرئيسيين','عقود الموردين والعملاء الرئيسيين','براءات الاختراع أو الملكية الفكرية (إن وجدت)','سياسة إدارة المخاطر والتأمينات','خطة النمو والتوسع للـ 3 سنوات القادمة']
-  },
-  {
-    icon:'fa-users', color:'#9333ea', label:'الفريق والكفاءات',
-    items:['سير ذاتية للمؤسسين والإدارة العليا','عقود العمل للموظفين الحيويين','انتهاء أي عقود عمل سابقة بشكل نظيف','خطة التوسع في الكوادر البشرية']
-  }
-];
-
-function renderDDQ() {
-  const container = document.getElementById('ddq-container');
-  if (!container) return;
-  container.innerHTML = DDQ_CATEGORIES.map((cat, ci) => `
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:.75rem;overflow:hidden">
-      <div onclick="toggleDDQ(${ci})" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.1rem;cursor:pointer">
-        <div style="display:flex;align-items:center;gap:.7rem">
-          <div style="width:32px;height:32px;border-radius:8px;background:${cat.color}22;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid ${cat.icon}" style="color:${cat.color};font-size:.85rem"></i></div>
-          <div style="font-size:.88rem;font-weight:800">${cat.label}</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:.75rem">
-          <span id="ddq-score-${ci}" style="font-size:.75rem;color:var(--muted)">0/${cat.items.length}</span>
-          <i id="ddq-chev-${ci}" class="fa-solid fa-chevron-down" style="color:var(--muted);transition:.2s;font-size:.8rem"></i>
-        </div>
-      </div>
-      <div id="ddq-body-${ci}" style="display:none;padding:0 1.1rem 1rem">
-        ${cat.items.map((item, ii) => `
-          <label style="display:flex;align-items:center;gap:.65rem;padding:.5rem 0;cursor:pointer;border-top:1px solid var(--border)">
-            <input type="checkbox" id="ddq-${ci}-${ii}" onchange="updateDDQScore(${ci})" style="width:16px;height:16px;accent-color:${cat.color};cursor:pointer;flex-shrink:0"/>
-            <span style="font-size:.81rem;color:var(--text)">${item}</span>
-          </label>`).join('')}
-      </div>
-    </div>`).join('');
-}
-
-function toggleDDQ(ci) {
-  const body = document.getElementById(`ddq-body-${ci}`);
-  const chev = document.getElementById(`ddq-chev-${ci}`);
-  if (!body) return;
-  const open = body.style.display !== 'none';
-  body.style.display = open ? 'none' : 'block';
-  if (chev) chev.style.transform = open ? '' : 'rotate(180deg)';
-}
-
-function updateDDQScore(ci) {
-  const cat = DDQ_CATEGORIES[ci];
-  const checked = cat.items.filter((_, ii) => document.getElementById(`ddq-${ci}-${ii}`)?.checked).length;
-  const scoreEl = document.getElementById(`ddq-score-${ci}`);
-  if (scoreEl) {
-    scoreEl.textContent = `${checked}/${cat.items.length}`;
-    scoreEl.style.color = checked === cat.items.length ? '#10b981' : checked > 0 ? '#f59e0b' : 'var(--muted)';
-  }
-}
-
-function initCapital() {
-  renderDDQ();
-}
-
-function resetCapital() {
-  // جميع حقول رائد الأعمال
-  const allFields = [
-    'ent-setup','ent-rent','ent-salary','ent-other','ent-revenue',
-    'ent-cogs-pct','ent-cogs-amt',
-    'ent-saudi-count','ent-saudi-salary',
-    'ent-nonsaudi-count','ent-nonsaudi-salary',
-    'ent-electricity','ent-transport','ent-muni-fee','ent-gov-other','ent-subscriptions',
-    'inv-capital'
-  ];
-  allFields.forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-  // إعادة القيم الافتراضية
-  const iqama = document.getElementById('ent-iqama-fee'); if (iqama) iqama.value = '9600';
-  const health = document.getElementById('ent-health-ins'); if (health) health.value = '600';
-  const cr = document.getElementById('ent-cr-fee'); if (cr) cr.value = '2100';
-  // إلغاء تحديد VAT
-  const vatNo = document.getElementById('ent-vat-no'); if (vatNo) vatNo.checked = true;
-  // إخفاء النتائج
-  const er = document.getElementById('ent-results');       if (er) er.style.display = 'none';
-  const ir = document.getElementById('inv-results');        if (ir) ir.style.display = 'none';
-  const sd = document.getElementById('cap-sector-detail'); if (sd) sd.style.display = 'none';
-  // إعادة ضبط بطاقات القطاعات
-  document.querySelectorAll('.cap-sector-card').forEach(c => {
-    c.style.borderColor = 'var(--border)';
-    c.style.background  = 'var(--bg3)';
-  });
-  switchCapPath('entre');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-function showCapFreeForm() { switchCapPath('entre'); }
-
-// ── الإيراد الحد الفاصل لمجانية الاستشارة (2 مليون ريال)
-const CAP_FREE_THRESHOLD = 2000000;
-const CAP_WHATSAPP = '966500000000'; // ← غيّر لرقمك
-
-function showCapPremiumModal() {
-  const modal = document.getElementById('cap-premium-modal');
-  if (!modal) return;
-  // reset to step A
-  document.getElementById('cap-modal-step-a').style.display = 'block';
-  document.getElementById('cap-modal-step-free').style.display = 'none';
-  document.getElementById('cap-modal-step-pay').style.display = 'none';
-  document.getElementById('cap-rev-hint').style.display = 'none';
-  modal.style.display = 'flex';
-}
-
-function closeCapModal() {
-  document.getElementById('cap-premium-modal').style.display = 'none';
-}
-
-function capUpdateRevenueHint(val) {
-  const hint = document.getElementById('cap-rev-hint');
-  if (!hint || !val) { hint.style.display='none'; return; }
-  const n = parseFloat(val);
-  if (isNaN(n)) { hint.style.display='none'; return; }
-  hint.style.display = 'block';
-  if (n >= CAP_FREE_THRESHOLD) {
-    hint.style.background = 'rgba(5,150,105,.15)';
-    hint.style.color = '#6ee7b7';
-    hint.style.border = '1px solid rgba(5,150,105,.4)';
-    hint.innerHTML = '✅ مؤهَّل للاستشارة المجانية';
-  } else {
-    hint.style.background = 'rgba(234,88,12,.12)';
-    hint.style.color = '#fb923c';
-    hint.style.border = '1px solid rgba(234,88,12,.35)';
-    hint.innerHTML = '💡 رسوم رمزية 100 ريال — استشارة كاملة';
-  }
-}
-
-function submitCapRequest() {
-  const name = (document.getElementById('cap-pm-name')?.value || '').trim();
-  const biz  = (document.getElementById('cap-pm-biz')?.value  || '').trim();
-  const rev  = parseFloat(document.getElementById('cap-pm-revenue')?.value || 0);
-  const phone= (document.getElementById('cap-pm-whatsapp')?.value || '').trim();
-  if (!name || !biz || !rev || !phone) {
-    showToast('⚠ يرجى تعبئة جميع الحقول المطلوبة');
-    return;
-  }
-  // store for use in next step
-  window._capFormData = { name, biz, rev, phone };
-  document.getElementById('cap-modal-step-a').style.display = 'none';
-  if (rev >= CAP_FREE_THRESHOLD) {
-    document.getElementById('cap-modal-step-free').style.display = 'block';
-  } else {
-    document.getElementById('cap-modal-step-pay').style.display = 'block';
-  }
-}
-
-function sendFreeCapWhatsapp() {
-  const d = window._capFormData || {};
-  const msg = encodeURIComponent(
-    `✅ طلب استشارة رأس المال — مجانية\n\nالاسم: ${d.name}\nالمنشأة: ${d.biz}\nالإيرادات السنوية: ${Number(d.rev).toLocaleString('ar-SA')} ريال\nالواتساب: ${d.phone}\n\nأرجو تحديد موعد الاستشارة المجانية.`
-  );
-  closeCapModal();
-  window.open(`https://wa.me/${CAP_WHATSAPP}?text=${msg}`, '_blank');
-}
-
-function sendPaidCapWhatsapp() {
-  const d = window._capFormData || {};
-  const txn = (document.getElementById('cap-pm-txn')?.value || '').trim();
-  const method = document.querySelector('input[name="cap-pay-method"]:checked')?.value || '';
-  const methodLabel = method === 'stc' ? 'STC Pay' : 'تحويل بنكي';
-  const msg = encodeURIComponent(
-    `💳 طلب استشارة رأس المال — مدفوعة\n\nالاسم: ${d.name}\nالمنشأة: ${d.biz}\nالإيرادات السنوية: ${Number(d.rev).toLocaleString('ar-SA')} ريال\nطريقة الدفع: ${methodLabel}\nرقم العملية: ${txn || 'لم يُذكر'}\n\nأرجو تأكيد استلام الدفعة وبدء الاستشارة.`
-  );
-  closeCapModal();
-  window.open(`https://wa.me/${CAP_WHATSAPP}?text=${msg}`, '_blank');
-}
-
-// Legacy alias (still used by submitCapPremiumRequest button if referenced elsewhere)
-function submitCapPremiumRequest() { submitCapRequest(); }
 
 /* ======================================================
    ADMIN INTELLIGENCE ENGINE
@@ -11781,7 +10645,7 @@ const JB_PAGE_INFO = {
   'paid-analysis': {name:'التحليل المالي', chips:['ما الفرق بين التحليل العادي والمتقدم؟','ما تشمل باقة التحليل؟']},
   'analysis'     : {name:'التحليل المالي', chips:['كيف أقرأ قائمة الدخل والمصروفات؟','ما هي مؤشرات السيولة؟']},
   'academy'      : {name:'الأكاديمية', chips:['أي دورة أبدأ بها؟','ما الفرق بين الدورات؟','كيف أحسب زكاة المال؟']},
-  'capital'      : {name:'بوابة التمويل', chips:['كيف أحصل على تمويل؟','ما الفرق بين المضاربة والملائكة؟','ما هو التقييم المطلوب؟']},
+        : {name:'بوابة التمويل', chips:['كيف أحصل على تمويل؟','ما الفرق بين المضاربة والملائكة؟','ما هو التقييم المطلوب؟']},
   'investor'     : {name:'سوق المشاريع', chips:['كيف أقيّم مشروعاً؟','ما مخاطر الشراء؟','ما نسبة العائد المقبولة؟']},
   'design'       : {name:'التصميم', chips:['كيف أبني هوية بصرية؟','ما عناصر الهوية المرئية؟']},
   'software'     : {name:'البرمجيات', chips:['ما الأدوات المتاحة؟','كيف أختار برنامج المحاسبة؟']},
