@@ -444,117 +444,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 #page-home.active .bento-upgrade  {animation-delay:.35s}
 
 /* ══ PLANS MODAL ══ */
-.plan-modal-overlay{
-  display:none;position:fixed;inset:0;z-index:1000;
-  background:rgba(10,12,28,.72);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  align-items:center;justify-content:center;
-  padding:1.5rem;
-}
-.plan-modal-overlay.open{display:flex;animation:fadeOverlay .25s ease}
-@keyframes fadeOverlay{from{opacity:0}to{opacity:1}}
-.plan-modal{
-  background:var(--bg3);
-  border:1px solid var(--glass-border);
-  border-radius:24px;
-  width:100%;max-width:860px;
-  max-height:90vh;overflow-y:auto;
-  position:relative;
-  box-shadow:0 32px 80px rgba(10,10,30,.45);
-  animation:slideModal .3s cubic-bezier(.34,1.56,.64,1) both;
-}
-@keyframes slideModal{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:none}}
-.plan-modal-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.5rem 1.75rem 1rem;
-  border-bottom:1px solid var(--glass-border);
-  position:sticky;top:0;background:var(--bg3);z-index:2;border-radius:24px 24px 0 0;
-}
-.plan-modal-title{font-size:1.15rem;font-weight:900;color:var(--text)}
-.plan-modal-close{
-  width:34px;height:34px;border-radius:50%;
-  border:1px solid var(--glass-border);background:transparent;
-  cursor:pointer;color:var(--muted);font-size:.9rem;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s,color .2s;
-}
-.plan-modal-close:hover{background:rgba(220,38,38,.1);color:#dc2626;border-color:rgba(220,38,38,.3)}
-.plan-modal-body{padding:1.5rem 1.75rem}
-
-/* بطاقات الباقات */
-.plans-row{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1rem;margin-bottom:1.5rem;
-}
-.plan-card{
-  border:2px solid var(--glass-border);
-  border-radius:18px;overflow:hidden;
-  cursor:pointer;
-  transition:border-color .2s,box-shadow .2s,transform .2s;
-  background:var(--bg2);
-  position:relative;
-}
-.plan-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.12)}
-.plan-card.active{border-color:var(--plan-color,#7c3aed);box-shadow:0 0 0 3px rgba(124,58,237,.15)}
-.plan-card-head{
-  padding:1.25rem;text-align:center;
-  background:var(--plan-bg,linear-gradient(135deg,#f5f3ff,#ede9fe));
-}
-.plan-card-icon{
-  width:52px;height:52px;border-radius:16px;margin:0 auto .75rem;
-  background:var(--plan-color,#7c3aed);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;color:#fff;
-  box-shadow:0 8px 20px rgba(0,0,0,.2);
-}
-.plan-card-name{font-size:.95rem;font-weight:900;color:var(--text);margin-bottom:.35rem}
-.plan-card-price{
-  font-size:1.65rem;font-weight:900;color:var(--plan-color,#7c3aed);
-  line-height:1;
-}
-.plan-card-price span{font-size:.8rem;font-weight:600;color:var(--muted)}
-.plan-card-toggle{
-  padding:.85rem 1.25rem;
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:.82rem;font-weight:700;color:var(--muted);
-  border-top:1px solid var(--glass-border);
-}
-.plan-card-toggle i{transition:transform .3s;font-size:.8rem}
-.plan-card.active .plan-card-toggle i{transform:rotate(180deg)}
-.plan-card-features{
-  display:none;padding:0 1.25rem 1.25rem;
-}
-.plan-card.active .plan-card-features{display:block;animation:fadeUp .25s ease}
-.plan-feature-item{
-  display:flex;align-items:flex-start;gap:.55rem;
-  padding:.45rem 0;font-size:.82rem;color:var(--text);
-  border-bottom:1px solid var(--glass-border);
-}
-.plan-feature-item:last-child{border-bottom:none}
-.plan-feature-item i{margin-top:.15rem;flex-shrink:0;font-size:.72rem;color:var(--plan-color,#7c3aed)}
-
-/* سياسة الوترمارك */
-.wl-policy{
-  margin-top:1rem;padding:1.1rem 1.25rem;
-  border-radius:14px;
-  background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(245,158,11,.03));
-  border:1px solid rgba(245,158,11,.25);
-}
-.wl-policy-title{
-  font-size:.82rem;font-weight:900;color:#b45309;
-  display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;
-}
-[data-theme="dark"] .wl-policy-title{color:#fbbf24}
-.wl-fees{display:flex;gap:.75rem;flex-wrap:wrap}
-.wl-fee{
-  flex:1;min-width:140px;
-  padding:.65rem .85rem;border-radius:10px;
-  background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);
-  text-align:center;
-}
-.wl-fee-name{font-size:.73rem;color:var(--muted);font-weight:600;margin-bottom:.25rem}
-.wl-fee-price{font-size:1rem;font-weight:900;color:#b45309}
-[data-theme="dark"] .wl-fee-price{color:#fbbf24}
+/* plan modal CSS removed — now uses pricing.html page */
 
 /* Loading skeleton */
 .bento-loading{
@@ -1921,18 +1811,10 @@ function logout(){
   window.location.href='auth.html';
 }
 function openPlanModal(){
-  document.getElementById('plan-modal-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  window.location.href='pricing.html';
 }
-function closePlanModal(e){
-  if(e && e.target!==document.getElementById('plan-modal-overlay')) return;
-  document.getElementById('plan-modal-overlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-function togglePlan(idx){
-  var cards=document.querySelectorAll('.plan-card');
-  cards.forEach(function(c,i){ if(i===idx){ c.classList.toggle('active'); } else { c.classList.remove('active'); } });
-}
+function closePlanModal(e){ /* no-op — modal removed */ }
+function togglePlan(idx){ /* no-op — modal removed */ }
 function closeSidebar(){
   var sb=document.getElementById('sidebar');
   if(sb) sb.classList.remove('open');
@@ -2405,115 +2287,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanMo
     </div> <!-- نهاية الصفحة الرئيسية -->
 
   <!-- ═══ PLANS MODAL ═══ -->
-  <div class="plan-modal-overlay" id="plan-modal-overlay" onclick="closePlanModal(event)">
-    <div class="plan-modal" id="plan-modal">
-      <div class="plan-modal-header">
-        <div class="plan-modal-title"><i class="fa-solid fa-crown" style="color:#7c3aed;margin-left:.55rem"></i> باقات جنان بيز</div>
-        <button class="plan-modal-close" onclick="closePlanModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="plan-modal-body">
-
-        <div class="plans-row">
-
-          <!-- باقة الانطلاق -->
-          <div class="plan-card" id="plan-card-0"
-               style="--plan-color:#10b981;--plan-bg:linear-gradient(135deg,#ecfdf5,#d1fae5)"
-               onclick="togglePlan(0)">
-            <div class="plan-card-head">
-              <div class="plan-card-icon" style="background:#10b981"><i class="fa-solid fa-seedling"></i></div>
-              <div class="plan-card-name">باقة الانطلاق</div>
-              <div class="plan-card-price">149 <span>ر.س / شهر</span></div>
-            </div>
-            <div class="plan-card-toggle">
-              <span>تفاصيل الباقة</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="plan-card-features">
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> 3 دراسات جدوى شهرياً</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> تقارير مبسطة بعلامة جنان</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> 10 جلسات مساعد ذكاء اصطناعي</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> دعم عبر واتسآب</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-xmark" style="color:#dc2626"></i> وايت ليبل غير متاح (خدمة منفصلة)</div>
-            </div>
-          </div>
-
-          <!-- باقة رواد الأعمال -->
-          <div class="plan-card" id="plan-card-1"
-               style="--plan-color:#7c3aed;--plan-bg:linear-gradient(135deg,#f5f3ff,#ede9fe)"
-               onclick="togglePlan(1)">
-            <div class="plan-card-head">
-              <div class="plan-card-icon" style="background:linear-gradient(135deg,#7c3aed,#a855f7)"><i class="fa-solid fa-rocket"></i></div>
-              <div class="plan-card-name">رواد الأعمال <i class="fa-solid fa-star" style="color:#f59e0b;font-size:.65rem"></i></div>
-              <div class="plan-card-price">500 <span>ر.س / شهر</span></div>
-            </div>
-            <div class="plan-card-toggle">
-              <span>تفاصيل الباقة</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="plan-card-features">
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> 10 دراسات جدوى شهرياً</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> تقارير متوسطة بعلامة جنان</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> 50 جلسة مساعد ذكاء اصطناعي</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> تحليل سوق + تقرير مالي</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> دعم مدير حساب مخصص</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-xmark" style="color:#dc2626"></i> وايت ليبل غير متاح (خدمة منفصلة)</div>
-            </div>
-          </div>
-
-          <!-- باقة المستثمر -->
-          <div class="plan-card" id="plan-card-2"
-               style="--plan-color:#f59e0b;--plan-bg:linear-gradient(135deg,#fffbeb,#fef3c7)"
-               onclick="togglePlan(2)">
-            <div class="plan-card-head">
-              <div class="plan-card-icon" style="background:linear-gradient(135deg,#d97706,#f59e0b)"><i class="fa-solid fa-gem"></i></div>
-              <div class="plan-card-name">المستثمر</div>
-              <div class="plan-card-price">1200 <span>ر.س / شهر</span></div>
-            </div>
-            <div class="plan-card-toggle">
-              <span>تفاصيل الباقة</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="plan-card-features">
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> دراسات جدوى غير محدودة</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> تقارير مفصلة بعلامة جنان</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> جلسات ذكاء اصطناعي غير محدودة</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> تحليل سوق + تقرير مالي + دراسة منافسين</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> مدير حساب + مستشار مخصص</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-check"></i> خدمات مستثمرين وشراكات أعمال</div>
-              <div class="plan-feature-item"><i class="fa-solid fa-xmark" style="color:#dc2626"></i> وايت ليبل غير متاح (خدمة منفصلة)</div>
-            </div>
-          </div>
-
-        </div><!-- end plans-row -->
-
-        <!-- سياسة الوترمارك والوايت ليبل -->
-        <div class="wl-policy">
-          <div class="wl-policy-title">
-            <i class="fa-solid fa-shield-halved"></i>
-            سياسة العلامة التجارية (White-Label)
-          </div>
-          <p style="font-size:.82rem;color:var(--muted);margin-bottom:.9rem;line-height:1.6">
-            جميع التقارير والدراسات تحمل علامة جنان بيز — إزالة العلامة خدمة مستقلة برسوم ثابتة غير مشمولة في الاشتراك.
-          </p>
-          <div class="wl-fees">
-            <div class="wl-fee">
-              <div class="wl-fee-name">دراسة مفصلة</div>
-              <div class="wl-fee-price">2,000 ر.س</div>
-            </div>
-            <div class="wl-fee">
-              <div class="wl-fee-name">دراسة مبسطة</div>
-              <div class="wl-fee-price">1,250 ر.س</div>
-            </div>
-            <div class="wl-fee">
-              <div class="wl-fee-name">تحليل بالذكاء</div>
-              <div class="wl-fee-price">450 ر.س</div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- plan-modal-body -->
-    </div><!-- plan-modal -->
-  </div><!-- plan-modal-overlay -->
+<!-- plan modal removed — pricing page is now pricing.html -->
 
 
     <!-- ===== بوابة ريادة الأعمال ===== -->

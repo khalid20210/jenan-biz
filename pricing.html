@@ -1,810 +1,300 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>اختر باقتك | جنان بيز</title>
+<title>باقات جنان بيز | اختر خطتك</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
-:root {
-  --starter-green: #10b981;
-  --entrepreneur-purple: #8b5cf6;
-  --investor-gold: #f59e0b;
-  --dark-text: #07091A;
-  --light-text: #e8eaf6;
-  --bg-light: #f8fafc;
-  --bg-dark: #0f1419;
-  --border-light: rgba(78,115,194,.2);
-  --shadow-soft: 0 10px 30px rgba(0,0,0,.1);
-  --shadow-medium: 0 20px 50px rgba(0,0,0,.15);
-  --radius: 20px;
-}
-
-[data-theme="dark"] {
-  --bg-light: #0f1419;
-  --dark-text: #e8eaf6;
-  --border-light: rgba(139,92,246,.15);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Tajawal', sans-serif;
-  background: linear-gradient(135deg, var(--bg-light) 0%, #f0f4ff 100%);
-  color: var(--dark-text);
-  min-height: 100vh;
-  transition: background .3s, color .3s;
-}
-
-[data-theme="dark"] body {
-  background: linear-gradient(135deg, var(--bg-dark) 0%, #0c1230 100%);
-}
-
-/* ════════════════════════════════════════
-   HEADER & NAVIGATION
-════════════════════════════════════════ */
-
-.pricing-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 3rem;
-  background: rgba(255,255,255,.6);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-light);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-[data-theme="dark"] .pricing-header {
-  background: rgba(15,20,25,.8);
-}
-
-.pricing-logo {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: #4E73C2;
-}
-
-.pricing-logo span {
-  color: #8b5cf6;
-}
-
-.back-btn {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  padding: .7rem 1.5rem;
-  background: rgba(78,115,194,.1);
-  border: 1px solid rgba(78,115,194,.3);
-  border-radius: 12px;
-  color: #4E73C2;
-  font-size: .95rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .3s;
-  font-family: 'Tajawal', sans-serif;
-  border: none;
-}
-
-.back-btn:hover {
-  background: rgba(78,115,194,.2);
-  transform: translateX(4px);
-}
-
-/* ════════════════════════════════════════
-   HERO SECTION
-════════════════════════════════════════ */
-
-.pricing-hero {
-  padding: 4rem 3rem;
-  text-align: center;
-  background: linear-gradient(180deg, rgba(78,115,194,.05) 0%, transparent 100%);
-}
-
-.pricing-hero h1 {
-  font-size: 2.8rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #4E73C2, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.pricing-hero p {
-  font-size: 1.1rem;
-  color: #6b7280;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.8;
-}
-
-/* ════════════════════════════════════════
-   PRICING CONTAINER & CARDS
-════════════════════════════════════════ */
-
-.pricing-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
-  padding: 3rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-}
-
-.pricing-card {
-  flex: 1;
-  min-width: 320px;
-  max-width: 380px;
-  border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  border: 2px solid transparent;
-  background: rgba(255,255,255,.9);
-  backdrop-filter: blur(20px);
-  transition: all .4s cubic-bezier(.4, 0, .2, 1);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-[data-theme="dark"] .pricing-card {
-  background: rgba(17,24,40,.85);
-}
-
-/* Starter Card */
-.pricing-card.starter {
-  border-color: var(--starter-green);
-  box-shadow: 0 10px 30px rgba(16,185,129,.15);
-}
-
-.pricing-card.starter:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(16,185,129,.25);
-}
-
-/* Entrepreneur Card (Featured) */
-.pricing-card.entrepreneur {
-  border-color: var(--entrepreneur-purple);
-  box-shadow: 0 10px 40px rgba(139,92,246,.25);
-  transform: scale(1.05);
-  position: relative;
-  z-index: 10;
-}
-
-.pricing-card.entrepreneur::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--entrepreneur-purple), transparent);
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: .7; }
-  50% { opacity: 1; }
-}
-
-.pricing-card.entrepreneur:hover {
-  transform: scale(1.05) translateY(-8px);
-  box-shadow: 0 30px 60px rgba(139,92,246,.35);
-}
-
-/* Investor Card */
-.pricing-card.investor {
-  border-color: var(--investor-gold);
-  box-shadow: 0 10px 30px rgba(245,158,11,.15);
-}
-
-.pricing-card.investor:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(245,158,11,.25);
-}
-
-/* Badge */
-.plan-badge {
-  display: inline-block;
-  padding: .5rem 1.2rem;
-  border-radius: 20px;
-  font-size: .75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  margin-bottom: 1rem;
-  width: fit-content;
-}
-
-.plan-badge.starter {
-  background: rgba(16,185,129,.15);
-  color: var(--starter-green);
-  border: 1px solid rgba(16,185,129,.4);
-}
-
-.plan-badge.entrepreneur {
-  background: rgba(139,92,246,.15);
-  color: var(--entrepreneur-purple);
-  border: 1px solid rgba(139,92,246,.4);
-}
-
-.plan-badge.entrepreneur::after {
-  content: ' ⭐';
-  margin-right: .3rem;
-}
-
-.plan-badge.investor {
-  background: rgba(245,158,11,.15);
-  color: var(--investor-gold);
-  border: 1px solid rgba(245,158,11,.4);
-}
-
-/* Plan Title & Price */
-.plan-header {
-  margin-bottom: 1.5rem;
-}
-
-.plan-name {
-  font-size: 1.4rem;
-  font-weight: 900;
-  margin-bottom: .5rem;
-}
-
-.plan-price {
-  display: flex;
-  align-items: baseline;
-  gap: .3rem;
-  margin-bottom: .5rem;
-}
-
-.plan-price-amount {
-  font-size: 2.4rem;
-  font-weight: 900;
-  color: var(--dark-text);
-}
-
-.plan-price-currency {
-  font-size: 1rem;
-  color: #6b7280;
-  font-weight: 600;
-}
-
-.plan-price-period {
-  font-size: .9rem;
-  color: #6b7280;
-  margin-top: .3rem;
-}
-
-/* Features List */
-.plan-features {
-  flex: 1;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.feature-item {
-  display: flex;
-  align-items: flex-start;
-  gap: .8rem;
-  margin-bottom: 1rem;
-  font-size: .95rem;
-  line-height: 1.6;
-}
-
-.feature-icon {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .7rem;
-  margin-top: .2rem;
-  color: #fff;
-}
-
-.starter .feature-icon {
-  background: var(--starter-green);
-}
-
-.entrepreneur .feature-icon {
-  background: var(--entrepreneur-purple);
-}
-
-.investor .feature-icon {
-  background: var(--investor-gold);
-}
-
-/* CTA Button */
-.plan-cta {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all .3s;
-  font-family: 'Tajawal', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-}
-
-.starter .plan-cta {
-  background: var(--starter-green);
-  color: #fff;
-}
-
-.starter .plan-cta:hover {
-  background: #059669;
-  transform: scale(1.02);
-  box-shadow: 0 10px 25px rgba(16,185,129,.4);
-}
-
-.entrepreneur .plan-cta {
-  background: linear-gradient(135deg, var(--entrepreneur-purple), #7c3aed);
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-}
-
-.entrepreneur .plan-cta::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-.entrepreneur .plan-cta:hover {
-  background: linear-gradient(135deg, #7c3aed, #6d28d9);
-  transform: scale(1.03);
-  box-shadow: 0 15px 35px rgba(139,92,246,.5);
-}
-
-.investor .plan-cta {
-  background: var(--investor-gold);
-  color: #fff;
-}
-
-.investor .plan-cta:hover {
-  background: #d97706;
-  transform: scale(1.02);
-  box-shadow: 0 10px 25px rgba(245,158,11,.4);
-}
-
-.plan-cta:active {
-  transform: scale(.98);
-}
-
-/* ════════════════════════════════════════
-   BOTTOM SECTION
-════════════════════════════════════════ */
-
-.pricing-footer {
-  padding: 3rem;
-  text-align: center;
-  background: linear-gradient(180deg, transparent 0%, rgba(78,115,194,.05) 100%);
-  border-top: 1px solid var(--border-light);
-}
-
-.pricing-footer h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: var(--dark-text);
-}
-
-.pricing-footer p {
-  color: #6b7280;
-  margin-bottom: 2rem;
-  line-height: 1.8;
-}
-
-.support-links {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.support-link {
-  color: #4E73C2;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color .3s;
-}
-
-.support-link:hover {
-  color: #8b5cf6;
-}
-
-/* ════════════════════════════════════════
-   THEME TOGGLE
-════════════════════════════════════════ */
-
-.theme-toggle {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: rgba(78,115,194,.1);
-  border: 2px solid rgba(78,115,194,.3);
-  color: #4E73C2;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all .3s;
-  z-index: 90;
-  font-family: inherit;
-  border: none;
-}
-
-.theme-toggle:hover {
-  background: rgba(78,115,194,.2);
-  transform: scale(1.1);
-}
-
-/* ════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════ */
-
-@media (max-width: 1024px) {
-  .pricing-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .pricing-card.entrepreneur {
-    transform: scale(1);
-  }
-
-  .pricing-card.entrepreneur:hover {
-    transform: translateY(-8px);
-  }
-
-  .pricing-hero h1 {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .pricing-header {
-    padding: 1.5rem;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .pricing-logo {
-    font-size: 1.2rem;
-  }
-
-  .pricing-hero {
-    padding: 2rem 1.5rem;
-  }
-
-  .pricing-hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .pricing-container {
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-
-  .pricing-card {
-    max-width: 100%;
-  }
-
-  .plan-cta {
-    padding: .85rem 1.2rem;
-    font-size: .95rem;
-  }
-
-  .theme-toggle {
-    bottom: 1.5rem;
-    left: 1.5rem;
-    width: 45px;
-    height: 45px;
-    font-size: 1rem;
-  }
-}
-
+:root{--blue:#4E73C2;--green:#10b981;--purple:#8b5cf6;--gold:#f59e0b;--red:#ef4444;--bg:#f0f4ff;--bg-card:#fff;--text:#07091A;--muted:#6b7280;--border:rgba(78,115,194,.15);--sh:0 25px 60px rgba(0,0,0,.1);--sh-card:0 10px 40px rgba(0,0,0,.08);--r:24px;--rsm:14px}
+[data-theme="dark"]{--bg:#080e1f;--bg-card:#111827;--text:#e8eaf6;--muted:#9ca3af;--border:rgba(139,92,246,.18);--sh:0 25px 60px rgba(0,0,0,.4);--sh-card:0 10px 40px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;overflow-x:hidden}
+.bg-canvas{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.bg-canvas::before{content:'';position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(78,115,194,.12) 0%,transparent 70%);top:-200px;right:-200px;animation:bp1 8s ease-in-out infinite}
+.bg-canvas::after{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.1) 0%,transparent 70%);bottom:-150px;left:-150px;animation:bp2 10s ease-in-out infinite}
+@keyframes bp1{0%,100%{transform:scale(1)}50%{transform:scale(1.1) translateY(-30px)}}
+@keyframes bp2{0%,100%{transform:scale(1)}50%{transform:scale(1.15) translateY(20px)}}
+.particle{position:fixed;border-radius:50%;opacity:.15;pointer-events:none;animation:pfloat linear infinite}
+@keyframes pfloat{0%{transform:translateY(100vh) rotate(0deg)}100%{transform:translateY(-100px) rotate(720deg)}}
+.pnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s}
+[data-theme="dark"] .pnav{background:rgba(8,14,31,.85)}
+.pnav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.pnav-logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#4E73C2,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.15rem;font-weight:900}
+.pnav-name{font-size:1.15rem;font-weight:900;color:var(--text)}
+.pnav-name span{color:#4E73C2}
+.pnav-actions{display:flex;align-items:center;gap:.75rem}
+.nav-back{display:flex;align-items:center;gap:.5rem;padding:.55rem 1.25rem;border-radius:50px;background:transparent;border:1.5px solid var(--border);color:var(--muted);font-family:'Tajawal',sans-serif;font-size:.9rem;cursor:pointer;transition:.2s;text-decoration:none}
+.nav-back:hover{border-color:#4E73C2;color:#4E73C2;background:rgba(78,115,194,.06)}
+.nav-theme{width:38px;height:38px;border-radius:50%;background:transparent;border:1.5px solid var(--border);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;font-family:inherit}
+.nav-theme:hover{background:rgba(78,115,194,.08);color:#4E73C2;border-color:#4E73C2}
+.hero{position:relative;z-index:1;text-align:center;padding:4rem 1.5rem 2.5rem}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1.25rem;border-radius:50px;background:linear-gradient(135deg,rgba(78,115,194,.12),rgba(139,92,246,.12));border:1px solid rgba(78,115,194,.25);font-size:.82rem;font-weight:700;color:#4E73C2;margin-bottom:1.25rem;letter-spacing:.03em}
+[data-theme="dark"] .hero-badge{border-color:rgba(139,92,246,.3);color:#a78bfa}
+.hero-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.2;margin-bottom:.9rem}
+.hero-title .grad{background:linear-gradient(135deg,#4E73C2 0%,#8b5cf6 50%,#10b981 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:540px;margin:0 auto 2rem;line-height:1.7}
+.billing-toggle{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem;border-radius:50px;background:var(--bg-card);border:1.5px solid var(--border);box-shadow:var(--sh-card);margin-bottom:3rem}
+.billing-btn{padding:.5rem 1.4rem;border-radius:50px;border:none;background:transparent;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:700;color:var(--muted);cursor:pointer;transition:.2s}
+.billing-btn.active{background:#4E73C2;color:#fff}
+.billing-badge{font-size:.7rem;padding:.2rem .5rem;border-radius:50px;background:#10b981;color:#fff;font-weight:800;margin-right:.3rem}
+.pricing-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto;padding:0 1.5rem 4rem}
+@media(max-width:900px){.pricing-grid{grid-template-columns:1fr;max-width:480px}}
+.plan-card{background:var(--bg-card);border:2px solid transparent;border-radius:var(--r);padding:2.25rem 2rem;position:relative;overflow:hidden;box-shadow:var(--sh-card);transition:transform .35s,box-shadow .35s,border-color .35s;display:flex;flex-direction:column}
+.plan-card:hover{transform:translateY(-8px);box-shadow:var(--sh)}
+.card-starter{border-color:rgba(16,185,129,.2)}
+.card-starter:hover{border-color:rgba(16,185,129,.5);box-shadow:0 30px 60px rgba(16,185,129,.15)}
+.card-entrepreneur{border-color:rgba(139,92,246,.35);background:linear-gradient(160deg,rgba(139,92,246,.04),var(--bg-card) 60%);transform:scale(1.04);box-shadow:0 20px 50px rgba(139,92,246,.2)}
+.card-entrepreneur:hover{transform:scale(1.04) translateY(-8px);box-shadow:0 40px 80px rgba(139,92,246,.3)}
+.card-investor{border-color:rgba(245,158,11,.2)}
+.card-investor:hover{border-color:rgba(245,158,11,.5);box-shadow:0 30px 60px rgba(245,158,11,.15)}
+.pop-badge{position:absolute;top:0;left:50%;transform:translateX(-50%) translateY(-1px);background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;font-size:.72rem;font-weight:800;padding:.38rem 1.25rem;border-radius:0 0 16px 16px;letter-spacing:.04em;white-space:nowrap;display:flex;align-items:center;gap:.35rem}
+.card-icon{width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;margin-bottom:1.25rem;flex-shrink:0}
+.card-starter .card-icon{background:linear-gradient(135deg,#059669,#10b981)}
+.card-entrepreneur .card-icon{background:linear-gradient(135deg,#7c3aed,#a855f7)}
+.card-investor .card-icon{background:linear-gradient(135deg,#d97706,#f59e0b)}
+.card-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem}
+.card-starter .card-label{color:#10b981}
+.card-entrepreneur .card-label{color:#8b5cf6}
+.card-investor .card-label{color:#f59e0b}
+.card-name{font-size:1.45rem;font-weight:900;margin-bottom:.2rem;color:var(--text)}
+.card-desc{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.55}
+.price-block{margin-bottom:1.75rem}
+.price-num{font-size:3rem;font-weight:900;line-height:1;color:var(--text)}
+.price-num sup{font-size:1.1rem;font-weight:700;vertical-align:super;margin-left:.25rem;color:var(--muted)}
+.price-period{font-size:.82rem;color:var(--muted);font-weight:600;margin-top:.2rem}
+.price-save{font-size:.78rem;font-weight:700;color:#10b981;background:rgba(16,185,129,.1);padding:.25rem .65rem;border-radius:8px;margin-top:.3rem;display:none}
+.sub-btn{display:flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.5rem;border-radius:var(--rsm);border:none;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:.25s;margin-bottom:1.75rem;position:relative;overflow:hidden;text-decoration:none;color:#fff;min-height:52px}
+.sub-btn:hover{transform:translateY(-2px)}
+.sub-btn:active{transform:translateY(0)}
+.sub-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .2s}
+.sub-btn:hover::after{opacity:1}
+.card-starter .sub-btn{background:linear-gradient(135deg,#059669,#10b981);box-shadow:0 8px 25px rgba(16,185,129,.35)}
+.card-starter .sub-btn:hover{box-shadow:0 12px 35px rgba(16,185,129,.5)}
+.card-entrepreneur .sub-btn{background:linear-gradient(135deg,#7c3aed,#a855f7);box-shadow:0 8px 25px rgba(139,92,246,.4)}
+.card-entrepreneur .sub-btn:hover{box-shadow:0 12px 35px rgba(139,92,246,.6)}
+.card-investor .sub-btn{background:linear-gradient(135deg,#d97706,#f59e0b);box-shadow:0 8px 25px rgba(245,158,11,.35)}
+.card-investor .sub-btn:hover{box-shadow:0 12px 35px rgba(245,158,11,.5)}
+.btn-spin{display:none;width:20px;height:20px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+.sub-btn.loading .btn-txt{display:none}
+.sub-btn.loading .btn-spin{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.feat-div{border:none;border-top:1.5px solid var(--border);margin-bottom:1.25rem}
+.feat-label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.85rem}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;flex:1}
+.feat-item{display:flex;align-items:flex-start;gap:.65rem;font-size:.88rem;color:var(--text);line-height:1.45}
+.fi{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;flex-shrink:0;margin-top:.1rem}
+.fi-ok{background:rgba(16,185,129,.15);color:#10b981}
+.fi-no{background:rgba(239,68,68,.1);color:#ef4444}
+.card-entrepreneur .fi-ok{background:rgba(139,92,246,.15);color:#8b5cf6}
+.card-investor .fi-ok{background:rgba(245,158,11,.15);color:#d97706}
+.trust-bar{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2rem;max-width:800px;margin:0 auto;padding:2rem 1.5rem 4rem;border-top:1px solid var(--border)}
+.trust-item{display:flex;align-items:center;gap:.5rem;color:var(--muted);font-size:.85rem;font-weight:600}
+.trust-item i{color:#10b981}
+.wl-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto 4rem;padding:0 1.5rem}
+.wl-card{background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--r);padding:2.5rem;box-shadow:var(--sh-card)}
+.wl-hdr{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.wl-ico{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#4E73C2,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.25rem;flex-shrink:0}
+.wl-ttl{font-size:1.2rem;font-weight:900;color:var(--text)}
+.wl-desc{font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:1.5rem}
+.wl-fees{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:600px){.wl-fees{grid-template-columns:1fr}}
+.wl-fee{border:1.5px solid var(--border);border-radius:var(--rsm);padding:1rem 1.25rem;text-align:center}
+.wl-fee-name{font-size:.82rem;color:var(--muted);margin-bottom:.4rem;font-weight:600}
+.wl-fee-amt{font-size:1.35rem;font-weight:900;color:var(--text)}
+.wl-fee-amt span{font-size:.78rem;font-weight:600;color:var(--muted)}
+.faq-wrap{position:relative;z-index:1;max-width:700px;margin:0 auto 5rem;padding:0 1.5rem}
+.sec-ttl{font-size:1.6rem;font-weight:900;text-align:center;margin-bottom:.5rem}
+.sec-sub{font-size:.92rem;color:var(--muted);text-align:center;margin-bottom:2rem}
+.faq-item{background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--rsm);margin-bottom:.75rem;overflow:hidden;cursor:pointer;transition:.2s}
+.faq-item:hover{border-color:#8b5cf6}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;font-size:.92rem;font-weight:700;color:var(--text);gap:1rem}
+.faq-q i{color:var(--muted);transition:.25s;flex-shrink:0}
+.faq-item.open .faq-q i{transform:rotate(180deg);color:#8b5cf6}
+.faq-a{display:none;padding:.1rem 1.4rem 1.1rem;font-size:.86rem;color:var(--muted);line-height:1.7}
+.faq-item.open .faq-a{display:block}
+.pfooter{position:relative;z-index:1;text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--muted);font-size:.82rem}
+.wa-link{display:inline-flex;align-items:center;gap:.4rem;color:#25D366;font-weight:700;text-decoration:none;margin-top:.75rem}
+.wa-link:hover{text-decoration:underline}
+.load-overlay{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem}
+.load-overlay.show{display:flex}
+.load-spin{width:64px;height:64px;border:4px solid rgba(255,255,255,.2);border-top-color:#8b5cf6;border-radius:50%;animation:spin .8s linear infinite}
+.load-txt{color:#fff;font-size:1.05rem;font-weight:700}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:#1f2937;color:#fff;border-radius:14px;padding:.9rem 1.75rem;font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:.6rem;box-shadow:0 15px 40px rgba(0,0,0,.3);transition:.35s cubic-bezier(.34,1.56,.64,1);z-index:1000;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.err{background:#ef4444}
+.toast.ok{background:#10b981}
+@media(max-width:600px){.hero{padding:2.5rem 1rem 1.5rem}.hero-title{font-size:1.7rem}.pnav{padding:.85rem 1.25rem}.trust-bar{gap:1.25rem;padding-bottom:2.5rem}.wl-card{padding:1.5rem}.pricing-grid{padding:0 1rem 2.5rem}}
 </style>
 </head>
 <body>
-
-<!-- Header -->
-<div class="pricing-header">
-  <div class="pricing-logo">جنان <span>بيز</span></div>
-  <button class="back-btn" onclick="goBackToDashboard()">
-    <i class="fa-solid fa-arrow-right"></i>
-    العودة للوحة التحكم
-  </button>
-</div>
-
-<!-- Hero Section -->
-<div class="pricing-hero">
-  <h1>اختر خطتك المثالية</h1>
-  <p>ارتقِ بمشروعك مع أفضل الأدوات والخدمات المتخصصة. ابدأ اليوم بخطة تناسب احتياجاتك.</p>
-</div>
-
-<!-- Pricing Cards -->
-<div class="pricing-container">
-  <!-- Starter Plan -->
-  <div class="pricing-card starter">
-    <div class="plan-badge starter">باقة الانطلاق</div>
-    <div class="plan-header">
-      <h2 class="plan-name">الانطلاق</h2>
-      <div class="plan-price">
-        <span class="plan-price-amount">149</span>
-        <span class="plan-price-currency">ر.س</span>
-      </div>
-      <div class="plan-price-period">شهري</div>
+<div class="bg-canvas"></div>
+<div class="particle" style="width:8px;height:8px;background:#4E73C2;left:10%;animation-duration:12s;animation-delay:-2s"></div>
+<div class="particle" style="width:5px;height:5px;background:#8b5cf6;left:30%;animation-duration:9s;animation-delay:-5s"></div>
+<div class="particle" style="width:10px;height:10px;background:#10b981;left:55%;animation-duration:15s;animation-delay:-8s"></div>
+<div class="particle" style="width:6px;height:6px;background:#f59e0b;left:75%;animation-duration:11s;animation-delay:-1s"></div>
+<div class="load-overlay" id="loadOverlay"><div class="load-spin"></div><div class="load-txt">جارٍ تجهيز بوابة الدفع...</div></div>
+<div class="toast" id="toast"></div>
+<nav class="pnav">
+  <a href="dashboard.html" class="pnav-brand">
+    <div class="pnav-logo">ج</div>
+    <div class="pnav-name">جنان <span>بيز</span></div>
+  </a>
+  <div class="pnav-actions">
+    <a href="dashboard.html" class="nav-back"><i class="fa-solid fa-arrow-right"></i> العودة للوحة التحكم</a>
+    <button class="nav-theme" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="thIco"></i></button>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-badge"><i class="fa-solid fa-crown"></i> باقات احترافية للأعمال</div>
+  <h1 class="hero-title">اختر الباقة المثالية<br><span class="grad">لنمو أعمالك</span></h1>
+  <p class="hero-sub">ابدأ اليوم بدون تعقيدات — دفع آمن فوري، إلغاء في أي وقت، دعم متواصل على مدار الساعة.</p>
+  <div class="billing-toggle">
+    <button class="billing-btn active" id="btnM" onclick="setBilling('monthly')">شهري</button>
+    <button class="billing-btn" id="btnA" onclick="setBilling('annual')">سنوي <span class="billing-badge">وفر 20%</span></button>
+  </div>
+</section>
+<section class="pricing-grid">
+  <!-- STARTER -->
+  <div class="plan-card card-starter">
+    <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
+    <div class="card-label">الانطلاق</div>
+    <div class="card-name">باقة المبتدئ</div>
+    <div class="card-desc">مثالية للشركات الناشئة والمشاريع الجديدة</div>
+    <div class="price-block">
+      <div class="price-num"><sup>ر.س</sup><span class="pM">149</span><span class="pA" style="display:none">119</span></div>
+      <div class="price-period">/ شهرياً</div>
+      <div class="price-save" id="sv0">توفر 360 ر.س سنوياً</div>
     </div>
-    <div class="plan-features">
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>3 دراسات جدوى</strong> شهرياً</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>10 جلسات ذكاء</strong> مع المساعد</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>تقارير <strong>PDF</strong> احترافية</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>دعم البريد <strong>العادي</strong></span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>حفظ <strong>5 مشاريع</strong> فقط</span>
-      </div>
-    </div>
-    <button class="plan-cta" onclick="subscribe('starter')">
-      <i class="fa-solid fa-star"></i>
-      اشترك الآن
+    <button class="sub-btn" onclick="subscribe('starter',this)">
+      <span class="btn-txt"><i class="fa-solid fa-credit-card"></i> اشترك الآن</span>
+      <div class="btn-spin"></div>
     </button>
+    <hr class="feat-div"/>
+    <div class="feat-label">يشمل</div>
+    <ul class="feat-list">
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>3 دراسات جدوى شهرياً</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>تقارير مبسطة بعلامة جنان</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>10 جلسات مساعد ذكاء اصطناعي</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>دعم عبر واتساب</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>لوحة تحكم متكاملة</span></li>
+      <li class="feat-item"><div class="fi fi-no"><i class="fa-solid fa-xmark"></i></div><span style="color:var(--muted)">وايت ليبل (خدمة منفصلة)</span></li>
+    </ul>
   </div>
-
-  <!-- Entrepreneur Plan (Featured) -->
-  <div class="pricing-card entrepreneur">
-    <div class="plan-badge entrepreneur">رواد الأعمال</div>
-    <div class="plan-header">
-      <h2 class="plan-name">رواد الأعمال</h2>
-      <div class="plan-price">
-        <span class="plan-price-amount">500</span>
-        <span class="plan-price-currency">ر.س</span>
-      </div>
-      <div class="plan-price-period">شهري</div>
+  <!-- ENTREPRENEUR -->
+  <div class="plan-card card-entrepreneur">
+    <div class="pop-badge"><i class="fa-solid fa-fire"></i> الأكثر اختياراً</div>
+    <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+    <div class="card-label">رواد الأعمال</div>
+    <div class="card-name">باقة النمو</div>
+    <div class="card-desc">الخيار الأمثل لرجال الأعمال الجادين في التوسع</div>
+    <div class="price-block">
+      <div class="price-num"><sup>ر.س</sup><span class="pM">500</span><span class="pA" style="display:none">400</span></div>
+      <div class="price-period">/ شهرياً</div>
+      <div class="price-save" id="sv1">توفر 1,200 ر.س سنوياً</div>
     </div>
-    <div class="plan-features">
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>10 دراسات جدوى</strong> شهرياً</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>50 جلسة ذكاء</strong> مع المساعد</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>تقارير <strong>PDF</strong> عالية الدقة</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>دعم <strong>الأولوية</strong> 24/7</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>حفظ <strong>50 مشروع</strong></span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>تحليل <strong>SWOT</strong> شامل</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>استشارات من <strong>الخبراء</strong></span>
-      </div>
-    </div>
-    <button class="plan-cta" onclick="subscribe('entrepreneur')">
-      <i class="fa-solid fa-rocket"></i>
-      اشترك الآن
+    <button class="sub-btn" onclick="subscribe('entrepreneur',this)">
+      <span class="btn-txt"><i class="fa-solid fa-crown"></i> اشترك الآن</span>
+      <div class="btn-spin"></div>
     </button>
+    <hr class="feat-div"/>
+    <div class="feat-label">كل ما في المبتدئ، و...</div>
+    <ul class="feat-list">
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>10 دراسات جدوى شهرياً</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>50 جلسة مساعد ذكاء اصطناعي</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>تحليل سوق + تقرير مالي</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>تقارير متقدمة + تحليل منافسين</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>مدير حساب مخصص</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>أولوية دعم 24/7</span></li>
+    </ul>
   </div>
-
-  <!-- Investor Plan -->
-  <div class="pricing-card investor">
-    <div class="plan-badge investor">المستثمر</div>
-    <div class="plan-header">
-      <h2 class="plan-name">المستثمر</h2>
-      <div class="plan-price">
-        <span class="plan-price-amount">1,200</span>
-        <span class="plan-price-currency">ر.س</span>
-      </div>
-      <div class="plan-price-period">شهري</div>
+  <!-- INVESTOR -->
+  <div class="plan-card card-investor">
+    <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+    <div class="card-label">المستثمر</div>
+    <div class="card-name">باقة الإمبراطور</div>
+    <div class="card-desc">للمستثمرين وأصحاب المحافظ الاستثمارية المتعددة</div>
+    <div class="price-block">
+      <div class="price-num"><sup>ر.س</sup><span class="pM">1,200</span><span class="pA" style="display:none">960</span></div>
+      <div class="price-period">/ شهرياً</div>
+      <div class="price-save" id="sv2">توفر 2,880 ر.س سنوياً</div>
     </div>
-    <div class="plan-features">
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>دراسات غير محدودة</strong> شهرياً</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>جلسات ذكاء غير محدودة</strong></span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>تقارير <strong>PDF وصور</strong> احترافية</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>دعم VIP</strong> فوري 24/7</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>حفظ غير محدود</strong> للمشاريع</span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>تحليل <strong>SWOT و Porter</strong></span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span>استشارات <strong>شخصية مباشرة</strong></span>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><i class="fa-solid fa-check"></i></div>
-        <span><strong>تقارير مالية</strong> دقيقة</span>
-      </div>
-    </div>
-    <button class="plan-cta" onclick="subscribe('investor')">
-      <i class="fa-solid fa-gem"></i>
-      اشترك الآن
+    <button class="sub-btn" onclick="subscribe('investor',this)">
+      <span class="btn-txt"><i class="fa-solid fa-gem"></i> اشترك الآن</span>
+      <div class="btn-spin"></div>
     </button>
+    <hr class="feat-div"/>
+    <div class="feat-label">كل شيء غير محدود، و...</div>
+    <ul class="feat-list">
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>دراسات جدوى غير محدودة</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>جلسات ذكاء اصطناعي غير محدودة</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>تحليل سوق + تقرير مالي + منافسين</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>مدير حساب + مستشار مخصص</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>خدمات مستثمرين وشراكات أعمال</span></li>
+      <li class="feat-item"><div class="fi fi-ok"><i class="fa-solid fa-check"></i></div><span>تقارير ذهبية بعلامة مخصصة</span></li>
+    </ul>
+  </div>
+</section>
+<div class="trust-bar">
+  <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> دفع آمن 100%</div>
+  <div class="trust-item"><i class="fa-solid fa-rotate-left"></i> إلغاء في أي وقت</div>
+  <div class="trust-item"><i class="fa-solid fa-headset"></i> دعم 24/7</div>
+  <div class="trust-item"><i class="fa-solid fa-lock"></i> بيانات محمية</div>
+  <div class="trust-item"><i class="fa-brands fa-cc-visa"></i> فيزا / مدى / Apple Pay</div>
+</div>
+<div class="wl-wrap">
+  <div class="wl-card">
+    <div class="wl-hdr">
+      <div class="wl-ico"><i class="fa-solid fa-trademark"></i></div>
+      <div class="wl-ttl">خدمة White-Label (العلامة البيضاء)</div>
+    </div>
+    <p class="wl-desc">جميع التقارير تحمل علامة جنان بيز. إزالة العلامة وتخصيصها بعلامتك التجارية خدمة مستقلة بأسعار ثابتة، غير مشمولة في الاشتراك الشهري.</p>
+    <div class="wl-fees">
+      <div class="wl-fee"><div class="wl-fee-name">دراسة جدوى مفصلة</div><div class="wl-fee-amt">2,000 <span>ر.س</span></div></div>
+      <div class="wl-fee"><div class="wl-fee-name">دراسة جدوى مبسطة</div><div class="wl-fee-amt">1,250 <span>ر.س</span></div></div>
+      <div class="wl-fee"><div class="wl-fee-name">تحليل بالذكاء الاصطناعي</div><div class="wl-fee-amt">450 <span>ر.س</span></div></div>
+    </div>
   </div>
 </div>
-
-<!-- Footer -->
-<div class="pricing-footer">
-  <h3>هل لديك أسئلة؟</h3>
-  <p>نحن هنا لمساعدتك في اختيار الخطة المناسبة لأهدافك الاستثمارية والتجارية.</p>
-  <div class="support-links">
-    <a href="mailto:support@jananbiz.com" class="support-link">
-      <i class="fa-solid fa-envelope"></i> اتصل بنا
-    </a>
-    <a href="https://wa.me/966" class="support-link">
-      <i class="fa-brands fa-whatsapp"></i> واتساب
-    </a>
-    <a href="#" class="support-link" onclick="window.location.href='dashboard.html#referral'">
-      <i class="fa-solid fa-gift"></i> برنامج الإحالة
-    </a>
-  </div>
+<div class="faq-wrap">
+  <h2 class="sec-ttl">الأسئلة الشائعة</h2>
+  <p class="sec-sub">هل لديك سؤال؟ نجيب على الأكثر شيوعاً</p>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">هل يمكنني إلغاء اشتراكي في أي وقت؟<i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">نعم، يمكنك إلغاء اشتراكك في أي وقت دون أي رسوم. تستمر في الاستفادة من الخدمة حتى نهاية الفترة المدفوعة.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">ما هي طرق الدفع المقبولة؟<i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">نقبل بطاقات فيزا وماستركارد ومدى وApple Pay وSTCPay، مع تشفير SSL بواسطة بوابة Moyasar الموثوقة.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">هل يمكنني الترقية أو التخفيض بين الباقات؟<i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">بالتأكيد، يمكنك تغيير باقتك في أي وقت. سيتم احتساب الفرق بشكل تناسبي على دورة الفوترة التالية.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">هل البيانات والتقارير محمية؟<i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">نعم، نستخدم تشفيراً من طرف إلى طرف، والبيانات مستضافة على خوادم Supabase المؤمنة. بياناتك ملكك حصراً.</div></div>
+  <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">ماذا يعني وايت ليبل؟<i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">الوايت ليبل يعني إمكانية إزالة شعار جنان بيز من التقارير وإضافة علامتك التجارية الخاصة. هذه خدمة منفصلة برسوم إضافية موضحة أعلاه.</div></div>
 </div>
-
-<!-- Theme Toggle Button -->
-<button class="theme-toggle" onclick="toggleTheme()">
-  <i class="fa-solid fa-moon" id="theme-ico"></i>
-</button>
-
+<footer class="pfooter">
+  <div>جنان بيز &copy; 2025 — منصة الأعمال الذكية</div>
+  <div style="margin-top:.5rem">للاستفسارات والمساعدة في الاختيار تواصل معنا</div>
+  <a class="wa-link" href="https://wa.me/966500000000" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.1rem"></i> واتساب الدعم</a>
+</footer>
 <script>
-// ════════════════════════════════════════
-// THEME MANAGEMENT
-// ════════════════════════════════════════
-
-function initTheme() {
-  const savedTheme = localStorage.getItem('jb-theme') || 'light';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
+const PLANS={starter:{name:'باقة المبتدئ',monthly:149,annual:119},entrepreneur:{name:'باقة النمو',monthly:500,annual:400},investor:{name:'باقة الإمبراطور',monthly:1200,annual:960}};
+let billing='monthly';
+(function(){const s=localStorage.getItem('jenan-theme');if(s==='dark')document.documentElement.setAttribute('data-theme','dark');updateTh()})();
+function toggleTheme(){const d=document.documentElement.getAttribute('data-theme')==='dark';d?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('jenan-theme',d?'light':'dark');updateTh()}
+function updateTh(){const ico=document.getElementById('thIco');if(!ico)return;ico.className=document.documentElement.getAttribute('data-theme')==='dark'?'fa-solid fa-sun':'fa-solid fa-moon'}
+function setBilling(t){billing=t;const a=t==='annual';document.getElementById('btnM').classList.toggle('active',!a);document.getElementById('btnA').classList.toggle('active',a);document.querySelectorAll('.pM').forEach(e=>e.style.display=a?'none':'inline');document.querySelectorAll('.pA').forEach(e=>e.style.display=a?'inline':'none');document.querySelectorAll('.price-save').forEach(e=>e.style.display=a?'inline-block':'none')}
+function toggleFaq(el){const o=el.classList.contains('open');document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));if(!o)el.classList.add('open')}
+function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.className='toast '+(type||'');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000)}
+async function subscribe(planKey,btn){
+  const plan=PLANS[planKey];if(!plan)return;
+  btn.classList.add('loading');btn.disabled=true;
+  const amount=billing==='annual'?plan.annual*12:plan.monthly;
+  const overlay=document.getElementById('loadOverlay');
+  try{
+    const r=await fetch('/api/payment/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan_type:planKey,amount_sar:amount,plan_name:plan.name,billing:billing,callback_url:window.location.origin+'/dashboard.html?payment=success&plan='+planKey})});
+    if(r.ok){const d=await r.json();const url=d.checkout_url||d.url||d.redirect_url;if(url){overlay.classList.add('show');setTimeout(()=>{window.location.href=url},600);return}}
+    const r2=await fetch('/api/subscription/initiate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:planKey,amount:amount,billing:billing})});
+    if(r2.ok){overlay.classList.add('show');setTimeout(()=>{overlay.classList.remove('show');showToast('تم تفعيل '+plan.name+' بنجاح!','ok');setTimeout(()=>{window.location.href='dashboard.html?subscribed='+planKey},2000)},1800);return}
+    throw new Error('error');
+  }catch(e){overlay.classList.remove('show');showToast('تعذّر الاتصال ببوابة الدفع. حاول مجدداً.','err')}
+  finally{btn.classList.remove('loading');btn.disabled=false}
 }
-
-function toggleTheme() {
-  const html = document.documentElement;
-  const current = html.getAttribute('data-theme') || 'light';
-  const newTheme = current === 'dark' ? 'light' : 'dark';
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('jb-theme', newTheme);
-  updateThemeIcon(newTheme);
-}
-
-function updateThemeIcon(theme) {
-  const ico = document.getElementById('theme-ico');
-  if (ico) {
-    ico.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-  }
-}
-
-// ════════════════════════════════════════
-// NAVIGATION & SUBSCRIPTION
-// ════════════════════════════════════════
-
-function goBackToDashboard() {
-  window.location.href = 'dashboard.html';
-}
-
-function subscribe(plan) {
-  const user = JSON.parse(localStorage.getItem('jb-user') || '{}');
-  if (!user.id) {
-    alert('يرجى تسجيل الدخول أولاً');
-    window.location.href = 'auth.html';
-    return;
-  }
-
-  // Initiate subscription via API
-  fetch('/api/subscription/initiate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      plan: plan,
-      user_id: user.id
-    })
-  })
-  .then(r => {
-    if (!r.ok) throw new Error('فشل الاتصال');
-    return r.json();
-  })
-  .then(data => {
-    if (data.success) {
-      // Store the transaction details
-      localStorage.setItem('jb-current-payment', JSON.stringify({
-        plan: plan,
-        transaction_id: data.transaction_id,
-        amount: data.amount,
-        timestamp: new Date().toISOString()
-      }));
-      
-      // Show success and redirect to payment
-      alert(`سيتم نقلك إلى بوابة الدفع...\n${data.message}`);
-      
-      // Simulate payment redirect (replace with actual payment gateway)
-      window.location.href = 'dashboard.html?plan=' + plan + '&txn=' + data.transaction_id;
-    }
-  })
-  .catch(err => {
-    console.error('Subscription error:', err);
-    alert('حدث خطأ في الاشتراك. حاول مجدداً.');
-  });
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  initTheme();
-});
 </script>
 </body>
 </html>
