@@ -356,14 +356,27 @@ BEGIN
       updated_at = NOW()
   WHERE id = v_user_uuid;
 
-  -- ── و) مكافأة الإحالة (إن وجدت إحالة معلّقة) ────────────────────────
-  -- استدعاء دالة grant_referral_reward من referral_setup.sql
-  -- (يعمل فقط إذا نفّذت referral_setup.sql أيضاً)
+  -- ── و) تعيين حصص الخدمات ────────────────────────────────────────────
   BEGIN
-    SELECT grant_referral_reward(p_user_id, p_reference_id, 100)
-    INTO v_referral_res;
+    PERFORM assign_plan_quotas(v_user_uuid, v_new_role, NOW(), v_end_date);
   EXCEPTION WHEN undefined_function THEN
-    v_referral_res := jsonb_build_object('success', false, 'reason', 'referral_not_setup');
+    NULL; -- assign_plan_quotas غير موجودة بعد
+  END;
+
+  -- ── ز) مكافأة الإحالة بناءً على سعر الباقة (10%) ────────────────────
+  DECLARE
+    v_reward_sar NUMERIC;
+  BEGIN
+    v_reward_sar := get_referral_reward(v_new_role, p_amount);
+    -- استدعاء دالة grant_referral_reward مع المبلغ الصحيح
+    BEGIN
+      SELECT grant_referral_reward(p_user_id, p_reference_id, ROUND(v_reward_sar / 0.10)::INT)
+      INTO v_referral_res;
+    EXCEPTION WHEN undefined_function THEN
+      v_referral_res := jsonb_build_object('success', false, 'reason', 'referral_not_setup');
+    END;
+  EXCEPTION WHEN OTHERS THEN
+    v_referral_res := jsonb_build_object('success', false, 'reason', SQLERRM);
   END;
 
   RETURN jsonb_build_object(
@@ -398,7 +411,7 @@ BEGIN
   UPDATE profiles p
   SET role       = 'free',
       updated_at = NOW()
-  WHERE p.role IN ('biz', 'pro')
+  WHERE p.role IN ('launch', 'entrepreneur', 'investor', 'platinum', 'biz', 'pro')
     AND NOT EXISTS (
       SELECT 1 FROM subscriptions s
       WHERE s.user_id = p.id
@@ -409,6 +422,153 @@ BEGIN
   RETURN affected;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- ══════════════════════════════════════════════════════════════════════
+-- 11. جدول حصص الخدمات (user_quotas)
+--     يُنشأ/يُحدَّث عند كل اشتراك ناجح
+--     يُخفَّض رصيده عند كل استخدام للخدمة
+-- ══════════════════════════════════════════════════════════════════════
+CREATE TABLE IF NOT EXISTS user_quotas (
+  id                BIGSERIAL PRIMARY KEY,
+  user_id           UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  plan_type         TEXT NOT NULL,                    -- launch | entrepreneur | investor
+
+  -- الحصص المتبقية (NULL = لامحدودة)
+  analyses_rem      INT  NOT NULL DEFAULT 0,          -- تحليلات المشاريع
+  simple_study_rem  INT  NOT NULL DEFAULT 0,          -- دراسات الجدوى المبسطة
+  detail_study_rem  INT  NOT NULL DEFAULT 0,          -- دراسات الجدوى المفصلة
+  designs_rem       INT  NOT NULL DEFAULT 0,          -- خدمات التصميم
+  downloads_rem     INT  DEFAULT NULL,                -- التحميلات (NULL = لامحدود)
+
+  -- إعادة الضبط الشهرية
+  subscription_start TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  subscription_end   TIMESTAMPTZ,
+
+  created_at        TIMESTAMPTZ DEFAULT NOW(),
+  updated_at        TIMESTAMPTZ DEFAULT NOW(),
+
+  UNIQUE (user_id, plan_type)
+);
+
+CREATE INDEX IF NOT EXISTS user_quotas_user_id_idx ON user_quotas (user_id);
+
+DROP TRIGGER IF EXISTS set_updated_at_user_quotas ON user_quotas;
+CREATE TRIGGER set_updated_at_user_quotas
+  BEFORE UPDATE ON user_quotas
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+-- ── دالة: تعيين الحصص عند الاشتراك ──────────────────────────────────
+CREATE OR REPLACE FUNCTION assign_plan_quotas(
+  p_user_id   UUID,
+  p_plan_name TEXT,   -- launch | entrepreneur | investor
+  p_start     TIMESTAMPTZ DEFAULT NOW(),
+  p_end       TIMESTAMPTZ DEFAULT NULL
+)
+RETURNS VOID AS $$
+DECLARE
+  v_analyses      INT;
+  v_simple_study  INT;
+  v_detail_study  INT;
+  v_designs       INT;
+  v_downloads     INT;  -- NULL = لامحدود
+BEGIN
+  CASE p_plan_name
+    WHEN 'launch' THEN
+      v_analyses     := 1;
+      v_simple_study := 0;
+      v_detail_study := 0;
+      v_designs      := 2;   -- تصميم شعار + خدمة تصميم
+      v_downloads    := 10;
+    WHEN 'entrepreneur' THEN
+      v_analyses     := 3;
+      v_simple_study := 1;
+      v_detail_study := 0;
+      v_designs      := 5;
+      v_downloads    := 25;
+    WHEN 'investor' THEN
+      v_analyses     := 5;
+      v_simple_study := 2;
+      v_detail_study := 1;
+      v_designs      := 10;
+      v_downloads    := NULL;  -- لامحدود
+    ELSE
+      -- باقات قديمة أو platinum
+      v_analyses     := 5;
+      v_simple_study := 2;
+      v_detail_study := 1;
+      v_designs      := 10;
+      v_downloads    := NULL;
+  END CASE;
+
+  INSERT INTO user_quotas (
+    user_id, plan_type,
+    analyses_rem, simple_study_rem, detail_study_rem, designs_rem, downloads_rem,
+    subscription_start, subscription_end
+  ) VALUES (
+    p_user_id, p_plan_name,
+    v_analyses, v_simple_study, v_detail_study, v_designs, v_downloads,
+    p_start, p_end
+  )
+  ON CONFLICT (user_id, plan_type) DO UPDATE
+    SET analyses_rem      = EXCLUDED.analyses_rem,
+        simple_study_rem  = EXCLUDED.simple_study_rem,
+        detail_study_rem  = EXCLUDED.detail_study_rem,
+        designs_rem       = EXCLUDED.designs_rem,
+        downloads_rem     = EXCLUDED.downloads_rem,
+        subscription_start = EXCLUDED.subscription_start,
+        subscription_end  = EXCLUDED.subscription_end,
+        updated_at        = NOW();
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- ══════════════════════════════════════════════════════════════════════
+-- 12. جدول الإحالات (referrals) — مع عمولة الباقات الجديدة
+--     10% من سعر الباقة:
+--       - الانطلاق    (149 ر.س) → 14.9 ر.س
+--       - رواد الأعمال (500 ر.س) → 50   ر.س
+--       - المستثمر   (1200 ر.س) → 120  ر.س
+-- ══════════════════════════════════════════════════════════════════════
+CREATE TABLE IF NOT EXISTS referrals (
+  id              BIGSERIAL PRIMARY KEY,
+  referrer_id     TEXT NOT NULL,    -- referral_code المُحيل
+  referred_id     UUID,             -- UUID المستخدم المُحال
+  transaction_id  BIGINT REFERENCES transactions(id) ON DELETE SET NULL,
+  reward_sar      NUMERIC(10,2),    -- 14.9 | 50 | 120 حسب الباقة
+  reward_pts      INT,              -- points_balance المُضافة للمحيل
+  reward_status   TEXT NOT NULL DEFAULT 'pending'
+                    CHECK (reward_status IN ('pending','rewarded','failed')),
+  plan_type       TEXT,             -- نوع الباقة التي اشترك بها المُحال
+  created_at      TIMESTAMPTZ DEFAULT NOW(),
+  updated_at      TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS referrals_referrer_idx ON referrals (referrer_id);
+CREATE INDEX IF NOT EXISTS referrals_status_idx   ON referrals (reward_status);
+
+DROP TRIGGER IF EXISTS set_updated_at_referrals ON referrals;
+CREATE TRIGGER set_updated_at_referrals
+  BEFORE UPDATE ON referrals
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+-- ── دالة: حساب عمولة الإحالة حسب الباقة ────────────────────────────
+CREATE OR REPLACE FUNCTION get_referral_reward(p_plan_name TEXT, p_amount NUMERIC)
+RETURNS NUMERIC AS $$
+BEGIN
+  -- 10% من سعر الباقة
+  RETURN ROUND(p_amount * 0.10, 2);
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+
+-- ══════════════════════════════════════════════════════════════════════
+-- تحديث CHECK constraint على profiles.role لإضافة الباقات الجديدة
+-- ══════════════════════════════════════════════════════════════════════
+DO $$
+BEGIN
+  ALTER TABLE profiles DROP CONSTRAINT IF EXISTS profiles_role_check;
+  ALTER TABLE profiles ADD CONSTRAINT profiles_role_check
+    CHECK (role IN ('free','launch','entrepreneur','investor','platinum','biz','pro','admin'));
+EXCEPTION WHEN OTHERS THEN NULL;
+END $$;
 
 -- ══════════════════════════════════════════════════════════════════════
 -- 9. View: لوحة تحكم المستخدم (بيانات مجمّعة)

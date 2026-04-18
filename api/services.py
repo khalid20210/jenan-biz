@@ -2066,10 +2066,25 @@ async def payment_checkout(body: CheckoutInput, user_id: str = Depends(get_user_
     callback_url = os.getenv("APP_BASE_URL", "https://jenan.biz") + "/dashboard.html?payment=success"
 
     plan_labels = {
-        "platinum_monthly": "باقة بلاتينية شهرية",
-        "platinum_yearly":  "باقة بلاتينية سنوية",
+        "launch_monthly":       "باقة الانطلاق الشهرية",
+        "entrepreneur_monthly": "باقة رواد الأعمال الشهرية",
+        "investor_monthly":     "باقة المستثمر الشهرية",
+        "platinum_monthly":     "باقة بلاتينية شهرية",
+        "platinum_yearly":      "باقة بلاتينية سنوية",
+        "biz_monthly":          "باقة جنان بيز الشهرية",
+        "pro_monthly":          "باقة جنان برو الشهرية",
+    }
+    plan_name_map = {
+        "launch_monthly":       "launch",
+        "entrepreneur_monthly": "entrepreneur",
+        "investor_monthly":     "investor",
+        "platinum_monthly":     "platinum",
+        "platinum_yearly":      "platinum",
+        "biz_monthly":          "biz",
+        "pro_monthly":          "pro",
     }
     description = plan_labels.get(body.plan_type, "اشتراك جنان بيز")
+    plan_name   = plan_name_map.get(body.plan_type, "launch")
 
     moyasar_payload = {
         "amount":       int(body.amount_sar * 100),   # هللات
@@ -2080,7 +2095,7 @@ async def payment_checkout(body: CheckoutInput, user_id: str = Depends(get_user_
         "metadata": {
             "user_id":   user_id,
             "plan_type": body.plan_type,
-            "plan_name": "platinum",
+            "plan_name": plan_name,
         },
     }
 
@@ -2137,15 +2152,21 @@ async def payment_webhook(request: Request):
         raw_plan   = metadata.get("plan_name") or metadata.get("plan_type", "")
         # تحويل plan_type → plan_name المُخزَّن في profiles.role
         _plan_map = {
-            "platinum_monthly": "platinum",
-            "platinum_yearly":  "platinum",
-            "biz_monthly":      "biz",
-            "pro_monthly":      "pro",
-            "biz":              "biz",
-            "pro":              "pro",
-            "platinum":         "platinum",
+            "launch_monthly":       "launch",
+            "entrepreneur_monthly": "entrepreneur",
+            "investor_monthly":     "investor",
+            "platinum_monthly":     "platinum",
+            "platinum_yearly":      "platinum",
+            "biz_monthly":          "biz",
+            "pro_monthly":          "pro",
+            "launch":               "launch",
+            "entrepreneur":         "entrepreneur",
+            "investor":             "investor",
+            "biz":                  "biz",
+            "pro":                  "pro",
+            "platinum":             "platinum",
         }
-        plan_name  = _plan_map.get(raw_plan.lower().replace(" ", "_"), "platinum")
+        plan_name  = _plan_map.get(raw_plan.lower().replace(" ", "_"), "launch")
         plan_type  = raw_plan or "platinum_monthly"
         product_id = metadata.get("product_id", "")
         product_nm = metadata.get("product_name", "")
