@@ -302,6 +302,24 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 /* Quick access */
 .bento-quick-access{grid-column:1;grid-row:3;cursor:default;padding:1.5rem}
 .bento-quick-access:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.08)}
+.bento-quick-dots{
+  display:inline-flex;gap:4px;align-items:center;
+  margin-right:.6rem;vertical-align:middle;
+}
+.bento-quick-dots span{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--glass-border);transition:background .35s,width .35s;
+  display:inline-block;
+}
+.bento-quick-dots span.active{background:#4E73C2;width:14px;border-radius:4px;}
+/* Transition animation for quick grid */
+.bento-quick-grid{
+  position:relative;
+  transition:opacity .35s ease, transform .35s ease;
+}
+.bento-quick-grid.fading{
+  opacity:0;transform:translateY(8px);
+}
 .bento-quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
 .bento-quick-item{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -2069,37 +2087,13 @@ function toggleNotifPanel(){
           </div>
         </div>
 
-        <!-- ══ خلية 6: وصول سريع (2 بطاقات صغيرة) ══ -->
+        <!-- ══ خلية 6: وصول سريع — دوّار كل 20 ثانية ══ -->
         <div class="bento-cell bento-quick-access">
           <div class="bento-cell-label" style="margin-bottom:.9rem">
             <i class="fa-solid fa-bolt"></i> وصول سريع
+            <span class="bento-quick-dots" id="bento-quick-dots"></span>
           </div>
-          <div class="bento-quick-grid">
-            <div class="bento-quick-item" onclick="gotoSub('robot','navgrp-gateway','nav-robot')">
-              <div class="bento-quick-icon" style="background:linear-gradient(135deg,#4c1d95,#7c3aed)">
-                <i class="fa-solid fa-brain"></i>
-              </div>
-              <span>المساعد الذكي</span>
-            </div>
-            <div class="bento-quick-item" onclick="gotoSub('design','navgrp-growth','nav-design')">
-              <div class="bento-quick-icon" style="background:linear-gradient(135deg,#831843,#ec4899)">
-                <i class="fa-solid fa-palette"></i>
-              </div>
-              <span>استوديو التصميم</span>
-            </div>
-            <div class="bento-quick-item" onclick="goto('academy')">
-              <div class="bento-quick-icon" style="background:linear-gradient(135deg,#064e3b,#10b981)">
-                <i class="fa-solid fa-graduation-cap"></i>
-              </div>
-              <span>الأكاديمية</span>
-            </div>
-            <div class="bento-quick-item" onclick="gotoSub('investor','navgrp-gateway','nav-investor')">
-              <div class="bento-quick-icon" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)">
-                <i class="fa-solid fa-chart-line"></i>
-              </div>
-              <span>سوق المشاريع</span>
-            </div>
-          </div>
+          <div class="bento-quick-grid" id="bento-quick-grid"></div>
         </div>
 
         <!-- ══ خلية 7: الباقة الحالية / Upgrade ══ -->
@@ -5122,6 +5116,97 @@ function bentoShareRef(){
   var msg = 'انضم معي على منصة جنان بيز للحصول على حلول الأعمال والاستشارات:\n' + val;
   window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
 }
+
+/* ══════════════════════════════════════════════
+   QUICK ACCESS — دوّار الخدمات كل 20 ثانية
+══════════════════════════════════════════════ */
+(function(){
+  /* قائمة كل الخدمات */
+  var QUICK_SERVICES = [
+    { icon:'fa-solid fa-chart-pie',        bg:'linear-gradient(135deg,#1e3a8a,#4E73C2)', label:'تحليل مشروع',       action:"gotoSub('analysis','navgrp-gateway','nav-analysis')" },
+    { icon:'fa-solid fa-file-contract',    bg:'linear-gradient(135deg,#064e3b,#059669)', label:'إعداد دراسة جدوى',  action:"gotoSub('analysis','navgrp-gateway','nav-analysis')" },
+    { icon:'fa-solid fa-handshake',        bg:'linear-gradient(135deg,#1e3a8a,#3b82f6)', label:'سوق المشاريع',      action:"gotoSub('investor','navgrp-gateway','nav-investor')" },
+    { icon:'fa-solid fa-palette',          bg:'linear-gradient(135deg,#831843,#ec4899)', label:'تصميم احترافي',     action:"gotoSub('design','navgrp-growth','nav-design')" },
+    { icon:'fa-solid fa-calculator',       bg:'linear-gradient(135deg,#78350f,#f59e0b)', label:'برنامج محاسبي',     action:"gotoSub('software','navgrp-growth','nav-software')" },
+    { icon:'fa-solid fa-brain',            bg:'linear-gradient(135deg,#4c1d95,#7c3aed)', label:'المساعد الذكي',     action:"gotoSub('robot','navgrp-gateway','nav-robot')" },
+    { icon:'fa-solid fa-store',            bg:'linear-gradient(135deg,#0c4a6e,#0ea5e9)', label:'متجر إلكتروني',     action:"gotoSub('software','navgrp-growth','nav-software')" },
+    { icon:'fa-solid fa-magnifying-glass-chart', bg:'linear-gradient(135deg,#065f46,#10b981)', label:'بحث سوقي',   action:"gotoSub('analysis','navgrp-gateway','nav-analysis')" },
+    { icon:'fa-solid fa-mobile-screen',    bg:'linear-gradient(135deg,#1e1b4b,#6366f1)', label:'تطبيق موبايل',     action:"gotoSub('software','navgrp-growth','nav-software')" },
+    { icon:'fa-solid fa-briefcase',        bg:'linear-gradient(135deg,#7c2d12,#ea580c)', label:'جنان للأعمال',      action:"goto('academy')" },
+    { icon:'fa-solid fa-cash-register',    bg:'linear-gradient(135deg,#134e4a,#14b8a6)', label:'نقاط البيع',        action:"gotoSub('software','navgrp-growth','nav-software')" },
+    { icon:'fa-solid fa-scale-balanced',   bg:'linear-gradient(135deg,#1e3a5f,#2563eb)', label:'الامتثال القانوني',  action:"gotoSub('compliance','navgrp-gateway','nav-compliance')" },
+  ];
+
+  var PAGE_SIZE = 4;
+  var _page = 0;
+  var _pages = Math.ceil(QUICK_SERVICES.length / PAGE_SIZE);
+  var _timer = null;
+
+  function _buildDots(){
+    var el = document.getElementById('bento-quick-dots');
+    if(!el) return;
+    var html = '';
+    for(var i=0;i<_pages;i++){
+      html += '<span' + (i===_page?' class="active"':'') + '></span>';
+    }
+    el.innerHTML = html;
+  }
+
+  function _renderPage(p){
+    var grid = document.getElementById('bento-quick-grid');
+    if(!grid) return;
+    var start = p * PAGE_SIZE;
+    var items = QUICK_SERVICES.slice(start, start + PAGE_SIZE);
+    var html = '';
+    items.forEach(function(s){
+      html += '<div class="bento-quick-item" onclick="' + s.action + '">'
+            + '<div class="bento-quick-icon" style="background:' + s.bg + '">'
+            + '<i class="' + s.icon + '"></i></div>'
+            + '<span>' + s.label + '</span>'
+            + '</div>';
+    });
+    grid.innerHTML = html;
+  }
+
+  function _showPage(p, animate){
+    var grid = document.getElementById('bento-quick-grid');
+    if(!grid) return;
+    if(animate){
+      grid.classList.add('fading');
+      setTimeout(function(){
+        _page = p;
+        _renderPage(_page);
+        _buildDots();
+        grid.classList.remove('fading');
+      }, 360);
+    } else {
+      _page = p;
+      _renderPage(_page);
+      _buildDots();
+    }
+  }
+
+  function _next(){
+    _showPage((_page + 1) % _pages, true);
+  }
+
+  function _startRotation(){
+    if(_timer) clearInterval(_timer);
+    _timer = setInterval(_next, 20000);
+  }
+
+  function initQuickAccess(){
+    _showPage(0, false);
+    _startRotation();
+  }
+
+  /* تشغيل بعد تحميل الصفحة */
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initQuickAccess);
+  } else {
+    initQuickAccess();
+  }
+})();
 
 /* THEME */
 const html = document.documentElement;
