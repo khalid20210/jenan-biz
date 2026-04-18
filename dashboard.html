@@ -1493,8 +1493,20 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   <div class="topbar">
     <button class="ham-btn" id="ham-btn" onclick="openSidebar()"><i class="fa-solid fa-bars"></i></button>
     <div class="topbar-title" id="topbar-title">نظرة عامة <span id="topbar-sub">مرحباً بك في منصة جنان بيز</span></div>
-    <button class="tb-btn" title="الإشعارات"><i class="fa-solid fa-bell"></i><span class="notif-dot"></span></button>
-    <button class="tb-btn" id="theme-toggle" title="الوضع الداكن"><i class="fa-solid fa-moon" id="th-ico"></i></button>
+    <button class="tb-btn" id="notif-btn" title="الإشعارات" onclick="toggleNotifPanel()"><i class="fa-solid fa-bell"></i><span class="notif-dot" id="notif-dot"></span></button>
+    <button class="tb-btn" id="theme-toggle" title="تبديل المظهر" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="th-ico"></i></button>
+  </div>
+
+  <!-- لوحة الإشعارات -->
+  <div id="notif-panel" style="display:none;position:fixed;top:72px;left:1.5rem;width:300px;background:var(--bg3);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);z-index:500;padding:1rem;direction:rtl">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
+      <span style="font-weight:800;font-size:.95rem">الإشعارات</span>
+      <button onclick="toggleNotifPanel()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:.9rem"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div style="text-align:center;padding:1.5rem 0;color:var(--muted);font-size:.85rem">
+      <i class="fa-solid fa-bell-slash" style="font-size:2rem;margin-bottom:.5rem;display:block;opacity:.4"></i>
+      لا توجد إشعارات جديدة
+    </div>
   </div>
 
   <!-- CONTENT -->
@@ -4313,6 +4325,25 @@ document.getElementById('theme-toggle').addEventListener('click',()=>{
   html.setAttribute('data-theme',n);
   localStorage.setItem('jb-theme',n);
   thIco.className = n==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
+});
+
+/* THEME — دالة قابلة للاستدعاء من onclick أيضاً */
+function toggleTheme(){
+  const n = html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',n);
+  localStorage.setItem('jb-theme',n);
+  thIco.className = n==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
+}
+
+/* NOTIFICATIONS */
+function toggleNotifPanel(){
+  const p = document.getElementById('notif-panel');
+  p.style.display = p.style.display==='none'?'block':'none';
+}
+document.addEventListener('click', e => {
+  const p = document.getElementById('notif-panel');
+  const btn = document.getElementById('notif-btn');
+  if(p && btn && !p.contains(e.target) && !btn.contains(e.target)) p.style.display='none';
 });
 
 /* SIDEBAR */
