@@ -646,8 +646,18 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   background:var(--glass);cursor:pointer;font-size:1rem;color:var(--text);
   align-items:center;justify-content:center;transition:var(--tr)}
 
+/* hero actions داخل bento-hero */
+.bento-hero-actions{
+  display:flex;align-items:center;gap:.5rem;
+  margin-bottom:.75rem;
+  justify-content:flex-end;
+}
+.bento-hero-right{
+  display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0;
+}
+
 /* CONTENT */
-.content{flex:1;padding:1rem 1.75rem 2rem;position:relative;z-index:1}
+.content{flex:1;padding:.5rem 1.75rem 2rem;position:relative;z-index:1}
 .page{display:none!important}
 .page.active{display:block!important;animation:fadeUp .35s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -1761,6 +1771,8 @@ function toggleTheme(){
   localStorage.setItem('jb-theme',n);
   var ico=document.getElementById('th-ico');
   if(ico) ico.className=n==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
+  var ico2=document.getElementById('th-ico-hero');
+  if(ico2) ico2.className=n==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';
 }
 function toggleNotifPanel(){
   var p=document.getElementById('notif-panel');
@@ -1931,10 +1943,10 @@ function toggleNotifPanel(){
       // placeholder — دالة goto الرئيسية موجودة في أسفل الصفحة
     </script>
 
-  <!-- TOPBAR -->
-  <div class="topbar">
+  <!-- TOPBAR — مخفي (الأزرار انتقلت للهيرو) -->
+  <div class="topbar" style="display:none">
     <button class="ham-btn" id="ham-btn" onclick="openSidebar()"><i class="fa-solid fa-bars"></i></button>
-    <div class="topbar-title" id="topbar-title">نظرة عامة <span id="topbar-sub">مرحباً بك في منصة جنان بيز</span></div>
+    <div class="topbar-title" id="topbar-title"><span id="topbar-sub"></span></div>
     <button class="tb-btn" id="notif-btn" title="الإشعارات" onclick="toggleNotifPanel()"><i class="fa-solid fa-bell"></i><span class="notif-dot" id="notif-dot"></span></button>
     <button class="tb-btn" id="theme-toggle" title="تبديل المظهر" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="th-ico"></i></button>
   </div>
@@ -1968,6 +1980,19 @@ function toggleNotifPanel(){
           <p class="bento-greeting-sub">إليك نظرة سريعة على حسابك وخدماتك</p>
         </div>
         <div class="bento-hero-right">
+          <!-- أزرار التحكم -->
+          <div class="bento-hero-actions">
+            <button class="tb-btn" id="notif-btn-hero" title="الإشعارات" onclick="toggleNotifPanel()">
+              <i class="fa-solid fa-bell"></i>
+              <span class="notif-dot" id="notif-dot-hero"></span>
+            </button>
+            <button class="tb-btn" id="theme-toggle-hero" title="تبديل المظهر" onclick="toggleTheme()">
+              <i class="fa-solid fa-moon" id="th-ico-hero"></i>
+            </button>
+            <button class="tb-btn" style="color:#dc2626" title="تسجيل الخروج" onclick="logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+          </div>
           <div class="bento-plan-badge" id="bento-plan-badge">
             <i class="fa-solid fa-user-check"></i>
             <span id="bento-plan-label">حساب أساسي</span>
