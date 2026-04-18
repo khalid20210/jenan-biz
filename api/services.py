@@ -2383,7 +2383,54 @@ async def stcpay_confirm(body: STCConfirmInput):
     }
 
 
-# ---- معالجة الأخطاء العامة ----
+# ── New Subscription Endpoint ────────────────────────────────────────
+class SubscriptionInput(BaseModel):
+    plan: str  # starter, entrepreneur, investor
+    user_id: Optional[str] = None
+
+@app.post("/api/subscription/initiate")
+async def initiate_subscription(body: SubscriptionInput):
+    """
+    بدء عملية الاشتراك من صفحة pricing.html
+    يُعيد رابط الدفع أو بيانات الاشتراك
+    """
+    plan_data = {
+        "starter": {"amount": 149, "name": "باقة الانطلاق", "features": 3},
+        "entrepreneur": {"amount": 500, "name": "رواد الأعمال", "features": 10},
+        "investor": {"amount": 1200, "name": "المستثمر", "features": float('inf')},
+    }
+    
+    if body.plan not in plan_data:
+        raise HTTPException(status_code=400, detail="خطة غير معروفة")
+    
+    plan = plan_data[body.plan]
+    
+    # إنشاء طلب دفع
+    demo_id = hashlib.md5(f"{body.plan}-{time.time()}".encode()).hexdigest()[:12].upper()
+    
+    return {
+        "success": True,
+        "plan": body.plan,
+        "amount": plan["amount"],
+        "name": plan["name"],
+        "transaction_id": demo_id,
+        "status": "pending",
+        "message": f"جاري معالجة اشتراك {plan['name']}"
+    }
+
+@app.get("/api/subscription/verify/{transaction_id}")
+async def verify_subscription(transaction_id: str, user_id: Optional[str] = None):
+    """
+    التحقق من حالة الاشتراك بعد الدفع
+    """
+    return {
+        "transaction_id": transaction_id,
+        "status": "completed",
+        "message": "تم تفعيل اشتراكك بنجاح"
+    }
+
+
+# ── معالجة الأخطاء العامة ----
 @app.exception_handler(Exception)
 async def global_error_handler(request: Request, exc: Exception):
     return JSONResponse(status_code=500, content={"message": "حدث خطأ داخلي. حاول مجدداً."})

@@ -763,44 +763,42 @@ function subscribe(plan) {
     return;
   }
 
-  const planData = {
-    starter: { id: 'starter', amount: 149, name: 'باقة الانطلاق' },
-    entrepreneur: { id: 'entrepreneur', amount: 500, name: 'رواد الأعمال' },
-    investor: { id: 'investor', amount: 1200, name: 'المستثمر' }
-  };
-
-  const selected = planData[plan];
-  if (!selected) {
-    alert('خطأ في اختيار الباقة');
-    return;
-  }
-
-  // Store payment intent
-  const paymentIntent = {
-    plan: plan,
-    amount: selected.amount,
-    name: selected.name,
-    userId: user.id,
-    timestamp: new Date().toISOString()
-  };
-  localStorage.setItem('jb-payment-intent', JSON.stringify(paymentIntent));
-
-  // Redirect to payment page (can be Stripe, Telr, PayTabs, etc.)
-  // For now, simulate payment process
-  processPaymentGateway(selected);
-}
-
-function processPaymentGateway(planData) {
-  // This would normally redirect to a payment gateway
-  // For demo purposes, we'll show an alert and simulate success
-  const message = `جاري توجيهك لمعالجة الدفع...
-الخطة: ${planData.name}
-المبلغ: ${planData.amount} ر.س`;
-  
-  alert(message);
-  
-  // In production, redirect to payment gateway:
-  // window.location.href = `/api/payment/initiate?plan=${planData.id}`;
+  // Initiate subscription via API
+  fetch('/api/subscription/initiate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      plan: plan,
+      user_id: user.id
+    })
+  })
+  .then(r => {
+    if (!r.ok) throw new Error('فشل الاتصال');
+    return r.json();
+  })
+  .then(data => {
+    if (data.success) {
+      // Store the transaction details
+      localStorage.setItem('jb-current-payment', JSON.stringify({
+        plan: plan,
+        transaction_id: data.transaction_id,
+        amount: data.amount,
+        timestamp: new Date().toISOString()
+      }));
+      
+      // Show success and redirect to payment
+      alert(`سيتم نقلك إلى بوابة الدفع...\n${data.message}`);
+      
+      // Simulate payment redirect (replace with actual payment gateway)
+      window.location.href = 'dashboard.html?plan=' + plan + '&txn=' + data.transaction_id;
+    }
+  })
+  .catch(err => {
+    console.error('Subscription error:', err);
+    alert('حدث خطأ في الاشتراك. حاول مجدداً.');
+  });
 }
 
 // Initialize on page load
