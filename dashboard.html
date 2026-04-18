@@ -86,11 +86,11 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-greeting-sub{font-size:.9rem;color:var(--muted);font-weight:500}
 .bento-plan-badge{
-  display:inline-flex;align-items:center;gap:.55rem;
-  padding:.55rem 1.25rem;border-radius:30px;
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.4rem 1rem;border-radius:30px;
   background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.08));
   border:1px solid rgba(245,158,11,.35);
-  color:#b45309;font-size:.85rem;font-weight:700;
+  color:#b45309;font-size:.78rem;font-weight:700;
   white-space:nowrap;transition:background .3s,border-color .3s,color .3s;
 }
 [data-theme="dark"] .bento-plan-badge{color:#fbbf24;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.12)}
@@ -169,37 +169,44 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   border-right:none !important;
   border-left:none !important;
   border-top:none !important;
+  border-bottom-color:rgba(78,115,194,.12) !important;
   margin:-0.75rem -1.75rem 0;
   width:calc(100% + 3.5rem);
+  background:linear-gradient(135deg,rgba(255,255,255,.9) 0%,rgba(238,244,255,.95) 100%) !important;
+  box-shadow:0 2px 16px rgba(78,115,194,.07) !important;
 }
-.bento-hero-cell:hover{transform:none;box-shadow:none !important;border-color:var(--glass-border) !important}
+[data-theme="dark"] .bento-hero-cell{
+  background:linear-gradient(135deg,rgba(15,22,48,.95) 0%,rgba(10,15,35,.98) 100%) !important;
+}
+.bento-hero-cell:hover{transform:none !important;box-shadow:0 2px 16px rgba(78,115,194,.07) !important}
 .bento-hero-cell .bento-cell-inner{
   display:flex;flex-direction:row;align-items:center;
-  gap:1.5rem;padding:1.1rem 1.75rem;
+  gap:1.25rem;padding:1rem 1.75rem;
   min-height:unset;
 }
 .bento-hero-cell .bento-hero-toolbar{
-  margin-bottom:0;display:flex;align-items:center;gap:.55rem;
-  order:1;
+  margin-bottom:0;display:flex;align-items:center;gap:.45rem;
+  order:1;flex-shrink:0;
 }
-.bento-hero-cell .bento-greeting-title{font-size:1.2rem;margin-bottom:.1rem;white-space:nowrap}
-.bento-hero-cell .bento-plan-badge{margin-top:0;align-self:center;margin-right:auto}
+.bento-hero-cell .bento-greeting-title{font-size:1.15rem;margin-bottom:0;white-space:nowrap}
+.bento-hero-cell .bento-plan-badge{margin-top:0;align-self:center;margin-right:auto;flex-shrink:0}
 
 /* Hero quick-stats chips */
 .bento-hero-stats{
-  display:flex;gap:.55rem;margin-top:.85rem;flex-wrap:wrap;
+  display:flex;gap:.45rem;margin-top:0;flex-wrap:nowrap;
+  flex-shrink:1;
 }
 .bento-hero-stat-chip{
-  display:flex;align-items:center;gap:.4rem;
-  padding:.32rem .72rem;border-radius:30px;
-  background:rgba(78,115,194,.09);border:1px solid rgba(78,115,194,.18);
-  font-size:.75rem;font-weight:700;color:var(--text);
-  transition:background .2s;
+  display:flex;align-items:center;gap:.35rem;
+  padding:.28rem .65rem;border-radius:30px;
+  background:rgba(78,115,194,.08);border:1px solid rgba(78,115,194,.16);
+  font-size:.72rem;font-weight:700;color:var(--text);
+  transition:background .2s;white-space:nowrap;
 }
-.bento-hero-stat-chip i{font-size:.72rem;opacity:.75}
-.bento-hero-stat-chip.chip-green{background:rgba(5,150,105,.09);border-color:rgba(5,150,105,.22)}
+.bento-hero-stat-chip i{font-size:.68rem;opacity:.8}
+.bento-hero-stat-chip.chip-green{background:rgba(5,150,105,.08);border-color:rgba(5,150,105,.2)}
 .bento-hero-stat-chip.chip-green i{color:#059669}
-.bento-hero-stat-chip.chip-amber{background:rgba(217,119,6,.09);border-color:rgba(217,119,6,.2)}
+.bento-hero-stat-chip.chip-amber{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.18)}
 .bento-hero-stat-chip.chip-amber i{color:#d97706}
 .bento-hero-stat-chip.chip-blue i{color:#4E73C2}
 
@@ -828,14 +835,22 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   display:flex;align-items:center;gap:.5rem;margin-right:auto;
 }
 .hero-action-btn{
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid var(--glass-border);
-  background:rgba(255,255,255,.55);
-  cursor:pointer;color:var(--muted);font-size:.88rem;
+  width:40px;height:40px;border-radius:50%;
+  border:1.5px solid var(--glass-border);
+  background:rgba(255,255,255,.7);
+  cursor:pointer;color:var(--muted);font-size:.9rem;
   display:flex;align-items:center;justify-content:center;
   transition:var(--tr);position:relative;
   backdrop-filter:blur(8px);
+  flex-shrink:0;
 }
+/* separator بعد أيقونات التحكم */
+.hero-toolbar-divider{
+  width:1px;height:28px;
+  background:linear-gradient(to bottom,transparent,var(--glass-border),transparent);
+  margin:0 .3rem;flex-shrink:0;
+}
+
 .hero-action-btn:hover{
   background:linear-gradient(135deg,#4E73C2,#1E3A8A);
   color:#fff;border-color:transparent;
@@ -2202,10 +2217,11 @@ function toggleNotifPanel(){
               <button class="hero-action-btn hero-logout-btn" title="تسجيل الخروج" onclick="logout()">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
               </button>
+              <div class="hero-toolbar-divider"></div>
             </div>
             <!-- التحية (وسط) -->
-            <div style="flex:1;text-align:right">
-              <div class="bento-greeting-eyebrow">لوحة التحكم</div>
+            <div style="flex:1;text-align:right;min-width:0">
+              <div class="bento-greeting-eyebrow" style="font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;opacity:.55;margin-bottom:.1rem">لوحة التحكم</div>
               <h1 class="bento-greeting-title"><strong>مرحباً، <span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
             </div>
             <!-- chips العدادات (وسط) -->
