@@ -327,12 +327,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-ref-share-btn:hover{transform:scale(1.03);box-shadow:0 6px 18px rgba(37,211,102,.35)}
 
-/* Mini stats cell */
-.bento-stats-mini{
-  grid-column:1;grid-row:2;
-  cursor:default;padding:1.3rem 1.4rem;
-}
-.bento-stats-mini:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.08)}
+/* Mini stats cell — removed */
 .bento-mini-stat{
   display:flex;align-items:center;gap:.85rem;
   padding:.6rem .8rem;cursor:pointer;border-radius:10px;
@@ -519,8 +514,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 #page-home.active .bento-hero-cell    {animation-delay:.0s}
 #page-home.active .bento-referral     {animation-delay:.05s}
 #page-home.active .bento-wallet       {animation-delay:.1s}
-#page-home.active .bento-stats-mini   {animation-delay:.15s}
-#page-home.active .bento-pricing      {animation-delay:.2s}
+#page-home.active .bento-pricing      {animation-delay:.15s}
 #page-home.active .bento-quick-access {animation-delay:.25s}
 #page-home.active .bento-biz          {animation-delay:.3s}
 #page-home.active .bento-pro          {animation-delay:.35s}
@@ -552,7 +546,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 @media(max-width:640px){
   .bento-grid{grid-template-columns:1fr;gap:.8rem}
   .bento-hero-cell,.bento-pricing,.bento-wallet,
-  .bento-stats-mini,.bento-referral,.bento-quick-access,
+  .bento-referral,.bento-quick-access,
   .bento-biz,.bento-pro{grid-column:1 !important;grid-row:auto !important}
   .bento-plans-grid{grid-template-columns:1fr 1fr 1fr}
   .bento-greeting-title{font-size:1.35rem}
@@ -2202,39 +2196,6 @@ function toggleNotifPanel(){
             <div class="bento-cell-arrow" style="margin-top:.6rem"><i class="fa-solid fa-arrow-left"></i> إدارة المحفظة</div>
           </div>
           <div class="bento-wallet-icon-bg"><i class="fa-solid fa-wallet"></i></div>
-        </div>
-
-        <!-- ══ خلية 4: إحصائيات سريعة (Col 1, Row 2) ══ -->
-        <div class="bento-cell bento-stats-mini">
-          <div class="bento-mini-stat" onclick="gotoSub('analysis','navgrp-gateway','nav-analysis')">
-            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.12));color:#4E73C2">
-              <i class="fa-solid fa-file-chart-column"></i>
-            </div>
-            <div>
-              <div class="bento-mini-num" id="sc-reports">0</div>
-              <div class="bento-mini-lbl">تقرير مُنجز</div>
-            </div>
-          </div>
-          <div class="bento-mini-sep"></div>
-          <div class="bento-mini-stat" onclick="gotoSub('robot','navgrp-gateway','nav-robot')">
-            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(99,0,162,.08));color:#7c3aed">
-              <i class="fa-solid fa-robot"></i>
-            </div>
-            <div>
-              <div class="bento-mini-num" id="sc-chats">0</div>
-              <div class="bento-mini-lbl">جلسة مساعد</div>
-            </div>
-          </div>
-          <div class="bento-mini-sep"></div>
-          <div class="bento-mini-stat" onclick="gotoSub('investor','navgrp-gateway','nav-investor')">
-            <div class="bento-mini-icon" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.08));color:#10b981">
-              <i class="fa-solid fa-handshake"></i>
-            </div>
-            <div>
-              <div class="bento-mini-num" id="sc-partners">0</div>
-              <div class="bento-mini-lbl">شراكة نشطة</div>
-            </div>
-          </div>
         </div>
 
         <!-- ══ خلية 4: جنان بيز (بطاقة الأعمال — كبيرة) ══ -->
