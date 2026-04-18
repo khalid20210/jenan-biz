@@ -120,6 +120,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
   gap:1.1rem;
+  margin-top:1.1rem;
 }
 
 /* Base cell */
@@ -160,18 +161,29 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-glow-blue{background:#4E73C2}
 .bento-glow-cyan{background:#0ea5e9}
 
-/* Hero cell — كامل العرض صف 1 */
+/* Hero cell — كامل العرض ملاصق للحواف */
 .bento-hero-cell{
   grid-column:1 / 4;grid-row:1;
   cursor:default;
+  border-radius:0 !important;
+  border-right:none !important;
+  border-left:none !important;
+  border-top:none !important;
+  margin:-0.75rem -1.75rem 0;
+  width:calc(100% + 3.5rem);
 }
-.bento-hero-cell:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.12)}
+.bento-hero-cell:hover{transform:none;box-shadow:none !important;border-color:var(--glass-border) !important}
 .bento-hero-cell .bento-cell-inner{
-  display:flex;flex-direction:column;height:100%;min-height:160px;
+  display:flex;flex-direction:row;align-items:center;
+  gap:1.5rem;padding:1.1rem 1.75rem;
+  min-height:unset;
 }
-.bento-hero-cell .bento-hero-toolbar{margin-bottom:.6rem}
-.bento-hero-cell .bento-greeting-title{font-size:1.45rem;margin-bottom:.3rem}
-.bento-hero-cell .bento-plan-badge{margin-top:auto;align-self:flex-start}
+.bento-hero-cell .bento-hero-toolbar{
+  margin-bottom:0;display:flex;align-items:center;gap:.55rem;
+  order:1;
+}
+.bento-hero-cell .bento-greeting-title{font-size:1.2rem;margin-bottom:.1rem;white-space:nowrap}
+.bento-hero-cell .bento-plan-badge{margin-top:0;align-self:center;margin-right:auto}
 
 /* Hero quick-stats chips */
 .bento-hero-stats{
@@ -852,7 +864,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   align-items:center;justify-content:center;transition:var(--tr)}
 
 /* CONTENT */
-.content{flex:1;padding:.75rem 1.75rem 2rem;position:relative;z-index:1}
+.content{flex:1;padding:.75rem 1.75rem 2rem;position:relative;z-index:1;padding-top:0}
 .page{display:none!important}
 .page.active{display:block!important;animation:fadeUp .35s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -2172,54 +2184,50 @@ function toggleNotifPanel(){
       <!-- ─── Bento Grid ─────────────────────────────────────────── -->
       <div class="bento-grid">
 
-        <!-- ══ خلية 1: البطاقة الترحيبية (يمين في RTL = Col 1, Row 1) ══ -->
+        <!-- ══ خلية 1: البطاقة الترحيبية (كامل العرض) ══ -->
         <div class="bento-cell bento-hero-cell">
-          <div class="bento-cell-glow bento-glow-blue" style="opacity:.15"></div>
           <div class="bento-cell-inner">
-            <!-- toolbar: hamburger + icons -->
+            <!-- toolbar: hamburger + icons (يمين) -->
             <div class="bento-hero-toolbar">
               <button class="ham-btn hero-ham" id="ham-btn" onclick="openSidebar()">
                 <i class="fa-solid fa-bars"></i>
               </button>
-              <div class="hero-actions">
-                <button class="hero-action-btn" id="theme-toggle" title="تبديل المظهر" onclick="toggleTheme()">
-                  <i class="fa-solid fa-moon" id="th-ico"></i>
-                </button>
-                <button class="hero-action-btn" id="notif-btn" title="الإشعارات" onclick="toggleNotifPanel()">
-                  <i class="fa-solid fa-bell"></i>
-                  <span class="notif-dot" id="notif-dot"></span>
-                </button>
-                <button class="hero-action-btn hero-logout-btn" title="تسجيل الخروج" onclick="logout()">
-                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                </button>
-              </div>
+              <button class="hero-action-btn" id="theme-toggle" title="تبديل المظهر" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon" id="th-ico"></i>
+              </button>
+              <button class="hero-action-btn" id="notif-btn" title="الإشعارات" onclick="toggleNotifPanel()">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notif-dot" id="notif-dot"></span>
+              </button>
+              <button class="hero-action-btn hero-logout-btn" title="تسجيل الخروج" onclick="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </button>
             </div>
-            <!-- التحية -->
-            <div style="flex:1">
+            <!-- التحية (وسط) -->
+            <div style="flex:1;text-align:right">
               <div class="bento-greeting-eyebrow">لوحة التحكم</div>
-              <h1 class="bento-greeting-title"><strong>مرحباً،<br><span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
-              <p class="bento-greeting-sub">إليك نظرة سريعة على حسابك وخدماتك</p>
-              <!-- عدادات سريعة: إحالات + مكافآت + قيد الانتظار -->
-              <div class="bento-hero-stats">
-                <div class="bento-hero-stat-chip chip-blue">
-                  <i class="fa-solid fa-user-plus"></i>
-                  <span id="hero-stat-referrals" class="bento-loading">0</span>
-                  <span style="opacity:.65;font-weight:600">إحالة</span>
-                </div>
-                <div class="bento-hero-stat-chip chip-green">
-                  <i class="fa-solid fa-circle-check"></i>
-                  <span id="hero-stat-rewarded" class="bento-loading">0</span>
-                  <span style="opacity:.65;font-weight:600">مكافأة</span>
-                </div>
-                <div class="bento-hero-stat-chip chip-amber">
-                  <i class="fa-solid fa-clock"></i>
-                  <span id="hero-stat-pending" class="bento-loading">0</span>
-                  <span style="opacity:.65;font-weight:600">قيد الانتظار</span>
-                </div>
+              <h1 class="bento-greeting-title"><strong>مرحباً، <span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
+            </div>
+            <!-- chips العدادات (وسط) -->
+            <div class="bento-hero-stats" style="margin-top:0">
+              <div class="bento-hero-stat-chip chip-blue">
+                <i class="fa-solid fa-user-plus"></i>
+                <span id="hero-stat-referrals" class="bento-loading">0</span>
+                <span style="opacity:.65;font-weight:600">إحالة</span>
+              </div>
+              <div class="bento-hero-stat-chip chip-green">
+                <i class="fa-solid fa-circle-check"></i>
+                <span id="hero-stat-rewarded" class="bento-loading">0</span>
+                <span style="opacity:.65;font-weight:600">مكافأة</span>
+              </div>
+              <div class="bento-hero-stat-chip chip-amber">
+                <i class="fa-solid fa-clock"></i>
+                <span id="hero-stat-pending" class="bento-loading">0</span>
+                <span style="opacity:.65;font-weight:600">انتظار</span>
               </div>
             </div>
-            <!-- badge الباقة -->
-            <div class="bento-plan-badge" id="bento-plan-badge" style="margin-top:.75rem">
+            <!-- badge الباقة (أقصى اليسار) -->
+            <div class="bento-plan-badge" id="bento-plan-badge">
               <i class="fa-solid fa-user-check"></i>
               <span id="bento-plan-label">حساب أساسي</span>
             </div>
