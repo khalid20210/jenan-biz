@@ -1299,6 +1299,39 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .comp-check-title{font-size:.81rem;font-weight:800;color:var(--text)}
 .comp-check-sub{font-size:.67rem;color:var(--muted);margin-top:.12rem;line-height:1.4}
 
+/* ── Global Jenan Bot ── */
+#jenan-bot-btn{position:fixed;bottom:2rem;right:2rem;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);border:none;color:#fff;font-size:1.35rem;cursor:pointer;box-shadow:0 4px 28px rgba(124,58,237,.6);z-index:950;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s}
+#jenan-bot-btn:hover{transform:scale(1.1);box-shadow:0 6px 34px rgba(124,58,237,.8)}
+#jenan-bot-btn .jb-pulse{position:absolute;top:-3px;right:-3px;width:64px;height:64px;border-radius:50%;border:2px solid rgba(168,85,247,.5);animation:jbPulse 2.2s infinite}
+@keyframes jbPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+#jenan-bot-btn .jb-badge{position:absolute;top:0;right:0;width:16px;height:16px;border-radius:50%;background:#22c55e;border:2px solid var(--bg3);font-size:.55rem;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+#jenan-bot-drawer{position:fixed;bottom:0;right:0;width:390px;height:560px;background:var(--card);border:1px solid var(--border);border-radius:22px 22px 0 0;box-shadow:0 -8px 48px rgba(124,58,237,.25);z-index:960;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden}
+#jenan-bot-drawer.open{transform:translateY(0)}
+.jb-head{padding:.9rem 1.1rem;background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(168,85,247,.08));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem;flex-shrink:0}
+.jb-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#5b21b6,#a855f7);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;flex-shrink:0;border:2px solid rgba(168,85,247,.5);box-shadow:0 0 12px rgba(168,85,247,.35)}
+.jb-page-tag{display:inline-flex;align-items:center;gap:.3rem;padding:.18rem .6rem;border-radius:20px;font-size:.66rem;font-weight:700;background:rgba(168,85,247,.12);color:#c084fc;border:1px solid rgba(168,85,247,.25);margin-top:.2rem}
+.jb-msgs{flex:1;overflow-y:auto;padding:.8rem 1rem;display:flex;flex-direction:column;gap:.6rem;scrollbar-width:thin;scrollbar-color:rgba(168,85,247,.3) transparent}
+.jb-msg{padding:.7rem .95rem;border-radius:14px;font-size:.81rem;line-height:1.7;max-width:90%;word-break:break-word;animation:jbMsgIn .22s ease}
+@keyframes jbMsgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.jb-msg.bot{background:rgba(124,58,237,.1);border:1px solid rgba(168,85,247,.2);color:var(--text);align-self:flex-start;border-radius:4px 14px 14px 14px}
+.jb-msg.user{background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(168,85,247,.18));color:var(--text);align-self:flex-end;border-radius:14px 4px 14px 14px;text-align:right}
+.jb-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.5rem 1rem .4rem;border-top:1px solid var(--border);align-content:flex-start;min-height:40px}
+.jb-chip{padding:.28rem .72rem;border-radius:20px;font-size:.7rem;font-weight:700;border:1.5px solid rgba(168,85,247,.35);color:#c084fc;background:rgba(168,85,247,.07);cursor:pointer;transition:var(--tr);white-space:nowrap}
+.jb-chip:hover{background:rgba(168,85,247,.22);border-color:rgba(168,85,247,.7)}
+.jb-input-row{display:flex;gap:.5rem;padding:.6rem .9rem .9rem;border-top:1px solid var(--border);flex-shrink:0;background:rgba(0,0,0,.08)}
+.jb-input-row input{flex:1;padding:.6rem .85rem;border-radius:11px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-family:inherit;font-size:.82rem;direction:rtl;transition:.18s}
+.jb-input-row input:focus{outline:none;border-color:#a855f7;box-shadow:0 0 0 2px rgba(168,85,247,.15)}
+.jb-send{padding:.6rem 1rem;border-radius:11px;border:none;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;cursor:pointer;font-size:.88rem;transition:var(--tr)}
+.jb-send:hover{background:linear-gradient(135deg,#6d28d9,#9333ea)}
+.jb-file-label{padding:.58rem .65rem;border-radius:9px;border:1.5px dashed rgba(168,85,247,.4);background:rgba(168,85,247,.06);color:#c084fc;cursor:pointer;font-size:.85rem;transition:var(--tr);display:flex;align-items:center}
+.jb-file-label:hover{background:rgba(168,85,247,.16)}
+.jb-loader{display:flex;gap:5px;align-self:flex-start;padding:.65rem .9rem;background:rgba(124,58,237,.1);border-radius:4px 14px 14px 14px}
+.jb-loader span{width:7px;height:7px;border-radius:50%;background:#a855f7;animation:jbDot 1.2s infinite both}
+.jb-loader span:nth-child(2){animation-delay:.2s}
+.jb-loader span:nth-child(3){animation-delay:.4s}
+@keyframes jbDot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
+@media(max-width:500px){#jenan-bot-drawer{width:100%;border-radius:18px 18px 0 0}}
+
 /* ── Investor AI Advisor ── */
 .inv-adv-btn{position:fixed;bottom:2rem;left:2rem;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#38bdf8);border:none;color:#fff;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 24px rgba(14,165,233,.55);z-index:900;transition:var(--tr);display:none;align-items:center;justify-content:center}
 .inv-adv-btn.visible{display:flex}
@@ -1334,6 +1367,43 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 </style>
 </head>
 <body>
+
+<!-- ═══════════ روبوت جنان العالمي ═══════════ -->
+<button id="jenan-bot-btn" onclick="toggleJenanBot()" title="روبوت جنان — مساعدك في أي وقت">
+  <div class="jb-pulse"></div>
+  <div class="jb-badge">ذكاء</div>
+  <i class="fa-solid fa-robot"></i>
+</button>
+
+<div id="jenan-bot-drawer">
+  <!-- Header -->
+  <div class="jb-head">
+    <div class="jb-avatar"><i class="fa-solid fa-robot"></i></div>
+    <div style="flex:1;min-width:0">
+      <div style="font-size:.9rem;font-weight:900;color:var(--text)">روبوت جنان — مساعدك الذكي</div>
+      <div id="jb-page-tag" class="jb-page-tag"><i class="fa-solid fa-circle" style="font-size:.45rem;color:#22c55e"></i> جاهز للمساعدة</div>
+    </div>
+    <button onclick="clearJenanBot()" title="بداية جديدة" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:.8rem;padding:.3rem .5rem;border-radius:6px" title="مسح"><i class="fa-solid fa-rotate-right"></i></button>
+    <button onclick="toggleJenanBot()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;padding:.3rem .5rem;border-radius:6px">✕</button>
+  </div>
+
+  <!-- Messages -->
+  <div class="jb-msgs" id="jb-msgs"></div>
+
+  <!-- Quick chips -->
+  <div class="jb-chips" id="jb-chips"></div>
+
+  <!-- File input -->
+  <input type="file" id="jb-file-input" accept=".pdf,.docx,.xlsx,.txt" style="display:none" onchange="handleJbFile(this)"/>
+
+  <!-- Input row -->
+  <div class="jb-input-row">
+    <label for="jb-file-input" class="jb-file-label" title="رفع ملف للتحليل"><i class="fa-solid fa-paperclip"></i></label>
+    <input id="jb-input" type="text" placeholder="اكتب سؤالك..." onkeydown="if(event.key==='Enter')sendJbMsg()"/>
+    <button class="jb-send" onclick="sendJbMsg()"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
+<!-- ════════════════════════════════════════ -->
 
 <!-- OVERLAY (mobile) -->
 <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
@@ -4717,6 +4787,10 @@ function goto(page) {
   if(page==='orders') renderOrdersPage();
   if(page==='admin') renderAdminPanel();
   if(page==='compliance') initCompliancePage();
+  // مزامنة روبوت جنان العالمي
+  if (typeof _jbSyncPage === 'function') _jbSyncPage();
+  // مزامنة مستشار الاستثمار
+  if (typeof _syncInvAdvisorBtn === 'function') _syncInvAdvisorBtn();
 }
 
 /* NAV GROUP — قائمة منسدلة في الشريط الجانبي */
@@ -4753,6 +4827,9 @@ function gotoSub(page, groupId, subItemId) {
   if(page==='orders') renderOrdersPage();
   if(page==='admin') renderAdminPanel();
   if(page==='compliance') initCompliancePage();
+  // مزامنة روبوت جنان العالمي
+  if (typeof _jbSyncPage === 'function') _jbSyncPage();
+  if (typeof _syncInvAdvisorBtn === 'function') _syncInvAdvisorBtn();
 }
 
 // بيانات المشاريع المتاحة — مرجع مركزي تستخدمه الفلاتر
@@ -11686,6 +11763,192 @@ function _syncInvAdvisorBtn() {
       document.getElementById('inv-adv-drawer')?.classList.remove('open');
     }
   }
+}
+
+// ╔══════════════════════════════════════════════════════════╗
+// ║  روبوت جنان العالمي — Jenan Global Bot v1.0                  ║
+// ╚══════════════════════════════════════════════════════════╝
+let _jbOpen   = false;
+let _jbMsgs   = [];
+let _jbFile   = '';
+let _jbFileLb = '';
+
+const JB_PAGE_INFO = {
+  'home'         : {name:'الرئيسية',     chips:['ما خدمات جنان بيز؟','كيف أبدأ؟','ما الخدمة المناسبة لي؟']},
+  'entrepreneur' : {name:'ريادة الأعمال', chips:['كيف أفتح مشروعاً؟','ما هي متطلبات الترخيص؟','ما الفرق بين الشركة الفردية والمحدودة؟']},
+  'hub'          : {name:'بوابة الخدمات', chips:['ما الفرق بين الخدمات؟','أي خدمة تناسبي؟']},
+  'robot'        : {name:'تحليل المشاريع', chips:['كيف يعمل تحليل الذكاء الاصطناعي؟','ما البيانات المطلوبة؟']},
+  'paid-analysis': {name:'التحليل المالي', chips:['ما الفرق بين التحليل العادي والمتقدم؟','ما تشمل باقة التحليل؟']},
+  'analysis'     : {name:'التحليل المالي', chips:['كيف أقرأ قائمة الدخل والمصروفات؟','ما هي مؤشرات السيولة؟']},
+  'academy'      : {name:'الأكاديمية', chips:['أي دورة أبدأ بها؟','ما الفرق بين الدورات؟','كيف أحسب زكاة المال؟']},
+  'capital'      : {name:'بوابة التمويل', chips:['كيف أحصل على تمويل؟','ما الفرق بين المضاربة والملائكة؟','ما هو التقييم المطلوب؟']},
+  'investor'     : {name:'سوق المشاريع', chips:['كيف أقيّم مشروعاً؟','ما مخاطر الشراء؟','ما نسبة العائد المقبولة؟']},
+  'design'       : {name:'التصميم', chips:['كيف أبني هوية بصرية؟','ما عناصر الهوية المرئية؟']},
+  'software'     : {name:'البرمجيات', chips:['ما الأدوات المتاحة؟','كيف أختار برنامج المحاسبة؟']},
+};
+
+function toggleJenanBot() {
+  _jbOpen = !_jbOpen;
+  document.getElementById('jenan-bot-drawer')?.classList.toggle('open', _jbOpen);
+  if (_jbOpen && _jbMsgs.length === 0) setTimeout(_jbWelcome, 280);
+  if (_jbOpen) document.getElementById('jb-input')?.focus();
+}
+
+function clearJenanBot() {
+  _jbMsgs = []; _jbFile = ''; _jbFileLb = '';
+  const c = document.getElementById('jb-msgs');
+  if (c) c.innerHTML = '';
+  _jbSetChips([]);
+  setTimeout(_jbWelcome, 200);
+}
+
+function _jbCurrentPage() {
+  const a = document.querySelector('.page.active');
+  return a ? a.id.replace('page-', '') : 'home';
+}
+
+function _jbWelcome() {
+  const pg = _jbCurrentPage();
+  const info = JB_PAGE_INFO[pg] || {name: pg, chips: []};
+  _jbUpdateTag(info.name);
+  _jbAddBot(`مرحباً! أنا **روبوت جنان** 🤖\nمساعدك في كل شيء — أسئلة تجارية، استشارات مالية، شرح الخدمات، أو تحليل ملف.\n\nأنت الآن في قسم **${info.name}** — بماذا يمكنني مساعدتك؟`);
+  if (info.chips.length) _jbSetChips(info.chips);
+}
+
+function _jbUpdateTag(name) {
+  const t = document.getElementById('jb-page-tag');
+  if (t) t.innerHTML = `<i class="fa-solid fa-circle" style="font-size:.45rem;color:#22c55e"></i> قسم: ${name}`;
+}
+
+function _jbEsc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function _jbAddBot(text) {
+  _jbMsgs.push({role:'assistant', content: text});
+  _jbRender();
+}
+
+function _jbAddUser(text) {
+  _jbMsgs.push({role:'user', content: text});
+  _jbRender();
+}
+
+function _jbRender() {
+  const c = document.getElementById('jb-msgs');
+  if (!c) return;
+  c.innerHTML = _jbMsgs.map(m => {
+    const cls = m.role === 'user' ? 'user' : 'bot';
+    const html = _jbEsc(m.content)
+      .replace(/\n/g,'<br>')
+      .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+    return `<div class="jb-msg ${cls}">${html}</div>`;
+  }).join('');
+  c.scrollTop = c.scrollHeight;
+}
+
+function _jbSetChips(arr) {
+  const el = document.getElementById('jb-chips');
+  if (!el) return;
+  el.innerHTML = arr.map(c =>
+    `<button class="jb-chip" onclick="jbChip(this.textContent)">${_jbEsc(c)}</button>`
+  ).join('');
+}
+
+function jbChip(text) {
+  const inp = document.getElementById('jb-input');
+  if (inp) inp.value = text;
+  sendJbMsg();
+}
+
+async function sendJbMsg() {
+  const input = document.getElementById('jb-input');
+  if (!input) return;
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  _jbAddUser(text);
+  _jbSetChips([]);
+
+  const pg     = _jbCurrentPage();
+  const pgInfo = JB_PAGE_INFO[pg] || {name: pg};
+  let system = `أنت روبوت جنان — مساعد ذكي متعدد المهام لمنصة جنان بيز.\nتخدم رياديي الأعمال السعوديين في مجالات:\n- تأسيس الشركات والترخيص\n- التحليل المالي والمحاسبي\n- شراء وبيع المشاريع\n- الاستثمار والتمويل\n- التسويق والمبيعات\n- الموارد البشرية والعمالة\n- العقود والجانب القانوني\nالقسم الحالي: ${pgInfo.name}\nردودك موجزة ومفيدة بالعربية. استخدم الأرقام والنسب عند الحاجة.`;
+  if (_jbFile) system += `\n\nمحتوى الملف (${_jbEsc(_jbFileLb)}):\n${_jbFile.slice(0,3500)}`;
+
+  const msgs = document.getElementById('jb-msgs');
+  const loader = document.createElement('div');
+  loader.className = 'jb-loader'; loader.id = 'jb-loader';
+  loader.innerHTML = '<span></span><span></span><span></span>';
+  if (msgs) { msgs.appendChild(loader); msgs.scrollTop = msgs.scrollHeight; }
+
+  const recent = _jbMsgs.slice(-8).map(m => ({role:m.role, content:m.content}));
+  const payload = { messages: [{role:'user', content:`[سياق]: ${system}\n\n[سؤال]: ${text}`}].concat(recent.slice(-5)) };
+
+  try {
+    const resp = await fetch('/api/chat', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('jb-loader')?.remove();
+    if (resp.ok) {
+      const data = await resp.json();
+      const reply = data.reply || data.message || 'لم أتمكن من الحصول على إجابة.';
+      _jbAddBot(reply);
+      // تلميحات متابعة
+      const pg2 = _jbCurrentPage();
+      const info2 = JB_PAGE_INFO[pg2];
+      if (info2?.chips.length) _jbSetChips(info2.chips.slice(0,3));
+    } else {
+      _jbAddBot('⚠️ خطأ في الاتصال بالخادم. تأكد من تشغيل الخادم.');
+    }
+  } catch(e) {
+    document.getElementById('jb-loader')?.remove();
+    _jbAddBot('⚠️ تعذّر الاتصال. تأكد من اتصال الإنترنت وتشغيل الخادم.');
+  }
+}
+
+async function handleJbFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  _jbFileLb = file.name;
+  if (!_jbOpen) toggleJenanBot();
+  _jbAddBot(`📎 تم رفع: **${file.name}**\nجاري قراءة الملف...`);
+  if (file.name.toLowerCase().endsWith('.txt')) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      _jbFile = e.target.result;
+      _jbAddBot(`✅ تم قراءة **${file.name}** (${_jbFile.length} حرف).\nاسألني عنه أو اطلب تحليلاً.`);
+      _jbSetChips(['لخّص هذا الملف','ابحث عن بنود خطيرة','قيّم الأرقام المالية','هل هذا العقد آمن؟']);
+    };
+    reader.readAsText(file,'utf-8');
+  } else {
+    const fd = new FormData(); fd.append('file', file);
+    try {
+      const r = await fetch('/api/extract-text',{method:'POST',body:fd});
+      if (r.ok) {
+        const d = await r.json();
+        _jbFile = d.text||'';
+        _jbAddBot(`✅ تم استخراج النص من **${file.name}**.\nاسألني عنه!`);
+        _jbSetChips(['لخّص هذا الملف','ابحث عن بنود خطيرة','قيّم الأرقام','هل هذا العقد آمن؟']);
+      } else {
+        _jbAddBot('⚠️ تعذّر استخراج النص. جرّب رفع .txt');
+      }
+    } catch {
+      _jbAddBot('⚠️ خطأ في معالجة الملف.');
+    }
+  }
+  input.value = '';
+}
+
+// تحديث تاج القسم عند التنقل
+const _origGoto = typeof goto !== 'undefined' ? goto : null;
+function _jbSyncPage() {
+  if (!_jbOpen) return;
+  const pg = _jbCurrentPage();
+  const info = JB_PAGE_INFO[pg] || {name: pg};
+  _jbUpdateTag(info.name);
+  if (info.chips?.length) _jbSetChips(info.chips);
 }
 </script>
 </body>
