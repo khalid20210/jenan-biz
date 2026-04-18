@@ -1933,6 +1933,76 @@ function togglePlan(idx){
   var cards=document.querySelectorAll('.plan-card');
   cards.forEach(function(c,i){ if(i===idx){ c.classList.toggle('active'); } else { c.classList.remove('active'); } });
 }
+function closeSidebar(){
+  var sb=document.getElementById('sidebar');
+  if(sb) sb.classList.remove('open');
+  var ov=document.getElementById('overlay');
+  if(ov) ov.style.display='none';
+}
+function goto(page){
+  if(!page) return;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-group-header').forEach(el => el.classList.remove('group-active'));
+  if(page==='projectcopilot') { if(typeof showProjectCopilotModal==='function') showProjectCopilotModal(); return; }
+  var pageEl=document.getElementById('page-'+page);
+  if(!pageEl) return;
+  pageEl.classList.add('active');
+  if(['robot','paid-analysis','analysis','investor'].includes(page)) {
+    var grp=document.getElementById('navgrp-gateway');
+    if(grp) { grp.classList.add('open'); var hdr=grp.querySelector('.nav-group-header'); if(hdr) hdr.classList.add('group-active'); }
+    var subId='nav-'+page;
+    var subEl=document.getElementById(subId);
+    if(subEl) subEl.classList.add('active');
+  } else if(['software','design','supply'].includes(page)) {
+    var grp=document.getElementById('navgrp-growth');
+    if(grp) { grp.classList.add('open'); var hdr=grp.querySelector('.nav-group-header'); if(hdr) hdr.classList.add('group-active'); }
+    var subEl=document.getElementById('nav-'+page);
+    if(subEl) subEl.classList.add('active');
+  }
+  closeSidebar();
+  if(typeof initProjectAnalysis==='function' && page==='robot') initProjectAnalysis();
+  if(typeof initPaidAnalysis==='function' && page==='paid-analysis') initPaidAnalysis();
+  if(typeof showFsStep==='function' && page==='analysis') showFsStep(0);
+  if(typeof initAcademy==='function' && page==='academy') initAcademy();
+  if(typeof renderSoftwarePage==='function' && page==='software') renderSoftwarePage();
+  if(typeof renderSupplyPage==='function' && page==='supply') renderSupplyPage();
+  if(typeof renderOrdersPage==='function' && page==='orders') renderOrdersPage();
+  if(typeof renderAdminPanel==='function' && page==='admin') renderAdminPanel();
+  if(typeof initCompliancePage==='function' && page==='compliance') initCompliancePage();
+  if(typeof loadReferralData==='function' && page==='referral') loadReferralData();
+  if(typeof _jbSyncPage==='function') _jbSyncPage();
+  if(typeof _syncInvAdvisorBtn==='function') _syncInvAdvisorBtn();
+}
+function gotoSub(page,groupId,subItemId){
+  if(!page||!groupId||!subItemId) return;
+  var grp=document.getElementById(groupId);
+  if(grp && !grp.classList.contains('open')) grp.classList.add('open');
+  document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-group-header').forEach(el => el.classList.remove('group-active'));
+  var subEl=document.getElementById(subItemId);
+  if(subEl) subEl.classList.add('active');
+  if(grp) { var hdr=grp.querySelector('.nav-group-header'); if(hdr) hdr.classList.add('group-active'); }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  if(page==='projectcopilot') { if(typeof showProjectCopilotModal==='function') showProjectCopilotModal(); return; }
+  var pageEl=document.getElementById('page-'+page);
+  if(pageEl) pageEl.classList.add('active');
+  closeSidebar();
+  if(typeof initProjectAnalysis==='function' && page==='robot') initProjectAnalysis();
+  if(typeof initPaidAnalysis==='function' && page==='paid-analysis') initPaidAnalysis();
+  if(typeof showFsStep==='function' && page==='analysis') showFsStep(0);
+  if(typeof initAcademy==='function' && page==='academy') initAcademy();
+  if(typeof showMarketTab==='function' && page==='investor') showMarketTab('browse');
+  if(typeof renderSoftwarePage==='function' && page==='software') renderSoftwarePage();
+  if(typeof renderSupplyPage==='function' && page==='supply') renderSupplyPage();
+  if(typeof renderOrdersPage==='function' && page==='orders') renderOrdersPage();
+  if(typeof renderAdminPanel==='function' && page==='admin') renderAdminPanel();
+  if(typeof initCompliancePage==='function' && page==='compliance') initCompliancePage();
+  if(typeof _jbSyncPage==='function') _jbSyncPage();
+  if(typeof _syncInvAdvisorBtn==='function') _syncInvAdvisorBtn();
+}
 document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanModal();});
 </script>
 </head>
@@ -5571,7 +5641,6 @@ document.addEventListener('click', e => {
 
 /* SIDEBAR */
 function openSidebar(){ document.getElementById('sidebar').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
-function closeSidebar(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
 
 /* NAVIGATION */
 const pageMap = {
@@ -5594,88 +5663,11 @@ const pageMap = {
   entrepreneur:{title:'بوابة ريادة الأعمال', sub:'تحليل المشاريع · دراسات الجدوى · استشارات رأس المال · خدمات المستثمرين'},
   investor:{title:'سوق المشاريع', sub:'بيع وشراء المشاريع القائمة · وساطة محكمة · هوية مخفية · عمولة توثيق'},
 };
-function goto(page) {
-  console.log('[goto] navigating to:', page);
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-group-header').forEach(el => el.classList.remove('group-active'));
-  if(page==='projectcopilot') { showProjectCopilotModal(); return; }
-  const pageEl = document.getElementById('page-'+page);
-  if(!pageEl){ console.error('[goto] page not found: page-'+page); return; }
-  pageEl.classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n=>{
-    if(n.getAttribute('onclick')?.includes("'"+page+"'")) n.classList.add('active');
-  });
-  // تفعيل nav-group الصحيح للصفحات الفرعية
-  if(['robot','paid-analysis','analysis','investor'].includes(page)) {
-    const grp = document.getElementById('navgrp-gateway');
-    if(grp) grp.classList.add('open');
-    document.getElementById('navgrp-gateway')?.querySelector('.nav-group-header')?.classList.add('group-active');
-    const subId = 'nav-' + (page === 'paid-analysis' ? 'paid-analysis' : page);
-    document.getElementById(subId)?.classList.add('active');
-  } else if(['software','design','supply'].includes(page)) {
-    const grp = document.getElementById('navgrp-growth');
-    if(grp) grp.classList.add('open');
-    document.getElementById('navgrp-growth')?.querySelector('.nav-group-header')?.classList.add('group-active');
-    document.getElementById('nav-'+page)?.classList.add('active');
-  }
-  const m = pageMap[page]||{title:page,sub:''};
-  document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
-  closeSidebar();
-  if(page==='robot') initProjectAnalysis();
-  if(page==='paid-analysis') initPaidAnalysis();
-  if(page==='analysis') showFsStep(0);
-  if(page==='academy') initAcademy();
-  if(page==='software') renderSoftwarePage();
-  if(page==='supply') renderSupplyPage();
-  if(page==='orders') renderOrdersPage();
-  if(page==='admin') renderAdminPanel();
-  if(page==='compliance') initCompliancePage();
-  if(page==='referral') loadReferralData();
-  // مزامنة روبوت جنان العالمي
-  if (typeof _jbSyncPage === 'function') _jbSyncPage();
-  // مزامنة مستشار الاستثمار
-  if (typeof _syncInvAdvisorBtn === 'function') _syncInvAdvisorBtn();
-}
 
 /* NAV GROUP — قائمة منسدلة في الشريط الجانبي */
 function toggleNavGroup(groupId) {
   const grp = document.getElementById(groupId);
   grp.classList.toggle('open');
-}
-
-/* gotoSub: التنقل عبر عنصر داخل مجموعة منسدلة */
-function gotoSub(page, groupId, subItemId) {
-  // فتح المجموعة إن لم تكن مفتوحة
-  const grp = document.getElementById(groupId);
-  if (!grp.classList.contains('open')) grp.classList.add('open');
-  // تفعيل العنصر المحدد وإلغاء تفعيل البقية
-  document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-group-header').forEach(el => el.classList.remove('group-active'));
-  document.getElementById(subItemId)?.classList.add('active');
-  document.getElementById(groupId)?.querySelector('.nav-group-header')?.classList.add('group-active');
-  // تفعيل الصفحة
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  if(page==='projectcopilot') { showProjectCopilotModal(); return; }
-  document.getElementById('page-'+page)?.classList.add('active');
-  const m = pageMap[page]||{title:page,sub:''};
-  document.getElementById('topbar-title').innerHTML = m.title+' <span id="topbar-sub">'+m.sub+'</span>';
-  closeSidebar();
-  if(page==='robot') initProjectAnalysis();
-  if(page==='paid-analysis') initPaidAnalysis();
-  if(page==='analysis') showFsStep(0);
-  if(page==='academy') initAcademy();
-  if(page==='investor') { showMarketTab('browse'); }
-  if(page==='software') renderSoftwarePage();
-  if(page==='supply') renderSupplyPage();
-  if(page==='orders') renderOrdersPage();
-  if(page==='admin') renderAdminPanel();
-  if(page==='compliance') initCompliancePage();
-  // مزامنة روبوت جنان العالمي
-  if (typeof _jbSyncPage === 'function') _jbSyncPage();
-  if (typeof _syncInvAdvisorBtn === 'function') _syncInvAdvisorBtn();
 }
 
 // بيانات المشاريع المتاحة — مرجع مركزي تستخدمه الفلاتر
