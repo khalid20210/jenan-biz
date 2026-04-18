@@ -1896,28 +1896,96 @@ async def payment_create_order(body: PaymentCreateInput, x_api_key: Optional[str
 @app.post("/api/payment/webhook")
 async def payment_webhook(request: Request):
     """
-    استقبال إشعارات Moyasar (webhook) عند اكتمال/فشل الدفع.
-    يجب تسجيل هذا العنوان في لوحة تحكم Moyasar.
-    عند نجاح الدفع: يُطلق مكافأة الإحالة تلقائياً إن وُجدت.
+    Moyasar Webhook — يُستدعى تلقائياً عند اكتمال/فشل الدفع.
+    يجب تسجيل هذا الرابط في: Moyasar Dashboard → Webhooks
+
+    عند status=paid ينفّذ atomically (دالة on_payment_success في Supabase):
+      1. يُسجّل المعاملة في جدول transactions
+      2. يُنشئ/يُجدّد الاشتراك في جدول subscriptions
+      3. يُحدّث role المستخدم في جدول profiles (free → biz أو pro)
+      4. يُطلق مكافأة الإحالة إن وُجد مُحيل
+
+    عند status=failed/expired: يُسجّل الفشل فقط (لا يُحدّث الدور)
     """
     payload    = await request.json()
-    payment_id = payload.get("id")
-    status     = payload.get("status")
+    payment_id = payload.get("id", "")
+    status     = payload.get("status", "")
     metadata   = payload.get("metadata", {})
+    amount_hal = payload.get("amount", 0)           # بالهللات من Moyasar
+    amount_sar = round(amount_hal / 100, 2)         # تحويل للريال
 
-    logger.info(f"[Webhook] payment_id={payment_id}, status={status}, meta={metadata}")
+    logger.info(f"[Webhook] id={payment_id}, status={status}, amount={amount_sar} SAR, meta={metadata}")
 
-    # إطلاق مكافأة الإحالة عند أول دفعة ناجحة
-    if status == "paid" and payment_id and _REFERRAL_AVAILABLE:
-        user_id = metadata.get("user_id") or metadata.get("customer_id")
-        if user_id:
+    # ── حالة الدفع الناجح ────────────────────────────────────────────
+    if status == "paid" and payment_id:
+        user_id    = metadata.get("user_id") or metadata.get("customer_id") or ""
+        plan_type  = metadata.get("plan_type") or metadata.get("plan_name", "").lower().replace(" ", "_") or "biz_monthly"
+        product_id = metadata.get("product_id", "")
+        product_nm = metadata.get("product_name", "")
+        points_used = int(metadata.get("points_used", 0))
+        discount_sar = float(metadata.get("discount_sar", 0))
+
+        # ── استدعاء on_payment_success في Supabase (atomically) ──────
+        if SUPABASE_URL and SUPABASE_ANON_KEY and user_id:
+            svc_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY", SUPABASE_ANON_KEY)
+            sb_hdrs = {
+                "apikey":        svc_key,
+                "Authorization": f"Bearer {svc_key}",
+                "Content-Type":  "application/json",
+            }
+            try:
+                async with httpx.AsyncClient(timeout=15) as _hc:
+                    rpc_r = await _hc.post(
+                        f"{SUPABASE_URL}/rest/v1/rpc/on_payment_success",
+                        json={
+                            "p_user_id":      user_id,
+                            "p_reference_id": payment_id,
+                            "p_amount":       amount_sar,
+                            "p_plan_type":    plan_type,
+                            "p_product_id":   product_id,
+                            "p_product_name": product_nm,
+                            "p_gateway":      "moyasar",
+                            "p_metadata":     payload,
+                            "p_points_used":  points_used,
+                            "p_discount_sar": discount_sar,
+                        },
+                        headers=sb_hdrs,
+                    )
+                if rpc_r.status_code == 200:
+                    rpc_result = rpc_r.json()
+                    logger.info(f"[Webhook] on_payment_success → {rpc_result}")
+                else:
+                    logger.warning(f"[Webhook] on_payment_success HTTP {rpc_r.status_code}: {rpc_r.text[:200]}")
+            except Exception as _rpc_err:
+                logger.error(f"[Webhook] Supabase RPC error: {_rpc_err}")
+
+        # ── إطلاق مكافأة الإحالة (fallback إن لم تعمل الدالة SQL) ───
+        elif _REFERRAL_AVAILABLE and user_id:
             try:
                 reward_result = await trigger_referral_reward(user_id, payment_id)
-                logger.info(f"[Webhook] referral_reward → {reward_result}")
+                logger.info(f"[Webhook] referral_reward (fallback) → {reward_result}")
             except Exception as _rr_err:
                 logger.warning(f"[Webhook] referral_reward error: {_rr_err}")
 
-    return {"received": True}
+    # ── حالة الدفع الفاشل/المنتهي ────────────────────────────────────
+    elif status in ("failed", "expired", "voided") and payment_id and SUPABASE_URL:
+        svc_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY", SUPABASE_ANON_KEY)
+        try:
+            async with httpx.AsyncClient(timeout=10) as _hc:
+                await _hc.patch(
+                    f"{SUPABASE_URL}/rest/v1/transactions",
+                    params={"reference_id": f"eq.{payment_id}"},
+                    json={"status": status},
+                    headers={
+                        "apikey":        svc_key,
+                        "Authorization": f"Bearer {svc_key}",
+                        "Content-Type":  "application/json",
+                    },
+                )
+        except Exception as _fe:
+            logger.warning(f"[Webhook] failed-status update error: {_fe}")
+
+    return {"received": True, "payment_id": payment_id, "status": status}
 
 
 @app.get("/api/payment/status/{order_id}")
