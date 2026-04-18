@@ -3502,7 +3502,7 @@ function toggleNotifPanel(){
             </p>
             <div class="ds-stats">
               <div class="ds-stat"><span class="ds-stat-num">DALL-E 3</span><span class="ds-stat-lbl">محرك التصميم</span></div>
-              <div class="ds-stat"><span class="ds-stat-num">11</span><span class="ds-stat-lbl">نوع تصميم</span></div>
+              <div class="ds-stat"><span class="ds-stat-num">24</span><span class="ds-stat-lbl">نوع تصميم</span></div>
               <div class="ds-stat"><span class="ds-stat-num">ثوانٍ</span><span class="ds-stat-lbl">وقت الإنشاء</span></div>
               <div class="ds-stat"><span class="ds-stat-num">100%</span><span class="ds-stat-lbl">حصري لك</span></div>
             </div>
@@ -3517,12 +3517,30 @@ function toggleNotifPanel(){
           <i class="fa-solid fa-layer-group" style="color:#ec4899"></i> اختر نوع التصميم
         </div>
         <div class="ds-ai-types">
+          <!-- الخدمات الأساسية -->
           <div class="ds-ai-type active" data-type="logo" onclick="dsSelectType(this)"><i class="fa-solid fa-star"></i>شعار</div>
           <div class="ds-ai-type" data-type="stationery" onclick="dsSelectType(this)"><i class="fa-solid fa-id-card"></i>هوية بصرية</div>
-          <div class="ds-ai-type" data-type="social" onclick="dsSelectType(this)"><i class="fa-brands fa-instagram"></i>سوشيال ميديا</div>
+          <div class="ds-ai-type" data-type="bizcard" onclick="dsSelectType(this)"><i class="fa-solid fa-address-card"></i>بطاقة أعمال</div>
+          <!-- سوشيال ميديا -->
+          <div class="ds-ai-type" data-type="story" onclick="dsSelectType(this)"><i class="fa-brands fa-instagram"></i>ستوري انستغرام</div>
+          <div class="ds-ai-type" data-type="social" onclick="dsSelectType(this)"><i class="fa-solid fa-share-nodes"></i>بوست سوشيال</div>
+          <div class="ds-ai-type" data-type="cover" onclick="dsSelectType(this)"><i class="fa-brands fa-facebook"></i>غلاف صفحة</div>
+          <div class="ds-ai-type" data-type="snapchat" onclick="dsSelectType(this)"><i class="fa-brands fa-snapchat"></i>إعلان سناب</div>
+          <div class="ds-ai-type" data-type="youtube" onclick="dsSelectType(this)"><i class="fa-brands fa-youtube"></i>Thumbnail يوتيوب</div>
+          <!-- إعلانات -->
           <div class="ds-ai-type" data-type="banner" onclick="dsSelectType(this)"><i class="fa-solid fa-rectangle-ad"></i>بنر إعلاني</div>
+          <div class="ds-ai-type" data-type="offer" onclick="dsSelectType(this)"><i class="fa-solid fa-tags"></i>بوستر عروض</div>
+          <div class="ds-ai-type" data-type="seasonal" onclick="dsSelectType(this)"><i class="fa-solid fa-star-and-crescent"></i>بوستر موسمي</div>
+          <div class="ds-ai-type" data-type="event" onclick="dsSelectType(this)"><i class="fa-solid fa-calendar-star"></i>فلاير حدث</div>
+          <!-- مطبوعات -->
           <div class="ds-ai-type" data-type="menu" onclick="dsSelectType(this)"><i class="fa-solid fa-utensils"></i>منيو طعام</div>
           <div class="ds-ai-type" data-type="packaging" onclick="dsSelectType(this)"><i class="fa-solid fa-box-open"></i>تغليف منتج</div>
+          <div class="ds-ai-type" data-type="product" onclick="dsSelectType(this)"><i class="fa-solid fa-camera"></i>صورة منتج</div>
+          <div class="ds-ai-type" data-type="signage" onclick="dsSelectType(this)"><i class="fa-solid fa-store"></i>واجهة متجر</div>
+          <!-- أدوات متنوعة -->
+          <div class="ds-ai-type" data-type="infographic" onclick="dsSelectType(this)"><i class="fa-solid fa-chart-bar"></i>إنفوجرافيك</div>
+          <div class="ds-ai-type" data-type="certificate" onclick="dsSelectType(this)"><i class="fa-solid fa-certificate"></i>شهادة تقدير</div>
+          <div class="ds-ai-type" data-type="tshirt" onclick="dsSelectType(this)"><i class="fa-solid fa-shirt"></i>تصميم تي شيرت</div>
           <div class="ds-ai-type" data-type="motion" onclick="dsSelectType(this)"><i class="fa-solid fa-film"></i>موشن جرافيك</div>
           <div class="ds-ai-type" data-type="presentation" onclick="dsSelectType(this)"><i class="fa-solid fa-display"></i>عرض تقديمي</div>
           <div class="ds-ai-type" data-type="catalogue" onclick="dsSelectType(this)"><i class="fa-solid fa-book-open"></i>كتالوج</div>
@@ -4792,7 +4810,7 @@ function submitDesignOrder() {
   const phone = (document.getElementById('d-phone')?.value||'').trim();
   if (!name || !phone) return showToast('يرجى ملء الاسم ورقم الواتساب');
   const desc = document.getElementById('d-desc')?.value||'';
-  const typeNames = {logo:'شعار',stationery:'هوية بصرية',social:'سوشيال ميديا',banner:'بنر',menu:'منيو',packaging:'تغليف',motion:'موشن',presentation:'عرض تقديمي',catalogue:'كتالوج',print:'مطبوعات',ebook:'غلاف كتاب'};
+  const typeNames = {logo:'شعار',stationery:'هوية بصرية',bizcard:'بطاقة أعمال',story:'ستوري انستغرام',social:'بوست سوشيال',cover:'غلاف صفحة',snapchat:'إعلان سناب شات',youtube:'Thumbnail يوتيوب',banner:'بنر إعلاني',offer:'بوستر عروض',seasonal:'بوستر موسمي',event:'فلاير حدث',menu:'منيو طعام',packaging:'تغليف منتج',product:'صورة منتج',signage:'واجهة متجر',infographic:'إنفوجرافيك',certificate:'شهادة تقدير',tshirt:'تصميم تي شيرت',motion:'موشن جرافيك',presentation:'عرض تقديمي',catalogue:'كتالوج',print:'مطبوعات',ebook:'غلاف كتاب'};
   const msg = `🎨 طلب نسخة احترافية — استوديو جنان بيز\n\nالعميل: ${name}\nواتساب: ${phone}\nنوع التصميم: ${typeNames[_dsType]||_dsType}\nالعلامة التجارية: ${_dsBrand}\n${desc?'ملاحظات: '+desc:''}`;
   closeDesignOrder();
   window.open('https://wa.me/' + DESIGN_WA + '?text=' + encodeURIComponent(msg), '_blank');
