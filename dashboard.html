@@ -2003,6 +2003,9 @@ function gotoSub(page,groupId,subItemId){
   if(typeof _jbSyncPage==='function') _jbSyncPage();
   if(typeof _syncInvAdvisorBtn==='function') _syncInvAdvisorBtn();
 }
+function goToPricingPage(){
+  window.location.href='pricing.html';
+}
 document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanModal();});
 </script>
 </head>
@@ -2387,7 +2390,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanMo
         </div>
 
         <!-- ══ خلية 7: CTA ترقية الباقة ══ -->
-        <div class="bento-cell bento-upgrade" id="bento-upgrade-cell" onclick="openPlanModal()">
+        <div class="bento-cell bento-upgrade" id="bento-upgrade-cell" onclick="goToPricingPage()" style="cursor:pointer">
           <div class="bento-upgrade-bar">
             <div class="bento-upgrade-bar-icon"><i class="fa-solid fa-crown"></i></div>
             <div class="bento-upgrade-bar-body">
