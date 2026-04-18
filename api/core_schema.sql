@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS profiles (
 
   -- دور المستخدم في المنصة
   role            TEXT NOT NULL DEFAULT 'free'
-                    CHECK (role IN ('free', 'biz', 'pro', 'admin')),
+                    CHECK (role IN ('free', 'biz', 'pro', 'platinum', 'admin')),
   --  free  = مجاني (3 تقارير)
   --  biz   = جنان بيز (اشتراك استشارات — النقاط مفعّلة)
   --  pro   = جنان برو (اشتراك تقني   — النقاط مُعطَّلة)
@@ -279,7 +279,8 @@ CREATE OR REPLACE FUNCTION on_payment_success(
   p_user_id       TEXT,         -- user UUID كـ TEXT
   p_reference_id  TEXT,         -- Moyasar payment_id
   p_amount        NUMERIC,      -- بالريال
-  p_plan_type     TEXT,         -- biz_monthly | biz_yearly | pro_monthly | pro_yearly
+  p_plan_type     TEXT,         -- platinum_monthly | platinum_yearly | biz_monthly | ...
+  p_plan_name     TEXT DEFAULT NULL,  -- platinum | biz | pro (الدور المباشر)
   p_product_id    TEXT DEFAULT NULL,
   p_product_name  TEXT DEFAULT NULL,
   p_gateway       TEXT DEFAULT 'moyasar',
@@ -326,8 +327,10 @@ BEGIN
 
   -- ── ج) تحديد الدور الجديد ────────────────────────────────────────────
   v_new_role := CASE
-    WHEN p_plan_type LIKE 'biz_%' THEN 'biz'
-    WHEN p_plan_type LIKE 'pro_%' THEN 'pro'
+    WHEN p_plan_name IS NOT NULL AND p_plan_name != '' THEN p_plan_name
+    WHEN p_plan_type LIKE 'platinum_%' THEN 'platinum'
+    WHEN p_plan_type LIKE 'biz_%'      THEN 'biz'
+    WHEN p_plan_type LIKE 'pro_%'      THEN 'pro'
     ELSE 'free'
   END;
 

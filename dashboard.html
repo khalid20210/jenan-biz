@@ -91,9 +91,28 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.08));
   border:1px solid rgba(245,158,11,.35);
   color:#b45309;font-size:.85rem;font-weight:700;
-  white-space:nowrap;
+  white-space:nowrap;transition:background .3s,border-color .3s,color .3s;
 }
 [data-theme="dark"] .bento-plan-badge{color:#fbbf24;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.12)}
+/* بلاتيني */
+.bento-plan-badge.is-platinum{
+  background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.12));
+  border-color:rgba(139,92,246,.45);color:#4f46e5;
+}
+[data-theme="dark"] .bento-plan-badge.is-platinum{color:#a78bfa;border-color:rgba(139,92,246,.5);background:rgba(99,102,241,.15)}
+/* مشترك — خلية الترقية */
+.bento-upgrade.is-subscribed{
+  background:linear-gradient(135deg,rgba(5,150,105,.08),rgba(16,185,129,.05)) !important;
+  border-color:rgba(16,185,129,.3) !important;
+}
+.bento-upgrade.is-subscribed .bento-upgrade-icon{
+  background:linear-gradient(135deg,#059669,#10b981);
+  box-shadow:0 6px 20px rgba(16,185,129,.35);
+}
+.bento-upgrade.is-subscribed .bento-upgrade-btn{
+  background:linear-gradient(135deg,#059669,#10b981);
+  cursor:default;pointer-events:none;
+}
 
 /* Grid container */
 .bento-grid{
@@ -4739,6 +4758,76 @@ function toggleNotifPanel(){
     </div>
 
     <!-- ===== REFERRAL (نظام الإحالات والنقاط) ===== -->
+    <!-- ===== صفحة الاشتراك ===== -->
+    <div class="page" id="page-billing">
+
+      <!-- Hero -->
+      <div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:20px;padding:2rem;margin-bottom:1.5rem;color:#fff;position:relative;overflow:hidden">
+        <div style="position:absolute;left:-20px;top:-20px;font-size:8rem;opacity:.07;line-height:1">💎</div>
+        <h2 style="font-size:1.4rem;font-weight:900;margin-bottom:.3rem">
+          <i class="fa-solid fa-gem" style="margin-left:.5rem;color:#e0c7ff"></i>
+          اشترك في الباقة البلاتينية
+        </h2>
+        <p style="opacity:.85;font-size:.88rem;margin:0">
+          احصل على وصول كامل لجميع خدمات جنان — بلا قيود وبأسعار تنافسية
+        </p>
+      </div>
+
+      <!-- بطاقة الباقة البلاتينية -->
+      <div style="background:var(--card);border-radius:20px;padding:2rem;margin-bottom:1.25rem;box-shadow:var(--shadow);border:2px solid rgba(99,102,241,.25);position:relative;overflow:hidden">
+        <!-- شارة "الأكثر شعبية" -->
+        <div style="position:absolute;top:1rem;left:1rem;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:.72rem;font-weight:800;padding:.3rem .8rem;border-radius:20px">
+          ⭐ الأكثر طلباً
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;margin-top:.5rem">
+          <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;box-shadow:0 8px 24px rgba(99,102,241,.4)">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <div>
+            <div style="font-size:1.2rem;font-weight:900;color:var(--text)">باقة بلاتينية</div>
+            <div style="font-size:.82rem;color:var(--muted)">وصول كامل بلا قيود</div>
+          </div>
+          <div style="margin-right:auto;text-align:left">
+            <div style="font-size:1.8rem;font-weight:900;color:#4f46e5">99 <span style="font-size:.9rem;color:var(--muted)">ر.س</span></div>
+            <div style="font-size:.75rem;color:var(--muted)">/شهرياً</div>
+          </div>
+        </div>
+
+        <!-- قائمة الميزات -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.75rem">
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check-circle" style="color:#4f46e5"></i> دراسات جدوى غير محدودة</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check-circle" style="color:#4f46e5"></i> تقارير احترافية فورية</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check-circle" style="color:#4f46e5"></i> المساعد الذكي 24/7</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check-circle" style="color:#4f46e5"></i> تحليل مشاريع متقدم</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check-circle" style="color:#4f46e5"></i> خدمات التصميم</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check-circle" style="color:#4f46e5"></i> الامتثال القانوني</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check-circle" style="color:#4f46e5"></i> سوق المشاريع والمستثمرين</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem"><i class="fa-solid fa-check-circle" style="color:#4f46e5"></i> برامج محاسبية ومتاجر</div>
+        </div>
+
+        <!-- زر الاشتراك -->
+        <button id="billing-subscribe-btn" onclick="startCheckout('platinum_monthly',99)"
+          style="width:100%;padding:1rem;border:none;border-radius:14px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:1rem;font-weight:900;cursor:pointer;font-family:'Tajawal',sans-serif;box-shadow:0 8px 24px rgba(99,102,241,.4);transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:.65rem">
+          <i class="fa-solid fa-gem"></i> اشترك الآن بـ 99 ر.س/شهر
+        </button>
+
+        <!-- ضمان + Moyasar -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1rem;font-size:.75rem;color:var(--muted)">
+          <span><i class="fa-solid fa-shield-halved" style="color:#4f46e5"></i> دفع آمن</span>
+          <span><i class="fa-solid fa-rotate-right" style="color:#4f46e5"></i> يمكن الإلغاء في أي وقت</span>
+          <span><i class="fa-solid fa-lock" style="color:#4f46e5"></i> مدفوعات بـ Moyasar</span>
+        </div>
+      </div>
+
+      <!-- حالة المشترك الحالي -->
+      <div id="billing-active-msg" style="display:none;background:linear-gradient(135deg,rgba(5,150,105,.1),rgba(16,185,129,.06));border:1px solid rgba(16,185,129,.3);border-radius:16px;padding:1.5rem;text-align:center">
+        <div style="font-size:2rem;margin-bottom:.5rem">🎉</div>
+        <div style="font-weight:900;font-size:1.05rem;color:#059669">أنت مشترك بالفعل!</div>
+        <div style="font-size:.85rem;color:var(--muted);margin-top:.3rem">اشتراكك البلاتيني نشط — استمتع بجميع الخدمات</div>
+      </div>
+
+    </div><!-- end page-billing -->
+
     <div class="page" id="page-referral">
 
       <!-- HERO -->
@@ -5147,23 +5236,47 @@ function initBentoHome(){
 
     /* الباقة */
     var plan = (d.subscription && d.subscription.plan) ? d.subscription.plan : 'free';
-    var planLabels = { free:'حساب أساسي', biz:'jenan biz', pro:'jenan pro' };
-    var planIcons  = { free:'fa-solid fa-user-check', biz:'fa-solid fa-briefcase', pro:'fa-solid fa-terminal' };
-    var lbl = document.getElementById('bento-plan-label');
+    var planLabels = {
+      free:     'حساب أساسي',
+      platinum: 'بلاتيني',
+      biz:      'jenan biz',
+      pro:      'jenan pro',
+    };
+    var planIcons = {
+      free:     'fa-solid fa-user-check',
+      platinum: 'fa-solid fa-gem',
+      biz:      'fa-solid fa-briefcase',
+      pro:      'fa-solid fa-terminal',
+    };
+    var lbl   = document.getElementById('bento-plan-label');
     var badge = document.getElementById('bento-plan-badge');
     if(lbl) lbl.textContent = planLabels[plan] || planLabels.free;
     if(badge){
       var ico = badge.querySelector('i');
       if(ico) ico.className = planIcons[plan] || planIcons.free;
-      if(plan !== 'free'){
-        badge.style.background = 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))';
-        badge.style.borderColor = 'rgba(78,115,194,.35)';
-        badge.style.color = '#1e3a8a';
+      /* تلوين البادج حسب الباقة */
+      badge.classList.remove('is-platinum');
+      if(plan === 'platinum' || plan === 'biz' || plan === 'pro'){
+        badge.classList.add('is-platinum');
       }
     }
-    if(plan !== 'free'){
-      var cell = document.getElementById('bento-upgrade-cell');
-      if(cell) cell.style.display = 'none';
+    /* تحديث خلية الترقية */
+    var upgradeCell = document.getElementById('bento-upgrade-cell');
+    var upgradeTitle = document.getElementById('bento-upgrade-title');
+    var upgradeDesc  = document.getElementById('bento-upgrade-desc');
+    var upgradeBtn   = upgradeCell ? upgradeCell.querySelector('.bento-upgrade-btn') : null;
+    var upgradeIcon  = upgradeCell ? upgradeCell.querySelector('.bento-upgrade-icon i') : null;
+    if(plan !== 'free' && upgradeCell){
+      /* مشترك — تغيير لون الخلية وعرض رسالة ترحيب */
+      upgradeCell.classList.add('is-subscribed');
+      if(upgradeIcon)  upgradeIcon.className = 'fa-solid fa-circle-check';
+      if(upgradeTitle) upgradeTitle.textContent = 'أنت مشترك! 🎉';
+      if(upgradeDesc)  upgradeDesc.textContent  = 'تمتع بجميع ميزات الباقة البلاتينية بلا قيود';
+      if(upgradeBtn){  upgradeBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> باقة نشطة'; }
+    } else if(upgradeCell){
+      /* غير مشترك — الزر يفتح صفحة الاشتراك */
+      upgradeCell.classList.remove('is-subscribed');
+      if(upgradeBtn) upgradeBtn.onclick = function(){ goto('billing'); };
     }
 
     /* بانر الإيداع الافتتاحي */
@@ -5401,6 +5514,7 @@ function goto(page) {
   if(page==='admin') renderAdminPanel();
   if(page==='compliance') initCompliancePage();
   if(page==='referral') loadReferralData();
+  if(page==='billing')  initBillingPage();
   // مزامنة روبوت جنان العالمي
   if (typeof _jbSyncPage === 'function') _jbSyncPage();
   // مزامنة مستشار الاستثمار
@@ -11237,6 +11351,59 @@ function renderSupplyGrid() {
 // ════════════════════════════════════════════════════════
 const _API_BASE = (typeof API_BASE !== 'undefined') ? API_BASE : 'http://localhost:8002';
 let _refProfile = null;
+
+/* ===== صفحة الاشتراك (Billing) ===== */
+function initBillingPage(){
+  /* إذا كان المستخدم مشتركاً بالفعل — أخفي بطاقة الاشتراك وأظهر رسالة */
+  var token = localStorage.getItem('jb-token') || '';
+  var subscribeCard = document.querySelector('#page-billing > div:nth-child(2)');
+  var activeMsg = document.getElementById('billing-active-msg');
+  var subscribeBtn = document.getElementById('billing-subscribe-btn');
+  if(!token) return;
+  /* نجلب الخطة الحالية من الـ cache */
+  fetch('/api/dashboard/overview', { headers:{ 'Authorization':'Bearer '+token } })
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(d){
+    if(!d) return;
+    var plan = d.subscription && d.subscription.plan ? d.subscription.plan : 'free';
+    if(plan !== 'free'){
+      /* مشترك — إخفاء زر الشراء */
+      if(subscribeBtn) subscribeBtn.style.display = 'none';
+      if(activeMsg) activeMsg.style.display = 'block';
+    } else {
+      if(subscribeBtn) subscribeBtn.style.display = '';
+      if(activeMsg) activeMsg.style.display = 'none';
+    }
+  }).catch(function(){});
+}
+
+/* بدء عملية الدفع عبر Moyasar */
+function startCheckout(planType, amountSar){
+  var token = localStorage.getItem('jb-token') || '';
+  if(!token){ alert('يرجى تسجيل الدخول أولاً'); return; }
+  var btn = document.getElementById('billing-subscribe-btn');
+  if(btn){ btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جارٍ التحضير...'; }
+
+  fetch('/api/payment/checkout', {
+    method:'POST',
+    headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json' },
+    body: JSON.stringify({ plan_type: planType, amount_sar: amountSar })
+  })
+  .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+  .then(function(data){
+    if(data && data.checkout_url){
+      window.location.href = data.checkout_url;
+    } else {
+      alert('حدث خطأ أثناء إنشاء رابط الدفع. حاول مجدداً.');
+      if(btn){ btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-gem"></i> اشترك الآن بـ 99 ر.س/شهر'; }
+    }
+  })
+  .catch(function(err){
+    alert('تعذّر الاتصال بخادم الدفع. حاول مجدداً.');
+    if(btn){ btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-gem"></i> اشترك الآن بـ 99 ر.س/شهر'; }
+  });
+}
+/* ===== نهاية صفحة الاشتراك ===== */
 
 async function loadReferralData() {
   try {

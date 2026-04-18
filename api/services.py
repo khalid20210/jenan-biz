@@ -1791,20 +1791,42 @@ async def dashboard_overview(user_id: str = Depends(get_user_id)):
                 if r1.status_code == 200:
                     reports_count = len(r1.json())
 
-                # الباقة الحالية (subscriptions نشطة)
+                # الباقة الحالية — نجلب plan_type ونحوّله لـ role (platinum/biz/pro/free)
                 r2 = await cl.get(
                     f"{sb_url}/rest/v1/subscriptions",
                     headers=hdrs,
                     params={
                         "user_id": f"eq.{user_id}",
                         "status": "eq.active",
-                        "select": "plan_name",
+                        "select": "plan_type,plan_name",
                         "order": "created_at.desc",
                         "limit": "1",
                     },
                 )
                 if r2.status_code == 200 and r2.json():
-                    plan = r2.json()[0].get("plan_name", "free")
+                    row = r2.json()[0]
+                    # plan_name مباشر (platinum/biz/pro) أو نشتقه من plan_type
+                    _pn = row.get("plan_name") or ""
+                    _pt = row.get("plan_type") or ""
+                    if _pn and _pn not in ("", "free"):
+                        plan = _pn
+                    elif _pt.startswith("platinum"):
+                        plan = "platinum"
+                    elif _pt.startswith("biz"):
+                        plan = "biz"
+                    elif _pt.startswith("pro"):
+                        plan = "pro"
+                # fallback: role من جدول profiles
+                if plan == "free":
+                    r_role = await cl.get(
+                        f"{sb_url}/rest/v1/profiles",
+                        headers=hdrs,
+                        params={"id": f"eq.{user_id}", "select": "role"},
+                    )
+                    if r_role.status_code == 200 and r_role.json():
+                        _role = r_role.json()[0].get("role", "free")
+                        if _role in ("platinum", "biz", "pro"):
+                            plan = _role
     except Exception as e:
         logger.warning(f"dashboard_overview: stats error: {e}")
 
@@ -2027,6 +2049,65 @@ async def payment_create_order(body: PaymentCreateInput, x_api_key: Optional[str
         }
 
 
+# ── Checkout endpoint — يُنشئ رابط Moyasar ويُعيده للـ frontend ──────────────
+class CheckoutInput(BaseModel):
+    plan_type:  str  # platinum_monthly | platinum_yearly
+    amount_sar: float
+
+@app.post("/api/payment/checkout")
+async def payment_checkout(body: CheckoutInput, user_id: str = Depends(get_user_id)):
+    """
+    يُنشئ طلب دفع في Moyasar ويُعيد checkout_url.
+    يحتوي الـ metadata على user_id و plan_type لاستخدامها في الـ webhook.
+    """
+    import httpx, os
+
+    secret_key   = os.getenv("MOYASAR_SECRET_KEY", "")
+    callback_url = os.getenv("APP_BASE_URL", "https://jenan.biz") + "/dashboard.html?payment=success"
+
+    plan_labels = {
+        "platinum_monthly": "باقة بلاتينية شهرية",
+        "platinum_yearly":  "باقة بلاتينية سنوية",
+    }
+    description = plan_labels.get(body.plan_type, "اشتراك جنان بيز")
+
+    moyasar_payload = {
+        "amount":       int(body.amount_sar * 100),   # هللات
+        "currency":     "SAR",
+        "description":  description,
+        "callback_url": callback_url,
+        "source":       {"type": "creditcard"},
+        "metadata": {
+            "user_id":   user_id,
+            "plan_type": body.plan_type,
+            "plan_name": "platinum",
+        },
+    }
+
+    if not secret_key or secret_key.startswith("sk_test_your"):
+        # وضع التطوير — أعد رابطاً وهمياً
+        return {"checkout_url": f"/dashboard.html?payment=demo&plan={body.plan_type}"}
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as cl:
+            r = await cl.post(
+                "https://api.moyasar.com/v1/payments",
+                json=moyasar_payload,
+                auth=(secret_key, ""),
+            )
+        data = r.json()
+        # استخرج رابط الدفع من مصادر بطاقة الائتمان
+        checkout_url = (
+            data.get("source", {}).get("transaction_url") or
+            data.get("redirect_url") or
+            callback_url
+        )
+        return {"checkout_url": checkout_url, "payment_id": data.get("id")}
+    except Exception as exc:
+        logger.error(f"[checkout] Moyasar error: {exc}")
+        raise HTTPException(502, "تعذّر إنشاء طلب الدفع، حاول لاحقاً")
+
+
 @app.post("/api/payment/webhook")
 async def payment_webhook(request: Request):
     """
@@ -2053,7 +2134,19 @@ async def payment_webhook(request: Request):
     # ── حالة الدفع الناجح ────────────────────────────────────────────
     if status == "paid" and payment_id:
         user_id    = metadata.get("user_id") or metadata.get("customer_id") or ""
-        plan_type  = metadata.get("plan_type") or metadata.get("plan_name", "").lower().replace(" ", "_") or "biz_monthly"
+        raw_plan   = metadata.get("plan_name") or metadata.get("plan_type", "")
+        # تحويل plan_type → plan_name المُخزَّن في profiles.role
+        _plan_map = {
+            "platinum_monthly": "platinum",
+            "platinum_yearly":  "platinum",
+            "biz_monthly":      "biz",
+            "pro_monthly":      "pro",
+            "biz":              "biz",
+            "pro":              "pro",
+            "platinum":         "platinum",
+        }
+        plan_name  = _plan_map.get(raw_plan.lower().replace(" ", "_"), "platinum")
+        plan_type  = raw_plan or "platinum_monthly"
         product_id = metadata.get("product_id", "")
         product_nm = metadata.get("product_name", "")
         points_used = int(metadata.get("points_used", 0))
@@ -2076,6 +2169,7 @@ async def payment_webhook(request: Request):
                             "p_reference_id": payment_id,
                             "p_amount":       amount_sar,
                             "p_plan_type":    plan_type,
+                            "p_plan_name":    plan_name,   # platinum | biz | pro
                             "p_product_id":   product_id,
                             "p_product_name": product_nm,
                             "p_gateway":      "moyasar",
@@ -2088,6 +2182,8 @@ async def payment_webhook(request: Request):
                 if rpc_r.status_code == 200:
                     rpc_result = rpc_r.json()
                     logger.info(f"[Webhook] on_payment_success → {rpc_result}")
+                    # مسح cache الـ dashboard ليعكس الباقة الجديدة فوراً
+                    _dash_cache.pop(user_id, None)
                 else:
                     logger.warning(f"[Webhook] on_payment_success HTTP {rpc_r.status_code}: {rpc_r.text[:200]}")
             except Exception as _rpc_err:
