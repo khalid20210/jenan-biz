@@ -1067,6 +1067,43 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .modal-close-btn{position:absolute;top:.85rem;left:.85rem;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:.92rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:10}
 .modal-close-btn:hover{background:#e74c3c;color:#fff;border-color:#e74c3c;transform:scale(1.08)}
 
+/* ══ DESIGN STUDIO — تحديث ══ */
+.ds-hero{background:linear-gradient(135deg,#1a0030 0%,#3b0764 50%,#1a0030 100%);border-radius:20px;padding:2.5rem 2rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.ds-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ec4899' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.ds-hero-grid{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center}
+.ds-hero h2{font-size:1.6rem;font-weight:900;color:#fff;margin-bottom:.5rem}
+.ds-hero p{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.7}
+.ds-stats{display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:1.25rem}
+.ds-stat{text-align:center}
+.ds-stat-num{font-size:1.5rem;font-weight:900;color:#ec4899;display:block}
+.ds-stat-lbl{font-size:.72rem;color:rgba(255,255,255,.55)}
+.ds-hero-icon{width:90px;height:90px;border-radius:24px;background:rgba(236,72,153,.15);border:1.5px solid rgba(236,72,153,.3);display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0}
+.ds-process{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.75rem}
+.ds-step{background:var(--card);border-radius:14px;padding:1.1rem 1rem;border:1px solid var(--border);text-align:center;position:relative}
+.ds-step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#f43f5e);color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center;margin:0 auto .6rem}
+.ds-step h4{font-size:.85rem;font-weight:800;color:var(--text);margin-bottom:.3rem}
+.ds-step p{font-size:.75rem;color:var(--muted);line-height:1.5;margin:0}
+.ds-section-title{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.ds-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.design-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-bottom:2rem}
+.ds-guarantee{background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(244,63,94,.05));border:1px solid rgba(236,72,153,.2);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;margin-top:1rem}
+.ds-guarantee i{font-size:1.8rem;color:#ec4899;flex-shrink:0}
+.ds-guarantee h4{font-size:.92rem;font-weight:800;color:var(--text);margin-bottom:.2rem}
+.ds-guarantee p{font-size:.78rem;color:var(--muted);margin:0}
+/* modal multi-step */
+.ds-modal-steps{position:relative}
+.ds-modal-step{display:none}
+.ds-modal-step.active{display:block}
+.ds-pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:.75rem 0}
+.ds-pkg{border:2px solid var(--border);border-radius:12px;padding:.9rem;cursor:pointer;transition:var(--tr)}
+.ds-pkg:hover,.ds-pkg.selected{border-color:#ec4899;background:rgba(236,72,153,.07)}
+.ds-pkg-name{font-size:.85rem;font-weight:800;color:var(--text);margin-bottom:.2rem}
+.ds-pkg-price{font-size:1.1rem;font-weight:900;color:#ec4899}
+.ds-pkg-desc{font-size:.72rem;color:var(--muted);margin-top:.3rem}
+.ds-step-indicator{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.25rem}
+.ds-step-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:var(--tr)}
+.ds-step-dot.active{background:#ec4899;width:24px;border-radius:4px}
+
 /* ══ SOFTWARE STORE ══ */
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem;margin-top:1.5rem}
 .sw-card{background:var(--card);border-radius:16px;padding:1.4rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:.7rem;transition:var(--tr)}
@@ -3374,132 +3411,206 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 
     <!-- ===== DESIGN ===== -->
     <div class="page" id="page-design">
-      <div class="sec-hd">
-        <div>
-          <h2><i class="fa-solid fa-pen-nib" style="color:#ec4899;margin-left:.5rem"></i>التصميم والإبداع</h2>
-          <p>أدوات تصميم احترافية لبناء هوية بصرية قوية لمشروعك</p>
+
+      <!-- HERO -->
+      <div class="ds-hero">
+        <div class="ds-hero-grid">
+          <div>
+            <h2 class="ds-hero" style="background:none;border-radius:0;padding:0;margin:0"><i class="fa-solid fa-pen-nib" style="color:#ec4899;margin-left:.5rem"></i>استوديو التصميم والإبداع</h2>
+            <p style="color:rgba(255,255,255,.7);font-size:.88rem;margin-top:.4rem">نبني هويتك البصرية من الصفر — شعار، هوية، سوشيال ميديا، وكل ما تحتاجه</p>
+            <div class="ds-stats">
+              <div class="ds-stat"><span class="ds-stat-num">+500</span><span class="ds-stat-lbl">عميل سعيد</span></div>
+              <div class="ds-stat"><span class="ds-stat-num">+1200</span><span class="ds-stat-lbl">تصميم مُسلَّم</span></div>
+              <div class="ds-stat"><span class="ds-stat-num">5★</span><span class="ds-stat-lbl">تقييم متوسط</span></div>
+              <div class="ds-stat"><span class="ds-stat-num">100%</span><span class="ds-stat-lbl">رضا مضمون</span></div>
+            </div>
+          </div>
+          <div class="ds-hero-icon">🎨</div>
         </div>
       </div>
+
+      <!-- كيف نعمل معك -->
+      <div class="ds-section-title"><i class="fa-solid fa-arrow-trend-up" style="color:#ec4899"></i> كيف نعمل معك</div>
+      <div class="ds-process">
+        <div class="ds-step">
+          <div class="ds-step-num">1</div>
+          <h4>اختر خدمتك</h4>
+          <p>اضغط على الخدمة التي تناسبك وأرسل تفاصيل طلبك</p>
+        </div>
+        <div class="ds-step">
+          <div class="ds-step-num">2</div>
+          <h4>نراجع الطلب</h4>
+          <p>يتواصل معك فريقنا خلال 4 ساعات لتأكيد التفاصيل والسعر</p>
+        </div>
+        <div class="ds-step">
+          <div class="ds-step-num">3</div>
+          <h4>نبدأ التصميم</h4>
+          <p>تصميم احترافي مع تعديلات مجانية حتى رضاك التام</p>
+        </div>
+        <div class="ds-step">
+          <div class="ds-step-num">4</div>
+          <h4>تسليم الملفات</h4>
+          <p>تحصل على جميع صيغ الملفات جاهزة للطباعة والنشر</p>
+        </div>
+      </div>
+
+      <!-- الخدمات -->
+      <div class="ds-section-title"><i class="fa-solid fa-layer-group" style="color:#ec4899"></i> خدماتنا</div>
       <div class="design-grid">
-        <!-- شعارات -->
         <div class="design-service-card" onclick="showDesignOrder('logo')">
           <div class="ds-icon" style="background:linear-gradient(135deg,#ec4899,#f43f5e)"><i class="fa-solid fa-star"></i></div>
           <h3>تصميم شعار احترافي</h3>
-          <p>شعار فريد يعبر عن هويتك التجارية — مناسب لجميع المنصات</p>
+          <p>شعار فريد يعبر عن هويتك التجارية — مناسب لجميع المنصات والأحجام</p>
           <div class="ds-tags"><span>SVG + PNG</span><span>3 مقترحات</span><span>تعديلات غير محدودة</span></div>
-          <div class="ds-price">من <strong>299 ر.س</strong></div>
+          <div class="ds-price">من <strong>299 ر.س</strong> · التسليم خلال 3 أيام</div>
           <button class="ds-btn">اطلب الآن</button>
         </div>
-        <!-- ورق رسمي -->
         <div class="design-service-card" onclick="showDesignOrder('stationery')">
-          <div class="ds-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)"><i class="fa-solid fa-file-lines"></i></div>
+          <div class="ds-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)"><i class="fa-solid fa-id-card"></i></div>
           <h3>هوية بصرية كاملة</h3>
-          <p>ورق رسمي، بطاقة أعمال، غلاف سوشيال ميديا، وأكثر</p>
-          <div class="ds-tags"><span>6 قطع</span><span>Editable</span><span>ورق رسمي</span></div>
-          <div class="ds-price">من <strong>599 ر.س</strong></div>
+          <p>شعار + ورق رسمي + بطاقة أعمال + غلاف سوشيال ميديا وأكثر</p>
+          <div class="ds-tags"><span>8 قطع</span><span>Editable</span><span>جاهزة للطباعة</span></div>
+          <div class="ds-price">من <strong>599 ر.س</strong> · التسليم خلال 5 أيام</div>
           <button class="ds-btn">اطلب الآن</button>
         </div>
-        <!-- سوشيال ميديا -->
         <div class="design-service-card" onclick="showDesignOrder('social')">
           <div class="ds-icon" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8)"><i class="fa-brands fa-instagram"></i></div>
-          <h3>تصميم قالب سوشيال ميديا</h3>
-          <p>قوالب جاهزة للنشر على إنستقرام، تويتر، سناب شات</p>
-          <div class="ds-tags"><span>10 قوالب</span><span>Canva</span><span>Post + Story</span></div>
-          <div class="ds-price">من <strong>199 ر.س</strong></div>
+          <h3>قوالب سوشيال ميديا</h3>
+          <p>قوالب جاهزة للنشر على إنستقرام، تويتر، سناب شات وتيك توك</p>
+          <div class="ds-tags"><span>15 قالب</span><span>Post + Story + Reel</span><span>Editable</span></div>
+          <div class="ds-price">من <strong>199 ر.س</strong> · التسليم خلال يومين</div>
           <button class="ds-btn">اطلب الآن</button>
         </div>
-        <!-- بنر وإعلانات -->
         <div class="design-service-card" onclick="showDesignOrder('banner')">
           <div class="ds-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fa-solid fa-rectangle-ad"></i></div>
           <h3>بنر وإعلانات رقمية</h3>
-          <p>تصميم بنرات إعلانية لجوجل، سوشيال ميديا، والمواقع</p>
-          <div class="ds-tags"><span>جميع الأحجام</span><span>GIF</span><span>HTML5</span></div>
-          <div class="ds-price">من <strong>149 ر.س</strong></div>
+          <p>تصميم بنرات إعلانية لجوجل، سوشيال ميديا والمواقع الإلكترونية</p>
+          <div class="ds-tags"><span>جميع الأحجام</span><span>GIF متحرك</span><span>HTML5</span></div>
+          <div class="ds-price">من <strong>149 ر.س</strong> · التسليم خلال 24 ساعة</div>
           <button class="ds-btn">اطلب الآن</button>
         </div>
-        <!-- قائمة مطعم -->
         <div class="design-service-card" onclick="showDesignOrder('menu')">
           <div class="ds-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-utensils"></i></div>
-          <h3>تصميم منيو وقائمة طعام</h3>
-          <p>قائمة طعام أنيقة مطبوعة أو رقمية (QR Code)</p>
-          <div class="ds-tags"><span>A4 + A3</span><span>PDF</span><span>QR</span></div>
-          <div class="ds-price">من <strong>249 ر.س</strong></div>
+          <h3>منيو وقائمة طعام</h3>
+          <p>قائمة طعام أنيقة للطباعة أو رقمية بـ QR Code قابل للتحديث</p>
+          <div class="ds-tags"><span>A4 + A3</span><span>PDF</span><span>QR Code</span></div>
+          <div class="ds-price">من <strong>249 ر.س</strong> · التسليم خلال 3 أيام</div>
           <button class="ds-btn">اطلب الآن</button>
         </div>
-        <!-- تغليف منتجات -->
         <div class="design-service-card" onclick="showDesignOrder('packaging')">
           <div class="ds-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)"><i class="fa-solid fa-box-open"></i></div>
           <h3>تصميم تغليف وعبوات</h3>
-          <p>تصميم علبة، مكيف، أو قارورة بهوية بصرية مميزة</p>
-          <div class="ds-tags"><span>Dieline</span><span>3D Mock</span><span>جاهز للطباعة</span></div>
-          <div class="ds-price">من <strong>399 ر.س</strong></div>
+          <p>تصميم علبة، مكيف، قارورة، أو كيس بهوية بصرية مميزة</p>
+          <div class="ds-tags"><span>Dieline</span><span>3D Mockup</span><span>جاهز للطباعة</span></div>
+          <div class="ds-price">من <strong>399 ر.س</strong> · التسليم خلال 4 أيام</div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <div class="design-service-card" onclick="showDesignOrder('motion')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#6366f1,#4f46e5)"><i class="fa-solid fa-film"></i></div>
+          <h3>موشن جرافيك وإنفوجرافيك</h3>
+          <p>فيديوهات تعريفية متحركة وإنفوجرافيك احترافي لمشروعك</p>
+          <div class="ds-tags"><span>MP4</span><span>GIF</span><span>مدة 30-60 ث</span></div>
+          <div class="ds-price">من <strong>499 ر.س</strong> · التسليم خلال 5 أيام</div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <div class="design-service-card" onclick="showDesignOrder('presentation')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#f97316,#ea580c)"><i class="fa-solid fa-display"></i></div>
+          <h3>تصميم عرض تقديمي</h3>
+          <p>عروض PowerPoint وKeynote احترافية لاجتماعاتك واستثماراتك</p>
+          <div class="ds-tags"><span>PPTX + PDF</span><span>Animated</span><span>Editable</span></div>
+          <div class="ds-price">من <strong>349 ر.س</strong> · التسليم خلال 3 أيام</div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <div class="design-service-card" onclick="showDesignOrder('catalogue')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#0891b2,#0e7490)"><i class="fa-solid fa-book-open"></i></div>
+          <h3>كتالوج وبروشور منتجات</h3>
+          <p>كتالوج منتجاتك بتصميم راقٍ مناسب للطباعة والتوزيع الرقمي</p>
+          <div class="ds-tags"><span>A4 / A5</span><span>PDF تفاعلي</span><span>طباعة عالية الدقة</span></div>
+          <div class="ds-price">من <strong>449 ر.س</strong> · التسليم خلال 4 أيام</div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <div class="design-service-card" onclick="showDesignOrder('print')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)"><i class="fa-solid fa-print"></i></div>
+          <h3>مواد الطباعة والدعاية</h3>
+          <p>بطاقات أعمال، ختم رسمي، ستيكر، لافتات، وكل مواد الدعاية</p>
+          <div class="ds-tags"><span>CMYK</span><span>جاهز للطباعة</span><span>أحجام متعددة</span></div>
+          <div class="ds-price">من <strong>129 ر.س</strong> · التسليم خلال يومين</div>
+          <button class="ds-btn">اطلب الآن</button>
+        </div>
+        <div class="design-service-card" onclick="showDesignOrder('ebook')">
+          <div class="ds-icon" style="background:linear-gradient(135deg,#be123c,#9f1239)"><i class="fa-solid fa-book"></i></div>
+          <h3>غلاف كتاب ومحتوى رقمي</h3>
+          <p>تصميم غلاف كتاب إلكتروني أو ورقي + تنسيق داخلي احترافي</p>
+          <div class="ds-tags"><span>eBook</span><span>PDF</span><span>Amazon KDP</span></div>
+          <div class="ds-price">من <strong>299 ر.س</strong> · التسليم خلال 3 أيام</div>
           <button class="ds-btn">اطلب الآن</button>
         </div>
       </div>
 
-      <!-- نموذج طلب تصميم (مخفي) -->
-      <div id="design-order-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center" onclick="if(event.target===this)closeDesignOrder()">
-        <div style="background:var(--card);border-radius:18px;padding:2rem;width:90%;max-width:480px;box-shadow:var(--shadow);position:relative">
-          <button onclick="event.stopPropagation();closeDesignOrder()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
-          <h3 id="design-order-title" style="margin-bottom:1.2rem">طلب تصميم</h3>
-          <div class="f-field"><label>اسم المشروع / العلامة التجارية</label><input type="text" id="d-name" placeholder="مثال: مطعم الأصالة"/></div>
-          <div class="f-field"><label>وصف المشروع وما تحتاجه</label><textarea id="d-desc" rows="3" placeholder="اشرح طلبك بالتفصيل..."></textarea></div>
-          <div class="f-field"><label>الألوان المفضلة</label><input type="text" id="d-colors" placeholder="مثال: أخضر، ذهبي، أبيض"/></div>
-          <div class="f-field"><label>أمثلة مرجعية (روابط)</label><input type="text" id="d-refs" placeholder="https://..."/></div>
-          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem" onclick="submitDesignOrder()">
-            <i class="fa-solid fa-paper-plane"></i> إرسال الطلب
-          </button>
+      <!-- ضمان الجودة -->
+      <div class="ds-guarantee">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+          <h4>ضمان الرضا التام</h4>
+          <p>تعديلات غير محدودة حتى رضاك الكامل — أو استرداد كامل للمبلغ خلال 7 أيام</p>
         </div>
       </div>
 
-      <!-- ===== مودال الاشتراك المميز ===== -->
-      <div id="premium-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;align-items:center;justify-content:center;padding:1rem" onclick="if(event.target===this)closePremiumModal()">
-        <div style="background:var(--card);border-radius:20px;width:90%;max-width:500px;box-shadow:0 25px 60px rgba(0,0,0,.4);position:relative;overflow:hidden">
-          <!-- هيدر ذهبي -->
-          <div style="background:linear-gradient(135deg,#1a0a00,#3d1f00);padding:2rem 2rem 1.5rem;text-align:center;position:relative">
-            <button onclick="closePremiumModal()" style="position:absolute;top:1rem;left:1rem;background:rgba(255,255,255,.1);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;color:#fff;font-size:.9rem;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-xmark"></i></button>
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(245,158,11,.2);border:2px solid #f59e0b;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.6rem">👑</div>
-            <h3 style="color:#fff;font-size:1.2rem;margin-bottom:.4rem">الباقة المميزة — Premium</h3>
-            <p style="color:rgba(255,255,255,.65);font-size:.83rem">تحليل AI عميق + دراسة جدوى كاملة + تقرير PDF</p>
+      <!-- modal طلب التصميم متعدد الخطوات -->
+      <div id="design-order-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;align-items:center;justify-content:center;padding:1rem" onclick="if(event.target===this)closeDesignOrder()">
+        <div style="background:var(--card);border-radius:20px;padding:2rem;width:90%;max-width:500px;box-shadow:var(--shadow);position:relative;max-height:90vh;overflow-y:auto">
+          <button onclick="event.stopPropagation();closeDesignOrder()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+
+          <!-- مؤشر الخطوات -->
+          <div class="ds-step-indicator">
+            <div class="ds-step-dot active" id="ds-dot-1"></div>
+            <div class="ds-step-dot" id="ds-dot-2"></div>
           </div>
-          <!-- محتوى المودال -->
-          <div style="padding:1.75rem 2rem">
-            <!-- السعر -->
-            <div style="text-align:center;margin-bottom:1.5rem">
-              <div style="font-size:.8rem;color:var(--muted);text-decoration:line-through;margin-bottom:.2rem">99 ريال / شهرياً</div>
-              <div style="font-size:2rem;font-weight:900;color:#d97706">49 ريال</div>
-              <div style="font-size:.78rem;color:var(--muted)">لمرة واحدة — وصول دائم</div>
+
+          <div class="ds-modal-steps">
+            <!-- الخطوة 1: تفاصيل الطلب -->
+            <div class="ds-modal-step active" id="ds-ms-1">
+              <h3 id="design-order-title" style="margin-bottom:1.2rem;font-size:1.05rem">طلب تصميم</h3>
+              <div class="f-field"><label>اسم المشروع / العلامة التجارية <span style="color:#ef4444">*</span></label><input type="text" id="d-name" placeholder="مثال: مطعم الأصالة"/></div>
+              <div class="f-field"><label>صف طلبك بالتفصيل <span style="color:#ef4444">*</span></label><textarea id="d-desc" rows="3" placeholder="ما الذي تحتاجه بالضبط؟ أي تفاصيل تساعدنا..."></textarea></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                <div class="f-field" style="margin:0"><label>الألوان المفضلة</label><input type="text" id="d-colors" placeholder="أخضر، ذهبي..."/></div>
+                <div class="f-field" style="margin:0"><label>رقم التواصل (واتساب)</label><input type="tel" id="d-phone" placeholder="05xxxxxxxx"/></div>
+              </div>
+              <div class="f-field"><label>أمثلة مرجعية (اختياري)</label><input type="text" id="d-refs" placeholder="روابط تصاميم أعجبتك..."/></div>
+              <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem" onclick="dsNextStep()">
+                التالي — اختيار الباقة <i class="fa-solid fa-arrow-left"></i>
+              </button>
             </div>
-            <!-- مزايا -->
-            <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.5rem">
-              <div style="font-size:.82rem;display:flex;flex-direction:column;gap:.6rem">
-                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>تقرير AI مفصّل (5-8 صفحات) لمشروعك</div>
-                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>خطة عمل 12 شهراً خطوة بخطوة</div>
-                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>تحليل المنافسين والفرص في السوق</div>
-                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>توصيات تمويل ورأس المال</div>
-                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>تحميل التقرير PDF بتنسيق احترافي</div>
-                <div><i class="fa-solid fa-check" style="color:#d97706;margin-left:.5rem"></i>استخدام غير محدود للمدة الكاملة</div>
+
+            <!-- الخطوة 2: اختيار الباقة -->
+            <div class="ds-modal-step" id="ds-ms-2">
+              <h3 style="margin-bottom:.4rem;font-size:1.05rem">اختر الباقة المناسبة</h3>
+              <p style="font-size:.8rem;color:var(--muted);margin-bottom:.75rem">جميع الباقات تشمل تعديلات مجانية حتى رضاك</p>
+              <div class="ds-pkg-grid">
+                <div class="ds-pkg" onclick="selectDsPkg(this,'أساسية')">
+                  <div class="ds-pkg-name">⚡ أساسية</div>
+                  <div class="ds-pkg-price" id="ds-pkg-price-basic">---</div>
+                  <div class="ds-pkg-desc">تصميم احترافي + 3 تعديلات + ملفات PNG/PDF</div>
+                </div>
+                <div class="ds-pkg" onclick="selectDsPkg(this,'احترافية')">
+                  <div class="ds-pkg-name">🏆 احترافية</div>
+                  <div class="ds-pkg-price" id="ds-pkg-price-pro">---</div>
+                  <div class="ds-pkg-desc">تعديلات غير محدودة + جميع الصيغ + أولوية التنفيذ</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:.75rem;margin-top:1rem">
+                <button class="ds-btn" style="background:var(--bg);color:var(--text);border:1px solid var(--border);flex:1" onclick="dsPrevStep()">
+                  <i class="fa-solid fa-arrow-right"></i> رجوع
+                </button>
+                <button class="btn-primary" style="flex:2;justify-content:center" onclick="submitDesignOrder()">
+                  <i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر واتساب
+                </button>
               </div>
             </div>
-            <!-- طرق الدفع -->
-            <div style="display:flex;gap:.65rem;margin-bottom:1.25rem;flex-wrap:wrap">
-              <button onclick="premiumCheckout('mada')" style="flex:1;min-width:120px;padding:.75rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);font-family:'Tajawal',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:.2s" onmouseover="this.style.borderColor='#d97706'" onmouseout="this.style.borderColor='var(--border)'">
-                <i class="fa-solid fa-credit-card" style="color:#00827a"></i> بطاقة مدى
-              </button>
-              <button onclick="premiumCheckout('visa')" style="flex:1;min-width:120px;padding:.75rem;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);font-family:'Tajawal',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:.2s" onmouseover="this.style.borderColor='#d97706'" onmouseout="this.style.borderColor='var(--border)'">
-                <i class="fa-brands fa-cc-visa" style="color:#1a1f71"></i> Visa / Mastercard
-              </button>
-            </div>
-            <button onclick="premiumCheckout('all')" style="width:100%;padding:1rem;background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(245,158,11,.3)">
-              <i class="fa-solid fa-crown"></i> اشترك الآن بـ 49 ريال
-            </button>
-            <p style="text-align:center;font-size:.72rem;color:var(--muted);margin-top:.85rem">
-              <i class="fa-solid fa-shield-halved" style="color:#22c55e;margin-left:.3rem"></i>دفع آمن · ضمان استرداد 7 أيام · لا اشتراك متكرر
-            </p>
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- ===== COMPLIANCE & ADVISORY ===== -->
@@ -4616,30 +4727,94 @@ function showToast(msg) {
    DESIGN STUDIO ENGINE — التصميم والإبداع
 ====================================================== */
 let _designOrderType = '';
+const DESIGN_WA = '966500000000'; // رقم واتساب الاستوديو
+let _designOrderType = '';
+let _dsPkg = '';
+
+const DS_SERVICES = {
+  logo:        {title:'تصميم شعار احترافي',       priceBasic:'299 ر.س', pricePro:'499 ر.س'},
+  stationery:  {title:'هوية بصرية كاملة',          priceBasic:'599 ر.س', pricePro:'899 ر.س'},
+  social:      {title:'قوالب سوشيال ميديا',         priceBasic:'199 ر.س', pricePro:'349 ر.س'},
+  banner:      {title:'بنر وإعلانات رقمية',         priceBasic:'149 ر.س', pricePro:'249 ر.س'},
+  menu:        {title:'منيو وقائمة طعام',            priceBasic:'249 ر.س', pricePro:'399 ر.س'},
+  packaging:   {title:'تصميم تغليف وعبوات',         priceBasic:'399 ر.س', pricePro:'649 ر.س'},
+  motion:      {title:'موشن جرافيك وإنفوجرافيك',   priceBasic:'499 ر.س', pricePro:'799 ر.س'},
+  presentation:{title:'تصميم عرض تقديمي',           priceBasic:'349 ر.س', pricePro:'549 ر.س'},
+  catalogue:   {title:'كتالوج وبروشور منتجات',      priceBasic:'449 ر.س', pricePro:'699 ر.س'},
+  print:       {title:'مواد الطباعة والدعاية',       priceBasic:'129 ر.س', pricePro:'229 ر.س'},
+  ebook:       {title:'غلاف كتاب ومحتوى رقمي',     priceBasic:'299 ر.س', pricePro:'499 ر.س'},
+};
+
 function showDesignOrder(type) {
-  const titles = {
-    logo:'طلب تصميم شعار احترافي', stationery:'طلب هوية بصرية كاملة',
-    social:'طلب قوالب سوشيال ميديا', banner:'طلب تصميم بنر وإعلانات',
-    menu:'طلب تصميم منيو', packaging:'طلب تصميم تغليف وعبوات'
-  };
   _designOrderType = type;
-  document.getElementById('design-order-title').textContent = titles[type] || 'طلب تصميم';
+  _dsPkg = '';
+  const svc = DS_SERVICES[type] || {title:'طلب تصميم', priceBasic:'---', pricePro:'---'};
+  document.getElementById('design-order-title').textContent = svc.title;
+  document.getElementById('ds-pkg-price-basic').textContent = svc.priceBasic;
+  document.getElementById('ds-pkg-price-pro').textContent   = svc.pricePro;
+  // إعادة ضبط الخطوات
+  document.getElementById('ds-ms-1').classList.add('active');
+  document.getElementById('ds-ms-2').classList.remove('active');
+  document.getElementById('ds-dot-1').classList.add('active');
+  document.getElementById('ds-dot-2').classList.remove('active');
+  document.querySelectorAll('.ds-pkg').forEach(p=>p.classList.remove('selected'));
   const modal = document.getElementById('design-order-modal');
   modal.style.display = 'flex';
 }
+
+function dsNextStep() {
+  const name = (document.getElementById('d-name')?.value||'').trim();
+  const desc = (document.getElementById('d-desc')?.value||'').trim();
+  if (!name || !desc) return showToast('يرجى ملء اسم المشروع والوصف');
+  document.getElementById('ds-ms-1').classList.remove('active');
+  document.getElementById('ds-ms-2').classList.add('active');
+  document.getElementById('ds-dot-1').classList.remove('active');
+  document.getElementById('ds-dot-2').classList.add('active');
+}
+
+function dsPrevStep() {
+  document.getElementById('ds-ms-2').classList.remove('active');
+  document.getElementById('ds-ms-1').classList.add('active');
+  document.getElementById('ds-dot-2').classList.remove('active');
+  document.getElementById('ds-dot-1').classList.add('active');
+}
+
+function selectDsPkg(el, pkg) {
+  document.querySelectorAll('.ds-pkg').forEach(p=>p.classList.remove('selected'));
+  el.classList.add('selected');
+  _dsPkg = pkg;
+}
+
 function closeDesignOrder() {
   document.getElementById('design-order-modal').style.display = 'none';
-  ['d-name','d-desc','d-colors','d-refs'].forEach(id => {
+  ['d-name','d-desc','d-colors','d-phone','d-refs'].forEach(id=>{
     const el = document.getElementById(id);
-    if (el) el.value = '';
+    if(el) el.value = '';
   });
+  _dsPkg = '';
+  _designOrderType = '';
 }
+
 function submitDesignOrder() {
-  const name = document.getElementById('d-name').value.trim();
-  const desc = document.getElementById('d-desc').value.trim();
-  if (!name || !desc) return showToast('يرجى ملء اسم المشروع والوصف');
+  if (!_dsPkg) return showToast('يرجى اختيار الباقة أولاً');
+  const svc    = DS_SERVICES[_designOrderType] || {title:'تصميم'};
+  const name   = (document.getElementById('d-name')?.value||'').trim();
+  const desc   = (document.getElementById('d-desc')?.value||'').trim();
+  const colors = (document.getElementById('d-colors')?.value||'').trim();
+  const phone  = (document.getElementById('d-phone')?.value||'').trim();
+  const refs   = (document.getElementById('d-refs')?.value||'').trim();
+  const price  = _dsPkg==='أساسية' ? svc.priceBasic : svc.pricePro;
+  const msg = `🎨 طلب تصميم — استوديو جنان بيز\n\n` +
+    `الخدمة: ${svc.title}\n` +
+    `الباقة: ${_dsPkg} (${price})\n` +
+    `المشروع: ${name}\n` +
+    `التفاصيل: ${desc}\n` +
+    (colors ? `الألوان: ${colors}\n` : '') +
+    (phone  ? `واتساب العميل: ${phone}\n` : '') +
+    (refs   ? `مراجع: ${refs}\n` : '') +
+    `\nأرجو التواصل لتأكيد الطلب.`;
   closeDesignOrder();
-  showToast('تم إرسال طلب التصميم بنجاح! سيتواصل معك الفريق خلال 24 ساعة ✓');
+  window.open('https://wa.me/' + DESIGN_WA + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
 /* ======================================================
