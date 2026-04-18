@@ -1820,8 +1820,9 @@ async def dashboard_overview(user_id: str = Depends(get_user_id)):
             "pending":  ref_pending,
         },
         "stats": {
-            "reports": reports_count,
-            "chats":   chats_count,
+            "reports":  reports_count,
+            "chats":    chats_count,
+            "partners": 0,
         },
         "subscription": {
             "plan": plan,

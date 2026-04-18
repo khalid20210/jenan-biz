@@ -74,9 +74,15 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-greeting-title{
   font-size:1.9rem;font-weight:900;line-height:1.2;
+  color:var(--text);
+  margin-bottom:.4rem;
+}
+.bento-greeting-title strong{
   background:linear-gradient(135deg,var(--text) 0%,#4E73C2 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:.4rem;
+}
+.bento-greeting-emoji{
+  -webkit-text-fill-color:initial;color:initial;display:inline-block;
 }
 .bento-greeting-sub{font-size:.9rem;color:var(--muted);font-weight:500}
 .bento-plan-badge{
@@ -191,14 +197,10 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-ref-stats{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
 .bento-ref-stat{text-align:center}
 .bento-ref-stat-num{
-  display:block;font-size:1.5rem;font-weight:900;
-  background:linear-gradient(135deg,var(--text),#4E73C2);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;font-size:1.5rem;font-weight:900;color:var(--text);
 }
-.bento-green{background:linear-gradient(135deg,#059669,#10b981) !important;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.bento-amber{background:linear-gradient(135deg,#d97706,#f59e0b) !important;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.bento-green{color:#059669 !important;}
+.bento-amber{color:#d97706 !important;}
 .bento-ref-stat-lbl{font-size:.72rem;color:var(--muted);font-weight:600}
 .bento-ref-divider{width:1px;height:36px;background:var(--glass-border)}
 .bento-ref-share-btn{
@@ -298,7 +300,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-pro-emblem{color:#075985}
 
 /* Quick access */
-.bento-quick-access{grid-column:1;grid-row:3;cursor:default}
+.bento-quick-access{grid-column:1;grid-row:3;cursor:default;padding:1.5rem}
 .bento-quick-access:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.08)}
 .bento-quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
 .bento-quick-item{
@@ -340,9 +342,42 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-upgrade-btn:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(124,58,237,.45)}
 
+/* Entrance animations */
+@keyframes bentoFadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes bentoShimmer{
+  0%{background-position:200% center}
+  100%{background-position:-200% center}
+}
+#page-home.active .bento-hero{
+  animation:bentoFadeUp .45s ease both;
+}
+#page-home.active .bento-cell{
+  animation:bentoFadeUp .5s ease both;
+}
+#page-home.active .bento-wallet   {animation-delay:.05s}
+#page-home.active .bento-referral {animation-delay:.1s}
+#page-home.active .bento-stats-mini{animation-delay:.15s}
+#page-home.active .bento-biz      {animation-delay:.2s}
+#page-home.active .bento-pro      {animation-delay:.25s}
+#page-home.active .bento-quick-access{animation-delay:.3s}
+#page-home.active .bento-upgrade  {animation-delay:.35s}
+
+/* Loading skeleton */
+.bento-loading{
+  background:linear-gradient(90deg,var(--bg2) 25%,var(--bg) 50%,var(--bg2) 75%);
+  background-size:400% 100%;
+  animation:bentoShimmer 1.4s ease infinite;
+  border-radius:6px;display:inline-block;
+  color:transparent !important;
+  -webkit-text-fill-color:transparent !important;
+  pointer-events:none;min-width:60px;
+}
+
 /* Responsive */
-@media(max-width:960px){
-  .bento-grid{grid-template-columns:1fr 1fr;gap:.9rem}
+@media(max-width:960px){  .bento-grid{grid-template-columns:1fr 1fr;gap:.9rem}
   .bento-wallet{grid-column:1;grid-row:1}
   .bento-referral{grid-column:2;grid-row:1}
   .bento-stats-mini{grid-column:1 / 3;grid-row:2}
@@ -1875,7 +1910,7 @@ function toggleNotifPanel(){
       <div class="bento-hero">
         <div class="bento-hero-left">
           <div class="bento-greeting-eyebrow">لوحة التحكم</div>
-          <h1 class="bento-greeting-title">مرحباً، <span id="bento-user-name">المستخدم</span> 👋</h1>
+          <h1 class="bento-greeting-title"><strong>مرحباً، <span id="bento-user-name">المستخدم</span></strong> <span class="bento-greeting-emoji">👋</span></h1>
           <p class="bento-greeting-sub">إليك نظرة سريعة على حسابك وخدماتك</p>
         </div>
         <div class="bento-hero-right">
@@ -1974,7 +2009,7 @@ function toggleNotifPanel(){
               <i class="fa-solid fa-handshake"></i>
             </div>
             <div>
-              <div class="bento-mini-num">0</div>
+              <div class="bento-mini-num" id="sc-partners">0</div>
               <div class="bento-mini-lbl">شراكة نشطة</div>
             </div>
           </div>
@@ -2076,7 +2111,7 @@ function toggleNotifPanel(){
             <p class="bento-upgrade-desc" id="bento-upgrade-desc">
               احصل على دراسات جدوى غير محدودة وتقارير احترافية
             </p>
-            <button class="bento-upgrade-btn" onclick="goto('billing')">
+            <button class="bento-upgrade-btn" onclick="goto('referral')">
               <i class="fa-solid fa-crown"></i> اشترك الآن
             </button>
           </div>
@@ -4948,18 +4983,45 @@ if(document.getElementById('sett-email')) document.getElementById('sett-email').
 /* ══════════════════════════════════════════════
    BENTO GRID — DATA INIT
 ══════════════════════════════════════════════ */
+function _bentoSetLoading(){
+  /* تفعيل حالة التحميل على الأرقام */
+  var ids = ['bento-wallet-sar','bento-wallet-pts',
+             'bento-ref-total','bento-ref-rewarded','bento-ref-pending',
+             'sc-reports','sc-chats','sc-partners'];
+  ids.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.classList.add('bento-loading'); }
+  });
+  var inp = document.getElementById('bento-ref-input');
+  if(inp){ inp.disabled = true; inp.style.opacity='.5'; }
+}
+function _bentoClearLoading(){
+  var ids = ['bento-wallet-sar','bento-wallet-pts',
+             'bento-ref-total','bento-ref-rewarded','bento-ref-pending',
+             'sc-reports','sc-chats','sc-partners'];
+  ids.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.classList.remove('bento-loading'); }
+  });
+  var inp = document.getElementById('bento-ref-input');
+  if(inp){ inp.disabled = false; inp.style.opacity='1'; }
+}
+
 function initBentoHome(){
   /* اسم المستخدم — فوري من localStorage */
-  const elName = document.getElementById('bento-user-name');
+  var elName = document.getElementById('bento-user-name');
   if(elName) elName.textContent = uName;
 
-  const token = localStorage.getItem('jb-token') || u.token || '';
+  var token = localStorage.getItem('jb-token') || u.token || '';
   if(!token){
-    /* لا يوجد توكن — عرض حالة غير مسجّل */
-    const inp = document.getElementById('bento-ref-input');
+    var inp = document.getElementById('bento-ref-input');
     if(inp){ inp.value = 'سجّل الدخول لعرض رابط الإحالة'; inp.style.color='var(--muted)'; }
+    _bentoClearLoading();
     return;
   }
+
+  /* تفعيل skeleton */
+  _bentoSetLoading();
 
   /* طلب واحد يجمع كل البيانات */
   fetch('/api/dashboard/overview', {
@@ -4967,7 +5029,6 @@ function initBentoHome(){
   })
   .then(function(r){
     if(r.status === 401){
-      /* توكن منتهي — نمسح ونُعيد التوجيه لصفحة الدخول */
       localStorage.removeItem('jb-token');
       localStorage.removeItem('jb-user');
       window.location.href = '/';
@@ -4976,32 +5037,36 @@ function initBentoHome(){
     return r.ok ? r.json() : null;
   })
   .then(function(d){
+    _bentoClearLoading();
     if(!d) return;
 
     /* المحفظة */
-    const elSar = document.getElementById('bento-wallet-sar');
-    const elPts = document.getElementById('bento-wallet-pts');
+    var elSar = document.getElementById('bento-wallet-sar');
+    var elPts = document.getElementById('bento-wallet-pts');
     if(elSar) elSar.textContent = Number(d.wallet.balance_sar || 0).toFixed(2);
     if(elPts) elPts.textContent = Number(d.wallet.points || 0).toLocaleString('ar-SA');
 
     /* رابط الإحالة */
-    const inp = document.getElementById('bento-ref-input');
+    var inp = document.getElementById('bento-ref-input');
     if(inp){
       inp.value = d.referral.link || '';
       inp.style.color = '';
+      if(!d.referral.link) inp.value = 'تواصل معنا لتفعيل برنامج الإحالة';
     }
-    const elT = document.getElementById('bento-ref-total');
-    const elR = document.getElementById('bento-ref-rewarded');
-    const elP = document.getElementById('bento-ref-pending');
+    var elT = document.getElementById('bento-ref-total');
+    var elR = document.getElementById('bento-ref-rewarded');
+    var elP = document.getElementById('bento-ref-pending');
     if(elT) elT.textContent = d.referral.total || 0;
     if(elR) elR.textContent = d.referral.rewarded || 0;
     if(elP) elP.textContent = d.referral.pending || 0;
 
     /* إحصاءات سريعة */
-    const elRep = document.getElementById('sc-reports');
-    const elCht = document.getElementById('sc-chats');
+    var elRep = document.getElementById('sc-reports');
+    var elCht = document.getElementById('sc-chats');
+    var elPrt = document.getElementById('sc-partners');
     if(elRep) elRep.textContent = d.stats.reports || 0;
     if(elCht) elCht.textContent = d.stats.chats || 0;
+    if(elPrt) elPrt.textContent = d.stats.partners || 0;
 
     /* الباقة */
     var plan = (d.subscription && d.subscription.plan) ? d.subscription.plan : 'free';
@@ -5014,13 +5079,15 @@ function initBentoHome(){
       badge.style.borderColor = 'rgba(78,115,194,.35)';
       badge.style.color = '#1e3a8a';
     }
-    /* إخفاء خلية الترقية لو مشترك */
     if(plan !== 'free'){
       var cell = document.getElementById('bento-upgrade-cell');
       if(cell) cell.style.display = 'none';
     }
   })
-  .catch(function(err){ console.warn('[bento] overview fetch error:', err); });
+  .catch(function(err){
+    _bentoClearLoading();
+    console.warn('[bento] overview fetch error:', err);
+  });
 }
 /* تشغيل عند تحميل الصفحة */
 document.addEventListener('DOMContentLoaded', initBentoHome);
