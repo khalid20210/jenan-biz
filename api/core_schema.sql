@@ -370,7 +370,7 @@ BEGIN
     v_reward_sar := get_referral_reward(v_new_role, p_amount);
     -- استدعاء دالة grant_referral_reward مع المبلغ الصحيح
     BEGIN
-      SELECT grant_referral_reward(p_user_id, p_reference_id, ROUND(v_reward_sar / 0.10)::INT)
+      SELECT grant_referral_reward(p_user_id, p_reference_id, ROUND(v_reward_sar / 0.05)::INT)
       INTO v_referral_res;
     EXCEPTION WHEN undefined_function THEN
       v_referral_res := jsonb_build_object('success', false, 'reason', 'referral_not_setup');
@@ -555,7 +555,7 @@ CREATE OR REPLACE FUNCTION get_referral_reward(p_plan_name TEXT, p_amount NUMERI
 RETURNS NUMERIC AS $$
 BEGIN
   -- 10% من سعر الباقة
-  RETURN ROUND(p_amount * 0.10, 2);
+  RETURN ROUND(p_amount * 0.05, 2);
 END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 
@@ -582,7 +582,7 @@ SELECT
   p.points_balance,
   p.total_earned,
   p.total_spent,
-  COALESCE(p.points_balance * 0.10, 0)  AS points_in_sar,
+  COALESCE(p.points_balance * 0.05, 0)  AS points_in_sar,
   -- الاشتراك النشط
   s.plan_type                            AS active_plan,
   s.end_date                             AS subscription_end,
