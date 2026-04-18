@@ -300,7 +300,7 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 .bento-pro-emblem{color:#075985}
 
 /* Quick access */
-.bento-quick-access{grid-column:1;grid-row:3;cursor:default;padding:1.5rem}
+.bento-quick-access{grid-column:1;grid-row:3;cursor:default;padding:1.5rem;overflow:visible}
 .bento-quick-access:hover{transform:none;box-shadow:0 4px 24px rgba(78,115,194,.08)}
 .bento-quick-dots{
   display:inline-flex;gap:4px;align-items:center;
@@ -5182,7 +5182,17 @@ function initBentoHome(){
   });
 }
 /* تشغيل عند تحميل الصفحة */
-document.addEventListener('DOMContentLoaded', initBentoHome);
+document.addEventListener('DOMContentLoaded', function(){
+  initBentoHome();
+  if(typeof window._initQuickAccess === 'function') window._initQuickAccess();
+});
+/* fallback: تأكد من تشغيل الكاروسيل بعد اكتمال تحميل الموارد */
+window.addEventListener('load', function(){
+  var grid = document.getElementById('bento-quick-grid');
+  if(grid && !grid.innerHTML.trim()){
+    if(typeof window._initQuickAccess === 'function') window._initQuickAccess();
+  }
+});
 
 /* نسخ رابط الإحالة */
 function bentoCopyRef(e){
@@ -5297,6 +5307,9 @@ function bentoShareRef(){
     _showPage(0, false);
     _startRotation();
   }
+
+  /* تعريض الدالة للـ global scope لتُستدعى بشكل موثوق */
+  window._initQuickAccess = initQuickAccess;
 
   /* تشغيل بعد تحميل الصفحة */
   if(document.readyState === 'loading'){
