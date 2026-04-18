@@ -37,6 +37,9 @@ CREATE TABLE IF NOT EXISTS profiles (
   total_earned    INT  NOT NULL DEFAULT 0,       -- مجموع ما كسبه
   total_spent     INT  NOT NULL DEFAULT 0,       -- مجموع ما أنفقه
 
+  -- بروموشن الافتتاح (أول 100 مستخدم يحصلون على 50 ريال = 500 نقطة)
+  received_launch_promo BOOLEAN NOT NULL DEFAULT FALSE,
+
   -- بيانات إضافية
   city            TEXT,
   business_name   TEXT,
@@ -94,8 +97,11 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 CREATE OR REPLACE FUNCTION handle_new_user()
 RETURNS TRIGGER AS $$
 DECLARE
-  v_ref_code  TEXT;
-  v_ref_by    TEXT;
+  v_ref_code    TEXT;
+  v_ref_by      TEXT;
+  v_user_count  INT;
+  v_promo_pts   INT := 0;
+  v_got_promo   BOOLEAN := FALSE;
 BEGIN
   -- توليد كود إحالة فريد
   v_ref_code := generate_referral_code();
@@ -103,20 +109,34 @@ BEGIN
   -- استخراج كود الإحالة من metadata (مُمرَّر من الـ Frontend عند التسجيل)
   v_ref_by := NEW.raw_user_meta_data->>'referred_by';
 
+  -- ─── بروموشن الافتتاح: أول 100 مستخدم يحصلون على 50 ريال (= 500 نقطة) ───
+  -- نحسب المستخدمين المسجّلين قبل هذا المستخدم
+  SELECT COUNT(*) INTO v_user_count FROM auth.users WHERE id != NEW.id;
+  IF v_user_count < 100 THEN
+    v_promo_pts := 500;   -- 500 نقطة × 0.10 ريال/نقطة = 50 ريال
+    v_got_promo := TRUE;
+  END IF;
+
   INSERT INTO public.profiles (
     id,
     full_name,
     phone,
     referral_code,
     referred_by,
-    role
+    role,
+    points_balance,
+    total_earned,
+    received_launch_promo
   ) VALUES (
     NEW.id,
     COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.email),
     NEW.phone,
     v_ref_code,
     v_ref_by,
-    'free'
+    'free',
+    v_promo_pts,
+    v_promo_pts,
+    v_got_promo
   )
   ON CONFLICT (id) DO NOTHING;
 

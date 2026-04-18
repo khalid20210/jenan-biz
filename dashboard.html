@@ -360,9 +360,45 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
 }
 .bento-upgrade-btn:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(124,58,237,.45)}
 
+/* Promo referral hint */
+.bento-ref-promo-hint{
+  margin-top:.75rem;padding:.55rem .75rem;
+  background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.04));
+  border:1px solid rgba(245,158,11,.25);border-radius:10px;
+  font-size:.78rem;color:#92400e;line-height:1.5;
+  display:flex;align-items:flex-start;gap:.45rem;
+}
+.bento-ref-promo-hint i{margin-top:.15rem;flex-shrink:0;color:#f59e0b;}
+[data-theme="dark"] .bento-ref-promo-hint{color:#fcd34d;background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.2);}
+
+/* Launch promo banner */
+.bento-promo-banner{
+  margin-bottom:1rem;
+  animation:bentoFadeUp .5s ease both;
+}
+.bento-promo-banner-inner{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.9rem 1.25rem;border-radius:14px;
+  background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(5,150,105,.06));
+  border:1px solid rgba(16,185,129,.3);
+  box-shadow:0 4px 16px rgba(16,185,129,.1);
+}
+.bento-promo-banner-icon{font-size:1.8rem;line-height:1;flex-shrink:0;}
+.bento-promo-banner-text{
+  flex:1;display:flex;flex-direction:column;gap:.2rem;
+  font-size:.87rem;color:#065f46;line-height:1.5;
+}
+.bento-promo-banner-text strong{font-size:.95rem;}
+[data-theme="dark"] .bento-promo-banner-text{color:#6ee7b7;}
+.bento-promo-banner-close{
+  background:none;border:none;cursor:pointer;color:#6b7280;
+  font-size:.9rem;padding:.3rem;border-radius:50%;
+  transition:color .2s,background .2s;
+}
+.bento-promo-banner-close:hover{color:#059669;background:rgba(5,150,105,.1);}
+
 /* Entrance animations */
-@keyframes bentoFadeUp{
-  from{opacity:0;transform:translateY(22px)}
+@keyframes bentoFadeUp{  from{opacity:0;transform:translateY(22px)}
   to{opacity:1;transform:translateY(0)}
 }
 @keyframes bentoShimmer{
@@ -1933,9 +1969,23 @@ function toggleNotifPanel(){
         </div>
         <div class="bento-hero-right">
           <div class="bento-plan-badge" id="bento-plan-badge">
-            <i class="fa-solid fa-crown"></i>
-            <span id="bento-plan-label">الباقة المجانية</span>
+            <i class="fa-solid fa-user-check"></i>
+            <span id="bento-plan-label">حساب أساسي</span>
           </div>
+        </div>
+      </div>
+
+      <!-- ─── بانر الإيداع الافتتاحي (يظهر فقط لأول 100 مستخدم) ─── -->
+      <div class="bento-promo-banner" id="bento-promo-banner" style="display:none">
+        <div class="bento-promo-banner-inner">
+          <span class="bento-promo-banner-icon">🎉</span>
+          <div class="bento-promo-banner-text">
+            <strong>تهانينا! أنت من الأوائل على المنصة.</strong>
+            <span>تم إيداع <strong>50 ريال</strong> رصيد افتتاحي في محفظتك بمناسبة الافتتاح!</span>
+          </div>
+          <button class="bento-promo-banner-close" onclick="this.closest('.bento-promo-banner').style.display='none'" aria-label="إغلاق">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
       </div>
 
@@ -1953,12 +2003,7 @@ function toggleNotifPanel(){
               <span class="bento-wallet-num" id="bento-wallet-sar">0.00</span>
               <span class="bento-wallet-cur">ر.س</span>
             </div>
-            <div class="bento-wallet-sub">
-              <span id="bento-wallet-pts">0</span> نقطة
-              &nbsp;·&nbsp;
-              قابلة للخصم في <span style="color:#f59e0b;font-weight:700">جنان بيز</span>
-            </div>
-            <div class="bento-cell-arrow"><i class="fa-solid fa-arrow-left"></i> إدارة المحفظة</div>
+            <div class="bento-cell-arrow" style="margin-top:.6rem"><i class="fa-solid fa-arrow-left"></i> إدارة المحفظة</div>
           </div>
           <div class="bento-wallet-icon-bg"><i class="fa-solid fa-wallet"></i></div>
         </div>
@@ -1997,6 +2042,10 @@ function toggleNotifPanel(){
             <button class="bento-ref-share-btn" onclick="bentoCopyRef(event);bentoShareRef()">
               <i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب
             </button>
+            <div class="bento-ref-promo-hint">
+              <i class="fa-solid fa-circle-info"></i>
+              احصل على <strong>عمولة 10%</strong> كرصيد في محفظتك عن أول خدمة يطلبها من تُحيله للمنصة
+            </div>
           </div>
         </div>
 
@@ -2083,7 +2132,7 @@ function toggleNotifPanel(){
             </div>
           </div>
           <div class="bento-product-emblem bento-pro-emblem">
-            <i class="fa-solid fa-microchip"></i>
+            <i class="fa-solid fa-terminal"></i>
           </div>
         </div>
 
@@ -5064,18 +5113,33 @@ function initBentoHome(){
 
     /* الباقة */
     var plan = (d.subscription && d.subscription.plan) ? d.subscription.plan : 'free';
-    var planLabels = { free:'الباقة المجانية', biz:'jenan biz', pro:'jenan pro' };
+    var planLabels = { free:'حساب أساسي', biz:'jenan biz', pro:'jenan pro' };
+    var planIcons  = { free:'fa-solid fa-user-check', biz:'fa-solid fa-briefcase', pro:'fa-solid fa-terminal' };
     var lbl = document.getElementById('bento-plan-label');
     var badge = document.getElementById('bento-plan-badge');
     if(lbl) lbl.textContent = planLabels[plan] || planLabels.free;
-    if(badge && plan !== 'free'){
-      badge.style.background = 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))';
-      badge.style.borderColor = 'rgba(78,115,194,.35)';
-      badge.style.color = '#1e3a8a';
+    if(badge){
+      var ico = badge.querySelector('i');
+      if(ico) ico.className = planIcons[plan] || planIcons.free;
+      if(plan !== 'free'){
+        badge.style.background = 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))';
+        badge.style.borderColor = 'rgba(78,115,194,.35)';
+        badge.style.color = '#1e3a8a';
+      }
     }
     if(plan !== 'free'){
       var cell = document.getElementById('bento-upgrade-cell');
       if(cell) cell.style.display = 'none';
+    }
+
+    /* بانر الإيداع الافتتاحي */
+    if(d.promo_banner){
+      var banner = document.getElementById('bento-promo-banner');
+      /* عرض مرة واحدة فقط — نتذكر بـ sessionStorage */
+      if(banner && !sessionStorage.getItem('jb-promo-seen')){
+        banner.style.display = 'block';
+        sessionStorage.setItem('jb-promo-seen','1');
+      }
     }
   })
   .catch(function(err){

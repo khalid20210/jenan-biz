@@ -1808,7 +1808,30 @@ async def dashboard_overview(user_id: str = Depends(get_user_id)):
     except Exception as e:
         logger.warning(f"dashboard_overview: stats error: {e}")
 
-    return {
+    # --- كشف بروموشن الافتتاح ---
+    promo_banner = False
+    try:
+        sb_url = os.getenv("SUPABASE_URL", "")
+        sb_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY", os.getenv("SUPABASE_ANON_KEY", ""))
+        if sb_url and sb_key:
+            import httpx as _hx2
+            hdrs2 = {
+                "apikey": sb_key,
+                "Authorization": f"Bearer {sb_key}",
+                "Content-Type": "application/json",
+            }
+            async with _hx2.AsyncClient(timeout=6) as cl2:
+                rp = await cl2.get(
+                    f"{sb_url}/rest/v1/profiles",
+                    headers=hdrs2,
+                    params={"id": f"eq.{user_id}", "select": "received_launch_promo"},
+                )
+                if rp.status_code == 200 and rp.json():
+                    promo_banner = bool(rp.json()[0].get("received_launch_promo", False))
+    except Exception as e:
+        logger.warning(f"dashboard_overview: promo check error: {e}")
+
+    result = {
         "wallet": {
             "balance_sar": wallet_sar,
             "points":      wallet_pts,
@@ -1827,6 +1850,7 @@ async def dashboard_overview(user_id: str = Depends(get_user_id)):
         "subscription": {
             "plan": plan,
         },
+        "promo_banner": promo_banner,
     }
     _dash_cache[user_id] = result
     return result
