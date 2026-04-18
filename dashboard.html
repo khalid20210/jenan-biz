@@ -4949,60 +4949,78 @@ if(document.getElementById('sett-email')) document.getElementById('sett-email').
    BENTO GRID — DATA INIT
 ══════════════════════════════════════════════ */
 function initBentoHome(){
-  /* اسم المستخدم */
-  const el = document.getElementById('bento-user-name');
-  if(el) el.textContent = uName;
+  /* اسم المستخدم — فوري من localStorage */
+  const elName = document.getElementById('bento-user-name');
+  if(elName) elName.textContent = uName;
 
-  /* رابط الإحالة + إحصاءاته */
   const token = localStorage.getItem('jb-token') || u.token || '';
-  if(!token) return;
-
-  fetch('/api/referral/link', {
-    headers:{ 'Authorization':'Bearer '+token }
-  }).then(r=>r.ok?r.json():null).then(d=>{
-    if(!d) return;
+  if(!token){
+    /* لا يوجد توكن — عرض حالة غير مسجّل */
     const inp = document.getElementById('bento-ref-input');
-    if(inp) inp.value = d.referral_link || '';
-    const elT = document.getElementById('bento-ref-total');   if(elT) elT.textContent = d.total||0;
-    const elR = document.getElementById('bento-ref-rewarded'); if(elR) elR.textContent = d.rewarded||0;
-    const elP = document.getElementById('bento-ref-pending');  if(elP) elP.textContent = d.pending||0;
-  }).catch(()=>{});
+    if(inp){ inp.value = 'سجّل الدخول لعرض رابط الإحالة'; inp.style.color='var(--muted)'; }
+    return;
+  }
 
-  /* رصيد المحفظة */
-  fetch('/api/wallet/balance', {
-    headers:{ 'Authorization':'Bearer '+token }
-  }).then(r=>r.ok?r.json():null).then(d=>{
+  /* طلب واحد يجمع كل البيانات */
+  fetch('/api/dashboard/overview', {
+    headers:{ 'Authorization': 'Bearer ' + token }
+  })
+  .then(function(r){
+    if(r.status === 401){
+      /* توكن منتهي — نمسح ونُعيد التوجيه لصفحة الدخول */
+      localStorage.removeItem('jb-token');
+      localStorage.removeItem('jb-user');
+      window.location.href = '/';
+      return null;
+    }
+    return r.ok ? r.json() : null;
+  })
+  .then(function(d){
     if(!d) return;
-    const elS = document.getElementById('bento-wallet-sar'); if(elS) elS.textContent = Number(d.balance_sar||0).toFixed(2);
-    const elPt = document.getElementById('bento-wallet-pts'); if(elPt) elPt.textContent = d.points||0;
-  }).catch(()=>{});
 
-  /* باقة المستخدم */
-  fetch('/api/subscriptions/status', {
-    headers:{ 'Authorization':'Bearer '+token }
-  }).then(r=>r.ok?r.json():null).then(d=>{
-    if(!d) return;
-    const badge = document.getElementById('bento-plan-badge');
-    const lbl = document.getElementById('bento-plan-label');
-    const upgTitle = document.getElementById('bento-upgrade-title');
-    const upgDesc = document.getElementById('bento-upgrade-desc');
-    const plan = d.plan || 'free';
-    if(lbl) lbl.textContent = plan==='pro'?'جنان برو':plan==='biz'?'جنان بيز':'الباقة المجانية';
-    if(badge){
-      badge.style.background = plan!=='free'
-        ? 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))'
-        : '';
-      badge.style.borderColor = plan!=='free' ? 'rgba(78,115,194,.35)' : '';
-      badge.style.color = plan!=='free' ? '#1e3a8a' : '';
+    /* المحفظة */
+    const elSar = document.getElementById('bento-wallet-sar');
+    const elPts = document.getElementById('bento-wallet-pts');
+    if(elSar) elSar.textContent = Number(d.wallet.balance_sar || 0).toFixed(2);
+    if(elPts) elPts.textContent = Number(d.wallet.points || 0).toLocaleString('ar-SA');
+
+    /* رابط الإحالة */
+    const inp = document.getElementById('bento-ref-input');
+    if(inp){
+      inp.value = d.referral.link || '';
+      inp.style.color = '';
     }
-    if(plan!=='free'){
-      const cell = document.getElementById('bento-upgrade-cell');
-      if(cell){ cell.style.display='none'; }
-    } else {
-      if(upgTitle) upgTitle.textContent = 'ترقية الباقة';
-      if(upgDesc)  upgDesc.textContent  = 'احصل على دراسات جدوى غير محدودة وتقارير احترافية';
+    const elT = document.getElementById('bento-ref-total');
+    const elR = document.getElementById('bento-ref-rewarded');
+    const elP = document.getElementById('bento-ref-pending');
+    if(elT) elT.textContent = d.referral.total || 0;
+    if(elR) elR.textContent = d.referral.rewarded || 0;
+    if(elP) elP.textContent = d.referral.pending || 0;
+
+    /* إحصاءات سريعة */
+    const elRep = document.getElementById('sc-reports');
+    const elCht = document.getElementById('sc-chats');
+    if(elRep) elRep.textContent = d.stats.reports || 0;
+    if(elCht) elCht.textContent = d.stats.chats || 0;
+
+    /* الباقة */
+    var plan = (d.subscription && d.subscription.plan) ? d.subscription.plan : 'free';
+    var planLabels = { free:'الباقة المجانية', biz:'jenan biz', pro:'jenan pro' };
+    var lbl = document.getElementById('bento-plan-label');
+    var badge = document.getElementById('bento-plan-badge');
+    if(lbl) lbl.textContent = planLabels[plan] || planLabels.free;
+    if(badge && plan !== 'free'){
+      badge.style.background = 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))';
+      badge.style.borderColor = 'rgba(78,115,194,.35)';
+      badge.style.color = '#1e3a8a';
     }
-  }).catch(()=>{});
+    /* إخفاء خلية الترقية لو مشترك */
+    if(plan !== 'free'){
+      var cell = document.getElementById('bento-upgrade-cell');
+      if(cell) cell.style.display = 'none';
+    }
+  })
+  .catch(function(err){ console.warn('[bento] overview fetch error:', err); });
 }
 /* تشغيل عند تحميل الصفحة */
 document.addEventListener('DOMContentLoaded', initBentoHome);
@@ -5010,26 +5028,32 @@ document.addEventListener('DOMContentLoaded', initBentoHome);
 /* نسخ رابط الإحالة */
 function bentoCopyRef(e){
   if(e && e.stopPropagation) e.stopPropagation();
-  const inp = document.getElementById('bento-ref-input');
+  var inp = document.getElementById('bento-ref-input');
   if(!inp) return;
-  const val = inp.value;
-  if(!val || val==='جارٍ التحميل...') return;
+  var val = inp.value;
+  if(!val || val.indexOf('سجّل') !== -1 || val.indexOf('جارٍ') !== -1) return;
   if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(val).then(()=>showToast && showToast('تم نسخ رابط الإحالة ✅')).catch(()=>{});
+    navigator.clipboard.writeText(val)
+      .then(function(){ if(typeof showToast==='function') showToast('تم نسخ رابط الإحالة ✅'); })
+      .catch(function(){ _fallbackCopy(inp); });
   } else {
-    inp.select(); document.execCommand('copy');
-    if(typeof showToast === 'function') showToast('تم النسخ ✅');
+    _fallbackCopy(inp);
   }
+}
+function _fallbackCopy(inp){
+  inp.select();
+  try{ document.execCommand('copy'); if(typeof showToast==='function') showToast('تم النسخ ✅'); }
+  catch(e){}
 }
 
 /* مشاركة عبر واتساب */
 function bentoShareRef(){
-  const inp = document.getElementById('bento-ref-input');
+  var inp = document.getElementById('bento-ref-input');
   if(!inp) return;
-  const val = inp.value;
-  if(!val || val==='جارٍ التحميل...') return;
-  const msg = 'انضم معي على منصة جنان بيز للحصول على حلول الأعمال والاستشارات:\n' + val;
-  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+  var val = inp.value;
+  if(!val || val.indexOf('سجّل') !== -1) return;
+  var msg = 'انضم معي على منصة جنان بيز للحصول على حلول الأعمال والاستشارات:\n' + val;
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
 }
 
 /* THEME */

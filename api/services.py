@@ -69,10 +69,12 @@ try:
     from cachetools import TTLCache               # تخزين مؤقت LRU+TTL
     _otp_cache: TTLCache = TTLCache(maxsize=10000, ttl=600)   # OTP cache 10 دقائق
     _ai_cache:  TTLCache = TTLCache(maxsize=500,  ttl=3600)   # AI cache ساعة
+    _dash_cache: TTLCache = TTLCache(maxsize=5000, ttl=60)    # Dashboard overview — 60 ثانية
     logger.info("cachetools TTLCache enabled")
 except ImportError:
     _otp_cache = {}
     _ai_cache  = {}
+    _dash_cache = {}
 
 try:
     from tenacity import retry, stop_after_attempt, wait_exponential
@@ -1721,6 +1723,112 @@ async def software_inquire(data: SoftwareInquiryInput, request: Request):
 
 class ReferralRegisterInput(BaseModel):
     referred_by: Optional[str] = None   # كود الإحالة (اختياري)
+
+
+@app.get("/api/dashboard/overview")
+async def dashboard_overview(user_id: str = Depends(get_user_id)):
+    """
+    نقطة نهاية موحّدة للوحة التحكم الرئيسية.
+    تُعيد: رصيد المحفظة + بيانات الإحالة + إحصاءات الاستخدام + الباقة.
+    طلب واحد بدل ثلاثة — مع cache 60 ثانية لكل مستخدم.
+    """
+    if user_id == "anonymous":
+        raise HTTPException(status_code=401, detail="يجب تسجيل الدخول أولاً")
+
+    # كاش لمدة 60 ثانية لكل مستخدم
+    if user_id in _dash_cache:
+        return _dash_cache[user_id]
+
+    base_url = os.getenv("APP_BASE_URL", "https://jenan.biz")
+
+    # --- بيانات الإحالة والمحفظة ---
+    wallet_sar   = 0.0
+    wallet_pts   = 0
+    ref_link     = ""
+    ref_total    = 0
+    ref_rewarded = 0
+    ref_pending  = 0
+
+    if _REFERRAL_AVAILABLE:
+        try:
+            profile = await get_or_create_profile(user_id, None)
+            wallet_pts = profile.get("points_balance", 0)
+            wallet_sar = round(points_to_sar(wallet_pts), 2)
+            ref_code   = profile.get("referral_code", "")
+            ref_link   = f"{base_url}/dashboard.html?ref={ref_code}" if ref_code else ""
+        except Exception as e:
+            logger.warning(f"dashboard_overview: referral profile error: {e}")
+
+        try:
+            refs         = await get_referrals_list(user_id)
+            ref_total    = len(refs)
+            ref_rewarded = sum(1 for r in refs if r.get("reward_status") == "rewarded")
+            ref_pending  = sum(1 for r in refs if r.get("reward_status") == "pending")
+        except Exception as e:
+            logger.warning(f"dashboard_overview: referral list error: {e}")
+
+    # --- إحصاءات الاستخدام من Supabase ---
+    reports_count = 0
+    chats_count   = 0
+    plan          = "free"
+    try:
+        sb_url = os.getenv("SUPABASE_URL", "")
+        sb_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY", os.getenv("SUPABASE_ANON_KEY", ""))
+        if sb_url and sb_key:
+            import httpx as _hx
+            hdrs = {
+                "apikey": sb_key,
+                "Authorization": f"Bearer {sb_key}",
+                "Content-Type": "application/json",
+            }
+            async with _hx.AsyncClient(timeout=8) as cl:
+                # إحصاء التقارير (جدول transactions من نوع report)
+                r1 = await cl.get(
+                    f"{sb_url}/rest/v1/transactions",
+                    headers=hdrs,
+                    params={"user_id": f"eq.{user_id}", "type": "eq.report", "select": "id"},
+                )
+                if r1.status_code == 200:
+                    reports_count = len(r1.json())
+
+                # الباقة الحالية (subscriptions نشطة)
+                r2 = await cl.get(
+                    f"{sb_url}/rest/v1/subscriptions",
+                    headers=hdrs,
+                    params={
+                        "user_id": f"eq.{user_id}",
+                        "status": "eq.active",
+                        "select": "plan_name",
+                        "order": "created_at.desc",
+                        "limit": "1",
+                    },
+                )
+                if r2.status_code == 200 and r2.json():
+                    plan = r2.json()[0].get("plan_name", "free")
+    except Exception as e:
+        logger.warning(f"dashboard_overview: stats error: {e}")
+
+    return {
+        "wallet": {
+            "balance_sar": wallet_sar,
+            "points":      wallet_pts,
+        },
+        "referral": {
+            "link":     ref_link,
+            "total":    ref_total,
+            "rewarded": ref_rewarded,
+            "pending":  ref_pending,
+        },
+        "stats": {
+            "reports": reports_count,
+            "chats":   chats_count,
+        },
+        "subscription": {
+            "plan": plan,
+        },
+    }
+    _dash_cache[user_id] = result
+    return result
 
 
 @app.post("/api/referral/profile")
