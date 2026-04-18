@@ -27,7 +27,7 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 import sentry_sdk
 from sentry_sdk.integrations.fastapi import FastApiIntegration
-from fastapi import FastAPI, HTTPException, Depends, Header, Request
+from fastapi import FastAPI, HTTPException, Depends, Header, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
 
@@ -171,6 +171,30 @@ try:
 except ImportError as _pdf_err:
     logger.warning(f"pdf_generator غير متاح: {_pdf_err}")
     _PDF_AVAILABLE = False
+
+# ---- مُشرّح المستندات العربية ----
+try:
+    try:
+        from api.document_parser import parse_document
+    except ImportError:
+        from document_parser import parse_document
+    _DOC_PARSER_AVAILABLE = True
+    logger.info("document_parser loaded — PDF/DOCX Arabic parsing enabled")
+except ImportError as _dp_err:
+    _DOC_PARSER_AVAILABLE = False
+    logger.warning(f"document_parser غير متاح: {_dp_err}")
+
+# ---- محرك RAG الدلالي ----
+try:
+    try:
+        from api.rag_engine import ingest_chunks, search as rag_search, delete_document as rag_delete, build_rag_context, doc_id_from_filename
+    except ImportError:
+        from rag_engine import ingest_chunks, search as rag_search, delete_document as rag_delete, build_rag_context, doc_id_from_filename
+    _RAG_AVAILABLE = True
+    logger.info("rag_engine loaded — Semantic search + pgvector enabled")
+except ImportError as _rag_err:
+    _RAG_AVAILABLE = False
+    logger.warning(f"rag_engine غير متاح: {_rag_err}")
 
 # ---- Rate Limiter (IP-based) ----
 limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
@@ -803,14 +827,27 @@ async def analyze_project_pdf(data: ProjectInput, user_id: str = Depends(get_use
 async def generate_study(data: GenerateStudyInput, request: Request, user_id: str = Depends(get_user_id)):
     clean_prompt = _sanitize(data.prompt, 3000)
 
+    # جلب سياق RAG من قاعدة المعرفة إن كان متاحاً
+    rag_context = ""
+    if _RAG_AVAILABLE:
+        try:
+            oai = get_openai_client()
+            rag_results = await rag_search(clean_prompt, oai, threshold=0.60, top_k=5)
+            rag_context = build_rag_context(rag_results, max_chars=2500)
+            if rag_context:
+                logger.info(f"[RAG] retrieved {len(rag_results)} chunks for study generation")
+        except Exception as _re:
+            logger.warning(f"[RAG] search skipped: {_re}")
+
     system_msg = (
         "أنت مستشار أعمال محترف متخصص في السوق السعودي. "
         "تكتب باللغة العربية الفصحى المبسطة. "
         "تحليلاتك دقيقة ومبنية على بيانات واقعية. "
-        f"احرص على إضافة هذا التنبيه في النهاية: {DISCLAIMER}"
+        + (f"استند إلى المعلومات التالية من قاعدة المعرفة عند التحليل:\n{rag_context}\n" if rag_context else "")
+        + f"احرص على إضافة هذا التنبيه في النهاية: {DISCLAIMER}"
     )
 
-    # --- تقييد عدد التقارير المجانية لكل مستخدم (3 تقارير مجانية كحد أقصى) ---
+    # تقييد عدد التقارير المجانية لكل مستخدم (3 تقارير مجانية كحد أقصى)
     FREE_LIMIT = 3
     user_key = f"study_count:{user_id}"
     current_count = _ai_cache.get(user_key, 0)
@@ -839,7 +876,8 @@ async def generate_study(data: GenerateStudyInput, request: Request, user_id: st
             "disclaimer": DISCLAIMER,
             "free_used": current_count + 1,
             "free_limit": FREE_LIMIT,
-            "remaining": max(0, FREE_LIMIT - (current_count + 1))
+            "remaining": max(0, FREE_LIMIT - (current_count + 1)),
+            "rag_chunks_used": len(rag_results) if _RAG_AVAILABLE and rag_context else 0,
         }
     except openai.APIError as e:
         raise HTTPException(503, f"خطأ في خدمة الذكاء الاصطناعي: {str(e)}")
@@ -985,8 +1023,213 @@ async def generate_design_image(request: Request, data: DesignInput, user_id: st
         raise HTTPException(503, f"خطأ في توليد التصميم: {str(e)}")
 
 
+# ─── تحليل وتشريح المستندات العربية (PDF / DOCX) ───────────────
+_DOC_MAX_MB = 10  # حد أقصى 10 ميجابايت
+_ALLOWED_MIME = {
+    'application/pdf',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/octet-stream',  # بعض المتصفحات يرسل هذا
+}
 
-# ---- إصدار الشهادات ----
+@app.post("/api/parse-document")
+@limiter.limit("10/minute")
+async def parse_arabic_document(
+    request: Request,
+    file: UploadFile = File(...),
+):
+    """
+    يستقبل ملف PDF أو DOCX عربي ويُعيد:
+    - النص الكامل المستخرج
+    - chunks منظّمة حسب المواد/الفصول
+    - رابط الحفظ في Supabase Storage (إن كان مُفعَّلاً)
+    """
+    if not _DOC_PARSER_AVAILABLE:
+        raise HTTPException(503, "خدمة تحليل المستندات غير متاحة حالياً")
+
+    # التحقق من الامتداد
+    filename = file.filename or 'document'
+    ext = filename.rsplit('.', 1)[-1].lower() if '.' in filename else ''
+    if ext not in ('pdf', 'docx'):
+        raise HTTPException(400, "يُقبل فقط ملفات PDF و DOCX")
+
+    # قراءة الملف مع التحقق من الحجم
+    file_bytes = await file.read()
+    size_mb = len(file_bytes) / (1024 * 1024)
+    if size_mb > _DOC_MAX_MB:
+        raise HTTPException(413, f"حجم الملف ({size_mb:.1f} ميجابايت) يتجاوز الحد المسموح ({_DOC_MAX_MB} MB)")
+
+    try:
+        result = parse_document(file_bytes, filename)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    except Exception as e:
+        logger.error(f"parse_document error: {e}")
+        raise HTTPException(500, "حدث خطأ أثناء تحليل الملف")
+
+    # رفع إلى Supabase Storage (إن كانت المفاتيح موجودة)
+    storage_url: str | None = None
+    if SUPABASE_URL and SUPABASE_ANON_KEY:
+        try:
+            import httpx as _hx
+            storage_path = f"documents/{filename}"
+            content_type = 'application/pdf' if ext == 'pdf' else \
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            upload_resp = await _hx.AsyncClient().put(
+                f"{SUPABASE_URL}/storage/v1/object/knowledge-base/{storage_path}",
+                content=file_bytes,
+                headers={
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': f'Bearer {SUPABASE_ANON_KEY}',
+                    'Content-Type': content_type,
+                    'x-upsert': 'true',
+                },
+                timeout=30,
+            )
+            if upload_resp.status_code in (200, 201):
+                storage_url = f"{SUPABASE_URL}/storage/v1/object/public/knowledge-base/{storage_path}"
+            else:
+                logger.warning(f"Supabase upload failed: {upload_resp.status_code} {upload_resp.text}")
+        except Exception as e:
+            logger.warning(f"Supabase upload error: {e}")
+
+    return {
+        'success': True,
+        'filename': filename,
+        'type': result['type'],
+        'total_chunks': result['total_chunks'],
+        'total_chars': result['total_chars'],
+        'chunks': result['chunks'],
+        'storage_url': storage_url,
+        'message': f"تم تحليل الملف بنجاح — {result['total_chunks']} قطعة دلالية",
+    }
+
+
+# ══════════════════════════════════════════════════════════════════
+# RAG — قاعدة المعرفة الدلالية (pgvector)
+# ══════════════════════════════════════════════════════════════════
+
+class RagSearchInput(BaseModel):
+    query:     str   = Field(..., min_length=3, max_length=500)
+    top_k:     int   = Field(5,  ge=1, le=20)
+    threshold: float = Field(0.60, ge=0.0, le=1.0)
+
+
+@app.post("/api/rag/ingest")
+@limiter.limit("5/minute")
+async def rag_ingest(
+    request: Request,
+    file: UploadFile = File(...),
+):
+    """
+    Pipeline كامل: رفع ملف → parse → chunk → embed → pgvector
+    يستبدل الوثيقة القديمة تلقائياً إن أُعيد رفعها.
+    """
+    if not _RAG_AVAILABLE:
+        raise HTTPException(503, "محرك RAG غير مفعّل — تحقق من SUPABASE_URL و SUPABASE_ANON_KEY")
+    if not _DOC_PARSER_AVAILABLE:
+        raise HTTPException(503, "document_parser غير متاح")
+
+    filename = file.filename or "document"
+    ext = filename.rsplit('.', 1)[-1].lower() if '.' in filename else ''
+    if ext not in ('pdf', 'docx'):
+        raise HTTPException(400, "يُقبل فقط PDF و DOCX")
+
+    file_bytes = await file.read()
+    size_mb = len(file_bytes) / (1024 * 1024)
+    if size_mb > _DOC_MAX_MB:
+        raise HTTPException(413, f"حجم الملف ({size_mb:.1f} MB) يتجاوز الحد ({_DOC_MAX_MB} MB)")
+
+    # 1) استخراج النص وتقسيمه
+    try:
+        parsed = parse_document(file_bytes, filename)
+    except Exception as e:
+        raise HTTPException(500, f"خطأ أثناء تحليل الملف: {e}")
+
+    chunks = parsed['chunks']
+    if not chunks:
+        raise HTTPException(422, "لم يُستخرج أي نص من الملف")
+
+    # 2) embed + store في pgvector
+    oai = get_openai_client()
+    try:
+        rag_result = await ingest_chunks(chunks, filename, oai)
+    except RuntimeError as e:
+        raise HTTPException(503, str(e))
+    except Exception as e:
+        logger.error(f"[RAG ingest] {e}")
+        raise HTTPException(500, "خطأ أثناء حفظ الـ embeddings")
+
+    # 3) رفع الملف الأصلي إلى Supabase Storage
+    storage_url: str | None = None
+    if SUPABASE_URL and SUPABASE_ANON_KEY:
+        try:
+            import httpx as _hx
+            ct = 'application/pdf' if ext == 'pdf' else \
+                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            up = await _hx.AsyncClient(timeout=30).put(
+                f"{SUPABASE_URL}/storage/v1/object/knowledge-base/documents/{filename}",
+                content=file_bytes,
+                headers={
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': f'Bearer {SUPABASE_ANON_KEY}',
+                    'Content-Type': ct,
+                    'x-upsert': 'true',
+                },
+            )
+            if up.status_code in (200, 201):
+                storage_url = f"{SUPABASE_URL}/storage/v1/object/public/knowledge-base/documents/{filename}"
+        except Exception as e:
+            logger.warning(f"[RAG ingest] storage upload: {e}")
+
+    return {
+        'success':       rag_result['success'],
+        'doc_id':        rag_result['doc_id'],
+        'filename':      filename,
+        'total_chunks':  parsed['total_chunks'],
+        'chunks_stored': rag_result['chunks_stored'],
+        'tokens_used_est': rag_result.get('tokens_used_est', 0),
+        'storage_url':   storage_url,
+        'message':       f"تمت الفهرسة — {rag_result['chunks_stored']} مقطع في قاعدة المعرفة",
+    }
+
+
+@app.post("/api/rag/search")
+@limiter.limit("30/minute")
+async def rag_search_endpoint(data: RagSearchInput, request: Request):
+    """يبحث دلالياً في قاعدة المعرفة ويُعيد أقرب المقاطع."""
+    if not _RAG_AVAILABLE:
+        raise HTTPException(503, "محرك RAG غير مفعّل")
+
+    oai = get_openai_client()
+    results = await rag_search(
+        _sanitize(data.query, 500),
+        oai,
+        threshold=data.threshold,
+        top_k=data.top_k,
+    )
+    return {
+        'success': True,
+        'query':   data.query,
+        'results': results,
+        'count':   len(results),
+    }
+
+
+@app.delete("/api/rag/document/{doc_id}")
+@limiter.limit("10/minute")
+async def rag_delete_endpoint(doc_id: str, request: Request):
+    """يحذف جميع chunks وثيقة من pgvector."""
+    if not _RAG_AVAILABLE:
+        raise HTTPException(503, "محرك RAG غير مفعّل")
+    # التحقق من صيغة doc_id (hexadecimal فقط)
+    import re as _re
+    if not _re.fullmatch(r'[0-9a-f]{16}', doc_id):
+        raise HTTPException(400, "doc_id غير صالح")
+    ok = await rag_delete(doc_id)
+    return {'success': ok, 'doc_id': doc_id,
+            'message': 'تم الحذف' if ok else 'لم يُعثر على الوثيقة أو فشل الحذف'}
+
+
 @app.post("/api/certificates")
 async def issue_certificate(data: CertificateInput):
     """تحميل الشهادة كـ PDF يتطلب دفع رسوم."""
