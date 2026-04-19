@@ -1769,7 +1769,7 @@ async def dashboard_overview(user_id: str = Depends(get_user_id)):
 
     if _REFERRAL_AVAILABLE:
         try:
-            profile = await get_or_create_profile(user_id, None)
+            profile = await asyncio.wait_for(get_or_create_profile(user_id, None), timeout=4.0)
             wallet_pts = profile.get("points_balance", 0)
             wallet_sar = round(points_to_sar(wallet_pts), 2)
             ref_code   = profile.get("referral_code", "")
@@ -1777,8 +1777,14 @@ async def dashboard_overview(user_id: str = Depends(get_user_id)):
         except Exception as e:
             logger.warning(f"dashboard_overview: referral profile error: {e}")
 
+    # fallback: توليد رابط إحالة من user_id إذا لم يتوفر من Supabase
+    if not ref_link:
+        import hashlib as _hl
+        _fb_code = _hl.md5(user_id.encode()).hexdigest()[:8].upper()
+        ref_link = f"{base_url}/dashboard.html?ref={_fb_code}"
+
         try:
-            refs         = await get_referrals_list(user_id)
+            refs         = await asyncio.wait_for(get_referrals_list(user_id), timeout=4.0)
             ref_total    = len(refs)
             ref_rewarded = sum(1 for r in refs if r.get("reward_status") == "rewarded")
             ref_pending  = sum(1 for r in refs if r.get("reward_status") == "pending")
