@@ -1751,7 +1751,7 @@ async def dashboard_overview(user_id: str = Depends(get_user_id)):
     if user_id in _dash_cache:
         return _dash_cache[user_id]
 
-    base_url = os.getenv("APP_BASE_URL", "https://jenan.biz")
+    base_url = os.getenv("APP_BASE_URL", "http://localhost:8002")
 
     # --- بيانات الإحالة والمحفظة ---
     wallet_sar   = 0.0
@@ -1900,7 +1900,7 @@ async def referral_get_profile(data: ReferralRegisterInput, user_id: str = Depen
         raise HTTPException(503, "نظام الإحالات غير مفعَّل")
     profile = await get_or_create_profile(user_id, data.referred_by)
     ref_code = profile.get("referral_code", "")
-    base_url  = os.getenv("APP_BASE_URL", "https://jenan.biz")
+    base_url  = os.getenv("APP_BASE_URL", "http://localhost:8002")
     return {
         **profile,
         "referral_link": f"{base_url}/dashboard.html?ref={ref_code}",
@@ -2063,8 +2063,11 @@ async def payment_create_order(body: PaymentCreateInput, x_api_key: Optional[str
 
 # ── Checkout endpoint — يُنشئ رابط Moyasar ويُعيده للـ frontend ──────────────
 class CheckoutInput(BaseModel):
-    plan_type:  str  # platinum_monthly | platinum_yearly
-    amount_sar: float
+    plan_type:    str
+    amount_sar:   float
+    plan_name:    str = ""
+    billing:      str = "monthly"
+    callback_url: str = ""
 
 @app.post("/api/payment/checkout")
 async def payment_checkout(body: CheckoutInput, user_id: str = Depends(get_user_id)):
@@ -2074,8 +2077,9 @@ async def payment_checkout(body: CheckoutInput, user_id: str = Depends(get_user_
     """
     import httpx, os
 
-    secret_key   = os.getenv("MOYASAR_SECRET_KEY", "")
-    callback_url = os.getenv("APP_BASE_URL", "https://jenan.biz") + "/dashboard.html?payment=success"
+    secret_key = os.getenv("MOYASAR_SECRET_KEY", "")
+    _default_base = os.getenv("APP_BASE_URL", "http://localhost:8002")
+    callback_url = body.callback_url or (_default_base + "/dashboard.html?payment=success")
 
     plan_labels = {
         "launch_monthly":       "باقة الانطلاق الشهرية",
