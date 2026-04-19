@@ -5145,6 +5145,12 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanMo
 ====================================================== */
 const u = JSON.parse(localStorage.getItem('jb-user')||'{}');
 const uName = u.name || 'المستخدم';
+/* إنشاء jb-token تلقائياً للمستخدمين المسجّلين بدون token */
+(function(){
+  if(!localStorage.getItem('jb-token') && u.email){
+    localStorage.setItem('jb-token', 'email:' + u.email.trim().toLowerCase());
+  }
+})();
 document.getElementById('user-name').textContent = uName;
 document.getElementById('user-av').textContent = uName.charAt(0)||'م';
 if(document.getElementById('sett-name')) document.getElementById('sett-name').value = uName;
@@ -11248,7 +11254,7 @@ let _refProfile = null;
 
 async function loadReferralData() {
   try {
-    const token   = localStorage.getItem('jenan_token') || '';
+    const token   = localStorage.getItem('jb-token') || '';
     const headers = { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) };
     const refCode = localStorage.getItem('jenan_ref_code') || '';
 

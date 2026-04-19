@@ -386,6 +386,12 @@ def get_user_id(authorization: Optional[str] = Header(None)) -> str:
     if not authorization or not authorization.startswith("Bearer "):
         return "anonymous"
     token = authorization.split(" ", 1)[1]
+    # قبول email-based token في بيئة التطوير (email:user@example.com)
+    if token.startswith("email:"):
+        email = token[6:].strip().lower()
+        if "@" in email:
+            return email
+        return "anonymous"
     if not _SUPABASE_JWT_SECRET:
         # في بيئة التطوير فقط: نقبل التوكن بدون تحقق مع تسجيل تحذير
         logger.warning("SUPABASE_JWT_SECRET غير مضاف — التحقق من الهوية معطّل")

@@ -537,6 +537,7 @@
       const nameToUse = existing.name && existing.name !== 'المستخدم' && existing.name !== 'مستخدم جديد'
         ? existing.name : u.includes('@') ? u.split('@')[0] : u;
       localStorage.setItem('jb-user', JSON.stringify({ name: nameToUse, email: u, username: existing.username || '' }));
+      localStorage.setItem('jb-token', 'email:' + u.trim().toLowerCase());
       window.location.href = '/dashboard';
     }, 1400);
   });
@@ -657,6 +658,7 @@
   /* ===== Social ===== */
   function socialLogin() {
     localStorage.setItem('jb-user', JSON.stringify({name:'مستخدم جديد', email:'user@social.com'}));
+    localStorage.setItem('jb-token', 'email:user@social.com');
     window.location.href='/dashboard';
   }
 
@@ -721,6 +723,7 @@
       document.getElementById('reg-success').style.display='block';
       document.getElementById('login-switch-row').style.display='none';
       localStorage.setItem('jb-user', JSON.stringify({ name: regData.fname+' '+regData.lname, email: regData.email, username: regData.username }));
+      localStorage.setItem('jb-token', 'email:' + regData.email.trim().toLowerCase());
       setTimeout(() => { window.location.href = '/dashboard'; }, 2000);
     }
   }
