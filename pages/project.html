@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>صفحة المشروع - Jenan Blog</title>
+  <style>
+    :root {
+      --bg: #0b1739;
+      --bg2: #1a2f6f;
+      --card: rgba(255, 255, 255, 0.1);
+      --line: rgba(255, 255, 255, 0.2);
+      --txt: #eef4ff;
+      --muted: #aec2f3;
+      --accent: #5aa5ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--txt);
+      background:
+        radial-gradient(900px 500px at 90% -20%, rgba(90, 165, 255, 0.25), transparent 55%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .actions {
+      margin-top: 22px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    a {
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      color: var(--txt);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    a.primary {
+      border-color: transparent;
+      color: #05204a;
+      background: linear-gradient(90deg, #7ac1ff, var(--accent));
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>مساحة المشروع</h1>
+    <p>
+      هذه الصفحة أُضيفت لاستكمال جميع مراجع الملفات داخل لوحة التحكم،
+      ولضمان عدم وجود روابط مكسورة داخل المجلد.
+    </p>
+    <div class="actions">
+      <a class="primary" href="../dashboard.html">الرجوع إلى لوحة التحكم</a>
+      <a href="../auth.html">العودة لتسجيل الدخول</a>
+    </div>
+  </main>
+</body>
+</html>
