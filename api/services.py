@@ -361,6 +361,21 @@ async def favicon():
         return Response(status_code=204)
     return FileResponse(path, headers={"Cache-Control": "public, max-age=86400"})
 
+
+# ---- صفحة متجر البرامج ----
+@app.get("/software-store")
+async def software_store():
+    resp = FileResponse(os.path.join(BASE_DIR, "software-store.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
+
+
+@app.get("/software-store.html")
+async def software_store_html():
+    resp = FileResponse(os.path.join(BASE_DIR, "software-store.html"))
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return resp
+
 # ---- OpenAI Client (lazy — يُنشأ عند أول طلب فعلي) ----
 _openai_client = None
 def get_openai_client():
