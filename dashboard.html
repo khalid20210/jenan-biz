@@ -567,6 +567,38 @@ button,input,select,textarea{font-family:'Tajawal',sans-serif}
   box-shadow:0 2px 8px rgba(78,115,194,.4);
 }
 
+.nav-group{margin:.12rem .6rem;border-radius:10px}
+.nav-group-header{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.72rem .65rem;border-radius:10px;
+  color:rgba(255,255,255,.7);font-size:.9rem;font-weight:700;
+  cursor:pointer;transition:var(--tr);
+}
+.nav-group-header:hover{background:rgba(78,115,194,.12);color:#fff}
+.nav-group-header.group-active{
+  background:linear-gradient(135deg,rgba(78,115,194,.22) 0%,rgba(30,58,138,.18) 100%);
+  color:#fff;
+}
+.nav-group-header .group-label{flex:1}
+.nav-group-header .ng-arrow{transition:transform .2s ease}
+.nav-group.open .ng-arrow{transform:rotate(-90deg)}
+
+.nav-sub{max-height:0;overflow:hidden;transition:max-height .26s ease}
+.nav-group.open .nav-sub{max-height:360px}
+.nav-sub-item{
+  display:flex;align-items:center;gap:.7rem;
+  margin:.18rem .35rem .18rem 0;padding:.58rem .75rem;
+  border-radius:10px;cursor:pointer;
+  color:rgba(255,255,255,.58);font-size:.88rem;font-weight:600;
+  transition:var(--tr);
+}
+.nav-sub-item:hover{background:rgba(78,115,194,.14);color:#fff}
+.nav-sub-item.active{
+  background:linear-gradient(135deg,rgba(78,115,194,.35),rgba(30,58,138,.28));
+  color:#fff;box-shadow:inset 3px 0 0 #7B9ED4;
+}
+.nav-sub-item i{width:18px;text-align:center}
+
 .sidebar-footer{
   margin-top:auto;padding:1rem 1.25rem;
   border-top:1px solid rgba(78,115,194,.15);
@@ -1821,6 +1853,13 @@ function closeSidebar(){
   var ov=document.getElementById('overlay');
   if(ov) ov.style.display='none';
 }
+function toggleNavGroup(groupId){
+  var grp = document.getElementById(groupId);
+  if(!grp) return;
+  grp.classList.toggle('open');
+  var hdr = grp.querySelector('.nav-group-header');
+  if(hdr) hdr.classList.toggle('group-active', grp.classList.contains('open'));
+}
 function goto(page){
   if(!page) return;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1831,6 +1870,9 @@ function goto(page){
   var pageEl=document.getElementById('page-'+page);
   if(!pageEl) return;
   pageEl.classList.add('active');
+  // تفعيل nav-item المناسب
+  var navEl = document.getElementById('nav-'+page);
+  if(navEl) navEl.classList.add('active');
   if(['robot','paid-analysis','analysis','investor'].includes(page)) {
     var grp=document.getElementById('navgrp-gateway');
     if(grp) { grp.classList.add('open'); var hdr=grp.querySelector('.nav-group-header'); if(hdr) hdr.classList.add('group-active'); }
@@ -1888,6 +1930,22 @@ function gotoSub(page,groupId,subItemId){
 function goToPricingPage(){
   window.location.href='pricing.html';
 }
+/* fallback bindings: ensure gateway submenu always works even if inline onclick fails */
+document.addEventListener('DOMContentLoaded', function(){
+  var binds = [
+    { id:'nav-robot', fn:function(){ gotoSub('robot','navgrp-gateway','nav-robot'); } },
+    { id:'nav-analysis', fn:function(){ gotoSub('analysis','navgrp-gateway','nav-analysis'); } },
+    { id:'nav-investor', fn:function(){ gotoSub('investor','navgrp-gateway','nav-investor'); } },
+  ];
+  binds.forEach(function(b){
+    var el = document.getElementById(b.id);
+    if(!el) return;
+    el.onclick = function(e){
+      if(e) e.preventDefault();
+      b.fn();
+    };
+  });
+});
 document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanModal();});
 </script>
 </head>
@@ -4834,6 +4892,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape') closePlanMo
     <!-- ===== REFERRAL (نظام الإحالات والنقاط) ===== -->
     <div class="page" id="page-referral">
 
+      <!-- زر العودة -->
+      <div style="margin-bottom:1rem;">
+        <button onclick="goto('home')" style="display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;border-radius:12px;border:1.5px solid #e2e8f0;background:#fff;color:#4E73C2;font-weight:700;font-size:.9rem;cursor:pointer;transition:.2s;font-family:inherit;" onmouseover="this.style.background='#4E73C2';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='#4E73C2'">
+          <i class="fa-solid fa-arrow-right"></i> نظرة عامة
+        </button>
+      </div>
+
       <!-- HERO -->
       <div style="background:linear-gradient(135deg,#7c3aed,#ec4899);border-radius:20px;padding:2rem;margin-bottom:1.5rem;color:#fff;position:relative;overflow:hidden">
         <div style="position:absolute;left:-20px;top:-20px;font-size:8rem;opacity:.07;line-height:1">🎁</div>
@@ -5159,9 +5224,23 @@ if(document.getElementById('sett-email')) document.getElementById('sett-email').
 /* ══════════════════════════════════════════════
    BENTO GRID — DATA INIT
 ══════════════════════════════════════════════ */
+/* ─── Bento Home — Developer Notes ──────────────────────────
+   initBentoHome()        : الدالة الرئيسية — تُشغَّل عند DOMContentLoaded
+   _bentoSetLoading()     : تفعيل حالة skeleton على البطاقات
+   _bentoClearLoading()   : إزالة skeleton
+   _bentoApplyData(d)     : تطبيق البيانات على DOM — يُستدعى من fetch
+   _bentoShowError(msg)   : عرض رسالة خطأ مع زر إعادة المحاولة
+   _bentoUpdateBars(d)    : تحديث progress bars بالنسب
+   bentoCopyRef(e)        : نسخ رابط الإحالة مع fallback
+   bentoShareRef()        : مشاركة واتساب (تتحقق من صلاحية الرابط)
+   BENTO_API_TIMEOUT_MS   : مهلة الـ fetch (8 ثانية)
+──────────────────────────────────────────────────────────── */
+var BENTO_API_TIMEOUT_MS = 8000;
+
+var _BENTO_STAT_MAX = { reports: 50, chats: 100, partners: 20 };
+
 function _bentoSetLoading(){
-  /* تفعيل حالة التحميل على الأرقام */
-  var ids = ['bento-wallet-sar','bento-wallet-pts',
+  var ids = ['bento-wallet-sar',
              'bento-ref-total','bento-ref-rewarded','bento-ref-pending',
              'sc-reports','sc-chats','sc-partners'];
   ids.forEach(function(id){
@@ -5172,7 +5251,7 @@ function _bentoSetLoading(){
   if(inp){ inp.disabled = true; inp.style.opacity='.5'; }
 }
 function _bentoClearLoading(){
-  var ids = ['bento-wallet-sar','bento-wallet-pts',
+  var ids = ['bento-wallet-sar',
              'bento-ref-total','bento-ref-rewarded','bento-ref-pending',
              'sc-reports','sc-chats','sc-partners'];
   ids.forEach(function(id){
@@ -5183,12 +5262,94 @@ function _bentoClearLoading(){
   if(inp){ inp.disabled = false; inp.style.opacity='1'; }
 }
 
+function _bentoShowError(msg){
+  _bentoClearLoading();
+  var inp = document.getElementById('bento-ref-input');
+  if(inp){ inp.value = msg || 'تعذّر تحميل البيانات'; inp.style.color='var(--muted)'; }
+  var elSar = document.getElementById('bento-wallet-sar');
+  if(elSar) elSar.textContent = '—';
+}
+
+function _bentoUpdateBars(d){
+  var stats = d.stats || {};
+  var bars = [
+    { valId:'sc-reports',  barId:'sc-reports-bar',  val: stats.reports  || 0, max: _BENTO_STAT_MAX.reports  },
+    { valId:'sc-chats',    barId:'sc-chats-bar',    val: stats.chats    || 0, max: _BENTO_STAT_MAX.chats    },
+    { valId:'sc-partners', barId:'sc-partners-bar', val: stats.partners || 0, max: _BENTO_STAT_MAX.partners },
+  ];
+  bars.forEach(function(b){
+    var elV = document.getElementById(b.valId);
+    var elB = document.getElementById(b.barId);
+    if(elV) elV.textContent = b.val;
+    if(elB){
+      var pct = b.max > 0 ? Math.min(100, Math.round((b.val / b.max) * 100)) : 0;
+      elB.style.width = pct + '%';
+    }
+  });
+}
+
+function _bentoApplyData(d){
+  /* المحفظة */
+  var elSar = document.getElementById('bento-wallet-sar');
+  if(elSar) elSar.textContent = Number(d.wallet && d.wallet.balance_sar || 0).toFixed(2);
+
+  /* رابط الإحالة */
+  var inp = document.getElementById('bento-ref-input');
+  if(inp){
+    var link = (d.referral && d.referral.link) || '';
+    inp.value = link || 'تواصل معنا لتفعيل برنامج الإحالة';
+    inp.style.color = link ? '' : 'var(--muted)';
+  }
+  var refData = d.referral || {};
+  var elT = document.getElementById('bento-ref-total');
+  var elR = document.getElementById('bento-ref-rewarded');
+  var elP = document.getElementById('bento-ref-pending');
+  if(elT) elT.textContent = refData.total    || 0;
+  if(elR) elR.textContent = refData.rewarded || 0;
+  if(elP) elP.textContent = refData.pending  || 0;
+
+  /* progress bars */
+  _bentoUpdateBars(d);
+
+  /* الباقة */
+  var plan = (d.subscription && d.subscription.plan) ? d.subscription.plan : 'free';
+  var planLabels = { free:'حساب أساسي', biz:'jenan biz', pro:'jenan pro', platinum:'jenan platinum' };
+  var planIcons  = { free:'fa-solid fa-user-check', biz:'fa-solid fa-briefcase', pro:'fa-solid fa-terminal', platinum:'fa-solid fa-crown' };
+  var lbl = document.getElementById('bento-plan-label');
+  var badge = document.getElementById('bento-plan-badge');
+  if(lbl) lbl.textContent = planLabels[plan] || planLabels.free;
+  if(badge){
+    var ico = badge.querySelector('i');
+    if(ico) ico.className = planIcons[plan] || planIcons.free;
+    if(plan !== 'free'){
+      badge.style.background = 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))';
+      badge.style.borderColor = 'rgba(78,115,194,.35)';
+      badge.style.color = '#1e3a8a';
+    }
+  }
+  if(plan !== 'free'){
+    var cell = document.getElementById('bento-upgrade-cell');
+    if(cell) cell.style.display = 'none';
+  }
+
+  /* بانر الإيداع الافتتاحي */
+  if(d.promo_banner){
+    var banner = document.getElementById('bento-promo-banner');
+    if(banner && !sessionStorage.getItem('jb-promo-seen')){
+      banner.style.display = 'block';
+      sessionStorage.setItem('jb-promo-seen','1');
+    }
+  }
+}
+
 function initBentoHome(){
   /* اسم المستخدم — فوري من localStorage */
   var elName = document.getElementById('bento-user-name');
   if(elName) elName.textContent = uName;
 
-  var token = localStorage.getItem('jb-token') || u.token || '';
+  var token = localStorage.getItem('jb-token') || (u && u.token) || '';
+
+  /* إذا لا يوجد token → عرض رسالة وإيقاف */
   if(!token){
     var inp = document.getElementById('bento-ref-input');
     if(inp){ inp.value = 'سجّل الدخول لعرض رابط الإحالة'; inp.style.color='var(--muted)'; }
@@ -5196,92 +5357,49 @@ function initBentoHome(){
     return;
   }
 
-  /* تفعيل skeleton */
   _bentoSetLoading();
 
-  /* طلب واحد يجمع كل البيانات */
+  /* AbortController لإلغاء الطلب عند timeout */
+  var ctrl = new AbortController();
+  var tid = setTimeout(function(){ ctrl.abort(); }, BENTO_API_TIMEOUT_MS);
+
   fetch('/api/dashboard/overview', {
-    headers:{ 'Authorization': 'Bearer ' + token }
+    headers: { 'Authorization': 'Bearer ' + token },
+    signal: ctrl.signal
   })
   .then(function(r){
+    clearTimeout(tid);
     if(r.status === 401){
+      /* جلسة منتهية — تسجيل الخروج تلقائياً */
       localStorage.removeItem('jb-token');
       localStorage.removeItem('jb-user');
       window.location.href = '/';
       return null;
     }
-    return r.ok ? r.json() : null;
+    if(!r.ok){
+      throw new Error('HTTP ' + r.status);
+    }
+    return r.json();
   })
   .then(function(d){
     _bentoClearLoading();
     if(!d) return;
-
-    /* المحفظة */
-    var elSar = document.getElementById('bento-wallet-sar');
-    var elPts = document.getElementById('bento-wallet-pts');
-    if(elSar) elSar.textContent = Number(d.wallet.balance_sar || 0).toFixed(2);
-    if(elPts) elPts.textContent = Number(d.wallet.points || 0).toLocaleString('ar-SA');
-
-    /* رابط الإحالة */
-    var inp = document.getElementById('bento-ref-input');
-    if(inp){
-      inp.value = d.referral.link || '';
-      inp.style.color = '';
-      if(!d.referral.link) inp.value = 'تواصل معنا لتفعيل برنامج الإحالة';
-    }
-    var elT = document.getElementById('bento-ref-total');
-    var elR = document.getElementById('bento-ref-rewarded');
-    var elP = document.getElementById('bento-ref-pending');
-    if(elT) elT.textContent = d.referral.total || 0;
-    if(elR) elR.textContent = d.referral.rewarded || 0;
-    if(elP) elP.textContent = d.referral.pending || 0;
-
-    /* إحصاءات سريعة */
-    var elRep = document.getElementById('sc-reports');
-    var elCht = document.getElementById('sc-chats');
-    var elPrt = document.getElementById('sc-partners');
-    if(elRep) elRep.textContent = d.stats.reports || 0;
-    if(elCht) elCht.textContent = d.stats.chats || 0;
-    if(elPrt) elPrt.textContent = d.stats.partners || 0;
-
-    /* الباقة */
-    var plan = (d.subscription && d.subscription.plan) ? d.subscription.plan : 'free';
-    var planLabels = { free:'حساب أساسي', biz:'jenan biz', pro:'jenan pro' };
-    var planIcons  = { free:'fa-solid fa-user-check', biz:'fa-solid fa-briefcase', pro:'fa-solid fa-terminal' };
-    var lbl = document.getElementById('bento-plan-label');
-    var badge = document.getElementById('bento-plan-badge');
-    if(lbl) lbl.textContent = planLabels[plan] || planLabels.free;
-    if(badge){
-      var ico = badge.querySelector('i');
-      if(ico) ico.className = planIcons[plan] || planIcons.free;
-      if(plan !== 'free'){
-        badge.style.background = 'linear-gradient(135deg,rgba(78,115,194,.15),rgba(30,58,138,.08))';
-        badge.style.borderColor = 'rgba(78,115,194,.35)';
-        badge.style.color = '#1e3a8a';
-      }
-    }
-    if(plan !== 'free'){
-      var cell = document.getElementById('bento-upgrade-cell');
-      if(cell) cell.style.display = 'none';
-    }
-
-    /* بانر الإيداع الافتتاحي */
-    if(d.promo_banner){
-      var banner = document.getElementById('bento-promo-banner');
-      /* عرض مرة واحدة فقط — نتذكر بـ sessionStorage */
-      if(banner && !sessionStorage.getItem('jb-promo-seen')){
-        banner.style.display = 'block';
-        sessionStorage.setItem('jb-promo-seen','1');
-      }
-    }
+    _bentoApplyData(d);
   })
   .catch(function(err){
-    _bentoClearLoading();
-    console.warn('[bento] overview fetch error:', err);
+    clearTimeout(tid);
+    var msg = err && err.name === 'AbortError'
+      ? 'انتهت مهلة الاتصال — تحقق من السيرفر'
+      : 'تعذّر تحميل البيانات';
+    console.warn('[bento] overview error:', err);
+    _bentoShowError(msg);
   });
 }
 /* تشغيل عند تحميل الصفحة */
 document.addEventListener('DOMContentLoaded', initBentoHome);
+
+/* إعادة تحميل نظرة عامة (مكشوفة للمطورين والأزرار) */
+window.refreshBentoHome = initBentoHome;
 
 /* نسخ رابط الإحالة */
 function bentoCopyRef(e){
@@ -5289,7 +5407,17 @@ function bentoCopyRef(e){
   var inp = document.getElementById('bento-ref-input');
   if(!inp) return;
   var val = inp.value;
-  if(!val || val.indexOf('سجّل') !== -1 || val.indexOf('جارٍ') !== -1) return;
+  /* تحقق من صلاحية الرابط قبل النسخ */
+  var invalid = !val
+    || val.indexOf('سجّل') !== -1
+    || val.indexOf('جارٍ') !== -1
+    || val.indexOf('تواصل') !== -1
+    || val.indexOf('تعذّر') !== -1;
+  if(invalid){
+    if(typeof showToast === 'function') showToast('جارٍ تحميل الرابط...');
+    initBentoHome();
+    return;
+  }
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(val)
       .then(function(){ if(typeof showToast==='function') showToast('تم نسخ رابط الإحالة ✅'); })
@@ -5299,9 +5427,14 @@ function bentoCopyRef(e){
   }
 }
 function _fallbackCopy(inp){
+  inp.focus();
   inp.select();
-  try{ document.execCommand('copy'); if(typeof showToast==='function') showToast('تم النسخ ✅'); }
-  catch(e){}
+  try{
+    var ok = document.execCommand('copy');
+    if(typeof showToast==='function') showToast(ok ? 'تم النسخ ✅' : 'انسخ يدوياً (Ctrl+C)');
+  } catch(e){
+    if(typeof showToast==='function') showToast('انسخ يدوياً (Ctrl+C)');
+  }
 }
 
 /* مشاركة عبر واتساب */
@@ -5309,7 +5442,7 @@ function bentoShareRef(){
   var inp = document.getElementById('bento-ref-input');
   if(!inp) return;
   var val = inp.value;
-  if(!val || val.indexOf('سجّل') !== -1) return;
+  if(!val || val.indexOf('سجّل') !== -1 || val.indexOf('جارٍ') !== -1 || val.indexOf('جار') !== -1) return;
   var msg = 'انضم معي على منصة جنان بيز للحصول على حلول الأعمال والاستشارات:\n' + val;
   window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
 }
@@ -11262,12 +11395,17 @@ async function loadReferralData() {
       method: 'POST', headers,
       body: JSON.stringify({ referred_by: refCode || null }),
     });
-    if (!profRes.ok) { _renderRefError('تعذّر تحميل ملف الإحالة'); return; }
+    if (!profRes.ok) {
+      _renderRefError('تعذّر تحميل ملف الإحالة');
+      var inp = document.getElementById('ref-link-input');
+      if (inp) inp.value = 'فشل التحميل — اضغط على "تحديث"';
+      return;
+    }
     _refProfile = await profRes.json();
 
     document.getElementById('ref-points-balance').textContent = (_refProfile.points_balance ?? 0).toLocaleString('ar-SA');
     document.getElementById('ref-sar-balance').textContent    = (_refProfile.points_in_sar ?? 0) + ' ريال';
-    document.getElementById('ref-link-input').value           = _refProfile.referral_link || '';
+    document.getElementById('ref-link-input').value           = _refProfile.referral_link || 'لا يوجد رابط — تواصل مع الدعم';
 
     const listRes  = await fetch(`${_API_BASE}/api/referral/list`, { headers });
     const listData = listRes.ok ? await listRes.json() : { referrals: [], rewarded: 0 };
@@ -11280,6 +11418,8 @@ async function loadReferralData() {
 
   } catch (e) {
     _renderRefError('تحقق من تشغيل السيرفر');
+    var inp = document.getElementById('ref-link-input');
+    if (inp) inp.value = 'خطأ في الاتصال — اضغط على "تحديث"';
     console.error('[referral]', e);
   }
 }
@@ -11333,16 +11473,28 @@ function _renderRefError(msg) {
 
 function copyRefLink() {
   const val = document.getElementById('ref-link-input').value;
-  if (!val || val === 'جارٍ التحميل...') return;
+  if (!val || val === 'جارٍ التحميل...') {
+    if (typeof loadReferralData === 'function') loadReferralData();
+    if (typeof showToast === 'function') showToast('جارٍ تحميل الرابط...');
+    return;
+  }
   navigator.clipboard.writeText(val).then(() => {
     if (typeof showToast === 'function') showToast('تم نسخ رابط الإحالة ✅');
     else alert('تم النسخ!');
+  }).catch(() => {
+    var inp = document.getElementById('ref-link-input');
+    if (inp) { inp.select(); document.execCommand('copy'); }
+    if (typeof showToast === 'function') showToast('تم النسخ ✅');
   });
 }
 
 function shareRefLink() {
   const val = document.getElementById('ref-link-input').value;
-  if (!val || val === 'جارٍ التحميل...') return;
+  if (!val || val === 'جارٍ التحميل...') {
+    if (typeof loadReferralData === 'function') loadReferralData();
+    if (typeof showToast === 'function') showToast('جارٍ تحميل الرابط...');
+    return;
+  }
   const msg = encodeURIComponent(`🎁 انضم معي في منصة جنان بيز — الذكاء الاصطناعي لرواد الأعمال السعوديين!\nسجّل من خلال رابطي وابدأ تجربتك:\n${val}`);
   window.open(`https://wa.me/?text=${msg}`, '_blank');
 }

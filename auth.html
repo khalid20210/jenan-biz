@@ -4,14 +4,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jenan BIZ - تسجيل الدخول</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/tailwind.local.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <script>
-    tailwind.config = {
-      theme: { extend: { fontFamily: { tajawal: ['Tajawal', 'sans-serif'] } } }
-    }
-  </script>
   <style>
     body { font-family: 'Tajawal', sans-serif; }
     .glass-card {
@@ -37,13 +32,132 @@
     .reg-step-line { width:28px; height:2px; background:#e2e8f0; }
     .field-err { border-color:#ef4444 !important; }
     @media(max-width:768px) { .auth-left-panel { display:none !important; } }
+    /* === Critical layout fixes (no Tailwind dependency) === */
+    .auth-left-panel {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    .auth-left-panel > .absolute {
+      position: absolute !important;
+      inset: 0;
+      pointer-events: none;
+    }
+    .auth-left-panel > .relative {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+    .auth-left-panel .text-white { color: #ffffff !important; }
+    .auth-left-panel .text-blue-300 { color: #93c5fd !important; }
+    .auth-left-panel .font-black { font-weight: 900 !important; }
+    .auth-left-panel .font-bold { font-weight: 700 !important; }
+    .auth-left-panel .text-xl { font-size: 1.25rem !important; }
+    .auth-left-panel .text-xs { font-size: 0.75rem !important; }
+    .auth-left-panel .text-sm { font-size: 0.875rem !important; }
+    .auth-left-panel .text-lg { font-size: 1.125rem !important; }
+    .auth-left-panel .text-center { text-align: center !important; }
+    .auth-left-panel .flex { display: flex !important; }
+    .auth-left-panel .flex-col { flex-direction: column !important; }
+    .auth-left-panel .flex-1 { flex: 1 !important; }
+    .auth-left-panel .items-center { align-items: center !important; }
+    .auth-left-panel .items-end { align-items: flex-end !important; }
+    .auth-left-panel .justify-end { justify-content: flex-end !important; }
+    .auth-left-panel .justify-center { justify-content: center !important; }
+    .auth-left-panel .justify-between { justify-content: space-between !important; }
+    .auth-left-panel .gap-1 { gap: 0.25rem !important; }
+    .auth-left-panel .gap-1\.5 { gap: 0.375rem !important; }
+    .auth-left-panel .gap-3 { gap: 0.75rem !important; }
+    .auth-left-panel .gap-6 { gap: 1.5rem !important; }
+    .auth-left-panel .gap-0\.5 { gap: 0.125rem !important; }
+    .auth-left-panel .rounded-xl { border-radius: 0.75rem !important; }
+    .auth-left-panel .rounded-2xl { border-radius: 1rem !important; }
+    .auth-left-panel .p-2\.5 { padding: 0.625rem !important; }
+    .auth-left-panel .mb-1 { margin-bottom: 0.25rem !important; }
+    .auth-left-panel .mt-0\.5 { margin-top: 0.125rem !important; }
+    .auth-left-panel .mt-1 { margin-top: 0.25rem !important; }
+    .auth-left-panel .leading-none { line-height: 1 !important; }
+    .auth-left-panel .flex-shrink-0 { flex-shrink: 0 !important; }
+    .auth-left-panel .w-11 { width: 2.75rem !important; }
+    .auth-left-panel .h-10 { height: 2.5rem !important; }
+    .auth-left-panel .w-1\.5 { width: 0.375rem !important; }
+    .auth-left-panel .rounded-t { border-top-left-radius: 0.25rem !important; border-top-right-radius: 0.25rem !important; }
+    .auth-left-panel .w-px { width: 1px !important; }
+    /* === Right panel (login) fixes === */
+    .auth-right-panel { display:flex; flex-direction:column; background:#f8fafc; overflow:hidden; position:relative; }
+    .auth-right-panel .flex { display:flex !important; }
+    .auth-right-panel .flex-col { flex-direction:column !important; }
+    .auth-right-panel .flex-1 { flex:1 !important; }
+    .auth-right-panel .items-center { align-items:center !important; }
+    .auth-right-panel .justify-center { justify-content:center !important; }
+    .auth-right-panel .justify-between { justify-content:space-between !important; }
+    .auth-right-panel .overflow-y-auto { overflow-y:auto !important; }
+    .auth-right-panel .space-y-4 > * + * { margin-top:1rem; }
+    .auth-right-panel .w-full { width:100% !important; }
+    .auth-right-panel .relative { position:relative !important; }
+    .auth-right-panel .absolute { position:absolute !important; }
+    .auth-right-panel .grid { display:grid !important; }
+    .auth-right-panel .grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+    .auth-right-panel .gap-2 { gap:0.5rem !important; }
+    .auth-right-panel .gap-3 { gap:0.75rem !important; }
+    .auth-right-panel .gap-1\.5 { gap:0.375rem !important; }
+    .auth-right-panel .hidden { display:none !important; }
+    .auth-right-panel .block { display:block !important; }
+    .auth-right-panel input, .auth-right-panel button { font-family:'Tajawal',sans-serif; }
+    .auth-right-panel input { width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e2e8f0; background:#fff; color:#1e293b; outline:none; box-sizing:border-box; }
+    .auth-right-panel input:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,.2); }
+    .auth-right-panel .px-8 { padding-left:2rem; padding-right:2rem; }
+    .auth-right-panel .py-4 { padding-top:1rem; padding-bottom:1rem; }
+    .auth-right-panel .px-6 { padding-left:1.5rem; padding-right:1.5rem; }
+    .auth-right-panel .py-3 { padding-top:0.75rem; padding-bottom:0.75rem; }
+    .auth-right-panel .mb-1 { margin-bottom:0.25rem; }
+    .auth-right-panel .mb-5 { margin-bottom:1.25rem; }
+    .auth-right-panel .mb-6 { margin-bottom:1.5rem; }
+    .auth-right-panel .my-5 { margin-top:1.25rem; margin-bottom:1.25rem; }
+    .auth-right-panel .mb-1\.5 { margin-bottom:0.375rem; }
+    .auth-right-panel .text-2xl { font-size:1.5rem !important; }
+    .auth-right-panel .text-sm { font-size:0.875rem !important; }
+    .auth-right-panel .font-black { font-weight:900 !important; }
+    .auth-right-panel .font-bold { font-weight:700 !important; }
+    .auth-right-panel .font-semibold { font-weight:600 !important; }
+    .auth-right-panel .text-slate-800 { color:#1e293b !important; }
+    .auth-right-panel .text-slate-700 { color:#334155 !important; }
+    .auth-right-panel .text-slate-600 { color:#475569 !important; }
+    .auth-right-panel .text-slate-500 { color:#64748b !important; }
+    .auth-right-panel .text-slate-400 { color:#94a3b8 !important; }
+    .auth-right-panel .text-blue-600 { color:#2563eb !important; }
+    .auth-right-panel .text-blue-500 { color:#3b82f6 !important; }
+    .auth-right-panel .text-blue-400 { color:#60a5fa !important; }
+    .auth-right-panel .text-white { color:#fff !important; }
+    .auth-right-panel .bg-white { background:#fff !important; }
+    .auth-right-panel .border-b { border-bottom:1px solid #f1f5f9; }
+    .auth-right-panel .border-slate-200 { border-color:#e2e8f0 !important; }
+    .auth-right-panel .border-slate-100 { border-color:#f1f5f9 !important; }
+    .auth-right-panel .rounded-xl { border-radius:0.75rem !important; }
+    .auth-right-panel .rounded-full { border-radius:9999px !important; }
+    .auth-right-panel .w-9 { width:2.25rem !important; }
+    .auth-right-panel .h-9 { height:2.25rem !important; }
+    .auth-right-panel .w-4 { width:1rem !important; }
+    .auth-right-panel .h-4 { height:1rem !important; }
+    .auth-right-panel .h-px { height:1px !important; }
+    .auth-right-panel .flex-shrink-0 { flex-shrink:0 !important; }
+    .auth-right-panel .text-center { text-align:center !important; }
+    .auth-right-panel .top-1\/2 { top:50% !important; }
+    .auth-right-panel .right-3 { right:0.75rem !important; }
+    .auth-right-panel .left-3 { left:0.75rem !important; }
+    .auth-right-panel .-translate-y-1\/2 { transform:translateY(-50%) !important; }
+    .auth-right-panel .pointer-events-none { pointer-events:none; }
+    .auth-right-panel .cursor-pointer { cursor:pointer; }
+    .auth-right-panel .border { border-width:1px; border-style:solid; }
+    .auth-right-panel .py-2\.5 { padding-top:0.625rem; padding-bottom:0.625rem; }
   </style>
 </head>
-<body class="min-h-screen flex bg-slate-50 antialiased" style="height:100vh;overflow:hidden">
+<body class="min-h-screen flex bg-slate-50 antialiased" style="height:100vh;overflow:hidden;display:flex;flex-direction:row;">
 
 <!-- ===== LEFT PANEL ===== -->
 <div class="auth-left-panel relative flex flex-col justify-between overflow-hidden bg-slate-900"
-     style="flex:1;height:100vh;padding:1rem 2rem 0.8rem;">
+     style="flex:1;min-width:0;height:100vh;padding:1rem 2rem 0.8rem;background-color:#0f172a;">
 
   <!-- خلفية نقطية -->
   <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(circle,rgba(78,115,194,.1) 1px,transparent 1px);background-size:26px 26px;"></div>
@@ -195,7 +309,7 @@
 </div>
 
 <!-- ===== RIGHT PANEL ===== -->
-<div class="flex flex-col bg-slate-50 overflow-hidden relative" style="width:100%;max-width:500px;min-width:320px;height:100vh;flex-shrink:0;">
+<div class="auth-right-panel flex flex-col bg-slate-50 overflow-hidden relative" style="width:420px;min-width:320px;max-width:420px;height:100vh;flex-shrink:0;display:flex;flex-direction:column;background-color:#f8fafc;overflow:hidden;position:relative;">
 
   <!-- شريط علوي -->
   <div class="flex items-center justify-between px-6 py-3 flex-shrink-0 border-b border-slate-100">
@@ -538,7 +652,7 @@
         ? existing.name : u.includes('@') ? u.split('@')[0] : u;
       localStorage.setItem('jb-user', JSON.stringify({ name: nameToUse, email: u, username: existing.username || '' }));
       localStorage.setItem('jb-token', 'email:' + u.trim().toLowerCase());
-      window.location.href = '/dashboard';
+          window.location.href = '/dashboard.html';
     }, 1400);
   });
 
@@ -659,7 +773,7 @@
   function socialLogin() {
     localStorage.setItem('jb-user', JSON.stringify({name:'مستخدم جديد', email:'user@social.com'}));
     localStorage.setItem('jb-token', 'email:user@social.com');
-    window.location.href='/dashboard';
+                window.location.href='/dashboard.html';
   }
 
   /* ===== OTP via Supabase ===== */
@@ -724,7 +838,7 @@
       document.getElementById('login-switch-row').style.display='none';
       localStorage.setItem('jb-user', JSON.stringify({ name: regData.fname+' '+regData.lname, email: regData.email, username: regData.username }));
       localStorage.setItem('jb-token', 'email:' + regData.email.trim().toLowerCase());
-      setTimeout(() => { window.location.href = '/dashboard'; }, 2000);
+            setTimeout(() => { window.location.href = '/dashboard.html'; }, 2000);
     }
   }
 

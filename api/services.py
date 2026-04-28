@@ -1911,9 +1911,24 @@ async def referral_get_profile(data: ReferralRegisterInput, user_id: str = Depen
     """
     if not _REFERRAL_AVAILABLE:
         raise HTTPException(503, "نظام الإحالات غير مفعَّل")
-    profile = await get_or_create_profile(user_id, data.referred_by)
+    base_url = os.getenv("APP_BASE_URL", "http://localhost:8002")
+    try:
+        profile = await asyncio.wait_for(
+            get_or_create_profile(user_id, data.referred_by), timeout=6.0
+        )
+    except Exception as e:
+        logger.warning(f"referral_get_profile: fallback للكود المحلي: {e}")
+        import hashlib as _hl
+        _fb_code = _hl.md5(user_id.encode()).hexdigest()[:8].upper()
+        profile = {
+            "user_id": user_id,
+            "referral_code": _fb_code,
+            "referred_by": None,
+            "points_balance": 0,
+            "total_earned": 0,
+            "total_spent": 0,
+        }
     ref_code = profile.get("referral_code", "")
-    base_url  = os.getenv("APP_BASE_URL", "http://localhost:8002")
     return {
         **profile,
         "referral_link": f"{base_url}/dashboard.html?ref={ref_code}",
